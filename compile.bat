@@ -5,7 +5,7 @@ REM
 REM The full .NET framework needs to be installed for this script.
 REM i.e. not the "Client Profile", as it is missing several required DLLs.
 REM
-set targetfile=RunUO-Net4.exe
+set targetfile=RunUO.exe
 
 if exist "%targetfile%" (
 	echo Deleting binary...
