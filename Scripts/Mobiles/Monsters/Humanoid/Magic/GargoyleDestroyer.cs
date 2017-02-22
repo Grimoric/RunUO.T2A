@@ -55,7 +55,7 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Gems, 2 );
 		}
 
-		public override bool BardImmune{ get{ return !Core.AOS; } }
+		public override bool BardImmune{ get{ return true; } }
 		public override int Meat{ get{ return 1; } }
 		public override bool CanFly { get { return true; } }
 

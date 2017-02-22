@@ -69,12 +69,7 @@ namespace Server.Spells.Seventh
 
 				Effects.PlaySound( p, Caster.Map, 0x20B );
 
-				TimeSpan duration;
-
-				if ( Core.AOS )
-					duration = TimeSpan.FromSeconds( (15 + (Caster.Skills.Magery.Fixed / 5)) / 7 );
-				else
-					duration = TimeSpan.FromSeconds( Caster.Skills[SkillName.Magery].Value * 0.28 + 2.0 ); // (28% of magery) + 2.0 seconds
+				TimeSpan duration = TimeSpan.FromSeconds( Caster.Skills[SkillName.Magery].Value * 0.28 + 2.0 ); // (28% of magery) + 2.0 seconds
 
 				int itemID = eastToWest ? 0x3946 : 0x3956;
 
@@ -188,7 +183,7 @@ namespace Server.Spells.Seventh
 		{
 			private EnergyFieldSpell m_Owner;
 
-			public InternalTarget( EnergyFieldSpell owner ) : base( Core.ML ? 10 : 12, true, TargetFlags.None )
+			public InternalTarget( EnergyFieldSpell owner ) : base( 12, true, TargetFlags.None )
 			{
 				m_Owner = owner;
 			}

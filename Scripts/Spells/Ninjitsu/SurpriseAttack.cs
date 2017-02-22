@@ -15,7 +15,7 @@ namespace Server.Spells.Ninjitsu
 		}
 
 		public override int BaseMana{ get{ return 20; } }
-		public override double RequiredSkill{ get{ return Core.ML ? 60.0 : 30.0; } }
+		public override double RequiredSkill{ get{ return 30.0; } }
 
 		public override TextDefinition AbilityMessage{ get{ return new TextDefinition( 1063128 ); } } // You prepare to surprise your prey.
 

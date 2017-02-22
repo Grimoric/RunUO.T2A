@@ -8,7 +8,7 @@ namespace Server
 {
 	public class BuffInfo
 	{
-		public static bool Enabled { get { return Core.ML; } }
+		public static bool Enabled { get { return false; } }
 
 		public static void Initialize()
 		{

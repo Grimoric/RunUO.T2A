@@ -159,52 +159,11 @@ namespace Server.Items
 		{
 			m_Marked = true;
 
-			bool setDesc = false;
-			if ( Core.AOS )
-			{
-				m_House = BaseHouse.FindHouseAt( m );
+			m_House = null;
+			m_Target = m.Location;
+			m_TargetMap = m.Map;
 
-				if ( m_House == null )
-				{
-					m_Target = m.Location;
-					m_TargetMap = m.Map;
-				}
-				else
-				{
-					HouseSign sign = m_House.Sign;
-
-					if ( sign != null )
-						m_Description = sign.Name;
-					else
-						m_Description = null;
-
-					if ( m_Description == null || (m_Description = m_Description.Trim()).Length == 0 )
-						m_Description = "an unnamed house";
-
-					setDesc = true;
-
-					int x = m_House.BanLocation.X;
-					int y = m_House.BanLocation.Y + 2;
-					int z = m_House.BanLocation.Z;
-
-					Map map = m_House.Map;
-
-					if ( map != null && !map.CanFit( x, y, z, 16, false, false ) )
-						z = map.GetAverageZ( x, y );
-
-					m_Target = new Point3D( x, y, z );
-					m_TargetMap = map;
-				}
-			}
-			else
-			{
-				m_House = null;
-				m_Target = m.Location;
-				m_TargetMap = m.Map;
-			}
-
-			if( !setDesc )
-				m_Description = BaseRegion.GetRuneNameFor( Region.Find( m_Target, m_TargetMap ) );
+			m_Description = BaseRegion.GetRuneNameFor( Region.Find( m_Target, m_TargetMap ) );
 
 			CalculateHue();
 			InvalidateProperties();

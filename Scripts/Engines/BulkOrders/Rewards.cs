@@ -228,7 +228,7 @@ namespace Server.Engines.BulkOrders
 		private static Item CreateRunicHammer( int type )
 		{
 			if ( type >= 1 && type <= 8 )
-				return new RunicHammer( CraftResource.Iron + type, Core.AOS ? ( 55 - (type*5) ) : 50 );
+				return new RunicHammer( CraftResource.Iron + type, 50 );
 
 			throw new InvalidOperationException();
 		}
@@ -700,7 +700,7 @@ namespace Server.Engines.BulkOrders
 
 		public override int ComputeGold( int quantity, bool exceptional, BulkMaterialType material, int itemCount, Type type )
 		{
-			int[][][] goldTable = ( Core.AOS ? m_AosGoldTable : m_OldGoldTable );
+			int[][][] goldTable = m_OldGoldTable;
 
 			int typeIndex = (( itemCount == 6 ? 3 : itemCount == 5 ? 2 : itemCount == 4 ? 1 : 0 ) * 2) + (exceptional ? 1 : 0);
 			int quanIndex = ( quantity == 20 ? 2 : quantity == 15 ? 1 : 0 );

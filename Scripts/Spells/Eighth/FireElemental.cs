@@ -44,10 +44,7 @@ namespace Server.Spells.Eighth
 			{
 				TimeSpan duration = TimeSpan.FromSeconds( (2 * Caster.Skills.Magery.Fixed) / 5 );
 
-				if ( Core.AOS )
-					SpellHelper.Summon( new SummonedFireElemental(), Caster, 0x217, duration, false, false );
-				else
-					SpellHelper.Summon( new FireElemental(), Caster, 0x217, duration, false, false );
+				SpellHelper.Summon( new FireElemental(), Caster, 0x217, duration, false, false );
 			}
 
 			FinishSequence();

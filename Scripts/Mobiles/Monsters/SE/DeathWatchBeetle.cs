@@ -14,7 +14,7 @@ namespace Server.Mobiles
 			return WeaponAbility.CrushingBlow;
 		}
 		[Constructable]
-		public DeathwatchBeetle() : base( AIType.AI_Melee, Core.ML ? FightMode.Aggressor : FightMode.Closest, 10, 1, 0.2, 0.4 ) 
+		public DeathwatchBeetle() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 ) 
 		{
 			Name = "a deathwatch beetle";
 			Body = 242;

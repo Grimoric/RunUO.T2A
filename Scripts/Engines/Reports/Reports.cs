@@ -292,7 +292,7 @@ namespace Server.Engines.Reports
 
 		public static SkillDistribution[] GetSkillDistribution()
 		{
-			int skip = ( Core.ML ? 0 : Core.SE ? 1 : Core.AOS ? 3 : 6 );
+			int skip = 6;
 
 			SkillDistribution[] distribs = new SkillDistribution[SkillInfo.Table.Length - skip];
 

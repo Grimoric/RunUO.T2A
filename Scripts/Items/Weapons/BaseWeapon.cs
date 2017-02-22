@@ -304,56 +304,56 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int MaxRange
 		{
-			get{ return ( m_MaxRange == -1 ? Core.AOS ? AosMaxRange : OldMaxRange : m_MaxRange ); }
+			get{ return ( m_MaxRange == -1 ? OldMaxRange : m_MaxRange ); }
 			set{ m_MaxRange = value; InvalidateProperties(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public WeaponAnimation Animation
 		{
-			get{ return ( m_Animation == (WeaponAnimation)(-1) ? Core.AOS ? AosAnimation : OldAnimation : m_Animation ); } 
+			get{ return ( m_Animation == (WeaponAnimation)(-1) ? OldAnimation : m_Animation ); } 
 			set{ m_Animation = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public WeaponType Type
 		{
-			get{ return ( m_Type == (WeaponType)(-1) ? Core.AOS ? AosType : OldType : m_Type ); }
+			get{ return ( m_Type == (WeaponType)(-1) ? OldType : m_Type ); }
 			set{ m_Type = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public SkillName Skill
 		{
-			get{ return ( m_Skill == (SkillName)(-1) ? Core.AOS ? AosSkill : OldSkill : m_Skill ); }
+			get{ return ( m_Skill == (SkillName)(-1) ? OldSkill : m_Skill ); }
 			set{ m_Skill = value; InvalidateProperties(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int HitSound
 		{
-			get{ return ( m_HitSound == -1 ? Core.AOS ? AosHitSound : OldHitSound : m_HitSound ); }
+			get{ return ( m_HitSound == -1 ? OldHitSound : m_HitSound ); }
 			set{ m_HitSound = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int MissSound
 		{
-			get{ return ( m_MissSound == -1 ? Core.AOS ? AosMissSound : OldMissSound : m_MissSound ); }
+			get{ return ( m_MissSound == -1 ? OldMissSound : m_MissSound ); }
 			set{ m_MissSound = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int MinDamage
 		{
-			get{ return ( m_MinDamage == -1 ? Core.AOS ? AosMinDamage : OldMinDamage : m_MinDamage ); }
+			get{ return ( m_MinDamage == -1 ? OldMinDamage : m_MinDamage ); }
 			set{ m_MinDamage = value; InvalidateProperties(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int MaxDamage
 		{
-			get{ return ( m_MaxDamage == -1 ? Core.AOS ? AosMaxDamage : OldMaxDamage : m_MaxDamage ); }
+			get{ return ( m_MaxDamage == -1 ? OldMaxDamage : m_MaxDamage ); }
 			set{ m_MaxDamage = value; InvalidateProperties(); }
 		}
 
@@ -365,11 +365,6 @@ namespace Server.Items
 				if ( m_Speed != -1 )
 					return m_Speed;
 
-				if ( Core.ML )
-					return MlSpeed;
-				else if ( Core.AOS )
-					return AosSpeed;
-
 				return OldSpeed;
 			}
 			set{ m_Speed = value; InvalidateProperties(); }
@@ -378,21 +373,21 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int StrRequirement
 		{
-			get{ return ( m_StrReq == -1 ? Core.AOS ? AosStrengthReq : OldStrengthReq : m_StrReq ); }
+			get{ return ( m_StrReq == -1 ? OldStrengthReq : m_StrReq ); }
 			set{ m_StrReq = value; InvalidateProperties(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int DexRequirement
 		{
-			get{ return ( m_DexReq == -1 ? Core.AOS ? AosDexterityReq : OldDexterityReq : m_DexReq ); }
+			get{ return ( m_DexReq == -1 ? OldDexterityReq : m_DexReq ); }
 			set{ m_DexReq = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int IntRequirement
 		{
-			get{ return ( m_IntReq == -1 ? Core.AOS ? AosIntelligenceReq : OldIntelligenceReq : m_IntReq ); }
+			get{ return ( m_IntReq == -1 ? OldIntelligenceReq : m_IntReq ); }
 			set{ m_IntReq = value; }
 		}
 
@@ -483,44 +478,12 @@ namespace Server.Items
 				case WeaponDurabilityLevel.Indestructible: bonus += 120; break;
 			}
 
-			if ( Core.AOS )
-			{
-				bonus += m_AosWeaponAttributes.DurabilityBonus;
-
-				CraftResourceInfo resInfo = CraftResources.GetInfo( m_Resource );
-				CraftAttributeInfo attrInfo = null;
-
-				if ( resInfo != null )
-					attrInfo = resInfo.AttributeInfo;
-
-				if ( attrInfo != null )
-					bonus += attrInfo.WeaponDurability;
-			}
-
 			return bonus;
 		}
 
 		public int GetLowerStatReq()
 		{
-			if ( !Core.AOS )
 				return 0;
-
-			int v = m_AosWeaponAttributes.LowerStatReq;
-
-			CraftResourceInfo info = CraftResources.GetInfo( m_Resource );
-
-			if ( info != null )
-			{
-				CraftAttributeInfo attrInfo = info.AttributeInfo;
-
-				if ( attrInfo != null )
-					v += attrInfo.WeaponLowerRequirements;
-			}
-
-			if ( v > 100 )
-				v = 100;
-
-			return v;
 		}
 
 		public static void BlockEquip( Mobile m, TimeSpan duration )
@@ -612,7 +575,7 @@ namespace Server.Items
 			}
 		}
 
-		public virtual bool UseSkillMod{ get{ return !Core.AOS; } }
+		public virtual bool UseSkillMod{ get{ return true; } }
 
 		public override bool OnEquip( Mobile from )
 		{
@@ -647,15 +610,6 @@ namespace Server.Items
 				from.AddSkillMod( m_SkillMod );
 			}
 
-			if ( Core.AOS && m_AosWeaponAttributes.MageWeapon != 0 && m_AosWeaponAttributes.MageWeapon != 30 )
-			{
-				if ( m_MageMod != null )
-					m_MageMod.Remove();
-
-				m_MageMod = new DefaultSkillMod( SkillName.Magery, true, -30 + m_AosWeaponAttributes.MageWeapon );
-				from.AddSkillMod( m_MageMod );
-			}
-
 			return true;
 		}
 
@@ -666,9 +620,6 @@ namespace Server.Items
 			if ( parent is Mobile )
 			{
 				Mobile from = (Mobile)parent;
-
-				if ( Core.AOS )
-					m_AosSkillBonuses.AddTo( from );
 
 				from.CheckStatTimers();
 				from.Delta( MobileDelta.WeaponDamage );
@@ -702,9 +653,6 @@ namespace Server.Items
 					m_MageMod.Remove();
 					m_MageMod = null;
 				}
-
-				if ( Core.AOS )
-					m_AosSkillBonuses.Remove();
 
 				ImmolatingWeaponSpell.StopImmolating( this );
 
@@ -779,91 +727,18 @@ namespace Server.Items
 
 			int bonus = GetHitChanceBonus();
 
-			if ( Core.AOS )
-			{
-				if ( atkValue <= -20.0 )
-					atkValue = -19.9;
+			if ( atkValue <= -50.0 )
+				atkValue = -49.9;
 
-				if ( defValue <= -20.0 )
-					defValue = -19.9;
+			if ( defValue <= -50.0 )
+				defValue = -49.9;
 
-				bonus += AosAttributes.GetValue( attacker, AosAttribute.AttackChance );
-
-				if ( Spells.Chivalry.DivineFurySpell.UnderEffect( attacker ) )
-					bonus += 10; // attacker gets 10% bonus when they're under divine fury
-
-				if ( CheckAnimal( attacker, typeof( GreyWolf ) ) || CheckAnimal( attacker, typeof( BakeKitsune ) ) )
-					bonus += 20; // attacker gets 20% bonus when under Wolf or Bake Kitsune form
-
-				if ( HitLower.IsUnderAttackEffect( attacker ) )
-					bonus -= 25; // Under Hit Lower Attack effect -> 25% malus
-
-				WeaponAbility ability = WeaponAbility.GetCurrentAbility( attacker );
-
-				if ( ability != null )
-					bonus += ability.AccuracyBonus;
-
-				SpecialMove move = SpecialMove.GetCurrentMove( attacker );
-
-				if ( move != null )
-					bonus += move.GetAccuracyBonus( attacker );
-
-				// Max Hit Chance Increase = 45%
-				if ( bonus > 45 )
-					bonus = 45;
-
-				ourValue = (atkValue + 20.0) * (100 + bonus);
-
-				bonus = AosAttributes.GetValue( defender, AosAttribute.DefendChance );
-
-				if ( Spells.Chivalry.DivineFurySpell.UnderEffect( defender ) )
-					bonus -= 20; // defender loses 20% bonus when they're under divine fury
-
-				if ( HitLower.IsUnderDefenseEffect( defender ) )
-					bonus -= 25; // Under Hit Lower Defense effect -> 25% malus
-					
-				int blockBonus = 0;
-
-				if ( Block.GetBonus( defender, ref blockBonus ) )
-					bonus += blockBonus;
-
-				int surpriseMalus = 0;
-
-				if ( SurpriseAttack.GetMalus( defender, ref surpriseMalus ) )
-					bonus -= surpriseMalus;
-
-				int discordanceEffect = 0;
-
-				// Defender loses -0/-28% if under the effect of Discordance.
-				if ( SkillHandlers.Discordance.GetEffect( attacker, ref discordanceEffect ) )
-					bonus -= discordanceEffect;
-
-				// Defense Chance Increase = 45%
-				if ( bonus > 45 )
-					bonus = 45;
-
-				theirValue = (defValue + 20.0) * (100 + bonus);
-
-				bonus = 0;
-			}
-			else
-			{
-				if ( atkValue <= -50.0 )
-					atkValue = -49.9;
-
-				if ( defValue <= -50.0 )
-					defValue = -49.9;
-
-				ourValue = (atkValue + 50.0);
-				theirValue = (defValue + 50.0);
-			}
+			ourValue = (atkValue + 50.0);
+			theirValue = (defValue + 50.0);
 
 			double chance = ourValue / (theirValue * 2.0);
 
 			chance *= 1.0 + ((double)bonus / 100);
-
-			if ( Core.AOS && chance < 0.02 )
-				chance = 0.02;
 
 			return attacker.CheckSkill( atkSkill.SkillName, chance );
 		}
@@ -877,106 +752,12 @@ namespace Server.Items
 
 			double delayInSeconds;
 
-			if ( Core.SE )
-			{
-				/*
-				 * This is likely true for Core.AOS as well... both guides report the same
-				 * formula, and both are wrong.
-				 * The old formula left in for AOS for legacy & because we aren't quite 100%
-				 * Sure that AOS has THIS formula
-				 */
-				int bonus = AosAttributes.GetValue( m, AosAttribute.WeaponSpeed );
+			int v = (m.Stam + 100) * (int) speed;
 
-				if ( Spells.Chivalry.DivineFurySpell.UnderEffect( m ) )
-					bonus += 10;
+			if ( v <= 0 )
+				v = 1;
 
-				// Bonus granted by successful use of Honorable Execution.
-				bonus += HonorableExecution.GetSwingBonus( m );
-
-				if( DualWield.Registry.Contains( m ) )
-					bonus += ((DualWield.DualWieldTimer)DualWield.Registry[m]).BonusSwingSpeed;
-
-				if( Feint.Registry.Contains( m ) )
-					bonus -= ((Feint.FeintTimer)Feint.Registry[m]).SwingSpeedReduction;
-
-				TransformContext context = TransformationSpellHelper.GetContext( m );
-
-				if( context != null && context.Spell is ReaperFormSpell )
-					bonus += ((ReaperFormSpell)context.Spell).SwingSpeedBonus;
-
-				int discordanceEffect = 0;
-
-				// Discordance gives a malus of -0/-28% to swing speed.
-				if ( SkillHandlers.Discordance.GetEffect( m, ref discordanceEffect ) )
-					bonus -= discordanceEffect;
-
-				if( EssenceOfWindSpell.IsDebuffed( m ) )
-					bonus -= EssenceOfWindSpell.GetSSIMalus( m );
-
-				if ( bonus > 60 )
-					bonus = 60;
-				
-				double ticks;
-
-				if ( Core.ML )
-				{
-					int stamTicks = m.Stam / 30;
-
-					ticks = speed * 4;
-					ticks = Math.Floor( ( ticks - stamTicks ) * ( 100.0 / ( 100 + bonus ) ) );
-				}
-				else
-				{
-					speed = Math.Floor( speed * ( bonus + 100.0 ) / 100.0 );
-
-					if ( speed <= 0 )
-						speed = 1;
-
-					ticks = Math.Floor( ( 80000.0 / ( ( m.Stam + 100 ) * speed ) ) - 2 );
-				}
-				
-				// Swing speed currently capped at one swing every 1.25 seconds (5 ticks).
-				if ( ticks < 5 )
-					ticks = 5;
-
-				delayInSeconds = ticks * 0.25;
-			}
-			else if ( Core.AOS )
-			{
-				int v = (m.Stam + 100) * (int) speed;
-
-				int bonus = AosAttributes.GetValue( m, AosAttribute.WeaponSpeed );
-
-				if ( Spells.Chivalry.DivineFurySpell.UnderEffect( m ) )
-					bonus += 10;
-
-				int discordanceEffect = 0;
-
-				// Discordance gives a malus of -0/-28% to swing speed.
-				if ( SkillHandlers.Discordance.GetEffect( m, ref discordanceEffect ) )
-					bonus -= discordanceEffect;
-
-				v += AOS.Scale( v, bonus );
-
-				if ( v <= 0 )
-					v = 1;
-
-				delayInSeconds = Math.Floor( 40000.0 / v ) * 0.5;
-
-				// Maximum swing rate capped at one swing per second 
-				// OSI dev said that it has and is supposed to be 1.25
-				if ( delayInSeconds < 1.25 )
-					delayInSeconds = 1.25;
-			}
-			else
-			{
-				int v = (m.Stam + 100) * (int) speed;
-
-				if ( v <= 0 )
-					v = 1;
-
-				delayInSeconds = 15000.0 / v;
-			}
+			delayInSeconds = 15000.0 / v;
 
 			return TimeSpan.FromSeconds( delayInSeconds );
 		}
@@ -1002,25 +783,6 @@ namespace Server.Items
 		public virtual TimeSpan OnSwing( Mobile attacker, Mobile defender, double damageBonus )
 		{
 			bool canSwing = true;
-
-			if ( Core.AOS )
-			{
-				canSwing = ( !attacker.Paralyzed && !attacker.Frozen );
-
-				if ( canSwing )
-				{
-					Spell sp = attacker.Spell as Spell;
-
-					canSwing = ( sp == null || !sp.IsCasting || !sp.BlocksMovement );
-				}
-
-				if ( canSwing )
-				{
-					PlayerMobile p = attacker as PlayerMobile;
-
-					canSwing = ( p == null || p.PeacedUntil <= DateTime.Now );
-				}
-			}
 
 			#region Dueling
 			if ( attacker is PlayerMobile )
@@ -1240,9 +1002,6 @@ namespace Server.Items
 
 		public virtual int AbsorbDamage( Mobile attacker, Mobile defender, int damage )
 		{
-			if ( Core.AOS )
-				return AbsorbDamageAOS( attacker, defender, damage );
-
 			BaseShield shield = defender.FindItemOnLayer( Layer.TwoHanded ) as BaseShield;
 			if ( shield != null )
 				damage = shield.OnHit( this, damage );
@@ -1479,7 +1238,7 @@ namespace Server.Items
 				percentageBonus += 25;
 			}
 
-			if ( attacker is PlayerMobile && !(Core.ML && defender is PlayerMobile ))
+			if ( attacker is PlayerMobile )
 			{
 				PlayerMobile pmAttacker = (PlayerMobile) attacker;
 
@@ -1512,32 +1271,14 @@ namespace Server.Items
 
 			damage = AbsorbDamage( attacker, defender, damage );
 
-			if ( !Core.AOS && damage < 1 )
+			if ( damage < 1 )
 				damage = 1;
-			else if ( Core.AOS && damage == 0 ) // parried
-			{
-				if ( a != null && a.Validate( attacker ) /*&& a.CheckMana( attacker, true )*/ ) // Parried special moves have no mana cost 
-				{
-					a = null;
-					WeaponAbility.ClearCurrentAbility( attacker );
-
-					attacker.SendLocalizedMessage( 1061140 ); // Your attack was parried!
-				}
-			}
 
 			AddBlood( attacker, defender, damage );
 
 			int phys, fire, cold, pois, nrgy, chaos, direct;
 
 			GetDamageTypes( attacker, out phys, out fire, out cold, out pois, out nrgy, out chaos, out direct );
-
-			if ( Core.ML && this is BaseRanged )
-			{
-				BaseQuiver quiver = attacker.FindItemOnLayer( Layer.Cloak ) as BaseQuiver;
-
-				if ( quiver != null )
-					quiver.AlterBowDamage( ref phys, ref fire, ref cold, ref pois, ref nrgy, ref chaos, ref direct );
-			}
 
 			if ( m_Consecrated )
 			{
@@ -1587,79 +1328,25 @@ namespace Server.Items
 
 			double propertyBonus = ( move == null ) ? 1.0 : move.GetPropertyBonus( attacker );
 
-			if ( Core.AOS )
-			{
-				int lifeLeech = 0;
-				int stamLeech = 0;
-				int manaLeech = 0;
-				int wraithLeech = 0;
-
-				if ( (int)(AosWeaponAttributes.GetValue( attacker, AosWeaponAttribute.HitLeechHits ) * propertyBonus) > Utility.Random( 100 ) )
-					lifeLeech += 30; // HitLeechHits% chance to leech 30% of damage as hit points
-
-				if ( (int)(AosWeaponAttributes.GetValue( attacker, AosWeaponAttribute.HitLeechStam ) * propertyBonus) > Utility.Random( 100 ) )
-					stamLeech += 100; // HitLeechStam% chance to leech 100% of damage as stamina
-
-				if ( (int)(AosWeaponAttributes.GetValue( attacker, AosWeaponAttribute.HitLeechMana ) * propertyBonus) > Utility.Random( 100 ) )
-					manaLeech += 40; // HitLeechMana% chance to leech 40% of damage as mana
-
-				if ( m_Cursed )
-					lifeLeech += 50; // Additional 50% life leech for cursed weapons (necro spell)
-
-				context = TransformationSpellHelper.GetContext( attacker );
-
-				if ( context != null && context.Type == typeof( VampiricEmbraceSpell ) )
-					lifeLeech += 20; // Vampiric embrace gives an additional 20% life leech
-
-				if ( context != null && context.Type == typeof( WraithFormSpell ) )
-				{
-					wraithLeech = (5 + (int)((15 * attacker.Skills.SpiritSpeak.Value) / 100)); // Wraith form gives an additional 5-20% mana leech
-
-					// Mana leeched by the Wraith Form spell is actually stolen, not just leeched.
-					defender.Mana -= AOS.Scale( damageGiven, wraithLeech );
-
-					manaLeech += wraithLeech;
-				}
-
-				if ( lifeLeech != 0 )
-					attacker.Hits += AOS.Scale( damageGiven, lifeLeech );
-
-				if ( stamLeech != 0 )
-					attacker.Stam += AOS.Scale( damageGiven, stamLeech );
-
-				if ( manaLeech != 0 )
-					attacker.Mana += AOS.Scale( damageGiven, manaLeech );
-
-				if ( lifeLeech != 0 || stamLeech != 0 || manaLeech != 0 )
-					attacker.PlaySound( 0x44D );
-			}
-
 			if ( m_MaxHits > 0 && ((MaxRange <= 1 && (defender is Slime || defender is AcidElemental)) || Utility.Random( 25 ) == 0) ) // Stratics says 50% chance, seems more like 4%..
 			{
 				if ( MaxRange <= 1 && (defender is Slime || defender is AcidElemental) )
 					attacker.LocalOverheadMessage( MessageType.Regular, 0x3B2, 500263 ); // *Acid blood scars your weapon!*
 
-				if ( Core.AOS && m_AosWeaponAttributes.SelfRepair > Utility.Random( 10 ) )
+				if ( m_Hits > 0 )
 				{
-					HitPoints += 2;
+					--HitPoints;
+				}
+				else if ( m_MaxHits > 1 )
+				{
+					--MaxHitPoints;
+
+					if ( Parent is Mobile )
+						((Mobile)Parent).LocalOverheadMessage( MessageType.Regular, 0x3B2, 1061121 ); // Your equipment is severely damaged.
 				}
 				else
 				{
-					if ( m_Hits > 0 )
-					{
-						--HitPoints;
-					}
-					else if ( m_MaxHits > 1 )
-					{
-						--MaxHitPoints;
-
-						if ( Parent is Mobile )
-							((Mobile)Parent).LocalOverheadMessage( MessageType.Regular, 0x3B2, 1061121 ); // Your equipment is severely damaged.
-					}
-					else
-					{
-						Delete();
-					}
+					Delete();
 				}
 			}
 
@@ -1675,60 +1362,6 @@ namespace Server.Items
 					caster.Hits += damage;
 				else
 					bc.Hits += damage;
-			}
-
-			if ( Core.AOS )
-			{
-				int physChance = (int)(AosWeaponAttributes.GetValue( attacker, AosWeaponAttribute.HitPhysicalArea ) * propertyBonus);
-				int fireChance = (int)(AosWeaponAttributes.GetValue( attacker, AosWeaponAttribute.HitFireArea ) * propertyBonus);
-				int coldChance = (int)(AosWeaponAttributes.GetValue( attacker, AosWeaponAttribute.HitColdArea ) * propertyBonus);
-				int poisChance = (int)(AosWeaponAttributes.GetValue( attacker, AosWeaponAttribute.HitPoisonArea ) * propertyBonus);
-				int nrgyChance = (int)(AosWeaponAttributes.GetValue( attacker, AosWeaponAttribute.HitEnergyArea ) * propertyBonus);
-
-				if ( physChance != 0 && physChance > Utility.Random( 100 ) )
-					DoAreaAttack( attacker, defender, 0x10E,   50, 100, 0, 0, 0, 0 );
-
-				if ( fireChance != 0 && fireChance > Utility.Random( 100 ) )
-					DoAreaAttack( attacker, defender, 0x11D, 1160, 0, 100, 0, 0, 0 );
-
-				if ( coldChance != 0 && coldChance > Utility.Random( 100 ) )
-					DoAreaAttack( attacker, defender, 0x0FC, 2100, 0, 0, 100, 0, 0 );
-
-				if ( poisChance != 0 && poisChance > Utility.Random( 100 ) )
-					DoAreaAttack( attacker, defender, 0x205, 1166, 0, 0, 0, 100, 0 );
-
-				if ( nrgyChance != 0 && nrgyChance > Utility.Random( 100 ) )
-					DoAreaAttack( attacker, defender, 0x1F1,  120, 0, 0, 0, 0, 100 );
-
-				int maChance = (int)(AosWeaponAttributes.GetValue( attacker, AosWeaponAttribute.HitMagicArrow ) * propertyBonus);
-				int harmChance = (int)(AosWeaponAttributes.GetValue( attacker, AosWeaponAttribute.HitHarm ) * propertyBonus);
-				int fireballChance = (int)(AosWeaponAttributes.GetValue( attacker, AosWeaponAttribute.HitFireball ) * propertyBonus);
-				int lightningChance = (int)(AosWeaponAttributes.GetValue( attacker, AosWeaponAttribute.HitLightning ) * propertyBonus);
-				int dispelChance = (int)(AosWeaponAttributes.GetValue( attacker, AosWeaponAttribute.HitDispel ) * propertyBonus);
-
-				if ( maChance != 0 && maChance > Utility.Random( 100 ) )
-					DoMagicArrow( attacker, defender );
-
-				if ( harmChance != 0 && harmChance > Utility.Random( 100 ) )
-					DoHarm( attacker, defender );
-
-				if ( fireballChance != 0 && fireballChance > Utility.Random( 100 ) )
-					DoFireball( attacker, defender );
-
-				if ( lightningChance != 0 && lightningChance > Utility.Random( 100 ) )
-					DoLightning( attacker, defender );
-
-				if ( dispelChance != 0 && dispelChance > Utility.Random( 100 ) )
-					DoDispel( attacker, defender );
-
-				int laChance = (int)(AosWeaponAttributes.GetValue( attacker, AosWeaponAttribute.HitLowerAttack ) * propertyBonus);
-				int ldChance = (int)(AosWeaponAttributes.GetValue( attacker, AosWeaponAttribute.HitLowerDefend ) * propertyBonus);
-
-				if ( laChance != 0 && laChance > Utility.Random( 100 ) )
-					DoLowerAttack( attacker, defender );
-
-				if ( ldChance != 0 && ldChance > Utility.Random( 100 ) )
-					DoLowerDefense( attacker, defender );
 			}
 
 			if ( attacker is BaseCreature )
@@ -1910,11 +1543,11 @@ namespace Server.Items
 
 			List<Mobile> list = new List<Mobile>();
 
-			int range = Core.ML ? 5 : 10;
+			int range = 10;
 
 			foreach ( Mobile m in from.GetMobilesInRange( range ) )
 			{
-				if ( from != m && defender != m && SpellHelper.ValidIndirectTarget( from, m ) && from.CanBeHarmful( m, false ) && ( !Core.ML || from.InLOS( m ) ) )
+				if ( from != m && defender != m && SpellHelper.ValidIndirectTarget( from, m ) && from.CanBeHarmful( m, false ) )
 					list.Add( m );
 			}
 
@@ -1927,7 +1560,7 @@ namespace Server.Items
 			{
 				Mobile m = list[i];
 
-				double scalar = Core.ML ? 1.0 : ( 11 - from.GetDistanceToSqrt( m ) ) / 10;
+				double scalar = ( 11 - from.GetDistanceToSqrt( m ) ) / 10;
 				double damage = GetBaseDamage( from );
 
 				if(scalar <= 0)
@@ -1963,21 +1596,18 @@ namespace Server.Items
 			if ( talisman != null && TalismanSlayer.Slays( talisman.Slayer, defender ) )
 				return CheckSlayerResult.Slayer;
 
-			if ( !Core.SE )
+			ISlayer defISlayer = Spellbook.FindEquippedSpellbook( defender );
+
+			if( defISlayer == null )
+				defISlayer = defender.Weapon as ISlayer;
+
+			if( defISlayer != null )
 			{
-				ISlayer defISlayer = Spellbook.FindEquippedSpellbook( defender );
+				SlayerEntry defSlayer = SlayerGroup.GetEntryByName( defISlayer.Slayer );
+				SlayerEntry defSlayer2 = SlayerGroup.GetEntryByName( defISlayer.Slayer2 );
 
-				if( defISlayer == null )
-					defISlayer = defender.Weapon as ISlayer;
-
-				if( defISlayer != null )
-				{
-					SlayerEntry defSlayer = SlayerGroup.GetEntryByName( defISlayer.Slayer );
-					SlayerEntry defSlayer2 = SlayerGroup.GetEntryByName( defISlayer.Slayer2 );
-
-					if( defSlayer != null && defSlayer.Group.OppositionSuperSlays( attacker ) || defSlayer2 != null && defSlayer2.Group.OppositionSuperSlays( attacker ) )
-						return CheckSlayerResult.Opposition;
-				}
+				if( defSlayer != null && defSlayer.Group.OppositionSuperSlays( attacker ) || defSlayer2 != null && defSlayer2.Group.OppositionSuperSlays( attacker ) )
+					return CheckSlayerResult.Opposition;
 			}
 
 			return CheckSlayerResult.None;
@@ -1989,7 +1619,7 @@ namespace Server.Items
 			{
 				new Blood().MoveToWorld( defender.Location, defender.Map );
 
-				int extraBlood = (Core.SE ? Utility.RandomMinMax( 3, 4 ) : Utility.RandomMinMax( 0, 1 ) );
+				int extraBlood = Utility.RandomMinMax( 0, 1 );
 
 				for( int i = 0; i < extraBlood; i++ )
 				{
@@ -2123,8 +1753,6 @@ namespace Server.Items
 
 			int damage = Utility.RandomMinMax( min, max );
 
-			if ( Core.AOS ) return damage;
-
 			/* Apply damage level offset
 			 * : Regular : 0
 			 * : Ruin    : 1
@@ -2151,21 +1779,7 @@ namespace Server.Items
 
 		public virtual int GetHitChanceBonus()
 		{
-			if ( !Core.AOS )
-				return 0;
-
-			int bonus = 0;
-
-			switch ( m_AccuracyLevel )
-			{
-				case WeaponAccuracyLevel.Accurate:		bonus += 02; break;
-				case WeaponAccuracyLevel.Surpassingly:	bonus += 04; break;
-				case WeaponAccuracyLevel.Eminently:		bonus += 06; break;
-				case WeaponAccuracyLevel.Exceedingly:	bonus += 08; break;
-				case WeaponAccuracyLevel.Supremely:		bonus += 10; break;
-			}
-
-			return bonus;
+			return 0;
 		}
 
 		public virtual int GetDamageBonus()
@@ -2196,16 +1810,8 @@ namespace Server.Items
 
 			GetBaseDamageRange( from, out baseMin, out baseMax );
 
-			if ( Core.AOS )
-			{
-				min = Math.Max( (int)ScaleDamageAOS( from, baseMin, false ), 1 );
-				max = Math.Max( (int)ScaleDamageAOS( from, baseMax, false ), 1 );
-			}
-			else
-			{
-				min = Math.Max( (int)ScaleDamageOld( from, baseMin, false ), 1 );
-				max = Math.Max( (int)ScaleDamageOld( from, baseMax, false ), 1 );
-			}
+			min = Math.Max( (int)ScaleDamageOld( from, baseMin, false ), 1 );
+			max = Math.Max( (int)ScaleDamageOld( from, baseMax, false ), 1 );
 		}
 
 		public virtual double ScaleDamageAOS( Mobile attacker, double damage, bool checkSkills )
@@ -2350,9 +1956,6 @@ namespace Server.Items
 
 		public virtual int ComputeDamage( Mobile attacker, Mobile defender )
 		{
-			if ( Core.AOS )
-				return ComputeDamageAOS( attacker, defender );
-
 			int damage = (int)ScaleDamageOld( attacker, GetBaseDamage( attacker ), true );
 
 			// pre-AOS, halve damage if the defender is a player or the attacker is not a player
@@ -2792,12 +2395,6 @@ namespace Server.Items
 					if ( version < 7 && m_AosWeaponAttributes.MageWeapon != 0 )
 						m_AosWeaponAttributes.MageWeapon = 30 - m_AosWeaponAttributes.MageWeapon;
 
-					if ( Core.AOS && m_AosWeaponAttributes.MageWeapon != 0 && m_AosWeaponAttributes.MageWeapon != 30 && Parent is Mobile )
-					{
-						m_MageMod = new DefaultSkillMod( SkillName.Magery, true, -30 + m_AosWeaponAttributes.MageWeapon );
-						((Mobile)Parent).AddSkillMod( m_MageMod );
-					}
-
 					if ( GetSaveFlag( flags, SaveFlag.PlayerConstructed ) )
 						m_PlayerConstructed = true;
 
@@ -2925,9 +2522,6 @@ namespace Server.Items
 					break;
 				}
 			}
-
-			if ( Core.AOS && Parent is Mobile )
-				m_AosSkillBonuses.AddTo( (Mobile)Parent );
 
 			int strBonus = m_AosAttributes.BonusStr;
 			int dexBonus = m_AosAttributes.BonusDex;
@@ -3176,9 +2770,6 @@ namespace Server.Items
 
 			int prop;
 
-			if ( Core.ML && this is BaseRanged && ( (BaseRanged) this ).Balanced )
-				list.Add( 1072792 ); // Balanced
-
 			if ( (prop = m_AosWeaponAttributes.UseBestSkill) != 0 )
 				list.Add( 1060400 ); // use best weapon skill
 
@@ -3248,9 +2839,6 @@ namespace Server.Items
 			if ( ImmolatingWeaponSpell.IsImmolating( this ) )
 				list.Add( 1111917 ); // Immolated
 
-			if ( Core.ML && this is BaseRanged && ( prop = ( (BaseRanged) this ).Velocity ) != 0 )
-				list.Add( 1072793, prop.ToString() ); // Velocity ~1_val~%
-
 			if ( (prop = m_AosAttributes.BonusDex) != 0 )
 				list.Add( 1060409, prop.ToString() ); // dexterity bonus ~1_val~
 
@@ -3311,9 +2899,6 @@ namespace Server.Items
 			if ( (prop = m_AosAttributes.WeaponSpeed) != 0 )
 				list.Add( 1060486, prop.ToString() ); // swing speed increase ~1_val~%
 
-			if ( Core.ML && (prop = m_AosAttributes.IncreasedKarmaLoss) != 0 )
-				list.Add( 1075210, prop.ToString() ); // Increased Karma Loss ~1val~%
-
 			int phys, fire, cold, pois, nrgy, chaos, direct;
 
 			GetDamageTypes( null, out phys, out fire, out cold, out pois, out nrgy, out chaos, out direct );
@@ -3333,18 +2918,9 @@ namespace Server.Items
 			if ( nrgy != 0 )
 				list.Add( 1060407, nrgy.ToString() ); // energy damage ~1_val
 
-			if ( Core.ML && chaos != 0 )
-				list.Add( 1072846, chaos.ToString() ); // chaos damage ~1_val~%
-
-			if ( Core.ML && direct != 0 )
-				list.Add( 1079978, direct.ToString() ); // Direct Damage: ~1_PERCENT~%
-
 			list.Add( 1061168, "{0}\t{1}", MinDamage.ToString(), MaxDamage.ToString() ); // weapon damage ~1_val~ - ~2_val~
 
-			if ( Core.ML )
-				list.Add( 1061167, String.Format( "{0}s", Speed ) ); // weapon speed ~1_val~
-			else
-				list.Add( 1061167, Speed.ToString() );
+			list.Add( 1061167, Speed.ToString() );
 
 			if ( MaxRange > 1 )
 				list.Add( 1061169, MaxRange.ToString() ); // range ~1_val~
@@ -3359,7 +2935,7 @@ namespace Server.Items
 			else
 				list.Add( 1061824 ); // one-handed weapon
 
-			if ( Core.SE || m_AosWeaponAttributes.UseBestSkill == 0 )
+			if ( m_AosWeaponAttributes.UseBestSkill == 0 )
 			{
 				switch ( Skill )
 				{
@@ -3469,37 +3045,7 @@ namespace Server.Items
 			if ( resourceType == null )
 				resourceType = craftItem.Resources.GetAt( 0 ).ItemType;
 
-			if ( Core.AOS )
-			{
-				Resource = CraftResources.GetFromType( resourceType );
-
-				CraftContext context = craftSystem.GetContext( from );
-
-				if ( context != null && context.DoNotColor )
-					Hue = 0;
-
-				if ( tool is BaseRunicTool )
-					((BaseRunicTool)tool).ApplyAttributesTo( this );
-
-				if ( Quality == WeaponQuality.Exceptional )
-				{
-					if ( Attributes.WeaponDamage > 35 )
-						Attributes.WeaponDamage -= 20;
-					else
-						Attributes.WeaponDamage = 15;
-
-					if( Core.ML )
-					{
-						Attributes.WeaponDamage += (int)(from.Skills.ArmsLore.Value / 20);
-
-						if ( Attributes.WeaponDamage > 50 )
-							Attributes.WeaponDamage = 50;
-
-						from.CheckSkill( SkillName.ArmsLore, 0, 100 );
-					}
-				}
-			}
-			else if ( tool is BaseRunicTool )
+			if ( tool is BaseRunicTool )
 			{
 				CraftResource thisResource = CraftResources.GetFromType( resourceType );
 

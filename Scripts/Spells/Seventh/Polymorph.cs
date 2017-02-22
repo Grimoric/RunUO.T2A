@@ -62,19 +62,12 @@ namespace Server.Spells.Seventh
 			}
 			else if ( !Caster.CanBeginAction( typeof( PolymorphSpell ) ) )
 			{
-				if( Core.ML )
-					EndPolymorph( Caster );
-				else 
-					Caster.SendLocalizedMessage( 1005559 ); // This spell is already in effect.
+				Caster.SendLocalizedMessage( 1005559 ); // This spell is already in effect.
 				return false;
 			}
 			else if ( m_NewBody == 0 )
 			{
-				Gump gump;
-				if ( Core.SE )
-					gump = new NewPolymorphGump( Caster, Scroll );
-				else
-					gump = new PolymorphGump( Caster, Scroll );
+				Gump gump = new PolymorphGump( Caster, Scroll );
 
 				Caster.SendGump( gump );
 				return false;
@@ -96,10 +89,7 @@ namespace Server.Spells.Seventh
 			}
 			else if ( !Caster.CanBeginAction( typeof( PolymorphSpell ) ) )
 			{
-				if( Core.ML )
-					EndPolymorph( Caster );
-				else
-					Caster.SendLocalizedMessage( 1005559 ); // This spell is already in effect.
+				Caster.SendLocalizedMessage( 1005559 ); // This spell is already in effect.
 			}
 			else if( TransformationSpellHelper.UnderTransformation( Caster ) )
 			{
@@ -141,16 +131,13 @@ namespace Server.Spells.Seventh
 						BaseArmor.ValidateMobile( Caster );
 						BaseClothing.ValidateMobile( Caster );
 
-						if( !Core.ML )
-						{
-							StopTimer( Caster );
+						StopTimer( Caster );
 
-							Timer t = new InternalTimer( Caster );
+						Timer t = new InternalTimer( Caster );
 
-							m_Timers[Caster] = t;
+						m_Timers[Caster] = t;
 
-							t.Start();
-						}
+						t.Start();
 					}
 				}
 				else

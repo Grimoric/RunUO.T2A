@@ -14,7 +14,7 @@ namespace Server.Mobiles
 		public SummonedDaemon () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
 			Name = NameList.RandomName( "daemon" );
-			Body = Core.AOS ? 10 : 9;
+			Body = 9;
 			BaseSoundID = 357;
 
 			SetStr( 200 );
@@ -40,7 +40,7 @@ namespace Server.Mobiles
 			SetSkill( SkillName.Wrestling, 98.1, 99.0 );
 
 			VirtualArmor = 58;
-			ControlSlots = Core.SE ? 4 : 5;
+			ControlSlots = 5;
 		}
 
 		public override Poison PoisonImmune{ get{ return Poison.Regular; } } // TODO: Immune to poison?

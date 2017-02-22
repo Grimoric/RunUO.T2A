@@ -9,7 +9,7 @@ namespace Server.Mobiles
 	[CorpseName( "a demon knight corpse" )]
 	public class DemonKnight : BaseCreature
 	{
-		public override bool IgnoreYoungProtection { get { return Core.ML; } }
+		public override bool IgnoreYoungProtection { get { return false; } }
 
 		public static Type[] ArtifactRarity10 { get { return m_ArtifactRarity10; } }
 		public static Type[] ArtifactRarity11 { get { return m_ArtifactRarity11; } }
@@ -56,24 +56,7 @@ namespace Server.Mobiles
 
 		public static Item CreateRandomArtifact()
 		{
-			if ( !Core.AOS )
-				return null;
-
-			int count = ( m_ArtifactRarity10.Length * 5 ) + ( m_ArtifactRarity11.Length * 4 );
-			int random = Utility.Random( count );
-			Type type;
-
-			if ( random < ( m_ArtifactRarity10.Length * 5 ) )
-			{
-				type = m_ArtifactRarity10[random / 5];
-			}
-			else
-			{
-				random -= m_ArtifactRarity10.Length * 5;
-				type = m_ArtifactRarity11[random / 4];
-			}
-
-			return Loot.Construct( type );
+			return null;
 		}
 
 		public static Mobile FindRandomPlayer( BaseCreature creature )
@@ -124,18 +107,7 @@ namespace Server.Mobiles
 
 		public static int GetArtifactChance( Mobile boss )
 		{
-			if ( !Core.AOS )
-				return 0;
-
-			int luck = LootPack.GetLuckChanceForKiller( boss );
-			int chance;
-
-			if ( boss is DemonKnight )
-				chance = 1500 + (luck / 5);
-			else
-				chance = 750 + (luck / 10);
-
-			return chance;
+			return 0;
 		}
 
 		public static bool CheckArtifactChance( Mobile boss )
@@ -214,9 +186,9 @@ namespace Server.Mobiles
 			AddLoot( LootPack.HighScrolls, Utility.RandomMinMax( 6, 60 ) );
 		}
 
-		public override bool BardImmune{ get{ return !Core.SE; } }
-		public override bool Unprovokable{ get{ return Core.SE; } }
-		public override bool AreaPeaceImmune { get { return Core.SE; } }
+		public override bool BardImmune{ get{ return true; } }
+		public override bool Unprovokable{ get{ return false; } }
+		public override bool AreaPeaceImmune { get { return false; } }
 		public override Poison PoisonImmune{ get{ return Poison.Lethal; } }
 
 		public override int TreasureMapLevel{ get{ return 1; } }

@@ -19,11 +19,11 @@ namespace Server.Multis
 {
 	public abstract class BaseHouse : BaseMulti
 	{
-		public static bool NewVendorSystem{ get{ return Core.AOS; } } // Is new player vendor system enabled?
+		public static bool NewVendorSystem{ get{ return false; } } // Is new player vendor system enabled?
 
 		public const int MaxCoOwners = 15;
-		public static int MaxFriends { get { return !Core.AOS ? 50 : 140; } }
-		public static int MaxBans { get { return !Core.AOS ? 50 : 140; } }
+		public static int MaxFriends { get { return 50; } }
+		public static int MaxBans { get { return 50; } }
 
 		#region Dynamic decay system
 		private DecayLevel m_CurrentStage;
@@ -88,12 +88,12 @@ namespace Server.Multis
 					return DecayType.Ageless;
 
 				if ( m_Owner == null )
-					return Core.AOS ? DecayType.Condemned : DecayType.ManualRefresh;
+					return DecayType.ManualRefresh;
 
 				Account acct = m_Owner.Account as Account;
 
 				if ( acct == null )
-					return Core.AOS ? DecayType.Condemned : DecayType.ManualRefresh;
+					return DecayType.ManualRefresh;
 
 				if ( acct.AccessLevel >= AccessLevel.GameMaster )
 					return DecayType.Ageless;
@@ -105,35 +105,6 @@ namespace Server.Multis
 					if ( mob != null && mob.AccessLevel >= AccessLevel.GameMaster )
 						return DecayType.Ageless;
 				}
-
-				if ( !Core.AOS )
-					return DecayType.ManualRefresh;
-
-				if ( acct.Inactive )
-					return DecayType.Condemned;
-
-				List<BaseHouse> allHouses = new List<BaseHouse>();
-
-				for ( int i = 0; i < acct.Length; ++i )
-				{
-					Mobile mob = acct[i];
-
-					if ( mob != null )
-						allHouses.AddRange( GetHouses( mob ) );
-				}
-
-				BaseHouse newest = null;
-
-				for ( int i = 0; i < allHouses.Count; ++i )
-				{
-					BaseHouse check = allHouses[i];
-
-					if ( newest == null || IsNewer( check, newest ) )
-						newest = check;
-				}
-
-				if ( this == newest )
-					return DecayType.AutoRefresh;
 
 				return DecayType.ManualRefresh;
 			}
@@ -271,9 +242,6 @@ namespace Server.Multis
 			if ( Deleted )
 				return;
 
-			if ( Core.ML )
-				new TempNoHousingRegion( this, null );
-
 			KillVendors();
 			Delete();
 		}
@@ -281,7 +249,7 @@ namespace Server.Multis
 		public virtual TimeSpan RestrictedPlacingTime { get { return TimeSpan.FromHours( 1.0 ); } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public virtual double BonusStorageScalar { get { return (Core.ML ? 1.2 : 1.0); } }
+		public virtual double BonusStorageScalar { get { return 1.0; } }
 
 		private bool m_Public;
 
@@ -324,7 +292,7 @@ namespace Server.Multis
 
 		private static Dictionary<Mobile, List<BaseHouse>> m_Table = new Dictionary<Mobile, List<BaseHouse>>();
 
-		public virtual bool IsAosRules{ get{ return Core.AOS; } }
+		public virtual bool IsAosRules{ get{ return false; } }
 
 		public virtual bool IsActive{ get{ return true; } }
 
@@ -2149,7 +2117,7 @@ namespace Server.Multis
 			{
 				from.SendLocalizedMessage( 501346 ); // Uh oh...a bigger boot may be required!
 			}
-			else if ( IsFriend( targ ) && !Core.ML )
+			else if ( IsFriend( targ ) )
 			{
 				from.SendLocalizedMessage( 501348 ); // You cannot eject a friend of the house!
 			}
@@ -2298,7 +2266,7 @@ namespace Server.Multis
 			{
 				from.SendLocalizedMessage( 501362 ); // That can't be a co-owner of the house.
 			}
-			else if ( !Core.AOS && HasAccountHouse( targ ) )
+			else if (  HasAccountHouse( targ ) )
 			{
 				from.SendLocalizedMessage( 501364 ); // That person is already a house owner.
 			}

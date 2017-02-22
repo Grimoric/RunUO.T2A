@@ -157,13 +157,6 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( ClockFrame ), 1044042, 1024173, 0.0, 50.0, typeof( Log ), 1044041, 6, 1044351 );
 			AddCraft( typeof( Axle ), 1044042, 1024187, -25.0, 25.0, typeof( Log ), 1044041, 2, 1044351 );
 			AddCraft( typeof( RollingPin ), 1044042, 1024163, 0.0, 50.0, typeof( Log ), 1044041, 5, 1044351 );
-
-			if( Core.SE )
-			{
-				index = AddCraft( typeof( Nunchaku ), 1044042, 1030158, 70.0, 120.0, typeof( IronIngot ), 1044036, 3, 1044037 );
-				AddRes( index, typeof( Log ), 1044041, 8, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-			}
 			#endregion
 
 			#region Tools
@@ -201,14 +194,6 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( BarrelHoops ), 1044047, 1024321, -15.0, 35.0, typeof( IronIngot ), 1044036, 5, 1044037 );
 			AddCraft( typeof( Hinge ), 1044047, 1024181, 5.0, 55.0, typeof( IronIngot ), 1044036, 2, 1044037 );
 			AddCraft( typeof( BolaBall ), 1044047, 1023699, 45.0, 95.0, typeof( IronIngot ), 1044036, 10, 1044037 );
-
-			if ( Core.ML )
-			{
-				index = AddCraft( typeof( JeweledFiligree ), 1044047, 1072894, 70.0, 110.0, typeof( IronIngot ), 1044036, 2, 1044037 );
-				AddRes( index, typeof( StarSapphire ), 1044231, 1, 1044253 );
-				AddRes( index, typeof( Ruby ), 1044234, 1, 1044253 );
-				SetNeededExpansion( index, Expansion.ML );
-			}
 			#endregion
 
 			#region Utensils
@@ -235,27 +220,6 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( Spyglass ), 1044050, 1025365, 60.0, 110.0, typeof( IronIngot ), 1044036, 4, 1044037 );
 			AddCraft( typeof( Lantern ), 1044050, 1022597, 30.0, 80.0, typeof( IronIngot ), 1044036, 2, 1044037 );
 			AddCraft( typeof( HeatingStand ), 1044050, 1026217, 60.0, 110.0, typeof( IronIngot ), 1044036, 4, 1044037 );
-
-			if ( Core.SE )
-			{
-				index = AddCraft( typeof( ShojiLantern ), 1044050, 1029404, 65.0, 115.0, typeof( IronIngot ), 1044036, 10, 1044037 );
-				AddRes( index, typeof( Log ), 1044041, 5, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( PaperLantern ), 1044050, 1029406, 65.0, 115.0, typeof( IronIngot ), 1044036, 10, 1044037 );
-				AddRes( index, typeof( Log ), 1044041, 5, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( RoundPaperLantern ), 1044050, 1029418, 65.0, 115.0, typeof( IronIngot ), 1044036, 10, 1044037 );
-				AddRes( index, typeof( Log ), 1044041, 5, 1044351 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( WindChimes ), 1044050, 1030290, 80.0, 130.0, typeof( IronIngot ), 1044036, 15, 1044037 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( FancyWindChimes ), 1044050, 1030291, 80.0, 130.0, typeof( IronIngot ), 1044036, 15, 1044037 );
-				SetNeededExpansion( index, Expansion.SE );
-			}
 			#endregion
 
 			#region Jewelry
@@ -312,22 +276,22 @@ namespace Server.Engines.Craft
 			AddRes( index, typeof( BaseExplosionPotion ), 1044569, 1, 1044253 );
 
 			// Faction Gas Trap
-			index = AddCraft( typeof( FactionGasTrapDeed ), 1044052, 1044598, 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
+			index = AddCraft( typeof( FactionGasTrapDeed ), 1044052, 1044598, 65.0, 115.0, typeof( Silver ), 1044572, 1000, 1044253 );
 			AddRes( index, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddRes( index, typeof( BasePoisonPotion ), 1044571, 1, 1044253 );
 
 			// Faction explosion Trap
-			index = AddCraft( typeof( FactionExplosionTrapDeed ), 1044052, 1044599, 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
+			index = AddCraft( typeof( FactionExplosionTrapDeed ), 1044052, 1044599, 65.0, 115.0, typeof( Silver ), 1044572, 1000, 1044253 );
 			AddRes( index, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddRes( index, typeof( BaseExplosionPotion ), 1044569, 1, 1044253 );
 
 			// Faction Saw Trap
-			index = AddCraft( typeof( FactionSawTrapDeed ), 1044052, 1044600, 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
+			index = AddCraft( typeof( FactionSawTrapDeed ), 1044052, 1044600, 65.0, 115.0, typeof( Silver ), 1044572, 1000, 1044253 );
 			AddRes( index, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddRes( index, typeof( Gears ), 1044254, 1, 1044253 );
 
 			// Faction Spike Trap			
-			index = AddCraft( typeof( FactionSpikeTrapDeed ), 1044052, 1044601, 65.0, 115.0, typeof( Silver ), 1044572, Core.AOS ? 250 : 1000, 1044253 );
+			index = AddCraft( typeof( FactionSpikeTrapDeed ), 1044052, 1044601, 65.0, 115.0, typeof( Silver ), 1044572, 1000, 1044253 );
 			AddRes( index, typeof( IronIngot ), 1044036, 10, 1044037 );
 			AddRes( index, typeof( Springs ), 1044171, 1, 1044253 );
 
@@ -335,34 +299,6 @@ namespace Server.Engines.Craft
 			index = AddCraft( typeof( FactionTrapRemovalKit ), 1044052, 1046445, 90.0, 115.0, typeof( Silver ), 1044572, 500, 1044253 );
 			AddRes( index, typeof( IronIngot ), 1044036, 10, 1044037 );
 			#endregion
-
-			// Magic Jewelry
-			if ( Core.ML )
-			{
-				index = AddCraft( typeof( ResilientBracer ), 1073107, 1072933, 100.0, 125.0, typeof( IronIngot ), 1044036, 2, 1044037 );
-				AddRes( index, typeof( CapturedEssence ), 1032686, 1, 1044253 );
-				AddRes( index, typeof( BlueDiamond ), 1032696, 10, 1044253 );
-				AddRes( index, typeof( Diamond ), 1062608, 50, 1044253 );
-				AddRareRecipe( index, 600 );
-				ForceNonExceptional( index );
-				SetNeededExpansion( index, Expansion.ML );
-
-				index = AddCraft( typeof( EssenceOfBattle ), 1073107, 1072935, 100.0, 125.0, typeof( IronIngot ), 1044036, 2, 1044037 );
-				AddRes( index, typeof( CapturedEssence ), 1032686, 1, 1044253 );
-				AddRes( index, typeof( FireRuby ), 1032695, 10, 1044253 );
-				AddRes( index, typeof( Ruby ), 1062603, 50, 1044253 );
-				AddRareRecipe( index, 601 );
-				ForceNonExceptional( index );
-				SetNeededExpansion( index, Expansion.ML );
-
-				index = AddCraft( typeof( PendantOfTheMagi ), 1073107, 1072937, 100.0, 125.0, typeof( IronIngot ), 1044036, 2, 1044037 );
-				AddRes( index, typeof( EyeOfTheTravesty ), 1032685, 1, 1044253 );
-				AddRes( index, typeof( WhitePearl ), 1032694, 10, 1044253 );
-				AddRes( index, typeof( StarSapphire ), 1062600, 50, 1044253 );
-				AddRareRecipe( index, 602 );
-				ForceNonExceptional( index );
-				SetNeededExpansion( index, Expansion.ML );
-			}
 
 			// Set the overridable material
 			SetSubRes( typeof( IronIngot ), 1044022 );
@@ -381,7 +317,7 @@ namespace Server.Engines.Craft
 
 			MarkOption = true;
 			Repair = true;
-			CanEnhance = Core.AOS;
+			CanEnhance = false;
 		}
 	}
 

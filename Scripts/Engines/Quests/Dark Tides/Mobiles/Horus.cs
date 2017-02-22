@@ -96,9 +96,8 @@ namespace Server.Engines.Quests.Necro
 							cont.DropItem( new Gold( 500 ) );
 
 							BaseJewel jewel = new GoldBracelet();
-							if ( Core.AOS )
-								BaseRunicTool.ApplyAttributesTo( jewel, 3, 20, 40 );
-							cont.DropItem( jewel );
+
+                            cont.DropItem( jewel );
 
 							if ( !pm.PlaceInBackpack( cont ) )
 							{

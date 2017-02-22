@@ -164,25 +164,7 @@ namespace Server.Spells.Fifth
 				if ( m_Caster == null )
 					return;
 
-				Poison p;
-
-				if ( Core.AOS )
-				{
-					int total = (m_Caster.Skills.Magery.Fixed + m_Caster.Skills.Poisoning.Fixed) / 2;
-
-					if ( total >= 1000 )
-						p = Poison.Deadly;
-					else if ( total > 850 )
-						p = Poison.Greater;
-					else if ( total > 650 )
-						p = Poison.Regular;
-					else
-						p = Poison.Lesser;
-				}
-				else
-				{
-					p = Poison.Regular;
-				}
+				Poison p = Poison.Regular;
 
 				if ( m.ApplyPoison( m_Caster, p ) == ApplyPoisonResult.Poisoned )
 					if ( SpellHelper.CanRevealCaster( m ) )
@@ -194,7 +176,7 @@ namespace Server.Spells.Fifth
 
 			public override bool OnMoveOver( Mobile m )
 			{
-				if ( Visible && m_Caster != null && (!Core.AOS || m != m_Caster) && SpellHelper.ValidIndirectTarget( m_Caster, m ) && m_Caster.CanBeHarmful( m, false ) )
+				if ( Visible && m_Caster != null && SpellHelper.ValidIndirectTarget( m_Caster, m ) && m_Caster.CanBeHarmful( m, false ) )
 				{
 					m_Caster.DoHarmful( m );
 
@@ -256,7 +238,7 @@ namespace Server.Spells.Fifth
 
 							foreach ( Mobile m in eable )
 							{
-								if ( (m.Z + 16) > m_Item.Z && (m_Item.Z + 12) > m.Z && (!Core.AOS || m != caster) && SpellHelper.ValidIndirectTarget( caster, m ) && caster.CanBeHarmful( m, false ) )
+								if ( (m.Z + 16) > m_Item.Z && (m_Item.Z + 12) > m.Z && SpellHelper.ValidIndirectTarget( caster, m ) && caster.CanBeHarmful( m, false ) )
 									m_Queue.Enqueue( m );
 							}
 
@@ -281,7 +263,7 @@ namespace Server.Spells.Fifth
 		{
 			private PoisonFieldSpell m_Owner;
 
-			public InternalTarget( PoisonFieldSpell owner ) : base( Core.ML ? 10 : 12, true, TargetFlags.None )
+			public InternalTarget( PoisonFieldSpell owner ) : base( 12, true, TargetFlags.None )
 			{
 				m_Owner = owner;
 			}

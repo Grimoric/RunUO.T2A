@@ -811,39 +811,21 @@ namespace Server.Items
 			{
 				Item item = Loot.ChestOfHeirloomsContains();
 				
-				int attributeCount = Utility.RandomMinMax( 1, 5 );
-				int min = 20;
-				int max = 80;
-				
 				if ( item is BaseWeapon )
 				{
 					BaseWeapon weapon = (BaseWeapon)item;
 
-					if ( Core.AOS )
-						BaseRunicTool.ApplyAttributesTo( weapon, attributeCount, min, max );
-					else
-					{
-						weapon.DamageLevel = (WeaponDamageLevel)Utility.Random( 6 );
-						weapon.AccuracyLevel = (WeaponAccuracyLevel)Utility.Random( 6 );
-						weapon.DurabilityLevel = (WeaponDurabilityLevel)Utility.Random( 6 );
-					}
+					weapon.DamageLevel = (WeaponDamageLevel)Utility.Random( 6 );
+					weapon.AccuracyLevel = (WeaponAccuracyLevel)Utility.Random( 6 );
+					weapon.DurabilityLevel = (WeaponDurabilityLevel)Utility.Random( 6 );
 				}
 				else if ( item is BaseArmor )
 				{
 					BaseArmor armor = (BaseArmor)item;
 
-					if ( Core.AOS )
-						BaseRunicTool.ApplyAttributesTo( armor, attributeCount, min, max );
-					else
-					{
-						armor.ProtectionLevel = (ArmorProtectionLevel)Utility.Random( 6 );
-						armor.Durability = (ArmorDurabilityLevel)Utility.Random( 6 );
-					}
+					armor.ProtectionLevel = (ArmorProtectionLevel)Utility.Random( 6 );
+					armor.Durability = (ArmorDurabilityLevel)Utility.Random( 6 );
 				}
-				else if( item is BaseHat && Core.AOS )
-					BaseRunicTool.ApplyAttributesTo( (BaseHat)item, attributeCount, min, max );
-				else if( item is BaseJewel && Core.AOS )
-					BaseRunicTool.ApplyAttributesTo( (BaseJewel)item, attributeCount, min, max );
 				
 				DropItem( item );
 			}

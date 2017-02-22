@@ -71,12 +71,7 @@ namespace Server.Spells.Fourth
 
 				int itemID = eastToWest ? 0x398C : 0x3996;
 
-				TimeSpan duration;
-
-				if ( Core.AOS )
-					duration = TimeSpan.FromSeconds( (15 + (Caster.Skills.Magery.Fixed / 5)) / 4 );
-				else
-					duration = TimeSpan.FromSeconds( 4.0 + (Caster.Skills[SkillName.Magery].Value * 0.5) );
+				TimeSpan duration = TimeSpan.FromSeconds( 4.0 + (Caster.Skills[SkillName.Magery].Value * 0.5) );
 
 				for ( int i = -2; i <= 2; ++i )
 				{
@@ -183,7 +178,7 @@ namespace Server.Spells.Fourth
 
 			public override bool OnMoveOver( Mobile m )
 			{
-				if ( Visible && m_Caster != null && (!Core.AOS || m != m_Caster) && SpellHelper.ValidIndirectTarget( m_Caster, m ) && m_Caster.CanBeHarmful( m, false ) )
+				if ( Visible && m_Caster != null && SpellHelper.ValidIndirectTarget( m_Caster, m ) && m_Caster.CanBeHarmful( m, false ) )
 				{
 					if ( SpellHelper.CanRevealCaster( m ) )
 						m_Caster.RevealingAction();
@@ -192,7 +187,7 @@ namespace Server.Spells.Fourth
 
 					int damage = m_Damage;
 
-					if ( !Core.AOS && m.CheckSkill( SkillName.MagicResist, 0.0, 30.0 ) )
+					if (  m.CheckSkill( SkillName.MagicResist, 0.0, 30.0 ) )
 					{
 						damage = 1;
 
@@ -257,7 +252,7 @@ namespace Server.Spells.Fourth
 						{
 							foreach ( Mobile m in m_Item.GetMobilesInRange( 0 ) )
 							{
-								if ( (m.Z + 16) > m_Item.Z && (m_Item.Z + 12) > m.Z && (!Core.AOS || m != caster) && SpellHelper.ValidIndirectTarget( caster, m ) && caster.CanBeHarmful( m, false ) )
+								if ( (m.Z + 16) > m_Item.Z && (m_Item.Z + 12) > m.Z && m != caster && SpellHelper.ValidIndirectTarget( caster, m ) && caster.CanBeHarmful( m, false ) )
 									m_Queue.Enqueue( m );
 							}
 
@@ -272,7 +267,7 @@ namespace Server.Spells.Fourth
 
 								int damage = m_Item.m_Damage;
 
-								if ( !Core.AOS && m.CheckSkill( SkillName.MagicResist, 0.0, 30.0 ) )
+								if (  m.CheckSkill( SkillName.MagicResist, 0.0, 30.0 ) )
 								{
 									damage = 1;
 
@@ -295,7 +290,7 @@ namespace Server.Spells.Fourth
 		{
 			private FireFieldSpell m_Owner;
 
-			public InternalTarget( FireFieldSpell owner ) : base( Core.ML ? 10 : 12, true, TargetFlags.None )
+			public InternalTarget( FireFieldSpell owner ) : base( 12, true, TargetFlags.None )
 			{
 				m_Owner = owner;
 			}

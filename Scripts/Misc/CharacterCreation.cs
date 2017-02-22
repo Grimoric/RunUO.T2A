@@ -35,8 +35,7 @@ namespace Server.Misc
 
 		private static Item MakeNewbie( Item item )
 		{
-			if ( !Core.AOS )
-				item.LootType = LootType.Newbied;
+			item.LootType = LootType.Newbied;
 
 			return item;
 		}
@@ -360,72 +359,10 @@ namespace Server.Misc
 				PlaceItemIn( cont, 117, 128, new MessageInABottle( Utility.RandomBool() ? Map.Trammel : Map.Felucca, 4 ) );
 
 			PlaceItemIn( bank, 18, 124, cont );
-
-			if( Core.SE )
-			{
-				cont = new Bag();
-				cont.Hue = 0x501;
-				cont.Name = "Tokuno Minor Artifacts";
-
-				PlaceItemIn( cont, 42, 70, new Exiler() );
-				PlaceItemIn( cont, 38, 53, new HanzosBow() );
-				PlaceItemIn( cont, 45, 40, new TheDestroyer() );
-				PlaceItemIn( cont, 92, 80, new DragonNunchaku() );
-				PlaceItemIn( cont, 42, 56, new PeasantsBokuto() );
-				PlaceItemIn( cont, 44, 71, new TomeOfEnlightenment() );
-				PlaceItemIn( cont, 35, 35, new ChestOfHeirlooms() );
-				PlaceItemIn( cont, 29,  0, new HonorableSwords() );
-				PlaceItemIn( cont, 49, 85, new AncientUrn() );
-				PlaceItemIn( cont, 51, 58, new FluteOfRenewal() );
-				PlaceItemIn( cont, 70, 51, new PigmentsOfTokuno() );
-				PlaceItemIn( cont, 40, 79, new AncientSamuraiDo() );
-				PlaceItemIn( cont, 51, 61, new LegsOfStability() );
-				PlaceItemIn( cont, 88, 78, new GlovesOfTheSun() );
-				PlaceItemIn( cont, 55, 62, new AncientFarmersKasa() );
-				PlaceItemIn( cont, 55, 83, new ArmsOfTacticalExcellence() );
-				PlaceItemIn( cont, 50, 85, new DaimyosHelm() );
-				PlaceItemIn( cont, 52, 78, new BlackLotusHood() );
-				PlaceItemIn( cont, 52, 79, new DemonForks() );
-				PlaceItemIn( cont, 33, 49, new PilferedDancerFans() );
-
-				PlaceItemIn( bank, 58, 124, cont );
-			}
-
-			if( Core.SE )	//This bag came only after SE.
-			{
-				cont = new Bag();
-				cont.Name = "Bag of Bows";
-
-				PlaceItemIn( cont, 31, 84, new Bow() );
-				PlaceItemIn( cont, 78, 74, new CompositeBow() );
-				PlaceItemIn( cont, 53, 71, new Crossbow() );
-				PlaceItemIn( cont, 56, 39, new HeavyCrossbow() );
-				PlaceItemIn( cont, 82, 72, new RepeatingCrossbow() );
-				PlaceItemIn( cont, 49, 45, new Yumi() );
-
-				for( int i = 0; i < cont.Items.Count; i++ )
-				{
-					BaseRanged bow = cont.Items[i] as BaseRanged;
-
-					if( bow != null )
-					{
-						bow.Attributes.WeaponSpeed = 35;
-						bow.Attributes.WeaponDamage = 35;
-					}
-				}
-
-				PlaceItemIn( bank, 108, 135, cont );
-			}
 		}
 
 		private static void FillBankbox( Mobile m )
 		{
-			if ( Core.AOS )
-			{
-				FillBankAOS( m );
-				return;
-			}
-
 			BankBox bank = m.BankBox;
 
 			bank.DropItem( new BankCheck( 1000000 ) );
@@ -636,10 +573,7 @@ namespace Server.Misc
 			newChar.Female = args.Female;
 			//newChar.Body = newChar.Female ? 0x191 : 0x190;
 
-			if( Core.Expansion >= args.Race.RequiredExpansion )
-				newChar.Race = args.Race;	//Sets body
-			else
-				newChar.Race = Race.DefaultRace;
+			newChar.Race = Race.DefaultRace;
 
 			//newChar.Hue = Utility.ClipSkinHue( args.Hue & 0x3FFF ) | 0x8000;
 			newChar.Hue = newChar.Race.ClipSkinHue( args.Hue & 0x3FFF ) | 0x8000;
@@ -713,10 +647,6 @@ namespace Server.Misc
 				return false;
 			else if ( profession < 4 )
 				return true;
-			else if ( Core.AOS && profession < 6 )
-				return true;
-			else if ( Core.SE && profession < 8 )
-				return true;
 			else
 				return false;
 		}
@@ -742,14 +672,6 @@ namespace Server.Misc
 
 		private static CityInfo GetStartLocation( CharacterCreatedEventArgs args, bool isYoung )
 		{
-			if( Core.ML )
-			{
-				//if( args.State != null && args.State.NewHaven )
-				return m_NewHavenInfo;	//We don't get the client Version until AFTER Character creation
-
-				//return args.City;  TODO: Uncomment when the old quest system is actually phased out
-			}
-
 			bool useHaven = isYoung;
 
 			ClientFlags flags = args.State == null ? ClientFlags.None : args.State.Flags;
@@ -1044,11 +966,8 @@ namespace Server.Misc
 				{
 					Container regs = new BagOfNecroReagents( 50 );
 
-					if ( !Core.AOS )
-					{
-						foreach ( Item item in regs.Items )
-							item.LootType = LootType.Newbied;
-					}
+					foreach ( Item item in regs.Items )
+						item.LootType = LootType.Newbied;
 
 					PackItem( regs );
 
@@ -1200,8 +1119,7 @@ namespace Server.Misc
 
 		private static void EquipItem( Item item, bool mustEquip )
 		{
-			if ( !Core.AOS )
-				item.LootType = LootType.Newbied;
+			item.LootType = LootType.Newbied;
 
 			if ( m_Mobile != null && m_Mobile.EquipItem( item ) )
 				return;
@@ -1216,8 +1134,7 @@ namespace Server.Misc
 
 		private static void PackItem( Item item )
 		{
-			if ( !Core.AOS )
-				item.LootType = LootType.Newbied;
+			item.LootType = LootType.Newbied;
 
 			Container pack = m_Mobile.Backpack;
 
@@ -1442,8 +1359,7 @@ namespace Server.Misc
 				}
 				case SkillName.Chivalry:
 				{
-					if( Core.ML )
-						PackItem( new BookOfChivalry( (ulong)0x3FF ) );
+					PackItem( new BookOfChivalry( (ulong)0x3FF ) );
 
 					break;
 				}
@@ -1542,11 +1458,8 @@ namespace Server.Misc
 				{
 					BagOfReagents regs = new BagOfReagents( 30 );
 
-					if ( !Core.AOS )
-					{
-						foreach ( Item item in regs.Items )
-							item.LootType = LootType.Newbied;
-					}
+					foreach ( Item item in regs.Items )
+						item.LootType = LootType.Newbied;
 
 					PackItem( regs );
 
@@ -1591,15 +1504,6 @@ namespace Server.Misc
 				}
 				case SkillName.Necromancy:
 				{
-					if( Core.ML )
-					{
-						Container regs = new BagOfNecroReagents( 50 );
-
-						PackItem( regs );
-
-						regs.LootType = LootType.Regular;
-					}
-
 					break;
 				}
 				case SkillName.Ninjitsu:

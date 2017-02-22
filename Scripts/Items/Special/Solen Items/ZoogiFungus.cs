@@ -6,7 +6,7 @@ namespace Server.Items
 	public class ZoogiFungus : Item, ICommodity
 	{
 		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return (Core.ML); } }
+		bool ICommodity.IsDeedable { get { return false; } }
 
 		[Constructable]
 		public ZoogiFungus() : this( 1 )

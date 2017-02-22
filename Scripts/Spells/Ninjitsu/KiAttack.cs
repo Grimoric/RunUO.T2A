@@ -37,18 +37,6 @@ namespace Server.Spells.Ninjitsu
 				return false;
 			}
 
-			if( Core.ML )
-			{
-				BaseRanged ranged = from.Weapon as BaseRanged;
-
-				if( ranged != null )
-				{
-					from.SendLocalizedMessage( 1075858 ); // You can only use this with melee attacks.
-					return false;
-				}
-			}
-
-
 			return base.Validate( from );
 		}
 
@@ -57,11 +45,7 @@ namespace Server.Spells.Ninjitsu
 			if ( attacker.Hidden )
 				return 1.0;
 
-			/*
-			 * Pub40 changed pvp damage max to 55%
-			 */
-
-			return 1.0 + GetBonus(attacker) / ( (Core.ML && attacker.Player && defender.Player) ? 40 : 10 );
+			return 1.0 + GetBonus(attacker) / 10;
 		}
 
 		public override void OnHit( Mobile attacker, Mobile defender, int damage )

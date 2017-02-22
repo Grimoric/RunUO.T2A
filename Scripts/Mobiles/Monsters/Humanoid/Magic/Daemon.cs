@@ -47,7 +47,7 @@ namespace Server.Mobiles
 			Karma = -15000;
 
 			VirtualArmor = 58;
-			ControlSlots = Core.SE ? 4 : 5;
+			ControlSlots = 5;
 		}
 
 		public override void GenerateLoot()

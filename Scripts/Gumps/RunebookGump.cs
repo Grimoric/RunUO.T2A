@@ -155,25 +155,11 @@ namespace Server.Gumps
 				AddButton( 160 + (half * 140), 20, defButtonID, defButtonID, 2 + (index * 6) + 2, GumpButtonType.Reply, 0 );
 				AddHtmlLocalized( 175 + (half * 140), 15, 100, 18, 1011300, false, false ); // Set default
 
-				if ( Core.AOS )
-				{
-					AddButton( 135 + (half * 160), 140, 2103, 2104, 2 + (index * 6) + 3, GumpButtonType.Reply, 0 );
-					AddHtmlLocalized( 150 + (half * 160), 136, 110, 20, 1062722, false, false ); // Recall
+				// Recall button
+				AddButton( 135 + (half * 160), 140, 2271, 2271, 2 + (index * 6) + 3, GumpButtonType.Reply, 0 );
 
-					AddButton( 135 + (half * 160), 158, 2103, 2104, 2 + (index * 6) + 4, GumpButtonType.Reply, 0 );
-					AddHtmlLocalized( 150 + (half * 160), 154, 110, 20, 1062723, false, false ); // Gate Travel
-
-					AddButton( 135 + (half * 160), 176, 2103, 2104, 2 + (index * 6) + 5, GumpButtonType.Reply, 0 );
-					AddHtmlLocalized( 150 + (half * 160), 172, 110, 20, 1062724, false, false ); // Sacred Journey
-				}
-				else
-				{
-					// Recall button
-					AddButton( 135 + (half * 160), 140, 2271, 2271, 2 + (index * 6) + 3, GumpButtonType.Reply, 0 );
-
-					// Gate button
-					AddButton( 205 + (half * 160), 140, 2291, 2291, 2 + (index * 6) + 4, GumpButtonType.Reply, 0 );
-				}
+				// Gate button
+				AddButton( 205 + (half * 160), 140, 2291, 2291, 2 + (index * 6) + 4, GumpButtonType.Reply, 0 );
 			}
 			else
 			{
@@ -224,7 +210,7 @@ namespace Server.Gumps
 
 			public override void OnResponse( Mobile from, string text )
 			{
-				if ( m_Book.Deleted || !from.InRange( m_Book.GetWorldLocation(), (Core.ML ? 3 : 1) ) )
+				if ( m_Book.Deleted || !from.InRange( m_Book.GetWorldLocation(), 1) )
 					return;
 
 				if ( m_Book.CheckAccess( from ) )
@@ -248,7 +234,7 @@ namespace Server.Gumps
 			{
 				from.SendLocalizedMessage( 502415 ); // Request cancelled.
 
-				if ( !m_Book.Deleted && from.InRange( m_Book.GetWorldLocation(), (Core.ML ? 3 : 1) ) )
+				if ( !m_Book.Deleted && from.InRange( m_Book.GetWorldLocation(), 1 ) )
 				{
 					from.CloseGump( typeof( RunebookGump ) );
 					from.SendGump( new RunebookGump( from, m_Book ) );
@@ -260,7 +246,7 @@ namespace Server.Gumps
 		{
 			Mobile from = state.Mobile;
 
-			if ( m_Book.Deleted || !from.InRange( m_Book.GetWorldLocation(), (Core.ML ? 3 : 1) ) || !Multis.DesignContext.Check( from ) )
+			if ( m_Book.Deleted || !from.InRange( m_Book.GetWorldLocation(), 1 ) || !Multis.DesignContext.Check( from ) )
 			{
 				m_Book.Openers.Remove( from );
 				return;
@@ -331,8 +317,7 @@ namespace Server.Gumps
 								m_Book.DropRune( from, e, index );
 
 								from.CloseGump( typeof( RunebookGump ) );
-								if ( !Core.ML )
-									from.SendGump( new RunebookGump( from, m_Book ) );
+								from.SendGump( new RunebookGump( from, m_Book ) );
 							}
 							else
 							{
@@ -411,29 +396,6 @@ namespace Server.Gumps
 						}
 						case 5: // Sacred Journey
 						{
-							if ( Core.AOS )
-							{
-								if ( HasSpell( from, 209 ) )
-								{
-									int xLong = 0, yLat = 0;
-									int xMins = 0, yMins = 0;
-									bool xEast = false, ySouth = false;
-
-									if ( Sextant.Format( e.Location, e.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth ) )
-									{
-										string location = String.Format( "{0}° {1}'{2}, {3}° {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
-										from.SendMessage( location );
-									}
-
-									m_Book.OnTravel();
-									new SacredJourneySpell( from, null, e, null ).Cast();
-								}
-								else
-								{
-									from.SendLocalizedMessage( 500015 ); // You do not have that spell!
-								}
-							}
-							
 							m_Book.Openers.Remove( from );
 
 							break;

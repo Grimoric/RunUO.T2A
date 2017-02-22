@@ -184,9 +184,6 @@ namespace Server.Mobiles
 
 		public static void CombineBackpacks( BaseCreature animal )
 		{
-			if ( Core.AOS )
-				return;
-
 			if ( animal.IsBonded || animal.IsDeadPet )
 				return;
 

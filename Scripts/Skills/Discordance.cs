@@ -194,49 +194,20 @@ namespace Server.SkillHandlers
 							int effect;
 							double scalar;
 
-							if ( Core.AOS )
+							effect = (int)( from.Skills[SkillName.Discordance].Value / -5.0 );
+							scalar = effect * 0.01;
+
+							mods.Add( new StatMod( StatType.Str, "DiscordanceStr", (int)(targ.RawStr * scalar), TimeSpan.Zero ) );
+							mods.Add( new StatMod( StatType.Int, "DiscordanceInt", (int)(targ.RawInt * scalar), TimeSpan.Zero ) );
+							mods.Add( new StatMod( StatType.Dex, "DiscordanceDex", (int)(targ.RawDex * scalar), TimeSpan.Zero ) );
+
+							for ( int i = 0; i < targ.Skills.Length; ++i )
 							{
-								double discord = from.Skills[SkillName.Discordance].Value;
-
-								if ( discord > 100.0 )
-									effect = -20 + (int)((discord - 100.0) / -2.5);
-								else
-									effect = (int)(discord / -5.0);
-
-								if ( Core.SE && BaseInstrument.GetBaseDifficulty( targ ) >= 160.0 )
-									effect /= 2;
-
-								scalar = effect * 0.01;
-
-								mods.Add( new ResistanceMod( ResistanceType.Physical, effect ) );
-								mods.Add( new ResistanceMod( ResistanceType.Fire, effect ) );
-								mods.Add( new ResistanceMod( ResistanceType.Cold, effect ) );
-								mods.Add( new ResistanceMod( ResistanceType.Poison, effect ) );
-								mods.Add( new ResistanceMod( ResistanceType.Energy, effect ) );
-
-								for ( int i = 0; i < targ.Skills.Length; ++i )
-								{
-									if ( targ.Skills[i].Value > 0 )
-										mods.Add( new DefaultSkillMod( (SkillName)i, true, targ.Skills[i].Value * scalar ) );
-								}
-							}
-							else
-							{
-								effect = (int)( from.Skills[SkillName.Discordance].Value / -5.0 );
-								scalar = effect * 0.01;
-
-								mods.Add( new StatMod( StatType.Str, "DiscordanceStr", (int)(targ.RawStr * scalar), TimeSpan.Zero ) );
-								mods.Add( new StatMod( StatType.Int, "DiscordanceInt", (int)(targ.RawInt * scalar), TimeSpan.Zero ) );
-								mods.Add( new StatMod( StatType.Dex, "DiscordanceDex", (int)(targ.RawDex * scalar), TimeSpan.Zero ) );
-
-								for ( int i = 0; i < targ.Skills.Length; ++i )
-								{
-									if ( targ.Skills[i].Value > 0 )
-										mods.Add( new DefaultSkillMod( (SkillName)i, true, targ.Skills[i].Value * scalar ) );
-								}
+								if ( targ.Skills[i].Value > 0 )
+									mods.Add( new DefaultSkillMod( (SkillName)i, true, targ.Skills[i].Value * scalar ) );
 							}
 
-							DiscordanceInfo info = new DiscordanceInfo( from, targ, Math.Abs( effect ), mods );
+                            DiscordanceInfo info = new DiscordanceInfo( from, targ, Math.Abs( effect ), mods );
 							info.m_Timer = Timer.DelayCall<DiscordanceInfo>( TimeSpan.Zero, TimeSpan.FromSeconds( 1.25 ), new TimerStateCallback<DiscordanceInfo>( ProcessDiscordance ), info );
 
 							m_Table[targ] = info;

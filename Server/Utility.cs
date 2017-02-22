@@ -1100,7 +1100,7 @@ namespace Server
 
 		public static SkillName RandomSkill()
 		{
-			return m_AllSkills[Utility.Random(m_AllSkills.Length - ( Core.ML ? 0 : Core.SE ? 1 : Core.AOS ? 3 : 6 ) )];
+			return m_AllSkills[Utility.Random(m_AllSkills.Length - 6 )];
 		}
 
 		public static SkillName RandomCombatSkill()

@@ -160,7 +160,7 @@ namespace Server.Mobiles
 
 		public override bool HasBreath { get { return true; } }
 		public override bool AutoDispel { get { return true; } }
-		public override bool BardImmune { get { return !Core.AOS; } }
+		public override bool BardImmune { get { return true; } }
 		public override bool CanRummageCorpses { get { return true; } }
 		public override bool AlwaysMurderer { get { return true; } }
 		public override bool ShowFameTitle { get { return false; } }

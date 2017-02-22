@@ -15,18 +15,6 @@ namespace Server.SkillHandlers
 
 		public static TimeSpan OnUse( Mobile m )
 		{
-			if ( Core.AOS )
-			{
-				Spell spell = new SpiritSpeakSpell( m );
-
-				spell.Cast();
-
-				if ( spell.IsCasting )
-					return TimeSpan.FromSeconds( 5.0 );
-
-				return TimeSpan.Zero;
-			}
-
 			m.RevealingAction();
 
 			if ( m.CheckSkill( SkillName.SpiritSpeak, 0, 100 ) )

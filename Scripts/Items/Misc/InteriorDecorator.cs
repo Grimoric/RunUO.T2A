@@ -181,9 +181,6 @@ namespace Server.Items
 							addon = container;
 						}
 
-						if ( count == 1 && Core.SE )
-							isDecorableComponent = true;
-
 						if ( m_Decorator.Command == DecorateCommand.Turn )
 						{
 							FlipableAddonAttribute[] attributes = (FlipableAddonAttribute[]) addon.GetType().GetCustomAttributes( typeof( FlipableAddonAttribute ), false );

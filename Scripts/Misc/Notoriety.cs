@@ -122,7 +122,7 @@ namespace Server.Misc
 			#region Factions
 			Faction targetFaction = Faction.Find( target, true );
 
-			if( (!Core.ML || map == Faction.Facet) && targetFaction != null )
+			if( targetFaction != null )
 			{
 				if( Faction.Find( from, true ) != targetFaction )
 					return false;
@@ -251,7 +251,7 @@ namespace Server.Misc
 			{
 				c.DisplayGuildTitle = false;
 
-				if( c.Map != Map.Internal && (Core.AOS || Guild.NewGuildSystem || c.ControlOrder == OrderType.Attack || c.ControlOrder == OrderType.Guard) )
+				if( c.Map != Map.Internal && ( Guild.NewGuildSystem || c.ControlOrder == OrderType.Attack || c.ControlOrder == OrderType.Guard) )
 					g = (Guild)(c.Guild = c.ControlMaster.Guild);
 				else if( c.Map == Map.Internal || c.ControlMaster.Guild == null )
 					g = (Guild)(c.Guild = null);
@@ -367,9 +367,6 @@ namespace Server.Misc
 
 		public static int MobileNotoriety( Mobile source, Mobile target )
 		{
-			if ( Core.AOS && ( target.Blessed || ( target is BaseCreature && ( (BaseCreature)target ).IsInvulnerable ) || target is PlayerVendor || target is TownCrier ) )
-				return Notoriety.Invulnerable;
-
 			#region Dueling
 			if( source is PlayerMobile && target is PlayerMobile )
 			{
@@ -394,14 +391,6 @@ namespace Server.Misc
 					return Notoriety.CanBeAttacked;
 
 				master = bc.ControlMaster;
-
-				if ( Core.ML && master != null )
-				{
-					if ( ( source == master && CheckAggressor( target.Aggressors, source ) ) || ( CheckAggressor( source.Aggressors, bc ) ) )
-						return Notoriety.CanBeAttacked;
-					else
-						return MobileNotoriety( source, master );
-				}
 
 				if( !bc.Summoned && !bc.Controlled && ((PlayerMobile)source).EnemyOfOneType == target.GetType() )
 					return Notoriety.Enemy;
@@ -441,7 +430,7 @@ namespace Server.Misc
 
 			if( !(target is BaseCreature && ((BaseCreature)target).InitialInnocent) )   //If Target is NOT A baseCreature, OR it's a BC and the BC is initial innocent...
 			{
-				if( !target.Body.IsHuman && !target.Body.IsGhost && !IsPet( target as BaseCreature ) && !(target is PlayerMobile) || !Core.ML && !target.CanBeginAction( typeof( Server.Spells.Seventh.PolymorphSpell ) ) )
+				if( !target.Body.IsHuman && !target.Body.IsGhost && !IsPet( target as BaseCreature ) && !(target is PlayerMobile) || !target.CanBeginAction( typeof( Server.Spells.Seventh.PolymorphSpell ) ) )
 					return Notoriety.CanBeAttacked;
 			}
 

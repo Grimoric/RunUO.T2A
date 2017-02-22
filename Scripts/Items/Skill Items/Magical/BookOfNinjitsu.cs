@@ -19,7 +19,7 @@ namespace Server.Items
 		[Constructable]
 		public BookOfNinjitsu( ulong content ) : base( content, 0x23A0 )
 		{
-			Layer = (Core.ML ? Layer.OneHanded : Layer.Invalid);
+			Layer = Layer.Invalid;
 		}
 
 		public BookOfNinjitsu( Serial serial ) : base( serial )
@@ -38,9 +38,6 @@ namespace Server.Items
 			base.Deserialize( reader );
 
 			int version = reader.ReadInt();
-
-			if( version == 0 && Core.ML )
-				Layer = Layer.OneHanded;
 		}
 	}
 }

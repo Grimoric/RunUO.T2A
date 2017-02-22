@@ -64,40 +64,15 @@ namespace Server.Spells.Fourth
 
 				m.Paralyzed = false;
 
-				if ( Core.AOS )
-				{
-					int toDrain = 40 + (int)(GetDamageSkill( Caster ) - GetResistSkill( m ));
-
-					if ( toDrain < 0 )
-						toDrain = 0;
-					else if ( toDrain > m.Mana )
-						toDrain = m.Mana;
-
-					if ( m_Table.ContainsKey( m ) )
-						toDrain = 0;
-
-					m.FixedParticles( 0x3789, 10, 25, 5032, EffectLayer.Head );
-					m.PlaySound( 0x1F8 );
-
-					if ( toDrain > 0 )
-					{
-						m.Mana -= toDrain;
-
-						m_Table[m] = Timer.DelayCall( TimeSpan.FromSeconds( 5.0 ), new TimerStateCallback( AosDelay_Callback ), new object[]{ m, toDrain } );
-					}
-				}
+				if ( CheckResisted( m ) )
+					m.SendLocalizedMessage( 501783 ); // You feel yourself resisting magical energy.
+				else if ( m.Mana >= 100 )
+					m.Mana -= Utility.Random( 1, 100 );
 				else
-				{
-					if ( CheckResisted( m ) )
-						m.SendLocalizedMessage( 501783 ); // You feel yourself resisting magical energy.
-					else if ( m.Mana >= 100 )
-						m.Mana -= Utility.Random( 1, 100 );
-					else
-						m.Mana -= Utility.Random( 1, m.Mana );
+					m.Mana -= Utility.Random( 1, m.Mana );
 
-					m.FixedParticles( 0x374A, 10, 15, 5032, EffectLayer.Head );
-					m.PlaySound( 0x1F8 );
-				}
+				m.FixedParticles( 0x374A, 10, 15, 5032, EffectLayer.Head );
+				m.PlaySound( 0x1F8 );
 
 				HarmfulSpell( m );
 			}
@@ -114,7 +89,7 @@ namespace Server.Spells.Fourth
 		{
 			private ManaDrainSpell m_Owner;
 
-			public InternalTarget( ManaDrainSpell owner ) : base( Core.ML ? 10 : 12, false, TargetFlags.Harmful )
+			public InternalTarget( ManaDrainSpell owner ) : base( 12, false, TargetFlags.Harmful )
 			{
 				m_Owner = owner;
 			}

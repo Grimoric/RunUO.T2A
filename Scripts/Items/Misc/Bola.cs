@@ -70,9 +70,6 @@ namespace Server.Items
 			Mobile from = (Mobile)states[0];
 			Mobile to = (Mobile)states[1];
 
-			if ( Core.AOS )
-				new Bola().MoveToWorld( to.Location, to.Map );
-
 			if ( to is ChaosDragoon || to is ChaosDragoonElite )
 				from.SendLocalizedMessage( 1042047 ); // You fail to knock the rider from its mount.
 
@@ -91,12 +88,7 @@ namespace Server.Items
 					to.SendLocalizedMessage(1040023); // You have been knocked off of your mount!
 				}
 
-				(to as PlayerMobile).SetMountBlock(BlockMountType.Dazed, TimeSpan.FromSeconds( Core.ML ? 10 : 3 ), true);
-			}
-
-			if (Core.AOS && from is PlayerMobile) /* only failsafe, attacker should already be dismounted */
-			{
-				(from as PlayerMobile).SetMountBlock( BlockMountType.BolaRecovery, TimeSpan.FromSeconds( Core.ML ? 10 : 3 ), true );
+				(to as PlayerMobile).SetMountBlock(BlockMountType.Dazed, TimeSpan.FromSeconds( 3 ), true);
 			}
 
 			to.Damage(1);
@@ -108,40 +100,6 @@ namespace Server.Items
 		{
 			Item one = from.FindItemOnLayer( Layer.OneHanded );
 			Item two = from.FindItemOnLayer( Layer.TwoHanded );
-
-			if ( Core.SE )
-			{
-				Container pack = from.Backpack;
-
-				if ( pack != null )
-				{
-					if ( one != null && one.Movable )
-					{
-						pack.DropItem( one );
-						one = null;
-					}
-
-					if ( two != null && two.Movable )
-					{
-						pack.DropItem( two );
-						two = null;
-					}
-				}
-			}
-			else if ( Core.AOS )
-			{
-				if ( one != null && one.Movable )
-				{
-					from.AddToBackpack( one );
-					one = null;
-				}
-
-				if ( two != null && two.Movable )
-				{
-					from.AddToBackpack( two );
-					two = null;
-				}
-			}
 
 			return ( one == null && two == null );
 		}

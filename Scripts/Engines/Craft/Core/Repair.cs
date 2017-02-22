@@ -292,11 +292,7 @@ namespace Server.Engines.Craft
 					SkillName skill = m_CraftSystem.MainSkill;
 					int toWeaken = 0;
 
-					if ( Core.AOS )
-					{
-						toWeaken = 1;
-					}
-					else if ( skill != SkillName.Tailoring )
+					if ( skill != SkillName.Tailoring )
 					{
 						double skillLevel = (usingDeed)? m_Deed.SkillLevel : from.Skills[skill].Base;
 
@@ -312,11 +308,11 @@ namespace Server.Engines.Craft
 					{
 						number = (usingDeed)? 1061136 : 1044277; // That item cannot be repaired. // You cannot repair that item with this type of repair contract.
 					}
-					else if ( !weapon.IsChildOf( from.Backpack ) && ( !Core.ML || weapon.Parent != from ) )
+					else if ( !weapon.IsChildOf( from.Backpack ) )
 					{
 						number = 1044275; // The item must be in your backpack to repair it.
 					}
-					else if ( !Core.AOS && weapon.PoisonCharges != 0 )
+					else if ( weapon.PoisonCharges != 0 )
 					{
 						number = 1005012; // You cannot repair an item while a caustic substance is on it.
 					}
@@ -357,11 +353,7 @@ namespace Server.Engines.Craft
 					SkillName skill = m_CraftSystem.MainSkill;
 					int toWeaken = 0;
 
-					if ( Core.AOS )
-					{
-						toWeaken = 1;
-					}
-					else if ( skill != SkillName.Tailoring )
+					if ( skill != SkillName.Tailoring )
 					{
 						double skillLevel = (usingDeed)? m_Deed.SkillLevel : from.Skills[skill].Base;
 
@@ -377,7 +369,7 @@ namespace Server.Engines.Craft
 					{
 						number = (usingDeed)? 1061136 : 1044277; // That item cannot be repaired. // You cannot repair that item with this type of repair contract.
 					}
-					else if ( !armor.IsChildOf( from.Backpack ) && ( !Core.ML || armor.Parent != from ) )
+					else if ( !armor.IsChildOf( from.Backpack ) )
 					{
 						number = 1044275; // The item must be in your backpack to repair it.
 					}
@@ -418,11 +410,7 @@ namespace Server.Engines.Craft
 					SkillName skill = m_CraftSystem.MainSkill;
 					int toWeaken = 0;
 
-					if ( Core.AOS )
-					{
-						toWeaken = 1;
-					}
-					else if ( skill != SkillName.Tailoring )
+					if ( skill != SkillName.Tailoring )
 					{
 						double skillLevel = (usingDeed) ? m_Deed.SkillLevel : from.Skills[skill].Base;
 
@@ -438,7 +426,7 @@ namespace Server.Engines.Craft
  					{
 						number = (usingDeed) ? 1061136 : 1044277; // That item cannot be repaired. // You cannot repair that item with this type of repair contract.
 					}
-					else if ( !clothing.IsChildOf( from.Backpack ) && ( !Core.ML || clothing.Parent != from ) )
+					else if ( !clothing.IsChildOf( from.Backpack ) )
 					{
 						number = 1044275; // The item must be in your backpack to repair it.
 					}

@@ -788,8 +788,8 @@ namespace Server
 
 		#endregion
 
-		private static readonly TimeSpan WarmodeSpamCatch = TimeSpan.FromSeconds( (Core.SE ? 1.0 : 0.5) );
-		private static readonly TimeSpan WarmodeSpamDelay = TimeSpan.FromSeconds( (Core.SE ? 4.0 : 2.0) );
+		private static readonly TimeSpan WarmodeSpamCatch = TimeSpan.FromSeconds( 0.5 );
+		private static readonly TimeSpan WarmodeSpamDelay = TimeSpan.FromSeconds( 2.0 );
 		private const int WarmodeCatchCount = 4; // Allow four warmode changes in 0.5 seconds, any more will be delay for two seconds
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -3872,7 +3872,7 @@ namespace Server
 			return item.OnInventoryDeath( this );
 		}
 
-		public virtual bool RetainPackLocsOnDeath { get { return Core.AOS; } }
+		public virtual bool RetainPackLocsOnDeath { get { return false; } }
 
 		public virtual void Kill()
 		{
@@ -6802,10 +6802,7 @@ namespace Server
 		{
 			if( m_Squelched )
 			{
-				if( Core.ML )
-					this.SendLocalizedMessage( 500168 ); // You can not say anything, you have been muted.
-				else
-					this.SendMessage( "You can not say anything, you have been squelched." ); //Cliloc ITSELF changed during ML.
+				this.SendMessage( "You can not say anything, you have been squelched." ); //Cliloc ITSELF changed during ML.
 
 				e.Blocked = true;
 			}
@@ -8232,7 +8229,7 @@ namespace Server
 			return this == m || (
 				m.m_Map == m_Map &&
 				(!m.Hidden || (m_AccessLevel != AccessLevel.Player && (m_AccessLevel >= m.AccessLevel || m_AccessLevel >= AccessLevel.Administrator))) &&
-				((m.Alive || (Core.SE && Skills.SpiritSpeak.Value >= 100.0)) || !Alive || m_AccessLevel > AccessLevel.Player || m.Warmode));
+				(m.Alive || !Alive || m_AccessLevel > AccessLevel.Player || m.Warmode));
 
 		}
 

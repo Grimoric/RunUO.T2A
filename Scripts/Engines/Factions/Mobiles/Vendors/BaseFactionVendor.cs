@@ -30,14 +30,6 @@ namespace Server.Factions
 				m_Town.RegisterVendor( this );
 		}
 
-		public override bool OnMoveOver( Mobile m )
-		{
-			if ( Core.ML )
-				return true;
-
-			return base.OnMoveOver( m );
-		}
-
 		public void Unregister()
 		{
 			if ( m_Town != null )

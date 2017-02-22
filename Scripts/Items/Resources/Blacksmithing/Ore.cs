@@ -162,9 +162,6 @@ namespace Server.Items
 
 			private bool IsForge( object obj )
 			{
-				if ( Core.ML && obj is Mobile && ((Mobile)obj).IsDeadBondedPet )
-					return false;
-
 				if ( obj.GetType().IsDefined( typeof( ForgeAttribute ), false ) )
 					return true;
 

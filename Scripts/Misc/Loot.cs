@@ -415,12 +415,7 @@ namespace Server
 
 		public static BaseWand RandomWand()
 		{
-			if ( Core.ML )
-				return Construct( m_NewWandTypes ) as BaseWand;
-			else if ( Core.AOS )
-				return Construct( m_WandTypes, m_NewWandTypes ) as BaseWand;
-			else
-				return Construct( m_OldWandTypes, m_WandTypes, m_NewWandTypes ) as BaseWand;
+			return Construct( m_OldWandTypes, m_WandTypes, m_NewWandTypes ) as BaseWand;
 		}
 
 		public static BaseClothing RandomClothing()
@@ -430,17 +425,6 @@ namespace Server
 
 		public static BaseClothing RandomClothing( bool inTokuno, bool isMondain )
 		{
-			#region Mondain's Legacy
-			if ( Core.ML && isMondain )
-				return Construct( m_MLClothingTypes, m_AosClothingTypes, m_ClothingTypes ) as BaseClothing;
-			#endregion
-
-			if ( Core.SE && inTokuno )
-				return Construct( m_SEClothingTypes, m_AosClothingTypes, m_ClothingTypes ) as BaseClothing;
-
-			if ( Core.AOS )
-				return Construct( m_AosClothingTypes, m_ClothingTypes ) as BaseClothing;
-
 			return Construct( m_ClothingTypes ) as BaseClothing;
 		}
 
@@ -451,17 +435,6 @@ namespace Server
 
 		public static BaseWeapon RandomRangedWeapon( bool inTokuno, bool isMondain )
 		{
-			#region Mondain's Legacy
-			if ( Core.ML && isMondain )
-				return Construct( m_MLRangedWeaponTypes, m_AosRangedWeaponTypes, m_RangedWeaponTypes ) as BaseWeapon;
-			#endregion
-
-			if ( Core.SE && inTokuno )
-				return Construct( m_SERangedWeaponTypes, m_AosRangedWeaponTypes, m_RangedWeaponTypes ) as BaseWeapon;
-
-			if ( Core.AOS )
-				return Construct( m_AosRangedWeaponTypes, m_RangedWeaponTypes ) as BaseWeapon;
-
 			return Construct( m_RangedWeaponTypes ) as BaseWeapon;
 		}
 
@@ -472,17 +445,6 @@ namespace Server
 
 		public static BaseWeapon RandomWeapon( bool inTokuno, bool isMondain )
 		{
-			#region Mondain's Legacy
-			if ( Core.ML && isMondain )
-				return Construct( m_MLWeaponTypes, m_AosWeaponTypes, m_WeaponTypes ) as BaseWeapon;
-			#endregion
-
-			if ( Core.SE && inTokuno )
-				return Construct( m_SEWeaponTypes, m_AosWeaponTypes, m_WeaponTypes ) as BaseWeapon;
-
-			if ( Core.AOS )
-				return Construct( m_AosWeaponTypes, m_WeaponTypes ) as BaseWeapon;
-
 			return Construct( m_WeaponTypes ) as BaseWeapon;
 		}
 
@@ -493,17 +455,6 @@ namespace Server
 
 		public static Item RandomWeaponOrJewelry( bool inTokuno, bool isMondain )
 		{
-			#region Mondain's Legacy
-			if ( Core.ML && isMondain )
-				return Construct( m_MLWeaponTypes, m_AosWeaponTypes, m_WeaponTypes, m_JewelryTypes );
-			#endregion
-
-			if ( Core.SE && inTokuno )
-				return Construct( m_SEWeaponTypes, m_AosWeaponTypes, m_WeaponTypes, m_JewelryTypes );
-
-			if ( Core.AOS )
-				return Construct( m_AosWeaponTypes, m_WeaponTypes, m_JewelryTypes );
-
 			return Construct( m_WeaponTypes, m_JewelryTypes );
 		}
 
@@ -519,14 +470,6 @@ namespace Server
 
 		public static BaseArmor RandomArmor( bool inTokuno, bool isMondain )
 		{
-			#region Mondain's Legacy
-			if ( Core.ML && isMondain )
-				return Construct( m_MLArmorTypes, m_ArmorTypes ) as BaseArmor;
-			#endregion
-
-			if ( Core.SE && inTokuno )
-				return Construct( m_SEArmorTypes, m_ArmorTypes ) as BaseArmor;
-
 			return Construct( m_ArmorTypes ) as BaseArmor;
 		}
 
@@ -537,12 +480,6 @@ namespace Server
 
 		public static BaseHat RandomHat( bool inTokuno )
 		{
-			if ( Core.SE && inTokuno )
-				return Construct( m_SEHatTypes, m_AosHatTypes, m_HatTypes ) as BaseHat;
-
-			if ( Core.AOS )
-				return Construct( m_AosHatTypes, m_HatTypes ) as BaseHat;
-
 			return Construct( m_HatTypes ) as BaseHat;
 		}
 
@@ -553,25 +490,11 @@ namespace Server
 
 		public static Item RandomArmorOrHat( bool inTokuno, bool isMondain )
 		{
-			#region Mondain's Legacy
-			if ( Core.ML && isMondain )
-				return Construct( m_MLArmorTypes, m_ArmorTypes, m_AosHatTypes, m_HatTypes );
-			#endregion
-
-			if ( Core.SE && inTokuno )
-				return Construct( m_SEArmorTypes, m_ArmorTypes, m_SEHatTypes, m_AosHatTypes, m_HatTypes );
-
-			if ( Core.AOS )
-				return Construct( m_ArmorTypes, m_AosHatTypes, m_HatTypes );
-
 			return Construct( m_ArmorTypes, m_HatTypes );
 		}
 
 		public static BaseShield RandomShield()
 		{
-			if ( Core.AOS )
-				return Construct( m_AosShieldTypes, m_ShieldTypes ) as BaseShield;
-
 			return Construct( m_ShieldTypes ) as BaseShield;
 		}
 
@@ -582,17 +505,6 @@ namespace Server
 
 		public static BaseArmor RandomArmorOrShield( bool inTokuno, bool isMondain )
 		{
-			#region Mondain's Legacy
-			if ( Core.ML && isMondain )
-				return Construct( m_MLArmorTypes, m_ArmorTypes, m_AosShieldTypes, m_ShieldTypes ) as BaseArmor;
-			#endregion
-
-			if ( Core.SE && inTokuno )
-				return Construct( m_SEArmorTypes, m_ArmorTypes, m_AosShieldTypes, m_ShieldTypes ) as BaseArmor;
-
-			if ( Core.AOS )
-				return Construct( m_ArmorTypes, m_AosShieldTypes, m_ShieldTypes ) as BaseArmor;
-
 			return Construct( m_ArmorTypes, m_ShieldTypes ) as BaseArmor;
 		}
 
@@ -603,17 +515,6 @@ namespace Server
 
 		public static Item RandomArmorOrShieldOrJewelry( bool inTokuno, bool isMondain )
 		{
-			#region Mondain's Legacy
-			if ( Core.ML && isMondain )
-				return Construct( m_MLArmorTypes, m_ArmorTypes, m_AosHatTypes, m_HatTypes, m_AosShieldTypes, m_ShieldTypes, m_JewelryTypes );
-			#endregion
-
-			if ( Core.SE && inTokuno )
-				return Construct( m_SEArmorTypes, m_ArmorTypes, m_SEHatTypes, m_AosHatTypes, m_HatTypes, m_AosShieldTypes, m_ShieldTypes, m_JewelryTypes );
-
-			if ( Core.AOS )
-				return Construct( m_ArmorTypes, m_AosHatTypes, m_HatTypes, m_AosShieldTypes, m_ShieldTypes, m_JewelryTypes );
-
 			return Construct( m_ArmorTypes, m_HatTypes, m_ShieldTypes, m_JewelryTypes );
 		}
 
@@ -624,17 +525,6 @@ namespace Server
 
 		public static Item RandomArmorOrShieldOrWeapon( bool inTokuno, bool isMondain )
 		{
-			#region Mondain's Legacy
-			if ( Core.ML && isMondain )
-				return Construct( m_MLWeaponTypes, m_AosWeaponTypes, m_WeaponTypes, m_MLRangedWeaponTypes, m_AosRangedWeaponTypes, m_RangedWeaponTypes, m_MLArmorTypes, m_ArmorTypes, m_AosHatTypes, m_HatTypes, m_AosShieldTypes, m_ShieldTypes );
-			#endregion
-
-			if ( Core.SE && inTokuno )
-				return Construct( m_SEWeaponTypes, m_AosWeaponTypes, m_WeaponTypes, m_SERangedWeaponTypes, m_AosRangedWeaponTypes, m_RangedWeaponTypes, m_SEArmorTypes, m_ArmorTypes, m_SEHatTypes, m_AosHatTypes, m_HatTypes, m_AosShieldTypes, m_ShieldTypes );
-
-			if ( Core.AOS )
-				return Construct( m_AosWeaponTypes, m_WeaponTypes, m_AosRangedWeaponTypes, m_RangedWeaponTypes, m_ArmorTypes, m_AosHatTypes, m_HatTypes, m_AosShieldTypes, m_ShieldTypes );
-
 			return Construct( m_WeaponTypes, m_RangedWeaponTypes, m_ArmorTypes, m_HatTypes, m_ShieldTypes );
 		}
 
@@ -645,17 +535,6 @@ namespace Server
 
 		public static Item RandomArmorOrShieldOrWeaponOrJewelry( bool inTokuno, bool isMondain )
 		{
-			#region Mondain's Legacy
-			if ( Core.ML && isMondain )
-				return Construct( m_MLWeaponTypes, m_AosWeaponTypes, m_WeaponTypes, m_MLRangedWeaponTypes, m_AosRangedWeaponTypes, m_RangedWeaponTypes, m_MLArmorTypes, m_ArmorTypes, m_AosHatTypes, m_HatTypes, m_AosShieldTypes, m_ShieldTypes, m_JewelryTypes );
-			#endregion
-
-			if ( Core.SE && inTokuno )
-				return Construct( m_SEWeaponTypes, m_AosWeaponTypes, m_WeaponTypes, m_SERangedWeaponTypes, m_AosRangedWeaponTypes, m_RangedWeaponTypes, m_SEArmorTypes, m_ArmorTypes, m_SEHatTypes, m_AosHatTypes, m_HatTypes, m_AosShieldTypes, m_ShieldTypes, m_JewelryTypes );
-
-			if ( Core.AOS )
-				return Construct( m_AosWeaponTypes, m_WeaponTypes, m_AosRangedWeaponTypes, m_RangedWeaponTypes, m_ArmorTypes, m_AosHatTypes, m_HatTypes, m_AosShieldTypes, m_ShieldTypes, m_JewelryTypes );
-
 			return Construct( m_WeaponTypes, m_RangedWeaponTypes, m_ArmorTypes, m_HatTypes, m_ShieldTypes, m_JewelryTypes );
 		}
 		
@@ -683,9 +562,6 @@ namespace Server
 
 		public static Item RandomPossibleReagent()
 		{
-			if ( Core.AOS )
-				return Construct( m_RegTypes, m_NecroRegTypes );
-
 			return Construct( m_RegTypes );
 		}
 
@@ -696,9 +572,6 @@ namespace Server
 
 		public static BaseInstrument RandomInstrument()
 		{
-			if ( Core.SE )
-				return Construct( m_InstrumentTypes, m_SEInstrumentTypes ) as BaseInstrument;
-
 			return Construct( m_InstrumentTypes ) as BaseInstrument;
 		}
 
@@ -715,7 +588,7 @@ namespace Server
 			{
 				default:
 				case SpellbookType.Regular: types = m_RegularScrollTypes; break;
-				case SpellbookType.Necromancer: types = (Core.SE ? m_SENecromancyScrollTypes : m_NecromancyScrollTypes ); break;
+				case SpellbookType.Necromancer: types = m_NecromancyScrollTypes; break;
 				case SpellbookType.Paladin: types = m_PaladinScrollTypes; break;
 				case SpellbookType.Arcanist: types = m_ArcanistScrollTypes; break;
 			}

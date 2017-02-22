@@ -47,7 +47,7 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Meager );
 		}
 
-		public override bool BardImmune{ get{ return !Core.AOS; } }
+		public override bool BardImmune{ get{ return true; } }
 		public override bool CanRummageCorpses{ get{ return true; } }
 
 		public override bool InitialInnocent{ get{ return true; } }
@@ -57,7 +57,7 @@ namespace Server.Mobiles
 			if ( from != null && !willKill && amount > 3 && from != null && !InRange( from, 7 ) )
 			{
 				this.MovingEffect( from, 0xF51, 10, 0, false, false );
-				SpellHelper.Damage( TimeSpan.FromSeconds( 1.0 ), from, this, Utility.RandomMinMax( 30, 40 ) - (Core.AOS ? 0 : 10), 100, 0, 0, 0, 0 );
+				SpellHelper.Damage( TimeSpan.FromSeconds( 1.0 ), from, this, Utility.RandomMinMax( 30, 40 ) - 10, 100, 0, 0, 0, 0 );
 			}
 
 			base.OnDamage( amount, from, willKill );

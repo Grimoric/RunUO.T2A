@@ -141,54 +141,6 @@ namespace Server.Items
 			m_HitPoints = m_MaxHitPoints = Utility.RandomMinMax( InitMinHits, InitMaxHits );
 		}
 
-		public override void OnAdded( object parent )
-		{
-			if ( Core.AOS && parent is Mobile )
-			{
-				Mobile from = (Mobile)parent;
-
-				m_AosSkillBonuses.AddTo( from );
-
-				int strBonus = m_AosAttributes.BonusStr;
-				int dexBonus = m_AosAttributes.BonusDex;
-				int intBonus = m_AosAttributes.BonusInt;
-
-				if ( strBonus != 0 || dexBonus != 0 || intBonus != 0 )
-				{
-					string modName = this.Serial.ToString();
-
-					if ( strBonus != 0 )
-						from.AddStatMod( new StatMod( StatType.Str, modName + "Str", strBonus, TimeSpan.Zero ) );
-
-					if ( dexBonus != 0 )
-						from.AddStatMod( new StatMod( StatType.Dex, modName + "Dex", dexBonus, TimeSpan.Zero ) );
-
-					if ( intBonus != 0 )
-						from.AddStatMod( new StatMod( StatType.Int, modName + "Int", intBonus, TimeSpan.Zero ) );
-				}
-
-				from.CheckStatTimers();
-			}
-		}
-
-		public override void OnRemoved( object parent )
-		{
-			if ( Core.AOS && parent is Mobile )
-			{
-				Mobile from = (Mobile)parent;
-
-				m_AosSkillBonuses.Remove();
-
-				string modName = this.Serial.ToString();
-
-				from.RemoveStatMod( modName + "Str" );
-				from.RemoveStatMod( modName + "Dex" );
-				from.RemoveStatMod( modName + "Int" );
-
-				from.CheckStatTimers();
-			}
-		}
-
 		public BaseJewel( Serial serial ) : base( serial )
 		{
 		}
@@ -273,9 +225,6 @@ namespace Server.Items
 			if ( (prop = m_AosAttributes.WeaponSpeed) != 0 )
 				list.Add( 1060486, prop.ToString() ); // swing speed increase ~1_val~%
 
-			if ( Core.ML && (prop = m_AosAttributes.IncreasedKarmaLoss) != 0 )
-				list.Add( 1075210, prop.ToString() ); // Increased Karma Loss ~1val~%
-
 			base.AddResistanceProperties( list );
 
 			if ( m_HitPoints >= 0 && m_MaxHitPoints > 0 )
@@ -327,10 +276,7 @@ namespace Server.Items
 					m_AosResistances = new AosElementAttributes( this, reader );
 					m_AosSkillBonuses = new AosSkillBonuses( this, reader );
 
-					if ( Core.AOS && Parent is Mobile )
-						m_AosSkillBonuses.AddTo( (Mobile)Parent );
-
-					int strBonus = m_AosAttributes.BonusStr;
+	                int strBonus = m_AosAttributes.BonusStr;
 					int dexBonus = m_AosAttributes.BonusDex;
 					int intBonus = m_AosAttributes.BonusInt;
 

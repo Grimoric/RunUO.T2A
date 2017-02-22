@@ -44,7 +44,7 @@ namespace Server.Items
 		{
 			base.OnHit( attacker, defender, damageBonus );
 
-			if ( !Core.AOS && Poison != null && PoisonCharges > 0 )
+			if (  Poison != null && PoisonCharges > 0 )
 			{
 				--PoisonCharges;
 

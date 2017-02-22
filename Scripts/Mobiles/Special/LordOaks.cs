@@ -71,9 +71,9 @@ namespace Server.Mobiles
 		
 		public override bool AutoDispel{ get{ return true; } }
 		public override bool CanFly { get { return true; } }
-		public override bool BardImmune{ get{ return !Core.SE; } }
-		public override bool Unprovokable{ get{ return Core.SE; } }
-		public override bool Uncalmable{ get{ return Core.SE; } }
+		public override bool BardImmune{ get{ return true; } }
+		public override bool Unprovokable{ get{ return false; } }
+		public override bool Uncalmable{ get{ return false; } }
 		public override OppositionGroup OppositionGroup
 		{
 			get{ return OppositionGroup.FeyAndUndead; }

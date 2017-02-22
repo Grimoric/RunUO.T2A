@@ -210,14 +210,6 @@ namespace Server.Items
 			return false;
 		}
 
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( Core.ML && m_IsRewardItem )
-				list.Add( RewardSystem.GetRewardYearLabel( this, new object[]{ Hue, m_LabelNumber } ) ); // X Year Veteran Reward
-		}
-
 		public override bool CanEquip( Mobile m )
 		{
 			if ( !base.CanEquip( m ) )

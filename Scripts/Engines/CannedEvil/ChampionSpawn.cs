@@ -499,10 +499,7 @@ namespace Server.Engines.CannedEvil
 					{
 						m_Altar.Hue = 0;
 
-						if( !Core.ML || Map == Map.Felucca )
-						{
-							new StarRoomGate( true, m_Altar.Location, m_Altar.Map );
-						}
+						new StarRoomGate( true, m_Altar.Location, m_Altar.Map );
 					}
 
 					m_Champion = null;
@@ -538,41 +535,6 @@ namespace Server.Engines.CannedEvil
 
 						if( killer is PlayerMobile )
 						{
-							#region Scroll of Transcendence
-							if ( Core.ML )
-							{
-								if ( Map == Map.Felucca )
-								{
-									if ( Utility.RandomDouble() < 0.001 )
-									{
-										PlayerMobile pm = (PlayerMobile)killer;
-										double random = Utility.Random ( 49 );
-										
-										if ( random <= 24 )
-										{
-											ScrollofTranscendence SoTF = CreateRandomSoT( true );
-											GiveScrollTo( pm, (SpecialScroll)SoTF );
-										}
-										else
-										{
-											PowerScroll PS = PowerScroll.CreateRandomNoCraft(5, 5);
-											GiveScrollTo( pm, (SpecialScroll)PS );
-										}
-									}
-								}
-
-								if ( Map == Map.Ilshenar || Map == Map.Tokuno || Map == Map.Malas )
-								{
-									if ( Utility.RandomDouble() < 0.0015 )
-									{
-										killer.SendLocalizedMessage( 1094936 ); // You have received a Scroll of Transcendence!
-										ScrollofTranscendence SoTT = CreateRandomSoT( false );
-										killer.AddToBackpack( SoTT );
-									}
-								}
-							}
-							#endregion
-
 							int mobSubLevel = GetSubLevelFor( m ) + 1;
 
 							if( mobSubLevel >= 0 )

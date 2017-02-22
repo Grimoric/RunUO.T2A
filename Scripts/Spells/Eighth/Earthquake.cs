@@ -25,7 +25,7 @@ namespace Server.Spells.Eighth
 		{
 		}
 
-		public override bool DelayedDamage{ get{ return !Core.AOS; } }
+		public override bool DelayedDamage{ get{ return true; } }
 
 		public override void OnCast()
 		{
@@ -37,7 +37,7 @@ namespace Server.Spells.Eighth
 
 				if ( map != null )
 					foreach ( Mobile m in Caster.GetMobilesInRange( 1 + (int)(Caster.Skills[SkillName.Magery].Value / 15.0) ) )
-						if ( Caster != m && SpellHelper.ValidIndirectTarget( Caster, m ) && Caster.CanBeHarmful( m, false ) && (!Core.AOS || Caster.InLOS( m )) )
+						if ( Caster != m && SpellHelper.ValidIndirectTarget( Caster, m ) && Caster.CanBeHarmful( m, false ) )
 							targets.Add( m );
 
 				Caster.PlaySound( 0x220 );
@@ -46,26 +46,12 @@ namespace Server.Spells.Eighth
 				{
 					Mobile m = targets[i];
 
-					int damage;
+					int damage = (m.Hits * 6) / 10;
 
-					if ( Core.AOS )
-					{
-						damage = m.Hits / 2;
-
-						if ( !m.Player )
-							damage = Math.Max( Math.Min( damage, 100 ), 15 );
-							damage += Utility.RandomMinMax( 0, 15 );
-
-					}
-					else
-					{
-						damage = (m.Hits * 6) / 10;
-
-						if ( !m.Player && damage < 10 )
-							damage = 10;
-						else if ( damage > 75 )
-							damage = 75;
-					}
+					if ( !m.Player && damage < 10 )
+						damage = 10;
+					else if ( damage > 75 )
+						damage = 75;
 
 					Caster.DoHarmful( m );
 					SpellHelper.Damage( TimeSpan.Zero, m, Caster, damage, 100, 0, 0, 0, 0 );

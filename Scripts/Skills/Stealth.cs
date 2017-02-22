@@ -11,7 +11,7 @@ namespace Server.SkillHandlers
 			SkillInfo.Table[(int)SkillName.Stealth].Callback = new SkillUseCallback( OnUse );
 		}
 
-		public static double HidingRequirement { get { return ( Core.ML ? 30.0 : ( Core.SE ? 50.0 : 80.0 ) ); } }
+		public static double HidingRequirement { get { return 80.0; } }
 
 		public static int[,] ArmorTable { get { return m_ArmorTable; } }
 		private static int[,] m_ArmorTable = new int[,]
@@ -32,29 +32,7 @@ namespace Server.SkillHandlers
 
 		public static int GetArmorRating( Mobile m )
 		{
-			if( !Core.AOS )
-				return (int)m.ArmorRating;
-
-			int ar = 0;
-
-			for( int i = 0; i < m.Items.Count; i++ )
-			{
-				BaseArmor armor = m.Items[i] as BaseArmor;
-
-				if( armor == null )
-					continue;
-
-				int materialType = (int)armor.MaterialType;
-				int bodyPosition = (int)armor.BodyPosition;
-
-				if( materialType >= m_ArmorTable.GetLength( 0 ) || bodyPosition >= m_ArmorTable.GetLength( 1 ) )
-					continue;
-
-				if( armor.ArmorAttributes.MageArmor == 0 )
-					ar += m_ArmorTable[materialType, bodyPosition];
-			}
-
-			return ar;
+			return (int)m.ArmorRating;
 		}
 
 		public static TimeSpan OnUse( Mobile m )
@@ -77,14 +55,14 @@ namespace Server.SkillHandlers
 			{
 				int armorRating = GetArmorRating( m );
 
-				if( armorRating >= (Core.AOS ? 42 : 26) ) //I have a hunch '42' was chosen cause someone's a fan of DNA
+				if( armorRating >= 26 ) //I have a hunch '42' was chosen cause someone's a fan of DNA
 				{
 					m.SendLocalizedMessage( 502727 ); // You could not hope to move quietly wearing this much armor.
 					m.RevealingAction();
 				}
-				else if( m.CheckSkill( SkillName.Stealth, -20.0 + (armorRating * 2), (Core.AOS ? 60.0 : 80.0) + (armorRating * 2) ) )
+				else if( m.CheckSkill( SkillName.Stealth, -20.0 + (armorRating * 2), 80.0 + (armorRating * 2) ) )
 				{
-					int steps = (int)(m.Skills[SkillName.Stealth].Value / (Core.AOS ? 5.0 : 10.0));
+					int steps = (int)(m.Skills[SkillName.Stealth].Value / 10.0);
 
 					if( steps < 1 )
 						steps = 1;

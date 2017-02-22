@@ -252,7 +252,7 @@ namespace Server.Engines.ConPVP
 				if ( armor.ProtectionLevel > ArmorProtectionLevel.Regular && !m_Ruleset.GetOption( "Armor", "Magical" ) )
 					return false;
 
-				if ( !Core.AOS && armor.Resource != armor.DefaultResource && !m_Ruleset.GetOption( "Armor", "Colored" ) )
+				if ( armor.Resource != armor.DefaultResource && !m_Ruleset.GetOption( "Armor", "Colored" ) )
 					return false;
 
 				if ( armor is BaseShield && !m_Ruleset.GetOption( "Armor", "Shields" ) )
@@ -265,7 +265,7 @@ namespace Server.Engines.ConPVP
 				if ( (weapon.DamageLevel > WeaponDamageLevel.Regular || weapon.AccuracyLevel > WeaponAccuracyLevel.Regular) && !m_Ruleset.GetOption( "Weapons", "Magical" ) )
 					return false;
 
-				if ( !Core.AOS && weapon.Resource != CraftResource.Iron && weapon.Resource != CraftResource.None && !m_Ruleset.GetOption( "Weapons", "Runics" ) )
+				if (weapon.Resource != CraftResource.Iron && weapon.Resource != CraftResource.None && !m_Ruleset.GetOption( "Weapons", "Runics" ) )
 					return false;
 
 				if ( weapon is BaseRanged && !m_Ruleset.GetOption( "Weapons", "Ranged" ) )
@@ -1686,16 +1686,13 @@ namespace Server.Engines.ConPVP
 			mob.Paralyzed = false;
 			mob.Hidden = false;
 
-			if ( !Core.AOS )
-			{
-				mob.MagicDamageAbsorb = 0;
-				mob.MeleeDamageAbsorb = 0;
-				Spells.Second.ProtectionSpell.Registry.Remove( mob );
+			mob.MagicDamageAbsorb = 0;
+			mob.MeleeDamageAbsorb = 0;
+			Spells.Second.ProtectionSpell.Registry.Remove( mob );
 
-				Spells.Fourth.ArchProtectionSpell.RemoveEntry( mob );
+			Spells.Fourth.ArchProtectionSpell.RemoveEntry( mob );
 
-				mob.EndAction( typeof( DefensiveSpell ) );
-			}
+			mob.EndAction( typeof( DefensiveSpell ) );
 
 			TransformationSpellHelper.RemoveContext( mob, true );
 			AnimalForm.RemoveContext( mob, true );

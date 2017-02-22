@@ -22,8 +22,7 @@ namespace Server.Items
 		[Constructable]
 		public ChaosShield() : base( 0x1BC3 )
 		{
-			if ( !Core.AOS )
-				LootType = LootType.Newbied;
+			LootType = LootType.Newbied;
 
 			Weight = 5.0;
 		}
@@ -59,7 +58,7 @@ namespace Server.Items
 
 		public virtual bool Validate( Mobile m )
 		{
-			if ( m == null || !m.Player || m.AccessLevel != AccessLevel.Player || Core.AOS )
+			if ( m == null || !m.Player || m.AccessLevel != AccessLevel.Player )
 				return true;
 
 			Guild g = m.Guild as Guild;

@@ -11,22 +11,7 @@ namespace Server
 	{
 		public static int GetLuckChance( Mobile killer, Mobile victim )
 		{
-			if ( !Core.AOS )
-				return 0;
-
-			int luck = killer.Luck;
-
-			PlayerMobile pmKiller = killer as PlayerMobile;
-			if( pmKiller != null && pmKiller.SentHonorContext != null && pmKiller.SentHonorContext.Target == victim )
-				luck += pmKiller.SentHonorContext.PerfectionLuckBonus;
-
-			if ( luck < 0 )
-				return 0;
-
-			if ( !Core.SE && luck > 1200 )
-				luck = 1200;
-
-			return (int)(Math.Pow( luck, 1 / 1.8 ) * 100);
+			return 0;
 		}
 
 		public static int GetLuckChanceForKiller( Mobile dead )
@@ -66,7 +51,7 @@ namespace Server
 			if ( cont == null )
 				return;
 
-			bool checkLuck = Core.AOS;
+			bool checkLuck = false;
 
 			for ( int i = 0; i < m_Entries.Length; ++i )
 			{
@@ -468,13 +453,13 @@ namespace Server
 		#endregion
 
 		#region Generic accessors
-		public static LootPack Poor{ get{ return Core.SE ? SePoor : Core.AOS ? AosPoor : OldPoor; } }
-		public static LootPack Meager{ get{ return Core.SE ? SeMeager : Core.AOS ? AosMeager : OldMeager; } }
-		public static LootPack Average{ get{ return Core.SE ? SeAverage : Core.AOS ? AosAverage : OldAverage; } }
-		public static LootPack Rich{ get{ return Core.SE ? SeRich : Core.AOS ? AosRich : OldRich; } }
-		public static LootPack FilthyRich{ get{ return Core.SE ? SeFilthyRich : Core.AOS ? AosFilthyRich : OldFilthyRich; } }
-		public static LootPack UltraRich{ get{ return Core.SE ? SeUltraRich : Core.AOS ? AosUltraRich : OldUltraRich; } }
-		public static LootPack SuperBoss{ get{ return Core.SE ? SeSuperBoss : Core.AOS ? AosSuperBoss : OldSuperBoss; } }
+		public static LootPack Poor{ get{ return OldPoor; } }
+		public static LootPack Meager{ get{ return OldMeager; } }
+		public static LootPack Average{ get{ return OldAverage; } }
+		public static LootPack Rich{ get{ return OldRich; } }
+		public static LootPack FilthyRich{ get{ return OldFilthyRich; } }
+		public static LootPack UltraRich{ get{ return OldUltraRich; } }
+		public static LootPack SuperBoss{ get{ return OldSuperBoss; } }
 		#endregion
 
 		public static readonly LootPack LowScrolls = new LootPack( new LootPackEntry[]
@@ -646,71 +631,39 @@ namespace Server
 
 				if ( item is BaseWeapon || item is BaseArmor || item is BaseJewel || item is BaseHat )
 				{
-					if ( Core.AOS )
+					if ( item is BaseWeapon )
 					{
-						int bonusProps = GetBonusProperties();
-						int min = m_MinIntensity;
-						int max = m_MaxIntensity;
+						BaseWeapon weapon = (BaseWeapon)item;
 
-						if ( bonusProps < m_MaxProps && LootPack.CheckLuck( luckChance ) )
-							++bonusProps;
+						if ( 80 > Utility.Random( 100 ) )
+							weapon.AccuracyLevel = (WeaponAccuracyLevel)GetRandomOldBonus();
 
-						int props = 1 + bonusProps;
+						if ( 60 > Utility.Random( 100 ) )
+							weapon.DamageLevel = (WeaponDamageLevel)GetRandomOldBonus();
 
-						// Make sure we're not spawning items with 6 properties.
-						if ( props > m_MaxProps )
-							props = m_MaxProps;
+						if ( 40 > Utility.Random( 100 ) )
+							weapon.DurabilityLevel = (WeaponDurabilityLevel)GetRandomOldBonus();
 
-						if ( item is BaseWeapon )
-							BaseRunicTool.ApplyAttributesTo( (BaseWeapon)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity );
-						else if ( item is BaseArmor )
-							BaseRunicTool.ApplyAttributesTo( (BaseArmor)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity );
-						else if ( item is BaseJewel )
-							BaseRunicTool.ApplyAttributesTo( (BaseJewel)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity );
-						else if ( item is BaseHat )
-							BaseRunicTool.ApplyAttributesTo( (BaseHat)item, false, luckChance, props, m_MinIntensity, m_MaxIntensity );
+						if ( 5 > Utility.Random( 100 ) )
+							weapon.Slayer = SlayerName.Silver;
+
+						if ( from != null && weapon.AccuracyLevel == 0 && weapon.DamageLevel == 0 && weapon.DurabilityLevel == 0 && weapon.Slayer == SlayerName.None && 5 > Utility.Random( 100 ) )
+							weapon.Slayer = SlayerGroup.GetLootSlayerType( from.GetType() );
 					}
-					else // not aos
+					else if ( item is BaseArmor )
 					{
-						if ( item is BaseWeapon )
-						{
-							BaseWeapon weapon = (BaseWeapon)item;
+						BaseArmor armor = (BaseArmor)item;
 
-							if ( 80 > Utility.Random( 100 ) )
-								weapon.AccuracyLevel = (WeaponAccuracyLevel)GetRandomOldBonus();
+						if ( 80 > Utility.Random( 100 ) )
+							armor.ProtectionLevel = (ArmorProtectionLevel)GetRandomOldBonus();
 
-							if ( 60 > Utility.Random( 100 ) )
-								weapon.DamageLevel = (WeaponDamageLevel)GetRandomOldBonus();
-
-							if ( 40 > Utility.Random( 100 ) )
-								weapon.DurabilityLevel = (WeaponDurabilityLevel)GetRandomOldBonus();
-
-							if ( 5 > Utility.Random( 100 ) )
-								weapon.Slayer = SlayerName.Silver;
-
-							if ( from != null && weapon.AccuracyLevel == 0 && weapon.DamageLevel == 0 && weapon.DurabilityLevel == 0 && weapon.Slayer == SlayerName.None && 5 > Utility.Random( 100 ) )
-								weapon.Slayer = SlayerGroup.GetLootSlayerType( from.GetType() );
-						}
-						else if ( item is BaseArmor )
-						{
-							BaseArmor armor = (BaseArmor)item;
-
-							if ( 80 > Utility.Random( 100 ) )
-								armor.ProtectionLevel = (ArmorProtectionLevel)GetRandomOldBonus();
-
-							if ( 40 > Utility.Random( 100 ) )
-								armor.Durability = (ArmorDurabilityLevel)GetRandomOldBonus();
-						}
+						if ( 40 > Utility.Random( 100 ) )
+							armor.Durability = (ArmorDurabilityLevel)GetRandomOldBonus();
 					}
 				}
 				else if ( item is BaseInstrument )
 				{
-					SlayerName slayer = SlayerName.None;
-
-					if ( Core.AOS )
-						slayer = BaseRunicTool.GetRandomSlayer();
-					else
-						slayer = SlayerGroup.GetLootSlayerType( from.GetType() );
+					SlayerName slayer = SlayerGroup.GetLootSlayerType( from.GetType() );
 
 					if ( slayer == SlayerName.None )
 					{
@@ -833,15 +786,10 @@ namespace Server
 					typeof( LichFormScroll ),			typeof( PoisonStrikeScroll ),	typeof( StrangleScroll ),	typeof( WitherScroll )
 				},
 
-				((Core.SE) ?
-				new Type[] // high
-				{
-					typeof( VengefulSpiritScroll ),		typeof( VampiricEmbraceScroll ), typeof( ExorcismScroll )
-				} :
 				new Type[] // high
 				{
 					typeof( VengefulSpiritScroll ),		typeof( VampiricEmbraceScroll )
-				})
+				}
 			};
 
 		public static Item RandomScroll( int index, int minCircle, int maxCircle )
@@ -854,20 +802,12 @@ namespace Server
 			if ( index == 0 )
 				scrollCount += m_BlankTypes.Length;
 
-			if ( Core.AOS )
-				scrollCount += m_NecroTypes[index].Length;
-
 			int rnd = Utility.Random( scrollCount );
 
 			if ( index == 0 && rnd < m_BlankTypes.Length )
 				return Loot.Construct( m_BlankTypes );
 			else if ( index == 0 )
 				rnd -= m_BlankTypes.Length;
-
-			if ( Core.AOS && rnd < m_NecroTypes.Length )
-				return Loot.Construct( m_NecroTypes[index] );
-			else if ( Core.AOS )
-				rnd -= m_NecroTypes[index].Length;
 
 			return Loot.RandomScroll( minCircle * 8, (maxCircle * 8) + 7, SpellbookType.Regular );
 		}
@@ -887,7 +827,7 @@ namespace Server
 				else if ( m_Type == typeof( BaseShield ) )
 					item = Loot.RandomShield();
 				else if ( m_Type == typeof( BaseJewel ) )
-					item = Core.AOS ? Loot.RandomJewelry() : Loot.RandomArmorOrShieldOrWeapon();
+					item = Loot.RandomArmorOrShieldOrWeapon();
 				else if ( m_Type == typeof( BaseInstrument ) )
 					item = Loot.RandomInstrument();
 				else if ( m_Type == typeof( Amber ) ) // gem

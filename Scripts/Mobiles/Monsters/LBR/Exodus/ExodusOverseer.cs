@@ -60,7 +60,7 @@ namespace Server.Mobiles
 		}
 
 		public override bool AutoDispel{ get{ return true; } }
-		public override bool BardImmune{ get{ return !Core.AOS; } }
+		public override bool BardImmune{ get{ return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Lethal; } }
 
 		public override int GetIdleSound()

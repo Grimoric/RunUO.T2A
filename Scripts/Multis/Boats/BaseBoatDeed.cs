@@ -22,8 +22,7 @@ namespace Server.Multis
 		{
 			Weight = 1.0;
 
-			if ( !Core.AOS )
-				LootType = LootType.Newbied;
+			LootType = LootType.Newbied;
 
 			m_MultiID = id;
 			m_Offset = offset;
@@ -76,10 +75,7 @@ namespace Server.Multis
 			}
 			else
 			{
-				if ( Core.SE )
-					from.SendLocalizedMessage( 502482 ); // Where do you wish to place the ship?
-				else
-					from.LocalOverheadMessage( MessageType.Regular, 0x3B2, 502482 ); // Where do you wish to place the ship?
+				from.LocalOverheadMessage( MessageType.Regular, 0x3B2, 502482 ); // Where do you wish to place the ship?
 
 				from.Target = new InternalTarget( this );
 			}

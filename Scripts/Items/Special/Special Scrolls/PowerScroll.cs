@@ -101,26 +101,6 @@ namespace Server.Items
 				if ( _Skills.Count == 0 )
 				{
 					_Skills.AddRange( m_Skills );
-					if (Core.AOS)
-					{
-						_Skills.AddRange( m_AOSSkills );
-						if (Core.SE)
-						{
-							_Skills.AddRange( m_SESkills );
-							if (Core.ML)
-							{
-								_Skills.AddRange( m_MLSkills );
-								/*
-								if (Core.SA)
-								{
-									_Skills.AddRange( m_SASkills );
-									if (Core.HS)
-										_Skills.AddRange( m_HSSkills );
-								}
-								*/
-							}
-						}
-					}
 				}
 				return _Skills;
 			}

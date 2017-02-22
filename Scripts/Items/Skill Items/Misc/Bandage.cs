@@ -11,7 +11,7 @@ namespace Server.Items
 {
 	public class Bandage : Item, IDyable
 	{
-		public static int Range = ( Core.AOS ? 2 : 1 ); 
+		public static int Range = 1; 
 
 		public override double DefaultWeight
 		{
@@ -220,8 +220,7 @@ namespace Server.Items
 				double anatomy = m_Healer.Skills[secondarySkill].Value;
 				double chance = ((healing - 68.0) / 50.0) - (m_Slips * 0.02);
 
-				if (( (checkSkills = (healing >= 80.0 && anatomy >= 80.0)) && chance > Utility.RandomDouble() )
-				      || ( Core.SE && petPatient is Factions.FactionWarHorse && petPatient.ControlMaster == m_Healer) )	//TODO: Dbl check doesn't check for faction of the horse here?
+				if ( (checkSkills = healing >= 80.0 && anatomy >= 80.0) && chance > Utility.RandomDouble() )	//TODO: Dbl check doesn't check for faction of the horse here?
 				{
 					if ( m_Patient.Map == null || !m_Patient.Map.CanFit( m_Patient.Location, 16, false, false ) )
 					{
@@ -364,26 +363,15 @@ namespace Server.Items
 
 					double min, max;
 
-					if ( Core.AOS )
-					{
-						min = (anatomy / 8.0) + (healing / 5.0) + 4.0;
-						max = (anatomy / 6.0) + (healing / 2.5) + 4.0;
-					}
-					else
-					{
-						min = (anatomy / 5.0) + (healing / 5.0) + 3.0;
-						max = (anatomy / 5.0) + (healing / 2.0) + 10.0;
-					}
+					min = (anatomy / 5.0) + (healing / 5.0) + 3.0;
+					max = (anatomy / 5.0) + (healing / 2.0) + 10.0;
 
 					double toHeal = min + (Utility.RandomDouble() * (max - min));
 
 					if ( m_Patient.Body.IsMonster || m_Patient.Body.IsAnimal )
 						toHeal += m_Patient.HitsMax / 100;
 
-					if ( Core.AOS )
-						toHeal -= toHeal * m_Slips * 0.35; // TODO: Verify algorithm
-					else
-						toHeal -= m_Slips * 4;
+					toHeal -= m_Slips * 4;
 
 					if ( toHeal < 1 )
 					{
@@ -464,37 +452,16 @@ namespace Server.Items
 
 				if ( onSelf )
 				{
-					if ( Core.AOS )
-						seconds = 5.0 + (0.5 * ((double)(120 - dex) / 10)); // TODO: Verify algorithm
-					else
-						seconds = 9.4 + (0.6 * ((double)(120 - dex) / 10));
+					seconds = 9.4 + (0.6 * ((double)(120 - dex) / 10));
 				}
 				else
 				{
-					if ( Core.AOS && GetPrimarySkill( patient ) == SkillName.Veterinary )
-					{
-							seconds = 2.0;
-					}
-					else if ( Core.AOS )
-					{
-						if (dex < 204)
-						{		
-							seconds = 3.2-(Math.Sin((double)dex/130)*2.5) + resDelay;
-						}
-						else
-						{
-							seconds = 0.7 + resDelay;
-						}
-					}
+					if ( dex >= 100 )
+						seconds = 3.0 + resDelay;
+					else if ( dex >= 40 )
+						seconds = 4.0 + resDelay;
 					else
-					{
-						if ( dex >= 100 )
-							seconds = 3.0 + resDelay;
-						else if ( dex >= 40 )
-							seconds = 4.0 + resDelay;
-						else
-							seconds = 5.0 + resDelay;
-					}
+						seconds = 5.0 + resDelay;
 				}
 
 				BandageContext context = GetContext( healer );

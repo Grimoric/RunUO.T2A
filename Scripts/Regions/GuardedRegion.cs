@@ -102,7 +102,7 @@ namespace Server.Regions
 			return reg;
 		}
 
-		public virtual bool AllowReds{ get{ return Core.AOS; } }
+		public virtual bool AllowReds{ get{ return false; } }
 
 		public virtual bool CheckVendorAccess( BaseVendor vendor, Mobile from )
 		{

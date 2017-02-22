@@ -39,14 +39,7 @@ namespace Server.Spells.Bushido
 			if( weap == null )
 				weap = Caster.FindItemOnLayer( Layer.TwoHanded ) as BaseWeapon;
 
-			if ( weap != null ) {
-				if ( Core.ML && Caster.Skills[weap.Skill].Base < 50 ) {
-					if ( messages ) {
-						Caster.SendLocalizedMessage( 1076206 ); // Your skill with your equipped weapon must be 50 or higher to use Evasion.
-					}
-					return false;
-				}
-			} else if ( !( Caster.FindItemOnLayer( Layer.TwoHanded ) is BaseShield ) ) {
+			if ( !( Caster.FindItemOnLayer( Layer.TwoHanded ) is BaseShield ) ) {
 				if ( messages ) {
 					Caster.SendLocalizedMessage( 1062944 ); // You must have a weapon or a shield equipped to use this ability!
 				}
@@ -70,20 +63,6 @@ namespace Server.Spells.Bushido
 			if ( weap == null )
 				weap = defender.FindItemOnLayer( Layer.TwoHanded ) as BaseWeapon;
 
-			if ( Core.ML ) {
-				if ( defender.Spell != null && defender.Spell.IsCasting ) {
-					return false;
-				}
-				
-				if ( weap != null ) {
-					if ( defender.Skills[weap.Skill].Base < 50  ) {
-						return false;
-					}
-				} else if ( !( defender.FindItemOnLayer( Layer.TwoHanded ) is BaseShield ) ) {
-					return false;
-				}
-			}
-			
 			if ( IsEvading( defender ) && BaseWeapon.CheckParry( defender ) ) {
 				defender.Emote( "*evades*" ); // Yes.  Eew.  Blame OSI.
 				defender.FixedEffect( 0x37B9, 10, 16 );
@@ -133,52 +112,12 @@ namespace Server.Spells.Bushido
 
 		public static TimeSpan GetEvadeDuration( Mobile m )
 		{
-
-			/* Evasion duration now scales with Bushido skill
-			 * 
-			 * If the player has higher than GM Bushido, and GM Tactics and Anatomy, they get a 1 second bonus
-			 * Evasion duration range:
-			 * o 3-6 seconds w/o tactics/anatomy
-			 * o 6-7 seconds w/ GM+ Bushido and GM tactics/anatomy 
-			 */
-
-			if( !Core.ML )
-				return TimeSpan.FromSeconds( 8.0 );
-
-			double seconds = 3;
-
-			if( m.Skills.Bushido.Value > 60 )
-				seconds += (m.Skills.Bushido.Value - 60) / 20;
-
-			if( m.Skills.Anatomy.Value >= 100.0 && m.Skills.Tactics.Value >= 100.0 &&  m.Skills.Bushido.Value > 100.0 )	//Bushido being HIGHER than 100 for bonus is intended
-				seconds++;
-
-			return TimeSpan.FromSeconds( (int)seconds );
+			return TimeSpan.FromSeconds( 8.0 );
 		}
 
 		public static double GetParryScalar( Mobile m )
 		{
-			/* Evasion modifier to parry now scales with Bushido skill
-			 * 
-			 * If the player has higher than GM Bushido, and at least GM Tactics and Anatomy, they get a bonus to their evasion modifier (10% bonus to the evasion modifier to parry NOT 10% to the final parry chance)
-			 * 
-			 * Bonus modifier to parry range: (these are the ranges for the evasion modifier)
-			 * o 16-40% bonus w/o tactics/anatomy
-			 * o 42-50% bonus w/ GM+ bushido and GM tactics/anatomy
-			 */
-
-			if( !Core.ML )
-				return 1.5;
-
-			double bonus = 0;
-
-			if( m.Skills.Bushido.Value >= 60 )
-				bonus += ( ( ( m.Skills.Bushido.Value - 60 ) * .004 ) + 0.16 );
-
-			if( m.Skills.Anatomy.Value >= 100 && m.Skills.Tactics.Value >= 100 && m.Skills.Bushido.Value > 100 ) //Bushido being HIGHER than 100 for bonus is intended
-				bonus += 0.10;
-
-			return 1.0 + bonus;
+			return 1.5;
 		}
 
 		public static void BeginEvasion( Mobile m )

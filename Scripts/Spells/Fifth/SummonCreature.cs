@@ -68,14 +68,7 @@ namespace Server.Spells.Fifth
 				{
 					BaseCreature creature = (BaseCreature)Activator.CreateInstance( m_Types[Utility.Random( m_Types.Length )] );
 
-					//creature.ControlSlots = 2;
-
-					TimeSpan duration;
-
-					if ( Core.AOS )
-						duration = TimeSpan.FromSeconds( (2 * Caster.Skills.Magery.Fixed) / 5 );
-					else
-						duration = TimeSpan.FromSeconds( 4.0 * Caster.Skills[SkillName.Magery].Value );
+					TimeSpan duration = TimeSpan.FromSeconds( 4.0 * Caster.Skills[SkillName.Magery].Value );
 
 					SpellHelper.Summon( creature, Caster, 0x215, duration, false, false );
 				}
@@ -89,9 +82,6 @@ namespace Server.Spells.Fifth
 
 		public override TimeSpan GetCastDelay()
 		{
-			if ( Core.AOS )
-				return TimeSpan.FromTicks( base.GetCastDelay().Ticks * 5 );
-
 			return base.GetCastDelay() + TimeSpan.FromSeconds( 6.0 );
 		}
 	}

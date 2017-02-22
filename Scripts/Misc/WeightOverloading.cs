@@ -51,9 +51,6 @@ namespace Server.Misc
 
 		public static int GetMaxWeight( Mobile m )
 		{
-			//return ((( Core.ML && m.Race == Race.Human) ? 100 : 40 ) + (int)(3.5 * m.Str));
-			//Moved to core virtual method for use there
-
 			return m.MaxWeight;
 		}
 

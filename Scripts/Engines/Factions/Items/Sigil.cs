@@ -12,10 +12,10 @@ namespace Server.Factions
 		public const int OwnershipHue = 0xB;
 
 		// ?? time corrupting faction has to return the sigil before corruption time resets ?
-		public static readonly TimeSpan CorruptionGrace = TimeSpan.FromMinutes( (Core.SE) ? 30.0 : 15.0 );
+		public static readonly TimeSpan CorruptionGrace = TimeSpan.FromMinutes( 15.0 );
 
 		// Sigil must be held at a stronghold for this amount of time in order to become corrupted
-		public static readonly TimeSpan CorruptionPeriod = ( (Core.SE) ? TimeSpan.FromHours( 10.0 ) : TimeSpan.FromHours( 24.0 ) ); 
+		public static readonly TimeSpan CorruptionPeriod = TimeSpan.FromHours( 24.0 ); 
 
 		// After a sigil has been corrupted it must be returned to the town within this period of time
 		public static readonly TimeSpan ReturnPeriod = TimeSpan.FromHours( 1.0 );

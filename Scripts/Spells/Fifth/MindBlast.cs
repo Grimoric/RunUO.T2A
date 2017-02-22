@@ -9,7 +9,7 @@ namespace Server.Spells.Fifth
 		private static SpellInfo m_Info = new SpellInfo(
 				"Mind Blast", "Por Corp Wis",
 				218,
-				Core.AOS ? 9002 : 9032,
+				9032,
 				Reagent.BlackPearl,
 				Reagent.MandrakeRoot,
 				Reagent.Nightshade,
@@ -20,8 +20,6 @@ namespace Server.Spells.Fifth
 
 		public MindBlastSpell( Mobile caster, Item scroll ) : base( caster, scroll, m_Info )
 		{
-			if ( Core.AOS )
-				m_Info.LeftHandEffect = m_Info.RightHandEffect = 9002;
 		}
 
 		public override void OnCast()
@@ -46,33 +44,13 @@ namespace Server.Spells.Fifth
 			}
 		}
 
-		public override bool DelayedDamage{ get{ return !Core.AOS; } }
+		public override bool DelayedDamage{ get{ return true; } }
 
 		public void Target( Mobile m )
 		{
 			if ( !Caster.CanSee( m ) )
 			{
 				Caster.SendLocalizedMessage( 500237 ); // Target can not be seen.
-			}
-			else if ( Core.AOS )
-			{
-				if ( Caster.CanBeHarmful( m ) && CheckSequence() )
-				{
-					Mobile from = Caster, target = m;
-
-					SpellHelper.Turn( from, target );
-
-					SpellHelper.CheckReflect( (int)this.Circle, ref from, ref target );
-
-					int damage = (int)((Caster.Skills[SkillName.Magery].Value + Caster.Int) / 5);
-
-					if ( damage > 60 )
-						damage = 60;
-
-					Timer.DelayCall( TimeSpan.FromSeconds( 1.0 ),
-						new TimerStateCallback( AosDelay_Callback ),
-						new object[]{ Caster, target, m, damage } );
-				}
 			}
 			else if ( CheckHSequence( m ) )
 			{
@@ -135,7 +113,7 @@ namespace Server.Spells.Fifth
 		{
 			private MindBlastSpell m_Owner;
 
-			public InternalTarget( MindBlastSpell owner ) : base( Core.ML ? 10 : 12, false, TargetFlags.Harmful )
+			public InternalTarget( MindBlastSpell owner ) : base( 12, false, TargetFlags.Harmful )
 			{
 				m_Owner = owner;
 			}

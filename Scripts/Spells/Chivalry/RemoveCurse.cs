@@ -97,7 +97,6 @@ namespace Server.Spells.Chivalry
 					CorpseSkinSpell.RemoveCurse( m );
 					CurseSpell.RemoveEffect( m );
 					MortalStrike.EndWound( m );
-					if (Core.ML) { BloodOathSpell.RemoveCurse ( m ); }
 					MindRotSpell.ClearMindRotScalar ( m );
 
 					BuffInfo.RemoveBuff( m, BuffIcon.Clumsy );
@@ -123,7 +122,7 @@ namespace Server.Spells.Chivalry
 		{
 			private RemoveCurseSpell m_Owner;
 
-			public InternalTarget( RemoveCurseSpell owner ) : base( Core.ML ? 10 : 12, false, TargetFlags.Beneficial )
+			public InternalTarget( RemoveCurseSpell owner ) : base( 12, false, TargetFlags.Beneficial )
 			{
 				m_Owner = owner;
 			}

@@ -326,11 +326,7 @@ namespace Server.Items
 					ClientFlags flags = mobile.NetState == null ? ClientFlags.None : mobile.NetState.Flags;
 					bool young = mobile is PlayerMobile ? ((PlayerMobile)mobile).Young : false;
 
-					if ( Core.SE && (flags & ClientFlags.Tokuno) != 0 )
-						checkLists = young ? PMList.SEListsYoung : PMList.SELists;
-					else if ( Core.AOS && (flags & ClientFlags.Malas) != 0 )
-						checkLists = young ? PMList.AOSListsYoung : PMList.AOSLists;
-					else if ( (flags & ClientFlags.Ilshenar) != 0 )
+					if ( (flags & ClientFlags.Ilshenar) != 0 )
 						checkLists = young ? PMList.LBRListsYoung : PMList.LBRLists;
 					else
 						checkLists = young ? PMList.UORListsYoung : PMList.UORLists;

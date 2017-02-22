@@ -65,12 +65,6 @@ namespace Server.Items
 
 		public override void Drink( Mobile from )
 		{
-			if ( Core.AOS && (from.Paralyzed || from.Frozen || (from.Spell != null && from.Spell.IsCasting)) )
-			{
-				from.SendLocalizedMessage( 1062725 ); // You can not use a purple potion while paralyzed.
-				return;
-			}
-
 			ThrowTarget targ = from.Target as ThrowTarget;
 			this.Stackable = false; // Scavenged explosion potions won't stack with those ones in backpack, and still will explode.
 
@@ -91,10 +85,7 @@ namespace Server.Items
 			{
 				from.SendLocalizedMessage( 500236 ); // You should throw it now!
 
-				if( Core.ML )
-					m_Timer = Timer.DelayCall( TimeSpan.FromSeconds( 1.0 ), TimeSpan.FromSeconds( 1.25 ), 5, new TimerStateCallback( Detonate_OnTick ), new object[]{ from, 3 } ); // 3.6 seconds explosion delay
-				else
-					m_Timer = Timer.DelayCall( TimeSpan.FromSeconds( 0.75 ), TimeSpan.FromSeconds( 1.0 ), 4, new TimerStateCallback( Detonate_OnTick ), new object[]{ from, 3 } ); // 2.6 seconds explosion delay
+				m_Timer = Timer.DelayCall( TimeSpan.FromSeconds( 0.75 ), TimeSpan.FromSeconds( 1.0 ), 4, new TimerStateCallback( Detonate_OnTick ), new object[]{ from, 3 } ); // 2.6 seconds explosion delay
 			}
 		}
 
@@ -247,7 +238,7 @@ namespace Server.Items
 			int alchemyBonus = 0;
 
 			if ( direct )
-				alchemyBonus = (int)(from.Skills.Alchemy.Value / (Core.AOS ? 5 : 10));
+				alchemyBonus = (int)(from.Skills.Alchemy.Value / 10);
 
 			IPooledEnumerable eable = LeveledExplosion ? map.GetObjectsInRange( loc, ExplosionRange ) : map.GetMobilesInRange( loc, ExplosionRange );
 			ArrayList toExplode = new ArrayList();
@@ -287,10 +278,8 @@ namespace Server.Items
 					
 					damage += alchemyBonus;
 
-					if ( !Core.AOS && damage > 40 )
+					if (  damage > 40 )
 						damage = 40;
-					else if ( Core.AOS && toDamage > 2 )
-						damage /= toDamage - 1;
 
 					AOS.Damage( m, from, damage, 0, 100, 0, 0, 0 );
 				}

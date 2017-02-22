@@ -23,7 +23,7 @@ namespace Server.Items
 				new CureLevelInfo( Poison.Lethal,  0.75 )
 			};
 
-		public override CureLevelInfo[] LevelInfo{ get{ return Core.AOS ? m_AosLevelInfo : m_OldLevelInfo; } }
+		public override CureLevelInfo[] LevelInfo{ get{ return m_OldLevelInfo; } }
 
 		[Constructable]
 		public GreaterCurePotion() : base( PotionEffect.CureGreater )

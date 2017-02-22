@@ -41,26 +41,17 @@ namespace Server.Spells.Sixth
 
 				SpellHelper.CheckReflect( (int)this.Circle, ref source, ref m );
 
-				double damage;
+				double damage = Utility.Random( 24, 18 );
 
-				if ( Core.AOS )
+				if ( CheckResisted( m ) )
 				{
-					damage = GetNewAosDamage( 40, 1, 5, m );
+					damage *= 0.75;
+
+					m.SendLocalizedMessage( 501783 ); // You feel yourself resisting magical energy.
 				}
-				else
-				{
-					damage = Utility.Random( 24, 18 );
 
-					if ( CheckResisted( m ) )
-					{
-						damage *= 0.75;
-
-						m.SendLocalizedMessage( 501783 ); // You feel yourself resisting magical energy.
-					}
-
-					// Scale damage based on evalint and resist
-					damage *= GetDamageScalar( m );
-				}
+				// Scale damage based on evalint and resist
+				damage *= GetDamageScalar( m );
 
 				// Do the effects
 				source.MovingParticles( m, 0x379F, 7, 0, false, true, 3043, 4043, 0x211 );
@@ -77,7 +68,7 @@ namespace Server.Spells.Sixth
 		{
 			private EnergyBoltSpell m_Owner;
 
-			public InternalTarget( EnergyBoltSpell owner ) : base( Core.ML ? 10 : 12, false, TargetFlags.Harmful )
+			public InternalTarget( EnergyBoltSpell owner ) : base( 12, false, TargetFlags.Harmful )
 			{
 				m_Owner = owner;
 			}

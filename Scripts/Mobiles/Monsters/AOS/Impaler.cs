@@ -12,7 +12,7 @@ namespace Server.Mobiles
 			return Utility.RandomBool() ? WeaponAbility.MortalStrike : WeaponAbility.BleedAttack;
 		}
 
-		public override bool IgnoreYoungProtection { get { return Core.ML; } }
+		public override bool IgnoreYoungProtection { get { return false; } }
 
 		[Constructable]
 		public Impaler() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -64,9 +64,9 @@ namespace Server.Mobiles
 		}
 
 		public override bool AutoDispel{ get{ return true; } }
-		public override bool BardImmune{ get{ return !Core.SE; } }
-		public override bool Unprovokable{ get{ return Core.SE; } }
-		public override bool AreaPeaceImmune { get { return Core.SE; } }
+		public override bool BardImmune{ get{ return true; } }
+		public override bool Unprovokable{ get{ return false; } }
+		public override bool AreaPeaceImmune { get { return false; } }
 		public override Poison PoisonImmune{ get{ return Poison.Lethal; } }
 		public override Poison HitPoison{ get{ return (0.8 >= Utility.RandomDouble() ? Poison.Greater : Poison.Deadly); } }
 

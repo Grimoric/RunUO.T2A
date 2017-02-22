@@ -254,7 +254,7 @@ namespace Server.Mobiles
 								if ( !int.TryParse( split[1], out amount ) )
 									break;
 
-								if ( (!Core.ML && amount > 5000) || (Core.ML && amount > 60000) )
+								if ( amount > 5000 )
 								{
 									this.Say( 500381 ); // Thou canst not withdraw so much at one time!
 								}

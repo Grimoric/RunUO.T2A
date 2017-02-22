@@ -52,7 +52,7 @@ namespace Server.Multis
 
 		public override bool IsActive { get { return Customizer == null; } }
 
-		public virtual int CustomizationCost { get { return (Core.AOS ? 0 : 10000); } }
+		public virtual int CustomizationCost { get { return 10000; } }
 
 		public bool IsFixture( Item item )
 		{
@@ -1606,7 +1606,7 @@ namespace Server.Multis
 			Mobile from = state.Mobile;
 			DesignContext context = DesignContext.Find( from );
 
-			if( context != null && (Core.SE || from.AccessLevel >= AccessLevel.GameMaster) )
+			if( context != null && from.AccessLevel >= AccessLevel.GameMaster )
 			{
 				// Read data detailing component graphic and location
 				int itemID = pvSrc.ReadInt32();

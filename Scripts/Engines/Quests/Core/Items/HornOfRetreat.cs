@@ -66,10 +66,6 @@ namespace Server.Engines.Quests
 				{
 					SendLocalizedMessageTo( from, 500309 ); // Nothing Happens.
 				}
-				else if( Core.ML && from.Map != Map.Trammel && from.Map != Map.Malas )
-				{
-					from.SendLocalizedMessage( 1076154 ); // You can only use this in Trammel and Malas.
-				}
 				else if( m_PlayTimer != null )
 				{
 					SendLocalizedMessageTo( from, 1042144 ); // This is currently in use.

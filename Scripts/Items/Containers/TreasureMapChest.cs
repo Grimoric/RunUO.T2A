@@ -72,61 +72,30 @@ namespace Server.Items
 		{
 			int rnd = Utility.Random( 15 );
 			
-			if ( Core.SE )
+			if ( rnd < 1 )
 			{
-				if ( rnd < 1 )
-				{
-					attributeCount = Utility.RandomMinMax( 3, 5 );
-					min = 50; max = 100;
-				}
-				else if ( rnd < 3 )
-				{
-					attributeCount = Utility.RandomMinMax( 2, 5 );
-					min = 40; max = 80;
-				}
-				else if ( rnd < 6 )
-				{
-					attributeCount = Utility.RandomMinMax( 2, 4 );
-					min = 30; max = 60;
-				}
-				else if ( rnd < 10 )
-				{
-					attributeCount = Utility.RandomMinMax( 1, 3 );
-					min = 20; max = 40;
-				}
-				else
-				{
-					attributeCount = 1;
-					min = 10; max = 20;
-				}
+				attributeCount = Utility.RandomMinMax( 2, 5 );
+				min = 20; max = 70;
+			}
+			else if ( rnd < 3 )
+			{
+				attributeCount = Utility.RandomMinMax( 2, 4 );
+				min = 20; max = 50;
+			}
+			else if ( rnd < 6 )
+			{
+				attributeCount = Utility.RandomMinMax( 2, 3 );
+				min = 20; max = 40;
+			}
+			else if ( rnd < 10 )
+			{
+				attributeCount = Utility.RandomMinMax( 1, 2 );
+				min = 10; max = 30;
 			}
 			else
 			{
-				if ( rnd < 1 )
-				{
-					attributeCount = Utility.RandomMinMax( 2, 5 );
-					min = 20; max = 70;
-				}
-				else if ( rnd < 3 )
-				{
-					attributeCount = Utility.RandomMinMax( 2, 4 );
-					min = 20; max = 50;
-				}
-				else if ( rnd < 6 )
-				{
-					attributeCount = Utility.RandomMinMax( 2, 3 );
-					min = 20; max = 40;
-				}
-				else if ( rnd < 10 )
-				{
-					attributeCount = Utility.RandomMinMax( 1, 2 );
-					min = 10; max = 30;
-				}
-				else
-				{
-					attributeCount = 1;
-					min = 10; max = 20;
-				}
+				attributeCount = 1;
+				min = 10; max = 20;
 			}
 		}
 
@@ -173,50 +142,19 @@ namespace Server.Items
 				for ( int i = 0; i < level * 5; ++i )
 					cont.DropItem( Loot.RandomScroll( 0, 63, SpellbookType.Regular ) );
 
-				if ( Core.SE)
-				{
-					switch ( level )
-					{
-						case 1: numberItems = 5; break;
-						case 2: numberItems = 10; break;
-						case 3: numberItems = 15; break;
-						case 4: numberItems = 38; break;
-						case 5: numberItems = 50; break;
-						case 6: numberItems = 60; break;
-						default: numberItems = 0; break;
-					};
-				}
-				else
-					numberItems = level * 6;
+				numberItems = level * 6;
 				
 				for ( int i = 0; i < numberItems; ++i )
 				{
-					Item item;
-
-					if ( Core.AOS )
-						item = Loot.RandomArmorOrShieldOrWeaponOrJewelry();
-					else
-						item = Loot.RandomArmorOrShieldOrWeapon();
+					Item item = Loot.RandomArmorOrShieldOrWeapon();
 
 					if ( item is BaseWeapon )
 					{
 						BaseWeapon weapon = (BaseWeapon)item;
 
-						if ( Core.AOS )
-						{
-							int attributeCount;
-							int min, max;
-
-							GetRandomAOSStats( out attributeCount, out min, out max );
-
-							BaseRunicTool.ApplyAttributesTo( weapon, attributeCount, min, max );
-						}
-						else
-						{
-							weapon.DamageLevel = (WeaponDamageLevel)Utility.Random( 6 );
-							weapon.AccuracyLevel = (WeaponAccuracyLevel)Utility.Random( 6 );
-							weapon.DurabilityLevel = (WeaponDurabilityLevel)Utility.Random( 6 );
-						}
+						weapon.DamageLevel = (WeaponDamageLevel)Utility.Random( 6 );
+						weapon.AccuracyLevel = (WeaponAccuracyLevel)Utility.Random( 6 );
+						weapon.DurabilityLevel = (WeaponDurabilityLevel)Utility.Random( 6 );
 
 						cont.DropItem( item );
 					}
@@ -224,36 +162,14 @@ namespace Server.Items
 					{
 						BaseArmor armor = (BaseArmor)item;
 
-						if ( Core.AOS )
-						{
-							int attributeCount;
-							int min, max;
-
-							GetRandomAOSStats( out attributeCount, out min, out max );
-
-							BaseRunicTool.ApplyAttributesTo( armor, attributeCount, min, max );
-						}
-						else
-						{
-							armor.ProtectionLevel = (ArmorProtectionLevel)Utility.Random( 6 );
-							armor.Durability = (ArmorDurabilityLevel)Utility.Random( 6 );
-						}
+						armor.ProtectionLevel = (ArmorProtectionLevel)Utility.Random( 6 );
+						armor.Durability = (ArmorDurabilityLevel)Utility.Random( 6 );
 
 						cont.DropItem( item );
 					}
 					else if( item is BaseHat )
 					{
 						BaseHat hat = (BaseHat)item;
-
-						if( Core.AOS )
-						{
-							int attributeCount;
-							int min, max;
-
-							GetRandomAOSStats( out attributeCount, out min, out  max );
-
-							BaseRunicTool.ApplyAttributesTo( hat, attributeCount, min, max );
-						}
 
 						cont.DropItem( item );
 					}
@@ -295,9 +211,6 @@ namespace Server.Items
 				Item item = Loot.RandomGem();
 				cont.DropItem( item );
 			}
-
-			if ( level == 6 && Core.AOS )
-				cont.DropItem( (Item)Activator.CreateInstance( m_Artifacts[Utility.Random(m_Artifacts.Length)] ) );
 		}
 
 		public override bool CheckLocked( Mobile from )

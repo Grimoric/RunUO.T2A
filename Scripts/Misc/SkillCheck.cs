@@ -7,7 +7,7 @@ namespace Server.Misc
 {
 	public class SkillCheck
 	{
-		private static readonly bool AntiMacroCode = !Core.ML;		//Change this to false to disable anti-macro code
+		private static readonly bool AntiMacroCode = true;		//Change this to false to disable anti-macro code
 
 		public static TimeSpan AntiMacroExpire = TimeSpan.FromMinutes( 5.0 ); //How long do we remember targets/locations?
 		public const int Allowance = 3;	//How many times may we use the same location/target for gain
@@ -127,7 +127,7 @@ namespace Server.Misc
 			gc += ( skill.Cap - skill.Base ) / skill.Cap;
 			gc /= 2;
 
-			gc += ( 1.0 - chance ) * ( success ? 0.5 : (Core.AOS ? 0.0 : 0.2) );
+			gc += ( 1.0 - chance ) * ( success ? 0.5 : 0.2 );
 			gc /= 2;
 
 			gc *= skill.Info.GainFactor;
@@ -180,9 +180,6 @@ namespace Server.Misc
 
 		private static bool AllowGain( Mobile from, Skill skill, object obj )
 		{
-			if ( Core.AOS && Faction.InSkillLoss( from ) )	//Changed some time between the introduction of AoS and SE.
-				return false;
-
 			if ( AntiMacroCode && from is PlayerMobile && UseAntiMacro[skill.Info.SkillID] )
 				return ((PlayerMobile)from).AntiMacroCheck( skill, obj );
 			else
@@ -335,7 +332,7 @@ namespace Server.Misc
 			}
 		}
 
-		private static TimeSpan m_StatGainDelay = TimeSpan.FromMinutes( ( Core.ML ) ? 0.05 : 15 );
+		private static TimeSpan m_StatGainDelay = TimeSpan.FromMinutes( 15 );
 		private static TimeSpan m_PetStatGainDelay = TimeSpan.FromMinutes( 5.0 );
 
 		public static void GainStat( Mobile from, Stat stat )

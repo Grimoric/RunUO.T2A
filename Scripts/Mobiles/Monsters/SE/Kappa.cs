@@ -51,8 +51,6 @@ namespace Server.Mobiles
 					case 2: PackItem( new Axle() ); break;
 				}
 			}
-			if ( Core.ML && Utility.RandomDouble() < .33 )
-				PackItem( Engines.Plants.Seed.RandomPeculiarSeed(4) );
 		}
 
 		public override void GenerateLoot()

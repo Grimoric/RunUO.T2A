@@ -51,7 +51,7 @@ namespace Server.Spells.Ninjitsu
 
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.5 ); } }
 
-		public override double RequiredSkill{ get{ return Core.ML ? 20.0 : 40.0; } }
+		public override double RequiredSkill{ get{ return 40.0; } }
 		public override int RequiredMana{ get{ return 10; } }
 
 		public override bool BlockedByAnimalForm{ get{ return false; } }

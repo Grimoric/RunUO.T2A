@@ -97,20 +97,6 @@ namespace Server.Engines.Craft
 
 			index = AddCraft( typeof( CookieMix ), 1044495, 1024159, 0.0, 100.0, typeof( JarHoney ), 1044472, 1, 1044253 );
 			AddRes( index, typeof( SweetDough ), 1044475, 1, 1044253 );
-
-			if ( Core.ML )
-			{
-				index = AddCraft( typeof( CocoaButter ), 1044495, 1079998, 0.0, 100.0, typeof( CocoaPulp ), 1080530, 1, 1044253 );
-				SetItemHue( index, 0x457 );
-				SetNeededExpansion( index, Expansion.ML );
-				SetNeedOven( index, true );
-
-				index = AddCraft( typeof( CocoaLiquor ), 1044495, 1079999, 0.0, 100.0, typeof( CocoaPulp ), 1080530, 1, 1044253 );
-				AddRes( index, typeof( EmptyPewterBowl ), 1025629, 1, 1044253 );
-				SetItemHue( index, 0x46A );
-				SetNeededExpansion( index, Expansion.ML );
-				SetNeedOven( index, true );
-			}
 			/* End Ingredients */
 
 			/* Begin Preparations */
@@ -139,35 +125,8 @@ namespace Server.Engines.Craft
 			index = AddCraft( typeof( UnbakedPumpkinPie ), 1044496, 1041342, 0.0, 100.0, typeof( Dough ), 1044469, 1, 1044253 );
 			AddRes( index, typeof( Pumpkin ), 1044484, 1, 1044253 );
 
-			if ( Core.SE )
-			{
-				index = AddCraft( typeof( GreenTea ), 1044496, 1030315, 80.0, 130.0, typeof( GreenTeaBasket ), 1030316, 1, 1044253 );
-				AddRes( index, typeof( BaseBeverage ), 1046458, 1, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
-				SetNeedOven( index, true );
-
-				index = AddCraft( typeof( WasabiClumps ), 1044496, 1029451, 70.0, 120.0, typeof( BaseBeverage ), 1046458, 1, 1044253 );
-				AddRes( index, typeof( WoodenBowlOfPeas ), 1025633, 3, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( SushiRolls ), 1044496, 1030303, 90.0, 120.0, typeof( BaseBeverage ), 1046458, 1, 1044253 );
-				AddRes( index, typeof( RawFishSteak ), 1044476, 10, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
-
-				index = AddCraft( typeof( SushiPlatter ), 1044496, 1030305, 90.0, 120.0, typeof( BaseBeverage ), 1046458, 1, 1044253 );
-				AddRes( index, typeof( RawFishSteak ), 1044476, 10, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
-			}
-
-			index = AddCraft( typeof( TribalPaint ), 1044496, 1040000, Core.ML? 55.0 : 80.0, Core.ML? 105.0 : 80.0, typeof( SackFlour ), 1044468, 1, 1044253 );
+			index = AddCraft( typeof( TribalPaint ), 1044496, 1040000, 80.0, 80.0, typeof( SackFlour ), 1044468, 1, 1044253 );
 			AddRes( index, typeof( TribalBerry ), 1046460, 1, 1044253 );
-
-			if ( Core.SE )
-			{
-				index = AddCraft( typeof( EggBomb ), 1044496, 1030249, 90.0, 120.0, typeof( Eggs ), 1044477, 1, 1044253 );
-				AddRes( index, typeof( SackFlour ), 1044468, 3, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
-			}
 			/* End Preparations */
 
 			/* Begin Baking */
@@ -206,29 +165,6 @@ namespace Server.Engines.Craft
 
 			index = AddCraft( typeof( PumpkinPie ), 1044497, 1041348, 0.0, 100.0, typeof( UnbakedPumpkinPie ), 1046461, 1, 1044253 );
 			SetNeedOven( index, true );
-
-			if ( Core.SE )
-			{
-				index = AddCraft( typeof( MisoSoup ), 1044497, 1030317, 60.0, 110.0, typeof( RawFishSteak ), 1044476, 1, 1044253 );
-				AddRes( index, typeof( BaseBeverage ), 1046458, 1, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
-				SetNeedOven( index, true );
-
-				index = AddCraft( typeof( WhiteMisoSoup ), 1044497, 1030318, 60.0, 110.0, typeof( RawFishSteak ), 1044476, 1, 1044253 );
-				AddRes( index, typeof( BaseBeverage ), 1046458, 1, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
-				SetNeedOven( index, true );
-
-				index = AddCraft( typeof( RedMisoSoup ), 1044497, 1030319, 60.0, 110.0, typeof( RawFishSteak ), 1044476, 1, 1044253 );
-				AddRes( index, typeof( BaseBeverage ), 1046458, 1, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
-				SetNeedOven( index, true );
-
-				index = AddCraft( typeof( AwaseMisoSoup ), 1044497, 1030320, 60.0, 110.0, typeof( RawFishSteak ), 1044476, 1, 1044253 );
-				AddRes( index, typeof( BaseBeverage ), 1046458, 1, 1044253 );
-				SetNeededExpansion( index, Expansion.SE );
-				SetNeedOven( index, true );
-			}
 			/* End Baking */
 
 			/* Begin Barbecue */
@@ -256,33 +192,6 @@ namespace Server.Engines.Craft
 			SetNeedHeat( index, true );
 			SetUseAllRes( index, true );
 			/* End Barbecue */
-
-			/* Begin Chocolatiering */
-			if ( Core.ML )
-			{
-				index = AddCraft( typeof( DarkChocolate ), 1080001, 1079994, 15.0, 100.0, typeof( SackOfSugar ), 1079997, 1, 1044253 );
-				AddRes( index, typeof( CocoaButter ), 1079998, 1, 1044253 );
-				AddRes( index, typeof( CocoaLiquor ), 1079999, 1, 1044253 );
-				SetItemHue( index, 0x465 );
-				SetNeededExpansion( index, Expansion.ML );
-
-				index = AddCraft( typeof( MilkChocolate ), 1080001, 1079995, 32.5, 107.5, typeof( SackOfSugar ), 1079997, 1, 1044253 );
-				AddRes( index, typeof( CocoaButter ), 1079998, 1, 1044253 );
-				AddRes( index, typeof( CocoaLiquor ), 1079999, 1, 1044253 );
-				AddRes( index, typeof( BaseBeverage ), 1022544, 1, 1044253 );
-				SetBeverageType( index, BeverageType.Milk );
-				SetItemHue( index, 0x461 );
-				SetNeededExpansion( index, Expansion.ML );
-
-				index = AddCraft( typeof( WhiteChocolate ), 1080001, 1079996, 52.5, 127.5, typeof( SackOfSugar ), 1079997, 1, 1044253 );
-				AddRes( index, typeof( CocoaButter ), 1079998, 1, 1044253 );
-				AddRes( index, typeof( Vanilla ), 1080000, 1, 1044253 );
-				AddRes( index, typeof( BaseBeverage ), 1022544, 1, 1044253 );
-				SetBeverageType( index, BeverageType.Milk );
-				SetItemHue( index, 0x47E );
-				SetNeededExpansion( index, Expansion.ML );
-			}
-			/* End Chocolatiering */
 		}
 	}
 }

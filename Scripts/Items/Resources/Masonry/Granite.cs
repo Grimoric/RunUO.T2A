@@ -41,18 +41,18 @@ namespace Server.Items
 			}
 
 			if ( version < 1 )
-				Stackable = Core.ML;
+				Stackable = false;
 		}
 
 		public override double DefaultWeight
 		{
-			get { return Core.ML ? 1.0 : 10.0; } // Pub 57
+			get { return 10.0; }
 		}
 
 		public BaseGranite( CraftResource resource ) : base( 0x1779 )
 		{
 			Hue = CraftResources.GetHue( resource );
-			Stackable = Core.ML;
+			Stackable = false;
 
 			m_Resource = resource;
 		}

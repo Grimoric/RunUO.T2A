@@ -57,11 +57,6 @@ namespace Server.Items
 			if ( !CheckMana( attacker, true ) )
 				return;
 
-			if ( Core.ML && attacker is LesserHiryu && 0.8 >= Utility.RandomDouble() )
-			{
-				return; //Lesser Hiryu have an 80% chance of missing this attack
-			}
-
 			attacker.SendLocalizedMessage( 1060082 ); // The force of your attack has dislodged them from their mount!
 
 			if ( attacker.Mounted )
@@ -93,17 +88,6 @@ namespace Server.Items
 			if( attacker is PlayerMobile )
 			{
 				(attacker as PlayerMobile).SetMountBlock(BlockMountType.DismountRecovery, RemountDelay, true );
-			}
-			else if( Core.ML && attacker is BaseCreature )
-			{
-				BaseCreature bc = attacker as BaseCreature;
-
-				if( bc.ControlMaster is PlayerMobile )
-				{
-					PlayerMobile pm = bc.ControlMaster as PlayerMobile;
-
-					pm.SetMountBlock(BlockMountType.DismountRecovery, RemountDelay, false );
-				}
 			}
 				
 			if ( !attacker.Mounted )

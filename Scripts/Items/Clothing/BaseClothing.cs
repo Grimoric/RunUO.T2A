@@ -96,7 +96,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int StrRequirement
 		{
-			get{ return ( m_StrReq == -1 ? (Core.AOS ? AosStrReq : OldStrReq) : m_StrReq ); }
+			get{ return ( m_StrReq == -1 ? OldStrReq : m_StrReq ); }
 			set{ m_StrReq = value; InvalidateProperties(); }
 		}
 
@@ -329,10 +329,7 @@ namespace Server.Items
 
 		public int GetLowerStatReq()
 		{
-			if ( !Core.AOS )
-				return 0;
-
-			return m_AosClothingAttributes.LowerStatReq;
+			return 0;
 		}
 
 		public override void OnAdded( object parent )
@@ -341,9 +338,6 @@ namespace Server.Items
 
 			if ( mob != null )
 			{
-				if ( Core.AOS )
-					m_AosSkillBonuses.AddTo( mob );
-
 				AddStatBonuses( mob );
 				mob.CheckStatTimers();
 			}
@@ -357,9 +351,6 @@ namespace Server.Items
 
 			if ( mob != null )
 			{
-				if ( Core.AOS )
-					m_AosSkillBonuses.Remove();
-
 				string modName = this.Serial.ToString();
 
 				mob.RemoveStatMod( modName + "Str" );
@@ -383,45 +374,38 @@ namespace Server.Items
 
 			if ( 25 > Utility.Random( 100 ) ) // 25% chance to lower durability
 			{
-				if ( Core.AOS && m_AosClothingAttributes.SelfRepair > Utility.Random( 10 ) )
-				{
-					HitPoints += 2;
-				}
+				int wear;
+
+				if ( weapon.Type == WeaponType.Bashing )
+					wear = Absorbed / 2;
 				else
+					wear = Utility.Random( 2 );
+
+				if ( wear > 0 && m_MaxHitPoints > 0 )
 				{
-					int wear;
-
-					if ( weapon.Type == WeaponType.Bashing )
-						wear = Absorbed / 2;
-					else
-						wear = Utility.Random( 2 );
-
-					if ( wear > 0 && m_MaxHitPoints > 0 )
+					if ( m_HitPoints >= wear )
 					{
-						if ( m_HitPoints >= wear )
+						HitPoints -= wear;
+						wear = 0;
+					}
+					else
+					{
+						wear -= HitPoints;
+						HitPoints = 0;
+					}
+
+					if ( wear > 0 )
+					{
+						if ( m_MaxHitPoints > wear )
 						{
-							HitPoints -= wear;
-							wear = 0;
+							MaxHitPoints -= wear;
+
+							if ( Parent is Mobile )
+								((Mobile)Parent).LocalOverheadMessage( MessageType.Regular, 0x3B2, 1061121 ); // Your equipment is severely damaged.
 						}
 						else
 						{
-							wear -= HitPoints;
-							HitPoints = 0;
-						}
-
-						if ( wear > 0 )
-						{
-							if ( m_MaxHitPoints > wear )
-							{
-								MaxHitPoints -= wear;
-
-								if ( Parent is Mobile )
-									((Mobile)Parent).LocalOverheadMessage( MessageType.Regular, 0x3B2, 1061121 ); // Your equipment is severely damaged.
-							}
-							else
-							{
-								Delete();
-							}
+							Delete();
 						}
 					}
 				}
@@ -656,9 +640,6 @@ namespace Server.Items
 
 			if ( (prop = m_AosAttributes.WeaponSpeed) != 0 )
 				list.Add( 1060486, prop.ToString() ); // swing speed increase ~1_val~%
-
-			if ( Core.ML && (prop = m_AosAttributes.IncreasedKarmaLoss) != 0 )
-				list.Add( 1075210, prop.ToString() ); // Increased Karma Loss ~1val~%
 
 			base.AddResistanceProperties( list );
 
@@ -915,9 +896,6 @@ namespace Server.Items
 
 			if ( parent != null )
 			{
-				if ( Core.AOS )
-					m_AosSkillBonuses.AddTo( parent );
-
 				AddStatBonuses( parent );
 				parent.CheckStatTimers();
 			}

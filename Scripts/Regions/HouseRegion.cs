@@ -97,16 +97,12 @@ namespace Server.Regions
 			else if ( (m_House.Public || !m_House.IsAosRules) && m_House.IsBanned( m ) && m_House.IsInside( m ) )
 			{
 				m.Location = m_House.BanLocation;
-
-				if( !Core.SE )
-					m.SendLocalizedMessage( 501284 ); // You may not enter.
+				m.SendLocalizedMessage( 501284 ); // You may not enter.
 			}
 			else if ( m_House.IsAosRules && !m_House.Public && !m_House.HasAccess( m ) && m_House.IsInside( m ) )
 			{
 				m.Location = m_House.BanLocation;
-
-				if( !Core.SE )
-					m.SendLocalizedMessage( 501284 ); // You may not enter.
+				m.SendLocalizedMessage( 501284 ); // You may not enter.
 			}
 			else if ( m_House.IsCombatRestricted( m ) && m_House.IsInside( m ) && !m_House.IsInside( oldLocation, 16 ) )
 			{
@@ -158,16 +154,13 @@ namespace Server.Regions
 			else if ( (m_House.Public || !m_House.IsAosRules) && m_House.IsBanned( from ) && m_House.IsInside( newLocation, 16 ) )
 			{
 				from.Location = m_House.BanLocation;
-
-				if( !Core.SE )
-					from.SendLocalizedMessage( 501284 ); // You may not enter.
+				from.SendLocalizedMessage( 501284 ); // You may not enter.
 
 				return false;
 			}
 			else if ( m_House.IsAosRules && !m_House.Public && !m_House.HasAccess( from ) && m_House.IsInside( newLocation, 16 ) )
 			{
-				if( !Core.SE )
-					from.SendLocalizedMessage( 501284 ); // You may not enter.
+				from.SendLocalizedMessage( 501284 ); // You may not enter.
 
 				return false;
 			}
@@ -242,28 +235,6 @@ namespace Server.Regions
 
 			if ( !from.Alive )
 				return;
-
-			if ( Core.ML && Insensitive.Equals( e.Speech, "I wish to resize my house" ) )
-			{
-				if ( from.Map != sign.Map || !from.InRange( sign, 0 ) )
-				{
-				    from.SendLocalizedMessage( 500295 ); // you are too far away to do that.
-				}
-				else if ( DateTime.Now  <= m_House.BuiltOn.AddHours ( 1 ) )
-				{
-					from.SendLocalizedMessage( 1080178 ); // You must wait one hour between each house demolition.
-				}
-				else if ( isOwner )
-				{
-					from.CloseGump( typeof( ConfirmHouseResize ) );
-					from.CloseGump( typeof( HouseGumpAOS ) );
-					from.SendGump( new ConfirmHouseResize( from, m_House ) );	
-				}
-				else
-				{
-					from.SendLocalizedMessage( 501320 ); // Only the house owner may do this.
-				}
-			}
 
 			if ( !m_House.IsInside( from ) || !m_House.IsActive )
 				return;

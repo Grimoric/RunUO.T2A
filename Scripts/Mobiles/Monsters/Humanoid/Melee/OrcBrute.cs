@@ -61,7 +61,7 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Rich );
 		}
 
-		public override bool BardImmune{ get{ return !Core.AOS; } }
+		public override bool BardImmune{ get{ return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Lethal; } }
 		public override int Meat{ get{ return 2; } }
 

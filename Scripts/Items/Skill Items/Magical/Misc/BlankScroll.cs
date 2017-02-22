@@ -18,7 +18,7 @@ namespace Server.Items
 		}
 
 		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return (Core.ML); } }
+		bool ICommodity.IsDeedable { get { return false; } }
 
 		public BlankScroll( Serial serial ) : base( serial )
 		{

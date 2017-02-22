@@ -35,7 +35,7 @@ namespace Server.Spells.Chivalry
 				List<Mobile> targets = new List<Mobile>();
 
 				foreach ( Mobile m in Caster.GetMobilesInRange( 3 ) )
-					if ( Caster != m && SpellHelper.ValidIndirectTarget( Caster, m ) && Caster.CanBeHarmful( m, false ) && ( !Core.AOS || Caster.InLOS( m ) ) )
+					if ( Caster != m && SpellHelper.ValidIndirectTarget( Caster, m ) && Caster.CanBeHarmful( m, false ) )
 						targets.Add( m );
 
 				Caster.PlaySound( 0x212 );

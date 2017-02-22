@@ -81,10 +81,8 @@ namespace Server.Items
 		public void Damage ( Mobile m )
 		{
 			int damage = Utility.RandomMinMax( m_MinDamage, m_MaxDamage );
-			if ( Core.AOS )
-				AOS.Damage( m, damage, 0, 0, 0, 100, 0 );
-			else
-				m.Damage( damage );
+
+            m.Damage( damage );
 		}
 
 		public AcidSlime( Serial serial ) : base( serial )

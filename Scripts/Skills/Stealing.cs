@@ -177,10 +177,6 @@ namespace Server.SkillHandlers
 				{
 					m_Thief.SendLocalizedMessage( 502710 ); // You can't steal that!
 				}
-				else if ( Core.AOS && si == null && toSteal is Container )
-				{
-					m_Thief.SendLocalizedMessage( 502710 ); // You can't steal that!
-				}
 				else if ( !m_Thief.InRange( toSteal.GetWorldLocation(), 1 ) )
 				{
 					m_Thief.SendLocalizedMessage( 502703 ); // You must be standing next to an item to steal it.

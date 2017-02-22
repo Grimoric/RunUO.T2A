@@ -11,7 +11,7 @@ namespace Server.Spells.Fourth
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Arch Protection", "Vas Uus Sanct",
-				Core.AOS ? 239 : 215,
+				215,
 				9011,
 				Reagent.Garlic,
 				Reagent.Ginseng,
@@ -48,7 +48,7 @@ namespace Server.Spells.Fourth
 
 				if ( map != null )
 				{
-					IPooledEnumerable eable = map.GetMobilesInRange( new Point3D( p ), Core.AOS ? 2 : 3 );
+					IPooledEnumerable eable = map.GetMobilesInRange( new Point3D( p ), 3 );
 
 					foreach ( Mobile m in eable )
 					{
@@ -59,44 +59,26 @@ namespace Server.Spells.Fourth
 					eable.Free();
 				}
 
-				if ( Core.AOS )
-				{
-					Party party = Party.Get( Caster );
+				Effects.PlaySound( p, Caster.Map, 0x299 );
 
+				int val = (int)(Caster.Skills[SkillName.Magery].Value/10.0 + 1);
+
+				if ( targets.Count > 0 )
+				{
 					for ( int i = 0; i < targets.Count; ++i )
 					{
 						Mobile m = targets[i];
 
-						if ( m == Caster || ( party != null && party.Contains( m ) ) )
+						if ( m.BeginAction( typeof( ArchProtectionSpell ) ) )
 						{
 							Caster.DoBeneficial( m );
-							Spells.Second.ProtectionSpell.Toggle( Caster, m );
-						}
-					}
-				}
-				else
-				{
-					Effects.PlaySound( p, Caster.Map, 0x299 );
-
-					int val = (int)(Caster.Skills[SkillName.Magery].Value/10.0 + 1);
-
-					if ( targets.Count > 0 )
-					{
-						for ( int i = 0; i < targets.Count; ++i )
-						{
-							Mobile m = targets[i];
-
-							if ( m.BeginAction( typeof( ArchProtectionSpell ) ) )
-							{
-								Caster.DoBeneficial( m );
-								m.VirtualArmorMod += val;
+							m.VirtualArmorMod += val;
 								
-								AddEntry( m, val );
-								new InternalTimer( m, Caster ).Start();
+							AddEntry( m, val );
+							new InternalTimer( m, Caster ).Start();
 
-								m.FixedParticles( 0x375A, 9, 20, 5027, EffectLayer.Waist );
-								m.PlaySound( 0x1F7 );
-							}
+							m.FixedParticles( 0x375A, 9, 20, 5027, EffectLayer.Waist );
+							m.PlaySound( 0x1F7 );
 						}
 					}
 				}
@@ -149,7 +131,7 @@ namespace Server.Spells.Fourth
 		{
 			private ArchProtectionSpell m_Owner;
 
-			public InternalTarget( ArchProtectionSpell owner ) : base( Core.ML ? 10 : 12, true, TargetFlags.None )
+			public InternalTarget( ArchProtectionSpell owner ) : base( 12, true, TargetFlags.None )
 			{
 				m_Owner = owner;
 			}

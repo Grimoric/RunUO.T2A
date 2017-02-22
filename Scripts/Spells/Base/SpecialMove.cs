@@ -211,62 +211,15 @@ namespace Server.Spells
 			if ( m == null )
 				return null;
 
-			if ( !Core.SE )
-			{
-				ClearCurrentMove( m );
-				return null;
-			}
+			ClearCurrentMove( m );
 
-			SpecialMove move = null;
-			m_Table.TryGetValue( m, out move );
-
-			if ( move != null && move.ValidatesDuringHit && !move.Validate( m ) )
-			{
-				ClearCurrentMove( m );
-				return null;
-			}
-
-			return move;
+            return null;
 		}
 
 		public static bool SetCurrentMove( Mobile m, SpecialMove move )
 		{
-			if ( !Core.SE )
-			{
-				ClearCurrentMove( m );
-				return false;
-			}
-
-			if ( move != null && !move.Validate( m ) )
-			{
-				ClearCurrentMove( m );
-				return false;
-			}
-
-			bool sameMove = ( move == GetCurrentMove( m ) );
-
 			ClearCurrentMove( m );
-
-			if ( sameMove )
-				return true;
-
-			if ( move != null )
-			{
-				WeaponAbility.ClearCurrentAbility( m );
-
-				m_Table[m] = move;
-
-				move.OnUse( m );
-
-				int moveID = SpellRegistry.GetRegistryNumber( move );
-
-				if ( moveID > 0 )
-					m.Send( new ToggleSpecialAbility( moveID + 1, true ) );
-
-				TextDefinition.SendMessageTo( m, move.AbilityMessage );
-			}
-
-			return true;
+			return false;
 		}
 
 		public static void ClearCurrentMove( Mobile m )

@@ -40,28 +40,19 @@ namespace Server.Spells.Third
 
 				SpellHelper.CheckReflect( (int)this.Circle, ref source, ref m );
 
-				double damage;
+				double damage = Utility.Random( 10, 7 );
 
-				if ( Core.AOS )
+				if ( CheckResisted( m ) )
 				{
-					damage = GetNewAosDamage( 19, 1, 5, m );
+					damage *= 0.75;
+
+					m.SendLocalizedMessage( 501783 ); // You feel yourself resisting magical energy.
 				}
-				else
-				{
-					damage = Utility.Random( 10, 7 );
 
-					if ( CheckResisted( m ) )
-					{
-						damage *= 0.75;
-
-						m.SendLocalizedMessage( 501783 ); // You feel yourself resisting magical energy.
-					}
-
-					damage *= GetDamageScalar( m );
-				}
+				damage *= GetDamageScalar( m );
 
 				source.MovingParticles( m, 0x36D4, 7, 0, false, true, 9502, 4019, 0x160 );
-				source.PlaySound( Core.AOS ? 0x15E : 0x44B );
+				source.PlaySound( 0x44B );
 
 				SpellHelper.Damage( this, m, damage, 0, 100, 0, 0, 0 );
 			}
@@ -73,7 +64,7 @@ namespace Server.Spells.Third
 		{
 			private FireballSpell m_Owner;
 
-			public InternalTarget( FireballSpell owner ) : base( Core.ML ? 10 : 12, false, TargetFlags.Harmful )
+			public InternalTarget( FireballSpell owner ) : base( 12, false, TargetFlags.Harmful )
 			{
 				m_Owner = owner;
 			}

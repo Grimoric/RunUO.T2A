@@ -50,9 +50,9 @@ namespace Server.Mobiles
 			AddLoot( LootPack.FilthyRich, 8 );
 		}
 
-		public override bool BardImmune { get { return !Core.SE; } }
-		public override bool Unprovokable { get { return Core.SE; } }
-		public override bool AreaPeaceImmune { get { return Core.SE; } }
+		public override bool BardImmune { get { return true; } }
+		public override bool Unprovokable { get { return false; } }
+		public override bool AreaPeaceImmune { get { return false; } }
 		public override Poison PoisonImmune{ get{ return Poison.Lethal; } }
 		public override int TreasureMapLevel{ get{ return 1; } }
 

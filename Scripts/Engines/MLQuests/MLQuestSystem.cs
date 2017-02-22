@@ -18,7 +18,7 @@ namespace Server.Engines.MLQuests
 {
 	public static class MLQuestSystem
 	{
-		public static bool Enabled { get { return Core.ML; } }
+		public static bool Enabled { get { return false; } }
 
 		public const int MaxConcurrentQuests = 10;
 		public const int SpeechColor = 0x3B2;

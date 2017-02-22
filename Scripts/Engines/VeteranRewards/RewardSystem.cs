@@ -56,13 +56,7 @@ namespace Server.Engines.VeteranRewards
 
 		public static bool HasAccess( Mobile mob, RewardEntry entry )
 		{
-			if ( Core.Expansion < entry.RequiredExpansion )
-			{
-				return false;
-			}
-
-			TimeSpan ts;
-			return HasAccess( mob, entry.List, out ts );
+			return false;
 		}
 
 		public static bool HasAccess( Mobile mob, RewardList list, out TimeSpan ts )
@@ -504,12 +498,6 @@ namespace Server.Engines.VeteranRewards
 					e.Mobile.SkillsCap = 7000 + (level * 50);
 				else
 					e.Mobile.SkillsCap = 7000;
-			}
-
-			if ( Core.ML && e.Mobile is PlayerMobile && !((PlayerMobile)e.Mobile).HasStatReward && HasHalfLevel( e.Mobile ) )
-			{
-				((PlayerMobile)e.Mobile).HasStatReward = true;
-				e.Mobile.StatCap += 5;
 			}
 
 			if ( cur < max )

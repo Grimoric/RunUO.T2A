@@ -43,7 +43,7 @@ namespace Server.Spells.Necromancy
 
 		public override bool DelayedDamage { get { return false; } }
 
-		private static readonly int Range = (Core.ML ? 48 : 18);
+		private static readonly int Range = 18;
 
 		public override int ComputeKarmaAward()
 		{

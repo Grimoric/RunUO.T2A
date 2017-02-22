@@ -92,13 +92,6 @@ namespace Server.Items
 
 			Skill skill = from.Skills[weapon.Skill];
 			double reqSkill = GetRequiredSkill( from );
-			bool reqTactics = Core.ML && RequiresTactics( from );
-
-			if ( Core.ML && reqTactics && from.Skills[SkillName.Tactics].Base < reqSkill )
-			{
-				from.SendLocalizedMessage( 1079308, reqSkill.ToString() ); // You need ~1_SKILL_REQUIREMENT~ weapon and tactics skill to perform that attack
-				return false;
-			}
 
 			if ( skill != null && skill.Base >= reqSkill )
 				return true;
@@ -108,14 +101,7 @@ namespace Server.Items
 				return true;
 			/* </UBWS> */
 
-			if ( reqTactics )
-			{
-				from.SendLocalizedMessage( 1079308, reqSkill.ToString() ); // You need ~1_SKILL_REQUIREMENT~ weapon and tactics skill to perform that attack
-			}
-			else
-			{
-				from.SendLocalizedMessage( 1060182, reqSkill.ToString() ); // You need ~1_SKILL_REQUIREMENT~ weapon skill to perform that attack
-			}
+		    from.SendLocalizedMessage( 1060182, reqSkill.ToString() ); // You need ~1_SKILL_REQUIREMENT~ weapon skill to perform that attack
 
 			return false;
 		}
@@ -183,12 +169,6 @@ namespace Server.Items
 			}
 			
 			if ( Spells.Bushido.HonorableExecution.IsUnderPenalty( from ) || Spells.Ninjitsu.AnimalForm.UnderTransformation( from ) )
-			{
-				from.SendLocalizedMessage( 1063024 ); // You cannot perform this special move right now.
-				return false;
-			}
-
-			if ( Core.ML && from.Spell != null )
 			{
 				from.SendLocalizedMessage( 1063024 ); // You cannot perform this special move right now.
 				return false;
@@ -345,69 +325,19 @@ namespace Server.Items
 
 		public static WeaponAbility GetCurrentAbility( Mobile m )
 		{
-			if ( !Core.AOS )
-			{
-				ClearCurrentAbility( m );
-				return null;
-			}
-
-			WeaponAbility a = (WeaponAbility)m_Table[m];
-
-			if ( !IsWeaponAbility( m, a ) )
-			{
-				ClearCurrentAbility( m );
-				return null;
-			}
-
-			if ( a != null && a.ValidatesDuringHit && !a.Validate( m ) )
-			{
-				ClearCurrentAbility( m );
-				return null;
-			}
-
-			return a;
+			ClearCurrentAbility( m );
+			return null;
 		}
 
 		public static bool SetCurrentAbility( Mobile m, WeaponAbility a )
 		{
-			if ( !Core.AOS )
-			{
-				ClearCurrentAbility( m );
-				return false;
-			}
-
-			if ( !IsWeaponAbility( m, a ) )
-			{
-				ClearCurrentAbility( m );
-				return false;
-			}
-
-			if ( a != null && !a.Validate( m ) )
-			{
-				ClearCurrentAbility( m );
-				return false;
-			}
-
-			if ( a == null )
-			{
-				m_Table.Remove( m );
-			}
-			else
-			{
-				SpecialMove.ClearCurrentMove( m );
-
-				m_Table[m] = a;
-			}
-
-			return true;
+			ClearCurrentAbility( m );
+			return false;
 		}
 
 		public static void ClearCurrentAbility( Mobile m )
 		{
 			m_Table.Remove( m );
-
-			if ( Core.AOS && m.NetState != null )
-				m.Send( ClearWeaponAbility.Instance );
 		}
 
 		public static void Initialize()

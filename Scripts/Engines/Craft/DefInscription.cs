@@ -272,73 +272,12 @@ namespace Server.Engines.Craft
 			AddSpell(typeof(SummonFireElementalScroll), Reg.Bloodmoss, Reg.MandrakeRoot, Reg.SpidersSilk, Reg.SulfurousAsh);
 			AddSpell(typeof(SummonWaterElementalScroll), Reg.Bloodmoss, Reg.MandrakeRoot, Reg.SpidersSilk);
 
-			if (Core.SE)
-			{
-				AddNecroSpell(0, 23, 39.6, typeof(AnimateDeadScroll), Reagent.GraveDust, Reagent.DaemonBlood);
-				AddNecroSpell(1, 13, 19.6, typeof(BloodOathScroll), Reagent.DaemonBlood);
-				AddNecroSpell(2, 11, 19.6, typeof(CorpseSkinScroll), Reagent.BatWing, Reagent.GraveDust);
-				AddNecroSpell(3, 7, 19.6, typeof(CurseWeaponScroll), Reagent.PigIron);
-				AddNecroSpell(4, 11, 19.6, typeof(EvilOmenScroll), Reagent.BatWing, Reagent.NoxCrystal);
-				AddNecroSpell(5, 11, 39.6, typeof(HorrificBeastScroll), Reagent.BatWing, Reagent.DaemonBlood);
-				AddNecroSpell(6, 23, 69.6, typeof(LichFormScroll), Reagent.GraveDust, Reagent.DaemonBlood, Reagent.NoxCrystal);
-				AddNecroSpell(7, 17, 29.6, typeof(MindRotScroll), Reagent.BatWing, Reagent.DaemonBlood, Reagent.PigIron);
-				AddNecroSpell(8, 5, 19.6, typeof(PainSpikeScroll), Reagent.GraveDust, Reagent.PigIron);
-				AddNecroSpell(9, 17, 49.6, typeof(PoisonStrikeScroll), Reagent.NoxCrystal);
-				AddNecroSpell(10, 29, 64.6, typeof(StrangleScroll), Reagent.DaemonBlood, Reagent.NoxCrystal);
-				AddNecroSpell(11, 17, 29.6, typeof(SummonFamiliarScroll), Reagent.BatWing, Reagent.GraveDust, Reagent.DaemonBlood);
-				AddNecroSpell(12, 23, 98.6, typeof(VampiricEmbraceScroll), Reagent.BatWing, Reagent.NoxCrystal, Reagent.PigIron);
-				AddNecroSpell(13, 41, 79.6, typeof(VengefulSpiritScroll), Reagent.BatWing, Reagent.GraveDust, Reagent.PigIron);
-				AddNecroSpell(14, 23, 59.6, typeof(WitherScroll), Reagent.GraveDust, Reagent.NoxCrystal, Reagent.PigIron);
-				AddNecroSpell(15, 17, 79.6, typeof(WraithFormScroll), Reagent.NoxCrystal, Reagent.PigIron);
-				AddNecroSpell(16, 40, 79.6, typeof(ExorcismScroll), Reagent.NoxCrystal, Reagent.GraveDust);
-			}
-
 			int index;
-
-			if ( Core.ML )
-			{
-				index = AddCraft( typeof( EnchantedSwitch ), 1044294, 1072893, 45.0, 95.0, typeof( BlankScroll ), 1044377, 1, 1044378 );
-				AddRes( index, typeof( SpidersSilk ), 1044360, 1, 1044253 );
-				AddRes( index, typeof( BlackPearl ), 1044353, 1, 1044253 );
-				AddRes( index, typeof( SwitchItem ), 1073464, 1, 1044253 );
-				ForceNonExceptional( index );
-				SetNeededExpansion( index, Expansion.ML );
-				
-				index = AddCraft( typeof( RunedPrism ), 1044294, 1073465, 45.0, 95.0, typeof( BlankScroll ), 1044377, 1, 1044378 );
-				AddRes( index, typeof( SpidersSilk ), 1044360, 1, 1044253 );
-				AddRes( index, typeof( BlackPearl ), 1044353, 1, 1044253 );
-				AddRes( index, typeof( HollowPrism ), 1072895, 1, 1044253 );
-				ForceNonExceptional( index );
-				SetNeededExpansion( index, Expansion.ML );
-			}
 
 			// Runebook
 			index = AddCraft( typeof( Runebook ), 1044294, 1041267, 45.0, 95.0, typeof( BlankScroll ), 1044377, 8, 1044378 );
 			AddRes( index, typeof( RecallScroll ), 1044445, 1, 1044253 );
 			AddRes( index, typeof( GateTravelScroll ), 1044446, 1, 1044253 );
-
-			if (Core.AOS)
-			{
-				AddCraft(typeof(Engines.BulkOrders.BulkOrderBook), 1044294, 1028793, 65.0, 115.0, typeof(BlankScroll), 1044377, 10, 1044378);
-			}
-
-			if (Core.SE)
-			{
-				AddCraft(typeof(Spellbook), 1044294, 1023834, 50.0, 126, typeof(BlankScroll), 1044377, 10, 1044378);
-			}
-
-			/* TODO
-			if ( Core.ML )
-			{
-				index = AddCraft( typeof( ScrappersCompendium ), 1044294, 1072940, 75.0, 125.0, typeof( BlankScroll ), 1044377, 100, 1044378 );
-				AddRes( index, typeof( DreadHornMane ), 1032682, 1, 1044253 );
-				AddRes( index, typeof( Taint ), 1032679, 10, 1044253 );
-				AddRes( index, typeof( Corruption ), 1032676, 10, 1044253 );
-				AddRareRecipe( index, 400 );
-				ForceNonExceptional( index );
-				SetNeededExpansion( index, Expansion.ML );
-			}
-			*/
 
 			MarkOption = true;
 		}

@@ -38,7 +38,7 @@ namespace Server.Items
 			else if ( o is BaseArmor )
 				((BaseArmor)o).Identified = true;
 
-			if ( !Core.AOS && o is Item )
+			if (  o is Item )
 				((Item)o).OnSingleClick( from );
 
 			return ( o is Item );

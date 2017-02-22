@@ -210,7 +210,7 @@ namespace Server.Mobiles
 			base.OnDamage( amount, from, willKill );
 		}
 
-		public override bool BardImmune{ get{ return !Core.AOS || Controlled; } }
+		public override bool BardImmune{ get{ return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Lethal; } }
 
 		public Golem( Serial serial ) : base( serial )

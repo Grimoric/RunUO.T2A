@@ -136,13 +136,9 @@ namespace Server.Items
 
 		public bool Scissor( Mobile from, Scissors scissors )
 		{
-			if ( Deleted || !from.CanSee( this ) ) return false;
+			if ( Deleted || !from.CanSee( this ) )
+                return false;
 
-			if ( Core.AOS && !IsChildOf ( from.Backpack ) )
-			{
-				from.SendLocalizedMessage ( 502437 ); // Items you wish to cut must be in your backpack
-				return false;
-			}
 			base.ScissorHelper( from, new Leather(), 1 );
 
 			return true;
@@ -182,13 +178,8 @@ namespace Server.Items
 
 		public bool Scissor( Mobile from, Scissors scissors )
 		{
-			if ( Deleted || !from.CanSee( this ) ) return false;
-
-			if ( Core.AOS && !IsChildOf ( from.Backpack ) )
-			{
-				from.SendLocalizedMessage ( 502437 ); // Items you wish to cut must be in your backpack
-				return false;
-			}
+			if ( Deleted || !from.CanSee( this ) )
+                return false;
 
 			base.ScissorHelper( from, new SpinedLeather(), 1 );
 
@@ -229,14 +220,9 @@ namespace Server.Items
 
 		public bool Scissor( Mobile from, Scissors scissors )
 		{
-			if ( Deleted || !from.CanSee( this ) ) return false;
+			if ( Deleted || !from.CanSee( this ) )
+                return false;
 
-			if ( Core.AOS && !IsChildOf ( from.Backpack ) )
-			{
-				from.SendLocalizedMessage ( 502437 ); // Items you wish to cut must be in your backpack
-				return false;
-			}
-			
 			base.ScissorHelper( from, new HornedLeather(), 1 );
 
 			return true;
@@ -276,13 +262,8 @@ namespace Server.Items
 
 		public bool Scissor( Mobile from, Scissors scissors )
 		{
-			if ( Deleted || !from.CanSee( this ) ) return false;
-
-			if ( Core.AOS && !IsChildOf ( from.Backpack ) )
-			{
-				from.SendLocalizedMessage ( 502437 ); // Items you wish to cut must be in your backpack
-				return false;
-			}
+			if ( Deleted || !from.CanSee( this ) )
+                return false;
 
 			base.ScissorHelper( from, new BarbedLeather(), 1 );
 

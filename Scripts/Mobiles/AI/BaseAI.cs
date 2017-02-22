@@ -905,30 +905,19 @@ namespace Server.Mobiles
 
 		public virtual bool DoActionCombat()
 		{
-			if (Core.AOS && CheckHerding())
-			{
-				m_Mobile.DebugSay("Praise the shepherd!");
-			}
-			else
-			{
-				Mobile c = m_Mobile.Combatant;
+			Mobile c = m_Mobile.Combatant;
 
-				if (c == null || c.Deleted || c.Map != m_Mobile.Map || !c.Alive || c.IsDeadBondedPet)
-					Action = ActionType.Wander;
-				else
-					m_Mobile.Direction = m_Mobile.GetDirectionTo(c);
-			}
+			if (c == null || c.Deleted || c.Map != m_Mobile.Map || !c.Alive || c.IsDeadBondedPet)
+				Action = ActionType.Wander;
+			else
+				m_Mobile.Direction = m_Mobile.GetDirectionTo(c);
 
 			return true;
 		}
 
 		public virtual bool DoActionGuard()
 		{
-			if (Core.AOS && CheckHerding())
-			{
-				m_Mobile.DebugSay("Praise the shepherd!");
-			}
-			else if (DateTime.Now < m_NextStopGuard)
+			if (DateTime.Now < m_NextStopGuard)
 			{
 				m_Mobile.DebugSay("I am on guard");
 				//m_Mobile.Turn( Utility.Random(0, 2) - 1 );
@@ -1299,8 +1288,6 @@ namespace Server.Mobiles
 						else
 						{
 							m_Mobile.Warmode = false;
-							if (Core.AOS)
-								m_Mobile.CurrentSpeed = 0.1;
 						}
 					}
 				}
@@ -1469,8 +1456,6 @@ namespace Server.Mobiles
 				m_Mobile.DebugSay("Nothing to guard from");
 
 				m_Mobile.Warmode = false;
-				if (Core.AOS)
-					m_Mobile.CurrentSpeed = 0.1;
 
 				WalkMobileRange(controlMaster, 1, false, 0, 1);
 			}
@@ -1487,16 +1472,8 @@ namespace Server.Mobiles
 			{
 				m_Mobile.DebugSay("I think he might be dead. He's not anywhere around here at least. That's cool. I'm glad he's dead.");
 
-				if (Core.AOS)
-				{
-					m_Mobile.ControlTarget = m_Mobile.ControlMaster;
-					m_Mobile.ControlOrder = OrderType.Follow;
-				}
-				else
-				{
-					m_Mobile.ControlTarget = null;
-					m_Mobile.ControlOrder = OrderType.None;
-				}
+				m_Mobile.ControlTarget = null;
+				m_Mobile.ControlOrder = OrderType.None;
 
 				if (m_Mobile.FightMode == FightMode.Closest || m_Mobile.FightMode == FightMode.Aggressor)
 				{
@@ -1598,14 +1575,7 @@ namespace Server.Mobiles
 
 			m_Mobile.ControlTarget = null;
 
-			if (Core.ML)
-			{
-				WalkRandomInHome(3, 2, 1);
-			}
-			else
-			{
-				m_Mobile.ControlOrder = OrderType.None;
-			}
+			m_Mobile.ControlOrder = OrderType.None;
 
 			return true;
 		}
@@ -1626,13 +1596,8 @@ namespace Server.Mobiles
 
 				Movable = false;
 
-				if (!Core.AOS)
-				{
-					Name = creature.Name;
-				}
-				else if (this.ItemID == ShrinkTable.DefaultItemID || creature.GetType().IsDefined(typeof(FriendlyNameAttribute), false) || creature is Reptalon)
-					Name = FriendlyNameAttribute.GetFriendlyNameFor(creature.GetType()).ToString();
-
+				Name = creature.Name;
+                
 				//(As Per OSI)No name.  Normally, set by the ItemID of the Shrink Item unless we either explicitly set it with an Attribute, or, no lookup found
 
 				Hue = creature.Hue & 0x0FFF;
@@ -2513,9 +2478,6 @@ namespace Server.Mobiles
 
 					// Can't acquire a target we can't see.
 					if (!m_Mobile.CanSee(m))
-						continue;
-
-					if (Core.AOS && m is BaseCreature && (m as BaseCreature).Summoned && !(m as BaseCreature).Controlled)
 						continue;
 
 					if (m_Mobile.Summoned && m_Mobile.SummonMaster != null)

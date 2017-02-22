@@ -55,8 +55,6 @@ namespace Server.Mobiles
 				list.Add( "Donation Ethereal" );
 				list.Add( "7.5 sec slower cast time if not a 9mo. Veteran" );
 			}
-			if( Core.ML && m_IsRewardItem )
-				list.Add( RewardSystem.GetRewardYearLabel( this, new object[] { } ) ); // X Year Veteran Reward
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -381,7 +379,7 @@ namespace Server.Mobiles
 			{
 				get
 				{
-					return TimeSpan.FromSeconds( ( ( m_Mount.IsDonationItem && RewardSystem.GetRewardLevel( m_Rider ) < 3 ) ? ( 7.5 + ( Core.AOS ? 3.0 : 2.0 ) ) : ( Core.AOS ? 3.0 : 2.0 ) ) );
+					return TimeSpan.FromSeconds( ( ( m_Mount.IsDonationItem && RewardSystem.GetRewardLevel( m_Rider ) < 3 ) ? ( 7.5 + 2.0 ) : 2.0 ) );
 				}
 			}
 

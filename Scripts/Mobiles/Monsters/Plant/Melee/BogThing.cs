@@ -55,7 +55,7 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Average, 2 );
 		}
 
-		public override bool BardImmune{ get{ return !Core.AOS; } }
+		public override bool BardImmune{ get{ return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Lethal; } }
 
 		public BogThing( Serial serial ) : base( serial )

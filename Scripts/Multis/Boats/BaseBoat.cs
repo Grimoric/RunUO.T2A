@@ -436,7 +436,7 @@ namespace Server.Multis
 		 * 'walking' in piloting mode has a 1s interval, speed 0x2
 		 */
 
-		private static bool NewBoatMovement { get { return Core.HS; } }
+		private static bool NewBoatMovement { get { return false; } }
 
 		private static TimeSpan SlowInterval = TimeSpan.FromSeconds( NewBoatMovement ? 0.50 : 0.75 );
 		private static TimeSpan FastInterval = TimeSpan.FromSeconds( NewBoatMovement ? 0.25 : 0.75 );

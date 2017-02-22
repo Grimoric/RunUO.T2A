@@ -42,9 +42,6 @@ namespace Server.Mobiles
 			Karma = 15000;
 
 			VirtualArmor = 36;
-
-			if ( Core.ML && Utility.RandomDouble() < .33 )
-				PackItem( Engines.Plants.Seed.RandomPeculiarSeed(2) );
 		}
 
 		public override void GenerateLoot()
@@ -80,7 +77,7 @@ namespace Server.Mobiles
 
 		public override bool ReacquireOnMovement{ get{ return true; } }
 		public override bool HasBreath{ get{ return true; } } // fire breath enabled
-		public override double BonusPetDamageScalar{ get{ return (Core.SE) ? 3.0 : 1.0; } }
+		public override double BonusPetDamageScalar{ get{ return 1.0; } }
 
 		public override bool AutoDispel{ get{ return true; } }
 		public override HideType HideType{ get{ return HideType.Barbed; } }
@@ -98,7 +95,7 @@ namespace Server.Mobiles
 		{
 			base.OnGotMeleeAttack( attacker );
 
-			if ( !Core.SE && 0.2 > Utility.RandomDouble() && attacker is BaseCreature )
+			if (  0.2 > Utility.RandomDouble() && attacker is BaseCreature )
 			{
 				BaseCreature c = (BaseCreature)attacker;
 

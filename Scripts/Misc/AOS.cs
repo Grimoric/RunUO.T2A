@@ -66,133 +66,8 @@ namespace Server
 			if( phys == 0 && fire == 100 && cold == 0 && pois == 0 && nrgy == 0 )
 				Mobiles.MeerMage.StopEffect( m, true );
 
-			if( !Core.AOS )
-			{
-				m.Damage( damage, from );
-				return damage;
-			}
-
-			Fix( ref phys );
-			Fix( ref fire );
-			Fix( ref cold );
-			Fix( ref pois );
-			Fix( ref nrgy );
-			Fix( ref chaos );
-			Fix( ref direct );
-
-			if ( Core.ML && chaos > 0 )
-			{
-				switch ( Utility.Random( 5 ) )
-				{
-					case 0: phys += chaos; break;
-					case 1: fire += chaos; break;
-					case 2: cold += chaos; break;
-					case 3: pois += chaos; break;
-					case 4: nrgy += chaos; break;
-				}
-			}
-
-			BaseQuiver quiver = null;
-			
-			if ( archer && from != null )
-				quiver = from.FindItemOnLayer( Layer.Cloak ) as BaseQuiver;
-
-			int totalDamage;
-
-			if( !ignoreArmor )
-			{
-				// Armor Ignore on OSI ignores all defenses, not just physical.
-				int resPhys = m.PhysicalResistance;
-				int resFire = m.FireResistance;
-				int resCold = m.ColdResistance;
-				int resPois = m.PoisonResistance;
-				int resNrgy = m.EnergyResistance;
-
-				totalDamage  = damage * phys * (100 - resPhys);
-				totalDamage += damage * fire * (100 - resFire);
-				totalDamage += damage * cold * (100 - resCold);
-				totalDamage += damage * pois * (100 - resPois);
-				totalDamage += damage * nrgy * (100 - resNrgy);
-
-				totalDamage /= 10000;
-
-				if ( Core.ML )
-				{
-					totalDamage += damage * direct / 100;
-
-					if ( quiver != null )
-						totalDamage += totalDamage * quiver.DamageIncrease / 100;
-				}
-
-				if( totalDamage < 1 )
-					totalDamage = 1;
-			}
-			else if( Core.ML && m is PlayerMobile && from is PlayerMobile )
-			{
-				if ( quiver != null )
-					damage += damage * quiver.DamageIncrease / 100;
-
-				if ( !deathStrike )
-					totalDamage = Math.Min( damage, 35 );	// Direct Damage cap of 35
-				else
-					totalDamage = Math.Min( damage, 70 );	// Direct Damage cap of 70
-			}
-			else
-			{
-				totalDamage = damage;
-
-				if ( Core.ML && quiver != null )
-					totalDamage += totalDamage * quiver.DamageIncrease / 100;
-			}
-
-			#region Dragon Barding
-			if( (from == null || !from.Player) && m.Player && m.Mount is SwampDragon )
-			{
-				SwampDragon pet = m.Mount as SwampDragon;
-
-				if( pet != null && pet.HasBarding )
-				{
-					int percent = (pet.BardingExceptional ? 20 : 10);
-					int absorbed = Scale( totalDamage, percent );
-
-					totalDamage -= absorbed;
-					pet.BardingHP -= absorbed;
-
-					if( pet.BardingHP < 0 )
-					{
-						pet.HasBarding = false;
-						pet.BardingHP = 0;
-
-						m.SendLocalizedMessage( 1053031 ); // Your dragon's barding has been destroyed!
-					}
-				}
-			}
-			#endregion
-
-			if( keepAlive && totalDamage > m.Hits )
-				totalDamage = m.Hits;
-
-			if( from != null && !from.Deleted && from.Alive )
-			{
-				int reflectPhys = AosAttributes.GetValue( m, AosAttribute.ReflectPhysical );
-
-				if( reflectPhys != 0 )
-				{
-					if( from is ExodusMinion && ((ExodusMinion)from).FieldActive || from is ExodusOverseer && ((ExodusOverseer)from).FieldActive )
-					{
-						from.FixedParticles( 0x376A, 20, 10, 0x2530, EffectLayer.Waist );
-						from.PlaySound( 0x2F4 );
-						m.SendAsciiMessage( "Your weapon cannot penetrate the creature's magical barrier" );
-					}
-					else
-					{
-						from.Damage( Scale( (damage * phys * (100 - (ignoreArmor ? 0 : m.PhysicalResistance))) / 10000, reflectPhys ), m );
-					}
-				}
-			}
-
-			m.Damage( totalDamage, from );
-			return totalDamage;
+			m.Damage( damage, from );
+			return damage;
 		}
 
 		public static void Fix( ref int val )
@@ -279,74 +154,7 @@ namespace Server
 
 		public static int GetValue( Mobile m, AosAttribute attribute )
 		{
-			if( !Core.AOS )
-				return 0;
-
-			List<Item> items = m.Items;
-			int value = 0;
-
-			for( int i = 0; i < items.Count; ++i )
-			{
-				Item obj = items[i];
-
-				if( obj is BaseWeapon )
-				{
-					AosAttributes attrs = ((BaseWeapon)obj).Attributes;
-
-					if( attrs != null )
-						value += attrs[attribute];
-
-					if( attribute == AosAttribute.Luck )
-						value += ((BaseWeapon)obj).GetLuckBonus();
-				}
-				else if( obj is BaseArmor )
-				{
-					AosAttributes attrs = ((BaseArmor)obj).Attributes;
-
-					if( attrs != null )
-						value += attrs[attribute];
-
-					if( attribute == AosAttribute.Luck )
-						value += ((BaseArmor)obj).GetLuckBonus();
-				}
-				else if( obj is BaseJewel )
-				{
-					AosAttributes attrs = ((BaseJewel)obj).Attributes;
-
-					if( attrs != null )
-						value += attrs[attribute];
-				}
-				else if( obj is BaseClothing )
-				{
-					AosAttributes attrs = ((BaseClothing)obj).Attributes;
-
-					if( attrs != null )
-						value += attrs[attribute];
-				}
-				else if( obj is Spellbook )
-				{
-					AosAttributes attrs = ((Spellbook)obj).Attributes;
-
-					if( attrs != null )
-						value += attrs[attribute];
-				}
-				else if( obj is BaseQuiver )
-				{
-					AosAttributes attrs = ((BaseQuiver)obj).Attributes;
-
-					if( attrs != null )
-						value += attrs[attribute];
-				}
-				else if ( obj is BaseTalisman )
-				{
-					AosAttributes attrs = ((BaseTalisman)obj).Attributes;
-
-					if (attrs != null)
-						value += attrs[attribute];
-				}
-			}
-
-			return value;
+			return 0;
 		}
 
 		public int this[AosAttribute attribute]
@@ -516,33 +324,7 @@ namespace Server
 
 		public static int GetValue( Mobile m, AosWeaponAttribute attribute )
 		{
-			if( !Core.AOS )
-				return 0;
-
-			List<Item> items = m.Items;
-			int value = 0;
-
-			for( int i = 0; i < items.Count; ++i )
-			{
-				Item obj = items[i];
-
-				if( obj is BaseWeapon )
-				{
-					AosWeaponAttributes attrs = ((BaseWeapon)obj).WeaponAttributes;
-
-					if( attrs != null )
-						value += attrs[attribute];
-				}
-				else if ( obj is ElvenGlasses )
-				{
-					AosWeaponAttributes attrs = ((ElvenGlasses)obj).WeaponAttributes;
-
-					if( attrs != null )
-						value += attrs[attribute];
-				}
-			}
-
-			return value;
+			return 0;
 		}
 
 		public int this[AosWeaponAttribute attribute]
@@ -660,33 +442,7 @@ namespace Server
 
 		public static int GetValue( Mobile m, AosArmorAttribute attribute )
 		{
-			if( !Core.AOS )
-				return 0;
-
-			List<Item> items = m.Items;
-			int value = 0;
-
-			for( int i = 0; i < items.Count; ++i )
-			{
-				Item obj = items[i];
-
-				if( obj is BaseArmor )
-				{
-					AosArmorAttributes attrs = ((BaseArmor)obj).ArmorAttributes;
-
-					if( attrs != null )
-						value += attrs[attribute];
-				}
-				else if( obj is BaseClothing )
-				{
-					AosArmorAttributes attrs = ((BaseClothing)obj).ClothingAttributes;
-
-					if( attrs != null )
-						value += attrs[attribute];
-				}
-			}
-
-			return value;
+			return 0;
 		}
 
 		public int this[AosArmorAttribute attribute]
@@ -788,9 +544,6 @@ namespace Server
 
 				Mobile m = m_Mods[i].Owner;
 				m_Mods[i].Remove();
-
-				if ( Core.ML )
-					CheckCancelMorph ( m );
 			}
 			m_Mods = null;
 		}
@@ -1083,19 +836,6 @@ namespace Server
 
 		public int GetValue( int bitmask )
 		{
-			if( !Core.AOS )
-				return 0;
-
-			uint mask = (uint)bitmask;
-
-			if( (m_Names & mask) == 0 )
-				return 0;
-
-			int index = GetIndex( mask );
-
-			if( index >= 0 && index < m_Values.Length )
-				return m_Values[index];
-
 			return 0;
 		}
 

@@ -18,7 +18,7 @@ namespace Server.Items
 		[Constructable]
 		public BookOfBushido( ulong content ) : base( content, 0x238C )
 		{
-			Layer = (Core.ML ? Layer.OneHanded : Layer.Invalid);
+			Layer = Layer.Invalid;
 		}
 
 		public BookOfBushido( Serial serial ) : base( serial )
@@ -37,9 +37,6 @@ namespace Server.Items
 			base.Deserialize( reader );
 
 			int version = reader.ReadInt();
-
-			if( version == 0 && Core.ML )
-				Layer = Layer.OneHanded;
 		}
 	}
 }

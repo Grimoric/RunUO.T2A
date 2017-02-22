@@ -145,16 +145,9 @@ namespace Server.Engines.Quests.Necro
 
 								weapon.Slayer = SlayerName.OrcSlaying;
 
-								if ( Core.AOS )
-								{
-									BaseRunicTool.ApplyAttributesTo( weapon, 3, 20, 40 );
-								}
-								else
-								{
-									weapon.DamageLevel = (WeaponDamageLevel)BaseCreature.RandomMinMaxScaled( 2, 4 );
-									weapon.AccuracyLevel = (WeaponAccuracyLevel)BaseCreature.RandomMinMaxScaled( 2, 4 );
-									weapon.DurabilityLevel = (WeaponDurabilityLevel)BaseCreature.RandomMinMaxScaled( 2, 4 );
-								}
+								weapon.DamageLevel = (WeaponDamageLevel)BaseCreature.RandomMinMaxScaled( 2, 4 );
+								weapon.AccuracyLevel = (WeaponAccuracyLevel)BaseCreature.RandomMinMaxScaled( 2, 4 );
+								weapon.DurabilityLevel = (WeaponDurabilityLevel)BaseCreature.RandomMinMaxScaled( 2, 4 );
 
 								cont.DropItem( weapon );
 

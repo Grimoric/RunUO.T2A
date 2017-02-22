@@ -50,14 +50,6 @@ namespace Server.Items
 		{
 		}
 		
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-			
-			if ( Core.ML && m_IsRewardItem )
-				list.Add( 1076218 ); // 2nd Year Veteran Reward
-		}
-		
 		public override void OnDoubleClick( Mobile from )
 		{
 			if ( from.InRange( Location, 2 ) )

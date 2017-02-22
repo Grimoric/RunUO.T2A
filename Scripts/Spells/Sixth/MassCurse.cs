@@ -53,8 +53,6 @@ namespace Server.Spells.Sixth
 
 					foreach ( Mobile m in eable )
 					{
-						if ( Core.AOS && m == Caster )
-							continue;
 
 						if ( SpellHelper.ValidIndirectTarget( Caster, m ) && Caster.CanSee( m ) && Caster.CanBeHarmful( m, false ) )
 							targets.Add( m );
@@ -87,7 +85,7 @@ namespace Server.Spells.Sixth
 		{
 			private MassCurseSpell m_Owner;
 
-			public InternalTarget( MassCurseSpell owner ) : base( Core.ML ? 10 : 12, true, TargetFlags.None )
+			public InternalTarget( MassCurseSpell owner ) : base( 12, true, TargetFlags.None )
 			{
 				m_Owner = owner;
 			}

@@ -21,10 +21,7 @@ namespace Server
 
 		public static bool CheckArtifactChance( Mobile m, BaseCreature bc )
 		{
-			if ( !Core.ML )
-				return false;
-
-			return Paragon.CheckArtifactChance( m, bc );
+			return false;
 		}
 
 		public static void GiveArtifactTo( Mobile m )

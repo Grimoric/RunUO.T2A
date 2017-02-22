@@ -18,7 +18,7 @@ namespace Server.Spells
 			if( base.ConsumeReagents() )
 				return true;
 
-			if( ArcaneGem.ConsumeCharges( Caster, (Core.SE ? 1 : 1 + (int)Circle) ) )
+			if( ArcaneGem.ConsumeCharges( Caster, 1 + (int)Circle ) )
 				return true;
 
 			return false;
@@ -96,13 +96,10 @@ namespace Server.Spells
 
 		public override TimeSpan GetCastDelay()
 		{
-			if( !Core.ML && Scroll is BaseWand )
+			if( Scroll is BaseWand )
 				return TimeSpan.Zero;
 
-			if( !Core.AOS )
-				return TimeSpan.FromSeconds( 0.5 + (0.25 * (int)Circle) );
-
-			return base.GetCastDelay();
+			return TimeSpan.FromSeconds( 0.5 + (0.25 * (int)Circle) );
 		}
 
 		public override TimeSpan CastDelayBase

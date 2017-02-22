@@ -170,38 +170,12 @@ namespace Server.Mobiles
 
 		public static bool CheckConvert( BaseCreature bc, Point3D location, Map m )
 		{
-			if ( !Core.AOS )
-				return false;
-
-			if ( Array.IndexOf( Maps, m ) == -1 )
-				return false;
-
-			if ( bc is BaseChampion || bc is Harrower || bc is BaseVendor || bc is BaseEscortable || bc is Clone || bc.IsParagon )
-				return false;
-
-			int fame = bc.Fame;
-
-			if ( fame > 32000 )
-				fame = 32000;
-
-			double chance = 1 / Math.Round( 20.0 - ( fame / 3200 ));
-
-			return ( chance > Utility.RandomDouble() );
+			return false;
 		}
 
 		public static bool CheckArtifactChance( Mobile m, BaseCreature bc )
 		{
-			if ( !Core.AOS )
-				return false;
-
-			double fame = (double)bc.Fame;
-
-			if ( fame > 32000 )
-				fame = 32000;
-
-			double chance = 1 / ( Math.Max( 10, 100 * ( 0.83 - Math.Round( Math.Log( Math.Round( fame / 6000, 3 ) + 0.001, 10 ), 3 ) ) ) * ( 100 - Math.Sqrt( m.Luck ) ) / 100.0 );
-
-			return chance > Utility.RandomDouble();
+			return false;
 		}
 
 		public static void GiveArtifactTo( Mobile m )

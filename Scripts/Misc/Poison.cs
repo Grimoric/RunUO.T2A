@@ -14,22 +14,11 @@ namespace Server
 		[CallPriority( 10 )]
 		public static void Configure()
 		{
-			if ( Core.AOS )
-			{
-				Register( new PoisonImpl( "Lesser",		0,  4, 16,  7.5, 3.0, 2.25, 10, 4 ) );
-				Register( new PoisonImpl( "Regular",	1,  8, 18, 10.0, 3.0, 3.25, 10, 3 ) );
-				Register( new PoisonImpl( "Greater",	2, 12, 20, 15.0, 3.0, 4.25, 10, 2 ) );
-				Register( new PoisonImpl( "Deadly",		3, 16, 30, 30.0, 3.0, 5.25, 15, 2 ) );
-				Register( new PoisonImpl( "Lethal",		4, 20, 50, 35.0, 3.0, 5.25, 20, 2 ) );
-			}
-			else
-			{
-				Register( new PoisonImpl( "Lesser",		0, 4, 26,  2.500, 3.5, 3.0, 10, 2 ) );
-				Register( new PoisonImpl( "Regular",	1, 5, 26,  3.125, 3.5, 3.0, 10, 2 ) );
-				Register( new PoisonImpl( "Greater",	2, 6, 26,  6.250, 3.5, 3.0, 10, 2 ) );
-				Register( new PoisonImpl( "Deadly",		3, 7, 26, 12.500, 3.5, 4.0, 10, 2 ) );
-				Register( new PoisonImpl( "Lethal",		4, 9, 26, 25.000, 3.5, 5.0, 10, 2 ) );
-			}
+			Register( new PoisonImpl( "Lesser",		0, 4, 26,  2.500, 3.5, 3.0, 10, 2 ) );
+			Register( new PoisonImpl( "Regular",	1, 5, 26,  3.125, 3.5, 3.0, 10, 2 ) );
+			Register( new PoisonImpl( "Greater",	2, 6, 26,  6.250, 3.5, 3.0, 10, 2 ) );
+			Register( new PoisonImpl( "Deadly",		3, 7, 26, 12.500, 3.5, 4.0, 10, 2 ) );
+			Register( new PoisonImpl( "Lethal",		4, 9, 26, 25.000, 3.5, 5.0, 10, 2 ) );
 		}
 
 		public static Poison IncreaseLevel( Poison oldPoison )
@@ -87,9 +76,7 @@ namespace Server
 
 			protected override void OnTick()
 			{
-				if ( (Core.AOS && m_Poison.Level < 4 && TransformationSpellHelper.UnderTransformation( m_Mobile, typeof( VampiricEmbraceSpell ) )) ||
-					(m_Poison.Level < 3 && OrangePetals.UnderEffect( m_Mobile )) ||
-					AnimalForm.UnderTransformation( m_Mobile, typeof( Unicorn ) ) )
+				if ( (m_Poison.Level < 3 && OrangePetals.UnderEffect( m_Mobile )) || AnimalForm.UnderTransformation( m_Mobile, typeof( Unicorn ) ) )
 				{
 					if ( m_Mobile.CurePoison( m_Mobile ) )
 					{
@@ -115,7 +102,7 @@ namespace Server
 
 				int damage;
 
-				if ( !Core.AOS && m_LastDamage != 0 && Utility.RandomBool() )
+				if (  m_LastDamage != 0 && Utility.RandomBool() )
 				{
 					damage = m_LastDamage;
 				}

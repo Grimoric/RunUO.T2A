@@ -7,7 +7,7 @@ namespace Server.Mobiles
 	[CorpseName( "a darknight creeper corpse" )]
 	public class DarknightCreeper : BaseCreature
 	{
-		public override bool IgnoreYoungProtection { get { return Core.ML; } }
+		public override bool IgnoreYoungProtection { get { return false; } }
 
 		[Constructable]
 		public DarknightCreeper() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
@@ -63,9 +63,9 @@ namespace Server.Mobiles
 				DemonKnight.DistributeArtifact( this );
 		}
 
-		public override bool BardImmune{ get{ return !Core.SE; } }
-		public override bool Unprovokable{ get{ return Core.SE; } }
-		public override bool AreaPeaceImmune { get { return Core.SE; } }
+		public override bool BardImmune{ get{ return true; } }
+		public override bool Unprovokable{ get{ return false; } }
+		public override bool AreaPeaceImmune { get { return false; } }
 		public override bool BleedImmune{ get{ return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Lethal; } }
 		public override Poison HitPoison{ get{ return Poison.Lethal; } }

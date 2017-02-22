@@ -492,9 +492,6 @@ namespace Server.Items
 			if ((prop = m_AosAttributes.WeaponSpeed) != 0)
 				list.Add(1060486, prop.ToString()); // swing speed increase ~1_val~%
 
-			if (Core.ML && (prop = m_AosAttributes.IncreasedKarmaLoss) != 0)
-				list.Add(1075210, prop.ToString()); // Increased Karma Loss ~1val~%
-
 			if (m_MaxCharges > 0)
 				list.Add(1060741, m_Charges.ToString()); // charges: ~1_val~
 

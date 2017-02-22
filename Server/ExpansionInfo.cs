@@ -188,7 +188,10 @@ namespace Server
 			return m_Table[v];
 		}
 
-		public static ExpansionInfo CurrentExpansion { get { return GetInfo( Core.Expansion ); } }
+		public static ExpansionInfo CurrentExpansion { get
+		{
+		    return new ExpansionInfo(1, "The Second Age", ClientFlags.Felucca, FeatureFlags.ExpansionT2A, CharacterListFlags.ExpansionT2A, 0x0000);
+		} }
 
 		public override string ToString()
 		{

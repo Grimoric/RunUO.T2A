@@ -61,7 +61,7 @@ namespace Server.Items
 			m_Worth = worth;
 		}
 
-		public override bool DisplayLootType{ get{ return Core.AOS; } }
+		public override bool DisplayLootType{ get{ return false; } }
 
 		public override int LabelNumber{ get{ return 1041361; } } // A bank check
 
@@ -69,12 +69,7 @@ namespace Server.Items
 		{
 			base.GetProperties( list );
 
-			string worth;
-
-			if ( Core.ML )
-				worth = m_Worth.ToString( "N0", CultureInfo.GetCultureInfo( "en-US" ) );
-			else
-				worth = m_Worth.ToString();
+			string worth = m_Worth.ToString();
 
 			list.Add( 1060738, worth ); // value: ~1_val~
 		}

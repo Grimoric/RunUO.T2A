@@ -25,9 +25,6 @@ namespace Server.Spells.Fifth
 
 		public override TimeSpan GetCastDelay()
 		{
-			if ( Core.AOS )
-				return TimeSpan.FromTicks( base.GetCastDelay().Ticks * ((Core.SE) ? 3 : 5) );
-
 			return base.GetCastDelay() + TimeSpan.FromSeconds( 6.0 );
 		}
 
@@ -36,7 +33,7 @@ namespace Server.Spells.Fifth
 			if ( !base.CheckCast() )
 				return false;
 
-			if( (Caster.Followers + (Core.SE ? 2 : 1)) > Caster.FollowersMax )
+			if( Caster.Followers + 1 > Caster.FollowersMax )
 			{
 				Caster.SendLocalizedMessage( 1049645 ); // You have too many followers to summon that creature.
 				return false;
@@ -62,12 +59,7 @@ namespace Server.Spells.Fifth
 			}
 			else if ( SpellHelper.CheckTown( p, Caster ) && CheckSequence() )
 			{
-				TimeSpan duration;
-
-				if ( Core.AOS )
-					duration = TimeSpan.FromSeconds( 120 );
-				else
-					duration = TimeSpan.FromSeconds( Utility.Random( 80, 40 ) );
+				TimeSpan duration = TimeSpan.FromSeconds( Utility.Random( 80, 40 ) );
 
 				BaseCreature.Summon( new BladeSpirits(), false, Caster, new Point3D( p ), 0x212, duration );
 			}
@@ -79,7 +71,7 @@ namespace Server.Spells.Fifth
 		{
 			private BladeSpiritsSpell m_Owner;
 
-			public InternalTarget( BladeSpiritsSpell owner ) : base( Core.ML ? 10 : 12, true, TargetFlags.None )
+			public InternalTarget( BladeSpiritsSpell owner ) : base( 12, true, TargetFlags.None )
 			{
 				m_Owner = owner;
 			}

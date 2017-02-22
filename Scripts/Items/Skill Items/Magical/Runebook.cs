@@ -111,13 +111,13 @@ namespace Server.Items
 		public override int LabelNumber{ get{ return 1041267; } } // runebook
 
 		[Constructable]
-		public Runebook( int maxCharges ) : base( Core.AOS ? 0x22C5 : 0xEFA )
+		public Runebook( int maxCharges ) : base( 0xEFA )
 		{
-			Weight = (Core.SE ? 1.0 : 3.0);
+			Weight = 3.0;
 			LootType = LootType.Blessed;
 			Hue = 0x461;
 
-			Layer = (Core.AOS ? Layer.Invalid : Layer.OneHanded);
+			Layer = Layer.OneHanded;
 
 			m_Entries = new List<RunebookEntry>();
 
@@ -129,7 +129,7 @@ namespace Server.Items
 		}
 
 		[Constructable]
-		public Runebook() : this( Core.SE ? 12 : 6 )
+		public Runebook() : this( 6 )
 		{
 		}
 
@@ -202,9 +202,6 @@ namespace Server.Items
 			base.Deserialize( reader );
 
 			LootType = LootType.Blessed;
-
-			if( Core.SE && Weight == 3.0 )
-				Weight = 1.0;
 
 			int version = reader.ReadInt();
 
@@ -283,7 +280,7 @@ namespace Server.Items
 			return false;
 		}
 
-		public override bool DisplayLootType{ get{ return Core.AOS; } }
+		public override bool DisplayLootType{ get{ return false; } }
 
 		public override void GetProperties( ObjectPropertyList list )
 		{
@@ -329,7 +326,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			if ( from.InRange( GetWorldLocation(), (Core.ML ? 3 : 1) ) && CheckAccess( from ) )
+			if ( from.InRange( GetWorldLocation(), 1 ) && CheckAccess( from ) )
 			{
 				if ( RootParent is BaseCreature )
 				{
@@ -352,8 +349,7 @@ namespace Server.Items
 
 		public virtual void OnTravel()
 		{
-			if ( !Core.SA )
-				m_NextUse = DateTime.Now + UseDelay;
+			m_NextUse = DateTime.Now + UseDelay;
 		}
 
 		public override void OnAfterDuped( Item newItem )
@@ -467,7 +463,7 @@ namespace Server.Items
 			if ( charges > 10 )
 				charges = 10;
 
-			MaxCharges = (Core.SE ? charges * 2 : charges);
+			MaxCharges = charges;
 
 			if ( makersMark )
 				Crafter = from;

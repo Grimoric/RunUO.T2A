@@ -21,7 +21,7 @@ namespace Server.Spells.Sixth
 		{
 		}
 
-		public override bool DelayedDamageStacking { get { return !Core.AOS; } }
+		public override bool DelayedDamageStacking { get { return true; } }
 
 		public override void OnCast()
 		{
@@ -58,7 +58,7 @@ namespace Server.Spells.Sixth
 			private Mobile m_Attacker, m_Defender;
 
 			public InternalTimer( MagerySpell spell, Mobile attacker, Mobile defender, Mobile target )
-				: base( TimeSpan.FromSeconds( Core.AOS ? 3.0 : 2.5 ) )
+				: base( TimeSpan.FromSeconds( 2.5 ) )
 			{
 				m_Spell = spell;
 				m_Attacker = attacker;
@@ -75,25 +75,16 @@ namespace Server.Spells.Sixth
 			{
 				if ( m_Attacker.HarmfulCheck( m_Defender ) )
 				{
-					double damage;
+					double damage = Utility.Random( 23, 22 );
 
-					if ( Core.AOS )
+					if ( m_Spell.CheckResisted( m_Target ) )
 					{
-						damage = m_Spell.GetNewAosDamage( 40, 1, 5, m_Defender );
+						damage *= 0.75;
+
+						m_Target.SendLocalizedMessage( 501783 ); // You feel yourself resisting magical energy.
 					}
-					else
-					{
-						damage = Utility.Random( 23, 22 );
 
-						if ( m_Spell.CheckResisted( m_Target ) )
-						{
-							damage *= 0.75;
-
-							m_Target.SendLocalizedMessage( 501783 ); // You feel yourself resisting magical energy.
-						}
-
-						damage *= m_Spell.GetDamageScalar( m_Target );
-					}
+					damage *= m_Spell.GetDamageScalar( m_Target );
 
 					m_Target.FixedParticles( 0x36BD, 20, 10, 5044, EffectLayer.Head );
 					m_Target.PlaySound( 0x307 );
@@ -111,7 +102,7 @@ namespace Server.Spells.Sixth
 			private ExplosionSpell m_Owner;
 
 			public InternalTarget( ExplosionSpell owner )
-				: base( Core.ML ? 10 : 12, false, TargetFlags.Harmful )
+				: base( 12, false, TargetFlags.Harmful )
 			{
 				m_Owner = owner;
 			}

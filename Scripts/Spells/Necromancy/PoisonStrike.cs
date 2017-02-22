@@ -16,7 +16,7 @@ namespace Server.Spells.Necromancy
 				Reagent.NoxCrystal
 			);
 
-		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( (Core.ML ? 1.75 : 1.5) ); } }
+		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds( 1.5 ); } }
 
 		public override double RequiredSkill { get { return 50.0; } }
 		public override int RequiredMana { get { return 17; } }
@@ -49,14 +49,12 @@ namespace Server.Spells.Necromancy
 				Effects.SendLocationParticles( EffectItem.Create( m.Location, m.Map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
 				Effects.PlaySound( m.Location, m.Map, 0x229 );
 
-				double damage = Utility.RandomMinMax( (Core.ML ? 32 : 36), 40 ) * ((300 + (GetDamageSkill( Caster ) * 9)) / 1000);
+				double damage = Utility.RandomMinMax( 36, 40 ) * ((300 + (GetDamageSkill( Caster ) * 9)) / 1000);
 				
 				double sdiBonus = (double)AosAttributes.GetValue( Caster, AosAttribute.SpellDamage )/100;
 				double pvmDamage = damage * (1 + sdiBonus);
 				
-				if ( Core.ML && sdiBonus > 0.15 )
-					sdiBonus = 0.15;
-				double pvpDamage = damage * (1 + sdiBonus);
+	double pvpDamage = damage * (1 + sdiBonus);
 
 				Map map = m.Map;
 
@@ -98,7 +96,7 @@ namespace Server.Spells.Necromancy
 			private PoisonStrikeSpell m_Owner;
 
 			public InternalTarget( PoisonStrikeSpell owner )
-				: base( Core.ML ? 10 : 12, false, TargetFlags.Harmful )
+				: base( 12, false, TargetFlags.Harmful )
 			{
 				m_Owner = owner;
 			}

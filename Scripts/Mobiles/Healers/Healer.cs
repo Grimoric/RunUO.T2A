@@ -23,8 +23,7 @@ namespace Server.Mobiles
 		{
 			Title = "the healer";
 
-			if ( !Core.AOS )
-				NameHue = 0x35;
+			NameHue = 0x35;
 
 			SetSkill( SkillName.Forensics, 80.0, 100.0 );
 			SetSkill( SkillName.SpiritSpeak, 80.0, 100.0 );
@@ -75,9 +74,6 @@ namespace Server.Mobiles
 			base.Deserialize( reader );
 
 			int version = reader.ReadInt();
-
-			if ( Core.AOS && NameHue == 0x35 )
-				NameHue = -1;
 		}
 	}
 }

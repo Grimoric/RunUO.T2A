@@ -39,8 +39,6 @@ namespace Server.Spells.Fourth
 		{
 			if ( TransformationSpellHelper.UnderTransformation( Caster, typeof( WraithFormSpell ) ) )
 				min = max = 0;
-			else if( Core.SE && m_Book != null )	//recall using Runebook charge
-				min = max = 0;
 			else
 				base.GetCastSkills( out min, out max );
 		}
@@ -85,7 +83,7 @@ namespace Server.Spells.Fourth
 			{
 				Caster.SendLocalizedMessage( 1061632 ); // You can't do that while carrying the sigil.
 			}
-			else if ( map == null || (!Core.AOS && Caster.Map != map) )
+			else if ( map == null || ( Caster.Map != map) )
 			{
 				Caster.SendLocalizedMessage( 1005569 ); // You can not recall to another facet.
 			}
@@ -146,7 +144,7 @@ namespace Server.Spells.Fourth
 		{
 			private RecallSpell m_Owner;
 
-			public InternalTarget( RecallSpell owner ) : base( Core.ML ? 10 : 12, false, TargetFlags.None )
+			public InternalTarget( RecallSpell owner ) : base( 12, false, TargetFlags.None )
 			{
 				m_Owner = owner;
 

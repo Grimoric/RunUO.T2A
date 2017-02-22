@@ -220,7 +220,7 @@ namespace Server.Gumps
 					Misc.Titles.AwardFame( from, -amount, true );
 				}
 
-				if( !Core.AOS && from.ShortTermMurders >= 5 )
+				if( from.ShortTermMurders >= 5 )
 				{
 					double loss = (100.0 - (4.0 + (from.ShortTermMurders / 5.0))) / 100.0; // 5 to 15% loss
 

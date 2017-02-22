@@ -117,18 +117,6 @@ namespace Server.Spells.Fourth
 			if ( !Caster.CanBeBeneficial( target, false ) )
 				return false;
 
-			if ( Core.AOS && target != Caster )
-			{
-				if ( IsAggressor( target ) || IsAggressed( target ) )
-					return false;
-
-				if ( ( !IsInnocentTo( Caster, target ) || !IsInnocentTo( target, Caster ) ) && !IsAllyTo( Caster, target ) )
-					return false;
-
-				if ( feluccaRules && !( target is PlayerMobile ) )
-					return false;
-			}
-
 			return true;
 		}
 
@@ -168,7 +156,7 @@ namespace Server.Spells.Fourth
 		{
 			private ArchCureSpell m_Owner;
 
-			public InternalTarget( ArchCureSpell owner ) : base( Core.ML ? 10 : 12, true, TargetFlags.None )
+			public InternalTarget( ArchCureSpell owner ) : base( 12, true, TargetFlags.None )
 			{
 				m_Owner = owner;
 			}

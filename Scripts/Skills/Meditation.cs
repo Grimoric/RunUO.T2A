@@ -18,12 +18,6 @@ namespace Server.SkillHandlers
 			if ( item is Spellbook || item is Runebook )
 				return true;
 
-			if ( Core.AOS && item is BaseWeapon && ((BaseWeapon)item).Attributes.SpellChanneling != 0 )
-				return true;
-
-			if ( Core.AOS && item is BaseArmor && ((BaseArmor)item).Attributes.SpellChanneling != 0 )
-				return true;
-
 			return false;
 		}
 
@@ -37,7 +31,7 @@ namespace Server.SkillHandlers
 
 				return TimeSpan.FromSeconds( 5.0 );
 			} 
-			else if ( !Core.AOS && m.Hits < (m.HitsMax / 10) ) // Less than 10% health
+			else if (  m.Hits < (m.HitsMax / 10) ) // Less than 10% health
 			{
 				m.SendLocalizedMessage( 501849 ); // The mind is strong but the body is weak.
 
@@ -47,28 +41,14 @@ namespace Server.SkillHandlers
 			{
 				m.SendLocalizedMessage( 501846 ); // You are at peace.
 
-				return TimeSpan.FromSeconds( Core.AOS ? 10.0 : 5.0 );
-			}
-			else if ( Core.AOS && Server.Misc.RegenRates.GetArmorOffset( m ) > 0 )
-			{
-				m.SendLocalizedMessage( 500135 ); // Regenative forces cannot penetrate your armor!
-
-				return TimeSpan.FromSeconds( 10.0 );
+				return TimeSpan.FromSeconds( 5.0 );
 			}
 			else 
 			{
 				Item oneHanded = m.FindItemOnLayer( Layer.OneHanded );
 				Item twoHanded = m.FindItemOnLayer( Layer.TwoHanded );
 
-				if ( Core.AOS && m.Player )
-				{
-					if ( !CheckOkayHolding( oneHanded ) )
-						m.AddToBackpack( oneHanded );
-
-					if ( !CheckOkayHolding( twoHanded ) )
-						m.AddToBackpack( twoHanded );
-				}
-				else if ( !CheckOkayHolding( oneHanded ) || !CheckOkayHolding( twoHanded ) )
+				if ( !CheckOkayHolding( oneHanded ) || !CheckOkayHolding( twoHanded ) )
 				{
 					m.SendLocalizedMessage( 502626 ); // Your hands must be free to cast spells or meditate.
 

@@ -330,16 +330,9 @@ namespace Server.Engines.Quests.Haven
 									default: weapon = new VikingSword(); break;
 								}
 
-								if ( Core.AOS )
-								{
-									BaseRunicTool.ApplyAttributesTo( weapon, 3, 20, 40 );
-								}
-								else
-								{
-									weapon.DamageLevel = (WeaponDamageLevel)BaseCreature.RandomMinMaxScaled( 2, 4 );
-									weapon.AccuracyLevel = (WeaponAccuracyLevel)BaseCreature.RandomMinMaxScaled( 2, 4 );
-									weapon.DurabilityLevel = (WeaponDurabilityLevel)BaseCreature.RandomMinMaxScaled( 2, 4 );
-								}
+                                weapon.DamageLevel = (WeaponDamageLevel)BaseCreature.RandomMinMaxScaled( 2, 4 );
+								weapon.AccuracyLevel = (WeaponAccuracyLevel)BaseCreature.RandomMinMaxScaled( 2, 4 );
+								weapon.DurabilityLevel = (WeaponDurabilityLevel)BaseCreature.RandomMinMaxScaled( 2, 4 );
 
 								weapon.Slayer = SlayerName.Silver;
 

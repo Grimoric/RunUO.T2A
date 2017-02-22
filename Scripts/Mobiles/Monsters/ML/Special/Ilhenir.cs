@@ -77,11 +77,6 @@ namespace Server.Mobiles
 			Karma = -50000;
 
 			VirtualArmor = 44;
-
-			if ( Core.ML ) {
-				PackResources( 8 );
-				PackTalismans( 5 );
-			}
 		}
 
 		public virtual void PackResources( int amount )
@@ -121,32 +116,11 @@ namespace Server.Mobiles
 		{
 			base.OnDeath( c );
 
-			if ( Core.ML ) {
-				c.DropItem( new GrizzledBones() );
+			if( Utility.RandomDouble() < 0.05 )
+				c.DropItem( new GrizzledMareStatuette() );
 
-				// TODO: Parrots
-				/*if ( Utility.RandomDouble() < 0.6 )
-					c.DropItem( new ParrotItem() ); */
-
-				if( Utility.RandomDouble() < 0.05 )
-					c.DropItem( new GrizzledMareStatuette() );
-
-				if( Utility.RandomDouble() < 0.025 )
-					c.DropItem( new CrimsonCincture() );
-
-				// TODO: Armor sets
-				/*if ( Utility.RandomDouble() < 0.05 )
-				{
-					switch ( Utility.Random(5) )
-					{
-						case 0: c.DropItem( new GrizzleGauntlets() ); break;
-						case 1: c.DropItem( new GrizzleGreaves() ); break;
-						case 2: c.DropItem( new GrizzleHelm() ); break;
-						case 3: c.DropItem( new GrizzleTunic() ); break;
-						case 4: c.DropItem( new GrizzleVambraces() ); break;
-					}
-				}*/
-			}
+			if( Utility.RandomDouble() < 0.025 )
+				c.DropItem( new CrimsonCincture() );
 		}
 
 		public override bool Unprovokable { get { return true; } }

@@ -456,9 +456,9 @@ namespace Server.Commands
 
 				css.WriteLine( "td.cl {{ background-color: #{0:X6}; }}", Cloth );
 				css.WriteLine( "td.pl {{ background-color: #{0:X6};  }}", Plain );
-				css.WriteLine( "td.sp {{ background-color: #{0:X6}; }}", Core.AOS ? SpinedAOS : SpinedLBR );
-				css.WriteLine( "td.ho {{ background-color: #{0:X6}; }}", Core.AOS ? HornedAOS : HornedLBR );
-				css.WriteLine( "td.ba {{ background-color: #{0:X6}; }}", Core.AOS ? BarbedAOS : BarbedLBR );
+				css.WriteLine( "td.sp {{ background-color: #{0:X6}; }}", SpinedLBR );
+				css.WriteLine( "td.ho {{ background-color: #{0:X6}; }}", HornedLBR );
+				css.WriteLine( "td.ba {{ background-color: #{0:X6}; }}", BarbedLBR );
 			}
 		}
 

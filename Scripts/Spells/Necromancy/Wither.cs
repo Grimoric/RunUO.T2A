@@ -46,7 +46,7 @@ namespace Server.Spells.Necromancy
 					BaseCreature cbc = Caster as BaseCreature;
 					bool isMonster = ( cbc != null && !cbc.Controlled && !cbc.Summoned );
 
-					foreach( Mobile m in Caster.GetMobilesInRange( Core.ML ? 4 : 5 ) )
+					foreach( Mobile m in Caster.GetMobilesInRange( 5 ) )
 					{
 						if( Caster != m && Caster.InLOS( m ) && ( isMonster || SpellHelper.ValidIndirectTarget( Caster, m ) ) && Caster.CanBeHarmful( m, false ) )
 						{
@@ -86,10 +86,6 @@ namespace Server.Spells.Necromancy
 						damage /= 1000;
 
 						int sdiBonus = AosAttributes.GetValue( Caster, AosAttribute.SpellDamage );
-
-						// PvP spell damage increase cap of 15% from an item’s magic property in Publish 33(SE)
-						if( Core.SE && m.Player && Caster.Player && sdiBonus > 15 )
-							sdiBonus = 15;
 
 						damage *= ( 100 + sdiBonus );
 						damage /= 100;

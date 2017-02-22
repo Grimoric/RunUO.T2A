@@ -65,9 +65,6 @@ namespace Server.SkillHandlers
 
 			m_Table.Remove( tracker );	//Reset as of Pub 40, counting it as bug for Core.SE.
 
-			if( Core.ML )
-				return Math.Min( bonus, 10 + tracker.Skills.Tracking.Value/10 );
-
 			return bonus;
 		}
 
@@ -180,7 +177,7 @@ namespace Server.SkillHandlers
 			foreach ( Mobile m in from.GetMobilesInRange( range ) )
 			{
 				// Ghosts can no longer be tracked 
-				if ( m != from && (!Core.AOS || m.Alive) && (!m.Hidden || m.AccessLevel == AccessLevel.Player || from.AccessLevel > m.AccessLevel) && check( m ) && CheckDifficulty( from, m ) )
+				if ( m != from && (!m.Hidden || m.AccessLevel == AccessLevel.Player || from.AccessLevel > m.AccessLevel) && check( m ) && CheckDifficulty( from, m ) )
 					list.Add( m );
 			}
 
@@ -205,41 +202,7 @@ namespace Server.SkillHandlers
 		// Tracking players uses tracking and detect hidden vs. hiding and stealth 
 		private static bool CheckDifficulty( Mobile from, Mobile m )
 		{
-			if ( !Core.AOS || !m.Player )
-				return true;
-
-
-
-			int tracking = from.Skills[SkillName.Tracking].Fixed;	
-			int detectHidden = from.Skills[SkillName.DetectHidden].Fixed;
-
-			if( Core.ML && m.Race == Race.Elf )
-				tracking /= 2; //The 'Guide' says that it requires twice as Much tracking SKILL to track an elf.  Not the total difficulty to track.
-
-			int hiding = m.Skills[SkillName.Hiding].Fixed;
-			int stealth = m.Skills[SkillName.Stealth].Fixed;
-			int divisor = hiding + stealth;
-
-			// Necromancy forms affect tracking difficulty 
-			if ( TransformationSpellHelper.UnderTransformation( m, typeof( HorrificBeastSpell ) ) )
-				divisor -= 200;
-			else if ( TransformationSpellHelper.UnderTransformation( m, typeof( VampiricEmbraceSpell ) ) && divisor < 500 )
-				divisor = 500;
-			else if ( TransformationSpellHelper.UnderTransformation( m, typeof( WraithFormSpell ) ) && divisor <= 2000 )
-				divisor += 200;
-
-			int chance;
-			if ( divisor > 0 )
-			{
-				if ( Core.SE )
-					chance = 50 * (tracking * 2 + detectHidden) / divisor;
-				else
-					chance = 50 * (tracking + detectHidden + 10 * Utility.RandomMinMax( 1, 20 )) / divisor;
-			}
-			else
-				chance = 100;
-
-			return chance > Utility.Random( 100 );
+			return true;
 		}
 
 		private static bool IsAnimal( Mobile m )
@@ -314,9 +277,6 @@ namespace Server.SkillHandlers
 				Mobile m = m_List[index];
 
 				m_From.QuestArrow = new TrackArrow( m_From, m, m_Range * 2 );
-
-				if ( Core.SE )
-					Tracking.AddInfo( m_From, m );
 			}
 		}
 	}

@@ -622,7 +622,7 @@ namespace Server.Mobiles
 		public virtual bool HasBreath{ get{ return false; } }
 
 		// Base damage given is: CurrentHitPoints * BreathDamageScalar
-		public virtual double BreathDamageScalar{ get{ return (Core.AOS ? 0.16 : 0.05); } }
+		public virtual double BreathDamageScalar{ get{ return 0.05; } }
 
 		// Min/max seconds until next breath
 		public virtual double BreathMinDelay{ get{ return 30.0; } }
@@ -1055,34 +1055,14 @@ namespace Server.Mobiles
 			int lore = (int)((useBaseSkill ? m.Skills[SkillName.AnimalLore].Base : m.Skills[SkillName.AnimalLore].Value )* 10);
 			int bonus = 0, chance = 700;
 
-			if( Core.ML )
-			{
-				int SkillBonus = taming - (int)(dMinTameSkill * 10);
-				int LoreBonus = lore - (int)(dMinTameSkill * 10);
+		    int difficulty = (int)(dMinTameSkill * 10);
+			int weighted = ((taming * 4) + lore) / 5;
+			bonus = weighted - difficulty;
 
-				int SkillMod = 6, LoreMod = 6;
-
-				if( SkillBonus < 0 )
-					SkillMod = 28;
-				if( LoreBonus < 0 )
-					LoreMod = 14;
-
-				SkillBonus *= SkillMod;
-				LoreBonus *= LoreMod;
-
-				bonus = (SkillBonus + LoreBonus ) / 2;
-			}
+			if ( bonus <= 0 )
+				bonus *= 14;
 			else
-			{
-				int difficulty = (int)(dMinTameSkill * 10);
-				int weighted = ((taming * 4) + lore) / 5;
-				bonus = weighted - difficulty;
-
-				if ( bonus <= 0 )
-					bonus *= 14;
-				else
-					bonus *= 6;
-			}
+				bonus *= 6;
 
 			chance += bonus;
 
@@ -1141,9 +1121,6 @@ namespace Server.Mobiles
 		{
 			int oldHits = this.Hits;
 
-			if ( Core.AOS && !this.Summoned && this.Controlled && 0.2 > Utility.RandomDouble() )
-				amount = (int)(amount * BonusPetDamageScalar);
-
 			if ( Spells.Necromancy.EvilOmenSpell.TryEndEffect( this ) )
 				amount = (int)(amount * 1.25);
 
@@ -1168,7 +1145,7 @@ namespace Server.Mobiles
 		{
 			get
 			{
-				return !Core.AOS && m_bSummoned;
+				return m_bSummoned;
 			}
 		}
 
@@ -1389,7 +1366,7 @@ namespace Server.Mobiles
 		{
 			get
 			{
-				return Core.AOS || this.Body.IsMonster;
+				return this.Body.IsMonster;
 			}
 		}
 
@@ -1423,7 +1400,7 @@ namespace Server.Mobiles
 
 		*/
 
-		public virtual bool CanBeDistracted { get { return !Core.ML ; } }
+		public virtual bool CanBeDistracted { get { return true; } }
 
 		public virtual void CheckDistracted( Mobile from )
 		{
@@ -1442,14 +1419,9 @@ namespace Server.Mobiles
 				Unpacify();
 
 			int disruptThreshold;
-			//NPCs can use bandages too!
-			if( !Core.AOS )
-				disruptThreshold = 0;
-			else if( from != null && from.Player )
-				disruptThreshold = 18;
-			else
-				disruptThreshold = 25;
 
+			disruptThreshold = 0;
+            
 			if( amount > disruptThreshold )
 			{
 				BandageContext c = BandageContext.GetContext( this );
@@ -1547,20 +1519,11 @@ namespace Server.Mobiles
 			}
 			else
 			{
-				if ( Core.ML && from.Race == Race.Human )
-					hides = (int)Math.Ceiling( hides * 1.1 ); // 10% bonus only applies to hides, ore & logs
-
 				if ( corpse.Map == Map.Felucca )
 				{
 					feathers *= 2;
 					wool *= 2;
 					hides *= 2;
-
-					if (Core.ML)
-					{
-						meat *= 2;
-						scales *= 2;
-					}
 				}
 
 				new Blood( 0x122D ).MoveToWorld( corpse.Location, corpse.Map );
@@ -1591,46 +1554,16 @@ namespace Server.Mobiles
 
 				if ( hides != 0 )
 				{
-					Item holding = from.Weapon as Item;
+				    if ( HideType == HideType.Regular )
+						corpse.DropItem( new Hides( hides ) );
+					else if ( HideType == HideType.Spined )
+						corpse.DropItem( new SpinedHides( hides ) );
+					else if ( HideType == HideType.Horned )
+						corpse.DropItem( new HornedHides( hides ) );
+					else if ( HideType == HideType.Barbed )
+						corpse.DropItem( new BarbedHides( hides ) );
 
-					if ( Core.AOS && ( holding is SkinningKnife /* TODO: || holding is ButcherWarCleaver || with is ButcherWarCleaver */ ) )
-					{
-						Item leather = null;
-
-						switch ( HideType )
-						{
-							case HideType.Regular: leather = new Leather( hides ); break;
-							case HideType.Spined: leather = new SpinedLeather( hides ); break;
-							case HideType.Horned: leather = new HornedLeather( hides ); break;
-							case HideType.Barbed: leather = new BarbedLeather( hides ); break;
-						}
-
-						if ( leather != null )
-						{
-							if ( !from.PlaceInBackpack( leather ) )
-							{
-								corpse.DropItem( leather );
-								from.SendLocalizedMessage( 500471 ); // You skin it, and the hides are now in the corpse.
-							}
-							else
-							{
-								from.SendLocalizedMessage( 1073555 ); // You skin it and place the cut-up hides in your backpack.
-							}
-						}
-					}
-					else
-					{
-						if ( HideType == HideType.Regular )
-							corpse.DropItem( new Hides( hides ) );
-						else if ( HideType == HideType.Spined )
-							corpse.DropItem( new SpinedHides( hides ) );
-						else if ( HideType == HideType.Horned )
-							corpse.DropItem( new HornedHides( hides ) );
-						else if ( HideType == HideType.Barbed )
-							corpse.DropItem( new BarbedHides( hides ) );
-
-						from.SendLocalizedMessage( 500471 ); // You skin it, and the hides are now in the corpse.
-					}
+					from.SendLocalizedMessage( 500471 ); // You skin it, and the hides are now in the corpse.
 				}
 
 				if ( scales != 0 )
@@ -1721,7 +1654,7 @@ namespace Server.Mobiles
 			if ( speechType != null )
 				speechType.OnConstruct( this );
 
-			if ( IsInvulnerable && !Core.AOS )
+			if ( IsInvulnerable )
 				NameHue = 0x35;
 
 			GenerateLoot( true );
@@ -2087,9 +2020,6 @@ namespace Server.Mobiles
 				Hue = Paragon.Hue; //Paragon hue fixed, should now be 0x501.
 			}
 
-			if ( Core.AOS && NameHue == 0x35 )
-				NameHue = -1;
-
 			CheckStatTimers();
 
 			ChangeAIType(m_CurrentAI);
@@ -2258,26 +2188,15 @@ namespace Server.Mobiles
 						if ( stamGain > 0 )
 							Stam += stamGain;
 
-						if ( Core.SE )
+						for ( int i = 0; i < amount; ++i )
 						{
-							if ( m_Loyalty < MaxLoyalty )
+							if ( m_Loyalty < MaxLoyalty && 0.5 >= Utility.RandomDouble() )
 							{
-								m_Loyalty = MaxLoyalty;
-							}
-						}
-						else
-						{
-							for ( int i = 0; i < amount; ++i )
-							{
-								if ( m_Loyalty < MaxLoyalty && 0.5 >= Utility.RandomDouble() )
-								{
-									m_Loyalty += 10;
-								}
+								m_Loyalty += 10;
 							}
 						}
 
-						/* if ( happier )*/	// looks like in OSI pets say they are happier even if they are at maximum loyalty
-							SayTo( from, 502060 ); // Your pet looks happier.
+						SayTo( from, 502060 ); // Your pet looks happier.
 
 						if ( Body.IsAnimal )
 							Animate( 3, 5, 1, true, false, 0 );
@@ -2290,7 +2209,7 @@ namespace Server.Mobiles
 
 							if ( master != null && master == from )	//So friends can't start the bonding process
 							{
-								if ( m_dMinTameSkill <= 29.1 || master.Skills[SkillName.AnimalTaming].Base >= m_dMinTameSkill || OverrideBondingReqs() || (Core.ML && master.Skills[SkillName.AnimalTaming].Value >= m_dMinTameSkill) )
+								if ( m_dMinTameSkill <= 29.1 || master.Skills[SkillName.AnimalTaming].Base >= m_dMinTameSkill || OverrideBondingReqs() )
 								{
 									if ( BondingBegin == DateTime.MinValue )
 									{
@@ -2302,10 +2221,6 @@ namespace Server.Mobiles
 										BondingBegin = DateTime.MinValue;
 										from.SendLocalizedMessage( 1049666 ); // Your pet has bonded with you!
 									}
-								}
-								else if( Core.ML )
-								{
-									from.SendLocalizedMessage( 1075268 ); // Your pet cannot form a bond with you until your animal taming ability has risen.
 								}
 							}
 						}
@@ -2911,7 +2826,7 @@ namespace Server.Mobiles
 		#endregion
 
 		public virtual bool AutoDispel{ get{ return false; } }
-		public virtual double AutoDispelChance{ get { return ((Core.SE) ? .10 : 1.0); } }
+		public virtual double AutoDispelChance{ get { return 1.0; } }
 
 		public virtual bool IsScaryToPets{ get{ return false; } }
 		public virtual bool IsScaredOfScaryThings{ get{ return true; } }
@@ -3115,7 +3030,7 @@ namespace Server.Mobiles
 			if ( skill == SkillName.RemoveTrap && (from.Skills[SkillName.Lockpicking].Base < 50.0 || from.Skills[SkillName.DetectHidden].Base < 50.0) )
 				return false;
 
-			if ( !Core.AOS && (skill == SkillName.Focus || skill == SkillName.Chivalry || skill == SkillName.Necromancy) )
+			if ( (skill == SkillName.Focus || skill == SkillName.Chivalry || skill == SkillName.Necromancy) )
 				return false;
 
 			return true;
@@ -3309,16 +3224,7 @@ namespace Server.Mobiles
 
 			if ( m_AI != null )
 			{
-				if( !Core.ML || ( ct != OrderType.Follow && ct != OrderType.Stop && ct != OrderType.Stay ) )
-				{
-					m_AI.OnAggressiveAction( aggressor );
-				}
-				else
-				{
-					DebugSay( "I'm being attacked but my master told me not to fight." );
-					Warmode = false;
-					return;
-				}
+				m_AI.OnAggressiveAction( aggressor );
 			}
 
 			StopFlee();
@@ -3333,7 +3239,7 @@ namespace Server.Mobiles
 					pl.FinishShield();
 			}
 
-			if ( aggressor.ChangingCombatant && (m_bControlled || m_bSummoned) && (ct == OrderType.Come || ( !Core.ML && ct == OrderType.Stay ) || ct == OrderType.Stop || ct == OrderType.None || ct == OrderType.Follow) )
+			if ( aggressor.ChangingCombatant && (m_bControlled || m_bSummoned) && (ct == OrderType.Come || ( ct == OrderType.Stay ) || ct == OrderType.Stop || ct == OrderType.None || ct == OrderType.Follow) )
 			{
 				ControlTarget = aggressor;
 				ControlOrder = OrderType.Attack;
@@ -3767,7 +3673,7 @@ namespace Server.Mobiles
 
 		public void SetHits( int val )
 		{
-			if ( val < 1000 && !Core.AOS )
+			if ( val < 1000 )
 				val = (val * 100) / 60;
 
 			m_HitsMax = val;
@@ -3776,7 +3682,7 @@ namespace Server.Mobiles
 
 		public void SetHits( int min, int max )
 		{
-			if ( min < 1000 && !Core.AOS )
+			if ( min < 1000 )
 			{
 				min = (min * 100) / 60;
 				max = (max * 100) / 60;
@@ -3888,9 +3794,6 @@ namespace Server.Mobiles
 
 			if ( Skills[name].Base > Skills[name].Cap )
 			{
-				if ( Core.SE )
-					this.SkillsCap += ( Skills[name].BaseFixedPoint - Skills[name].CapFixedPoint );
-
 				Skills[name].Cap = Skills[name].Base;
 			}
 		}
@@ -3904,9 +3807,6 @@ namespace Server.Mobiles
 
 			if ( Skills[name].Base > Skills[name].Cap )
 			{
-				if ( Core.SE )
-					this.SkillsCap += ( Skills[name].BaseFixedPoint - Skills[name].CapFixedPoint );
-
 				Skills[name].Cap = Skills[name].Base;
 			}
 		}
@@ -3962,10 +3862,7 @@ namespace Server.Mobiles
 
 		public void PackArcaneScroll()
 		{
-			if ( !Core.ML )
-				return;
-
-			PackItem( Loot.Construct( Loot.ArcanistScrollTypes ) );
+			return;
 		}
 		#endregion
 
@@ -3976,18 +3873,12 @@ namespace Server.Mobiles
 
 		public void PackArcanceScroll( double chance )
 		{
-			if ( !Core.ML || chance <= Utility.RandomDouble() )
-				return;
-
-			PackItem( Loot.Construct( Loot.ArcanistScrollTypes ) );
+			return;
 		}
 
 		public void PackNecroScroll( int index )
 		{
-			if ( !Core.AOS || 0.05 <= Utility.RandomDouble() )
-				return;
-
-			PackItem( Loot.Construct( Loot.NecromancyScrollTypes, index ) );
+			return;
 		}
 
 		public void PackScroll( int minCircle, int maxCircle )
@@ -4108,35 +3999,15 @@ namespace Server.Mobiles
 			Cap( ref minLevel, 0, 5 );
 			Cap( ref maxLevel, 0, 5 );
 
-			if ( Core.AOS )
-			{
-				Item item = Loot.RandomArmorOrShieldOrJewelry();
+			BaseArmor armor = Loot.RandomArmorOrShield();
 
-				if ( item == null )
-					return false;
+			if ( armor == null )
+				return false;
 
-				int attributeCount, min, max;
-				GetRandomAOSStats( minLevel, maxLevel, out attributeCount, out min, out max );
+			armor.ProtectionLevel = (ArmorProtectionLevel)RandomMinMaxScaled( minLevel, maxLevel );
+			armor.Durability = (ArmorDurabilityLevel)RandomMinMaxScaled( minLevel, maxLevel );
 
-				if ( item is BaseArmor )
-					BaseRunicTool.ApplyAttributesTo( (BaseArmor)item, attributeCount, min, max );
-				else if ( item is BaseJewel )
-					BaseRunicTool.ApplyAttributesTo( (BaseJewel)item, attributeCount, min, max );
-
-				PackItem( item );
-			}
-			else
-			{
-				BaseArmor armor = Loot.RandomArmorOrShield();
-
-				if ( armor == null )
-					return false;
-
-				armor.ProtectionLevel = (ArmorProtectionLevel)RandomMinMaxScaled( minLevel, maxLevel );
-				armor.Durability = (ArmorDurabilityLevel)RandomMinMaxScaled( minLevel, maxLevel );
-
-				PackItem( armor );
-			}
+			PackItem( armor );
 
 			return true;
 		}
@@ -4240,7 +4111,7 @@ namespace Server.Mobiles
 					PackItem( instrument );
 				}
 			}
-			else if ( !Core.AOS )
+			else
 			{
 				BaseWeapon weapon = Loot.RandomWeapon();
 
@@ -4267,39 +4138,19 @@ namespace Server.Mobiles
 			Cap( ref minLevel, 0, 5 );
 			Cap( ref maxLevel, 0, 5 );
 
-			if ( Core.AOS )
-			{
-				Item item = Loot.RandomWeaponOrJewelry();
+			BaseWeapon weapon = Loot.RandomWeapon();
 
-				if ( item == null )
-					return false;
+			if ( weapon == null )
+				return false;
 
-				int attributeCount, min, max;
-				GetRandomAOSStats( minLevel, maxLevel, out attributeCount, out min, out max );
+			if ( 0.05 > Utility.RandomDouble() )
+				weapon.Slayer = SlayerName.Silver;
 
-				if ( item is BaseWeapon )
-					BaseRunicTool.ApplyAttributesTo( (BaseWeapon)item, attributeCount, min, max );
-				else if ( item is BaseJewel )
-					BaseRunicTool.ApplyAttributesTo( (BaseJewel)item, attributeCount, min, max );
+			weapon.DamageLevel = (WeaponDamageLevel)RandomMinMaxScaled( minLevel, maxLevel );
+			weapon.AccuracyLevel = (WeaponAccuracyLevel)RandomMinMaxScaled( minLevel, maxLevel );
+			weapon.DurabilityLevel = (WeaponDurabilityLevel)RandomMinMaxScaled( minLevel, maxLevel );
 
-				PackItem( item );
-			}
-			else
-			{
-				BaseWeapon weapon = Loot.RandomWeapon();
-
-				if ( weapon == null )
-					return false;
-
-				if ( 0.05 > Utility.RandomDouble() )
-					weapon.Slayer = SlayerName.Silver;
-
-				weapon.DamageLevel = (WeaponDamageLevel)RandomMinMaxScaled( minLevel, maxLevel );
-				weapon.AccuracyLevel = (WeaponAccuracyLevel)RandomMinMaxScaled( minLevel, maxLevel );
-				weapon.DurabilityLevel = (WeaponDurabilityLevel)RandomMinMaxScaled( minLevel, maxLevel );
-
-				PackItem( weapon );
-			}
+			PackItem( weapon );
 
 			return true;
 		}
@@ -4366,10 +4217,7 @@ namespace Server.Mobiles
 
 		public void PackNecroReg()
 		{
-			if ( !Core.AOS )
-				return;
-
-			PackItem( Loot.RandomNecromancyReagent() );
+			return;
 		}
 
 		public void PackReg( int min, int max )
@@ -4481,15 +4329,6 @@ namespace Server.Mobiles
 
 			if ( MLQuestSystem.Enabled && CanGiveMLQuest )
 				list.Add( 1072269 ); // Quest Giver
-
-			if ( Core.ML )
-			{
-				if ( DisplayWeight )
-					list.Add( TotalWeight == 1 ? 1072788 : 1072789, TotalWeight.ToString() ); // Weight: ~1_WEIGHT~ stones
-
-				if ( m_ControlOrder == OrderType.Guard )
-					list.Add( 1080078 ); // guarding
-			}
 
 			if ( Summoned && !IsAnimatedDead && !IsNecroFamiliar && !( this is Clone ) )
 				list.Add( 1049646 ); // (summoned)
@@ -5315,7 +5154,7 @@ namespace Server.Mobiles
 
 			foreach ( Mobile m in GetMobilesInRange( AuraRange ) )
 			{
-				if ( m == this || !CanBeHarmful( m, false ) || ( Core.AOS && !InLOS( m ) ) )
+				if ( m == this || !CanBeHarmful( m, false ) )
 					continue;
 
 				if ( m is BaseCreature )
@@ -5489,10 +5328,7 @@ namespace Server.Mobiles
 		{
 			BardProvoked = true;
 
-			if ( !Core.ML )
-			{
-				this.PublicOverheadMessage( MessageType.Emote, EmoteHue, false, "*looks furious*" );
-			}
+			this.PublicOverheadMessage( MessageType.Emote, EmoteHue, false, "*looks furious*" );
 
 			if ( bSuccess )
 			{

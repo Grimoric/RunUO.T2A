@@ -54,9 +54,6 @@ namespace Server.Mobiles
 				case 5: PackItem( new BeverageBottle( BeverageType.Wine ) ); break;
 				case 6: PackItem( new Jug( BeverageType.Cider ) ); break;
 			}
-
-			if ( Core.AOS )
-				PackItem( Loot.RandomNecromancyReagent() );
 		}
 
 		public override void OnDeath( Container c )

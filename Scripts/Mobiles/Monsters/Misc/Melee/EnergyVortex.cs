@@ -25,22 +25,13 @@ namespace Server.Mobiles
 		{
 			Name = "an energy vortex";
 
-			if( Core.SE && 0.002 > Utility.RandomDouble() ) // Per OSI FoF, it's a 1/500 chance.
-			{
-				// Llama vortex!
-				Body = 0xDC;
-				Hue = 0x76;
-			}
-			else
-			{
-				Body = 164;
-			}
+			Body = 164;
 
 			SetStr( 200 );
 			SetDex( 200 );
 			SetInt( 100 );
 
-			SetHits( ( Core.SE ) ? 140 : 70 );
+			SetHits( 70 );
 			SetStam( 250 );
 			SetMana( 0 );
 
@@ -63,7 +54,7 @@ namespace Server.Mobiles
 			Karma = 0;
 
 			VirtualArmor = 40;
-			ControlSlots = ( Core.SE ) ? 2 : 1;
+			ControlSlots = 1;
 		}
 
 		public override bool BleedImmune{ get{ return true; } }
@@ -78,34 +69,6 @@ namespace Server.Mobiles
 		{
 			return 0x28;
 		}
-
-		public override void OnThink()
-		{
-			if ( Core.SE && Summoned )
-			{
-				ArrayList spirtsOrVortexes = new ArrayList();
-
-				foreach ( Mobile m in GetMobilesInRange( 5 ) )
-				{
-					if ( m is EnergyVortex || m is BladeSpirits )
-					{
-						if ( ( (BaseCreature) m ).Summoned )
-							spirtsOrVortexes.Add( m );
-					}
-				}
-
-				while ( spirtsOrVortexes.Count > 6 )
-				{
-					int index = Utility.Random( spirtsOrVortexes.Count );
-					//TODO: Confirm if it's the dispel with all the pretty effects or just a deletion of it.
-					Dispel( ( (Mobile) spirtsOrVortexes[index] ) );
-					spirtsOrVortexes.RemoveAt( index );
-				}
-			}
-
-			base.OnThink();
-		}
-
 
 		public EnergyVortex( Serial serial )
 			: base( serial )

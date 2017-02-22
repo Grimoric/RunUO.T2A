@@ -49,45 +49,26 @@ namespace Server.Spells.Seventh
 
 				Map map = Caster.Map;
 
-				bool playerVsPlayer = false;
-
 				if ( map != null )
 				{
 					IPooledEnumerable eable = map.GetMobilesInRange( new Point3D( p ), 2 );
 
 					foreach ( Mobile m in eable )
 					{
-						if ( Core.AOS && m == Caster )
-							continue;
-
 						if ( SpellHelper.ValidIndirectTarget( Caster, m ) && Caster.CanBeHarmful( m, false ) )
 						{
-							if ( Core.AOS && !Caster.InLOS( m ) )
-								continue;
-
 							targets.Add( m );
-
-							if ( m.Player )
-								playerVsPlayer = true;
 						}
 					}
 
 					eable.Free();
 				}
 
-				double damage;
-
-				if ( Core.AOS )
-					damage = GetNewAosDamage( 51, 1, 5, playerVsPlayer );
-				else
-					damage = Utility.Random( 27, 22 );
+				double damage = Utility.Random( 27, 22 );
 
 				if ( targets.Count > 0 )
 				{
-					if ( Core.AOS && targets.Count > 2 )
-						damage = (damage * 2) / targets.Count;
-					else if ( !Core.AOS )
-						damage /= targets.Count;
+					damage /= targets.Count;
 
 					double toDeal;
 					for ( int i = 0; i < targets.Count; ++i )
@@ -95,7 +76,7 @@ namespace Server.Spells.Seventh
 						toDeal = damage;
 						Mobile m = targets[i];
 
-						if ( !Core.AOS && CheckResisted( m ) )
+						if (  CheckResisted( m ) )
 						{
 							toDeal *= 0.5;
 
@@ -121,7 +102,7 @@ namespace Server.Spells.Seventh
 		{
 			private ChainLightningSpell m_Owner;
 
-			public InternalTarget( ChainLightningSpell owner ) : base( Core.ML ? 10 : 12, true, TargetFlags.None )
+			public InternalTarget( ChainLightningSpell owner ) : base( 12, true, TargetFlags.None )
 			{
 				m_Owner = owner;
 			}

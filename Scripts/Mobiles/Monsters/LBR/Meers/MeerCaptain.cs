@@ -86,7 +86,7 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Meager );
 		}
 
-		public override bool BardImmune{ get{ return !Core.AOS; } }
+		public override bool BardImmune{ get{ return true; } }
 		public override bool CanRummageCorpses{ get{ return true; } }
 
 		public override bool InitialInnocent{ get{ return true; } }

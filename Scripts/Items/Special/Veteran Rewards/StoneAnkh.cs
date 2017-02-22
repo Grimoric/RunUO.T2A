@@ -95,14 +95,6 @@ namespace Server.Items
 			return;
 		}
 
-			public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-			
-			if ( Core.ML && m_IsRewardItem )
-				list.Add( 1076221 ); // 5th Year Veteran Reward
-		}
-
 		public override void OnComponentUsed( AddonComponent c, Mobile from )
 		{
 			if ( from.InRange( Location, 2 ) )

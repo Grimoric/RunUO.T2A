@@ -38,14 +38,6 @@ namespace Server.Items
 		{
 		}
 
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( Core.ML && m_IsRewardItem )
-				list.Add( 1076221 ); // 5th Year Veteran Reward
-		}
-
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );

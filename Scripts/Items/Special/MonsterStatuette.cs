@@ -226,9 +226,6 @@ namespace Server.Items
 		{
 			base.GetProperties( list );
 
-			if ( Core.ML && m_IsRewardItem )
-				list.Add( RewardSystem.GetRewardYearLabel( this, new object[]{ m_Type } ) ); // X Year Veteran Reward
-
 			if ( m_TurnedOn )
 				list.Add( 502695 ); // turned on
 			else

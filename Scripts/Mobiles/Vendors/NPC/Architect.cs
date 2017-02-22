@@ -18,9 +18,7 @@ namespace Server.Mobiles
 
 		public override void InitSBInfo()
 		{
-			if ( !Core.AOS )
-				m_SBInfos.Add( new SBHouseDeed() );
-
+			m_SBInfos.Add( new SBHouseDeed() );
 			m_SBInfos.Add( new SBArchitect() );
 		}
 

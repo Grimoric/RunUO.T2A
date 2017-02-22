@@ -173,14 +173,10 @@ namespace Server.Gumps
 				2974, 2976, 2978
 			};
 
-		private static int[] m_FoundationNumbers = (Core.ML ? new int[]
-			{
-				20, 189, 765, 65, 101, 0x2DF7, 0x2DFB, 0x3672, 0x3676
-			}: 
-			new int[]
+		private static int[] m_FoundationNumbers = new int[]
 			{
 				20, 189, 765, 65, 101
-			});
+			};
 
 		private static int[] m_PostNumbers = new int[]
 			{
@@ -503,8 +499,8 @@ namespace Server.Gumps
 						_HouseSigns.Add( 3140 );
 					}
 					
-					int signsPerPage = Core.ML ? 24 : 18;
-					int totalSigns = Core.ML ? 56 : 54;
+					int signsPerPage = 18;
+					int totalSigns = 54;
 					int pages = (int) Math.Ceiling( (double) totalSigns / signsPerPage );
 
 					for ( int i = 0; i < pages; ++i )
@@ -1232,10 +1228,6 @@ namespace Server.Gumps
 								{
 									from.SendLocalizedMessage( 501389 ); // You cannot redeed a house with a guildstone inside.
 								}
-								else if ( Core.ML && from.AccessLevel < AccessLevel.GameMaster && DateTime.Now <= m_House.BuiltOn.AddHours ( 1 ) )
-								{
-									from.SendLocalizedMessage( 1080178 ); // You must wait one hour between each house demolition.
-								}
 								else 
 								{
 									from.CloseGump( typeof( HouseDemolishGump ) );
@@ -1292,28 +1284,14 @@ namespace Server.Gumps
 					{
 						FoundationType newType;
 
-						if( Core.ML && index >= 5 )
+						switch( index )
 						{
-							switch( index )
-							{
-								case 5: newType = FoundationType.ElvenGrey; break;
-								case 6: newType = FoundationType.ElvenNatural; break;
-								case 7: newType = FoundationType.Crystal; break;
-								case 8: newType = FoundationType.Shadow; break; 
-								default: return;
-							}
-						}
-						else
-						{
-							switch( index )
-							{
-								case 0: newType = FoundationType.DarkWood; break;
-								case 1: newType = FoundationType.LightWood; break;
-								case 2: newType = FoundationType.Dungeon; break;
-								case 3: newType = FoundationType.Brick; break;
-								case 4: newType = FoundationType.Stone; break;
-								default: return;
-							}
+							case 0: newType = FoundationType.DarkWood; break;
+							case 1: newType = FoundationType.LightWood; break;
+							case 2: newType = FoundationType.Dungeon; break;
+							case 3: newType = FoundationType.Brick; break;
+							case 4: newType = FoundationType.Stone; break;
+							default: return;
 						}
 
 						foundation.Type = newType;

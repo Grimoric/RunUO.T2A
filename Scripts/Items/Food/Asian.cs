@@ -157,7 +157,7 @@ namespace Server.Items
 		[Constructable]
 		public SushiPlatter() : base( 0x2840 )
 		{
-            Stackable = Core.ML;
+            Stackable = false;
 			Weight = 3.0;
 			FillFactor = 2;
 		}

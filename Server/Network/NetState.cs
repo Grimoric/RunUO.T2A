@@ -1211,14 +1211,16 @@ namespace Server.Network {
 			}
 		}
 
-		public Expansion Expansion {
+		public Expansion Expansion
+        {
 			get {
 				return ( Expansion ) this.ExpansionInfo.ID;
 			}
 		}
 
-		public bool SupportsExpansion( ExpansionInfo info, bool checkCoreExpansion ) {
-			if ( info == null || ( checkCoreExpansion && ( int ) Core.Expansion < info.ID ) )
+		public bool SupportsExpansion( ExpansionInfo info, bool checkCoreExpansion )
+        {
+			if ( info == null || ( checkCoreExpansion && 1 < info.ID ) )
 				return false;
 
 			if ( info.RequiredClient != null )

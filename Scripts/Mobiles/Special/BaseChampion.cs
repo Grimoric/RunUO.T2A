@@ -161,16 +161,8 @@ namespace Server.Mobiles
 
 			m.SendLocalizedMessage( 1049524 ); // You have received a scroll of power!
 
-			if( !Core.SE || m.Alive )
-				m.AddToBackpack( ps );
-			else
-			{
-				if( m.Corpse != null && !m.Corpse.Deleted )
-					m.Corpse.DropItem( ps );
-				else
-					m.AddToBackpack( ps );
-			}
-
+			m.AddToBackpack( ps );
+            
 			if( m is PlayerMobile )
 			{
 				PlayerMobile pm = (PlayerMobile)m;
@@ -197,16 +189,8 @@ namespace Server.Mobiles
 
 						prot.SendLocalizedMessage( 1049368 ); // You have been rewarded for your dedication to Justice!
 
-						if( !Core.SE || prot.Alive )
-							prot.AddToBackpack( powerScroll );
-						else
-						{
-							if( prot.Corpse != null && !prot.Corpse.Deleted )
-								prot.Corpse.DropItem( powerScroll );
-							else
-								prot.AddToBackpack( powerScroll );
-						}
-					}
+						prot.AddToBackpack( powerScroll );
+				    }
 				}
 			}
 		}

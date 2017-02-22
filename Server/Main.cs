@@ -147,62 +147,6 @@ namespace Server
 			return FindDataFile( String.Format( format, args ) );
 		}
 
-		#region Expansions
-
-		private static Expansion m_Expansion;
-		public static Expansion Expansion
-		{
-			get { return m_Expansion; }
-			set { m_Expansion = value; }
-		}
-
-		public static bool T2A
-		{
-			get { return m_Expansion >= Expansion.T2A; }
-		}
-
-		public static bool UOR
-		{
-			get { return m_Expansion >= Expansion.UOR; }
-		}
-
-		public static bool UOTD
-		{
-			get { return m_Expansion >= Expansion.UOTD; }
-		}
-
-		public static bool LBR
-		{
-			get { return m_Expansion >= Expansion.LBR; }
-		}
-
-		public static bool AOS
-		{
-			get { return m_Expansion >= Expansion.AOS; }
-		}
-
-		public static bool SE
-		{
-			get { return m_Expansion >= Expansion.SE; }
-		}
-
-		public static bool ML
-		{
-			get { return m_Expansion >= Expansion.ML; }
-		}
-
-		public static bool SA
-		{
-			get { return m_Expansion >= Expansion.SA; }
-		}
-
-		public static bool HS
-		{
-			get { return m_Expansion >= Expansion.HS; }
-		}
-
-		#endregion
-
 		public static string ExePath
 		{
 			get
@@ -435,8 +379,8 @@ namespace Server
 			Version ver = m_Assembly.GetName().Version;
 
 			// Added to help future code support on forums, as a 'check' people can ask for to it see if they recompiled core or not
-			Console.WriteLine( "RunUO - [www.runuo.com] Version {0}.{1}, Build {2}.{3}", ver.Major, ver.Minor, ver.Build, ver.Revision );
-			Console.WriteLine( "Core: Running on .NET Framework Version {0}.{1}.{2}", Environment.Version.Major, Environment.Version.Minor, Environment.Version.Build );
+			Console.WriteLine("RunUO.T2A v{0}.{1} Alpha r{3} (based on RunUO 2.3 r1083)", ver.Major, ver.Minor, ver.Build, ver.MinorRevision );
+			Console.WriteLine("Core: Running on .NET Framework Version {0}.{1}.{2}", Environment.Version.Major, Environment.Version.Minor, Environment.Version.Build );
 
 			string s = Arguments;
 

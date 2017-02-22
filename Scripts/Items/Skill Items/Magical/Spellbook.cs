@@ -454,54 +454,6 @@ namespace Server.Items
 			book.m_AosSkillBonuses = new AosSkillBonuses( newItem, m_AosSkillBonuses );
 		}
 
-		public override void OnAdded( object parent )
-		{
-			if ( Core.AOS && parent is Mobile )
-			{
-				Mobile from = (Mobile)parent;
-
-				m_AosSkillBonuses.AddTo( from );
-
-				int strBonus = m_AosAttributes.BonusStr;
-				int dexBonus = m_AosAttributes.BonusDex;
-				int intBonus = m_AosAttributes.BonusInt;
-
-				if ( strBonus != 0 || dexBonus != 0 || intBonus != 0 )
-				{
-					string modName = this.Serial.ToString();
-
-					if ( strBonus != 0 )
-						from.AddStatMod( new StatMod( StatType.Str, modName + "Str", strBonus, TimeSpan.Zero ) );
-
-					if ( dexBonus != 0 )
-						from.AddStatMod( new StatMod( StatType.Dex, modName + "Dex", dexBonus, TimeSpan.Zero ) );
-
-					if ( intBonus != 0 )
-						from.AddStatMod( new StatMod( StatType.Int, modName + "Int", intBonus, TimeSpan.Zero ) );
-				}
-
-				from.CheckStatTimers();
-			}
-		}
-
-		public override void OnRemoved( object parent )
-		{
-			if ( Core.AOS && parent is Mobile )
-			{
-				Mobile from = (Mobile)parent;
-
-				m_AosSkillBonuses.Remove();
-
-				string modName = this.Serial.ToString();
-
-				from.RemoveStatMod( modName + "Str" );
-				from.RemoveStatMod( modName + "Dex" );
-				from.RemoveStatMod( modName + "Int" );
-
-				from.CheckStatTimers();
-			}
-		}
-
 		public bool HasSpell( int spellID )
 		{
 			spellID -= BookOffset;
@@ -545,20 +497,10 @@ namespace Server.Items
 			else
 				to.Send( new DisplaySpellbook( this ) );
 
-			if ( Core.AOS ) {
-				if ( ns.NewSpellbook ) {
-					to.Send( new NewSpellbookContent( this, ItemID, BookOffset + 1, m_Content ) );
-				} else {
-					to.Send( new SpellbookContent( m_Count, BookOffset + 1, m_Content, this ) );
-				}
-			}
-			else {
-				if ( ns.ContainerGridLines ) {
-					to.Send( new SpellbookContent6017( m_Count, BookOffset + 1, m_Content, this ) );
-				} else {
-					to.Send( new SpellbookContent( m_Count, BookOffset + 1, m_Content, this ) );
-				}
-			}
+			if ( ns.ContainerGridLines )
+				to.Send( new SpellbookContent6017( m_Count, BookOffset + 1, m_Content, this ) );
+            else
+                to.Send( new SpellbookContent( m_Count, BookOffset + 1, m_Content, this ) );
 		}
 
 		private Mobile m_Crafter;
@@ -570,7 +512,7 @@ namespace Server.Items
 			set{ m_Crafter = value; InvalidateProperties(); }
 		}
 
-		public override bool DisplayLootType{ get{ return Core.AOS; } }
+		public override bool DisplayLootType{ get{ return false; } }
 
 		public override void GetProperties( ObjectPropertyList list )
 		{
@@ -671,9 +613,6 @@ namespace Server.Items
 
 			if ( (prop = m_AosAttributes.WeaponSpeed) != 0 )
 				list.Add( 1060486, prop.ToString() ); // swing speed increase ~1_val~%
-
-			if ( Core.ML && (prop = m_AosAttributes.IncreasedKarmaLoss) != 0 )
-				list.Add( 1075210, prop.ToString() ); // Increased Karma Loss ~1val~%
 
 			list.Add( 1042886, m_Count.ToString() ); // ~1_NUMBERS_OF_SPELLS~ Spells
 		}
@@ -791,9 +730,6 @@ namespace Server.Items
 
 			if ( m_AosSkillBonuses == null )
 				m_AosSkillBonuses = new AosSkillBonuses( this );
-
-			if ( Core.AOS && Parent is Mobile )
-				m_AosSkillBonuses.AddTo( (Mobile) Parent );
 
 			int strBonus = m_AosAttributes.BonusStr;
 			int dexBonus = m_AosAttributes.BonusDex;

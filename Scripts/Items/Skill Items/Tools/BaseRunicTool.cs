@@ -181,7 +181,7 @@ namespace Server.Items
 		private static void ApplySkillBonus( AosSkillBonuses attrs, int min, int max, int index, int low, int high )
 		{
 			SkillName[] possibleSkills = ( attrs.Owner is Spellbook ? m_PossibleSpellbookSkills : m_PossibleBonusSkills );
-			int count = ( Core.SE ? possibleSkills.Length : possibleSkills.Length - 2 );
+			int count = ( possibleSkills.Length - 2 );
 
 			SkillName sk, check;
 			double bonus;
@@ -497,13 +497,7 @@ namespace Server.Items
 						/* Begin Sheilds */
 					case  0: ApplyAttribute( primary,	min, max, AosAttribute.SpellChanneling,			1, 1 ); break;
 					case  1: ApplyAttribute( primary,	min, max, AosAttribute.DefendChance,			1, 15 ); break;
-					case  2:
-						if (Core.ML) {
-							ApplyAttribute( primary,    min, max, AosAttribute.ReflectPhysical,                 1, 15 );
-							} else {
-							ApplyAttribute( primary,    min, max, AosAttribute.AttackChance,                    1, 15 );
-							}
-						break;
+					case  2: ApplyAttribute( primary,    min, max, AosAttribute.AttackChance,           1, 15 ); break;
 					case  3: ApplyAttribute( primary,	min, max, AosAttribute.CastSpeed,				1, 1 ); break;
 						/* Begin Armor */
 					case  4: ApplyAttribute( secondary,	min, max, AosArmorAttribute.LowerStatReq,		10, 100, 10 ); break;

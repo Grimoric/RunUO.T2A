@@ -261,7 +261,7 @@ namespace Server.Items
 				from.SendLocalizedMessage( 1054006 ); // The bracelet emits a red glow. The bracelet's twin is not available for transport.
 				return false;
 			}
-			else if ( !Core.AOS && from.Map != boundRoot.Map )
+			else if (  from.Map != boundRoot.Map )
 			{
 				from.SendLocalizedMessage( 1054014 ); // The bracelet glows black. The bracelet's target is on another facet.
 				return false;

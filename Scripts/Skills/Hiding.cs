@@ -29,11 +29,6 @@ namespace Server.SkillHandlers
 				return TimeSpan.FromSeconds( 1.0 );
 			}
 
-			if ( Core.ML && m.Target != null )
-			{
-				Targeting.Target.Cancel( m );
-			}
-
 			double bonus = 0.0;
 
 			BaseHouse house = BaseHouse.FindHouseAt( m );
@@ -42,7 +37,7 @@ namespace Server.SkillHandlers
 			{
 				bonus = 100.0;
 			}
-			else if ( !Core.AOS )
+			else
 			{
 				if ( house == null )
 					house = BaseHouse.FindHouseAt( new Point3D( m.X - 1, m.Y, 127 ), m.Map, 16 );

@@ -52,13 +52,6 @@ namespace Server.Items
 				return;
 			}
 
-			if ( Core.AOS && (from.Paralyzed || from.Frozen || (from.Spell != null && from.Spell.IsCasting)) )
-			{
-				// to prevent exploiting for pvp
-				from.SendLocalizedMessage( 1075857 ); // You cannot use that while paralyzed.
-				return;
-			}
-
 			if ( m_Timer == null )
 			{
 				m_Timer = Timer.DelayCall( TimeSpan.FromSeconds( 1 ), TimeSpan.FromSeconds( 1 ), new TimerCallback( OnFirebombTimerTick ) );

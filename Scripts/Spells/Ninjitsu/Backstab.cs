@@ -15,7 +15,7 @@ namespace Server.Spells.Ninjitsu
 		}
 
 		public override int BaseMana{ get{ return 30; } }
-		public override double RequiredSkill{ get{ return Core.ML ? 40.0 : 20.0; } }
+		public override double RequiredSkill{ get{ return 20.0; } }
 
 		public override TextDefinition AbilityMessage{ get{ return new TextDefinition( 1063089 ); } } // You prepare to Backstab your opponent.
 

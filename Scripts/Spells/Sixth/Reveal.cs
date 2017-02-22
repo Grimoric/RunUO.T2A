@@ -77,31 +77,14 @@ namespace Server.Spells.Sixth
 		// Reveal uses magery and detect hidden vs. hide and stealth 
 		private static bool CheckDifficulty( Mobile from, Mobile m )
 		{
-			// Reveal always reveals vs. invisibility spell 
-			if ( !Core.AOS || InvisibilitySpell.HasTimer( m ) )
-				return true;
-
-			int magery = from.Skills[SkillName.Magery].Fixed;
-			int detectHidden = from.Skills[SkillName.DetectHidden].Fixed;
-
-			int hiding = m.Skills[SkillName.Hiding].Fixed;
-			int stealth = m.Skills[SkillName.Stealth].Fixed;
-			int divisor = hiding + stealth;
-
-			int chance;
-			if ( divisor > 0 )
-				chance = 50 * (magery + detectHidden) / divisor;
-			else
-				chance = 100;
-
-			return chance > Utility.Random( 100 );
+			return true;
 		}
 
 		public class InternalTarget : Target
 		{
 			private RevealSpell m_Owner;
 
-			public InternalTarget( RevealSpell owner ) : base( Core.ML ? 10 : 12, true, TargetFlags.None )
+			public InternalTarget( RevealSpell owner ) : base( 12, true, TargetFlags.None )
 			{
 				m_Owner = owner;
 			}

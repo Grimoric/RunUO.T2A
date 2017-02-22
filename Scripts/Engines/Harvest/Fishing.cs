@@ -92,15 +92,6 @@ namespace Server.Engines.Harvest
 			fish.Resources = res;
 			fish.Veins = veins;
 
-			if ( Core.ML )
-			{
-				fish.BonusResources = new BonusHarvestResource[]
-				{
-					new BonusHarvestResource( 0, 99.4, null, null ), //set to same chance as mining ml gems
-					new BonusHarvestResource( 80.0, .6, 1072597, typeof( WhitePearl ) )
-				};
-			}
-
 			m_Definition = fish;
 			Definitions.Add( fish );
 			#endregion
@@ -499,20 +490,9 @@ namespace Server.Engines.Harvest
 				Timer.DelayCall( TimeSpan.FromSeconds( 1.5 ), 
 					delegate
 					{
-						if( Core.ML )
-							from.RevealingAction();
-
 						Effects.SendLocationEffect( loc, map, 0x352D, 16, 4 );
 						Effects.PlaySound( loc, map, 0x364 );
 					} );
-		}
-
-		public override void OnHarvestFinished( Mobile from, Item tool, HarvestDefinition def, HarvestVein vein, HarvestBank bank, HarvestResource resource, object harvested )
-		{
-			base.OnHarvestFinished( from, tool, def, vein, bank, resource, harvested );
-
-			if ( Core.ML )
-				from.RevealingAction();
 		}
 
 		public override object GetLock( Mobile from, Item tool, HarvestDefinition def, object toHarvest )

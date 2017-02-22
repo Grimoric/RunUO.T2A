@@ -5,7 +5,7 @@ namespace Server.Items
 	public class Bottle : Item, ICommodity
 	{
 		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return (Core.ML); } }
+		bool ICommodity.IsDeedable { get { return false; } }
 
 		[Constructable]
 		public Bottle() : this( 1 )

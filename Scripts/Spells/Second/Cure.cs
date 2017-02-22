@@ -50,7 +50,7 @@ namespace Server.Spells.Second
 
 				if ( p != null )
 				{
-					int chanceToCure = 10000 + (int)(Caster.Skills[SkillName.Magery].Value * 75) - ((p.Level + 1) * (Core.AOS ? (p.Level < 4 ? 3300 : 3100) : 1750));
+					int chanceToCure = 10000 + (int)(Caster.Skills[SkillName.Magery].Value * 75) - ((p.Level + 1) * 1750);
 					chanceToCure /= 100;
 
 					if ( chanceToCure > Utility.Random( 100 ) )
@@ -80,7 +80,7 @@ namespace Server.Spells.Second
 		{
 			private CureSpell m_Owner;
 
-			public InternalTarget( CureSpell owner ) : base( Core.ML ? 10 : 12, false, TargetFlags.Beneficial )
+			public InternalTarget( CureSpell owner ) : base( 12, false, TargetFlags.Beneficial )
 			{
 				m_Owner = owner;
 			}

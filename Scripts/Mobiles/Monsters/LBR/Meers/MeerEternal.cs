@@ -55,10 +55,10 @@ namespace Server.Mobiles
 		}
 
 		public override bool AutoDispel{ get{ return true; } }
-		public override bool BardImmune{ get{ return !Core.AOS; } }
+		public override bool BardImmune{ get{ return true; } }
 		public override bool CanRummageCorpses{ get{ return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Lethal; } }
-		public override int TreasureMapLevel{ get{ return Core.AOS ? 5 : 4; } }
+		public override int TreasureMapLevel{ get{ return 4; } }
 
 		public override bool InitialInnocent{ get{ return true; } }
 
@@ -168,7 +168,7 @@ namespace Server.Mobiles
 
 				this.PlaySound( 0x209 );
 				this.DoHarmful( combatant );
-				this.Hits += AOS.Damage( combatant, this, Utility.RandomMinMax( 30, 40 ) - (Core.AOS ? 0 : 10), 100, 0, 0, 0, 0 );
+				this.Hits += AOS.Damage( combatant, this, Utility.RandomMinMax( 30, 40 ) - 10, 100, 0, 0, 0, 0 );
 			}
 		}
 

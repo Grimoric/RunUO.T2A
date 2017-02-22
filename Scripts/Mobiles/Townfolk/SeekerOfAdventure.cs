@@ -22,10 +22,7 @@ namespace Server.Mobiles
 
 		public override string[] GetPossibleDestinations()
 		{
-			if ( Core.ML )
-				return m_MLDestinations;
-			else
-				return m_Dungeons;
+		    return m_Dungeons;
 		}
 
 		[Constructable]

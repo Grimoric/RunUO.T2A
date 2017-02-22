@@ -60,7 +60,6 @@ namespace Server.Spells
 
 	public class SpellHelper
 	{
-		private static TimeSpan AosDamageDelay = TimeSpan.FromSeconds( 1.0 );
 		private static TimeSpan OldDamageDelay = TimeSpan.FromSeconds( 0.5 );
 
 		public static TimeSpan GetDamageDelayForSpell( Spell sp )
@@ -68,7 +67,7 @@ namespace Server.Spells
 			if( !sp.DelayedDamage )
 				return TimeSpan.Zero;
 
-			return (Core.AOS ? AosDamageDelay : OldDamageDelay);
+			return OldDamageDelay;
 		}
 
 		public static bool CheckMulti( Point3D p, Map map )
@@ -142,17 +141,6 @@ namespace Server.Spells
 
 				if( info.Defender.Player && (DateTime.Now - info.LastCombatTime) < CombatHeatDelay )
 					return true;
-			}
-
-			if( Core.Expansion == Expansion.AOS )
-			{
-				for( int i = 0; i < m.Aggressors.Count; ++i )
-				{
-					AggressorInfo info = m.Aggressors[i];
-
-					if( info.Attacker.Player && (DateTime.Now - info.LastCombatTime) < CombatHeatDelay )
-						return true;
-				}
 			}
 
 			return false;
@@ -272,9 +260,6 @@ namespace Server.Spells
 
 		public static TimeSpan GetDuration( Mobile caster, Mobile target )
 		{
-			if( Core.AOS )
-				return TimeSpan.FromSeconds( ((6 * caster.Skills.EvalInt.Fixed) / 50) + 1 );
-
 			return TimeSpan.FromSeconds( caster.Skills[SkillName.Magery].Value * 1.2 );
 		}
 
@@ -305,29 +290,6 @@ namespace Server.Spells
 
 		public static int GetOffset( Mobile caster, Mobile target, StatType type, bool curse )
 		{
-			if( Core.AOS )
-			{
-				if( !m_DisableSkillCheck )
-				{
-					caster.CheckSkill( SkillName.EvalInt, 0.0, 120.0 );
-
-					if( curse )
-						target.CheckSkill( SkillName.MagicResist, 0.0, 120.0 );
-				}
-
-				double percent = GetOffsetScalar( caster, target, curse );
-
-				switch( type )
-				{
-					case StatType.Str:
-						return (int)(target.RawStr * percent);
-					case StatType.Dex:
-						return (int)(target.RawDex * percent);
-					case StatType.Int:
-						return (int)(target.RawInt * percent);
-				}
-			}
-
 			return 1 + (int)(caster.Skills[SkillName.Magery].Value * 0.1);
 		}
 
@@ -763,7 +725,7 @@ namespace Server.Spells
 		public static bool IsFactionStronghold( Map map, Point3D loc )
 		{
 			/*// Teleporting is allowed, but only for faction members
-			if ( !Core.AOS && m_TravelCaster != null && (m_TravelType == TravelCheckType.TeleportTo || m_TravelType == TravelCheckType.TeleportFrom) )
+			if (  m_TravelCaster != null && (m_TravelType == TravelCheckType.TeleportTo || m_TravelType == TravelCheckType.TeleportFrom) )
 			{
 				if ( Factions.Faction.Find( m_TravelCaster, true, true ) != null )
 					return false;

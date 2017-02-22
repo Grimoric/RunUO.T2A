@@ -73,9 +73,9 @@ namespace Server.Mobiles
 		public override bool AlwaysMurderer{ get{ return true; } }
 		public override bool AutoDispel{ get{ return true; } }
 		public override double AutoDispelChance{ get{ return 1.0; } }
-		public override bool BardImmune{ get{ return !Core.SE; } }
-		public override bool Unprovokable{ get{ return Core.SE; } }
-		public override bool Uncalmable{ get{ return Core.SE; } }
+		public override bool BardImmune{ get{ return true; } }
+		public override bool Unprovokable{ get{ return false; } }
+		public override bool Uncalmable{ get{ return false; } }
 		public override Poison PoisonImmune{ get{ return Poison.Deadly; } }
 
 		public override bool ShowFameTitle{ get{ return false; } }
