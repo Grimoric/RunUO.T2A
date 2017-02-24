@@ -60,13 +60,6 @@ namespace Server.Misc
 			if ( !from.Alive || from.AccessLevel > AccessLevel.Player )
 				return;
 
-			if ( !from.Player )
-			{
-				// Else it won't work on monsters.
-				Spells.Ninjitsu.DeathStrike.AddStep( from );
-				return;
-			}
-
 			int maxWeight = GetMaxWeight( from ) + OverloadAllowance;
 			int overWeight = Mobile.BodyWeight + @from.TotalWeight - maxWeight;
 
@@ -100,8 +93,6 @@ namespace Server.Misc
 				if ( ++pm.StepsTaken % amt == 0 )
 					--from.Stam;
 			}
-
-			Spells.Ninjitsu.DeathStrike.AddStep( from );
 		}
 
 		public static int GetStamLoss( Mobile from, int overWeight, bool running )

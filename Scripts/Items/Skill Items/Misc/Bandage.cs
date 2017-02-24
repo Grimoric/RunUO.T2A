@@ -425,10 +425,6 @@ namespace Server.Items
 			{
 				healer.SendLocalizedMessage( 500970 ); // Bandages cannot be used on that.
 			}
-			else if ( patient is BaseCreature && ((BaseCreature)patient).IsAnimatedDead )
-			{
-				healer.SendLocalizedMessage( 500951 ); // You cannot heal that.
-			}
 			else if ( !patient.Poisoned && patient.Hits == patient.HitsMax && !BleedAttack.IsBleeding( patient ) && !isDeadPet )
 			{
 				healer.SendLocalizedMessage( 500955 ); // That being is not damaged!

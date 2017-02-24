@@ -962,7 +962,7 @@ namespace Server.Engines.Craft
 		{
 			if ( from.BeginAction( typeof( CraftSystem ) ) )
 			{
-				if( RequiredExpansion == Expansion.None || @from.NetState != null && @from.NetState.SupportsExpansion( RequiredExpansion ) )
+				if( RequiredExpansion == Expansion.None || @from.NetState != null )
 				{
 					bool allRequiredSkills = true;
 					double chance = GetSuccessChance( from, typeRes, craftSystem, false, ref allRequiredSkills );

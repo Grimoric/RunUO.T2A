@@ -6,7 +6,6 @@ using Server.ContextMenus;
 using Server.Network;
 using Server.Regions;
 using Server.Spells;
-using Server.Spells.Ninjitsu;
 
 namespace Server.Items
 {
@@ -149,8 +148,6 @@ namespace Server.Items
 				from.LocalOverheadMessage( MessageType.Regular, 0x3B2, 1042001 ); // That must be in your pack for you to use it.
 				return;
 			}
-
-			AnimalFormContext animalContext = AnimalForm.GetContext( from );
 
 			if ( Pet == null )
 			{

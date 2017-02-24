@@ -288,7 +288,7 @@ namespace Server.Misc
 
 				int actual = Notoriety.CanBeAttacked;
 
-				if( target.Kills >= 5 || body.IsMonster && IsSummoned( target.Owner as BaseCreature ) || target.Owner is BaseCreature && (((BaseCreature)target.Owner).AlwaysMurderer || ((BaseCreature)target.Owner).IsAnimatedDead) )
+				if( target.Kills >= 5 || body.IsMonster && IsSummoned( target.Owner as BaseCreature ) || target.Owner is BaseCreature && ((BaseCreature)target.Owner).AlwaysMurderer )
 					actual = Notoriety.Murderer;
 
 				if( DateTime.Now >= target.TimeOfDeath + Corpse.MonsterLootRightSacrifice )
@@ -308,7 +308,7 @@ namespace Server.Misc
 			}
 			else
 			{
-				if( target.Kills >= 5 || body.IsMonster && IsSummoned( target.Owner as BaseCreature ) || target.Owner is BaseCreature && (((BaseCreature)target.Owner).AlwaysMurderer || ((BaseCreature)target.Owner).IsAnimatedDead) )
+				if( target.Kills >= 5 || body.IsMonster && IsSummoned( target.Owner as BaseCreature ) || target.Owner is BaseCreature && ((BaseCreature)target.Owner).AlwaysMurderer )
 					return Notoriety.Murderer;
 
 				if (target.Criminal && target.Map != null && (target.Map.Rules & MapRules.HarmfulRestrictions) == 0)
@@ -391,7 +391,7 @@ namespace Server.Misc
 					return Notoriety.Enemy;
 			}
 
-			if ( target.Kills >= 5 || target.Body.IsMonster && IsSummoned( target as BaseCreature ) && !( target is BaseFamiliar ) && !( target is ArcaneFey ) && !( target is Golem ) || target is BaseCreature && ( ( (BaseCreature)target ).AlwaysMurderer || ( (BaseCreature)target ).IsAnimatedDead ) )
+			if ( target.Kills >= 5 || target.Body.IsMonster && IsSummoned( target as BaseCreature ) && !( target is Golem ) || target is BaseCreature && ( ( (BaseCreature)target ).AlwaysMurderer ) )
 				return Notoriety.Murderer;
 
 			if( target.Criminal )

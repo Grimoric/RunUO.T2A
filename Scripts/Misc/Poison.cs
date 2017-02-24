@@ -2,7 +2,6 @@ using System;
 using Server.Items;
 using Server.Network;
 using Server.Mobiles;
-using Server.Spells.Ninjitsu;
 
 namespace Server
 {
@@ -73,7 +72,7 @@ namespace Server
 
 			protected override void OnTick()
 			{
-				if ( m_Poison.Level < 3 && OrangePetals.UnderEffect( m_Mobile ) || AnimalForm.UnderTransformation( m_Mobile, typeof( Unicorn ) ) )
+				if ( m_Poison.Level < 3 && OrangePetals.UnderEffect( m_Mobile ) )
 				{
 					if ( m_Mobile.CurePoison( m_Mobile ) )
 					{

@@ -50,8 +50,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Gems, 2 );
 		}
 
-		public override bool DeathAdderCharmable{ get{ return true; } }
-
 		public override int Meat{ get{ return 1; } }
 		public override Poison PoisonImmune{ get{ return Poison.Lethal; } }
 		public override Poison HitPoison{ get{ return Poison.Lethal; } }

@@ -1,8 +1,6 @@
 using System;
 using Server.ContextMenus;
 using Server.Mobiles;
-using Server.Spells.Necromancy;
-using Server.Spells.Ninjitsu;
 using Server.Targeting;
 
 /*
@@ -214,16 +212,6 @@ namespace Server.Items
 				defSkillValue = -19.9;
 			}
 
-			if (Spells.Chivalry.DivineFurySpell.UnderEffect(attacker))
-			{
-				attackValue += 10;
-			}
-
-			if (AnimalForm.UnderTransformation(attacker, typeof(GreyWolf)) || AnimalForm.UnderTransformation(attacker, typeof(BakeKitsune)))
-			{
-				attackValue += 20;
-			}
-
 			if (HitLower.IsUnderAttackEffect(attacker))
 			{
 				attackValue -= 25;
@@ -237,11 +225,6 @@ namespace Server.Items
 			attackValue = (atSkillValue + 20.0) * (100 + attackValue);
 
 			double defenseValue = AosAttributes.GetValue(defender, AosAttribute.DefendChance);
-
-			if (Spells.Chivalry.DivineFurySpell.UnderEffect(defender))
-			{
-				defenseValue -= 20;
-			}
 
 			if (HitLower.IsUnderDefenseEffect(defender))
 			{
@@ -291,14 +274,7 @@ namespace Server.Items
 
 				if (weapon.Poison != null && weapon.PoisonCharges > 0)
 				{
-					if (EvilOmenSpell.TryEndEffect(target))
-					{
-						target.ApplyPoison(from, Poison.GetPoison(weapon.Poison.Level + 1));
-					}
-					else
-					{
-						target.ApplyPoison(from, weapon.Poison);
-					}
+					target.ApplyPoison(from, weapon.Poison);
 
 					weapon.PoisonCharges--;
 

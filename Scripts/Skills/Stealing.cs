@@ -8,7 +8,6 @@ using Server.Factions;
 using Server.Spells.Seventh;
 using Server.Spells.Fifth;
 using Server.Spells;
-using Server.Spells.Ninjitsu;
 
 namespace Server.SkillHandlers
 {
@@ -114,10 +113,6 @@ namespace Server.SkillHandlers
 						else if( TransformationSpellHelper.UnderTransformation( m_Thief ) )
 						{
 							m_Thief.SendLocalizedMessage( 1061622 ); // You cannot steal the sigil while in that form.
-						}
-						else if ( AnimalForm.UnderTransformation( m_Thief ) )
-						{
-							m_Thief.SendLocalizedMessage( 1063222 ); // You cannot steal the sigil while mimicking an animal.
 						}
 						else if ( pl.IsLeaving )
 						{

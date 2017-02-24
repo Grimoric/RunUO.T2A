@@ -43,8 +43,6 @@ namespace Server.Mobiles
 		public override Poison PoisonImmune{ get{ return Poison.Lesser; } }
 		public override Poison HitPoison{ get{ return Poison.Lesser; } }
 
-		public override bool DeathAdderCharmable{ get{ return true; } }
-
 		public override int Meat{ get{ return 1; } }
 		public override FoodType FavoriteFood{ get{ return FoodType.Eggs; } }
 

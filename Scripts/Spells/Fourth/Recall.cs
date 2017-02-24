@@ -3,7 +3,6 @@ using Server.Multis;
 using Server.Mobiles;
 using Server.Network;
 using Server.Targeting;
-using Server.Spells.Necromancy;
 
 namespace Server.Spells.Fourth
 {
@@ -31,14 +30,6 @@ namespace Server.Spells.Fourth
 		{
 			m_Entry = entry;
 			m_Book = book;
-		}
-
-		public override void GetCastSkills( out double min, out double max )
-		{
-			if ( TransformationSpellHelper.UnderTransformation( Caster, typeof( WraithFormSpell ) ) )
-				min = max = 0;
-			else
-				base.GetCastSkills( out min, out max );
 		}
 
 		public override void OnCast()

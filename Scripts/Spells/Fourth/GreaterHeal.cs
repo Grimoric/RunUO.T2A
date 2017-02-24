@@ -44,10 +44,6 @@ namespace Server.Spells.Fourth
 			{
 				Caster.SendLocalizedMessage( 500237 ); // Target can not be seen.
 			}
-			else if ( m is BaseCreature && ((BaseCreature)m).IsAnimatedDead )
-			{
-				Caster.SendLocalizedMessage( 1061654 ); // You cannot heal that which is not alive.
-			}
 			else if ( m.IsDeadBondedPet )
 			{
 				Caster.SendLocalizedMessage( 1060177 ); // You cannot heal a creature that is already dead!

@@ -373,7 +373,7 @@ namespace Server.Factions
 
 		public bool CanDispel( Mobile m )
 		{
-			return m is BaseCreature && ((BaseCreature)m).Summoned && m_Mobile.CanBeHarmful( m, false ) && !((BaseCreature)m).IsAnimatedDead;
+			return m is BaseCreature && ((BaseCreature)m).Summoned && m_Mobile.CanBeHarmful( m, false );
 		}
 
 		public void RunTo( Mobile m )

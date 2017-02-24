@@ -1,5 +1,3 @@
-using Server.Spells.Spellweaving;
-
 namespace Server.Items
 {
     public abstract class BaseMeleeWeapon : BaseWeapon
@@ -15,8 +13,6 @@ namespace Server.Items
 		public override int AbsorbDamage( Mobile attacker, Mobile defender, int damage )
 		{
 			damage = base.AbsorbDamage( attacker, defender, damage );
-
-			AttuneWeaponSpell.TryAbsorb( defender, ref damage );
 
 			int absorb = defender.MeleeDamageAbsorb;
 

@@ -63,8 +63,6 @@ namespace Server.SkillHandlers
 		{
 			private static SpellInfo m_Info = new SpellInfo( "Spirit Speak", "", 269 );
 
-			public override bool BlockedByHorrificBeast{ get{ return false; } }
-
 			public SpiritSpeakSpell( Mobile caster ) : base( caster, null, m_Info )
 			{
 			}

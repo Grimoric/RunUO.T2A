@@ -4,7 +4,6 @@ using Server.Mobiles;
 using Server.Spells.Fifth;
 using Server.Spells.First;
 using Server.Spells.Fourth;
-using Server.Spells.Necromancy;
 using Server.Spells.Second;
 using Server.Targeting;
 
@@ -1031,9 +1030,6 @@ namespace Server.Items
 
 							target.Paralyzed = false;
 
-							EvilOmenSpell.TryEndEffect(target);
-							StrangleSpell.RemoveCurse(target);
-							CorpseSkinSpell.RemoveCurse(target);
 							CurseSpell.RemoveEffect(target);
 
 							BuffInfo.RemoveBuff(target, BuffIcon.Clumsy);

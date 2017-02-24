@@ -49,8 +49,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Average );
 		}
 
-		public override bool DeathAdderCharmable{ get{ return true; } }
-
 		public override bool HasBreath{ get{ return true; } } // fire breath enabled
 		public override int Meat{ get{ return 4; } }
 		public override int Hides{ get{ return 15; } }

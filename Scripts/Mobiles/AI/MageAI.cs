@@ -4,7 +4,6 @@ using Server.Spells;
 using Server.Spells.Fifth;
 using Server.Spells.First;
 using Server.Spells.Fourth;
-using Server.Spells.Necromancy;
 using Server.Spells.Second;
 using Server.Spells.Seventh;
 using Server.Spells.Sixth;
@@ -37,11 +36,6 @@ namespace Server.Mobiles
 		public virtual bool SmartAI
 		{
 			get { return m_Mobile is BaseVendor || m_Mobile is BaseEscortable || m_Mobile is Changeling; }
-		}
-
-		public virtual bool IsNecromancer
-		{
-			get { return false; }
 		}
 
 		private const double HealChance = 0.10; // 10% chance to heal at gm magery
@@ -120,17 +114,7 @@ namespace Server.Mobiles
 
 			if( m_Mobile.Hits < m_Mobile.HitsMax - 50 )
 			{
-				if ( UseNecromancy() )
-				{
-					m_Mobile.UseSkill( SkillName.SpiritSpeak );
-				}
-				else
-				{
-					spell = new GreaterHealSpell( m_Mobile, null );
-
-					if( spell == null )
-						spell = new HealSpell( m_Mobile, null );
-				}
+				spell = new GreaterHealSpell( m_Mobile, null );
 			}
 			else if( m_Mobile.Hits < m_Mobile.HitsMax - 10 )
 			{
@@ -220,34 +204,7 @@ namespace Server.Mobiles
 				OnFailedMove();
 		}
 
-		public virtual bool UseNecromancy()
-		{
-			if ( IsNecromancer )
-				return Utility.Random( m_Mobile.Skills[ SkillName.Magery ].BaseFixedPoint + m_Mobile.Skills[ SkillName.Necromancy ].BaseFixedPoint ) >= m_Mobile.Skills[ SkillName.Magery ].BaseFixedPoint;
-
-			return false;
-		}
-
-		public virtual Spell GetRandomDamageSpell()
-		{
-			return UseNecromancy() ? GetRandomDamageSpellNecro() : GetRandomDamageSpellMage();
-		}
-
-		public virtual Spell GetRandomDamageSpellNecro()
-		{
-			int bound = m_Mobile.Skills[ SkillName.Necromancy ].Value >= 100 ? 5 : 3;
-
-			switch( Utility.Random( bound ) )
-			{
-				case 0: m_Mobile.DebugSay( "Pain Spike" ); return new PainSpikeSpell( m_Mobile, null );
-				case 1: m_Mobile.DebugSay( "Poison Strike" ); return new PoisonStrikeSpell( m_Mobile, null );
-				case 2: m_Mobile.DebugSay( "Strangle" ); return new StrangleSpell( m_Mobile, null );
-				case 3: m_Mobile.DebugSay( "Wither" ); return new WitherSpell( m_Mobile, null );
-				default: m_Mobile.DebugSay( "Vengeful Spirit" ); return new VengefulSpiritSpell( m_Mobile, null );
-			}
-		}
-
-		public virtual Spell GetRandomDamageSpellMage()
+        public virtual Spell GetRandomDamageSpellMage()
 		{
 			int maxCircle = (int)( ( m_Mobile.Skills[ SkillName.Magery ].Value + 20.0 ) / ( 100.0 / 7.0 ) );
 
@@ -271,22 +228,6 @@ namespace Server.Mobiles
 				case 10: return new EnergyBoltSpell( m_Mobile, null );
 				case 11: return new ExplosionSpell( m_Mobile, null );
 				default: return new FlameStrikeSpell( m_Mobile, null );
-			}
-		}
-
-		public virtual Spell GetRandomCurseSpell()
-		{
-			return UseNecromancy() ? GetRandomCurseSpellNecro() : GetRandomCurseSpellMage();
-		}
-
-		public virtual Spell GetRandomCurseSpellNecro()
-		{
-			switch( Utility.Random( 4 ) )
-			{
-				case 0: m_Mobile.DebugSay( "Blood Oath" ); return new BloodOathSpell( m_Mobile, null );
-				case 1: m_Mobile.DebugSay( "Corpse Skin" ); return new CorpseSkinSpell( m_Mobile, null );
-				case 2: m_Mobile.DebugSay( "Evil Omen" ); return new EvilOmenSpell( m_Mobile, null );
-				default: m_Mobile.DebugSay( "Mind Rot" ); return new MindRotSpell( m_Mobile, null );
 			}
 		}
 
@@ -347,14 +288,6 @@ namespace Server.Mobiles
 				if( spell != null )
 					return spell;
 
-				if( IsNecromancer )
-				{
-					double psDamage = ( m_Mobile.Skills[ SkillName.SpiritSpeak ].Value - c.Skills[ SkillName.MagicResist ].Value ) / 10 + ( c.Player ? 18 : 30 );
-
-					if( psDamage > c.Hits )
-						return new PainSpikeSpell( m_Mobile, null );
-				}
-
 				switch (Utility.Random(16))
 				{
 					case 0:
@@ -380,7 +313,7 @@ namespace Server.Mobiles
 						{
 							m_Mobile.DebugSay( "Attempting to curse" );
 
-							spell = GetRandomCurseSpell();
+							spell = GetRandomCurseSpellMage();
 							break;
 						}
 					case 5:	// Paralyze them
@@ -414,7 +347,7 @@ namespace Server.Mobiles
 						{
 							m_Mobile.DebugSay( "Just doing damage" );
 
-							spell = GetRandomDamageSpell();
+							spell = GetRandomDamageSpellMage();
 							break;
 						}
 				}
@@ -439,7 +372,7 @@ namespace Server.Mobiles
 					}
 				case 1: // Deal some damage
 					{
-						spell = GetRandomDamageSpell();
+						spell = GetRandomDamageSpellMage();
 
 						break;
 					}
@@ -499,15 +432,13 @@ namespace Server.Mobiles
 			{
 				if( !c.Poisoned )
 					spell = new PoisonSpell( m_Mobile, null );
-				else if ( IsNecromancer )
-					spell = new StrangleSpell( m_Mobile, null );
 
 				++m_Combo; // Move to next spell
 			}
 
 			if( m_Combo == 3 && spell == null )
 			{
-				switch( Utility.Random( IsNecromancer ? 4 : 3 ) )
+				switch( Utility.Random( 3 ) )
 				{
 					case 0:
 						{
@@ -526,15 +457,9 @@ namespace Server.Mobiles
 							m_Combo = -1; // Reset combo state
 							break;
 						}
-					case 2:
+                    default:
 						{
 							spell = new FlameStrikeSpell( m_Mobile, null );
-							m_Combo = -1; // Reset combo state
-							break;
-						}
-					default:
-						{
-							spell = new PainSpikeSpell( m_Mobile, null );
 							m_Combo = -1; // Reset combo state
 							break;
 						}
@@ -920,7 +845,7 @@ namespace Server.Mobiles
 
 		public bool CanDispel( Mobile m )
 		{
-			return m is BaseCreature && ( (BaseCreature)m ).Summoned && m_Mobile.CanBeHarmful( m, false ) && !( (BaseCreature)m ).IsAnimatedDead;
+			return m is BaseCreature && ( (BaseCreature)m ).Summoned && m_Mobile.CanBeHarmful( m, false );
 		}
 
 		private static int[] m_Offsets = new int[]

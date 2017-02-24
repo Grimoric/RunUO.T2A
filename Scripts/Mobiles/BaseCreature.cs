@@ -13,9 +13,6 @@ using Server.Engines.MLQuests;
 using Server.Engines.PartySystem;
 using Server.Factions;
 using Server.SkillHandlers;
-using Server.Spells.Bushido;
-using Server.Spells.Spellweaving;
-using Server.Spells.Necromancy;
 
 namespace Server.Mobiles
 {
@@ -608,8 +605,6 @@ namespace Server.Mobiles
 		public virtual bool BleedImmune{ get{ return false; } }
 		public virtual double BonusPetDamageScalar{ get{ return 1.0; } }
 
-		public virtual bool DeathAdderCharmable{ get{ return false; } }
-
 		//TODO: Find the pub 31 tweaks to the DispelDifficulty and apply them of course.
 		public virtual double DispelDifficulty{ get{ return 0.0; } } // at this skill level we dispel 50% chance
 		public virtual double DispelFocus{ get{ return 20.0; } } // at difficulty - focus we have 0%, at difficulty + focus we have 100%
@@ -733,34 +728,31 @@ namespace Server.Mobiles
 
 		public virtual void BreathDealDamage( Mobile target )
 		{
-			if( !Evasion.CheckSpellEvasion( target ) )
+			int physDamage = BreathPhysicalDamage;
+			int fireDamage = BreathFireDamage;
+			int coldDamage = BreathColdDamage;
+			int poisDamage = BreathPoisonDamage;
+			int nrgyDamage = BreathEnergyDamage;
+
+			if( BreathChaosDamage > 0 )
 			{
-				int physDamage = BreathPhysicalDamage;
-				int fireDamage = BreathFireDamage;
-				int coldDamage = BreathColdDamage;
-				int poisDamage = BreathPoisonDamage;
-				int nrgyDamage = BreathEnergyDamage;
+				switch( Utility.Random( 5 ))
+				{
+					case 0: physDamage += BreathChaosDamage; break;
+					case 1: fireDamage += BreathChaosDamage; break;
+					case 2: coldDamage += BreathChaosDamage; break;
+					case 3: poisDamage += BreathChaosDamage; break;
+					case 4: nrgyDamage += BreathChaosDamage; break;
+				}
+			}
 
-				if( BreathChaosDamage > 0 )
-				{
-					switch( Utility.Random( 5 ))
-					{
-						case 0: physDamage += BreathChaosDamage; break;
-						case 1: fireDamage += BreathChaosDamage; break;
-						case 2: coldDamage += BreathChaosDamage; break;
-						case 3: poisDamage += BreathChaosDamage; break;
-						case 4: nrgyDamage += BreathChaosDamage; break;
-					}
-				}
-
-				if( physDamage == 0 && fireDamage == 0 && coldDamage == 0 && poisDamage == 0 && nrgyDamage == 0 )
-				{
-					target.Damage( BreathComputeDamage(), this );// Unresistable damage even in AOS
-				}
-				else
-				{
-					AOS.Damage( target, this, BreathComputeDamage(), physDamage, fireDamage, coldDamage, poisDamage, nrgyDamage );
-				}
+			if( physDamage == 0 && fireDamage == 0 && coldDamage == 0 && poisDamage == 0 && nrgyDamage == 0 )
+			{
+				target.Damage( BreathComputeDamage(), this );// Unresistable damage even in AOS
+			}
+			else
+			{
+				AOS.Damage( target, this, BreathComputeDamage(), physDamage, fireDamage, coldDamage, poisDamage, nrgyDamage );
 			}
 		}
 
@@ -985,9 +977,6 @@ namespace Server.Mobiles
 			if ( !(m is BaseCreature) || m is Server.Engines.Quests.Haven.MilitiaFighter )
 				return true;
 
-			if( TransformationSpellHelper.UnderTransformation( m, typeof( EtherealVoyageSpell ) ) )
-				return false;
-
 			if ( m is PlayerMobile && ( (PlayerMobile)m ).HonorActive )
 				return false;
 
@@ -1048,9 +1037,6 @@ namespace Server.Mobiles
 
 			double dMinTameSkill = m_dMinTameSkill;
 
-			if ( dMinTameSkill > -24.9 && Server.SkillHandlers.AnimalTaming.CheckMastery( m, this ) )
-				dMinTameSkill = -24.9;
-
 			int taming = (int)((useBaseSkill ? m.Skills[SkillName.AnimalTaming].Base : m.Skills[SkillName.AnimalTaming].Value ) * 10);
 			int lore = (int)((useBaseSkill ? m.Skills[SkillName.AnimalLore].Base : m.Skills[SkillName.AnimalLore].Value )* 10);
 			int bonus = 0, chance = 700;
@@ -1085,52 +1071,9 @@ namespace Server.Mobiles
 				typeof( SkeletalMage ), typeof( BoneMagi ), typeof( PatchworkSkeleton )
 			};
 
-		public virtual bool IsAnimatedDead
-		{
-			get
-			{
-				if ( !Summoned )
-					return false;
-
-				Type type = this.GetType();
-
-				bool contains = false;
-
-				for ( int i = 0; !contains && i < m_AnimateDeadTypes.Length; ++i )
-					contains = type == m_AnimateDeadTypes[i];
-
-				return contains;
-			}
-		}
-
-		public virtual bool IsNecroFamiliar
-		{
-			get
-			{
-				if ( !Summoned )
-					return false;
-
-				if ( m_ControlMaster != null && SummonFamiliarSpell.Table.Contains( m_ControlMaster ) )
-					return SummonFamiliarSpell.Table[ m_ControlMaster ] == this;
-
-				return false;
-			}
-		}
-
 		public override void Damage( int amount, Mobile from )
 		{
 			int oldHits = this.Hits;
-
-			if ( Spells.Necromancy.EvilOmenSpell.TryEndEffect( this ) )
-				amount = (int)(amount * 1.25);
-
-			Mobile oath = Spells.Necromancy.BloodOathSpell.GetBloodOath( from );
-
-			if ( oath == this )
-			{
-				amount = (int)(amount * 1.1);
-				from.Damage( amount, from );
-			}
 
 			base.Damage( amount, from );
 
@@ -1169,9 +1112,6 @@ namespace Server.Mobiles
 		{
 			if ( !Alive || IsDeadPet )
 				return ApplyPoisonResult.Immune;
-
-			if ( Spells.Necromancy.EvilOmenSpell.TryEndEffect( this ) )
-				poison = PoisonImpl.IncreaseLevel( poison );
 
 			ApplyPoisonResult result = base.ApplyPoison( from, poison );
 
@@ -1429,10 +1369,6 @@ namespace Server.Mobiles
 				if( c != null )
 					c.Slip();
 			}
-
-			if( Confidence.IsRegenerating( this ) )
-				Confidence.StopRegenerating( this );
-
 			WeightOverloading.FatigueOnDamage( this, amount );
 
 			InhumanSpeech speechType = this.SpeechType;
@@ -1449,10 +1385,6 @@ namespace Server.Mobiles
 				{
 					CheckDistracted( from );
 				}
-			}
-			else if( from is PlayerMobile )
-			{
-				Timer.DelayCall( TimeSpan.FromSeconds( 10 ), new TimerCallback( ( ( PlayerMobile )from ).RecoverAmmo ) );
 			}
 
 			base.OnDamage( amount, from, willKill );
@@ -2025,9 +1957,6 @@ namespace Server.Mobiles
 			ChangeAIType(m_CurrentAI);
 
 			AddFollowers();
-
-			if ( IsAnimatedDead )
-				Spells.Necromancy.AnimateDeadSpell.Register( m_SummonMaster, this );
 		}
 
 		public virtual bool IsHumanInTown()
@@ -2885,9 +2814,6 @@ namespace Server.Mobiles
 			}
 
 			FocusMob = null;
-
-			if ( IsAnimatedDead )
-				Spells.Necromancy.AnimateDeadSpell.Unregister( m_SummonMaster, this );
 
 			if ( MLQuestSystem.Enabled )
 				MLQuestSystem.HandleDeletion( this );
@@ -4274,53 +4200,10 @@ namespace Server.Mobiles
 					pack.DisplayTo( from );
 			}
 
-			if ( this.DeathAdderCharmable && from.CanBeHarmful( this, false ) )
-			{
-				DeathAdder da = Spells.Necromancy.SummonFamiliarSpell.Table[from] as DeathAdder;
-
-				if ( da != null && !da.Deleted )
-				{
-					from.SendAsciiMessage( "You charm the snake.  Select a target to attack." );
-					from.Target = new DeathAdderCharmTarget( this );
-				}
-			}
-
 			if ( MLQuestSystem.Enabled && CanGiveMLQuest && from is PlayerMobile )
 				MLQuestSystem.OnDoubleClick( this, (PlayerMobile)from );
 
 			base.OnDoubleClick( from );
-		}
-
-		private class DeathAdderCharmTarget : Target
-		{
-			private BaseCreature m_Charmed;
-
-			public DeathAdderCharmTarget( BaseCreature charmed ) : base( -1, false, TargetFlags.Harmful )
-			{
-				m_Charmed = charmed;
-			}
-
-			protected override void OnTarget( Mobile from, object targeted )
-			{
-				if ( !m_Charmed.DeathAdderCharmable || m_Charmed.Combatant != null || !from.CanBeHarmful( m_Charmed, false ) )
-					return;
-
-				DeathAdder da = Spells.Necromancy.SummonFamiliarSpell.Table[from] as DeathAdder;
-				if ( da == null || da.Deleted )
-					return;
-
-				Mobile targ = targeted as Mobile;
-				if ( targ == null || !from.CanBeHarmful( targ, false ) )
-					return;
-
-				from.RevealingAction();
-				from.DoHarmful( targ, true );
-
-				m_Charmed.Combatant = targ;
-
-				if ( m_Charmed.AIObject != null )
-					m_Charmed.AIObject.Action = ActionType.Combat;
-			}
 		}
 
 		public override void AddNameProperties( ObjectPropertyList list )
@@ -4330,7 +4213,7 @@ namespace Server.Mobiles
 			if ( MLQuestSystem.Enabled && CanGiveMLQuest )
 				list.Add( 1072269 ); // Quest Giver
 
-			if ( Summoned && !IsAnimatedDead && !IsNecroFamiliar && !( this is Clone ) )
+			if ( Summoned )
 				list.Add( 1049646 ); // (summoned)
 			else if ( Controlled && Commandable )
 			{
@@ -4415,9 +4298,6 @@ namespace Server.Mobiles
 				if ( bones > 0 )
 					PackItem( new DaemonBone( bones ) );
 			}
-
-			if ( IsAnimatedDead )
-				Effects.SendLocationEffect( Location, Map, 0x3728, 13, 1, 0x461, 4 );
 
 			InhumanSpeech speechType = this.SpeechType;
 
@@ -4668,8 +4548,6 @@ namespace Server.Mobiles
 				{
 					this.OwnerAbandonTime = DateTime.MinValue;
 				}
-
-				GiftOfLifeSpell.HandleDeath( this );
 
 				CheckStatTimers();
 			}
@@ -4994,7 +4872,7 @@ namespace Server.Mobiles
 		private DateTime m_NextRummageTime;
 
 		public virtual bool CanBreath { get { return HasBreath && !Summoned; } }
-		public virtual bool IsDispellable { get { return Summoned && !IsAnimatedDead; } }
+		public virtual bool IsDispellable { get { return Summoned; } }
 
 		#region Healing
 		public virtual bool CanHeal { get { return false; } }

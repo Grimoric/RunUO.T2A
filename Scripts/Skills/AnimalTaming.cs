@@ -5,7 +5,6 @@ using Server.Network;
 using Server.Mobiles;
 using Server.Factions;
 using Server.Spells;
-using Server.Spells.Spellweaving;
 
 namespace Server.SkillHandlers
 {
@@ -37,19 +36,6 @@ namespace Server.SkillHandlers
 				m.SendLocalizedMessage( 502789 ); // Tame which animal?
 
 			return TimeSpan.FromHours( 6.0 );
-		}
-
-		public static bool CheckMastery( Mobile tamer, BaseCreature creature )
-		{
-			BaseCreature familiar = (BaseCreature)Spells.Necromancy.SummonFamiliarSpell.Table[tamer];
-
-			if ( familiar != null && !familiar.Deleted && familiar is DarkWolfFamiliar )
-			{
-				if ( creature is DireWolf || creature is GreyWolf || creature is TimberWolf || creature is WhiteWolf || creature is BakeKitsune )
-					return true;
-			}
-
-			return false;
 		}
 
 		public static bool MustBeSubdued( BaseCreature bc )
@@ -166,7 +152,7 @@ namespace Server.SkillHandlers
 						{
 							creature.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1054025, from.NetState ); // You must subdue this creature before you can tame it!
 						}
-						else if ( CheckMastery( from, creature ) || from.Skills[SkillName.AnimalTaming].Value >= creature.MinTameSkill )
+						else if ( from.Skills[SkillName.AnimalTaming].Value >= creature.MinTameSkill )
 						{
 							FactionWarHorse warHorse = creature as FactionWarHorse;
 
@@ -205,7 +191,7 @@ namespace Server.SkillHandlers
 								if ( creature.AIObject != null )
 									creature.AIObject.DoMove( creature.Direction );
 
-								if ( from is PlayerMobile && !(( (PlayerMobile)from ).HonorActive || TransformationSpellHelper.UnderTransformation( from, typeof( EtherealVoyageSpell ))))
+								if ( from is PlayerMobile && !( (PlayerMobile)from ).HonorActive )
 									creature.Combatant = from;
 							}
 							else
@@ -349,12 +335,9 @@ namespace Server.SkillHandlers
 
 						double minSkill = m_Creature.MinTameSkill + m_Creature.Owners.Count * 6.0;
 
-						if ( minSkill > -24.9 && CheckMastery( m_Tamer, m_Creature ) )
-							minSkill = -24.9; // 50% at 0.0?
-
 						minSkill += 24.9;
 
-						if ( CheckMastery( m_Tamer, m_Creature ) || alreadyOwned || m_Tamer.CheckTargetSkill( SkillName.AnimalTaming, m_Creature, minSkill - 25.0, minSkill + 25.0 ) )
+						if ( alreadyOwned || m_Tamer.CheckTargetSkill( SkillName.AnimalTaming, m_Creature, minSkill - 25.0, minSkill + 25.0 ) )
 						{
 							if ( m_Creature.Owners.Count == 0 ) // First tame
 							{

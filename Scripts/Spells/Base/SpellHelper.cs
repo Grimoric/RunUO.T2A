@@ -7,8 +7,6 @@ using Server.Mobiles;
 using Server.Targeting;
 using Server.Engines.PartySystem;
 using Server.Misc;
-using Server.Spells.Necromancy;
-using Server.Spells.Ninjitsu;
 using System.Collections.Generic;
 using Server.Spells.Seventh;
 using Server.Spells.Fifth;
@@ -1037,26 +1035,6 @@ namespace Server.Spells
 
 		public static void DoLeech( int damageGiven, Mobile from, Mobile target )
 		{
-			TransformContext context = TransformationSpellHelper.GetContext( from );
-
-			if ( context != null ) /* cleanup */
-			{
-				if ( context.Type == typeof( WraithFormSpell ) )
-				{
-					int wraithLeech = 5 + (int)( 15 * @from.Skills.SpiritSpeak.Value / 100 ); // Wraith form gives 5-20% mana leech
-					int manaLeech = AOS.Scale( damageGiven, wraithLeech );
-					if ( manaLeech != 0 )
-					{
-						from.Mana += manaLeech;
-						from.PlaySound( 0x44D );
-					}
-				}
-				else if ( context.Type == typeof( VampiricEmbraceSpell ) )
-				{
-					from.Hits += AOS.Scale( damageGiven, 20 );
-					from.PlaySound( 0x44D );
-				}
-			}
 		}
 
 		public static void Heal( int amount, Mobile target, Mobile from )
@@ -1238,11 +1216,6 @@ namespace Server.Spells
 				caster.SendLocalizedMessage( 1061628 ); // You can't do that while polymorphed.
 				return false;
 			}
-			else if( AnimalForm.UnderTransformation( caster ) )
-			{
-				caster.SendLocalizedMessage( 1061091 ); // You cannot cast that spell in this form.
-				return false;
-			}
 
 			return true;
 		}
@@ -1266,10 +1239,6 @@ namespace Server.Spells
 			{
 				caster.SendLocalizedMessage( 1061631 ); // You can't do that while disguised.
 				return false;
-			}
-			else if( AnimalForm.UnderTransformation( caster ) )
-			{
-				caster.SendLocalizedMessage( 1061091 ); // You cannot cast that spell in this form.
 			}
 			else if( !caster.CanBeginAction( typeof( IncognitoSpell ) ) || caster.IsBodyMod && GetContext( caster ) == null )
 			{

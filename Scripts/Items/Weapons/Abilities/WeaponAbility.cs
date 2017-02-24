@@ -65,8 +65,6 @@ namespace Server.Items
 				mana -= 5;
 
 			double scalar = 1.0;
-			if ( !Server.Spells.Necromancy.MindRotSpell.GetMindRotScalar( from, ref scalar ) )
-				scalar = 1.0;
 
 			// Lower Mana Cost = 40%
 			int lmc = Math.Min( AosAttributes.GetValue( from, AosAttribute.LowerManaCost ), 40 );
@@ -159,18 +157,6 @@ namespace Server.Items
 
 			if ( state == null )
 				return false;
-
-			if( RequiresSE && !state.SupportsExpansion( Expansion.SE ) )
-			{
-				from.SendLocalizedMessage( 1063456 ); // You must upgrade to Samurai Empire in order to use that ability.
-				return false;
-			}
-			
-			if ( Spells.Bushido.HonorableExecution.IsUnderPenalty( from ) || Spells.Ninjitsu.AnimalForm.UnderTransformation( from ) )
-			{
-				from.SendLocalizedMessage( 1063024 ); // You cannot perform this special move right now.
-				return false;
-			}
 
 			#region Dueling
 			string option = null;

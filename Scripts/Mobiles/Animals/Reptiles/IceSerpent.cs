@@ -65,8 +65,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Meager );
 		}
 
-		public override bool DeathAdderCharmable{ get{ return true; } }
-
 		public override int Meat{ get{ return 4; } }
 		public override int Hides{ get{ return 15; } }
 		public override HideType HideType{ get{ return HideType.Spined; } }

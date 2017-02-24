@@ -34,7 +34,7 @@ using Server.Diagnostics;
 
 namespace Server.Network
 {
-    public interface IPacketEncoder {
+	public interface IPacketEncoder {
 		void EncodeOutgoingPacket( NetState to, ref byte[] buffer, ref int length );
 		void DecodeIncomingPacket( NetState from, ref byte[] buffer, ref int length );
 	}
@@ -1210,34 +1210,12 @@ namespace Server.Network
 			}
 		}
 
-		public Expansion Expansion
+		public bool SupportsExpansion( ExpansionInfo info )
         {
-			get {
-				return ( Expansion ) this.ExpansionInfo.ID;
-			}
-		}
-
-		public bool SupportsExpansion( ExpansionInfo info, bool checkCoreExpansion )
-        {
-			if ( info == null || checkCoreExpansion && 1 < info.ID )
-				return false;
-
 			if ( info.RequiredClient != null )
 				return this.Version >= info.RequiredClient;
 
 			return ( this.Flags & info.ClientFlags ) != 0;
-		}
-
-		public bool SupportsExpansion( Expansion ex, bool checkCoreExpansion ) {
-			return SupportsExpansion( ExpansionInfo.GetInfo( ex ), checkCoreExpansion );
-		}
-
-		public bool SupportsExpansion( Expansion ex ) {
-			return SupportsExpansion( ex, true );
-		}
-
-		public bool SupportsExpansion( ExpansionInfo info ) {
-			return SupportsExpansion( info, true );
 		}
 
 		public int CompareTo( NetState other ) {

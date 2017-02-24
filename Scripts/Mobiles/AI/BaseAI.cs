@@ -11,7 +11,6 @@ using Server.Engines.Quests;
 using Server.Engines.Quests.Necro;
 using MoveImpl = Server.Movement.MovementImpl;
 using Server.Spells;
-using Server.Spells.Spellweaving;
 
 namespace Server.Mobiles
 {
@@ -877,16 +876,6 @@ namespace Server.Mobiles
 						m_Mobile.CurrentWayPoint = point.NextPoint = point.NextPoint.NextPoint;
 				}
 			}
-			else if (m_Mobile.IsAnimatedDead)
-			{
-				// animated dead follow their master
-				Mobile master = m_Mobile.SummonMaster;
-
-				if (master != null && master.Map == m_Mobile.Map && master.InRange(m_Mobile, m_Mobile.RangePerception))
-					MoveTo(master, false, 1);
-				else
-					WalkRandomInHome(2, 2, 1);
-			}
 			else if (CheckMove())
 			{
 				if (!m_Mobile.CheckIdle())
@@ -1215,7 +1204,7 @@ namespace Server.Mobiles
 
 			if (distance < 1 || distance > 15)
 			{
-				if (distance < 1 && target.X == 1076 && target.Y == 450 && m_Mobile is HordeMinionFamiliar)
+				if (distance < 1 && target.X == 1076 && target.Y == 450 )
 				{
 					PlayerMobile pm = m_Mobile.ControlMaster as PlayerMobile;
 
@@ -2459,7 +2448,7 @@ namespace Server.Mobiles
 						continue;
 
 					// Let's not target ourselves...
-					if (m == m_Mobile || m is BaseFamiliar)
+					if (m == m_Mobile )
 						continue;
 
 					// Dead targets are invalid.
@@ -2487,18 +2476,10 @@ namespace Server.Mobiles
 						// It also must abide by harmful spell rules.
 						if (!Server.Spells.SpellHelper.ValidIndirectTarget(m_Mobile.SummonMaster, m))
 							continue;
-
-						// Animated creatures cannot attack players directly.
-						if (m is PlayerMobile && m_Mobile.IsAnimatedDead)
-							continue;
 					}
 
 					// If we only want faction friends, make sure it's one.
 					if (bFacFriend && !m_Mobile.IsFriend(m))
-						continue;
-
-					//Ignore anyone under EtherealVoyage
-					if (TransformationSpellHelper.UnderTransformation(m, typeof(EtherealVoyageSpell)))
 						continue;
 
 					// Ignore players with activated honor

@@ -9,12 +9,7 @@ using Server.Items;
 using Server.Mobiles;
 using Server.Network;
 using Server.Spells;
-using Server.Spells.Bushido;
-using Server.Spells.Chivalry;
-using Server.Spells.Necromancy;
-using Server.Spells.Ninjitsu;
 using Server.Spells.Seventh;
-using Server.Spells.Spellweaving;
 
 namespace Server.Engines.ConPVP
 {
@@ -97,19 +92,7 @@ namespace Server.Engines.ConPVP
 			if ( CantDoAnything( from ) )
 				return false;
 
-			string title = null;
-
-			if( move is NinjaMove )
-				title = "Bushido";
-			else if( move is SamuraiMove )
-				title = "Ninjitsu";
-
-
-			if ( title == null || name == null || m_Ruleset.GetOption( title, name ) )
-				return true;
-
-			from.SendMessage( "The dueling ruleset prevents you from using this move." );
-			return false;
+			return true;
 		}
 
 		public bool AllowSpellCast( Mobile from, Spell spell )
@@ -130,32 +113,7 @@ namespace Server.Engines.ConPVP
 
 			string title = null, option = null;
 
-			if( spell is ArcanistSpell )
-			{
-				title = "Spellweaving";
-				option = spell.Name;
-			}
-			else if ( spell is PaladinSpell )
-			{
-				title = "Chivalry";
-				option = spell.Name;
-			}
-			else if ( spell is NecromancerSpell )
-			{
-				title = "Necromancy";
-				option = spell.Name;
-			}
-			else if ( spell is NinjaSpell )
-			{
-				title = "Ninjitsu";
-				option = spell.Name;
-			}
-			else if ( spell is SamuraiSpell )
-			{
-				title = "Bushido";
-				option = spell.Name;
-			}
-			else if( spell is MagerySpell )
+			if( spell is MagerySpell )
 			{
 				switch( ((MagerySpell)spell).Circle )
 				{
@@ -1692,7 +1650,6 @@ namespace Server.Engines.ConPVP
 			mob.EndAction( typeof( DefensiveSpell ) );
 
 			TransformationSpellHelper.RemoveContext( mob, true );
-			AnimalForm.RemoveContext( mob, true );
 
 			if( DisguiseTimers.IsDisguised( mob ) )
 				DisguiseTimers.StopTimer( mob );

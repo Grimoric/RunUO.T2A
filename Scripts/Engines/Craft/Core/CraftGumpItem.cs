@@ -92,28 +92,9 @@ namespace Server.Engines.Craft
 				AddHtmlLocalized( 170, 302 + (m_OtherCount++ * 20), 310, 18, 1063363, LabelColor, false, false ); //* Requires the "Samurai Empire" expansion
 			 * */
 
-			if( craftItem.RequiredExpansion != Expansion.None )
-			{
-				bool supportsEx = @from.NetState != null && @from.NetState.SupportsExpansion( craftItem.RequiredExpansion );
-				TextDefinition.AddHtmlText( this, 170, 302 + m_OtherCount++ * 20, 310, 18, RequiredExpansionMessage( craftItem.RequiredExpansion ), false, false, supportsEx ? LabelColor : RedLabelColor, supportsEx ? LabelHue : RedLabelHue );
-			}
-
 			if( needsRecipe )
 				AddHtmlLocalized( 170, 302 + m_OtherCount++ * 20, 310, 18, 1073620, RedLabelColor, false, false ); // You have not learned this recipe.
 
-		}
-
-		private TextDefinition RequiredExpansionMessage( Expansion expansion )
-		{
-			switch( expansion )
-			{
-				case Expansion.SE:
-					return 1063363; // * Requires the "Samurai Empire" expansion
-				case Expansion.ML:
-					return 1072651; // * Requires the "Mondain's Legacy" expansion
-				default:
-					return String.Format( "* Requires the \"{0}\" expansion", ExpansionInfo.GetInfo( expansion ).Name );
-			}
 		}
 
 		private bool m_ShowExceptionalChance;

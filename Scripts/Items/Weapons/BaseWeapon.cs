@@ -2,13 +2,9 @@ using System;
 using Server.Network;
 using Server.Mobiles;
 using Server.Spells;
-using Server.Spells.Necromancy;
-using Server.Spells.Bushido;
-using Server.Spells.Ninjitsu;
 using Server.Factions;
 using Server.Engines.Craft;
 using System.Collections.Generic;
-using Server.Spells.Spellweaving;
 
 namespace Server.Items
 {
@@ -651,8 +647,6 @@ namespace Server.Items
 					m_MageMod = null;
 				}
 
-				ImmolatingWeaponSpell.StopImmolating( this );
-
 				m.CheckStatTimers();
 
 				m.Delta( MobileDelta.WeaponDamage );
@@ -702,11 +696,6 @@ namespace Server.Items
 		public virtual double GetDefendSkillValue( Mobile attacker, Mobile defender )
 		{
 			return defender.Skills[GetUsedSkill( defender, true )].Value;
-		}
-
-		private static bool CheckAnimal( Mobile m, Type type )
-		{
-			return AnimalForm.UnderTransformation( m, type );
 		}
 
 		public virtual bool CheckHit( Mobile attacker, Mobile defender )
@@ -873,10 +862,6 @@ namespace Server.Items
 				if ( parry >= 100.0 || bushido >= 100.0)
 					chance += 0.05;
 
-				// Evasion grants a variable bonus post ML. 50% prior.
-				if ( Evasion.IsEvading( defender ) )
-					chance *= Evasion.GetParryScalar( defender );
-
 				// Low dexterity lowers the chance.
 				if ( defender.Dex < 80 )
 					chance = chance * (20 + defender.Dex) / 100;
@@ -904,10 +889,6 @@ namespace Server.Items
 					chance += 0.05;
 				}
 
-				// Evasion grants a variable bonus post ML. 50% prior.
-				if( Evasion.IsEvading( defender ) )
-					chance *= Evasion.GetParryScalar( defender );
-
 				// Low dexterity lowers the chance.
 				if( defender.Dex < 80 )
 					chance = chance * (20 + defender.Dex) / 100;
@@ -933,32 +914,6 @@ namespace Server.Items
 				{
 					defender.FixedEffect( 0x37B9, 10, 16 );
 					damage = 0;
-
-					// Successful block removes the Honorable Execution penalty.
-					HonorableExecution.RemovePenalty( defender );
-
-					if ( CounterAttack.IsCountering( defender ) )
-					{
-						BaseWeapon weapon = defender.Weapon as BaseWeapon;
-
-						if ( weapon != null )
-						{
-							defender.FixedParticles(0x3779, 1, 15, 0x158B, 0x0, 0x3, EffectLayer.Waist);
-							weapon.OnSwing( defender, attacker );
-						}
-
-						CounterAttack.StopCountering( defender );
-					}
-
-					if ( Confidence.IsConfident( defender ) )
-					{
-						defender.SendLocalizedMessage( 1063117 ); // Your confidence reassures you as you successfully block your opponent's blow.
-
-						double bushido = defender.Skills.Bushido.Value;
-
-						defender.Hits += Utility.RandomMinMax( 1, (int)(bushido / 12) );
-						defender.Stam += Utility.RandomMinMax( 1, (int)(bushido / 5) );
-					}
 
 					BaseShield shield = defender.FindItemOnLayer( Layer.TwoHanded ) as BaseShield;
 
@@ -1117,31 +1072,6 @@ namespace Server.Items
 
 		public virtual void OnHit( Mobile attacker, Mobile defender, double damageBonus )
 		{
-			if ( MirrorImage.HasClone( defender ) && defender.Skills.Ninjitsu.Value / 150.0 > Utility.RandomDouble() )
-			{
-				Clone bc;
-
-				foreach ( Mobile m in defender.GetMobilesInRange( 4 ) )
-				{
-					bc = m as Clone;
-
-					if ( bc != null && bc.Summoned && bc.SummonMaster == defender )
-					{
-						attacker.SendLocalizedMessage( 1063141 ); // Your attack has been diverted to a nearby mirror image of your target!
-						defender.SendLocalizedMessage( 1063140 ); // You manage to divert the attack onto one of your nearby mirror images.
-
-						/*
-						 * TODO: What happens if the Clone parries a blow?
-						 * And what about if the attacker is using Honorable Execution
-						 * and kills it?
-						 */
-
-						defender = m;
-						break;
-					}
-				}
-			}
-
 			PlaySwingAnimation( attacker );
 			PlayHurtAnimation( defender );
 
@@ -1227,14 +1157,6 @@ namespace Server.Items
 				percentageBonus -= 10;
 			}
 
-			TransformContext context = TransformationSpellHelper.GetContext( defender );
-
-			if( (m_Slayer == SlayerName.Silver || m_Slayer2 == SlayerName.Silver) && context != null && context.Spell is NecromancerSpell && context.Type != typeof( HorrificBeastSpell ) )
-			{
-				// Every necromancer transformation other than horrific beast takes an additional 25% damage
-				percentageBonus += 25;
-			}
-
 			if ( attacker is PlayerMobile )
 			{
 				PlayerMobile pmAttacker = (PlayerMobile) attacker;
@@ -1301,12 +1223,6 @@ namespace Server.Items
 				else if ( type == 4 ) nrgy = 100;
 			}
 
-			// TODO: Scale damage, alongside the leech effects below, to weapon speed.
-			if ( ImmolatingWeaponSpell.IsImmolating( this ) && damage > 0 )
-				ImmolatingWeaponSpell.DoEffect( this, defender );
-
-			int damageGiven = damage;
-
 			if ( a != null && !a.OnBeforeDamage( attacker, defender ) )
 			{
 				WeaponAbility.ClearCurrentAbility( attacker );
@@ -1321,9 +1237,7 @@ namespace Server.Items
 
 			bool ignoreArmor = a is ArmorIgnore || move != null && move.IgnoreArmor( attacker );
 
-			damageGiven = AOS.Damage( defender, attacker, damage, ignoreArmor, phys, fire, cold, pois, nrgy, chaos, direct, false, this is BaseRanged, false );
-
-			double propertyBonus = move == null ? 1.0 : move.GetPropertyBonus( attacker );
+			AOS.Damage( defender, attacker, damage, ignoreArmor, phys, fire, cold, pois, nrgy, chaos, direct, false, this is BaseRanged, false );
 
 			if ( m_MaxHits > 0 && (MaxRange <= 1 && (defender is Slime || defender is AcidElemental) || Utility.Random( 25 ) == 0) ) // Stratics says 50% chance, seems more like 4%..
 			{
@@ -1347,20 +1261,6 @@ namespace Server.Items
 				}
 			}
 
-			if ( attacker is VampireBatFamiliar )
-			{
-				BaseCreature bc = (BaseCreature)attacker;
-				Mobile caster = bc.ControlMaster;
-
-				if ( caster == null )
-					caster = bc.SummonMaster;
-
-				if ( caster != null && caster.Map == bc.Map && caster.InRange( bc, 2 ) )
-					caster.Hits += damage;
-				else
-					bc.Hits += damage;
-			}
-
 			if ( attacker is BaseCreature )
 				((BaseCreature)attacker).OnGaveMeleeAttack( defender );
 
@@ -1375,15 +1275,6 @@ namespace Server.Items
 
 			if ( defender is IHonorTarget && ((IHonorTarget)defender).ReceivedHonorContext != null )
 				((IHonorTarget)defender).ReceivedHonorContext.OnTargetHit( attacker );
-
-			if ( !(this is BaseRanged) )
-			{
-				if ( AnimalForm.UnderTransformation( attacker, typeof( GiantSerpent ) ) )
-					defender.ApplyPoison( attacker, Poison.Lesser );
-
-				if ( AnimalForm.UnderTransformation( defender, typeof( BullFrog ) ) )
-					attacker.ApplyPoison( defender, Poison.Regular );
-			}
 		}
 
 		public virtual double GetAosDamage( Mobile attacker, int bonus, int dice, int sides )
@@ -1406,175 +1297,12 @@ namespace Server.Items
 
 				// SDI bonus
 				damageBonus += AosAttributes.GetValue( attacker, AosAttribute.SpellDamage );
-
-				TransformContext context = TransformationSpellHelper.GetContext( attacker );
-
-				if( context != null && context.Spell is ReaperFormSpell )
-					damageBonus += ((ReaperFormSpell)context.Spell).SpellDamageBonus;
 			}
 
 			damage = AOS.Scale( damage, 100 + damageBonus );
 
 			return damage / 100;
 		}
-
-		#region Do<AoSEffect>
-		public virtual void DoMagicArrow( Mobile attacker, Mobile defender )
-		{
-			if ( !attacker.CanBeHarmful( defender, false ) )
-				return;
-
-			attacker.DoHarmful( defender );
-
-			double damage = GetAosDamage( attacker, 10, 1, 4 );
-
-			attacker.MovingParticles( defender, 0x36E4, 5, 0, false, true, 3006, 4006, 0 );
-			attacker.PlaySound( 0x1E5 );
-
-			SpellHelper.Damage( TimeSpan.FromSeconds( 1.0 ), defender, attacker, damage, 0, 100, 0, 0, 0 );
-		}
-
-		public virtual void DoHarm( Mobile attacker, Mobile defender )
-		{
-			if ( !attacker.CanBeHarmful( defender, false ) )
-				return;
-
-			attacker.DoHarmful( defender );
-
-			double damage = GetAosDamage( attacker, 17, 1, 5 );
-
-			if ( !defender.InRange( attacker, 2 ) )
-				damage *= 0.25; // 1/4 damage at > 2 tile range
-			else if ( !defender.InRange( attacker, 1 ) )
-				damage *= 0.50; // 1/2 damage at 2 tile range
-
-			defender.FixedParticles( 0x374A, 10, 30, 5013, 1153, 2, EffectLayer.Waist );
-			defender.PlaySound( 0x0FC );
-
-			SpellHelper.Damage( TimeSpan.Zero, defender, attacker, damage, 0, 0, 100, 0, 0 );
-		}
-
-		public virtual void DoFireball( Mobile attacker, Mobile defender )
-		{
-			if ( !attacker.CanBeHarmful( defender, false ) )
-				return;
-
-			attacker.DoHarmful( defender );
-
-			double damage = GetAosDamage( attacker, 19, 1, 5 );
-
-			attacker.MovingParticles( defender, 0x36D4, 7, 0, false, true, 9502, 4019, 0x160 );
-			attacker.PlaySound( 0x15E );
-
-			SpellHelper.Damage( TimeSpan.FromSeconds( 1.0 ), defender, attacker, damage, 0, 100, 0, 0, 0 );
-		}
-
-		public virtual void DoLightning( Mobile attacker, Mobile defender )
-		{
-			if ( !attacker.CanBeHarmful( defender, false ) )
-				return;
-
-			attacker.DoHarmful( defender );
-
-			double damage = GetAosDamage( attacker, 23, 1, 4 );
-
-			defender.BoltEffect( 0 );
-
-			SpellHelper.Damage( TimeSpan.Zero, defender, attacker, damage, 0, 0, 0, 0, 100 );
-		}
-
-		public virtual void DoDispel( Mobile attacker, Mobile defender )
-		{
-			bool dispellable = false;
-
-			if ( defender is BaseCreature )
-				dispellable = ((BaseCreature)defender).Summoned && !((BaseCreature)defender).IsAnimatedDead;
-
-			if ( !dispellable )
-				return;
-
-			if ( !attacker.CanBeHarmful( defender, false ) )
-				return;
-
-			attacker.DoHarmful( defender );
-
-			Spells.MagerySpell sp = new Spells.Sixth.DispelSpell( attacker, null );
-
-			if ( sp.CheckResisted( defender ) )
-			{
-				defender.FixedEffect( 0x3779, 10, 20 );
-			}
-			else
-			{
-				Effects.SendLocationParticles( EffectItem.Create( defender.Location, defender.Map, EffectItem.DefaultDuration ), 0x3728, 8, 20, 5042 );
-				Effects.PlaySound( defender, defender.Map, 0x201 );
-
-				defender.Delete();
-			}
-		}
-
-		public virtual void DoLowerAttack( Mobile from, Mobile defender )
-		{
-			if ( HitLower.ApplyAttack( defender ) )
-			{
-				defender.PlaySound( 0x28E );
-				Effects.SendTargetEffect( defender, 0x37BE, 1, 4, 0xA, 3 );
-			}
-		}
-
-		public virtual void DoLowerDefense( Mobile from, Mobile defender )
-		{
-			if ( HitLower.ApplyDefense( defender ) )
-			{
-				defender.PlaySound( 0x28E );
-				Effects.SendTargetEffect( defender, 0x37BE, 1, 4, 0x23, 3 );
-			}
-		}
-
-		public virtual void DoAreaAttack( Mobile from, Mobile defender, int sound, int hue, int phys, int fire, int cold, int pois, int nrgy )
-		{
-			Map map = from.Map;
-
-			if ( map == null )
-				return;
-
-			List<Mobile> list = new List<Mobile>();
-
-			int range = 10;
-
-			foreach ( Mobile m in from.GetMobilesInRange( range ) )
-			{
-				if ( from != m && defender != m && SpellHelper.ValidIndirectTarget( from, m ) && from.CanBeHarmful( m, false ) )
-					list.Add( m );
-			}
-
-			if ( list.Count == 0 )
-				return;
-
-			Effects.PlaySound( from.Location, map, sound );
-
-			for ( int i = 0; i < list.Count; ++i )
-			{
-				Mobile m = list[i];
-
-				double scalar = ( 11 - from.GetDistanceToSqrt( m ) ) / 10;
-				double damage = GetBaseDamage( from );
-
-				if(scalar <= 0)
-				{
-					continue;
-				}
-				else if( scalar < 1.0 )
-				{
-					damage *= ( 11 - from.GetDistanceToSqrt( m ) ) / 10;
-				}
-
-				from.DoHarmful( m, true );
-				m.FixedEffect( 0x3779, 1, 15, hue, 0 );
-				AOS.Damage(m, from, (int)damage, phys, fire, cold, pois, nrgy);
-			}
-		}
-		#endregion
 
 		public virtual CheckSlayerResult CheckSlayers( Mobile attacker, Mobile defender )
 		{
@@ -1842,14 +1570,6 @@ namespace Server.Items
 			 * Capped at 100% total.
 			 */
 			int damageBonus = AosAttributes.GetValue( attacker, AosAttribute.WeaponDamage );
-
-			// Horrific Beast transformation gives a +25% bonus to damage.
-			if( TransformationSpellHelper.UnderTransformation( attacker, typeof( HorrificBeastSpell ) ) )
-				damageBonus += 25;
-
-			// Divine Fury gives a +10% bonus to damage.
-			if ( Spells.Chivalry.DivineFurySpell.UnderEffect( attacker ) )
-				damageBonus += 10;
 
 			int defenseMasteryMalus = 0;
 
@@ -2832,9 +2552,6 @@ namespace Server.Items
 
 			if ( (prop = m_AosWeaponAttributes.HitLeechStam) != 0 )
 				list.Add( 1060430, prop.ToString() ); // hit stamina leech ~1_val~%
-
-			if ( ImmolatingWeaponSpell.IsImmolating( this ) )
-				list.Add( 1111917 ); // Immolated
 
 			if ( (prop = m_AosAttributes.BonusDex) != 0 )
 				list.Add( 1060409, prop.ToString() ); // dexterity bonus ~1_val~
