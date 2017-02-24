@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.ContextMenus;
 using Server.Engines.PartySystem;
 using Server.Engines.Quests;
@@ -14,7 +12,7 @@ using Server.Network;
 
 namespace Server.Items
 {
-	public interface IDevourer
+    public interface IDevourer
 	{
 		bool Devour( Corpse corpse );
 	}
@@ -134,7 +132,7 @@ namespace Server.Items
 
 				Party myParty = Party.Get( m_Mobile );
 
-				return (myParty != null && myParty == Party.Get( m ));
+				return myParty != null && myParty == Party.Get( m );
 			}
 		}
 
@@ -199,10 +197,10 @@ namespace Server.Items
 
 				if ( item.Amount >= attackers.Count )
 				{
-					int amountPerAttacker = (item.Amount / attackers.Count);
-					int remainder = (item.Amount % attackers.Count);
+					int amountPerAttacker = item.Amount / attackers.Count;
+					int remainder = item.Amount % attackers.Count;
 
-					for ( int j = 0; j < ((remainder == 0) ? attackers.Count -1 : attackers.Count); j++ )
+					for ( int j = 0; j < (remainder == 0 ? attackers.Count -1 : attackers.Count); j++ )
 					{
 						Item splitItem = Mobile.LiftItemDupe( item, item.Amount - amountPerAttacker );  //LiftItemDupe automagically adds it as a child item to the corpse
 
@@ -276,7 +274,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool Devoured
 		{
-			get { return (m_Devourer != null); }
+			get { return m_Devourer != null; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -549,7 +547,7 @@ namespace Server.Items
 			m_Aggressors = new List<Mobile>( owner.Aggressors.Count + owner.Aggressed.Count );
 			//bool addToAggressors = !( owner is BaseCreature );
 
-			bool isBaseCreature = (owner is BaseCreature);
+			bool isBaseCreature = owner is BaseCreature;
 
 			TimeSpan lastTime = TimeSpan.MaxValue;
 
@@ -557,10 +555,10 @@ namespace Server.Items
 			{
 				AggressorInfo info = owner.Aggressors[i];
 
-				if ( (DateTime.Now - info.LastCombatTime) < lastTime )
+				if ( DateTime.Now - info.LastCombatTime < lastTime )
 				{
 					m_Killer = info.Attacker;
-					lastTime = (DateTime.Now - info.LastCombatTime);
+					lastTime = DateTime.Now - info.LastCombatTime;
 				}
 
 				if ( !isBaseCreature && !info.CriminalAggression )
@@ -571,10 +569,10 @@ namespace Server.Items
 			{
 				AggressorInfo info = owner.Aggressed[i];
 
-				if ( (DateTime.Now - info.LastCombatTime) < lastTime )
+				if ( DateTime.Now - info.LastCombatTime < lastTime )
 				{
 					m_Killer = info.Defender;
-					lastTime = (DateTime.Now - info.LastCombatTime);
+					lastTime = DateTime.Now - info.LastCombatTime;
 				}
 
 				if ( !isBaseCreature )
@@ -610,12 +608,12 @@ namespace Server.Items
 
 		protected bool GetFlag( CorpseFlag flag )
 		{
-			return ((m_Flags & flag) != 0);
+			return (m_Flags & flag) != 0;
 		}
 
 		protected void SetFlag( CorpseFlag flag, bool on )
 		{
-			m_Flags = (on ? m_Flags | flag : m_Flags & ~flag);
+			m_Flags = @on ? m_Flags | flag : m_Flags & ~flag;
 		}
 
 		public override void Serialize( GenericWriter writer )
@@ -638,8 +636,8 @@ namespace Server.Items
 
 			writer.WriteDeltaTime( m_TimeOfDeath );
 
-			List<KeyValuePair<Item, Point3D>> list = ( m_RestoreTable == null ? null : new List<KeyValuePair<Item, Point3D>>( m_RestoreTable ) );
-			int count = ( list == null ? 0 : list.Count );
+			List<KeyValuePair<Item, Point3D>> list = m_RestoreTable == null ? null : new List<KeyValuePair<Item, Point3D>>( m_RestoreTable );
+			int count = list == null ? 0 : list.Count;
 
 			writer.Write( count );
 
@@ -876,7 +874,7 @@ namespace Server.Items
 					return false;
 			}
 
-			return ( NotorietyHandlers.CorpseNotoriety( from, this ) == Notoriety.Innocent );
+			return NotorietyHandlers.CorpseNotoriety( @from, this ) == Notoriety.Innocent;
 		}
 
 		public override bool CheckItemUse( Mobile from, Item item )
@@ -1058,7 +1056,7 @@ namespace Server.Items
 						Item item = items[i];
 						Point3D loc = item.Location;
 
-						if ( ( item.Layer == Layer.Hair || item.Layer == Layer.FacialHair ) || !item.Movable || !GetRestoreInfo( item, ref loc ) )
+						if ( item.Layer == Layer.Hair || item.Layer == Layer.FacialHair || !item.Movable || !GetRestoreInfo( item, ref loc ) )
 							continue;
 
 						if ( pack != null && pack.CheckHold( from, item, false, true ) )

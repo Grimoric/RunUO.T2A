@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Gumps
 {
-	public delegate void WarningGumpCallback( Mobile from, bool okay, object state );
+    public delegate void WarningGumpCallback( Mobile from, bool okay, object state );
 
 	public class WarningGump : Gump
 	{
@@ -48,8 +47,8 @@ namespace Server.Gumps
 
 			if( m_CancelButton )
 			{
-				AddButton( 10 + ((width - 20) / 2), height - 30, 4005, 4007, 0, GumpButtonType.Reply, 0 );
-				AddHtmlLocalized( 40 + ((width - 20) / 2), height - 30, 170, 20, 1011012, 32767, false, false ); // CANCEL
+				AddButton( 10 + (width - 20) / 2, height - 30, 4005, 4007, 0, GumpButtonType.Reply, 0 );
+				AddHtmlLocalized( 40 + (width - 20) / 2, height - 30, 170, 20, 1011012, 32767, false, false ); // CANCEL
 			}
 		}
 

@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Network;
 using Server.Mobiles;
 using Server.Targeting;
@@ -8,7 +7,7 @@ using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	public delegate void InstrumentPickedCallback( Mobile from, BaseInstrument instrument );
+    public delegate void InstrumentPickedCallback( Mobile from, BaseInstrument instrument );
 
 	public enum InstrumentQuality
 	{
@@ -127,13 +126,13 @@ namespace Server.Items
 
 		public void ScaleUses()
 		{
-			UsesRemaining = (UsesRemaining * GetUsesScalar()) / 100;
+			UsesRemaining = UsesRemaining * GetUsesScalar() / 100;
 			//InvalidateProperties();
 		}
 
 		public void UnscaleUses()
 		{
-			UsesRemaining = (UsesRemaining * 100) / GetUsesScalar();
+			UsesRemaining = UsesRemaining * 100 / GetUsesScalar();
 		}
 
 		public int GetUsesScalar()
@@ -221,7 +220,7 @@ namespace Server.Items
 
 		public static bool IsMageryCreature( BaseCreature bc )
 		{
-			return ( bc != null && bc.AI == AIType.AI_Mage && bc.Skills[SkillName.Magery].Base > 5.0 );
+			return bc != null && bc.AI == AIType.AI_Mage && bc.Skills[SkillName.Magery].Base > 5.0;
 		}
 
 		public static bool IsFireBreathingCreature( BaseCreature bc )
@@ -234,7 +233,7 @@ namespace Server.Items
 
 		public static bool IsPoisonImmune( BaseCreature bc )
 		{
-			return ( bc != null && bc.PoisonImmune != null );
+			return bc != null && bc.PoisonImmune != null;
 		}
 
 		public static int GetPoisonLevel( BaseCreature bc )
@@ -257,7 +256,7 @@ namespace Server.Items
 				- Summoning Undead
 			*/
 
-			double val = (targ.HitsMax * 1.6) + targ.StamMax + targ.ManaMax;
+			double val = targ.HitsMax * 1.6 + targ.StamMax + targ.ManaMax;
 
 			val += targ.SkillsTotal / 10;
 
@@ -539,7 +538,7 @@ namespace Server.Items
 		{
 			m.CheckSkill( SkillName.Musicianship, 0.0, 120.0 );
 
-			return ( (m.Skills[SkillName.Musicianship].Value / 100) > Utility.RandomDouble() );
+			return m.Skills[SkillName.Musicianship].Value / 100 > Utility.RandomDouble();
 		}
 
 		public void PlayInstrumentWell( Mobile from )

@@ -1,17 +1,13 @@
 using System;
 using System.Reflection;
 using System.Collections;
-using Server;
 using Server.Commands.Generic;
 using Server.Network;
-using Server.Menus;
-using Server.Menus.Questions;
-using Server.Targeting;
 using CPA = Server.CommandPropertyAttribute;
 
 namespace Server.Gumps
 {
-	public class PropertiesGump : Gump
+    public class PropertiesGump : Gump
 	{
 		private ArrayList m_List;
 		private int m_Page;
@@ -71,7 +67,7 @@ namespace Server.Gumps
 		private static readonly int TypeWidth = NameWidth + OffsetSize + ValueWidth;
 
 		private static readonly int TotalWidth = OffsetSize + NameWidth + OffsetSize + ValueWidth + OffsetSize + SetWidth + OffsetSize;
-		private static readonly int TotalHeight = OffsetSize + ((EntryHeight + OffsetSize) * (EntryCount + 1));
+		private static readonly int TotalHeight = OffsetSize + (EntryHeight + OffsetSize) * (EntryCount + 1);
 
 		private static readonly int BackWidth = BorderSize + TotalWidth + BorderSize;
 		private static readonly int BackHeight = BorderSize + TotalHeight + BorderSize;
@@ -123,19 +119,19 @@ namespace Server.Gumps
 		{
 			m_Page = page;
 
-			int count = m_List.Count - (page * EntryCount);
+			int count = m_List.Count - page * EntryCount;
 
 			if ( count < 0 )
 				count = 0;
 			else if ( count > EntryCount )
 				count = EntryCount;
 
-			int lastIndex = (page * EntryCount) + count - 1;
+			int lastIndex = page * EntryCount + count - 1;
 
 			if ( lastIndex >= 0 && lastIndex < m_List.Count && m_List[lastIndex] == null )
 				--count;
 
-			int totalHeight = OffsetSize + ((EntryHeight + OffsetSize) * (count + 1));
+			int totalHeight = OffsetSize + (EntryHeight + OffsetSize) * (count + 1);
 
 			AddPage( 0 );
 
@@ -145,10 +141,10 @@ namespace Server.Gumps
 			int x = BorderSize + OffsetSize;
 			int y = BorderSize + OffsetSize;
 
-			int emptyWidth = TotalWidth - PrevWidth - NextWidth - (OffsetSize * 4) - (OldStyle ? SetWidth + OffsetSize : 0);
+			int emptyWidth = TotalWidth - PrevWidth - NextWidth - OffsetSize * 4 - (OldStyle ? SetWidth + OffsetSize : 0);
 
 			if ( OldStyle )
-				AddImageTiled( x, y, TotalWidth - (OffsetSize * 3) - SetWidth, EntryHeight, HeaderGumpID );
+				AddImageTiled( x, y, TotalWidth - OffsetSize * 3 - SetWidth, EntryHeight, HeaderGumpID );
 			else
 				AddImageTiled( x, y, PrevWidth, EntryHeight, HeaderGumpID );
 
@@ -282,7 +278,7 @@ namespace Server.Gumps
 				}
 				default:
 				{
-					int index = (m_Page * EntryCount) + (info.ButtonID - 3);
+					int index = m_Page * EntryCount + (info.ButtonID - 3);
 
 					if ( index >= 0 && index < m_List.Count )
 					{
@@ -389,7 +385,7 @@ namespace Server.Gumps
 		{
 			object[] objs = type.GetCustomAttributes( check, inherit );
 
-			return ( objs != null && objs.Length > 0 );
+			return objs != null && objs.Length > 0;
 		}
 
 		private static bool IsType( Type type, Type check )

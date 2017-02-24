@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using Server;
 
 namespace Server.Engines.ConPVP
 {
-	public class LadderController : Item
+    public class LadderController : Item
 	{
 		private Ladder m_Ladder;
 
@@ -91,7 +90,7 @@ namespace Server.Engines.ConPVP
 			if ( xp >= 22500 )
 				return 50;
 			else if ( xp >= 2500 )
-				return (10 + ((xp - 2500) / 500));
+				return 10 + (xp - 2500) / 500;
 			else if ( xp < 0 )
 				xp = 0;
 
@@ -107,7 +106,7 @@ namespace Server.Engines.ConPVP
 		{
 			if ( level >= 10 )
 			{
-				xpBase = 2500 + ((level-10)*500);
+				xpBase = 2500 + (level-10)*500;
 				xpAdvance = 500;
 			}
 			else
@@ -180,7 +179,7 @@ namespace Server.Engines.ConPVP
 			int xp = 25 * scalar;
 
 			if ( !weWon )
-				xp = (xp * GetLossFactor( ourLevel )) / 100;
+				xp = xp * GetLossFactor( ourLevel ) / 100;
 
 			xp /= 100;
 
@@ -221,10 +220,10 @@ namespace Server.Engines.ConPVP
 
 				int c;
 
-				while ( (index - 1) >= 0 && (c = entry.CompareTo( m_Entries[index - 1] )) < 0 )
+				while ( index - 1 >= 0 && (c = entry.CompareTo( m_Entries[index - 1] )) < 0 )
 					index = Swap( index, index - 1 );
 
-				while ( (index + 1) < m_Entries.Count && (c = entry.CompareTo( m_Entries[index + 1] )) > 0 )
+				while ( index + 1 < m_Entries.Count && (c = entry.CompareTo( m_Entries[index + 1] )) > 0 )
 					index = Swap( index, index + 1 );
 			}
 		}

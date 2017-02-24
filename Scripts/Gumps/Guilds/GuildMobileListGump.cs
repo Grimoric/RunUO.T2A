@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Guilds;
 using System.Collections.Generic;
 
 namespace Server.Gumps
 {
-	public abstract class GuildMobileListGump : Gump
+    public abstract class GuildMobileListGump : Gump
 	{
 		protected Mobile m_Mobile;
 		protected Guild m_Guild;
@@ -30,25 +27,25 @@ namespace Server.Gumps
 
 			for ( int i = 0; i < m_List.Count; ++i )
 			{
-				if ( (i % 11) == 0 )
+				if ( i % 11 == 0 )
 				{
 					if ( i != 0 )
 					{
-						AddButton( 300, 370, 4005, 4007, 0, GumpButtonType.Page, (i / 11) + 1 );
+						AddButton( 300, 370, 4005, 4007, 0, GumpButtonType.Page, i / 11 + 1 );
 						AddHtmlLocalized( 335, 370, 300, 35, 1011066, false, false ); // Next page
 					}
 
-					AddPage( (i / 11) + 1 );
+					AddPage( i / 11 + 1 );
 
 					if ( i != 0 )
 					{
-						AddButton( 20, 370, 4014, 4016, 0, GumpButtonType.Page, (i / 11) );
+						AddButton( 20, 370, 4014, 4016, 0, GumpButtonType.Page, i / 11 );
 						AddHtmlLocalized( 55, 370, 300, 35, 1011067, false, false ); // Previous page
 					}
 				}
 
 				if ( radio )
-					AddRadio( 20, 35 + ((i % 11) * 30), 208, 209, false, i );
+					AddRadio( 20, 35 + i % 11 * 30, 208, 209, false, i );
 
 				Mobile m = m_List[i];
 
@@ -57,7 +54,7 @@ namespace Server.Gumps
 				if ( (name = m.Name) != null && (name = name.Trim()).Length <= 0 )
 					name = "(empty)";
 
-				AddLabel( (radio ? 55 : 20), 35 + ((i % 11) * 30), 0, name );
+				AddLabel( radio ? 55 : 20, 35 + i % 11 * 30, 0, name );
 			}
 		}
 

@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class Torch : BaseEquipableLight
+    public class Torch : BaseEquipableLight
 	{
 		public override int LitItemID{ get { return 0xA12; } }
 		public override int UnlitItemID{ get { return 0xF6B; } }

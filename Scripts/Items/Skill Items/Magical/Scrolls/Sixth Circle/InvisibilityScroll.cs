@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class InvisibilityScroll : SpellScroll
+    public class InvisibilityScroll : SpellScroll
 	{
 		[Constructable]
 		public InvisibilityScroll() : this( 1 )

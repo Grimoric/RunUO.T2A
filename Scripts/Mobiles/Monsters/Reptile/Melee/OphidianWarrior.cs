@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
-using Server.Items;
-using Server.Targeting;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "an ophidian corpse" )]
+    [CorpseName( "an ophidian corpse" )]
 	public class OphidianWarrior : BaseCreature
 	{
 		private static string[] m_Names = new string[]

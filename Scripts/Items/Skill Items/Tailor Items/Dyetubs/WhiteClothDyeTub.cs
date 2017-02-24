@@ -1,9 +1,6 @@
-using Server;
-using System;
-
 namespace Server.Items /* High seas, loot from merchant ship's hold, also a "uncommon" loot item */
 {
-	public class WhiteClothDyeTub : DyeTub
+    public class WhiteClothDyeTub : DyeTub
 	{
 		public override int LabelNumber { get { return 1149984; } } // White Cloth Dye Tub
 

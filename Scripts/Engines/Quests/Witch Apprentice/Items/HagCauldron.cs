@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class HagCauldron : BaseAddon
+    public class HagCauldron : BaseAddon
 	{
 
 		[Constructable]

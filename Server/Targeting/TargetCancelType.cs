@@ -18,11 +18,10 @@
  *
  ***************************************************************************/
 
-using System;
 
 namespace Server.Targeting
 {
-	public enum TargetCancelType
+    public enum TargetCancelType
 	{
 		Overriden,
 		Canceled,

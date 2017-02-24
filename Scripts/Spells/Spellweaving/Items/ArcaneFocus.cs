@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class ArcaneFocus : TransientItem
+    public class ArcaneFocus : TransientItem
 	{
 		public override int LabelNumber { get { return 1032629; } } // Arcane Focus
 

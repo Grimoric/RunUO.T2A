@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Engines.BulkOrders
 {
-	public class SmallBODAcceptGump : Gump
+    public class SmallBODAcceptGump : Gump
 	{
 		private SmallBOD m_Deed;
 		private Mobile m_From;

@@ -1,12 +1,8 @@
-using Server;
-using Server.Items;
-using Server.Network;
 using System;
-using System.Collections;
 
 namespace Server.Items
 {
-	public class BaseTreasureChest : LockableContainer
+    public class BaseTreasureChest : LockableContainer
 	{
 		private TreasureLevel m_TreasureLevel;
 		private short m_MaxSpawnTime = 60;

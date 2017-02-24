@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Gumps;
 using Server.Network;
 using Server.Multis;
@@ -9,7 +6,7 @@ using Server.ContextMenus;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x234E, 0x234F )]
+    [FlipableAttribute( 0x234E, 0x234F )]
 	public class TapestryOfSosaria : Item, ISecurable
 	{
 		private SecureLevel m_Level;

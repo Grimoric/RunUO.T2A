@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Haven
 {
-	public class MansionGuard : BaseQuester
+    public class MansionGuard : BaseQuester
 	{
 		[Constructable]
 		public MansionGuard() : base( "the Mansion Guard" )
@@ -46,7 +43,7 @@ namespace Server.Engines.Quests.Haven
 
 		public override bool CanTalkTo( PlayerMobile to )
 		{
-			return ( to.Quest == null && QuestSystem.CanOfferQuest( to, typeof( UzeraanTurmoilQuest ) ) );
+			return to.Quest == null && QuestSystem.CanOfferQuest( to, typeof( UzeraanTurmoilQuest ) );
 		}
 
 		public override void OnTalk( PlayerMobile player, bool contextMenu )

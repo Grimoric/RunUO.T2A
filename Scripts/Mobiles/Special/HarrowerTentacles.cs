@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a tentacles corpse" )]
+    [CorpseName( "a tentacles corpse" )]
 	public class HarrowerTentacles : BaseCreature
 	{
 		private Mobile m_Harrower;

@@ -1,18 +1,16 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Gumps;
 using Server.Spells;
 using Server.Spells.Fifth;
 using Server.Spells.Seventh;
-using Server.Spells.Necromancy;
 using Server.Mobiles;
 using Server.Network;
 using Server.SkillHandlers;
 
 namespace Server.Items
 {
-	public class DisguiseKit : Item
+    public class DisguiseKit : Item
 	{
 		public override int LabelNumber{ get{ return 1041078; } } // a disguise kit
 
@@ -147,7 +145,7 @@ namespace Server.Items
 
 			if ( nextPage != -1 )
 			{
-				AddButton( 155, 320, 250 + (index*2), 251 + (index*2), 0, GumpButtonType.Page, nextPage );
+				AddButton( 155, 320, 250 + index*2, 251 + index*2, 0, GumpButtonType.Page, nextPage );
 				AddHtmlLocalized( 180, 320, 150, 35, nextNumber, false, false );
 			}
 
@@ -158,8 +156,8 @@ namespace Server.Items
 				if ( entry == null )
 					continue;
 
-				int x = (i % 2) * 205;
-				int y = (i / 2) * 55;
+				int x = i % 2 * 205;
+				int y = i / 2 * 55;
 
 				if ( entry.m_GumpID != 0 )
 				{
@@ -168,7 +166,7 @@ namespace Server.Items
 				}
 
 				AddHtmlLocalized( 140 + x, 72 + y, 80, 35, entry.m_Number, false, false );
-				AddRadio( 118 + x, 73 + y, 208, 209, false, (i * 2) + index );
+				AddRadio( 118 + x, 73 + y, 208, 209, false, i * 2 + index );
 			}
 		}
 
@@ -193,9 +191,9 @@ namespace Server.Items
 			int type = switched % 2;
 			int index = switched / 2;
 
-			bool hair = ( type == 0 );
+			bool hair = type == 0;
 
-			DisguiseEntry[] entries = ( hair ? m_HairEntries : m_BeardEntries );
+			DisguiseEntry[] entries = hair ? m_HairEntries : m_BeardEntries;
 
 			if ( index >= 0 && index < entries.Length )
 			{
@@ -334,7 +332,7 @@ namespace Server.Items
 				t.Stop();
 			}
 
-			return ( t != null );
+			return t != null;
 		}
 		
 		public static bool RemoveTimer( Mobile m )
@@ -347,7 +345,7 @@ namespace Server.Items
 				m_Timers.Remove( m );
 			}
 			
-			return ( t != null );
+			return t != null;
 		}
 		
 		public static TimeSpan TimeRemaining( Mobile m )

@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class TrueWarCleaver : WarCleaver
+    public class TrueWarCleaver : WarCleaver
 	{
 		public override int LabelNumber{ get{ return 1073528; } } // true war cleaver
 

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class LoomSouthAddon : BaseAddon, ILoom
+    public class LoomSouthAddon : BaseAddon, ILoom
 	{
 		public override BaseAddonDeed Deed{ get{ return new LoomSouthDeed(); } }
 

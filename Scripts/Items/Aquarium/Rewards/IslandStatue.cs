@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class IslandStatue : Item
+    public class IslandStatue : Item
 	{		
 		public override int LabelNumber{ get{ return 1074600; } } // An island statue
 		public override double DefaultWeight{ get{ return 1.0; } }

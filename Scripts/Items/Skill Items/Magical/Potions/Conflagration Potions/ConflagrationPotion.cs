@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ConflagrationPotion : BaseConflagrationPotion
+    public class ConflagrationPotion : BaseConflagrationPotion
 	{
 		public override int MinDamage{ get{ return 2; } }
 		public override int MaxDamage{ get{ return 4; } }

@@ -1,14 +1,10 @@
 using System;
-using Server;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
-using System.Collections.Generic;
 using Server.Engines.CannedEvil;
 
 namespace Server.Mobiles
 {
-	[CorpseName("a corpse of Twaulo")]
+    [CorpseName("a corpse of Twaulo")]
 	public class Twaulo : BaseChampion
 	{
 		public override ChampionSkullType SkullType{ get{ return ChampionSkullType.Pain; } }

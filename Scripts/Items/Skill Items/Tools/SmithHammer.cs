@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x13E3, 0x13E4 )]
+    [FlipableAttribute( 0x13E3, 0x13E4 )]
 	public class SmithHammer : BaseTool
 	{
 		public override CraftSystem CraftSystem{ get{ return DefBlacksmithy.CraftSystem; } }

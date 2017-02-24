@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Server.Multis;
 using Server.Mobiles;
@@ -7,7 +6,7 @@ using Server.ContextMenus;
 
 namespace Server.Items
 {
-	public abstract class BaseContainer : Container
+    public abstract class BaseContainer : Container
 	{
 		public override int DefaultMaxWeight
 		{
@@ -63,7 +62,7 @@ namespace Server.Items
 
 			if ( house != null && house.IsLockedDown( this ) )
 			{
-				if ( dropped is VendorRentalContract || ( dropped is Container && ((Container)dropped).FindItemByType( typeof( VendorRentalContract ) ) != null ) )
+				if ( dropped is VendorRentalContract || dropped is Container && ((Container)dropped).FindItemByType( typeof( VendorRentalContract ) ) != null )
 				{
 					from.SendLocalizedMessage( 1062492 ); // You cannot place a rental contract in a locked down container.
 					return false;
@@ -97,7 +96,7 @@ namespace Server.Items
 
 			if ( house != null && house.IsLockedDown( this ) )
 			{
-				if ( item is VendorRentalContract || ( item is Container && ((Container)item).FindItemByType( typeof( VendorRentalContract ) ) != null ) )
+				if ( item is VendorRentalContract || item is Container && ((Container)item).FindItemByType( typeof( VendorRentalContract ) ) != null )
 				{
 					from.SendLocalizedMessage( 1062492 ); // You cannot place a rental contract in a locked down container.
 					return false;

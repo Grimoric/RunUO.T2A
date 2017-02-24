@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using Server;
 
 namespace Server.Commands.Generic
 {
-	[Flags]
+    [Flags]
 	public enum CommandSupport
 	{
 		Single		= 0x0001,

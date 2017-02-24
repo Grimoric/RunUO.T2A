@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Factions
 {
-	public class FactionWizard : BaseFactionGuard
+    public class FactionWizard : BaseFactionGuard
 	{
 		public override GuardAI GuardAI{ get{ return GuardAI.Magic | GuardAI.Smart | GuardAI.Bless | GuardAI.Curse; } }
 

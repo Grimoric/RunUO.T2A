@@ -19,17 +19,17 @@ namespace Server.Items
 			switch( Utility.RandomList( 0, 1, 2 ) )
 			{
 				case 0:// Large Crate
-					this.ItemID = ( UseFirstItemId ? 0xe3c : 0xe3d );
+					this.ItemID = UseFirstItemId ? 0xe3c : 0xe3d;
 					this.GumpID = 0x44;
 					break;
 
 				case 1:// Medium Crate
-					this.ItemID = ( UseFirstItemId ? 0xe3e : 0xe3f );
+					this.ItemID = UseFirstItemId ? 0xe3e : 0xe3f;
 					this.GumpID = 0x44;
 					break;
 
 				case 2:// Small Crate
-					this.ItemID = ( UseFirstItemId ? 0x9a9 : 0xe7e );
+					this.ItemID = UseFirstItemId ? 0x9a9 : 0xe7e;
 					this.GumpID = 0x44;
 					break;
 			}

@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Engines.ConPVP
 {
-	public class ArenaController : Item
+    public class ArenaController : Item
 	{
 		private Arena m_Arena;
 		private bool m_IsPrivate;
@@ -315,7 +314,7 @@ namespace Server.Engines.ConPVP
 		public Point3D Wall{ get{ return m_Wall; } set{ m_Wall = value; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public bool IsOccupied{ get{ return ( m_Players.Count > 0 ); } }
+		public bool IsOccupied{ get{ return m_Players.Count > 0; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public ArenaStartPoints Points{ get{ return m_Points; } set{} }
@@ -439,7 +438,7 @@ namespace Server.Engines.ConPVP
 
 			int offset = 0;
 
-			Point2D[] offsets = ( index < 4 ) ? m_EdgeOffsets : m_CornerOffsets;
+			Point2D[] offsets = index < 4 ? m_EdgeOffsets : m_CornerOffsets;
 			int[,] matrix = m_Rotate[index];
 
 			for ( int i = 0; i < players.Length; ++i )
@@ -458,8 +457,8 @@ namespace Server.Engines.ConPVP
 				else
 					p = offsets[offsets.Length - 1];
 
-				p.X = (p.X * matrix[0, 0]) + (p.Y * matrix[0, 1]);
-				p.Y = (p.X * matrix[1, 0]) + (p.Y * matrix[1, 1]);
+				p.X = p.X * matrix[0, 0] + p.Y * matrix[0, 1];
+				p.Y = p.X * matrix[1, 0] + p.Y * matrix[1, 1];
 
 				mob.MoveToWorld( new Point3D( start.X + p.X, start.Y + p.Y, start.Z ), m_Facet );
 				mob.Direction = mob.GetDirectionTo( m_Wall );
@@ -586,7 +585,7 @@ namespace Server.Engines.ConPVP
 				facet = m_Facet;
 			}
 
-			bool hasBounds = ( m_Bounds.Start != Point2D.Zero && m_Bounds.End != Point2D.Zero );
+			bool hasBounds = m_Bounds.Start != Point2D.Zero && m_Bounds.End != Point2D.Zero;
 
 			for ( int i = 0; i < m_Players.Count; ++i )
 			{
@@ -700,9 +699,9 @@ namespace Server.Engines.ConPVP
 							bool isNear;
 
 							if ( house == null )
-								isNear = ( controller.Map == check.Map && check.InRange( controller, 24 ) );
+								isNear = controller.Map == check.Map && check.InRange( controller, 24 );
 							else
-								isNear = ( Multis.BaseHouse.FindHouseAt( check ) == house );
+								isNear = Multis.BaseHouse.FindHouseAt( check ) == house;
 
 							if ( !isNear )
 							{

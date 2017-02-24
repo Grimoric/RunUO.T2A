@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Server.Items;
 
 namespace Server.Spells.Spellweaving
 {
-	public class ImmolatingWeaponSpell : ArcanistSpell
+    public class ImmolatingWeaponSpell : ArcanistSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Immolating Weapon", "Thalshara",

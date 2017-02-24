@@ -1,12 +1,10 @@
 ﻿using System;
-using Server;
 using Server.Items;
 using Server.Items.Holiday;
-using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a killer pumpkin corpse" )]
+    [CorpseName( "a killer pumpkin corpse" )]
 	public class PumpkinHead : BaseCreature
 	{
 		public override bool AutoDispel { get { return true; } }
@@ -104,7 +102,7 @@ namespace Server.Mobiles
 			{
 				if( from != null && from.Map != null && Map != Map.Internal && Map == from.Map && from.InRange( this, 12 ) )
 				{
-					SpillAcid( ( willKill ) ? this : from, ( willKill ) ? 3 : 1 );
+					SpillAcid( willKill ? this : from, willKill ? 3 : 1 );
 				}
 			}
 

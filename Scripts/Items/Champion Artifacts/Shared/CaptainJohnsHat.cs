@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class CaptainJohnsHat : TricorneHat
+    public class CaptainJohnsHat : TricorneHat
 	{
 		public override int LabelNumber{ get{ return 1094911; } } // Captain John's Hat [Replica]
 

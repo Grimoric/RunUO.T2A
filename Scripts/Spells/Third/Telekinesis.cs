@@ -1,12 +1,9 @@
-using System;
 using Server.Targeting;
-using Server.Network;
-using Server.Regions;
 using Server.Items;
 
 namespace Server.Spells.Third
 {
-	public class TelekinesisSpell : MagerySpell
+    public class TelekinesisSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Telekinesis", "Ort Por Ylem",
@@ -102,7 +99,7 @@ namespace Server.Spells.Third
 
 namespace Server
 {
-	public interface ITelekinesisable : IPoint3D
+    public interface ITelekinesisable : IPoint3D
 	{
 		void OnTelekinesis( Mobile from );
 	}

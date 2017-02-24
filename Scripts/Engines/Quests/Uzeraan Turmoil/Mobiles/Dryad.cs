@@ -1,14 +1,10 @@
-using System;
 using System.Collections.Generic;
-using Server;
 using Server.Mobiles;
 using Server.Items;
-using Server.ContextMenus;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Haven
 {
-	public class Dryad : BaseQuester
+    public class Dryad : BaseQuester
 	{
 		public override bool IsActiveVendor{ get{ return true; } }
 		public override bool DisallowAllMoves{ get{ return false; } }
@@ -69,7 +65,7 @@ namespace Server.Engines.Quests.Haven
 		{
 			UzeraanTurmoilQuest qs = to.Quest as UzeraanTurmoilQuest;
 
-			return ( qs != null && qs.FindObjective( typeof( FindDryadObjective ) ) != null );
+			return qs != null && qs.FindObjective( typeof( FindDryadObjective ) ) != null;
 		}
 
 		public override void OnTalk( PlayerMobile player, bool contextMenu )

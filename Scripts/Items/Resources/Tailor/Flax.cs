@@ -1,10 +1,8 @@
-using System;
-using Server.Items;
 using Server.Targeting;
 
 namespace Server.Items
 {
-	public class Flax : Item
+    public class Flax : Item
 	{
 		[Constructable]
 		public Flax() : this( 1 )

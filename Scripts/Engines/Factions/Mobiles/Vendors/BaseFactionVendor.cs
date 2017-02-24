@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Factions
 {
-	public abstract class BaseFactionVendor : BaseVendor
+    public abstract class BaseFactionVendor : BaseVendor
 	{
 		private Town m_Town;
 		private Faction m_Faction;

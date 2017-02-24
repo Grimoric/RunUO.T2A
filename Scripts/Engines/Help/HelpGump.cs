@@ -1,16 +1,13 @@
 using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
-using Server.Menus;
 using Server.Menus.Questions;
-using Server.Accounting;
 using Server.Multis;
 using Server.Mobiles;
 
 namespace Server.Engines.Help
 {
-	public class ContainedMenu : QuestionMenu
+    public class ContainedMenu : QuestionMenu
 	{
 		private Mobile m_From;
 

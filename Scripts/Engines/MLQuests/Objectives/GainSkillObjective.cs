@@ -1,12 +1,10 @@
 using System;
-using Server;
-using Server.Engines.MLQuests;
 using Server.Mobiles;
 using Server.Gumps;
 
 namespace Server.Engines.MLQuests.Objectives
 {
-	public enum GainSkillObjectiveFlags : byte
+    public enum GainSkillObjectiveFlags : byte
 	{
 		None		= 0x00,
 		UseReal		= 0x01,
@@ -102,7 +100,7 @@ namespace Server.Engines.MLQuests.Objectives
 
 		private bool GetFlag( GainSkillObjectiveFlags flag )
 		{
-			return ( ( m_Flags & flag ) != 0 );
+			return ( m_Flags & flag ) != 0;
 		}
 
 		private void SetFlag( GainSkillObjectiveFlags flag, bool value )
@@ -133,7 +131,7 @@ namespace Server.Engines.MLQuests.Objectives
 
 		public bool Handles( SkillName skill )
 		{
-			return ( m_Objective.Skill == skill );
+			return m_Objective.Skill == skill;
 		}
 
 		public override bool IsCompleted()
@@ -142,7 +140,7 @@ namespace Server.Engines.MLQuests.Objectives
 
 			int valueFixed = m_Objective.UseReal ? pm.Skills[m_Objective.Skill].Fixed : pm.Skills[m_Objective.Skill].BaseFixedPoint;
 
-			return ( valueFixed >= m_Objective.ThresholdFixed );
+			return valueFixed >= m_Objective.ThresholdFixed;
 		}
 
 		// TODO: This may interfere with scrolls, or even quests among each other

@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a shadow wyrm corpse" )]
+    [CorpseName( "a shadow wyrm corpse" )]
 	public class ShadowWyrm : BaseCreature
 	{
 		[Constructable]

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class GauntletsOfNobility : RingmailGloves
+    public class GauntletsOfNobility : RingmailGloves
 	{
 		public override int LabelNumber{ get{ return 1061092; } } // Gauntlets of Nobility
 		public override int ArtifactRarity{ get{ return 11; } }

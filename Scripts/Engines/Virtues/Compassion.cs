@@ -1,14 +1,9 @@
 using System;
-using System.Collections;
-using Server;
-using Server.Items;
-using Server.Gumps;
 using Server.Mobiles;
-using Server.Targeting;
 
 namespace Server
 {
-	public class CompassionVirtue
+    public class CompassionVirtue
 	{
 		private static TimeSpan LossDelay = TimeSpan.FromDays( 7.0 );
 		private const int LossAmount = 500;
@@ -32,7 +27,7 @@ namespace Server
 
 			try
 			{
-				if ( (pm.LastCompassionLoss + LossDelay) < DateTime.Now )
+				if ( pm.LastCompassionLoss + LossDelay < DateTime.Now )
 				{
 					VirtueHelper.Atrophy( from, VirtueName.Compassion, LossAmount );
 					//OSI has no cliloc message for losing compassion.  Weird.

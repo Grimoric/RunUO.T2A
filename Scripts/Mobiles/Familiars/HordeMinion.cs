@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Gumps;
 using Server.Network;
@@ -9,7 +8,7 @@ using Server.ContextMenus;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a horde minion corpse" )]
+    [CorpseName( "a horde minion corpse" )]
 	public class HordeMinionFamiliar : BaseFamiliar
 	{
 		public override bool DisplayWeight{ get { return true; } }

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class Torso : Item
+    public class Torso : Item
 	{
 		[Constructable]
 		public Torso() : base( 0x1D9F )

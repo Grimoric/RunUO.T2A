@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Server;
 using Server.Multis;
 using Server.Targeting;
 using Server.ContextMenus;
@@ -8,7 +6,7 @@ using Server.Gumps;
 
 namespace Server.Items
 {
-	public interface IDyable
+    public interface IDyable
 	{
 		bool Dye( Mobile from, DyeTub sender );
 	}
@@ -190,7 +188,7 @@ namespace Server.Items
 						else if ( ((IDyable)item).Dye( from, m_Tub ) )
 							from.PlaySound( 0x23E );
 					}
-					else if ( (FurnitureAttribute.Check( item ) || (item is PotionKeg)) && m_Tub.AllowFurniture )
+					else if ( (FurnitureAttribute.Check( item ) || item is PotionKeg) && m_Tub.AllowFurniture )
 					{
 						if ( !from.InRange( m_Tub.GetWorldLocation(), 1 ) || !from.InRange( item.GetWorldLocation(), 1 ) )
 						{
@@ -198,7 +196,7 @@ namespace Server.Items
 						}
 						else
 						{
-							bool okay = ( item.IsChildOf( from.Backpack ) );
+							bool okay = item.IsChildOf( @from.Backpack );
 
 							if ( !okay )
 							{
@@ -206,7 +204,7 @@ namespace Server.Items
 								{
 									BaseHouse house = BaseHouse.FindHouseAt( item );
 
-									if ( house == null || ( !house.IsLockedDown( item ) && !house.IsSecure( item ) ) )
+									if ( house == null || !house.IsLockedDown( item ) && !house.IsSecure( item ) )
 										from.SendLocalizedMessage( 501022 ); // Furniture must be locked down to paint it.
 									else if ( !house.IsCoOwner( from ) )
 										from.SendLocalizedMessage( 501023 ); // You must be the owner to use this item.

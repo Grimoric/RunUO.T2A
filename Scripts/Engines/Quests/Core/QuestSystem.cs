@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Gumps;
 using Server.Mobiles;
@@ -10,7 +9,7 @@ using Server.ContextMenus;
 
 namespace Server.Engines.Quests
 {
-	public delegate void QuestCallback();
+    public delegate void QuestCallback();
 
 	public abstract class QuestSystem
 	{
@@ -205,7 +204,7 @@ namespace Server.Engines.Quests
 		{
 			QuestObjective obj = FindObjective( type );
 
-			return ( obj != null && !obj.Completed );
+			return obj != null && !obj.Completed;
 		}
 
 		public QuestObjective FindObjective( Type type )
@@ -319,7 +318,7 @@ namespace Server.Engines.Quests
 
 				TimeSpan restartDelay = this.RestartDelay;
 
-				if ( ( completed && restartDelay > TimeSpan.Zero ) || ( !completed && restartDelay == TimeSpan.MaxValue ) )
+				if ( completed && restartDelay > TimeSpan.Zero || !completed && restartDelay == TimeSpan.MaxValue )
 				{
 					List<QuestRestartInfo> doneQuests = m_From.DoneQuests;
 
@@ -529,7 +528,7 @@ namespace Server.Engines.Quests
 
 				AddHtmlLocalized( 25, 120, 280, 20, 1049002, White, false, false ); // Can this quest be restarted after quitting?
 				AddImage( 25, 141, 0x25E7 );
-				AddHtmlLocalized( 48, 140, 280, 20, (system.RestartDelay < TimeSpan.MaxValue) ? 1049016 : 1049017, DarkGreen, false, false ); // Yes/No
+				AddHtmlLocalized( 48, 140, 280, 20, system.RestartDelay < TimeSpan.MaxValue ? 1049016 : 1049017, DarkGreen, false, false ); // Yes/No
 			}
 
 			AddRadio( 25, 175, 9720, 9723, true, 1 );
@@ -626,9 +625,9 @@ namespace Server.Engines.Quests
 		{
 			c16 &= 0x7FFF;
 
-			int r = ( ((c16 >> 10) & 0x1F) << 3 );
-			int g = ( ((c16 >> 05) & 0x1F) << 3 );
-			int b = ( ((c16 >> 00) & 0x1F) << 3 );
+			int r = ((c16 >> 10) & 0x1F) << 3;
+			int g = ((c16 >> 05) & 0x1F) << 3;
+			int b = ((c16 >> 00) & 0x1F) << 3;
 
 			return (r << 16) | (g << 8) | (b << 0);
 		}
@@ -642,9 +641,9 @@ namespace Server.Engines.Quests
 		{
 			c32 &= 0xFFFFFF;
 
-			int r = ( ((c32 >> 16) & 0xFF) >> 3 );
-			int g = ( ((c32 >> 08) & 0xFF) >> 3 );
-			int b = ( ((c32 >> 00) & 0xFF) >> 3 );
+			int r = ((c32 >> 16) & 0xFF) >> 3;
+			int g = ((c32 >> 08) & 0xFF) >> 3;
+			int b = ((c32 >> 00) & 0xFF) >> 3;
 
 			return (r << 10) | (g << 5) | (b << 0);
 		}

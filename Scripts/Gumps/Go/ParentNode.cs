@@ -1,11 +1,9 @@
-using System;
 using System.Xml;
 using System.Collections;
-using Server;
 
 namespace Server.Gumps
 {
-	public class ParentNode
+    public class ParentNode
 	{
 		private ParentNode m_Parent;
 		private object[] m_Children;

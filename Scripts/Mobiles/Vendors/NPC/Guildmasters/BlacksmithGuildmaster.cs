@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using Server;
-
 namespace Server.Mobiles
 {
-	public class BlacksmithGuildmaster : BaseGuildmaster
+    public class BlacksmithGuildmaster : BaseGuildmaster
 	{
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.BlacksmithsGuild; } }
 
@@ -34,7 +30,7 @@ namespace Server.Mobiles
 		{
 			base.InitOutfit();
 
-			Item item = ( Utility.RandomBool() ? null : new Server.Items.RingmailChest() );
+			Item item = Utility.RandomBool() ? null : new Server.Items.RingmailChest();
 
 			if ( item != null && !EquipItem( item ) )
 			{

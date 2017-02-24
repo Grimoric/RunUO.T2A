@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Multis
 {
-	public class SmallDragonBoat : BaseBoat
+    public class SmallDragonBoat : BaseBoat
 	{
 		public override int NorthID{ get{ return 0x4; } }
 		public override int  EastID{ get{ return 0x5; } }

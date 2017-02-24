@@ -1,13 +1,10 @@
 using System;
-using Server;
 using Server.Mobiles;
-using Server.Spells;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Server.Items
 {
-	public class AcidSlime : Item
+    public class AcidSlime : Item
 	{
 		private TimeSpan m_Duration;
 		private int m_MinDamage;
@@ -50,7 +47,7 @@ namespace Server.Items
 			if( age > m_Duration ) {
 				Delete();
 			} else {
-				if( !m_Drying && age > (m_Duration - age) )
+				if( !m_Drying && age > m_Duration - age )
 				{
 					m_Drying = true;
 					ItemID = 0x122B;

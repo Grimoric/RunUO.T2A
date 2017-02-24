@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class Static : Item
+    public class Static : Item
 	{
 		public Static() : base( 0x80 )
 		{

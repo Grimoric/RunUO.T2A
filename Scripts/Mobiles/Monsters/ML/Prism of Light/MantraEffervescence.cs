@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a mantra effervescence corpse" )]
+    [CorpseName( "a mantra effervescence corpse" )]
 	public class MantraEffervescence : BaseCreature
 	{
 		[Constructable]

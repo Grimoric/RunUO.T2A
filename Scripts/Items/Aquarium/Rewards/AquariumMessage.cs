@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class AquariumMessage : MessageInABottle
+    public class AquariumMessage : MessageInABottle
 	{
 		public override int LabelNumber{ get{ return 1073894; } } // Message in a Bottle
 

@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Server.Gumps;
 using Server.Network;
@@ -7,7 +6,7 @@ using Server.Items;
 
 namespace Server.Engines.Craft
 {
-	public class CraftGump : Gump
+    public class CraftGump : Gump
 	{
 		private Mobile m_From;
 		private CraftSystem m_CraftSystem;
@@ -115,7 +114,7 @@ namespace Server.Engines.Craft
 				string nameString = craftSystem.CraftSubRes.NameString;
 				int nameNumber = craftSystem.CraftSubRes.NameNumber;
 
-				int resIndex = ( context == null ? -1 : context.LastResourceIndex );
+				int resIndex = context == null ? -1 : context.LastResourceIndex;
 
 				Type resourceType = craftSystem.CraftSubRes.ResType;
 
@@ -153,7 +152,7 @@ namespace Server.Engines.Craft
 				string nameString = craftSystem.CraftSubRes2.NameString;
 				int nameNumber = craftSystem.CraftSubRes2.NameNumber;
 
-				int resIndex = ( context == null ? -1 : context.LastResourceIndex2 );
+				int resIndex = context == null ? -1 : context.LastResourceIndex2;
 
                 Type resourceType = craftSystem.CraftSubRes2.ResType;
 
@@ -197,7 +196,7 @@ namespace Server.Engines.Craft
 
 		public void CreateResList( bool opt, Mobile from )
 		{
-			CraftSubResCol res = ( opt ? m_CraftSystem.CraftSubRes2 : m_CraftSystem.CraftSubRes );
+			CraftSubResCol res = opt ? m_CraftSystem.CraftSubRes2 : m_CraftSystem.CraftSubRes;
 
 			for ( int i = 0; i < res.Count; ++i )
 			{
@@ -208,9 +207,9 @@ namespace Server.Engines.Craft
 				if ( index == 0 )
 				{
 					if ( i > 0 )
-						AddButton( 485, 260, 4005, 4007, 0, GumpButtonType.Page, (i / 10) + 1 );
+						AddButton( 485, 260, 4005, 4007, 0, GumpButtonType.Page, i / 10 + 1 );
 
-					AddPage( (i / 10) + 1 );
+					AddPage( i / 10 + 1 );
 
 					if ( i > 0 )
 						AddButton( 455, 260, 4014, 4015, 0, GumpButtonType.Page, i / 10 );
@@ -218,7 +217,7 @@ namespace Server.Engines.Craft
 					CraftContext context = m_CraftSystem.GetContext( m_From );
 
 					AddButton( 220, 260, 4005, 4007, GetButtonID( 6, 4 ), GumpButtonType.Reply, 0 );
-					AddHtmlLocalized( 255, 263, 200, 18, (context == null || !context.DoNotColor) ? 1061591 : 1061590, LabelColor, false, false );
+					AddHtmlLocalized( 255, 263, 200, 18, context == null || !context.DoNotColor ? 1061591 : 1061590, LabelColor, false, false );
 				}
 
 				int resourceCount = 0;
@@ -231,12 +230,12 @@ namespace Server.Engines.Craft
 						resourceCount += items[j].Amount;
 				}
 
-				AddButton( 220, 60 + (index * 20), 4005, 4007, GetButtonID( 5, i ), GumpButtonType.Reply, 0 );
+				AddButton( 220, 60 + index * 20, 4005, 4007, GetButtonID( 5, i ), GumpButtonType.Reply, 0 );
 
 				if ( subResource.NameNumber > 0 )
-					AddHtmlLocalized( 255, 63 + (index * 20), 250, 18, subResource.NameNumber, resourceCount.ToString(), LabelColor, false, false );
+					AddHtmlLocalized( 255, 63 + index * 20, 250, 18, subResource.NameNumber, resourceCount.ToString(), LabelColor, false, false );
 				else
-					AddLabel( 255, 60 + ( index * 20 ), LabelHue, String.Format( "{0} ({1})", subResource.NameString, resourceCount ) );
+					AddLabel( 255, 60 + index * 20, LabelHue, String.Format( "{0} ({1})", subResource.NameString, resourceCount ) );
 			}
 		}
 
@@ -261,11 +260,11 @@ namespace Server.Engines.Craft
 					{
 						if ( i > 0 )
 						{
-							AddButton( 370, 260, 4005, 4007, 0, GumpButtonType.Page, (i / 10) + 1 );
+							AddButton( 370, 260, 4005, 4007, 0, GumpButtonType.Page, i / 10 + 1 );
 							AddHtmlLocalized( 405, 263, 100, 18, 1044045, LabelColor, false, false ); // NEXT PAGE
 						}
 
-						AddPage( (i / 10) + 1 );
+						AddPage( i / 10 + 1 );
 
 						if ( i > 0 )
 						{
@@ -274,14 +273,14 @@ namespace Server.Engines.Craft
 						}
 					}
 
-					AddButton( 220, 60 + (index * 20), 4005, 4007, GetButtonID( 3, i ), GumpButtonType.Reply, 0 );
+					AddButton( 220, 60 + index * 20, 4005, 4007, GetButtonID( 3, i ), GumpButtonType.Reply, 0 );
 
 					if ( craftItem.NameNumber > 0 )
-						AddHtmlLocalized( 255, 63 + (index * 20), 220, 18, craftItem.NameNumber, LabelColor, false, false );
+						AddHtmlLocalized( 255, 63 + index * 20, 220, 18, craftItem.NameNumber, LabelColor, false, false );
 					else
-						AddLabel( 255, 60 + (index * 20), LabelHue, craftItem.NameString );
+						AddLabel( 255, 60 + index * 20, LabelHue, craftItem.NameString );
 
-					AddButton( 480, 60 + (index * 20), 4011, 4012, GetButtonID( 4, i ), GumpButtonType.Reply, 0 );
+					AddButton( 480, 60 + index * 20, 4011, 4012, GetButtonID( 4, i ), GumpButtonType.Reply, 0 );
 				}
 			}
 			else
@@ -314,11 +313,11 @@ namespace Server.Engines.Craft
 				{
 					if ( i > 0 )
 					{
-						AddButton( 370, 260, 4005, 4007, 0, GumpButtonType.Page, (i / 10) + 1 );
+						AddButton( 370, 260, 4005, 4007, 0, GumpButtonType.Page, i / 10 + 1 );
 						AddHtmlLocalized( 405, 263, 100, 18, 1044045, LabelColor, false, false ); // NEXT PAGE
 					}
 
-					AddPage( (i / 10) + 1 );
+					AddPage( i / 10 + 1 );
 
 					if ( i > 0 )
 					{
@@ -327,14 +326,14 @@ namespace Server.Engines.Craft
 					}
 				}
 
-				AddButton( 220, 60 + (index * 20), 4005, 4007, GetButtonID( 1, i ), GumpButtonType.Reply, 0 );
+				AddButton( 220, 60 + index * 20, 4005, 4007, GetButtonID( 1, i ), GumpButtonType.Reply, 0 );
 
 				if ( craftItem.NameNumber > 0 )
-					AddHtmlLocalized( 255, 63 + (index * 20), 220, 18, craftItem.NameNumber, LabelColor, false, false );
+					AddHtmlLocalized( 255, 63 + index * 20, 220, 18, craftItem.NameNumber, LabelColor, false, false );
 				else
-					AddLabel( 255, 60 + (index * 20), LabelHue, craftItem.NameString );
+					AddLabel( 255, 60 + index * 20, LabelHue, craftItem.NameString );
 
-				AddButton( 480, 60 + (index * 20), 4011, 4012, GetButtonID( 2, i ), GumpButtonType.Reply, 0 );
+				AddButton( 480, 60 + index * 20, 4011, 4012, GetButtonID( 2, i ), GumpButtonType.Reply, 0 );
 			}
 		}
 
@@ -349,12 +348,12 @@ namespace Server.Engines.Craft
 			{
 				CraftGroup craftGroup = craftGroupCol.GetAt( i );
 
-				AddButton( 15, 80 + (i * 20), 4005, 4007, GetButtonID( 0, i ), GumpButtonType.Reply, 0 );
+				AddButton( 15, 80 + i * 20, 4005, 4007, GetButtonID( 0, i ), GumpButtonType.Reply, 0 );
 
 				if ( craftGroup.NameNumber > 0 )
-					AddHtmlLocalized( 50, 83 + (i * 20), 150, 18, craftGroup.NameNumber, LabelColor, false, false );
+					AddHtmlLocalized( 50, 83 + i * 20, 150, 18, craftGroup.NameNumber, LabelColor, false, false );
 				else
-					AddLabel( 50, 80 + (i * 20), LabelHue, craftGroup.NameString );
+					AddLabel( 50, 80 + i * 20, LabelHue, craftGroup.NameString );
 			}
 
 			return craftGroupCol.Count;
@@ -362,7 +361,7 @@ namespace Server.Engines.Craft
 
 		public static int GetButtonID( int type, int index )
 		{
-			return 1 + type + (index * 7);
+			return 1 + type + index * 7;
 		}
 
 		public void CraftItem( CraftItem item )
@@ -381,8 +380,8 @@ namespace Server.Engines.Craft
 
 				if ( context != null )
 				{
-					CraftSubResCol res = ( item.UseSubRes2 ? m_CraftSystem.CraftSubRes2 : m_CraftSystem.CraftSubRes );
-					int resIndex = ( item.UseSubRes2 ? context.LastResourceIndex2 : context.LastResourceIndex );
+					CraftSubResCol res = item.UseSubRes2 ? m_CraftSystem.CraftSubRes2 : m_CraftSystem.CraftSubRes;
+					int resIndex = item.UseSubRes2 ? context.LastResourceIndex2 : context.LastResourceIndex;
 
 					if ( resIndex >= 0 && resIndex < res.Count )
 						type = res.GetAt( resIndex ).ItemType;
@@ -482,7 +481,7 @@ namespace Server.Engines.Craft
 				{
 					if ( m_Page == CraftPage.PickResource && index >= 0 && index < system.CraftSubRes.Count )
 					{
-						int groupIndex = ( context == null ? -1 : context.LastGroupIndex );
+						int groupIndex = context == null ? -1 : context.LastGroupIndex;
 
 						CraftSubRes res = system.CraftSubRes.GetAt( index );
 
@@ -500,7 +499,7 @@ namespace Server.Engines.Craft
 					}
 					else if ( m_Page == CraftPage.PickResource2 && index >= 0 && index < system.CraftSubRes2.Count )
 					{
-						int groupIndex = ( context == null ? -1 : context.LastGroupIndex );
+						int groupIndex = context == null ? -1 : context.LastGroupIndex;
 
 						CraftSubRes res = system.CraftSubRes2.GetAt( index );
 

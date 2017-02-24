@@ -1,10 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Server.Factions.AI
 {
-	public enum ReactionType
+    public enum ReactionType
 	{
 		Ignore,
 		Warn,
@@ -82,7 +80,7 @@ namespace Server.Factions.AI
 					return reaction;
 			}
 
-			reaction = new Reaction( faction, ( faction == null || faction == m_Guard.Faction ) ? ReactionType.Ignore : ReactionType.Attack );
+			reaction = new Reaction( faction, faction == null || faction == m_Guard.Faction ? ReactionType.Ignore : ReactionType.Attack );
 			m_Reactions.Add( reaction );
 
 			return reaction;

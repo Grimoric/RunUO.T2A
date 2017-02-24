@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class TableWithBlueClothAddon : BaseAddon
+    public class TableWithBlueClothAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed { get { return new TableWithBlueClothDeed(); } }
 

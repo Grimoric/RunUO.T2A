@@ -1,13 +1,12 @@
 using System;
 using Server.Targeting;
 using Server.Items;
-using Server.Network;
 using Server.Misc;
 using Server.Mobiles;
 
 namespace Server.Spells.Sixth
 {
-	public class ParalyzeFieldSpell : MagerySpell
+    public class ParalyzeFieldSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Paralyze Field", "In Ex Grav",
@@ -62,7 +61,7 @@ namespace Server.Spells.Sixth
 
 				int itemID = eastToWest ? 0x3967 : 0x3979;
 
-				TimeSpan duration = TimeSpan.FromSeconds( 3.0 + (Caster.Skills[SkillName.Magery].Value / 3.0) );
+				TimeSpan duration = TimeSpan.FromSeconds( 3.0 + Caster.Skills[SkillName.Magery].Value / 3.0 );
 
 				for ( int i = -2; i <= 2; ++i )
 				{
@@ -167,7 +166,7 @@ namespace Server.Spells.Sixth
 
 					m_Caster.DoHarmful( m );
 
-					double duration = 7.0 + (m_Caster.Skills[SkillName.Magery].Value * 0.2);
+					double duration = 7.0 + m_Caster.Skills[SkillName.Magery].Value * 0.2;
 
 					m.Paralyze( TimeSpan.FromSeconds( duration ) );
 

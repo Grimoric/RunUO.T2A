@@ -1,13 +1,8 @@
-using System;
-using Server.Misc;
-using Server.Network;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	public class KhaldunZealot : BaseCreature
+    public class KhaldunZealot : BaseCreature
 	{
 		public override bool ClickTitle{ get{ return false; } }
 		public override bool ShowFameTitle{ get{ return false; } }

@@ -18,11 +18,10 @@
  *
  ***************************************************************************/
 
-using System;
 
 namespace Server.Gumps
 {
-	public class TextRelay
+    public class TextRelay
 	{
 		private int m_EntryID;
 		private string m_Text;

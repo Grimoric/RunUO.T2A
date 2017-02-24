@@ -18,12 +18,11 @@
  *
  ***************************************************************************/
 
-using System;
 using Server.Network;
 
 namespace Server.Menus.Questions
 {
-	public class QuestionMenu : IMenu
+    public class QuestionMenu : IMenu
 	{
 		private string m_Question;
 		private string[] m_Answers;

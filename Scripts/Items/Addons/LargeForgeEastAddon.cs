@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class LargeForgeEastAddon : BaseAddon
+    public class LargeForgeEastAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed{ get{ return new LargeForgeEastDeed(); } }
 

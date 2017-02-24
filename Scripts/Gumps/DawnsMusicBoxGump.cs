@@ -1,11 +1,9 @@
-﻿using System;
-using Server;
-using Server.Network;
+﻿using Server.Network;
 using Server.Items;
 
 namespace Server.Gumps
 {
-	public class DawnsMusicBoxGump : Gump
+    public class DawnsMusicBoxGump : Gump
 	{
 		private DawnsMusicBox m_Box;
 

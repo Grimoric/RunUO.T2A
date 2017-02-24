@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Factions
 {
-	public abstract class BaseSystemController : Item
+    public abstract class BaseSystemController : Item
 	{
 		private int m_LabelNumber;
 

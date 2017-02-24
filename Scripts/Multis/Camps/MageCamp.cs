@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Multis
 {
-	public class MageCamp : BaseCamp
+    public class MageCamp : BaseCamp
 	{
 		[Constructable]
 		public MageCamp() : base( 0x1F5 )

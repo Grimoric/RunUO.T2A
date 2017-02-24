@@ -1,9 +1,8 @@
-using System;
 using Server.Gumps;
 
 namespace Server.Items
 {
-	public class ResGate : Item
+    public class ResGate : Item
 	{
 		public override string DefaultName
 		{

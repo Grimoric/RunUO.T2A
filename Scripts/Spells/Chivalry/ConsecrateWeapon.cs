@@ -1,12 +1,10 @@
 using System;
 using System.Collections;
-using Server.Network;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Spells.Chivalry
 {
-	public class ConsecrateWeaponSpell : PaladinSpell
+    public class ConsecrateWeaponSpell : PaladinSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Consecrate Weapon", "Consecrus Arma",

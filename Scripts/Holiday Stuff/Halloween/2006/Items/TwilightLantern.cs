@@ -1,10 +1,7 @@
-﻿using System;
-using Server;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
 
-	public class TwilightLantern : Lantern
+    public class TwilightLantern : Lantern
 	{
 		public override string DefaultName { get { return "Twilight Lantern"; } }
 

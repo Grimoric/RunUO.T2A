@@ -20,19 +20,16 @@
 
 using System;
 using System.IO;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading;
 using System.Diagnostics;
-using Server;
-using Server.Mobiles;
-using Server.Accounting;
 using Server.Network;
 using Server.Guilds;
 
-namespace Server {
-	public static class World {
+namespace Server
+{
+    public static class World {
 
 		private static Dictionary<Serial, Mobile> m_Mobiles;
 		private static Dictionary<Serial, Item> m_Items;
@@ -388,7 +385,7 @@ namespace Server {
 
 							try {
 								ctorArgs[0] = ( Serial ) serial;
-								m = ( Mobile ) ( ctor.Invoke( ctorArgs ) );
+								m = ( Mobile ) ctor.Invoke( ctorArgs );
 							} catch {
 							}
 
@@ -437,7 +434,7 @@ namespace Server {
 
 							try {
 								ctorArgs[0] = ( Serial ) serial;
-								item = ( Item ) ( ctor.Invoke( ctorArgs ) );
+								item = ( Item ) ctor.Invoke( ctorArgs );
 							} catch {
 							}
 
@@ -500,7 +497,7 @@ namespace Server {
 								m_LoadingType = entry.TypeName;
 								m.Deserialize( reader );
 
-								if ( reader.Position != ( entry.Position + entry.Length ) )
+								if ( reader.Position != entry.Position + entry.Length )
 									throw new Exception( String.Format( "***** Bad serialize on {0} *****", m.GetType() ) );
 							} catch ( Exception e ) {
 								mobiles.RemoveAt( i );
@@ -535,7 +532,7 @@ namespace Server {
 								m_LoadingType = entry.TypeName;
 								item.Deserialize( reader );
 
-								if ( reader.Position != ( entry.Position + entry.Length ) )
+								if ( reader.Position != entry.Position + entry.Length )
 									throw new Exception( String.Format( "***** Bad serialize on {0} *****", item.GetType() ) );
 							} catch ( Exception e ) {
 								items.RemoveAt( i );
@@ -571,7 +568,7 @@ namespace Server {
 							try {
 								g.Deserialize( reader );
 
-								if ( reader.Position != ( entry.Position + entry.Length ) )
+								if ( reader.Position != entry.Position + entry.Length )
 									throw new Exception( String.Format( "***** Bad serialize on Guild {0} *****", g.Id ) );
 							} catch ( Exception e ) {
 								guilds.RemoveAt( i );

@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Collector
 {
-	public class FishPearlsObjective : QuestObjective
+    public class FishPearlsObjective : QuestObjective
 	{
 		public override object Message
 		{

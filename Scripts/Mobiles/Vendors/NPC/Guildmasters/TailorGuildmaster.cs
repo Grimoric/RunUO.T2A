@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using Server;
-
 namespace Server.Mobiles
 {
-	public class TailorGuildmaster : BaseGuildmaster
+    public class TailorGuildmaster : BaseGuildmaster
 	{
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.TailorsGuild; } }
 

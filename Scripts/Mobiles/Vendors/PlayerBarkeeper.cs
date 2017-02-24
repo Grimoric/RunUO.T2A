@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Gumps;
 using Server.Prompts;
@@ -10,7 +9,7 @@ using Server.Multis;
 
 namespace Server.Mobiles
 {
-	public class ChangeRumorMessagePrompt : Prompt
+    public class ChangeRumorMessagePrompt : Prompt
 	{
 		private PlayerBarkeeper m_Barkeeper;
 		private int m_RumorIndex;
@@ -175,7 +174,7 @@ namespace Server.Mobiles
 		}
 
 		public override bool IsActiveBuyer{ get{ return false; } }
-		public override bool IsActiveSeller{ get{ return ( m_SBInfos.Count > 0 ); } }
+		public override bool IsActiveSeller{ get{ return m_SBInfos.Count > 0; } }
 
 		public override bool DisallowAllMoves{ get{ return true; } }
 		public override bool NoHouseRestrictions{ get{ return true; } }
@@ -362,7 +361,7 @@ namespace Server.Mobiles
 			if ( from.AccessLevel > AccessLevel.GameMaster )
 				return true;
 
-			return ( m_Owner == from );
+			return m_Owner == @from;
 		}
 
 		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
@@ -710,21 +709,21 @@ namespace Server.Mobiles
 
 			AddHtml( 430, 70, 180, 25, String.Format( "Page {0} of {1}", page + 1, (entries.Length + 19) / 20 ), false, false );
 
-			for ( int count = 0, i = (page * 20); count < 20 && i < entries.Length; ++count, ++i )
+			for ( int count = 0, i = page * 20; count < 20 && i < entries.Length; ++count, ++i )
 			{
 				Entry entry = entries[i];
 
-				AddButton( 80 + ((count / 10) * 260), 100 + ((count % 10) * 30), 4005, 4007, 2 + i, GumpButtonType.Reply, 0 );
-				AddHtml( 120 + ((count / 10) * 260), 100 + ((count % 10) * 30), entry.m_Vendor ? 148 : 180, 25, entry.m_Description, true, false );
+				AddButton( 80 + count / 10 * 260, 100 + count % 10 * 30, 4005, 4007, 2 + i, GumpButtonType.Reply, 0 );
+				AddHtml( 120 + count / 10 * 260, 100 + count % 10 * 30, entry.m_Vendor ? 148 : 180, 25, entry.m_Description, true, false );
 
 				if ( entry.m_Vendor )
 				{
-					AddImage( 270 + ((count / 10) * 260), 98 + ((count % 10) * 30), 2151 );
-					AddItem( 262 + ((count / 10) * 260), 106 + ((count % 10) * 30), 2543 );
+					AddImage( 270 + count / 10 * 260, 98 + count % 10 * 30, 2151 );
+					AddItem( 262 + count / 10 * 260, 106 + count % 10 * 30, 2543 );
 				}
 			}
 
-			AddButton( 340, 400, 4005, 4007, 0, GumpButtonType.Page, 1 + ((page + 1) % ((entries.Length + 19) / 20)) );
+			AddButton( 340, 400, 4005, 4007, 0, GumpButtonType.Page, 1 + (page + 1) % ((entries.Length + 19) / 20) );
 			AddHtml( 380, 400, 180, 25, "More Job Titles", false, false );
 
 			AddButton( 338, 437, 4014, 4016, 1, GumpButtonType.Reply, 0 );
@@ -890,12 +889,12 @@ namespace Server.Mobiles
 			{
 				BarkeeperRumor rumor = rumors[i];
 
-				AddHtml( 100,  70 + (i * 120),  50, 20, "Message", false, false );
-				AddHtml( 100,  90 + (i * 120), 450, 40, rumor == null ? "No current message" : rumor.Message, true, false );
-				AddHtml( 100, 130 + (i * 120),  50, 20, "Keyword", false, false );
-				AddHtml( 100, 150 + (i * 120), 450, 40, rumor == null ? "None" : rumor.Keyword, true, false );
+				AddHtml( 100,  70 + i * 120,  50, 20, "Message", false, false );
+				AddHtml( 100,  90 + i * 120, 450, 40, rumor == null ? "No current message" : rumor.Message, true, false );
+				AddHtml( 100, 130 + i * 120,  50, 20, "Keyword", false, false );
+				AddHtml( 100, 150 + i * 120, 450, 40, rumor == null ? "None" : rumor.Keyword, true, false );
 
-				AddButton( 60, 90 + (i * 120), 4005, 4007, GetButtonID( 1, i ), GumpButtonType.Reply, 0 );
+				AddButton( 60, 90 + i * 120, 4005, 4007, GetButtonID( 1, i ), GumpButtonType.Reply, 0 );
 			}
 
 			AddButton( 338, 437, 4014, 4016, 0, GumpButtonType.Page, 2 );
@@ -916,12 +915,12 @@ namespace Server.Mobiles
 			{
 				BarkeeperRumor rumor = rumors[i];
 
-				AddHtml( 100,  70 + (i * 120),  50, 20, "Message", false, false );
-				AddHtml( 100,  90 + (i * 120), 450, 40, rumor == null ? "No current message" : rumor.Message, true, false );
-				AddHtml( 100, 130 + (i * 120),  50, 20, "Keyword", false, false );
-				AddHtml( 100, 150 + (i * 120), 450, 40, rumor == null ? "None" : rumor.Keyword, true, false );
+				AddHtml( 100,  70 + i * 120,  50, 20, "Message", false, false );
+				AddHtml( 100,  90 + i * 120, 450, 40, rumor == null ? "No current message" : rumor.Message, true, false );
+				AddHtml( 100, 130 + i * 120,  50, 20, "Keyword", false, false );
+				AddHtml( 100, 150 + i * 120, 450, 40, rumor == null ? "None" : rumor.Keyword, true, false );
 
-				AddButton( 60, 90 + (i * 120), 4005, 4007, GetButtonID( 2, i ), GumpButtonType.Reply, 0 );
+				AddButton( 60, 90 + i * 120, 4005, 4007, GetButtonID( 2, i ), GumpButtonType.Reply, 0 );
 			}
 
 			AddButton( 338, 437, 4014, 4016, 0, GumpButtonType.Page, 2 );
@@ -932,7 +931,7 @@ namespace Server.Mobiles
 
 		private int GetButtonID( int type, int index )
 		{
-			return 1 + (index * 6) + type;
+			return 1 + index * 6 + type;
 		}
 
 		private void RenderMessageManagement_Tip_AddOrChange()

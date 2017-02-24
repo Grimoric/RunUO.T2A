@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class AndrosGratitude : SmithHammer
+    public class AndrosGratitude : SmithHammer
 	{
 		public override int LabelNumber{ get{ return 1075345; } } // Andros Gratitude
 

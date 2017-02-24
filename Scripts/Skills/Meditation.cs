@@ -31,7 +31,7 @@ namespace Server.SkillHandlers
 
 				return TimeSpan.FromSeconds( 5.0 );
 			} 
-			else if (  m.Hits < (m.HitsMax / 10) ) // Less than 10% health
+			else if (  m.Hits < m.HitsMax / 10 ) // Less than 10% health
 			{
 				m.SendLocalizedMessage( 501849 ); // The mind is strong but the body is weak.
 
@@ -56,7 +56,7 @@ namespace Server.SkillHandlers
 				}
 
 				double skillVal = m.Skills[SkillName.Meditation].Value;
-				double chance = (50.0 + (( skillVal - ( m.ManaMax - m.Mana ) ) * 2)) / 100;
+				double chance = (50.0 + ( skillVal - ( m.ManaMax - m.Mana ) ) * 2) / 100;
 
 				if ( chance > Utility.RandomDouble() )
 				{

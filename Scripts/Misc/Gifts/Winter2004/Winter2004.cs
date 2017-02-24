@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Items;
 
 namespace Server.Misc
 {
-	public class WinterGiftGiver2004 : GiftGiver
+    public class WinterGiftGiver2004 : GiftGiver
 	{
 		public static void Initialize()
 		{

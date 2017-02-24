@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Engines.ConPVP
 {
-	public enum DuelTeleporterType
+    public enum DuelTeleporterType
 	{
 		Squares = 6095,
 		Buds	= 6104,
@@ -22,7 +20,7 @@ namespace Server.Engines.ConPVP
 			get
 			{
 				if ( Components.Count > 0 )
-					return (DuelTeleporterType)(((Item)Components[0]).ItemID);
+					return (DuelTeleporterType)((Item)Components[0]).ItemID;
 
 				return DuelTeleporterType.Squares;
 			}

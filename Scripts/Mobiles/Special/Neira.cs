@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Items;
 using Server.Engines.CannedEvil;
 
 namespace Server.Mobiles
 {
-	public class Neira : BaseChampion
+    public class Neira : BaseChampion
 	{
 		public override ChampionSkullType SkullType{ get{ return ChampionSkullType.Death; } }
 
@@ -105,7 +103,7 @@ namespace Server.Mobiles
 		
 		private void CheckSpeedBoost()
 		{
-			if( Hits < (HitsMax / 4 ) )
+			if( Hits < HitsMax / 4 )
 			{
 				if( !m_SpeedBoost )
 				{

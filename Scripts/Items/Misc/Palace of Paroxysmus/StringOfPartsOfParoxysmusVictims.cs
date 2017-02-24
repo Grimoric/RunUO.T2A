@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class StringOfPartsOfParoxysmusVictims : Item
+    public class StringOfPartsOfParoxysmusVictims : Item
 	{
 		public override int LabelNumber{ get{ return 1072082; } } // String of Parts of Paroxysmus' Victims
 

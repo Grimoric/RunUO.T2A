@@ -1,12 +1,10 @@
 using System;
 using System.Text;
-using Server;
-using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.ConPVP
 {
-	public class Participant
+    public class Participant
 	{
 		private DuelContext m_Context;
 		private DuelPlayer[] m_Players;
@@ -40,7 +38,7 @@ namespace Server.Engines.ConPVP
 
 		public bool Contains( Mobile mob )
 		{
-			return ( Find( mob ) != null );
+			return Find( mob ) != null;
 		}
 
 		public void Broadcast( int hue, string message, string nonLocalOverhead, string localOverhead )

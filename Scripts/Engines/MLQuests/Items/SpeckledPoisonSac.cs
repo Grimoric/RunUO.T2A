@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class SpeckledPoisonSac : TransientItem
+    public class SpeckledPoisonSac : TransientItem
 	{
 		public override int LabelNumber{ get{ return 1073133; } } // Speckled Poison Sac
 

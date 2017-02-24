@@ -1,11 +1,6 @@
-using Server;
-using System;
-using Server.Misc;
-using Server.Mobiles;
-
 namespace Server.Items
 {
-	public class AncientFarmersKasa : Kasa
+    public class AncientFarmersKasa : Kasa
 	{
 		public override int LabelNumber{ get{ return 1070922; } } // Ancient Farmer's Kasa
 		public override int BaseColdResistance { get { return 19; } }
@@ -985,7 +980,7 @@ namespace Server.Items
 		{
 			base.Deserialize( reader );
 
-			int version = ( InheritsItem ? 0 : reader.ReadInt() ); // Required for BasePigmentsOfTokuno insertion
+			int version = InheritsItem ? 0 : reader.ReadInt(); // Required for BasePigmentsOfTokuno insertion
 			
 			switch ( version )
 			{
@@ -1028,7 +1023,7 @@ namespace Server.Items
 		{
 			base.Deserialize( reader );
 
-			int version = ( InheritsItem ? 0 : reader.ReadInt() ); // Required for BasePigmentsOfTokuno insertion
+			int version = InheritsItem ? 0 : reader.ReadInt(); // Required for BasePigmentsOfTokuno insertion
 		}
 	}
 }

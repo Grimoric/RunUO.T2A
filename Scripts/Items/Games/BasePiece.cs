@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class BasePiece : Item
+    public class BasePiece : Item
 	{
 		private BaseBoard m_Board;
 
@@ -89,7 +86,7 @@ namespace Server.Items
 
 		public override bool DropToItem( Mobile from, Item target, Point3D p )
 		{
-			return ( target == m_Board && p.X != -1 && p.Y != -1 && base.DropToItem( from, target, p ) );
+			return target == m_Board && p.X != -1 && p.Y != -1 && base.DropToItem( @from, target, p );
 		}
 
 		public override bool DropToWorld( Mobile from, Point3D p )

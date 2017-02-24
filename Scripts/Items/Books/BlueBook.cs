@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class BlueBook : BaseBook
+    public class BlueBook : BaseBook
 	{
 
 		[Constructable]

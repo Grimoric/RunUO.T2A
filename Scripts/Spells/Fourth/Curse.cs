@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Fourth
 {
-	public class CurseSpell : MagerySpell
+    public class CurseSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Curse", "Des Sanct",

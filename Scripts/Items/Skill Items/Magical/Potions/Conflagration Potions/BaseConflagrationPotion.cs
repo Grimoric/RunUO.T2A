@@ -1,14 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
-using Server.Network;
 using Server.Targeting;
 using Server.Spells;
 
 namespace Server.Items
 {
-	public abstract class BaseConflagrationPotion : BasePotion
+    public abstract class BaseConflagrationPotion : BasePotion
 	{
 		public abstract int MinDamage{ get; }
 		public abstract int MaxDamage{ get; }
@@ -240,7 +238,7 @@ namespace Server.Items
 					return;
 
 				int alchemySkill = m_From.Skills.Alchemy.Fixed;
-				int alchemyBonus = alchemySkill / 125 + alchemySkill / 250 ;
+				int alchemyBonus = alchemySkill / 125 + alchemySkill / 250;
 
 				m_MinDamage = Scale( m_From, m_MinDamage + alchemyBonus );
 				m_MaxDamage = Scale( m_From, m_MaxDamage + alchemyBonus );
@@ -325,7 +323,7 @@ namespace Server.Items
 					{
 						Mobile m = mobiles[i];
 						
-						if ( (m.Z + 16) > m_Item.Z && (m_Item.Z + 12) > m.Z && SpellHelper.ValidIndirectTarget( from, m ) && from.CanBeHarmful( m, false ) )
+						if ( m.Z + 16 > m_Item.Z && m_Item.Z + 12 > m.Z && SpellHelper.ValidIndirectTarget( from, m ) && from.CanBeHarmful( m, false ) )
 						{
 							if ( from != null )
 								from.DoHarmful( m );

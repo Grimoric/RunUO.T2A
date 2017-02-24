@@ -1,11 +1,9 @@
 using System;
-using Server;
-using Server.Network;
 using Server.Targeting;
 
 namespace Server.Items
 {
-	public class SnowPile : Item
+    public class SnowPile : Item
 	{
 		[Constructable]
 		public SnowPile() : base( 0x913 )

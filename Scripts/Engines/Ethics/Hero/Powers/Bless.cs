@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Server.Spells;
 
 namespace Server.Ethics.Hero
 {
-	public sealed class Bless : Power
+    public sealed class Bless : Power
 	{
 		public Bless()
 		{

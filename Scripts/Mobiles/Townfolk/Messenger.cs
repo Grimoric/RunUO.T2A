@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Items;
-using EDI = Server.Mobiles.EscortDestinationInfo;
 
 namespace Server.Mobiles
 {
-	public class Messenger : BaseEscortable
+    public class Messenger : BaseEscortable
 	{
 		[Constructable]
 		public Messenger()

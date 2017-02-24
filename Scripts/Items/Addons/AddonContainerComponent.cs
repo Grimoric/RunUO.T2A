@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
-using Server;
 using Server.ContextMenus;
 
 namespace Server.Items
 {
-	public class AddonContainerComponent : Item, IChopable
+    public class AddonContainerComponent : Item, IChopable
 	{
 		public virtual bool NeedsWall { get { return false; } }
 		public virtual Point3D WallPosition { get { return Point3D.Zero; } }

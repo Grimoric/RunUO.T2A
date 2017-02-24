@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class AnOldNecklace : Necklace
+    public class AnOldNecklace : Necklace
 	{
 		public override int LabelNumber{ get{ return 1075525; } } // an old necklace
 

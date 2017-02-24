@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class CherryBlossomTreeAddon : BaseAddon
+    public class CherryBlossomTreeAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed { get { return new CherryBlossomTreeDeed(); } }
 

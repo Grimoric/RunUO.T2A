@@ -1,15 +1,6 @@
-using System;
-using System.Collections;
-using Server;
-using Server.Gumps;
-using Server.Multis;
-using Server.Network;
-using Server.ContextMenus;
-using Server.Engines.PartySystem;
-
 namespace Server.Items
 {
-	[Flipable]
+    [Flipable]
 	public class ParagonChest : LockableContainer
 	{
 		private static int[] m_ItemIDs = new int[]
@@ -165,7 +156,7 @@ namespace Server.Items
 				DropItem( item );
 			}
 
-			DropItem( new TreasureMap( level + 1, ( Utility.RandomBool() ? Map.Felucca : Map.Trammel ) ) );
+			DropItem( new TreasureMap( level + 1, Utility.RandomBool() ? Map.Felucca : Map.Trammel ) );
 		}
 
 		public ParagonChest( Serial serial ) : base( serial )

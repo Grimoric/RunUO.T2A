@@ -1,10 +1,6 @@
-using System;
-using Server.Items;
-using Server.Network;
-
 namespace Server.Items
 {
-	public class RedPoinsettia : Item
+    public class RedPoinsettia : Item
 	{
 		[Constructable]
 		public RedPoinsettia() : base( 0x2330 )

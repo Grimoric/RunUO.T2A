@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Collector
 {
-	public class TomasONeerlan : BaseQuester
+    public class TomasONeerlan : BaseQuester
 	{
 		[Constructable]
 		public TomasONeerlan() : base( "the famed toymaker" )
@@ -46,9 +43,9 @@ namespace Server.Engines.Quests.Collector
 			if ( qs == null )
 				return false;
 
-			return ( qs.IsObjectiveInProgress( typeof( FindTomasObjective ) )
-				|| qs.IsObjectiveInProgress( typeof( CaptureImagesObjective ) )
-				|| qs.IsObjectiveInProgress( typeof( ReturnImagesObjective ) ) );
+			return qs.IsObjectiveInProgress( typeof( FindTomasObjective ) )
+			       || qs.IsObjectiveInProgress( typeof( CaptureImagesObjective ) )
+			       || qs.IsObjectiveInProgress( typeof( ReturnImagesObjective ) );
 		}
 
 		public override void OnTalk( PlayerMobile player, bool contextMenu )

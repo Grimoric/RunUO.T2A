@@ -1,11 +1,9 @@
-using Server;
 using Server.Gumps;
 using Server.Network;
-using System;
 
 namespace Server.Items
 {
-	public class MetallicHuePicker : Gump
+    public class MetallicHuePicker : Gump
 	{
 		public delegate void MetallicHuePickerCallback( Mobile from, object state, int hue );
 
@@ -31,8 +29,8 @@ namespace Server.Items
 
 			for( int row = 0; row < 13; row++ )
 			{
-				AddButton( 30, ( 65 + ( row * 25 ) ), 0x1467, 0x1468, row + 1, GumpButtonType.Page, row + 1 );
-				AddItem( 50, ( 65 + ( row * 25 ) ), 0x1412, 2501 + ( row * 12 ) + ( ( row == 12 ) ? 6 : 0 ) );
+				AddButton( 30, 65 + row * 25, 0x1467, 0x1468, row + 1, GumpButtonType.Page, row + 1 );
+				AddItem( 50, 65 + row * 25, 0x1412, 2501 + row * 12 + ( row == 12 ? 6 : 0 ) );
 			}
 
 			for( int page = 1; page < 14; page++ )
@@ -41,9 +39,9 @@ namespace Server.Items
 
 				for( int row = 0; row < 12; row++ )
 				{
-					int hue = ( 2501 + ( ( page == 13 ) ? 6 : 0 ) + ( row + ( 12 * ( page - 1 ) ) ) ); /* OSI just had to skip 6 unused hues, didnt they */
-					AddRadio( 260, ( 65 + ( row * 25 ) ), 0xd2, 0xd3, false, hue );
-					AddItem( 280, ( 65 + ( row * 25 ) ), 0x1412, hue );
+					int hue = 2501 + ( page == 13 ? 6 : 0 ) + row + 12 * ( page - 1 ); /* OSI just had to skip 6 unused hues, didnt they */
+					AddRadio( 260, 65 + row * 25, 0xd2, 0xd3, false, hue );
+					AddItem( 280, 65 + row * 25, 0x1412, hue );
 				}
 			}
 		}

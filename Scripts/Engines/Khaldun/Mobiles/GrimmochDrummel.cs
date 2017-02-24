@@ -1,9 +1,8 @@
-using System;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	public class GrimmochDrummel : BaseCreature
+    public class GrimmochDrummel : BaseCreature
 	{
 		public override bool ClickTitle{ get{ return false; } }
 		public override bool ShowFameTitle{ get{ return false; } }

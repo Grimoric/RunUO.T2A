@@ -1,12 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Server.Spells;
 using Server.ContextMenus;
 
 namespace Server.Items
 {
-	public class SpellScroll : Item, ICommodity
+    public class SpellScroll : Item, ICommodity
 	{
 		private int m_SpellID;
 

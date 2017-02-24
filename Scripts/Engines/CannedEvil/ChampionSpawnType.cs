@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Engines.CannedEvil
 {
-	public enum ChampionSpawnType
+    public enum ChampionSpawnType
 	{
 		Abyss,
 		Arachnid,

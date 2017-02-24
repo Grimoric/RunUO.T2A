@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a devourer of souls corpse" )]
+    [CorpseName( "a devourer of souls corpse" )]
 	public class Devourer : BaseCreature
 	{
 		[Constructable]

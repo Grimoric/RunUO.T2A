@@ -1,14 +1,9 @@
-using System;
-using Server;
-using Server.Items;
 using Server.Gumps;
 using Server.Mobiles;
-using Server.Engines.Quests;
-using Server.Engines.Quests.Necro;
 
 namespace Server.Engines.Quests.Necro
 {
-	public class ScrollOfAbraxus : QuestItem
+    public class ScrollOfAbraxus : QuestItem
 	{
 		public override int LabelNumber { get { return 1028827; } } // Scroll of Abraxus
 

@@ -1,13 +1,11 @@
 using System;
-using Server;
 using Server.Mobiles;
-using Server.PathAlgorithms;
 using CalcMoves = Server.Movement.Movement;
 using MoveImpl = Server.Movement.MovementImpl;
 
 namespace Server.PathAlgorithms.SlowAStar
 {
-	public struct PathNode
+    public struct PathNode
 	{
 		public int x, y, z;
 		public int g, h;
@@ -38,7 +36,7 @@ namespace Server.PathAlgorithms.SlowAStar
 			x *= 11;
 			y *= 11;
 
-			return (x*x)+(y*y)+(z*z);
+			return x*x+y*y+z*z;
 		}
 
 		public override bool CheckCondition( Mobile m, Map map, Point3D start, Point3D goal )
@@ -85,7 +83,7 @@ namespace Server.PathAlgorithms.SlowAStar
 
 				for ( int i = 1; i < openCount; ++i )
 				{
-					if ( (open[i].g + open[i].h) < curF )
+					if ( open[i].g + open[i].h < curF )
 					{
 						curNode = open[i];
 						curF = curNode.g + curNode.h;

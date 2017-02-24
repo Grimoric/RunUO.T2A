@@ -1,10 +1,8 @@
-using System;
-using Server.Mobiles;
 using Server.Multis;
 
 namespace Server.ContextMenus
 {
-	public class EjectPlayerEntry : ContextMenuEntry
+    public class EjectPlayerEntry : ContextMenuEntry
 	{
 		private Mobile m_From;
 		private Mobile m_Target;

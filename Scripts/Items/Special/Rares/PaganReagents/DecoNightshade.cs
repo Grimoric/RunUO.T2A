@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class DecoNightshade : Item
+    public class DecoNightshade : Item
 	{
 
 		[Constructable]

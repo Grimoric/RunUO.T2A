@@ -1,14 +1,13 @@
 
 using System;
-using Server;
 using System.Collections;
 
 namespace Server.Items
 {
-	/// <summary>
-	/// Attack with increased damage with additional damage over time.
-	/// </summary>
-	public class TalonStrike : WeaponAbility
+    /// <summary>
+    /// Attack with increased damage with additional damage over time.
+    /// </summary>
+    public class TalonStrike : WeaponAbility
 	{
 		private static Hashtable m_Registry = new Hashtable();
 		public static Hashtable Registry { get { return m_Registry; } }

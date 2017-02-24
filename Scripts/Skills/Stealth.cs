@@ -1,10 +1,9 @@
 using System;
-using Server.Items;
 using Server.Mobiles;
 
 namespace Server.SkillHandlers
 {
-	public class Stealth
+    public class Stealth
 	{
 		public static void Initialize()
 		{
@@ -60,7 +59,7 @@ namespace Server.SkillHandlers
 					m.SendLocalizedMessage( 502727 ); // You could not hope to move quietly wearing this much armor.
 					m.RevealingAction();
 				}
-				else if( m.CheckSkill( SkillName.Stealth, -20.0 + (armorRating * 2), 80.0 + (armorRating * 2) ) )
+				else if( m.CheckSkill( SkillName.Stealth, -20.0 + armorRating * 2, 80.0 + armorRating * 2 ) )
 				{
 					int steps = (int)(m.Skills[SkillName.Stealth].Value / 10.0);
 

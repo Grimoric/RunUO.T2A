@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
-using Server.Targets;
 using Server.Engines.VeteranRewards;
 
 namespace Server.Items
 {
-	public class CharacterStatueMaker : Item, IRewardItem
+    public class CharacterStatueMaker : Item, IRewardItem
 	{
 		public override int LabelNumber{ get{ return 1076173; } } // Character Statue Maker
 

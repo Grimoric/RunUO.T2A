@@ -1,9 +1,6 @@
-using System;
-using Server.Network;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0xc77, 0xc78 )]
+    [FlipableAttribute( 0xc77, 0xc78 )]
 	public class Carrot : Food
 	{
 		[Constructable]

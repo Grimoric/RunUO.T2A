@@ -1,14 +1,9 @@
 using System;
-using System.IO;
 using System.Text;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net;
-using Server;
-using Server.Accounting;
 using Server.Mobiles;
 using Server.Items;
-using Server.Menus;
 using Server.Menus.Questions;
 using Server.Menus.ItemLists;
 using Server.Network;
@@ -20,7 +15,7 @@ using Server.Commands.Generic;
 
 namespace Server.Commands
 {
-	public class CommandHandlers
+    public class CommandHandlers
 	{
 		public static void Initialize()
 		{
@@ -301,7 +296,7 @@ namespace Server.Commands
 					{
 						BaseCreature bc = (BaseCreature)m;
 
-						if ( (bc.Controlled && bc.ControlMaster == master) || (bc.Summoned && bc.SummonMaster == master) )
+						if ( bc.Controlled && bc.ControlMaster == master || bc.Summoned && bc.SummonMaster == master )
 							pets.Add( bc );
 					}
 				}
@@ -339,7 +334,7 @@ namespace Server.Commands
 			List<Mobile> list = new List<Mobile>();
 
 			foreach ( Mobile m in World.Mobiles.Values )
-				if ( (m is Banker) && !(m is BaseCreature) )
+				if ( m is Banker && !(m is BaseCreature) )
 					list.Add( m );
 
 			foreach ( Mobile m in list )
@@ -518,7 +513,7 @@ namespace Server.Commands
 				{
 					Mobile m = (Mobile)targeted;
 
-					BankBox box = ( m.Player ? m.BankBox : m.FindBankNoCreate() );
+					BankBox box = m.Player ? m.BankBox : m.FindBankNoCreate();
 
 					if ( box != null )
 					{
@@ -656,7 +651,7 @@ namespace Server.Commands
 			{
 				Mobile m = item.RootParent as Mobile;
 
-				return ( m != null && FixMap( ref map, ref loc, m ) );
+				return m != null && FixMap( ref map, ref loc, m );
 			}
 
 			return true;
@@ -670,7 +665,7 @@ namespace Server.Commands
 				loc = m.LogoutLocation;
 			}
 
-			return ( map != null && map != Map.Internal );
+			return map != null && map != Map.Internal;
 		}
 
 		[Usage( "Go [name | serial | (x y [z]) | (deg min (N | S) deg min (E | W))]" )]
@@ -702,7 +697,7 @@ namespace Server.Commands
 
 						Mobile owner = item.RootParent as Mobile;
 
-						if( owner != null && (owner.Map != null && owner.Map != Map.Internal) && !BaseCommand.IsAccessible( from, owner ) /* !from.CanSee( owner )*/ )
+						if( owner != null && owner.Map != null && owner.Map != Map.Internal && !BaseCommand.IsAccessible( @from, owner ) /* !from.CanSee( owner )*/ )
 						{
 							from.SendMessage( "You can not go to what you can not see." );
 							return;
@@ -731,7 +726,7 @@ namespace Server.Commands
 
 						Mobile owner = m;
 
-						if ( owner != null && (owner.Map != null && owner.Map != Map.Internal) && !BaseCommand.IsAccessible( from, owner ) /* !from.CanSee( owner )*/ )
+						if ( owner != null && owner.Map != null && owner.Map != Map.Internal && !BaseCommand.IsAccessible( @from, owner ) /* !from.CanSee( owner )*/ )
 						{
 							from.SendMessage( "You can not go to what you can not see." );
 							return;
@@ -828,7 +823,7 @@ namespace Server.Commands
 						 */
 						int x = int.Parse( e.GetString( 0 ) );
 						int y = int.Parse( e.GetString( 1 ) );
-						int z = (e.Length == 3 ) ? int.Parse( e.GetString( 2 ) ) : map.GetAverageZ( x, y );
+						int z = e.Length == 3 ? int.Parse( e.GetString( 2 ) ) : map.GetAverageZ( x, y );
 
 						from.Location = new Point3D( x, y, z );
 					}
@@ -881,7 +876,7 @@ namespace Server.Commands
 			{
 				string v = list[i].Command;
 
-				if ( (sb.Length + 1 + v.Length) >= 256 )
+				if ( sb.Length + 1 + v.Length >= 256 )
 				{
 					m.SendAsciiMessage( 0x482, sb.ToString() );
 					sb = new StringBuilder();

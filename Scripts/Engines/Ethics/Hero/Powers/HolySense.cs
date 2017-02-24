@@ -1,10 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace Server.Ethics.Hero
 {
-	public sealed class HolySense : Power
+    public sealed class HolySense : Power
 	{
 		public HolySense()
 		{

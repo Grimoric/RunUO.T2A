@@ -1,5 +1,3 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Gumps;
 using Server.Mobiles;
@@ -7,7 +5,7 @@ using Server.Network;
 
 namespace Server.Factions
 {
-	public class HorseBreederGump : FactionGump
+    public class HorseBreederGump : FactionGump
 	{
 		private PlayerMobile m_From;
 		private Faction m_Faction;
@@ -55,7 +53,7 @@ namespace Server.Factions
 
 			FactionWarHorse horse = new FactionWarHorse( m_Faction );
 
-			if ( (m_From.Followers + horse.ControlSlots) > m_From.FollowersMax )
+			if ( m_From.Followers + horse.ControlSlots > m_From.FollowersMax )
 			{
 				// TODO: Message?
 				horse.Delete();

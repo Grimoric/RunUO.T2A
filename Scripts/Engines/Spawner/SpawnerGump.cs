@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
 using Server.Network;
 using Server.Gumps;
 using System.Collections.Generic;
 
 namespace Server.Mobiles
 {
-	public class SpawnerGump : Gump
+    public class SpawnerGump : Gump
 	{
 		private Spawner m_Spawner;
 
@@ -34,11 +33,11 @@ namespace Server.Mobiles
 
 			for ( int i = 0;  i < 13; i++ )
 			{
-				AddButton( 5, ( 22 * i ) + 20, 0xFA5, 0xFA7, 4 + (i * 2), GumpButtonType.Reply, 0 );
-				AddButton( 38, ( 22 * i ) + 20, 0xFA2, 0xFA4, 5 + (i * 2), GumpButtonType.Reply, 0 );
+				AddButton( 5, 22 * i + 20, 0xFA5, 0xFA7, 4 + i * 2, GumpButtonType.Reply, 0 );
+				AddButton( 38, 22 * i + 20, 0xFA2, 0xFA4, 5 + i * 2, GumpButtonType.Reply, 0 );
 
-				AddImageTiled( 71, ( 22 * i ) + 20, 309, 23, 0xA40 );
-				AddImageTiled( 72, ( 22 * i ) + 21, 307, 21, 0xBBC );
+				AddImageTiled( 71, 22 * i + 20, 309, 23, 0xA40 );
+				AddImageTiled( 72, 22 * i + 21, 307, 21, 0xBBC );
 
 				string str = "";
 
@@ -47,10 +46,10 @@ namespace Server.Mobiles
 					str = (string)spawner.SpawnNames[i];
 					int count = m_Spawner.CountCreatures( str );
 
-					AddLabel( 382, ( 22 * i ) + 20, 0, count.ToString() );
+					AddLabel( 382, 22 * i + 20, 0, count.ToString() );
 				}
 
-				AddTextEntry( 75, ( 22 * i ) + 21, 304, 21, 0, i, str );
+				AddTextEntry( 75, 22 * i + 21, 304, 21, 0, i, str );
 			}
 		}
 

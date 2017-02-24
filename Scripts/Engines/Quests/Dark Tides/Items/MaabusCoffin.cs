@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Items;
 
 namespace Server.Engines.Quests.Necro
 {
-	public class MaabusCoffin : BaseAddon
+    public class MaabusCoffin : BaseAddon
 	{
 		private Maabus m_Maabus;
 		private Point3D m_SpawnLocation;

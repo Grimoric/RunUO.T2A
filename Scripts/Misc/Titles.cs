@@ -1,12 +1,11 @@
 using System;
 using System.Text;
-using Server;
 using Server.Mobiles;
 using Server.Engines.CannedEvil;
 
 namespace Server.Misc
 {
-	public class Titles
+    public class Titles
 	{
 		public const int MinFame = 0;
 		public const int MaxFame = 15000;
@@ -34,9 +33,9 @@ namespace Server.Misc
 					offset = 0;
 			}
 
-			if ( (m.Fame + offset) > MaxFame )
+			if ( m.Fame + offset > MaxFame )
 				offset = MaxFame - m.Fame;
-			else if ( (m.Fame + offset) < MinFame )
+			else if ( m.Fame + offset < MinFame )
 				offset = MinFame - m.Fame;
 
 			m.Fame += offset;
@@ -91,12 +90,12 @@ namespace Server.Misc
 					offset = 0;
 			}
 
-			if ( (m.Karma + offset) > MaxKarma )
+			if ( m.Karma + offset > MaxKarma )
 				offset = MaxKarma - m.Karma;
-			else if ( (m.Karma + offset) < MinKarma )
+			else if ( m.Karma + offset < MinKarma )
 				offset = MinKarma - m.Karma;
 
-			bool wasPositiveKarma = ( m.Karma >= 0 );
+			bool wasPositiveKarma = m.Karma >= 0;
 
 			m.Karma += offset;
 
@@ -136,19 +135,19 @@ namespace Server.Misc
 			int fame = beheld.Fame;
 			int karma = beheld.Karma;
 
-			bool showSkillTitle = beheld.ShowFameTitle && ( (beholder == beheld) || (fame >= 5000) );
+			bool showSkillTitle = beheld.ShowFameTitle && ( beholder == beheld || fame >= 5000 );
 
 			/*if ( beheld.Kills >= 5 )
 			{
 				title.AppendFormat( beheld.Fame >= 10000 ? "The Murderer {1} {0}" : "The Murderer {0}", beheld.Name, beheld.Female ? "Lady" : "Lord" );
 			}
-			else*/if ( beheld.ShowFameTitle || (beholder == beheld) )
+			else*/if ( beheld.ShowFameTitle || beholder == beheld )
 			{
 				for ( int i = 0; i < m_FameEntries.Length; ++i )
 				{
 					FameEntry fe = m_FameEntries[i];
 
-					if ( fame <= fe.m_Fame || i == (m_FameEntries.Length - 1) )
+					if ( fame <= fe.m_Fame || i == m_FameEntries.Length - 1 )
 					{
 						KarmaEntry[] karmaEntries = fe.m_Karma;
 
@@ -156,7 +155,7 @@ namespace Server.Misc
 						{
 							KarmaEntry ke = karmaEntries[j];
 
-							if ( karma <= ke.m_Karma || j == (karmaEntries.Length - 1) )
+							if ( karma <= ke.m_Karma || j == karmaEntries.Length - 1 )
 							{
 								title.AppendFormat( ke.m_Title, beheld.Name, beheld.Female ? "Lady" : "Lord" );
 								break;

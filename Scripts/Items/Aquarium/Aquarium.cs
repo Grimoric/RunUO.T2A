@@ -1,17 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
-using Server.Items;
-using Server.Mobiles;
 using Server.Multis;
 using Server.Network;
-using Server.Gumps;
 using Server.ContextMenus;
 
 namespace Server.Items
 {
-	public class Aquarium : BaseAddonContainer
+    public class Aquarium : BaseAddonContainer
 	{
 		public static readonly TimeSpan EvaluationInterval = TimeSpan.FromDays( 1 );
 
@@ -51,7 +46,7 @@ namespace Server.Items
 		{
 			get
 			{
-				int state = ( m_Food.State == (int) FoodState.Overfed ) ? 1 : (int) FoodState.Full - m_Food.State;
+				int state = m_Food.State == (int) FoodState.Overfed ? 1 : (int) FoodState.Full - m_Food.State;
 
 				state += (int) WaterState.Strong - m_Water.State;
 
@@ -64,7 +59,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool IsFull
 		{
-			get{ return ( Items.Count >= MaxItems ); }
+			get{ return Items.Count >= MaxItems; }
 		}
 
 		// vacation info
@@ -98,7 +93,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool OptimalState
 		{
-			get{ return ( m_Food.State == (int) FoodState.Full && m_Water.State == (int) WaterState.Strong ); }
+			get{ return m_Food.State == (int) FoodState.Full && m_Water.State == (int) WaterState.Strong; }
 		}
 
 		// events
@@ -189,7 +184,7 @@ namespace Server.Items
 
 			BaseHouse house = BaseHouse.FindHouseAt( this );
 
-			return ( house != null && house.IsCoOwner( from ) );
+			return house != null && house.IsCoOwner( @from );
 		}
 
 		public override bool OnDragDrop( Mobile from, Item dropped )
@@ -550,14 +545,14 @@ namespace Server.Items
 
 				// food events
 				if  (
-					( m_Food.Added < m_Food.Maintain && m_Food.State != (int) FoodState.Overfed && m_Food.State != (int) FoodState.Dead ) ||
-					( m_Food.Added >= m_Food.Improve && m_Food.State == (int) FoodState.Full )
+					m_Food.Added < m_Food.Maintain && m_Food.State != (int) FoodState.Overfed && m_Food.State != (int) FoodState.Dead ||
+					m_Food.Added >= m_Food.Improve && m_Food.State == (int) FoodState.Full
 					)
 					m_Events.Add( 1074368 ); // The tank looks worse than it did yesterday.
 
 				if  (
-					( m_Food.Added >= m_Food.Improve && m_Food.State != (int) FoodState.Full && m_Food.State != (int) FoodState.Overfed ) ||
-					( m_Food.Added < m_Food.Maintain && m_Food.State == (int) FoodState.Overfed )
+					m_Food.Added >= m_Food.Improve && m_Food.State != (int) FoodState.Full && m_Food.State != (int) FoodState.Overfed ||
+					m_Food.Added < m_Food.Maintain && m_Food.State == (int) FoodState.Overfed
 					)
 					m_Events.Add( 1074367 ); // The tank looks healthier today.
 
@@ -658,9 +653,9 @@ namespace Server.Items
 			if ( !m_RewardAvailable )
 				return;
 
-			int max = (int) ( ( (double) m_LiveCreatures / 30 ) * m_Decorations.Length );
+			int max = (int) ( (double) m_LiveCreatures / 30 * m_Decorations.Length );
 
-			int random = ( max <= 0 ) ? 0 : Utility.Random( max );
+			int random = max <= 0 ? 0 : Utility.Random( max );
 
 			if ( random >= m_Decorations.Length )
 				random = m_Decorations.Length - 1;
@@ -697,9 +692,9 @@ namespace Server.Items
 		public virtual void UpdateFoodState()
 		{
 			if ( m_Food.Added < m_Food.Maintain )
-				m_Food.State = ( m_Food.State <= 0 ) ? 0 : m_Food.State - 1;
+				m_Food.State = m_Food.State <= 0 ? 0 : m_Food.State - 1;
 			else if ( m_Food.Added >= m_Food.Improve )
-				m_Food.State = ( m_Food.State >= (int) FoodState.Overfed ) ? (int) FoodState.Overfed : m_Food.State + 1;
+				m_Food.State = m_Food.State >= (int) FoodState.Overfed ? (int) FoodState.Overfed : m_Food.State + 1;
 
 			m_Food.Maintain = Utility.Random( (int) FoodState.Overfed + 1 - m_Food.State, 2 );
 
@@ -714,9 +709,9 @@ namespace Server.Items
 		public virtual void UpdateWaterState()
 		{
 			if ( m_Water.Added < m_Water.Maintain )
-				m_Water.State = ( m_Water.State <= 0 ) ? 0 : m_Water.State - 1;
+				m_Water.State = m_Water.State <= 0 ? 0 : m_Water.State - 1;
 			else if ( m_Water.Added >= m_Water.Improve )
-				m_Water.State = ( m_Water.State >= (int) WaterState.Strong ) ? (int) WaterState.Strong : m_Water.State + 1;
+				m_Water.State = m_Water.State >= (int) WaterState.Strong ? (int) WaterState.Strong : m_Water.State + 1;
 
 			m_Water.Maintain = Utility.Random( (int) WaterState.Strong + 2 - m_Water.State, 2 );
 
@@ -859,7 +854,7 @@ namespace Server.Items
 			AddItem( item );
 
 			if ( from != null )
-				from.SendLocalizedMessage( 1073635, ( item.LabelNumber != 0 ) ? String.Format( "#{0}", item.LabelNumber ) : item.Name ); // You add the following decoration to your aquarium: ~1_NAME~
+				from.SendLocalizedMessage( 1073635, item.LabelNumber != 0 ? String.Format( "#{0}", item.LabelNumber ) : item.Name ); // You add the following decoration to your aquarium: ~1_NAME~
 
 			InvalidateProperties();
 			return true;

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class StrippedSosarianSwill : BaseFish
+    public class StrippedSosarianSwill : BaseFish
 	{		
 		public override int LabelNumber{ get{ return 1074594; } } // Stripped Sosarian Swill
 		

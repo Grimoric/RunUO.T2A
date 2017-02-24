@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Factions
 {
-	public class Minax : Faction
+    public class Minax : Faction
 	{
 		private static Faction m_Instance;
 

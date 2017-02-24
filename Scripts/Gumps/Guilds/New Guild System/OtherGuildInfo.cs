@@ -1,14 +1,12 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Gumps;
 using Server.Network;
 using Server.Factions;
-using Server.Prompts;
 
 namespace Server.Guilds
 {
-	public class OtherGuildInfo : BaseGuildGump
+    public class OtherGuildInfo : BaseGuildGump
 	{
 		private Guild m_Other;
 		public OtherGuildInfo( PlayerMobile pm, Guild g, Guild otherGuild ) : base( pm, g, 10, 40 )
@@ -39,8 +37,8 @@ namespace Server.Guilds
 			AllianceInfo otherAlliance = m_Other.Alliance;
 			//NOTE TO SELF: Only only alliance leader can see pending guild alliance statuses
 
-			bool PendingWar = (war != null);
-			bool ActiveWar = (activeWar != null);
+			bool PendingWar = war != null;
+			bool ActiveWar = activeWar != null;
 			AddPage( 0 );
 
 			AddBackground( 0, 0, 520, 335, 0x242C );
@@ -83,8 +81,8 @@ namespace Server.Guilds
 
 				TimeSpan timeRemaining = TimeSpan.Zero;
 
-				if( activeWar.WarLength != TimeSpan.Zero && (activeWar.WarBeginning + activeWar.WarLength) > DateTime.Now )
-					timeRemaining = (activeWar.WarBeginning + activeWar.WarLength) - DateTime.Now;
+				if( activeWar.WarLength != TimeSpan.Zero && activeWar.WarBeginning + activeWar.WarLength > DateTime.Now )
+					timeRemaining = activeWar.WarBeginning + activeWar.WarLength - DateTime.Now;
 
 				//time = String.Format( "{0:D2}:{1:D2}", timeRemaining.Hours.ToString(), timeRemaining.Subtract( TimeSpan.FromHours( timeRemaining.Hours ) ).Minutes );	//Is there a formatter for htis? it's 2AM and I'm tired and can't find it
 				time = String.Format( "{0:D2}:{1:mm}", timeRemaining.Hours, DateTime.MinValue + timeRemaining );
@@ -239,12 +237,12 @@ namespace Server.Guilds
 
 							if( alliance != null && alliance.IsMember( guild ) )
 							{
-								alliance.AllianceMessage( 1070769, ((otherAlliance != null) ? otherAlliance.Name : otherGuild.Name) ); // Guild Message: Your guild is now at war with ~1_GUILDNAME~
+								alliance.AllianceMessage( 1070769, otherAlliance != null ? otherAlliance.Name : otherGuild.Name ); // Guild Message: Your guild is now at war with ~1_GUILDNAME~
 								alliance.InvalidateMemberProperties();
 							}
 							else
 							{
-								guild.GuildMessage( 1070769, ((otherAlliance != null) ? otherAlliance.Name : otherGuild.Name) ); // Guild Message: Your guild is now at war with ~1_GUILDNAME~
+								guild.GuildMessage( 1070769, otherAlliance != null ? otherAlliance.Name : otherGuild.Name ); // Guild Message: Your guild is now at war with ~1_GUILDNAME~
 								guild.InvalidateMemberProperties();
 							}
 							//Technically  SHOULD say Your guild is now at war w/out any info, intentional diff.
@@ -255,12 +253,12 @@ namespace Server.Guilds
 
 							if( otherAlliance != null && m_Other.Alliance.IsMember( m_Other ) )
 							{
-								otherAlliance.AllianceMessage( 1070769, ((alliance != null) ? alliance.Name : guild.Name) ); // Guild Message: Your guild is now at war with ~1_GUILDNAME~
+								otherAlliance.AllianceMessage( 1070769, alliance != null ? alliance.Name : guild.Name ); // Guild Message: Your guild is now at war with ~1_GUILDNAME~
 								otherAlliance.InvalidateMemberProperties();
 							}
 							else
 							{
-								otherGuild.GuildMessage( 1070769, ((alliance != null) ? alliance.Name : guild.Name) ); // Guild Message: Your guild is now at war with ~1_GUILDNAME~
+								otherGuild.GuildMessage( 1070769, alliance != null ? alliance.Name : guild.Name ); // Guild Message: Your guild is now at war with ~1_GUILDNAME~
 								otherGuild.InvalidateMemberProperties();
 							}
 						}
@@ -329,12 +327,12 @@ namespace Server.Guilds
 						{
 							if( alliance != null && alliance.IsMember( guild ) )
 							{
-								alliance.AllianceMessage( 1070740, ((otherAlliance != null) ? otherAlliance.Name : otherGuild.Name) );// You have lost the war with ~1_val~.
+								alliance.AllianceMessage( 1070740, otherAlliance != null ? otherAlliance.Name : otherGuild.Name );// You have lost the war with ~1_val~.
 								alliance.InvalidateMemberProperties();
 							}
 							else
 							{
-								guild.GuildMessage( 1070740, ((otherAlliance != null) ? otherAlliance.Name : otherGuild.Name) );// You have lost the war with ~1_val~.
+								guild.GuildMessage( 1070740, otherAlliance != null ? otherAlliance.Name : otherGuild.Name );// You have lost the war with ~1_val~.
 								guild.InvalidateMemberProperties();
 							}
 	
@@ -342,12 +340,12 @@ namespace Server.Guilds
 	
 							if( otherAlliance != null && otherAlliance.IsMember( otherGuild ) )
 							{
-								otherAlliance.AllianceMessage( 1070739, ((guild.Alliance != null) ? guild.Alliance.Name : guild.Name) );// You have won the war against ~1_val~!
+								otherAlliance.AllianceMessage( 1070739, guild.Alliance != null ? guild.Alliance.Name : guild.Name );// You have won the war against ~1_val~!
 								otherAlliance.InvalidateMemberProperties();
 							}
 							else
 							{
-								otherGuild.GuildMessage( 1070739, ((guild.Alliance != null) ? guild.Alliance.Name : guild.Name) );// You have won the war against ~1_val~!
+								otherGuild.GuildMessage( 1070739, guild.Alliance != null ? guild.Alliance.Name : guild.Name );// You have won the war against ~1_val~!
 								otherGuild.InvalidateMemberProperties();
 							}
 	

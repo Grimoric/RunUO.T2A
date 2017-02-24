@@ -1,9 +1,6 @@
-using System;
-using Server.Mobiles;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a savage ridgeback corpse" )]
+    [CorpseName( "a savage ridgeback corpse" )]
 	public class SavageRidgeback : BaseMount
 	{
 		[Constructable]

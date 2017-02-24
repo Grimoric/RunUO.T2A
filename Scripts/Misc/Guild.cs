@@ -1,6 +1,4 @@
 using System;
-using Server;
-using System.Collections;
 using System.Collections.Generic;
 using Server.Items;
 using Server.Mobiles;
@@ -12,8 +10,8 @@ using Server.Commands.Generic;
 
 namespace Server.Guilds
 {
-	#region Ranks
-	[Flags]
+    #region Ranks
+    [Flags]
 	public enum RankFlags
 	{
 		None				= 0x00000000,
@@ -62,7 +60,7 @@ namespace Server.Guilds
 
 		public bool GetFlag( RankFlags flag )
 		{
-			return ( (m_Flags & flag) != 0 );
+			return (m_Flags & flag) != 0;
 		}
 
 		public void SetFlag( RankFlags flag, bool value )
@@ -98,7 +96,7 @@ namespace Server.Guilds
 
 		public void CalculateAllianceLeader()
 		{
-			m_Leader = ((m_Members.Count >= 2) ? m_Members[Utility.Random( m_Members.Count )] : null);
+			m_Leader = m_Members.Count >= 2 ? m_Members[Utility.Random( m_Members.Count )] : null;
 		}
 
 		public void CheckLeader()
@@ -373,7 +371,7 @@ namespace Server.Guilds
 		{
 			PlayerMobile pm = from as PlayerMobile;
 
-			AllianceChat( from, (pm == null) ? 0x3B2 : pm.AllianceMessageHue, text );
+			AllianceChat( from, pm == null ? 0x3B2 : pm.AllianceMessageHue, text );
 		}
 		#endregion
 
@@ -531,7 +529,7 @@ namespace Server.Guilds
 				if( w == null )
 					return WarStatus.Win;
 
-				if( m_WarLength != TimeSpan.Zero && (m_WarBeginning + m_WarLength) < DateTime.Now )
+				if( m_WarLength != TimeSpan.Zero && m_WarBeginning + m_WarLength < DateTime.Now )
 				{
 					if( m_Kills > w.m_Kills )
 						return WarStatus.Win;
@@ -689,7 +687,7 @@ namespace Server.Guilds
 
 		public static BaseGuild EventSink_CreateGuild( CreateGuildEventArgs args )
 		{
-			return (BaseGuild)(new Guild( args.Id ));
+			return (BaseGuild)new Guild( args.Id );
 		}
 		#endregion
 
@@ -862,19 +860,19 @@ namespace Server.Guilds
 				if( status != WarStatus.InProgress )
 				{
 					AllianceInfo myAlliance = this.Alliance;
-					bool inAlliance = ( myAlliance != null && myAlliance.IsMember( this ) );
+					bool inAlliance = myAlliance != null && myAlliance.IsMember( this );
 					
-					AllianceInfo otherAlliance = ((g != null) ? g.Alliance : null);
-					bool otherInAlliance = ( otherAlliance != null && otherAlliance.IsMember( this ) );
+					AllianceInfo otherAlliance = g != null ? g.Alliance : null;
+					bool otherInAlliance = otherAlliance != null && otherAlliance.IsMember( this );
 
 					if( inAlliance )
 					{
-						myAlliance.AllianceMessage( 1070739 + (int)status, (g == null) ? "a deleted opponent" : (otherInAlliance ? otherAlliance.Name : g.Name) );
+						myAlliance.AllianceMessage( 1070739 + (int)status, g == null ? "a deleted opponent" : (otherInAlliance ? otherAlliance.Name : g.Name) );
 						myAlliance.InvalidateMemberProperties();
 					}
 					else
 					{
-						GuildMessage( 1070739 + (int)status, (g == null) ? "a deleted opponent" : (otherInAlliance ? otherAlliance.Name : g.Name) );
+						GuildMessage( 1070739 + (int)status, g == null ? "a deleted opponent" : (otherInAlliance ? otherAlliance.Name : g.Name) );
 						InvalidateMemberProperties();
 					}
 
@@ -887,12 +885,12 @@ namespace Server.Guilds
 
 						if( otherInAlliance )
 						{
-							otherAlliance.AllianceMessage( 1070739 + (int)status, ( inAlliance ? this.Alliance.Name : this.Name ) );
+							otherAlliance.AllianceMessage( 1070739 + (int)status, inAlliance ? this.Alliance.Name : this.Name );
 							otherAlliance.InvalidateMemberProperties();
 						}
 						else
 						{
-							g.GuildMessage( 1070739 + (int)status, (inAlliance ? this.Alliance.Name : this.Name) );
+							g.GuildMessage( 1070739 + (int)status, inAlliance ? this.Alliance.Name : this.Name );
 							g.InvalidateMemberProperties();
 						}
 
@@ -1103,7 +1101,7 @@ namespace Server.Guilds
 		{
 			get
 			{
-				return ( m_Leader == null || m_Leader.Deleted );
+				return m_Leader == null || m_Leader.Deleted;
 			}
 		}
 
@@ -1159,7 +1157,7 @@ namespace Server.Guilds
 		{
 			if( NewGuildSystem )
 			{
-				return (Alliance != null && Alliance.IsMember( this ) && Alliance.IsMember( g ));
+				return Alliance != null && Alliance.IsMember( this ) && Alliance.IsMember( g );
 			}
 
 			return m_Allies.Contains( g );
@@ -1224,7 +1222,7 @@ namespace Server.Guilds
 
 			#region Alliances
 
-			bool isAllianceLeader = (m_AllianceLeader == null && m_AllianceInfo != null );
+			bool isAllianceLeader = m_AllianceLeader == null && m_AllianceInfo != null;
 			writer.Write( isAllianceLeader );
 
 			if( isAllianceLeader )
@@ -1376,7 +1374,7 @@ namespace Server.Guilds
 
 		private void VerifyGuild_Callback()
 		{
-			if( (!NewGuildSystem && m_Guildstone == null) || m_Members.Count == 0 )
+			if( !NewGuildSystem && m_Guildstone == null || m_Members.Count == 0 )
 				Disband();
 
 			CheckExpiredWars();
@@ -1577,7 +1575,7 @@ namespace Server.Guilds
 		{
 			PlayerMobile pm = from as PlayerMobile;
 
-			GuildChat( from, (pm == null) ? 0x3B2 : pm.GuildMessageHue, text );
+			GuildChat( from, pm == null ? 0x3B2 : pm.GuildMessageHue, text );
 		}
 		#endregion
 
@@ -1591,7 +1589,7 @@ namespace Server.Guilds
 					return false;
 			}
 
-			return ( m != null && !m.Deleted && m.Guild == this );
+			return m != null && !m.Deleted && m.Guild == this;
 		}
 		public bool CanBeVotedFor( Mobile m )
 		{
@@ -1602,7 +1600,7 @@ namespace Server.Guilds
 					return false;
 			}
 
-			return ( m != null && !m.Deleted && m.Guild == this );
+			return m != null && !m.Deleted && m.Guild == this;
 		}
 
 		public void CalculateGuildmaster()
@@ -1656,7 +1654,7 @@ namespace Server.Guilds
 				}
 			}
 
-			if( NewGuildSystem && (highVotes * 100) / Math.Max( votingMembers, 1 ) < MajorityPercentage && m_Leader != null && winner != m_Leader && !m_Leader.Deleted && m_Leader.Guild == this )
+			if( NewGuildSystem && highVotes * 100 / Math.Max( votingMembers, 1 ) < MajorityPercentage && m_Leader != null && winner != m_Leader && !m_Leader.Deleted && m_Leader.Guild == this )
 				winner = m_Leader;
 
 			if ( m_Leader != winner && winner != null )

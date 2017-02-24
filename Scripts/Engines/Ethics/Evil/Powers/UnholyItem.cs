@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Server.Items;
 
 namespace Server.Ethics.Evil
 {
-	public sealed class UnholyItem : Power
+    public sealed class UnholyItem : Power
 	{
 		public UnholyItem()
 		{
@@ -47,7 +44,7 @@ namespace Server.Ethics.Evil
 				return;
 			}
 
-			bool canImbue = ( item is Spellbook || item is BaseClothing || item is BaseArmor || item is BaseWeapon ) && ( item.Name == null );
+			bool canImbue = ( item is Spellbook || item is BaseClothing || item is BaseArmor || item is BaseWeapon ) && item.Name == null;
 
 			if ( canImbue )
 			{

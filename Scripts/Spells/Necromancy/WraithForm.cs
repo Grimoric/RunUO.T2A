@@ -1,13 +1,9 @@
 using System;
-using System.Collections;
-using Server.Network;
-using Server.Items;
-using Server.Targeting;
 using Server.Mobiles;
 
 namespace Server.Spells.Necromancy
 {
-	public class WraithFormSpell : TransformationSpell
+    public class WraithFormSpell : TransformationSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Wraith Form", "Rel Xen Um",

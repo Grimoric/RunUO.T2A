@@ -19,7 +19,7 @@
 
 		[Constructable]
 		public WaterBarrel( bool filled )
-			: base( ( filled ) ? WaterBarrel.fItemID : WaterBarrel.vItemID, filled )
+			: base( filled ? WaterBarrel.fItemID : WaterBarrel.vItemID, filled )
 		{
 		}
 

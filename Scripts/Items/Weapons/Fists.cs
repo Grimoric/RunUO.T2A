@@ -1,10 +1,8 @@
 using System;
-using Server.Items;
-using Server.Network;
 
 namespace Server.Items
 {
-	public class Fists : BaseMeleeWeapon
+    public class Fists : BaseMeleeWeapon
 	{
 		public static void Initialize()
 		{
@@ -205,7 +203,7 @@ namespace Server.Items
 
 			double chance = (wresValue + scndValue) / 400.0;
 
-			return ( chance >= Utility.RandomDouble() );
+			return chance >= Utility.RandomDouble();
 		}
 
 		private static bool HasFreeHands( Mobile m )

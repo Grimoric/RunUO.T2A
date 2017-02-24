@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 
 namespace Server
 {
-	public class Firewall
+    public class Firewall
 	{
 		#region Firewall Entries
 		public interface IFirewallEntry

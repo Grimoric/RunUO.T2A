@@ -1,11 +1,8 @@
-using System;
-using Server.Items;
-using Server.Network;
 using Server.Engines.Harvest;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0xE86, 0xE85 )]
+    [FlipableAttribute( 0xE86, 0xE85 )]
 	public class Pickaxe : BaseAxe, IUsesRemaining
 	{
 		public override HarvestSystem HarvestSystem{ get{ return Mining.System; } }

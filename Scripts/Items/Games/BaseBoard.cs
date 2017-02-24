@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
-using Server.Items;
 using Server.Multis;
 using Server.Network;
 using Server.ContextMenus;
@@ -10,7 +7,7 @@ using Server.Gumps;
 
 namespace Server.Items
 {
-	public abstract class BaseBoard : Container, ISecurable
+    public abstract class BaseBoard : Container, ISecurable
 	{
 		private SecureLevel m_Level;
 
@@ -81,7 +78,7 @@ namespace Server.Items
 		{
 			BasePiece piece = dropped as BasePiece;
 
-			return ( piece != null && piece.Board == this && base.OnDragDrop( from, dropped ) );
+			return piece != null && piece.Board == this && base.OnDragDrop( @from, dropped );
 		}
 
 		public override bool OnDragDropInto( Mobile from, Item dropped, Point3D point )
@@ -145,7 +142,7 @@ namespace Server.Items
 
 			BaseHouse house = BaseHouse.FindHouseAt( board );
 
-			return ( house != null && house.IsOwner( from ) );
+			return house != null && house.IsOwner( @from );
 		}
 
 		public class DefaultEntry : ContextMenuEntry

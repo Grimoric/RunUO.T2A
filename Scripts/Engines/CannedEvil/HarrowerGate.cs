@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class HarrowerGate : Moongate
+    public class HarrowerGate : Moongate
 	{
 		private Mobile m_Harrower;
 

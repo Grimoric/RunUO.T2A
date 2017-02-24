@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
-using Server;
 using Server.Accounting;
 
 namespace Server.Engines.Chat
 {
-	public class ChatUser
+    public class ChatUser
 	{
 		private Mobile m_Mobile;
 		private Channel m_Channel;
@@ -80,7 +78,7 @@ namespace Server.Engines.Chat
 		{
 			get
 			{
-				return ( m_Mobile.NetState != null );
+				return m_Mobile.NetState != null;
 			}
 		}
 
@@ -163,7 +161,7 @@ namespace Server.Engines.Chat
 		{
 			get
 			{
-				return ( m_Channel != null && m_Channel.IsModerator( this ) );
+				return m_Channel != null && m_Channel.IsModerator( this );
 			}
 		}
 

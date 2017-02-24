@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using Server;
 
 namespace Server.Items
 {
-	public class HitLower
+    public class HitLower
 	{
 		public static readonly TimeSpan AttackEffectDuration = TimeSpan.FromSeconds( 10.0 );
 		public static readonly TimeSpan DefenseEffectDuration = TimeSpan.FromSeconds( 8.0 );

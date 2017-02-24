@@ -1,9 +1,8 @@
-using System;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a plant corpse" )]
+    [CorpseName( "a plant corpse" )]
 	public class Bogling : BaseCreature
 	{
 		[Constructable]

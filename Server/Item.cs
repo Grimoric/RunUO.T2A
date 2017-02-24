@@ -19,8 +19,6 @@
  ***************************************************************************/
 
 using System;
-using System.IO;
-using System.Collections;
 using System.Collections.Generic;
 using Server.Network;
 using Server.Items;
@@ -28,10 +26,10 @@ using Server.ContextMenus;
 
 namespace Server
 {
-	/// <summary>
-	/// Enumeration of item layer values.
-	/// </summary>
-	public enum Layer : byte
+    /// <summary>
+    /// Enumeration of item layer values.
+    /// </summary>
+    public enum Layer : byte
 	{
 		/// <summary>
 		/// Invalid layer.
@@ -779,15 +777,15 @@ namespace Server
 			if ( info == null )
 				return;
 
-			bool isValid = ( info.m_Name != null )
-							|| ( info.m_Items != null )
-							|| ( info.m_Bounce != null )
-							|| ( info.m_HeldBy != null )
-							|| ( info.m_BlessedFor != null )
-							|| ( info.m_Spawner != null )
-							|| ( info.m_TempFlags != 0 )
-							|| ( info.m_SavedFlags != 0 )
-							|| ( info.m_Weight != -1 );
+			bool isValid = info.m_Name != null
+							|| info.m_Items != null
+							|| info.m_Bounce != null
+							|| info.m_HeldBy != null
+							|| info.m_BlessedFor != null
+							|| info.m_Spawner != null
+							|| info.m_TempFlags != 0
+							|| info.m_SavedFlags != 0
+							|| info.m_Weight != -1;
 
 			if ( !isValid )
 				ReleaseCompactInfo();
@@ -836,7 +834,7 @@ namespace Server
 
 		private bool GetFlag( ImplFlag flag )
 		{
-			return ( (m_Flags & flag) != 0 );
+			return (m_Flags & flag) != 0;
 		}
 
 		public BounceInfo GetBounce()
@@ -1198,12 +1196,12 @@ namespace Server
 
 		public virtual bool CheckConflictingLayer( Mobile m, Item item, Layer layer )
 		{
-			return ( m_Layer == layer );
+			return m_Layer == layer;
 		}
 
 		public virtual bool CanEquip( Mobile m )
 		{
-			return ( m_Layer != Layer.Invalid && m.FindItemOnLayer( m_Layer ) == null );
+			return m_Layer != Layer.Invalid && m.FindItemOnLayer( m_Layer ) == null;
 		}
 
 		public virtual void GetChildContextMenuEntries( Mobile from, List<ContextMenuEntry> list, Item item )
@@ -1307,12 +1305,12 @@ namespace Server
 
 		public bool AtWorldPoint( int x, int y )
 		{
-			return ( m_Parent == null && m_Location.m_X == x && m_Location.m_Y == y );
+			return m_Parent == null && m_Location.m_X == x && m_Location.m_Y == y;
 		}
 
 		public bool AtPoint( int x, int y )
 		{
-			return ( m_Location.m_X == x && m_Location.m_Y == y );
+			return m_Location.m_X == x && m_Location.m_Y == y;
 		}
 
 		/// <summary>
@@ -1503,13 +1501,13 @@ namespace Server
 			get
 			{
 				// TODO: Make item decay an option on the spawner
-				return (Movable && Visible/* && Spawner == null*/);
+				return Movable && Visible;
 			}
 		}
 
 		public virtual bool OnDecay()
 		{
-			return ( Decays && Parent == null && Map != Map.Internal && Region.Find( Location, Map ).OnDecay( this ) );
+			return Decays && Parent == null && Map != Map.Internal && Region.Find( Location, Map ).OnDecay( this );
 		}
 
 		public void SetLastMoved()
@@ -1536,7 +1534,7 @@ namespace Server
 
 		public virtual bool StackWith( Mobile from, Item dropped, bool playSound )
 		{
-			if ( dropped.Stackable && Stackable && dropped.GetType() == GetType() && dropped.ItemID == ItemID && dropped.Hue == Hue && dropped.Name == Name && (dropped.Amount + Amount) <= 60000 && dropped != this && !dropped.Nontransferable && !Nontransferable )
+			if ( dropped.Stackable && Stackable && dropped.GetType() == GetType() && dropped.ItemID == ItemID && dropped.Hue == Hue && dropped.Name == Name && dropped.Amount + Amount <= 60000 && dropped != this && !dropped.Nontransferable && !Nontransferable )
 			{
 				if ( m_LootType != dropped.m_LootType )
 					m_LootType = LootType.Regular;
@@ -1965,7 +1963,7 @@ namespace Server
 
 		private static bool GetSaveFlag( SaveFlag flags, SaveFlag toGet )
 		{
-			return ( (flags & toGet) != 0 );
+			return (flags & toGet) != 0;
 		}
 
 		int ISerializable.TypeReference {
@@ -2058,7 +2056,7 @@ namespace Server
 				}
 			}
 
-			ImplFlag implFlags = ( m_Flags & ( ImplFlag.Visible | ImplFlag.Movable | ImplFlag.Stackable | ImplFlag.Insured | ImplFlag.PayedInsurance | ImplFlag.QuestItem ) );
+			ImplFlag implFlags = m_Flags & ( ImplFlag.Visible | ImplFlag.Movable | ImplFlag.Stackable | ImplFlag.Insured | ImplFlag.PayedInsurance | ImplFlag.QuestItem );
 
 			if ( implFlags != ( ImplFlag.Visible | ImplFlag.Movable ) )
 				flags |= SaveFlag.ImplFlags;
@@ -2254,7 +2252,7 @@ namespace Server
 			if ( info == null )
 				return false;
 
-			return ( (info.m_TempFlags & flag) != 0 );
+			return (info.m_TempFlags & flag) != 0;
 		}
 
 		public void SetTempFlag( int flag, bool value )
@@ -2277,7 +2275,7 @@ namespace Server
 			if ( info == null )
 				return false;
 
-			return ( ( info.m_SavedFlags & flag ) != 0 );
+			return ( info.m_SavedFlags & flag ) != 0;
 		}
 
 		public void SetSavedFlag( int flag, bool value )
@@ -4055,7 +4053,7 @@ namespace Server
 
 			for ( int i = 0; i < 20; ++i )
 			{
-				if ( (i+height) > 20 )
+				if ( i+height > 20 )
 					match >>= 1;
 
 				okay = ((m_OpenSlots>>i)&match) == match;
@@ -4075,9 +4073,9 @@ namespace Server
 			if ( height == 0 )
 				++height;
 
-			if ( landAvg > z && (z + height) > landZ )
+			if ( landAvg > z && z + height > landZ )
 				return false;
-			else if ( (landFlags & TileFlag.Impassable) != 0 && landAvg > surfaceZ && (z + height) > landZ )
+			else if ( (landFlags & TileFlag.Impassable) != 0 && landAvg > surfaceZ && z + height > landZ )
 				return false;
 
 			for ( int i = 0; i < tiles.Length; ++i )
@@ -4088,9 +4086,9 @@ namespace Server
 				int checkZ = tile.Z;
 				int checkTop = checkZ + id.CalcHeight;
 
-				if ( checkTop > z && (z + height) > checkZ )
+				if ( checkTop > z && z + height > checkZ )
 					return false;
-				else if ( (id.Surface || id.Impassable) && checkTop > surfaceZ && (z + height) > checkZ )
+				else if ( (id.Surface || id.Impassable) && checkTop > surfaceZ && z + height > checkZ )
 					return false;
 			}
 
@@ -4102,7 +4100,7 @@ namespace Server
 				//int checkZ = item.Z;
 				//int checkTop = checkZ + id.CalcHeight;
 
-				if ( (item.Z + id.CalcHeight) > z && (z + height) > item.Z )
+				if ( item.Z + id.CalcHeight > z && z + height > item.Z )
 					return false;
 			}
 
@@ -4251,7 +4249,7 @@ namespace Server
 		{
 			get
 			{
-				return ( GetSecureTradeCont() != null );
+				return GetSecureTradeCont() != null;
 			}
 		}
 
@@ -4496,8 +4494,8 @@ namespace Server
 		{
 			int amount = Amount;
 
-			if ( amount > (60000 / amountPerOldItem) ) // let's not go over 60000
-				amount = (60000 / amountPerOldItem);
+			if ( amount > 60000 / amountPerOldItem ) // let's not go over 60000
+				amount = 60000 / amountPerOldItem;
 
 			Amount -= amount;
 
@@ -4609,15 +4607,15 @@ namespace Server
 
 		public virtual bool CheckBlessed( Mobile m )
 		{
-			if ( m_LootType == LootType.Blessed || (Mobile.InsuranceEnabled && Insured) )
+			if ( m_LootType == LootType.Blessed || Mobile.InsuranceEnabled && Insured )
 				return true;
 
-			return ( m != null && m == this.BlessedFor );
+			return m != null && m == this.BlessedFor;
 		}
 
 		public virtual bool CheckNewbied()
 		{
-			return ( m_LootType == LootType.Newbied );
+			return m_LootType == LootType.Newbied;
 		}
 
 		public virtual bool IsStandardLoot()
@@ -4628,7 +4626,7 @@ namespace Server
 			if ( this.BlessedFor != null )
 				return false;
 
-			return ( m_LootType == LootType.Regular );
+			return m_LootType == LootType.Regular;
 		}
 
 		public override string ToString()

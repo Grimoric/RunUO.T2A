@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a drake corpse" )]
+    [CorpseName( "a drake corpse" )]
 	public class Drake : BaseCreature
 	{
 		[Constructable]
@@ -60,7 +56,7 @@ namespace Server.Mobiles
 		public override int Hides{ get{ return 20; } }
 		public override HideType HideType{ get{ return HideType.Horned; } }
 		public override int Scales{ get{ return 2; } }
-		public override ScaleType ScaleType{ get{ return ( Body == 60 ? ScaleType.Yellow : ScaleType.Red ); } }
+		public override ScaleType ScaleType{ get{ return Body == 60 ? ScaleType.Yellow : ScaleType.Red; } }
 		public override FoodType FavoriteFood{ get{ return FoodType.Meat | FoodType.Fish; } }
 		public override bool CanFly { get { return true; } }
 

@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class BoneTableAddon : BaseAddon
+    public class BoneTableAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed { get { return new BoneTableDeed(); } }
 

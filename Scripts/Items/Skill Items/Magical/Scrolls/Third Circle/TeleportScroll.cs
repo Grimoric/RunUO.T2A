@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class TeleportScroll : SpellScroll
+    public class TeleportScroll : SpellScroll
 	{
 		[Constructable]
 		public TeleportScroll() : this( 1 )

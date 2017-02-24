@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Gumps;
 
 namespace Server.Mobiles
 {
-	public class PricedHealer : BaseHealer
+    public class PricedHealer : BaseHealer
 	{
 		private int m_Price;
 

@@ -1,10 +1,6 @@
-﻿using System;
-using Server;
-using Server.Misc;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	public class PumpkinScarecrow : Item
+    public class PumpkinScarecrow : Item
 	{
 		public override int LabelNumber { get { return 1096947; } }
 

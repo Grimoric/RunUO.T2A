@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class WallBlood : Item
+    public class WallBlood : Item
 	{
 		[Constructable]
 		public WallBlood()

@@ -1,9 +1,6 @@
-using System;
-using Server.Mobiles;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a swamp dragon corpse" )]
+    [CorpseName( "a swamp dragon corpse" )]
 	public class ScaledSwampDragon : BaseMount
 	{
 		[Constructable]

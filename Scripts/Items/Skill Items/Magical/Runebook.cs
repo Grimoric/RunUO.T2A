@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Gumps;
 using Server.Network;
 using Server.Mobiles;
@@ -11,7 +9,7 @@ using Server.ContextMenus;
 
 namespace Server.Items
 {
-	public class Runebook : Item, ISecurable, ICraftable
+    public class Runebook : Item, ISecurable, ICraftable
 	{
 		public static readonly TimeSpan UseDelay = TimeSpan.FromSeconds( 7.0 );
 
@@ -379,7 +377,7 @@ namespace Server.Items
 			if ( house != null && house.IsAosRules && (house.Public ? house.IsBanned( m ) : !house.HasAccess( m )) )
 				return false;
 
-			return ( house != null && house.HasSecureAccess( m, m_Level ) );
+			return house != null && house.HasSecureAccess( m, m_Level );
 		}
 
 		public override bool OnDragDrop( Mobile from, Item dropped )
@@ -433,7 +431,7 @@ namespace Server.Items
 
 					int amount = dropped.Amount;
 
-					if ( amount > (m_MaxCharges - m_CurCharges) )
+					if ( amount > m_MaxCharges - m_CurCharges )
 					{
 						dropped.Consume( m_MaxCharges - m_CurCharges );
 						m_CurCharges = m_MaxCharges;

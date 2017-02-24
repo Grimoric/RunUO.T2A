@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ZoogiFungus : Item, ICommodity
+    public class ZoogiFungus : Item, ICommodity
 	{
 		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
 		bool ICommodity.IsDeedable { get { return false; } }

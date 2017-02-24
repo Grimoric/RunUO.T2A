@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Reflection;
 using System.Reflection.Emit;
-using Emit = System.Reflection.Emit;
 
 namespace Server
 {
-	public class AssemblyEmitter
+    public class AssemblyEmitter
 	{
 		private string m_AssemblyName;
 
@@ -540,9 +538,9 @@ namespace Server
 #else
 				Type[] ifaces = active.FindInterfaces( delegate( Type type, object obj )
 				{
-					return ( type.IsGenericType )
-						&& ( type.GetGenericTypeDefinition() == typeof( IComparable<> ) )
-						&& ( type.GetGenericArguments()[0].IsAssignableFrom( active ) );
+					return type.IsGenericType
+						&& type.GetGenericTypeDefinition() == typeof( IComparable<> )
+						&& type.GetGenericArguments()[0].IsAssignableFrom( active );
 				}, null );
 #endif
 
@@ -554,7 +552,7 @@ namespace Server
 				{
 					ifaces = active.FindInterfaces( delegate( Type type, object obj )
 					{
-						return ( type == typeof( IComparable ) );
+						return type == typeof( IComparable );
 					}, null );
 
 					if ( ifaces.Length > 0 )

@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
-using Server.Items;
-using Server.Targeting;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a frost ooze corpse" )]
+    [CorpseName( "a frost ooze corpse" )]
 	public class FrostOoze : BaseCreature
 	{
 		[Constructable]

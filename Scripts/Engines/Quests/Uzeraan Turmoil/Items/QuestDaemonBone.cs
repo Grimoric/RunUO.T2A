@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Mobiles;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Haven
 {
-	public class QuestDaemonBone : QuestItem
+    public class QuestDaemonBone : QuestItem
 	{
 		[Constructable]
 		public QuestDaemonBone() : base( 0xF80 )

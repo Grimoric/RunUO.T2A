@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Ninja
 {
-	public class GreenNinjaQuestTeleporter : DynamicTeleporter
+    public class GreenNinjaQuestTeleporter : DynamicTeleporter
 	{
 		public override int LabelNumber{ get{ return 1026157; } } // teleporter
 

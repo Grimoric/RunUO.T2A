@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class RighteousAnger : ElvenMachete
+    public class RighteousAnger : ElvenMachete
 	{
 		public override int LabelNumber{ get{ return 1075049; } } // Righteous Anger
 

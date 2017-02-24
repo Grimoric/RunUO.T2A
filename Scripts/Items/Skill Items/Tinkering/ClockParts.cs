@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[Flipable( 0x104F, 0x1050 )]
+    [Flipable( 0x104F, 0x1050 )]
 	public class ClockParts : Item
 	{
 		[Constructable]

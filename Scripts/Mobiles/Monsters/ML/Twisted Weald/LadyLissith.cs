@@ -1,11 +1,8 @@
-using System;
 using Server.Items;
-using Server.Targeting;
-using System.Collections;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a Lady Lissith corpse" )]
+    [CorpseName( "a Lady Lissith corpse" )]
 	public class LadyLissith : GiantBlackWidow
 	{
 		[Constructable]

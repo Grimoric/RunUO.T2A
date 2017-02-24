@@ -1,5 +1,4 @@
 using System;
-using Server;
 using Server.Gumps;
 using Server.Guilds;
 using Server.Mobiles;
@@ -7,7 +6,7 @@ using Server.Network;
 
 namespace Server.Factions
 {
-	public class LeaveFactionGump : FactionGump
+    public class LeaveFactionGump : FactionGump
 	{
 		private PlayerMobile m_From;
 		private Faction m_Faction;

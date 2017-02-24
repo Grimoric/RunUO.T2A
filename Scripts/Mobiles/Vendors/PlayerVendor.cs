@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
-using Server;
 using Server.Items;
-using Server.Mobiles;
 using Server.Gumps;
 using Server.Prompts;
 using Server.Targeting;
@@ -14,7 +11,7 @@ using Server.ContextMenus;
 
 namespace Server.Mobiles
 {
-	[AttributeUsage( AttributeTargets.Class )]
+    [AttributeUsage( AttributeTargets.Class )]
 	public class PlayerVendorTargetAttribute : Attribute
 	{
 		public PlayerVendorTargetAttribute()
@@ -586,7 +583,7 @@ namespace Server.Mobiles
 					if ( total < 0 )
 						total = 0;
 
-					return (int)( 20 + (total / 500) );
+					return (int)( 20 + total / 500 );
 				}
 			}
 		}
@@ -603,7 +600,7 @@ namespace Server.Mobiles
 						total += vi.Price;
 					}
 
-					return (int)( 60 + (total / 500) * 3 );
+					return (int)( 60 + total / 500 * 3 );
 				}
 				else
 				{
@@ -916,7 +913,7 @@ namespace Server.Mobiles
 			}
 			else
 			{
-				bool newItem = ( GetVendorItem( item ) == null );
+				bool newItem = GetVendorItem( item ) == null;
 
 				if ( this.Backpack != null && this.Backpack.TryDropItem( from, item, false ) )
 				{
@@ -1264,7 +1261,7 @@ namespace Server.Mobiles
 
 		public override bool HandlesOnSpeech( Mobile from )
 		{
-			return ( from.Alive && from.GetDistanceToSqrt( this ) <= 3 );
+			return @from.Alive && @from.GetDistanceToSqrt( this ) <= 3;
 		}
 
 		public bool WasNamed( string speech )
@@ -1279,7 +1276,7 @@ namespace Server.Mobiles
 			if ( e.Handled || !from.Alive || from.GetDistanceToSqrt( this ) > 3 )
 				return;
 
-			if ( e.HasKeyword( 0x3C ) || (e.HasKeyword( 0x171 ) && WasNamed( e.Speech ))  ) // vendor buy, *buy*
+			if ( e.HasKeyword( 0x3C ) || e.HasKeyword( 0x171 ) && WasNamed( e.Speech )  ) // vendor buy, *buy*
 			{
 				if ( IsOwner( from ) )
 				{
@@ -1293,7 +1290,7 @@ namespace Server.Mobiles
 					e.Handled = true;
 				}
 			} 
-			else if ( e.HasKeyword( 0x3D ) || (e.HasKeyword( 0x172 ) && WasNamed( e.Speech )) ) // vendor browse, *browse
+			else if ( e.HasKeyword( 0x3D ) || e.HasKeyword( 0x172 ) && WasNamed( e.Speech ) ) // vendor browse, *browse
 			{
 				if ( House != null && House.IsBanned( from ) && !IsOwner( from ) )
 				{
@@ -1317,7 +1314,7 @@ namespace Server.Mobiles
 					e.Handled = true;
 				}
 			}
-			else if ( e.HasKeyword( 0x3E ) || (e.HasKeyword( 0x173 ) && WasNamed( e.Speech )) ) // vendor collect, *collect
+			else if ( e.HasKeyword( 0x3E ) || e.HasKeyword( 0x173 ) && WasNamed( e.Speech ) ) // vendor collect, *collect
 			{
 				if ( IsOwner( from ) )
 				{
@@ -1326,7 +1323,7 @@ namespace Server.Mobiles
 					e.Handled = true;
 				}
 			}
-			else if ( e.HasKeyword( 0x3F ) || (e.HasKeyword( 0x174 ) && WasNamed( e.Speech )) ) // vendor status, *status
+			else if ( e.HasKeyword( 0x3F ) || e.HasKeyword( 0x174 ) && WasNamed( e.Speech ) ) // vendor status, *status
 			{
 				if ( IsOwner( from ) )
 				{
@@ -1339,7 +1336,7 @@ namespace Server.Mobiles
 					SayTo( from, 503226 ); // What do you care? You don't run this shop.	
 				}
 			}
-			else if ( e.HasKeyword( 0x40 ) || (e.HasKeyword( 0x175 ) && WasNamed( e.Speech )) ) // vendor dismiss, *dismiss
+			else if ( e.HasKeyword( 0x40 ) || e.HasKeyword( 0x175 ) && WasNamed( e.Speech ) ) // vendor dismiss, *dismiss
 			{
 				if ( IsOwner( from ) )
 				{
@@ -1348,7 +1345,7 @@ namespace Server.Mobiles
 					e.Handled = true;
 				}
 			}
-			else if ( e.HasKeyword( 0x41 ) || (e.HasKeyword( 0x176 ) && WasNamed( e.Speech )) ) // vendor cycle, *cycle
+			else if ( e.HasKeyword( 0x41 ) || e.HasKeyword( 0x176 ) && WasNamed( e.Speech ) ) // vendor cycle, *cycle
 			{
 				if ( IsOwner( from ) )
 				{

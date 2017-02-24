@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Samurai
 {
-	public class HaochisTrialsQuest : QuestSystem
+    public class HaochisTrialsQuest : QuestSystem
 	{
 		private static Type[] m_TypeReferenceTable = new Type[]
 			{
@@ -141,7 +140,7 @@ namespace Server.Engines.Quests.Samurai
 				{
 					Container pack = from.Backpack;
 
-					return ( pack == null || pack.FindItemByType( typeof( HaochisKatana ) ) == null );
+					return pack == null || pack.FindItemByType( typeof( HaochisKatana ) ) == null;
 				}
 			}
 

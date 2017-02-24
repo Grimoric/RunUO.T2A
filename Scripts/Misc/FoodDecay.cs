@@ -1,10 +1,9 @@
 using System;
 using Server.Network;
-using Server;
 
 namespace Server.Misc
 {
-	public class FoodDecayTimer : Timer
+    public class FoodDecayTimer : Timer
 	{
 		public static void Initialize()
 		{

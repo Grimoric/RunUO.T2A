@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Engines.BulkOrders
 {
-	public class BOBLargeEntry
+    public class BOBLargeEntry
 	{
 		private bool m_RequireExceptional;
 		private BODType m_DeedType;

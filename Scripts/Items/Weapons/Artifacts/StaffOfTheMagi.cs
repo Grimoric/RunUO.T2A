@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class StaffOfTheMagi : BlackStaff
+    public class StaffOfTheMagi : BlackStaff
 	{
 		public override int LabelNumber{ get{ return 1061600; } } // Staff of the Magi
 		public override int ArtifactRarity{ get{ return 11; } }

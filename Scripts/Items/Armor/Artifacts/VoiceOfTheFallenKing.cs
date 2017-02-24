@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class VoiceOfTheFallenKing : LeatherGorget
+    public class VoiceOfTheFallenKing : LeatherGorget
 	{
 		public override int LabelNumber{ get{ return 1061094; } } // Voice of the Fallen King
 		public override int ArtifactRarity{ get{ return 11; } }

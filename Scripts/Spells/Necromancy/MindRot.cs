@@ -1,12 +1,10 @@
 using System;
 using System.Collections;
-using Server.Network;
-using Server.Mobiles;
 using Server.Targeting;
 
 namespace Server.Spells.Necromancy
 {
-	public class MindRotSpell : NecromancerSpell
+    public class MindRotSpell : NecromancerSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Mind Rot", "Wis An Ben",
@@ -53,7 +51,7 @@ namespace Server.Spells.Necromancy
 				m.PlaySound( 0x258 );
 				m.FixedParticles( 0x373A, 1, 17, 9903, 15, 4, EffectLayer.Head );
 
-				TimeSpan duration = TimeSpan.FromSeconds( (((GetDamageSkill( Caster ) - GetResistSkill( m )) / 5.0) + 20.0) * (m.Player ? 1.0 : 2.0 ) );
+				TimeSpan duration = TimeSpan.FromSeconds( ((GetDamageSkill( Caster ) - GetResistSkill( m )) / 5.0 + 20.0) * (m.Player ? 1.0 : 2.0 ) );
 				m.CheckSkill( SkillName.MagicResist, 0.0, 120.0 );	//Skill check for gain
 
 				if ( m.Player )

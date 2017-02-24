@@ -1,10 +1,8 @@
 using System;
-using Server.Network;
-using Server.Items;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x2D2B, 0x2D1F )]
+    [FlipableAttribute( 0x2D2B, 0x2D1F )]
 	public class MagicalShortbow : BaseRanged
 	{
 		public override int EffectID{ get{ return 0xF42; } }

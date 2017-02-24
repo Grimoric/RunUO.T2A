@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 
 namespace Server.Engines.Quests.Hag
 {
-	public class FindApprenticeObjective : QuestObjective
+    public class FindApprenticeObjective : QuestObjective
 	{
 		private static Point3D[] m_CorpseLocations = new Point3D[]
 			{

@@ -1,11 +1,9 @@
 using System;
-using Server.Mobiles;
-using Server.Network;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a unicorn corpse" )]
+    [CorpseName( "a unicorn corpse" )]
 	public class Unicorn : BaseMount
 	{
 		public override bool AllowMaleRider{ get{ return false; } }
@@ -25,13 +23,13 @@ namespace Server.Mobiles
 			if( Rider == null || attacker == null )	//sanity
 				return false;
 
-			if( Rider.Poisoned && ((Rider.Hits - damage) < 40) )
+			if( Rider.Poisoned && Rider.Hits - damage < 40 )
 			{
 				Poison p = Rider.Poison;
 
 				if( p != null )
 				{
-					int chanceToCure = 10000 + (int)(this.Skills[SkillName.Magery].Value * 75) - ((p.Level + 1) * 1750);
+					int chanceToCure = 10000 + (int)(this.Skills[SkillName.Magery].Value * 75) - (p.Level + 1) * 1750;
 					chanceToCure /= 100;
 
 					if( chanceToCure > Utility.Random( 100 ) )

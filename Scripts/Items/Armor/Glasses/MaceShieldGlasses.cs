@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class MaceShieldGlasses : ElvenGlasses
+    public class MaceShieldGlasses : ElvenGlasses
 	{
 		public override int LabelNumber{ get{ return 1073381; } } //Mace And Shield Reading Glasses
 

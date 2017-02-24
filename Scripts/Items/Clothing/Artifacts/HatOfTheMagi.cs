@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class HatOfTheMagi : WizardsHat
+    public class HatOfTheMagi : WizardsHat
 	{
 		public override int LabelNumber{ get{ return 1061597; } } // Hat of the Magi
 

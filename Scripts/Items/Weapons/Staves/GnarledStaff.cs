@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x13F8, 0x13F9 )]
+    [FlipableAttribute( 0x13F8, 0x13F9 )]
 	public class GnarledStaff : BaseStaff
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ConcussionBlow; } }

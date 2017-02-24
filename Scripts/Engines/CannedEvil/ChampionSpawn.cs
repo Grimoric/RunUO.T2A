@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
@@ -9,18 +7,18 @@ using System.Collections.Generic;
 
 namespace Server.Engines.CannedEvil
 {
-	public class ChampionSpawn : Item
+    public class ChampionSpawn : Item
 	{
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int SpawnSzMod
 		{
 			get
 			{
-				return ( m_SPawnSzMod < 1 || m_SPawnSzMod > 12 ) ? 12 : m_SPawnSzMod;
+				return m_SPawnSzMod < 1 || m_SPawnSzMod > 12 ? 12 : m_SPawnSzMod;
 			}
 			set
 			{
-				m_SPawnSzMod = ( value < 1 || value > 12 ) ? 12 : value;
+				m_SPawnSzMod = value < 1 || value > 12 ? 12 : value;
 			}
 		}
 		private int m_SPawnSzMod;
@@ -287,7 +285,7 @@ namespace Server.Engines.CannedEvil
 		{
 			get
 			{
-				return ( m_SPawnSzMod * ( 250 / 12 ) ) - ( Level * m_SPawnSzMod );
+				return m_SPawnSzMod * ( 250 / 12 ) - Level * m_SPawnSzMod;
 			}
 		}
 
@@ -631,7 +629,7 @@ namespace Server.Engines.CannedEvil
 			if( !m_Active || Deleted || m_Champion != null )
 				return;
 
-			while( m_Creatures.Count < ( ( m_SPawnSzMod * ( 200 / 12 ) ) ) - ( GetSubLevel() * ( m_SPawnSzMod * ( 40 / 12 ) ) ) )
+			while( m_Creatures.Count < m_SPawnSzMod * ( 200 / 12 ) - GetSubLevel() * m_SPawnSzMod * ( 40 / 12 ) )
 			{
 				Mobile m = Spawn();
 

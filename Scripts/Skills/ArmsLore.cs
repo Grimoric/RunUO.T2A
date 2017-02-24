@@ -40,7 +40,7 @@ namespace Server.SkillHandlers
 
 						if ( weap.MaxHitPoints != 0 )
 						{
-							int hp = (int)((weap.HitPoints / (double)weap.MaxHitPoints) * 10);
+							int hp = (int)(weap.HitPoints / (double)weap.MaxHitPoints * 10);
 
 							if ( hp < 0 )
 								hp = 0;
@@ -51,7 +51,7 @@ namespace Server.SkillHandlers
 						}
 
 						int damage = (weap.MaxDamage + weap.MinDamage) / 2;
-						int hand = (weap.Layer == Layer.OneHanded ? 0 : 1);
+						int hand = weap.Layer == Layer.OneHanded ? 0 : 1;
 
 						if ( damage < 3 )
 							damage = 0;
@@ -75,15 +75,15 @@ namespace Server.SkillHandlers
 						WeaponType type = weap.Type;
 
 						if ( type == WeaponType.Ranged )
-							from.SendLocalizedMessage( 1038224 + (damage * 9) );
+							from.SendLocalizedMessage( 1038224 + damage * 9 );
 						else if ( type == WeaponType.Piercing )
-							from.SendLocalizedMessage( 1038218 + hand + (damage * 9) );
+							from.SendLocalizedMessage( 1038218 + hand + damage * 9 );
 						else if ( type == WeaponType.Slashing )
-							from.SendLocalizedMessage( 1038220 + hand + (damage * 9) );
+							from.SendLocalizedMessage( 1038220 + hand + damage * 9 );
 						else if ( type == WeaponType.Bashing )
-							from.SendLocalizedMessage( 1038222 + hand + (damage * 9) );
+							from.SendLocalizedMessage( 1038222 + hand + damage * 9 );
 						else
-							from.SendLocalizedMessage( 1038216 + hand + (damage * 9) );
+							from.SendLocalizedMessage( 1038216 + hand + damage * 9 );
 
 						if ( weap.Poison != null && weap.PoisonCharges > 0 )
 							from.SendLocalizedMessage( 1038284 ); // It appears to have poison smeared on it.
@@ -101,7 +101,7 @@ namespace Server.SkillHandlers
 
 						if ( arm.MaxHitPoints != 0 )
 						{
-							int hp = (int)((arm.HitPoints / (double)arm.MaxHitPoints) * 10);
+							int hp = (int)(arm.HitPoints / (double)arm.MaxHitPoints * 10);
 
 							if ( hp < 0 )
 								hp = 0;
@@ -143,7 +143,7 @@ namespace Server.SkillHandlers
 
 					if ( from.CheckTargetSkill( SkillName.ArmsLore, targeted, 0, 100 ) )
 					{
-						int perc = (4 * pet.BardingHP) / pet.BardingMaxHP;
+						int perc = 4 * pet.BardingHP / pet.BardingMaxHP;
 
 						if ( perc < 0 )
 							perc = 0;

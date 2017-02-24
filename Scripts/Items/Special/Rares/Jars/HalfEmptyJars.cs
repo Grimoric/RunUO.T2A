@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	public class HalfEmptyJar : Item
+    public class HalfEmptyJar : Item
 	{
 		[Constructable]
 		public HalfEmptyJar()

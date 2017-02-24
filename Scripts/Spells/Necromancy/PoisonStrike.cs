@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Server.Network;
 using Server.Items;
 using Server.Targeting;
 using Server.Mobiles;
 
 namespace Server.Spells.Necromancy
 {
-	public class PoisonStrikeSpell : NecromancerSpell
+    public class PoisonStrikeSpell : NecromancerSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Poison Strike", "In Vas Nox",
@@ -49,7 +48,7 @@ namespace Server.Spells.Necromancy
 				Effects.SendLocationParticles( EffectItem.Create( m.Location, m.Map, EffectItem.DefaultDuration ), 0x36B0, 1, 14, 63, 7, 9915, 0 );
 				Effects.PlaySound( m.Location, m.Map, 0x229 );
 
-				double damage = Utility.RandomMinMax( 36, 40 ) * ((300 + (GetDamageSkill( Caster ) * 9)) / 1000);
+				double damage = Utility.RandomMinMax( 36, 40 ) * ((300 + GetDamageSkill( Caster ) * 9) / 1000);
 				
 				double sdiBonus = (double)AosAttributes.GetValue( Caster, AosAttribute.SpellDamage )/100;
 				double pvmDamage = damage * (1 + sdiBonus);
@@ -67,7 +66,7 @@ namespace Server.Spells.Necromancy
 
 					foreach( Mobile targ in m.GetMobilesInRange( 2 ) )
 						if(!(Caster is BaseCreature && targ is BaseCreature ))
-							if( ( targ != Caster && m != targ ) && ( SpellHelper.ValidIndirectTarget( Caster, targ ) && Caster.CanBeHarmful( targ, false) ) )
+							if( targ != Caster && m != targ && SpellHelper.ValidIndirectTarget( Caster, targ ) && Caster.CanBeHarmful( targ, false) )
 								targets.Add( targ );
 
 					for( int i = 0; i < targets.Count; ++i )
@@ -83,7 +82,7 @@ namespace Server.Spells.Necromancy
 							num = 3;
 
 						Caster.DoHarmful( targ );
-						SpellHelper.Damage( this, targ, ((m.Player && Caster.Player) ? pvpDamage : pvmDamage) / num, 0, 0, 0, 100, 0 );
+						SpellHelper.Damage( this, targ, (m.Player && Caster.Player ? pvpDamage : pvmDamage) / num, 0, 0, 0, 100, 0 );
 					}
 				}
 			}

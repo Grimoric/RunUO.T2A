@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Network;
 using Server.Targeting;
 
 namespace Server.Items
 {
-	public interface TranslocationItem
+    public interface TranslocationItem
 	{
 		int Charges{ get; set; }
 		int Recharges{ get; set; }

@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Engines.Quests.Haven
 {
-	public class MilitiaFighter : BaseCreature
+    public class MilitiaFighter : BaseCreature
 	{
 		[Constructable]
 		public MilitiaFighter() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )

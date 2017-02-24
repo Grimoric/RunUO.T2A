@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Mobiles
 {
-	public class ServantOfSemidar : BaseCreature
+    public class ServantOfSemidar : BaseCreature
 	{
 		[Constructable]
 		public ServantOfSemidar() : base( AIType.AI_Melee, FightMode.None, 10, 1, 0.2, 0.4 )

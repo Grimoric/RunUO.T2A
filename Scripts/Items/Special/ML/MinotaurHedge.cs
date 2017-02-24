@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class MinotaurHedge : Item
+    public class MinotaurHedge : Item
 	{
 	
 		[Constructable]

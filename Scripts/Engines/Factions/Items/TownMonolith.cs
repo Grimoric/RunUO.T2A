@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Factions
 {
-	public class TownMonolith : BaseMonolith
+    public class TownMonolith : BaseMonolith
 	{
 		public override int DefaultLabelNumber{ get{ return 1041403; } } // A Faction Town Sigil Monolith
 

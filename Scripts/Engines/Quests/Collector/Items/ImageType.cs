@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Collector
 {
-	public enum ImageType
+    public enum ImageType
 	{
 		Betrayer,
 		Bogling,

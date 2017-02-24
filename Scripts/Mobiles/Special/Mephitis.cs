@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Engines.CannedEvil;
 
 namespace Server.Mobiles
 {
-	public class Mephitis : BaseChampion
+    public class Mephitis : BaseChampion
 	{
 		public override ChampionSkullType SkullType{ get{ return ChampionSkullType.Venom; } }
 

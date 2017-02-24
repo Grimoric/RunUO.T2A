@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public interface ILoom
+    public interface ILoom
 	{
 		int Phase{ get; set; }
 	}

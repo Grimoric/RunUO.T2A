@@ -1,12 +1,10 @@
-using System;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Factions
 {
-	public class FactionReagentVendor : BaseFactionVendor
+    public class FactionReagentVendor : BaseFactionVendor
 	{
 		public FactionReagentVendor( Town town, Faction faction ) : base( town, faction, "the Reagent Man" )
 		{

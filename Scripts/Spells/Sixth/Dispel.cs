@@ -1,13 +1,10 @@
-using System;
-using Server.Misc;
 using Server.Items;
 using Server.Targeting;
-using Server.Network;
 using Server.Mobiles;
 
 namespace Server.Spells.Sixth
 {
-	public class DispelSpell : MagerySpell
+    public class DispelSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Dispel", "An Ort",
@@ -57,7 +54,7 @@ namespace Server.Spells.Sixth
 					{
 						SpellHelper.Turn( from, m );
 
-						double dispelChance = (50.0 + ((100 * (from.Skills.Magery.Value - bc.DispelDifficulty)) / (bc.DispelFocus*2))) / 100;
+						double dispelChance = (50.0 + 100 * (@from.Skills.Magery.Value - bc.DispelDifficulty) / (bc.DispelFocus*2)) / 100;
 
 						if ( dispelChance > Utility.RandomDouble() )
 						{

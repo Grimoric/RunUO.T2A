@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a dragon corpse" )]
+    [CorpseName( "a dragon corpse" )]
 	public class SerpentineDragon : BaseCreature
 	{
 		[Constructable]
@@ -84,7 +80,7 @@ namespace Server.Mobiles
 		public override int Hides{ get{ return 20; } }
 		public override int Meat{ get{ return 19; } }
 		public override int Scales{ get{ return 6; } }
-		public override ScaleType ScaleType{ get{ return ( Utility.RandomBool() ? ScaleType.Black : ScaleType.White ); } }
+		public override ScaleType ScaleType{ get{ return Utility.RandomBool() ? ScaleType.Black : ScaleType.White; } }
 		public override int TreasureMapLevel{ get{ return 4; } }
 
 		public SerpentineDragon( Serial serial ) : base( serial )

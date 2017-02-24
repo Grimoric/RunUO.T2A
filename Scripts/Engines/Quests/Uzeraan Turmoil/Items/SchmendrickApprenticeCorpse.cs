@@ -1,15 +1,11 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Haven
 {
-	public class SchmendrickApprenticeCorpse : Corpse
+    public class SchmendrickApprenticeCorpse : Corpse
 	{
 		private static Mobile GetOwner()
 		{

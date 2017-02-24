@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x2B6C, 0x3163 )]
+    [FlipableAttribute( 0x2B6C, 0x3163 )]
 	public class WoodlandArms : BaseArmor
 	{
 		public override int BasePhysicalResistance{ get{ return 5; } }

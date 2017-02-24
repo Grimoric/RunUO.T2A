@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class TrueLeafblade : Leafblade
+    public class TrueLeafblade : Leafblade
 	{
 		public override int LabelNumber{ get{ return 1073521; } } // true leafblade
 

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Engines.Quests.Hag
 {
-	public class MoonfireBrew : Item
+    public class MoonfireBrew : Item
 	{
 		public override int LabelNumber{ get{ return 1055065; } } // a bottle of magical moonfire brew
 

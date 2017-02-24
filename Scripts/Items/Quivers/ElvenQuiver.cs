@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x2FB7, 0x3171 )]
+    [FlipableAttribute( 0x2FB7, 0x3171 )]
 	public class ElvenQuiver : BaseQuiver
 	{
 		public override int LabelNumber{ get{ return 1032657; } } // elven quiver

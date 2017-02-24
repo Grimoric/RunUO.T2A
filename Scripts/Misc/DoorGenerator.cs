@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Commands;
 
 namespace Server
 {
-	public class DoorGenerator
+    public class DoorGenerator
 	{
 		private static Rectangle2D[] m_BritRegions = new Rectangle2D[]
 			{

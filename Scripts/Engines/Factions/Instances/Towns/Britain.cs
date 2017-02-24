@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Factions
 {
-	public class Britain : Town
+    public class Britain : Town
 	{
 		public Britain()
 		{

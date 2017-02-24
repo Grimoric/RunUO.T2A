@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Server.ContextMenus;
 using Server.Engines.Craft;
 using Server.Network;
-using Server.Targeting;
 
 namespace Server.Items
 {
@@ -79,7 +77,7 @@ namespace Server.Items
 							if( CraftResources.GetType( ( (BaseArmor)i ).Resource ) == CraftResourceType.Leather )
 							return true;
 						}
-						if( ( i is Cloth ) || ( i is BoltOfCloth ) || ( i is Hides ) || ( i is BonePile ) )
+						if( i is Cloth || i is BoltOfCloth || i is Hides || i is BonePile )
 							return true;
 					}
 				}
@@ -128,12 +126,12 @@ namespace Server.Items
                 Type resourceType = info.ResourceTypes[ 0 ];
                 Item ingot = (Item)Activator.CreateInstance( resourceType );
 
-                if( item is DragonBardingDeed || ( item is BaseArmor && ( (BaseArmor)item ).PlayerConstructed ) || ( item is BaseWeapon && ( (BaseWeapon)item ).PlayerConstructed ) || ( item is BaseClothing && ( (BaseClothing)item ).PlayerConstructed ) )
+                if( item is DragonBardingDeed || item is BaseArmor && ( (BaseArmor)item ).PlayerConstructed || item is BaseWeapon && ( (BaseWeapon)item ).PlayerConstructed || item is BaseClothing && ( (BaseClothing)item ).PlayerConstructed )
 					{
 						double mining = from.Skills[ SkillName.Mining ].Value;
 						if( mining > 100.0 )
 							mining = 100.0;
-						double amount = ( ( ( 4 + mining ) * craftResource.Amount - 4 ) * 0.0068 );
+						double amount = ( ( 4 + mining ) * craftResource.Amount - 4 ) * 0.0068;
 						if( amount < 2 )
 							ingot.Amount = 2;
 						else
@@ -275,7 +273,7 @@ namespace Server.Items
 			
 			foreach (Item i in ((Container)this).FindItemsByType(typeof(Item), true))
 			{
-				if( ( i is Leather ) || ( i is Cloth ) || ( i is SpinedLeather ) || ( i is HornedLeather ) || ( i is BarbedLeather ) || ( i is Bandage ) || ( i is Bone ) )
+				if( i is Leather || i is Cloth || i is SpinedLeather || i is HornedLeather || i is BarbedLeather || i is Bandage || i is Bone )
 				{
 					from.AddToBackpack( i );
 				}

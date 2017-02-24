@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Spells;
 
 namespace Server.Items
 {
-	public class TribalPaint : Item
+    public class TribalPaint : Item
 	{
 		public override int LabelNumber{ get{ return 1040000; } } // savage kin paint
 
@@ -51,7 +50,7 @@ namespace Server.Items
 				}
 				else
 				{
-					from.BodyMod = ( from.Female ? 184 : 183 );
+					from.BodyMod = @from.Female ? 184 : 183;
 					from.HueMod = 0;
 
 					if ( from is PlayerMobile )

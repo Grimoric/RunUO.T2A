@@ -1,10 +1,8 @@
 using System;
-using Server;
-using Server.Mobiles;
 
 namespace Server.Items
 {
-	public class SlayerEntry
+    public class SlayerEntry
 	{
 		private SlayerGroup m_Group;
 		private SlayerName m_Name;

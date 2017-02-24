@@ -1,12 +1,10 @@
 using System;
-using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Server.Commands.Generic
 {
-	public sealed class DistinctExtension : BaseExtension
+    public sealed class DistinctExtension : BaseExtension
 	{
 		public static ExtensionInfo ExtInfo = new ExtensionInfo( 30, "Distinct", -1, delegate() { return new DistinctExtension(); } );
 

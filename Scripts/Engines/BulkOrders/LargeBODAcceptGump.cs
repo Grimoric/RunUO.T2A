@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Engines.BulkOrders
 {
-	public class LargeBODAcceptGump : Gump
+    public class LargeBODAcceptGump : Gump
 	{
 		private LargeBOD m_Deed;
 		private Mobile m_From;
@@ -22,15 +20,15 @@ namespace Server.Engines.BulkOrders
 
 			AddPage( 0 );
 
-			AddBackground( 25, 10, 430, 240 + (entries.Length * 24), 5054 );
+			AddBackground( 25, 10, 430, 240 + entries.Length * 24, 5054 );
 
-			AddImageTiled( 33, 20, 413, 221 + (entries.Length * 24), 2624 );
-			AddAlphaRegion( 33, 20, 413, 221 + (entries.Length * 24) );
+			AddImageTiled( 33, 20, 413, 221 + entries.Length * 24, 2624 );
+			AddAlphaRegion( 33, 20, 413, 221 + entries.Length * 24 );
 
 			AddImage( 20, 5, 10460 );
 			AddImage( 430, 5, 10460 );
-			AddImage( 20, 225 + (entries.Length * 24), 10460 );
-			AddImage( 430, 225 + (entries.Length * 24), 10460 );
+			AddImage( 20, 225 + entries.Length * 24, 10460 );
+			AddImage( 430, 225 + entries.Length * 24, 10460 );
 
 			AddHtmlLocalized( 180, 25, 120, 20, 1045134, 0x7FFF, false, false ); // A large bulk order
 
@@ -64,13 +62,13 @@ namespace Server.Engines.BulkOrders
 				}
 			}
 
-			AddHtmlLocalized( 40, 192 + (entries.Length * 24), 350, 20, 1045139, 0x7FFF, false, false ); // Do you want to accept this order?
+			AddHtmlLocalized( 40, 192 + entries.Length * 24, 350, 20, 1045139, 0x7FFF, false, false ); // Do you want to accept this order?
 
-			AddButton( 100, 216 + (entries.Length * 24), 4005, 4007, 1, GumpButtonType.Reply, 0 );
-			AddHtmlLocalized( 135, 216 + (entries.Length * 24), 120, 20, 1006044, 0x7FFF, false, false ); // Ok
+			AddButton( 100, 216 + entries.Length * 24, 4005, 4007, 1, GumpButtonType.Reply, 0 );
+			AddHtmlLocalized( 135, 216 + entries.Length * 24, 120, 20, 1006044, 0x7FFF, false, false ); // Ok
 
-			AddButton( 275, 216 + (entries.Length * 24), 4005, 4007, 0, GumpButtonType.Reply, 0 );
-			AddHtmlLocalized( 310, 216 + (entries.Length * 24), 120, 20, 1011012, 0x7FFF, false, false ); // CANCEL
+			AddButton( 275, 216 + entries.Length * 24, 4005, 4007, 0, GumpButtonType.Reply, 0 );
+			AddHtmlLocalized( 310, 216 + entries.Length * 24, 120, 20, 1011012, 0x7FFF, false, false ); // CANCEL
 		}
 
 		public override void OnResponse( NetState sender, RelayInfo info )

@@ -1,11 +1,9 @@
 using System;
-using Server.Mobiles;
-using Server.Network;
 using System.Collections.Generic;
 
 namespace Server.Items
 {
-	public class CandyCane : Food
+    public class CandyCane : Food
 	{
 		private static Dictionary<Mobile, CandyCaneTimer> m_ToothAches;
 

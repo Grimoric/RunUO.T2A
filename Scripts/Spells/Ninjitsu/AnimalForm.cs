@@ -33,8 +33,8 @@ namespace Server.Spells.Ninjitsu
 		public override TimeSpan CastDelayBase { get { return TimeSpan.FromSeconds(1.0); } }
 
 		public override double RequiredSkill { get { return 0.0; } }
-		public override int RequiredMana { get { return (0); } }
-		public override int CastRecoveryBase { get { return (base.CastRecoveryBase); } }
+		public override int RequiredMana { get { return 0; } }
+		public override int CastRecoveryBase { get { return base.CastRecoveryBase; } }
 
 		public override bool BlockedByAnimalForm { get { return false; } }
 
@@ -71,7 +71,7 @@ namespace Server.Spells.Ninjitsu
 
 		private bool CasterIsMoving()
 		{
-			return (DateTime.Now - Caster.LastMoveTime <= Caster.ComputeMovementSpeed(Caster.Direction));
+			return DateTime.Now - Caster.LastMoveTime <= Caster.ComputeMovementSpeed(Caster.Direction);
 		}
 
 		private bool m_WasMoving;
@@ -100,7 +100,7 @@ namespace Server.Spells.Ninjitsu
 			{
 				Caster.SendLocalizedMessage(1063219); // You cannot mimic an animal while in that form.
 			}
-			else if (!Caster.CanBeginAction(typeof(IncognitoSpell)) || (Caster.IsBodyMod && GetContext(Caster) == null))
+			else if (!Caster.CanBeginAction(typeof(IncognitoSpell)) || Caster.IsBodyMod && GetContext(Caster) == null)
 			{
 				DoFizzle();
 			}
@@ -120,7 +120,7 @@ namespace Server.Spells.Ninjitsu
 				}
 				else if (Caster is PlayerMobile)
 				{
-					bool skipGump = (m_WasMoving || CasterIsMoving());
+					bool skipGump = m_WasMoving || CasterIsMoving();
 
 					if (GetLastAnimalForm(Caster) == -1 || !skipGump)
 					{
@@ -297,19 +297,19 @@ namespace Server.Spells.Ninjitsu
 
 		public static AnimalFormContext GetContext(Mobile m)
 		{
-			return (m_Table[m] as AnimalFormContext);
+			return m_Table[m] as AnimalFormContext;
 		}
 
 		public static bool UnderTransformation(Mobile m)
 		{
-			return (GetContext(m) != null);
+			return GetContext(m) != null;
 		}
 
 		public static bool UnderTransformation(Mobile m, Type type)
 		{
 			AnimalFormContext context = GetContext(m);
 
-			return (context != null && context.Type == type);
+			return context != null && context.Type == type;
 		}
 
 		/*
@@ -421,7 +421,7 @@ namespace Server.Spells.Ninjitsu
 
 				for (int i = 0; i < entries.Length; ++i)
 				{
-					bool enabled = (ninjitsu >= entries[i].ReqSkill && BaseFormTalisman.EntryEnabled(caster, entries[i].Type));
+					bool enabled = ninjitsu >= entries[i].ReqSkill && BaseFormTalisman.EntryEnabled(caster, entries[i].Type);
 
 					int page = current / 10 + 1;
 					int pos = current % 10;
@@ -445,8 +445,8 @@ namespace Server.Spells.Ninjitsu
 
 					if (enabled)
 					{
-						int x = (pos % 2 == 0) ? 14 : 264;
-						int y = (pos / 2) * 64 + 44;
+						int x = pos % 2 == 0 ? 14 : 264;
+						int y = pos / 2 * 64 + 44;
 
 						Rectangle2D b = ItemBounds.Table[entries[i].ItemID];
 
@@ -472,7 +472,7 @@ namespace Server.Spells.Ninjitsu
 				{
 					m_Caster.SendLocalizedMessage(1060174, mana.ToString()); // You must have at least ~1_MANA_REQUIREMENT~ Mana to use this ability.
 				}
-				else if( ( m_Caster is PlayerMobile ) && ( m_Caster as PlayerMobile ).MountBlockReason != BlockMountType.None )
+				else if( m_Caster is PlayerMobile && ( m_Caster as PlayerMobile ).MountBlockReason != BlockMountType.None )
 				{
 					m_Caster.SendLocalizedMessage( 1063108 ); // You cannot use this ability right now.
 				}

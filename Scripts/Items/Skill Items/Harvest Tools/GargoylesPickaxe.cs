@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Harvest;
 
 namespace Server.Items
 {
-	public class GargoylesPickaxe : BaseAxe, IUsesRemaining
+    public class GargoylesPickaxe : BaseAxe, IUsesRemaining
 	{
 		public override int LabelNumber{ get{ return 1041281; } } // a gargoyle's pickaxe
 		public override HarvestSystem HarvestSystem{ get{ return Mining.System; } }

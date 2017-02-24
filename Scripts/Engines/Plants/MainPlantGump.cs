@@ -1,12 +1,11 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Engines.Plants
 {
-	public class MainPlantGump : Gump
+    public class MainPlantGump : Gump
 	{
 		private PlantItem m_Plant;
 
@@ -229,7 +228,7 @@ namespace Server.Engines.Plants
 			if ( info.ButtonID == 0 || m_Plant.Deleted || m_Plant.PlantStatus >= PlantStatus.DecorativePlant )
 				return;
 			
-			if ( ( ( info.ButtonID >= 6 && info.ButtonID <= 10 ) || info.ButtonID == 12 ) && !from.InRange( m_Plant.GetWorldLocation(), 3 ) )
+			if ( ( info.ButtonID >= 6 && info.ButtonID <= 10 || info.ButtonID == 12 ) && !from.InRange( m_Plant.GetWorldLocation(), 3 ) )
 			{
 				from.LocalOverheadMessage( MessageType.Regular, 0x3E9, 500446 ); // That is too far away.
 				return;

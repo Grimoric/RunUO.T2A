@@ -1,13 +1,11 @@
-using System;
-
 namespace Server.Items
 {
-	/// <summary>
-	/// This special move allows the skilled warrior to bypass his target's physical resistance, for one shot only.
-	/// The Armor Ignore shot does slightly less damage than normal.
-	/// Against a heavily armored opponent, this ability is a big win, but when used against a very lightly armored foe, it might be better to use a standard strike!
-	/// </summary>
-	public class ArmorIgnore : WeaponAbility
+    /// <summary>
+    /// This special move allows the skilled warrior to bypass his target's physical resistance, for one shot only.
+    /// The Armor Ignore shot does slightly less damage than normal.
+    /// Against a heavily armored opponent, this ability is a big win, but when used against a very lightly armored foe, it might be better to use a standard strike!
+    /// </summary>
+    public class ArmorIgnore : WeaponAbility
 	{
 		public ArmorIgnore()
 		{

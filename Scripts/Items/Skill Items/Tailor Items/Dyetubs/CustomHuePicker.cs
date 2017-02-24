@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class CustomHueGroup
+    public class CustomHueGroup
 	{
 		private int m_Name;
 		private string m_NameString;
@@ -121,7 +119,7 @@ namespace Server.Items
 
 		private int GetRadioID( int group, int index )
 		{
-			return (index * m_Definition.Groups.Length) + group;
+			return index * m_Definition.Groups.Length + group;
 		}
 
 		private void RenderBackground()
@@ -152,12 +150,12 @@ namespace Server.Items
 
 			for ( int i = 0; i < groups.Length; ++i )
 			{
-				AddButton( 30, 85 + (i * 25), 5224, 5224, 0, GumpButtonType.Page, 1 + i );
+				AddButton( 30, 85 + i * 25, 5224, 5224, 0, GumpButtonType.Page, 1 + i );
 
 				if ( groups[i].NameString != null )
-					AddHtml( 55, 85 + (i * 25), 200, 25, groups[i].NameString, false, false );
+					AddHtml( 55, 85 + i * 25, 200, 25, groups[i].NameString, false, false );
 				else
-					AddHtmlLocalized( 55, 85 + (i * 25), 200, 25, groups[i].Name, false, false );
+					AddHtmlLocalized( 55, 85 + i * 25, 200, 25, groups[i].Name, false, false );
 			}
 
 			for ( int i = 0; i < groups.Length; ++i )
@@ -168,8 +166,8 @@ namespace Server.Items
 
 				for ( int j = 0; j < hues.Length; ++j )
 				{
-					AddRadio( 260, 90 + (j * 25), 210, 211, false, GetRadioID( i, j ) );
-					AddLabel( 278, 90 + (j * 25), hues[j] - 1, "*****" );
+					AddRadio( 260, 90 + j * 25, 210, 211, false, GetRadioID( i, j ) );
+					AddLabel( 278, 90 + j * 25, hues[j] - 1, "*****" );
 				}
 			}
 		}

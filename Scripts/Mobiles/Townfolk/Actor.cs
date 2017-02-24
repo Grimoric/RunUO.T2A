@@ -1,11 +1,8 @@
-using System; 
-using Server.Items; 
-using Server; 
-using Server.Misc; 
+using Server.Items;
 
-namespace Server.Mobiles 
-{ 
-	public class Actor : BaseCreature 
+namespace Server.Mobiles
+{
+    public class Actor : BaseCreature 
 	{ 
 		[Constructable] 
 		public Actor () : base( AIType.AI_Animal, FightMode.None, 10, 1, 0.2, 0.4 ) 

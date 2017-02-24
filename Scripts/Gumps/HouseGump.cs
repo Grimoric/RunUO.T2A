@@ -1,15 +1,12 @@
 using System;
-using System.Reflection;
 using System.Collections;
 using Server.Network;
 using Server.Prompts;
 using Server.Multis;
-using Server.Multis.Deeds;
-using Server.Items;
 
 namespace Server.Gumps
 {
-	public class HouseListGump : Gump
+    public class HouseListGump : Gump
 	{
 		private BaseHouse m_House;
 
@@ -34,15 +31,15 @@ namespace Server.Gumps
 			{
 				for ( int i = 0; i < list.Count; ++i )
 				{
-					if ( (i % 16) == 0 )
+					if ( i % 16 == 0 )
 					{
 						if ( i != 0 )
 						{
 							// Next button
-							AddButton( 370, 20, 4005, 4007, 0, GumpButtonType.Page, (i / 16) + 1 );
+							AddButton( 370, 20, 4005, 4007, 0, GumpButtonType.Page, i / 16 + 1 );
 						}
 
-						AddPage( (i / 16) + 1 );
+						AddPage( i / 16 + 1 );
 
 						if ( i != 0 )
 						{
@@ -58,7 +55,7 @@ namespace Server.Gumps
 					if ( m == null || (name = m.Name) == null || (name = name.Trim()).Length <= 0 )
 						continue;
 
-					AddLabel( 55, 55 + ((i % 16) * 20), 0, accountOf && m.Player && m.Account != null ? String.Format( "Account of {0}", name ) : name );
+					AddLabel( 55, 55 + i % 16 * 20, 0, accountOf && m.Player && m.Account != null ? String.Format( "Account of {0}", name ) : name );
 				}
 			}
 		}
@@ -110,15 +107,15 @@ namespace Server.Gumps
 
 				for ( int i = 0; i < list.Count; ++i )
 				{
-					if ( (i % 15) == 0 )
+					if ( i % 15 == 0 )
 					{
 						if ( i != 0 )
 						{
 							// Next button
-							AddButton( 370, 20, 4005, 4007, 0, GumpButtonType.Page, (i / 15) + 1 );
+							AddButton( 370, 20, 4005, 4007, 0, GumpButtonType.Page, i / 15 + 1 );
 						}
 
-						AddPage( (i / 15) + 1 );
+						AddPage( i / 15 + 1 );
 
 						if ( i != 0 )
 						{
@@ -134,8 +131,8 @@ namespace Server.Gumps
 					if ( m == null || (name = m.Name) == null || (name = name.Trim()).Length <= 0 )
 						continue;
 
-					AddCheck( 34, 52 + ((i % 15) * 20), 0xD2, 0xD3, false, i );
-					AddLabel( 55, 52 + ((i % 15) * 20), 0, accountOf && m.Player && m.Account != null ? String.Format( "Account of {0}", name ) : name );
+					AddCheck( 34, 52 + i % 15 * 20, 0xD2, 0xD3, false, i );
+					AddLabel( 55, 52 + i % 15 * 20, 0, accountOf && m.Player && m.Account != null ? String.Format( "Account of {0}", name ) : name );
 				}
 			}
 		}
@@ -275,11 +272,11 @@ namespace Server.Gumps
 
 				if ( lines != null )
 				{
-					for ( int i = 0, y = (101 - (lines.Count * 14)) / 2; i < lines.Count; ++i, y += 14 )
+					for ( int i = 0, y = (101 - lines.Count * 14) / 2; i < lines.Count; ++i, y += 14 )
 					{
 						string s = (string)lines[i];
 
-						AddLabel( 130 + ((143 - (s.Length * 8)) / 2), y, 0, s );
+						AddLabel( 130 + (143 - s.Length * 8) / 2, y, 0, s );
 					}
 				}
 			}
@@ -400,8 +397,8 @@ namespace Server.Gumps
 
 				for ( int i = 0; i < 24; ++i )
 				{
-					AddRadio( 53 + ((i / 4) * 50), 137 + ((i % 4) * 35), 210, 211, false, i + 1 );
-					AddItem( 60 + ((i / 4) * 50), 130 + ((i % 4) * 35), 2980 + (i * 2) );
+					AddRadio( 53 + i / 4 * 50, 137 + i % 4 * 35, 210, 211, false, i + 1 );
+					AddItem( 60 + i / 4 * 50, 130 + i % 4 * 35, 2980 + i * 2 );
 				}
 
 				AddHtmlLocalized( 200, 305, 129, 20, 1011254, false, false ); // Guild sign choices
@@ -414,8 +411,8 @@ namespace Server.Gumps
 
 				for ( int i = 0; i < 29; ++i )
 				{
-					AddRadio( 53 + ((i / 5) * 50), 137 + ((i % 5) * 35), 210, 211, false, i + 25 );
-					AddItem( 60 + ((i / 5) * 50), 130 + ((i % 5) * 35), 3028 + (i * 2) );
+					AddRadio( 53 + i / 5 * 50, 137 + i % 5 * 35, 210, 211, false, i + 25 );
+					AddItem( 60 + i / 5 * 50, 130 + i % 5 * 35, 3028 + i * 2 );
 				}
 
 				AddHtmlLocalized( 200, 305, 129, 20, 1011255, false, false ); // Shop sign choices
@@ -715,7 +712,7 @@ namespace Server.Gumps
 							int index = info.Switches[0] - 1;
 
 							if ( index >= 0 && index < 53 )
-								m_House.ChangeSignType( 2980 + (index * 2) );
+								m_House.ChangeSignType( 2980 + index * 2 );
 						}
 					}
 					else
@@ -732,7 +729,7 @@ namespace Server.Gumps
 
 namespace Server.Prompts
 {
-	public class RenamePrompt : Prompt
+    public class RenamePrompt : Prompt
 	{
 		private BaseHouse m_House;
 

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class SpiritOfTheTotem : BearMask
+    public class SpiritOfTheTotem : BearMask
 	{
 		public override int LabelNumber{ get{ return 1061599; } } // Spirit of the Totem
 

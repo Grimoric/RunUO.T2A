@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class RaedsGlory : WarCleaver
+    public class RaedsGlory : WarCleaver
 	{
 		public override int LabelNumber{ get{ return 1075036; } } // Raed's Glory
 

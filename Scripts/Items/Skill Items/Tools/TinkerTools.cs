@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	[Flipable( 0x1EB8, 0x1EB9 )]
+    [Flipable( 0x1EB8, 0x1EB9 )]
 	public class TinkerTools : BaseTool
 	{
 		public override CraftSystem CraftSystem{ get{ return DefTinkering.CraftSystem; } }

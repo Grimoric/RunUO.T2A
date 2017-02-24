@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using Server;
 using Server.Gumps;
 using Server.Mobiles;
 using Server.Network;
@@ -8,7 +6,7 @@ using Server.Items;
 
 namespace Server.Engines.Quests
 {
-	public abstract class QuestObjective
+    public abstract class QuestObjective
 	{
 		private QuestSystem m_System;
 		private bool m_HasBeenRead;
@@ -51,7 +49,7 @@ namespace Server.Engines.Quests
 
 		public bool IsSingleObjective
 		{
-			get{ return ( MaxProgress == 1 ); }
+			get{ return MaxProgress == 1; }
 		}
 
 		public QuestObjective()

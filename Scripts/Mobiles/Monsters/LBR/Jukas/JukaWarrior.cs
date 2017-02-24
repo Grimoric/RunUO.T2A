@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
-using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a jukan corpse" )]
+    [CorpseName( "a jukan corpse" )]
 	public class JukaWarrior : BaseCreature
 	{
 		[Constructable]

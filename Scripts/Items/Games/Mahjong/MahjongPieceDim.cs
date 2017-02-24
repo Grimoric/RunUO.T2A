@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Engines.Mahjong
 {
-	public struct MahjongPieceDim
+    public struct MahjongPieceDim
 	{
 		private Point2D m_Position;
 		private int m_Width;

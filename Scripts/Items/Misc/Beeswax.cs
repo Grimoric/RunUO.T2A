@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class Beeswax : Item
+    public class Beeswax : Item
 	{
 		[Constructable]
 		public Beeswax() : this( 1 )

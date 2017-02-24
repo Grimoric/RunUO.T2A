@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Engines.Craft;
 using System.Collections.Generic;
 
 namespace Server.Items
 {
-	public enum PotionEffect
+    public enum PotionEffect
 	{
 		Nightsight,
 		CureLesser,
@@ -89,7 +88,7 @@ namespace Server.Items
 					return true;
 			}
 
-			return ( handOne == null || handTwo == null );
+			return handOne == null || handTwo == null;
 		}
 
 		public override void OnDoubleClick( Mobile from )
@@ -187,7 +186,7 @@ namespace Server.Items
 			int EP = AosAttributes.GetValue( m, AosAttribute.EnhancePotions );
 			int skillBonus = m.Skills.Alchemy.Fixed / 330 * 10;
 
-			return ( EP + skillBonus );
+			return EP + skillBonus;
 		}
 
 		public static TimeSpan Scale( Mobile m, TimeSpan v )

@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using Server;
-
 namespace Server.Mobiles
 {
-	public class HealerGuildmaster : BaseGuildmaster
+    public class HealerGuildmaster : BaseGuildmaster
 	{
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.HealersGuild; } }
 

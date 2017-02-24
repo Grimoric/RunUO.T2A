@@ -1,10 +1,8 @@
-using System;
-using Server.Items;
 using Server.Targeting;
 
 namespace Server.Items
 {
-	public class Cotton : Item, IDyable
+    public class Cotton : Item, IDyable
 	{
 		[Constructable]
 		public Cotton() : this( 1 )

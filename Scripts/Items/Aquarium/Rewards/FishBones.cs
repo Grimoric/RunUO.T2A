@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class FishBones : Item
+    public class FishBones : Item
 	{
 		public override int LabelNumber{ get{ return 1074601; } } // Fish bones
 		public override double DefaultWeight{ get{ return 1.0; } }

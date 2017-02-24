@@ -1,10 +1,8 @@
 using System;
-using Server;
-using Server.Misc;
 
 namespace Server.Mobiles
 {
-	public class NatureFury : BaseCreature
+    public class NatureFury : BaseCreature
 	{
 		public override bool DeleteCorpseOnDeath { get { return false; } }
 		public override bool IsHouseSummonable { get { return true; } }

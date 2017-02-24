@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using Server;
 
 namespace Server.Commands.Generic
 {
-	public class AreaCommandImplementor : BaseCommandImplementor
+    public class AreaCommandImplementor : BaseCommandImplementor
 	{
 		private static AreaCommandImplementor m_Instance;
 

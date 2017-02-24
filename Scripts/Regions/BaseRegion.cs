@@ -1,15 +1,13 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Gumps;
 
 namespace Server.Regions
 {
-	public enum SpawnZLevel
+    public enum SpawnZLevel
 	{
 		Lowest,
 		Highest,
@@ -296,7 +294,7 @@ namespace Server.Regions
 				map.GetAverageZ( x, y, ref ltLowZ, ref ltAvgZ, ref ltTopZ );
 
 				TileFlag ltFlags = TileData.LandTable[lt.ID & TileData.MaxLandValue].Flags;
-				bool ltImpassable = ( (ltFlags & TileFlag.Impassable) != 0 );
+				bool ltImpassable = (ltFlags & TileFlag.Impassable) != 0;
 
 				if ( !lt.Ignored && ltAvgZ >= minZ && ltAvgZ < maxZ )
 					if ( (ltFlags & TileFlag.Wet) != 0 ) {

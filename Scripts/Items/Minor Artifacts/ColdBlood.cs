@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ColdBlood : Cleaver
+    public class ColdBlood : Cleaver
 	{
 		public override int LabelNumber{ get{ return 1070818; } } // Cold Blood
 

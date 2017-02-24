@@ -1,6 +1,4 @@
 using System;
-using Server;
-using Server.Items;
 using Server.Gumps;
 using Server.Multis;
 using Server.Network;
@@ -8,7 +6,7 @@ using Server.Targeting;
 
 namespace Server.Items
 {
-	public class HolidayTreeDeed : Item
+    public class HolidayTreeDeed : Item
 	{
 		public override int LabelNumber{ get{ return 1041116; } } // a deed for a holiday tree
 

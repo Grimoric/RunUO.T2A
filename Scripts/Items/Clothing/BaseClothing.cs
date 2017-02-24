@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Engines.Craft;
 using Server.Factions;
 using Server.Network;
 
 namespace Server.Items
 {
-	public enum ClothingQuality
+    public enum ClothingQuality
 	{
 		Low,
 		Regular,
@@ -36,7 +35,7 @@ namespace Server.Items
 				if ( m_FactionState == null )
 					Hue = 0;
 
-				LootType = ( m_FactionState == null ? LootType.Regular : LootType.Blessed );
+				LootType = m_FactionState == null ? LootType.Regular : LootType.Blessed;
 			}
 		}
 		#endregion
@@ -96,7 +95,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int StrRequirement
 		{
-			get{ return ( m_StrReq == -1 ? OldStrReq : m_StrReq ); }
+			get{ return m_StrReq == -1 ? OldStrReq : m_StrReq; }
 			set{ m_StrReq = value; InvalidateProperties(); }
 		}
 
@@ -218,7 +217,7 @@ namespace Server.Items
 					int strBonus = ComputeStatBonus( StatType.Str );
 					int strReq = ComputeStatReq( StatType.Str );
 
-					if( from.Str < strReq || (from.Str + strBonus) < 1 )
+					if( from.Str < strReq || @from.Str + strBonus < 1 )
 					{
 						from.SendLocalizedMessage( 500213 ); // You are not strong enough to equip that.
 						return false;
@@ -456,15 +455,15 @@ namespace Server.Items
 			if ( base.AllowEquipedCast( from ) )
 				return true;
 
-			return ( m_AosAttributes.SpellChanneling != 0 );
+			return m_AosAttributes.SpellChanneling != 0;
 		}
 
 		public void UnscaleDurability()
 		{
 			int scale = 100 + m_AosClothingAttributes.DurabilityBonus;
 
-			m_HitPoints = ( ( m_HitPoints * 100 ) + ( scale - 1 ) ) / scale;
-			m_MaxHitPoints = ( ( m_MaxHitPoints * 100 ) + ( scale - 1 ) ) / scale;
+			m_HitPoints = ( m_HitPoints * 100 + ( scale - 1 ) ) / scale;
+			m_MaxHitPoints = ( m_MaxHitPoints * 100 + ( scale - 1 ) ) / scale;
 
 			InvalidateProperties();
 		}
@@ -473,8 +472,8 @@ namespace Server.Items
 		{
 			int scale = 100 + m_AosClothingAttributes.DurabilityBonus;
 
-			m_HitPoints = ( ( m_HitPoints * scale ) + 99 ) / 100;
-			m_MaxHitPoints = ( ( m_MaxHitPoints * scale ) + 99 ) / 100;
+			m_HitPoints = ( m_HitPoints * scale + 99 ) / 100;
+			m_MaxHitPoints = ( m_MaxHitPoints * scale + 99 ) / 100;
 
 			InvalidateProperties();
 		}
@@ -485,10 +484,10 @@ namespace Server.Items
 				return true;
 
 			if ( Layer == Layer.Pants )
-				return ( m.FindItemOnLayer( Layer.InnerLegs ) != null );
+				return m.FindItemOnLayer( Layer.InnerLegs ) != null;
 
 			if ( Layer == Layer.Shirt )
-				return ( m.FindItemOnLayer( Layer.InnerTorso ) != null );
+				return m.FindItemOnLayer( Layer.InnerTorso ) != null;
 
 			return false;
 		}
@@ -707,7 +706,7 @@ namespace Server.Items
 
 		private static bool GetSaveFlag( SaveFlag flags, SaveFlag toGet )
 		{
-			return ( (flags & toGet) != 0 );
+			return (flags & toGet) != 0;
 		}
 
 		[Flags]
@@ -948,7 +947,7 @@ namespace Server.Items
 
 					Item res = (Item)Activator.CreateInstance( resourceType );
 
-					ScissorHelper( from, res, m_PlayerConstructed ? (item.Resources.GetAt( 0 ).Amount / 2) : 1 );
+					ScissorHelper( from, res, m_PlayerConstructed ? item.Resources.GetAt( 0 ).Amount / 2 : 1 );
 
 					res.LootType = LootType.Regular;
 

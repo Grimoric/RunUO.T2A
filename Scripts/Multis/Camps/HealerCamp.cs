@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Multis
 {
-	public class HealerCamp : BaseCamp
+    public class HealerCamp : BaseCamp
 	{
 		[Constructable]
 		public HealerCamp() : base( 0x1F4 )

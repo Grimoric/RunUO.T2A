@@ -1,16 +1,9 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Items;
 using Server.Mobiles;
-using Server.Network;
-using Server.ContextMenus;
-using Server.Engines.Quests;
-using Server.Engines.Quests.Necro;
 
 namespace Server.Engines.Quests.Doom
 {
-	public class Victoria : BaseQuester
+    public class Victoria : BaseQuester
 	{
 		public override int TalkNumber{ get{ return 6159; } } // Ask about Chyloth
 		public override bool ClickTitle{ get{ return true; } }
@@ -133,7 +126,7 @@ namespace Server.Engines.Quests.Doom
 
 		public override bool CanTalkTo( PlayerMobile to )
 		{
-			return ( to.Quest == null && QuestSystem.CanOfferQuest( to, typeof( TheSummoningQuest ) ) );
+			return to.Quest == null && QuestSystem.CanOfferQuest( to, typeof( TheSummoningQuest ) );
 		}
 
 		public override void OnTalk( PlayerMobile player, bool contextMenu )

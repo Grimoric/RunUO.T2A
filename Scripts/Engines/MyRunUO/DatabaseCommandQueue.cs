@@ -1,12 +1,11 @@
 using System;
 using System.Threading;
 using System.Collections;
-using System.Data;
 using System.Data.Odbc;
 
 namespace Server.Engines.MyRunUO
 {
-	public class DatabaseCommandQueue
+    public class DatabaseCommandQueue
 	{
 		private Queue m_Queue;
 		private ManualResetEvent m_Sync;

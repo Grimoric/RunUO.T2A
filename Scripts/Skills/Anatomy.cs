@@ -1,12 +1,11 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Network;
 using Server.Targeting;
 
 namespace Server.SkillHandlers
 {
-	public class Anatomy
+    public class Anatomy
 	{
 		public static void Initialize()
 		{
@@ -50,7 +49,7 @@ namespace Server.SkillHandlers
 
 					int str = targ.Str + Utility.RandomMinMax( -marginOfError, +marginOfError );
 					int dex = targ.Dex + Utility.RandomMinMax( -marginOfError, +marginOfError );
-					int stm = ((targ.Stam * 100) / Math.Max( targ.StamMax, 1 )) + Utility.RandomMinMax( -marginOfError, +marginOfError );
+					int stm = targ.Stam * 100 / Math.Max( targ.StamMax, 1 ) + Utility.RandomMinMax( -marginOfError, +marginOfError );
 
 					int strMod = str / 10;
 					int dexMod = dex / 10;
@@ -67,7 +66,7 @@ namespace Server.SkillHandlers
 
 					if ( from.CheckTargetSkill( SkillName.Anatomy, targ, 0, 100 ) )
 					{
-						targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1038045 + (strMod * 11) + dexMod, from.NetState ); // That looks [strong] and [dexterous].
+						targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1038045 + strMod * 11 + dexMod, from.NetState ); // That looks [strong] and [dexterous].
 
 						if ( from.Skills[SkillName.Anatomy].Base >= 65.0 )
 							targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1038303 + stmMod, from.NetState ); // That being is at [10,20,...] percent endurance.

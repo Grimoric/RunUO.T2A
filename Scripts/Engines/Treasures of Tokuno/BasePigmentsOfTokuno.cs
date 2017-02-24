@@ -1,11 +1,10 @@
-using Server;
 using System;
 using Server.Misc;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	public abstract class BasePigmentsOfTokuno : Item, IUsesRemaining
+    public abstract class BasePigmentsOfTokuno : Item, IUsesRemaining
 	{
 		private static Type[] m_Glasses = new Type[]
 		{
@@ -178,20 +177,18 @@ namespace Server.Items
 			if ( i is ITokunoDyable )
 				return true;
 
-			return(
-				IsInTypeList( t, TreasuresOfTokuno.LesserArtifactsTotal )
-				|| IsInTypeList( t, TreasuresOfTokuno.GreaterArtifacts )
-				|| IsInTypeList( t, DemonKnight.ArtifactRarity10 )
-				|| IsInTypeList( t, DemonKnight.ArtifactRarity11 )
-				|| IsInTypeList( t, MondainsLegacy.Artifacts )
-				|| IsInTypeList( t, StealableArtifactsSpawner.TypesOfEntires )
-				|| IsInTypeList( t, Paragon.Artifacts )
-				|| IsInTypeList( t, Leviathan.Artifacts )
-				|| IsInTypeList( t, TreasureMapChest.Artifacts )
-				|| IsInTypeList( t, m_Replicas )
-				|| IsInTypeList( t, m_DyableHeritageItems )
-				|| IsInTypeList( t, m_Glasses )
-				);
+			return IsInTypeList( t, TreasuresOfTokuno.LesserArtifactsTotal )
+			      || IsInTypeList( t, TreasuresOfTokuno.GreaterArtifacts )
+			      || IsInTypeList( t, DemonKnight.ArtifactRarity10 )
+			      || IsInTypeList( t, DemonKnight.ArtifactRarity11 )
+			      || IsInTypeList( t, MondainsLegacy.Artifacts )
+			      || IsInTypeList( t, StealableArtifactsSpawner.TypesOfEntires )
+			      || IsInTypeList( t, Paragon.Artifacts )
+			      || IsInTypeList( t, Leviathan.Artifacts )
+			      || IsInTypeList( t, TreasureMapChest.Artifacts )
+			      || IsInTypeList( t, m_Replicas )
+			      || IsInTypeList( t, m_DyableHeritageItems )
+			      || IsInTypeList( t, m_Glasses );
 		}
 
 		private static bool IsInTypeList( Type t, Type[] list )

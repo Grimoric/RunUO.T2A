@@ -1,10 +1,9 @@
 using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Spellweaving
 {
-	public class WordOfDeathSpell : ArcanistSpell
+    public class WordOfDeathSpell : ArcanistSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo( "Word of Death", "Nyraxle", -1 );
 
@@ -42,7 +41,7 @@ namespace Server.Spells.Spellweaving
 
 				int damage;
 
-				if( !m.Player && (((double)m.Hits / (double)m.HitsMax) < percentage ))
+				if( !m.Player && (double)m.Hits / (double)m.HitsMax < percentage)
 				{
 					damage = 300;
 				}

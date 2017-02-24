@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Net;
-using System.Security;
 using System.Security.Cryptography;
 using System.Text;
 using System.Xml;
-using Server;
 using Server.Misc;
 using Server.Mobiles;
 using Server.Multis;
@@ -14,7 +11,7 @@ using Server.Network;
 
 namespace Server.Accounting
 {
-	public class Account : IAccount, IComparable, IComparable<Account>
+    public class Account : IAccount, IComparable, IComparable<Account>
 	{
 		public static readonly TimeSpan YoungDuration = TimeSpan.FromHours( 40.0 );
 
@@ -177,7 +174,7 @@ namespace Server.Accounting
 
 				if ( GetBanTags( out banTime, out banDuration ) )
 				{
-					if ( banDuration != TimeSpan.MaxValue && DateTime.Now >= ( banTime + banDuration ) )
+					if ( banDuration != TimeSpan.MaxValue && DateTime.Now >= banTime + banDuration )
 					{
 						SetUnspecifiedBan( null ); // clear
 						Banned = false;
@@ -237,7 +234,7 @@ namespace Server.Accounting
 
 				TimeSpan inactiveLength = DateTime.Now - m_LastLogin;
 
-				return (inactiveLength > ((this.Count == 0) ? EmptyInactiveDuration : InactiveDuration));
+				return inactiveLength > (this.Count == 0 ? EmptyInactiveDuration : InactiveDuration);
 			}
 		}
 
@@ -278,7 +275,7 @@ namespace Server.Accounting
 		public void SetFlag( int index, bool value )
 		{
 			if ( value )
-				m_Flags |= ( 1 << index );
+				m_Flags |= 1 << index;
 			else
 				m_Flags &= ~( 1 << index );
 		}
@@ -395,7 +392,7 @@ namespace Server.Accounting
 				banDuration = TimeSpan.Zero;
 			}
 
-			return ( banTime != DateTime.MinValue && banDuration != TimeSpan.Zero );
+			return banTime != DateTime.MinValue && banDuration != TimeSpan.Zero;
 		}
 
 		private static MD5CryptoServiceProvider m_MD5HashProvider;
@@ -468,17 +465,17 @@ namespace Server.Accounting
 
 			if ( m_PlainPassword != null )
 			{
-				ok = ( m_PlainPassword == plainPassword );
+				ok = m_PlainPassword == plainPassword;
 				curProt = PasswordProtection.None;
 			}
 			else if ( m_CryptPassword != null )
 			{
-				ok = ( m_CryptPassword == HashMD5( plainPassword ) );
+				ok = m_CryptPassword == HashMD5( plainPassword );
 				curProt = PasswordProtection.Crypt;
 			}
 			else
 			{
-				ok = ( m_NewCryptPassword == HashSHA1( m_Username + plainPassword ) );
+				ok = m_NewCryptPassword == HashSHA1( m_Username + plainPassword );
 				curProt = PasswordProtection.NewCrypt;
 			}
 
@@ -877,7 +874,7 @@ namespace Server.Accounting
 		/// <returns>True if allowed, false if not.</returns>
 		public bool HasAccess( NetState ns )
 		{
-			return ( ns != null && HasAccess( ns.Address ) );
+			return ns != null && HasAccess( ns.Address );
 		}
 
 		public bool HasAccess( IPAddress ipAddress ) {
@@ -906,7 +903,7 @@ namespace Server.Accounting
 					return false;
 			}
 
-			bool accessAllowed = ( m_IPRestrictions.Length == 0 || IPLimiter.IsExempt( ipAddress ) );
+			bool accessAllowed = m_IPRestrictions.Length == 0 || IPLimiter.IsExempt( ipAddress );
 
 			for ( int i = 0; !accessAllowed && i < m_IPRestrictions.Length; ++i )
 				accessAllowed = Utility.IPMatch( m_IPRestrictions[i], ipAddress );
@@ -960,7 +957,7 @@ namespace Server.Accounting
 		/// <returns>True if allowed, false if not.</returns>
 		public bool CheckAccess( NetState ns )
 		{
-			return ( ns != null && CheckAccess( ns.Address ) );
+			return ns != null && CheckAccess( ns.Address );
 		}
 
 		public bool CheckAccess( IPAddress ipAddress ) {

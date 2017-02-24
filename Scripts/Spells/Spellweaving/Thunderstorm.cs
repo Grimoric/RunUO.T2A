@@ -1,10 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Server.Spells.Spellweaving
 {
-	public class ThunderstormSpell : ArcanistSpell
+    public class ThunderstormSpell : ArcanistSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Thunderstorm", "Erelonia",
@@ -61,7 +60,7 @@ namespace Server.Spells.Spellweaving
 
 					Spell oldSpell = m.Spell as Spell;
 
-					SpellHelper.Damage( this, m, ( m.Player && Caster.Player ) ? pvpDamage : pvmDamage, 0, 0, 0, 0, 100 );
+					SpellHelper.Damage( this, m, m.Player && Caster.Player ? pvpDamage : pvmDamage, 0, 0, 0, 0, 100 );
 
 					if( oldSpell != null && oldSpell != m.Spell )
 					{

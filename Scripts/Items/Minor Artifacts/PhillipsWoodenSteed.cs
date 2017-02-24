@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class PhillipsWoodenSteed : MonsterStatuette
+    public class PhillipsWoodenSteed : MonsterStatuette
 	{
 		[Constructable]
 		public PhillipsWoodenSteed() : base( MonsterStatuetteType.PhillipsWoodenSteed )

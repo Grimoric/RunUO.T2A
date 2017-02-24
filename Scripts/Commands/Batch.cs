@@ -1,15 +1,13 @@
 using System;
 using System.Reflection;
 using System.Collections;
-using Server;
 using Server.Gumps;
 using Server.Network;
-using Server.Commands;
 using Server.Commands.Generic;
 
 namespace Server.Commands
 {
-	public class Batch : BaseCommand
+    public class Batch : BaseCommand
 	{
 		private BaseCommandImplementor m_Scope;
 		private string m_Condition;
@@ -311,13 +309,13 @@ namespace Server.Commands
 				AddImageTiled( CurrentX + 3, CurrentY + 3, 6, EntryHeight + EntryHeight - 4 - OffsetSize, HeaderGumpID );
 
 				IncreaseX( 9 );
-				AddEntryText( 202, 1+(i*2), bc.Command );
+				AddEntryText( 202, 1+i*2, bc.Command );
 				AddEntryHeader( 9, 2 );
 
 				AddNewLine();
 
 				IncreaseX( 9 );
-				AddEntryText( 202, 2+(i*2), bc.Object );
+				AddEntryText( 202, 2+i*2, bc.Object );
 			}
 
 			AddNewLine();
@@ -345,12 +343,12 @@ namespace Server.Commands
 			{
 				BatchCommand sc = (BatchCommand)m_Batch.BatchCommands[i];
 
-				entry = info.GetTextEntry( 1 + (i * 2) );
+				entry = info.GetTextEntry( 1 + i * 2 );
 
 				if ( entry != null )
 					sc.Command = entry.Text;
 
-				entry = info.GetTextEntry( 2 + (i * 2) );
+				entry = info.GetTextEntry( 2 + i * 2 );
 
 				if ( entry != null )
 					sc.Object = entry.Text;

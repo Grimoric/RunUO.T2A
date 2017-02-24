@@ -1,9 +1,6 @@
-using Server;
-using System;
-
 namespace Server.Items
 {
-	public class WhiteLeatherDyeTub : LeatherDyeTub /* OSI UO 13th anniv gift, from redeemable gift tickets */
+    public class WhiteLeatherDyeTub : LeatherDyeTub /* OSI UO 13th anniv gift, from redeemable gift tickets */
 	{
 		public override int LabelNumber { get { return 1149900; } } // White Leather Dye Tub
 

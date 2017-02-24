@@ -21,16 +21,15 @@
 
 using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Text;
 
 #if !MONO
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
 #endif
 
-namespace Server {
-	public static class FileOperations {
+namespace Server
+{
+    public static class FileOperations {
 		public const int KB = 1024;
 		public const int MB = 1024 * KB;
 
@@ -75,13 +74,13 @@ namespace Server {
 
 		public static bool AreSynchronous {
 			get {
-				return ( concurrency < 1 );
+				return concurrency < 1;
 			}
 		}
 
 		public static bool AreAsynchronous {
 			get {
-				return ( concurrency > 0 );
+				return concurrency > 0;
 			}
 		}
 
@@ -107,7 +106,7 @@ namespace Server {
 				throw new IOException();
 			}
 
-			return new UnbufferedFileStream( fileHandle, access, bufferSize, ( concurrency > 0 ) );
+			return new UnbufferedFileStream( fileHandle, access, bufferSize, concurrency > 0 );
 #endif
 		}
 

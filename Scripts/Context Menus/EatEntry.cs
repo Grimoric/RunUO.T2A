@@ -1,9 +1,8 @@
-using System;
 using Server.Items;
 
 namespace Server.ContextMenus
 {
-	public class EatEntry : ContextMenuEntry
+    public class EatEntry : ContextMenuEntry
 	{
 		private Mobile m_From;
 		private Food m_Food;

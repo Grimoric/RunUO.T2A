@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class FullMoonFish : BaseFish
+    public class FullMoonFish : BaseFish
 	{		
 		public override int LabelNumber{ get{ return 1074597; } } // A Full Moon Fish
 		

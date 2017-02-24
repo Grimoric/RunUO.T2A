@@ -21,12 +21,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using Server.Network;
 
 namespace Server
 {
-	public delegate TimeSpan SkillUseCallback( Mobile user );
+    public delegate TimeSpan SkillUseCallback( Mobile user );
 
 	public enum SkillLock : byte
 	{
@@ -281,7 +280,7 @@ namespace Server
 
 				if ( m_Base != sv )
 				{
-					m_Owner.Total = (m_Owner.Total - m_Base) + sv;
+					m_Owner.Total = m_Owner.Total - m_Base + sv;
 
 					m_Base = sv;
 
@@ -300,7 +299,7 @@ namespace Server
 		{
 			get
 			{
-				return ((double)m_Base / 10.0);
+				return (double)m_Base / 10.0;
 			}
 			set
 			{
@@ -337,7 +336,7 @@ namespace Server
 		{
 			get
 			{
-				return ((double)m_Cap / 10.0);
+				return (double)m_Cap / 10.0;
 			}
 			set
 			{
@@ -383,7 +382,7 @@ namespace Server
 
 				inv /= 100.0;
 
-				double statsOffset = ((m_UseStatMods ? m_Owner.Owner.Str : m_Owner.Owner.RawStr) * m_Info.StrScale) + ((m_UseStatMods ? m_Owner.Owner.Dex : m_Owner.Owner.RawDex) * m_Info.DexScale) + ((m_UseStatMods ? m_Owner.Owner.Int : m_Owner.Owner.RawInt) * m_Info.IntScale);
+				double statsOffset = (m_UseStatMods ? m_Owner.Owner.Str : m_Owner.Owner.RawStr) * m_Info.StrScale + (m_UseStatMods ? m_Owner.Owner.Dex : m_Owner.Owner.RawDex) * m_Info.DexScale + (m_UseStatMods ? m_Owner.Owner.Int : m_Owner.Owner.RawInt) * m_Info.IntScale;
 				double statTotal = m_Info.StatTotal * inv;
 
 				statsOffset *= inv;

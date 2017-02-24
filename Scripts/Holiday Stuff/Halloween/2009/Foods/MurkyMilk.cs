@@ -1,15 +1,11 @@
-﻿using System;
-using Server;
-using Server.Mobiles;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	/* 
+    /* 
 	first seen halloween 2009.  subsequently in 2010, 
 	2011 and 2012. GM Beggar-only Semi-Rare Treats
 	*/
 
-	public class MurkyMilk : Pitcher
+    public class MurkyMilk : Pitcher
 	{
 		public override string DefaultName { get { return "Murky Milk";; } }
 		public override int MaxQuantity { get { return 5; } }
@@ -21,7 +17,7 @@ namespace Server.Items
 		{
 			Hue = 0x3e5;
 			Quantity = MaxQuantity;
-			ItemID = ( Utility.RandomBool() ) ? 0x09F0 : 0x09AD;
+			ItemID = Utility.RandomBool() ? 0x09F0 : 0x09AD;
 		}
 
 		public MurkyMilk( Serial serial )

@@ -18,13 +18,11 @@
  *
  ***************************************************************************/
 
-using System;
-using Server;
 using Server.Network;
 
 namespace Server.Targeting
 {
-	public abstract class MultiTarget : Target
+    public abstract class MultiTarget : Target
 	{
 		private int m_MultiID;
 		private Point3D m_Offset;

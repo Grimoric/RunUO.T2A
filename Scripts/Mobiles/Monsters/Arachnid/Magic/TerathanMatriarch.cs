@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a terathan matriarch corpse" )]
+    [CorpseName( "a terathan matriarch corpse" )]
 	public class TerathanMatriarch : BaseCreature
 	{
 		[Constructable]

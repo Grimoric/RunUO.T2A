@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class SummonFamiliarScroll : SpellScroll
+    public class SummonFamiliarScroll : SpellScroll
 	{
 		[Constructable]
 		public SummonFamiliarScroll() : this( 1 )

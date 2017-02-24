@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
 using Server.Network;
-using Server.Items;
 using Server.Mobiles;
 using Server.Targeting;
 
 namespace Server.Spells.Chivalry
 {
-	public class CloseWoundsSpell : PaladinSpell
+    public class CloseWoundsSpell : PaladinSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Close Wounds", "Obsu Vulni",
@@ -62,7 +60,7 @@ namespace Server.Spells.Chivalry
 			}
 			else if ( m.Poisoned || Server.Items.MortalStrike.IsWounded( m ) )
 			{
-				Caster.LocalOverheadMessage( MessageType.Regular, 0x3B2, (Caster == m) ? 1005000 : 1010398 );
+				Caster.LocalOverheadMessage( MessageType.Regular, 0x3B2, Caster == m ? 1005000 : 1010398 );
 			}
 			else if ( CheckBSequence( m ) )
 			{
@@ -80,7 +78,7 @@ namespace Server.Spells.Chivalry
 				else if ( toHeal > 39 )
 					toHeal = 39;
 
-				if ( (m.Hits + toHeal) > m.HitsMax )
+				if ( m.Hits + toHeal > m.HitsMax )
 					toHeal = m.HitsMax - m.Hits;
 
 				//m.Hits += toHeal;	//Was previosuly due to the message

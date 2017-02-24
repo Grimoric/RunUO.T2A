@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-
 namespace Server.Items
 {
-	[Flipable( 0xE1C, 0xFAD )]
+    [Flipable( 0xE1C, 0xFAD )]
 	public class Backgammon : BaseBoard
 	{
 		[Constructable]
@@ -15,23 +12,23 @@ namespace Server.Items
 		{
 			for ( int i = 0; i < 5; i++ )
 			{
-				CreatePiece( new PieceWhiteChecker( this ), 42, ( 17 * i ) + 6 );
-				CreatePiece( new PieceBlackChecker( this ), 42, ( 17 * i ) + 119 );
+				CreatePiece( new PieceWhiteChecker( this ), 42, 17 * i + 6 );
+				CreatePiece( new PieceBlackChecker( this ), 42, 17 * i + 119 );
 
-				CreatePiece( new PieceBlackChecker( this ), 142, ( 17 * i ) + 6 );
-				CreatePiece( new PieceWhiteChecker( this ), 142, ( 17 * i ) + 119 );
+				CreatePiece( new PieceBlackChecker( this ), 142, 17 * i + 6 );
+				CreatePiece( new PieceWhiteChecker( this ), 142, 17 * i + 119 );
 			}
 
 			for ( int i = 0; i < 3; i++ )
 			{
-				CreatePiece( new PieceBlackChecker( this ), 108, ( 17 * i ) + 6 );
-				CreatePiece( new PieceWhiteChecker( this ), 108, ( 17 * i ) + 153 );
+				CreatePiece( new PieceBlackChecker( this ), 108, 17 * i + 6 );
+				CreatePiece( new PieceWhiteChecker( this ), 108, 17 * i + 153 );
 			}
 
 			for ( int i = 0; i < 2; i++ )
 			{
-				CreatePiece( new PieceWhiteChecker( this ), 223, ( 17 * i ) + 6 );
-				CreatePiece( new PieceBlackChecker( this ), 223, ( 17 * i ) + 170 );
+				CreatePiece( new PieceWhiteChecker( this ), 223, 17 * i + 6 );
+				CreatePiece( new PieceBlackChecker( this ), 223, 17 * i + 170 );
 			}
 		}
 

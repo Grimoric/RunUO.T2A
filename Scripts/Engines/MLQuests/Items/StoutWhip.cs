@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class StoutWhip : Item
+    public class StoutWhip : Item
 	{
 		public override int LabelNumber{ get{ return 1074812; } } // Stout Whip
 

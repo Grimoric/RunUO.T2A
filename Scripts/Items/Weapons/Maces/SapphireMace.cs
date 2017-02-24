@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class SapphireMace : DiamondMace
+    public class SapphireMace : DiamondMace
 	{
 		public override int LabelNumber{ get{ return 1073531; } } // sapphire mace
 

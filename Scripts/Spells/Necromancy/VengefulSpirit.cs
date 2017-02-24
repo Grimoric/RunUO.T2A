@@ -1,13 +1,10 @@
 using System;
-using System.Collections;
-using Server.Network;
-using Server.Items;
 using Server.Targeting;
 using Server.Mobiles;
 
 namespace Server.Spells.Necromancy
 {
-	public class VengefulSpiritSpell : NecromancerSpell
+    public class VengefulSpiritSpell : NecromancerSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Vengeful Spirit", "Kal Xen Bal Beh",
@@ -37,7 +34,7 @@ namespace Server.Spells.Necromancy
 			if ( !base.CheckCast() )
 				return false;
 
-			if ( (Caster.Followers + 3) > Caster.FollowersMax )
+			if ( Caster.Followers + 3 > Caster.FollowersMax )
 			{
 				Caster.SendLocalizedMessage( 1049645 ); // You have too many followers to summon that creature.
 				return false;
@@ -62,7 +59,7 @@ namespace Server.Spells.Necromancy
 				 * The effect lasts for ((Spirit Speak skill level * 80) / 120) + 10 seconds.
 				 */
 
-				TimeSpan duration = TimeSpan.FromSeconds( ((GetDamageSkill( Caster ) * 80) / 120) + 10 );
+				TimeSpan duration = TimeSpan.FromSeconds( GetDamageSkill( Caster ) * 80 / 120 + 10 );
 
 				Revenant rev = new Revenant( Caster, m, duration );
 

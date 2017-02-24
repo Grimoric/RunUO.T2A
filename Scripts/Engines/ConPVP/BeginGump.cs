@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
 using Server.Gumps;
-using Server.Network;
 
 namespace Server.Engines.ConPVP
 {
-	public class BeginGump : Gump
+    public class BeginGump : Gump
 	{
 		public string Center( string text )
 		{

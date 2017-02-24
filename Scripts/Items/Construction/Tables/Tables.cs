@@ -1,9 +1,7 @@
-using System;
-
 namespace Server.Items
 {
 
-	[Furniture]
+    [Furniture]
 	public class ElegantLowTable : Item
 	{
 		[Constructable]

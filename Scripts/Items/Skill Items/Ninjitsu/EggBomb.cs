@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class EggBomb : Item
+    public class EggBomb : Item
 	{
 		public override int LabelNumber 
 		{

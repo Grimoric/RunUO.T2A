@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Commands;
 using Server.Network;
 
 namespace Server.Engines.MyRunUO
 {
-	public class MyRunUOStatus
+    public class MyRunUOStatus
 	{
 		public static void Initialize()
 		{

@@ -18,11 +18,10 @@
  *
  ***************************************************************************/
 
-using System;
 
 namespace Server.ContextMenus
 {
-	public class PaperdollEntry : ContextMenuEntry
+    public class PaperdollEntry : ContextMenuEntry
 	{
 		private Mobile m_Mobile;
 

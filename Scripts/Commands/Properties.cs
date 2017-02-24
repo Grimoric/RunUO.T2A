@@ -1,9 +1,6 @@
 using System;
 using System.Reflection;
-using System.Collections;
-using Server;
 using Server.Targeting;
-using Server.Items;
 using Server.Gumps;
 using CPA = Server.CommandPropertyAttribute;
 using Server.Commands;
@@ -11,7 +8,7 @@ using Server.Commands.Generic;
 
 namespace Server.Commands
 {
-	public enum PropertyAccess
+    public enum PropertyAccess
 	{
 		Read		= 0x01,
 		Write		= 0x02,
@@ -96,7 +93,7 @@ namespace Server.Commands
 
 				PropertyInfo[] props = type.GetProperties( BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public );
 
-				bool isFinal = ( i == (info.Length - 1) );
+				bool isFinal = i == info.Length - 1;
 
 				PropertyAccess access = endAccess;
 
@@ -225,7 +222,7 @@ namespace Server.Commands
 
 				try
 				{
-					string valueString = args[1 + (i*2)];
+					string valueString = args[1 + i*2];
 
 					if ( valueString.StartsWith( "0x" ) )
 					{
@@ -316,7 +313,7 @@ namespace Server.Commands
 			else if ( IsChar( type ) )
 				toString = String.Format( "'{0}' ({1} [0x{1:X}])", value, (int) value );
 			else if ( IsString( type ) )
-				toString = ( (string) value == "null" ? @"@""null""" : String.Format( "\"{0}\"", value ) );
+				toString = (string) value == "null" ? @"@""null""" : String.Format( "\"{0}\"", value );
 			else if ( IsText( type ) )
 				toString = ( (TextDefinition) value ).Format( false );
 			else
@@ -329,8 +326,8 @@ namespace Server.Commands
 
 			for ( int i = 0; i < chain.Length; ++i )
 			{
-				concat[(i*2)+0] = chain[i].Name;
-				concat[(i*2)+1] = ( i < (chain.Length - 1) ) ? "." : " = ";
+				concat[i*2+0] = chain[i].Name;
+				concat[i*2+1] = i < chain.Length - 1 ? "." : " = ";
 			}
 
 			concat[concat.Length-1] = toString;
@@ -355,35 +352,35 @@ namespace Server.Commands
 
 		private static bool IsSerial( Type t )
 		{
-			return ( t == typeofSerial );
+			return t == typeofSerial;
 		}
 
 		private static Type typeofType = typeof( Type );
 
 		private static bool IsType( Type t )
 		{
-			return ( t == typeofType );
+			return t == typeofType;
 		}
 
 		private static Type typeofChar = typeof( Char );
 
 		private static bool IsChar( Type t )
 		{
-			return ( t == typeofChar );
+			return t == typeofChar;
 		}
 
 		private static Type typeofString = typeof( String );
 
 		private static bool IsString( Type t )
 		{
-			return ( t == typeofString );
+			return t == typeofString;
 		}
 
 		private static Type typeofText = typeof( TextDefinition );
 
 		private static bool IsText( Type t )
 		{
-			return ( t == typeofText );
+			return t == typeofText;
 		}
 
 		private static bool IsEnum( Type t )
@@ -396,7 +393,7 @@ namespace Server.Commands
 
 		private static bool IsParsable( Type t )
 		{
-			return ( t == typeofTimeSpan || t.IsDefined( typeofParsable, false ) );
+			return t == typeofTimeSpan || t.IsDefined( typeofParsable, false );
 		}
 
 		private static Type[] m_ParseTypes = new Type[]{ typeof( string ) };
@@ -421,7 +418,7 @@ namespace Server.Commands
 
 		private static bool IsNumeric( Type t )
 		{
-			return ( Array.IndexOf( m_NumericTypes, t ) >= 0 );
+			return Array.IndexOf( m_NumericTypes, t ) >= 0;
 		}
 
 		public static string ConstructFromString( Type type, object obj, string value, ref object constructed )
@@ -499,7 +496,7 @@ namespace Server.Commands
 			}
 
 			if ( isSerial ) // mutate back
-				toSet = (Serial)((Int32)toSet);
+				toSet = (Serial)(Int32)toSet;
 
 			constructed = toSet;
 			return null;
@@ -579,7 +576,7 @@ namespace Server.Commands
 
 namespace Server
 {
-	public abstract class PropertyException : ApplicationException
+    public abstract class PropertyException : ApplicationException
 	{
 		protected Property m_Property;
 
@@ -714,7 +711,7 @@ namespace Server
 
 		public bool IsBound
 		{
-			get { return ( m_Chain != null ); }
+			get { return m_Chain != null; }
 		}
 
 		public PropertyAccess Access
@@ -753,7 +750,7 @@ namespace Server
 			{
 				PropertyInfo prop = m_Chain[i];
 
-				bool isFinal = ( i == ( m_Chain.Length - 1 ) );
+				bool isFinal = i == m_Chain.Length - 1;
 
 				PropertyAccess access = m_Access;
 
@@ -786,7 +783,7 @@ namespace Server
 
 			for ( int i = 0; i < split.Length; ++i )
 			{
-				bool isFinal = ( i == ( chain.Length - 1 ) );
+				bool isFinal = i == chain.Length - 1;
 
 				chain[i] = objectType.GetProperty( split[i], BindingFlags.Instance | BindingFlags.Public | BindingFlags.IgnoreCase );
 

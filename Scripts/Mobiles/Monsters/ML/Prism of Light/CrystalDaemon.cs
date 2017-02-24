@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a crystal daemon corpse" )]
+    [CorpseName( "a crystal daemon corpse" )]
 	public class CrystalDaemon : BaseCreature
 	{
 		[Constructable]

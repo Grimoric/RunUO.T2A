@@ -1,12 +1,9 @@
-using System;
-using Server;
-using Server.Misc;
 using Server.Items;
 using Server.Guilds;
 
 namespace Server.Mobiles
 {
-	public class OrderGuard : BaseShieldGuard
+    public class OrderGuard : BaseShieldGuard
 	{
 		public override int Keyword{ get{ return 0x21; } } // *order shield*
 		public override BaseShield Shield{ get{ return new OrderShield(); } }

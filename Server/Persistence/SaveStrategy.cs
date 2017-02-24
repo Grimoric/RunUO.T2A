@@ -18,12 +18,10 @@
  *
  ***************************************************************************/
 
-using System;
-using Server;
 
 namespace Server
 {
-	public abstract class SaveStrategy
+    public abstract class SaveStrategy
 	{
 		public static SaveStrategy Acquire()
 		{

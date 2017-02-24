@@ -1,9 +1,8 @@
-﻿using System;
-using Server.Targeting;
+﻿using Server.Targeting;
 
 namespace Server.Items
 {
-	[Flipable( 0x1053, 0x1054 )]
+    [Flipable( 0x1053, 0x1054 )]
 	public class DawnsMusicGear : Item
 	{
 		public static DawnsMusicGear RandomCommon

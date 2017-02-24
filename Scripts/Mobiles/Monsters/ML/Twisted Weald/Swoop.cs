@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
-using Server.Items;
-using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a Swoop corpse" )]
+    [CorpseName( "a Swoop corpse" )]
 	public class Swoop : Eagle
 	{
 		[Constructable]

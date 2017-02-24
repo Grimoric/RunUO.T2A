@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[Flipable( 0x2068, 0x207A )]
+    [Flipable( 0x2068, 0x207A )]
 	public class BoilingCauldronAddon : BaseAddonContainer
 	{
 		public override BaseAddonContainerDeed Deed { get { return new BoilingCauldronDeed(); } }

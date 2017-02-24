@@ -2,15 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
-using Server;
 using Server.Items;
-using Server.Network;
 using Server.Targeting;
 using CPA = Server.CommandPropertyAttribute;
 
 namespace Server.Commands
 {
-	public class Add
+    public class Add
 	{
 		public static void Initialize()
 		{
@@ -75,8 +73,8 @@ namespace Server.Commands
 
 						for ( int j = 0; j < remains; ++j )
 						{
-							props[j, 0] = args[i + (j * 2) + 1];
-							props[j, 1] = args[i + (j * 2) + 2];
+							props[j, 0] = args[i + j * 2 + 1];
+							props[j, 1] = args[i + j * 2 + 2];
 						}
 
 						FixSetString( ref args, i );
@@ -671,7 +669,7 @@ namespace Server.Commands
 
 		public static bool IsType( Type type )
 		{
-			return ( type == m_TypeType || type.IsSubclassOf( m_TypeType ) );
+			return type == m_TypeType || type.IsSubclassOf( m_TypeType );
 		}
 
 		private static Type m_ParsableType = typeof( ParsableAttribute );

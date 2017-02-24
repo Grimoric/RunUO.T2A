@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class HolidayPottedPlant : Item
+    public class HolidayPottedPlant : Item
 	{
 		public override bool ForceShowProperties { get { return ObjectPropertyList.Enabled; } }
 

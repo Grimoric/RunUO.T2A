@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class WallOfStoneScroll : SpellScroll
+    public class WallOfStoneScroll : SpellScroll
 	{
 		[Constructable]
 		public WallOfStoneScroll() : this( 1 )

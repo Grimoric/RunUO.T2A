@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
-using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Second
 {
-	public class ProtectionSpell : MagerySpell
+    public class ProtectionSpell : MagerySpell
 	{
 		private static Hashtable m_Registry = new Hashtable();
 		public static Hashtable Registry { get { return m_Registry; } }

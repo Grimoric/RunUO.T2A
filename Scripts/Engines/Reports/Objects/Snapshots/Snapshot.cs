@@ -1,9 +1,8 @@
 using System;
-using System.Collections;
 
 namespace Server.Engines.Reports
 {
-	public class Snapshot : PersistableObject
+    public class Snapshot : PersistableObject
 	{
 		#region Type Identification
 		public static readonly PersistableType ThisTypeID = new PersistableType( "ss", new ConstructCallback( Construct ) );

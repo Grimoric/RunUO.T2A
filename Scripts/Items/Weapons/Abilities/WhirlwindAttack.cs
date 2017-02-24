@@ -1,14 +1,13 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Spells;
 
 namespace Server.Items
 {
-	/// <summary>
-	/// A godsend to a warrior surrounded, the Whirlwind Attack allows the fighter to strike at all nearby targets in one mighty spinning swing.
-	/// </summary>
-	public class WhirlwindAttack : WeaponAbility
+    /// <summary>
+    /// A godsend to a warrior surrounded, the Whirlwind Attack allows the fighter to strike at all nearby targets in one mighty spinning swing.
+    /// </summary>
+    public class WhirlwindAttack : WeaponAbility
 	{
 		public WhirlwindAttack()
 		{
@@ -66,7 +65,7 @@ namespace Server.Items
 			if ( targets.Count > 0 )
 			{
 				double bushido = attacker.Skills.Bushido.Value;
-				double damageBonus = 1.0 + Math.Pow( (targets.Count * bushido) / 60, 2 ) / 100;
+				double damageBonus = 1.0 + Math.Pow( targets.Count * bushido / 60, 2 ) / 100;
 
 				if ( damageBonus > 2.0 )
 					damageBonus = 2.0;

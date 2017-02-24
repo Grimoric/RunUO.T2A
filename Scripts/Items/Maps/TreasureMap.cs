@@ -1,8 +1,6 @@
 using System;
 using System.IO;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Mobiles;
 using Server.Network;
 using Server.Targeting;
@@ -10,7 +8,7 @@ using Server.ContextMenus;
 
 namespace Server.Items
 {
-	public class TreasureMap : MapItem
+    public class TreasureMap : MapItem
 	{
 		private int m_Level;
 		private bool m_Completed;
@@ -115,7 +113,7 @@ namespace Server.Items
 
 		public static bool IsInHavenIsland( IPoint2D loc )
 		{
-			return ( loc.X >= 3314 && loc.X <= 3814 && loc.Y >= 2345 && loc.Y <= 3095 );
+			return loc.X >= 3314 && loc.X <= 3814 && loc.Y >= 2345 && loc.Y <= 3095;
 		}
 
 		public static BaseCreature Spawn( int level, Point3D p, bool guardian )
@@ -213,8 +211,8 @@ namespace Server.Items
 			int width = 600;
 			int height = 600;
 
-			int x1 = m_Location.X - Utility.RandomMinMax( width / 4, (width / 4) * 3 );
-			int y1 = m_Location.Y - Utility.RandomMinMax( height / 4, (height / 4) * 3 );
+			int x1 = m_Location.X - Utility.RandomMinMax( width / 4, width / 4 * 3 );
+			int y1 = m_Location.Y - Utility.RandomMinMax( height / 4, height / 4 * 3 );
 
 			if ( x1 < 0 )
 				x1 = 0;
@@ -495,11 +493,11 @@ namespace Server.Items
 					return;
 				}
 
-				int z = ( m_Chest != null ) ? m_Chest.Z + m_Chest.ItemData.Height : int.MinValue;
+				int z = m_Chest != null ? m_Chest.Z + m_Chest.ItemData.Height : int.MinValue;
 				int height = 16;
 
 				if ( z > m_Location.Z )
-					height -= ( z - m_Location.Z );
+					height -= z - m_Location.Z;
 				else
 					z = m_Location.Z;
 
@@ -578,7 +576,7 @@ namespace Server.Items
 					if ( m_From.Body.IsHuman && !m_From.Mounted )
 						m_From.Animate( 11, 5, 1, true, false, 0 );
 
-					new SoundTimer( m_From, 0x125 + (m_Count % 2) ).Start();
+					new SoundTimer( m_From, 0x125 + m_Count % 2 ).Start();
 				}
 			}
 
@@ -651,7 +649,7 @@ namespace Server.Items
 
 		private bool HasRequiredSkill( Mobile from )
 		{
-			return ( from.Skills[SkillName.Cartography].Value >= GetMinSkillLevel() );
+			return @from.Skills[SkillName.Cartography].Value >= GetMinSkillLevel();
 		}
 
 		public void Decode( Mobile from )

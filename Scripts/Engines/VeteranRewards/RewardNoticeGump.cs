@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Engines.VeteranRewards
 {
-	public class RewardNoticeGump : Gump
+    public class RewardNoticeGump : Gump
 	{
 		private Mobile m_From;
 

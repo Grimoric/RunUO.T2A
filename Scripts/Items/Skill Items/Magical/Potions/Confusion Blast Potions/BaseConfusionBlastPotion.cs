@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
-using Server.Network;
 using Server.Targeting;
 using Server.Spells;
 using Server.Mobiles;
@@ -10,7 +8,7 @@ using Server.Misc;
 
 namespace Server.Items
 {
-	public abstract class BaseConfusionBlastPotion : BasePotion
+    public abstract class BaseConfusionBlastPotion : BasePotion
 	{
 		public abstract int Radius{ get; }
 

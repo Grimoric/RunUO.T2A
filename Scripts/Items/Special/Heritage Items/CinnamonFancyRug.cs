@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class CinnamonFancyRugAddon : BaseAddon
+    public class CinnamonFancyRugAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed { get { return new CinnamonFancyRugDeed(); } }
 

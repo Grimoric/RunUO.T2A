@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	public class SlayerGroup
+    public class SlayerGroup
 	{
 		private static SlayerEntry[] m_TotalEntries;
 		private static SlayerGroup[] m_Groups;
@@ -39,7 +38,7 @@ namespace Server.Items
 				bool inGroup = false;
 
 				for ( int j = 0; foundOn != null && !inGroup && j < foundOn.Length; ++j )
-					inGroup = ( foundOn[j] == type );
+					inGroup = foundOn[j] == type;
 
 				if ( inGroup )
 				{

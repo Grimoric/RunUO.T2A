@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Targeting;
 
 namespace Server
 {
-	public delegate void BoundingBoxCallback( Mobile from, Map map, Point3D start, Point3D end, object state );
+    public delegate void BoundingBoxCallback( Mobile from, Map map, Point3D start, Point3D end, object state );
 
 	public class BoundingBoxPicker
 	{

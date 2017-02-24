@@ -1,12 +1,9 @@
-using System;
-using Server;
-using Server.Misc;
 using Server.Items;
 using Server.Guilds;
 
 namespace Server.Mobiles
 {
-	public abstract class BaseShieldGuard : BaseCreature
+    public abstract class BaseShieldGuard : BaseCreature
 	{
 		public BaseShieldGuard() : base( AIType.AI_Melee, FightMode.Aggressor, 14, 1, 0.8, 1.6 )
 		{
@@ -108,7 +105,7 @@ namespace Server.Mobiles
 					BaseShield shield = Shield;
 					Item twoHanded = from.FindItemOnLayer( Layer.TwoHanded );
 
-					if ( (pack != null && pack.FindItemByType( shield.GetType() ) != null) || ( twoHanded != null && shield.GetType().IsAssignableFrom( twoHanded.GetType() ) ) )
+					if ( pack != null && pack.FindItemByType( shield.GetType() ) != null || twoHanded != null && shield.GetType().IsAssignableFrom( twoHanded.GetType() ) )
 					{
 						Say( 1007110 ); // Why dost thou ask about virtue guards when thou art one?
 						shield.Delete();

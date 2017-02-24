@@ -1,13 +1,6 @@
-using System;
-using System.Collections;
-using Server;
-using Server.Items;
-using Server.Gumps;
-using Server.Network;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a vampire bat corpse" )]
+    [CorpseName( "a vampire bat corpse" )]
 	public class VampireBatFamiliar : BaseFamiliar
 	{
 		public VampireBatFamiliar()

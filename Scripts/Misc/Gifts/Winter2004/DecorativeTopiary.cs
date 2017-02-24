@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Network;
-
 namespace Server.Items
 {
-	public class DecorativeTopiary : Item
+    public class DecorativeTopiary : Item
 	{
 		[Constructable]
 		public DecorativeTopiary() : base( 0x2378 )

@@ -25,17 +25,16 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using Server;
 using Server.Accounting;
-using Server.Network;
 using Server.Items;
 using Server.Gumps;
 using Server.Menus;
 using Server.HuePickers;
 using Server.Diagnostics;
 
-namespace Server.Network {
-	public interface IPacketEncoder {
+namespace Server.Network
+{
+    public interface IPacketEncoder {
 		void EncodeOutgoingPacket( NetState to, ref byte[] buffer, ref int length );
 		void DecodeIncomingPacket( NetState from, ref byte[] buffer, ref int length );
 	}
@@ -83,7 +82,7 @@ namespace Server.Network {
 
 		public TimeSpan ConnectedFor {
 			get {
-				return ( DateTime.Now - m_ConnectedOn );
+				return DateTime.Now - m_ConnectedOn;
 			}
 		}
 
@@ -241,29 +240,29 @@ namespace Server.Network {
 			Version70330			= Version70300 | NewMobileIncoming
 		}
 
-		public bool NewSpellbook { get { return ((_ProtocolChanges & ProtocolChanges.NewSpellbook) != 0); } }
-		public bool DamagePacket { get { return ((_ProtocolChanges & ProtocolChanges.DamagePacket) != 0); } }
-		public bool Unpack { get { return ((_ProtocolChanges & ProtocolChanges.Unpack) != 0); } }
-		public bool BuffIcon { get { return ((_ProtocolChanges & ProtocolChanges.BuffIcon) != 0); } }
-		public bool NewHaven { get { return ((_ProtocolChanges & ProtocolChanges.NewHaven) != 0); } }
-		public bool ContainerGridLines { get { return ((_ProtocolChanges & ProtocolChanges.ContainerGridLines) != 0); } }
-		public bool ExtendedSupportedFeatures { get { return ((_ProtocolChanges & ProtocolChanges.ExtendedSupportedFeatures) != 0); } }
-		public bool StygianAbyss { get { return ((_ProtocolChanges & ProtocolChanges.StygianAbyss) != 0); } }
-		public bool HighSeas { get { return ((_ProtocolChanges & ProtocolChanges.HighSeas) != 0); } }
-		public bool NewCharacterList { get { return ((_ProtocolChanges & ProtocolChanges.NewCharacterList) != 0); } }
-		public bool NewCharacterCreation { get { return ((_ProtocolChanges & ProtocolChanges.NewCharacterCreation) != 0); } }
-		public bool ExtendedStatus { get { return ((_ProtocolChanges & ProtocolChanges.ExtendedStatus) != 0); } }
-		public bool NewMobileIncoming { get { return ( ( _ProtocolChanges & ProtocolChanges.NewMobileIncoming ) != 0 ); } }
+		public bool NewSpellbook { get { return (_ProtocolChanges & ProtocolChanges.NewSpellbook) != 0; } }
+		public bool DamagePacket { get { return (_ProtocolChanges & ProtocolChanges.DamagePacket) != 0; } }
+		public bool Unpack { get { return (_ProtocolChanges & ProtocolChanges.Unpack) != 0; } }
+		public bool BuffIcon { get { return (_ProtocolChanges & ProtocolChanges.BuffIcon) != 0; } }
+		public bool NewHaven { get { return (_ProtocolChanges & ProtocolChanges.NewHaven) != 0; } }
+		public bool ContainerGridLines { get { return (_ProtocolChanges & ProtocolChanges.ContainerGridLines) != 0; } }
+		public bool ExtendedSupportedFeatures { get { return (_ProtocolChanges & ProtocolChanges.ExtendedSupportedFeatures) != 0; } }
+		public bool StygianAbyss { get { return (_ProtocolChanges & ProtocolChanges.StygianAbyss) != 0; } }
+		public bool HighSeas { get { return (_ProtocolChanges & ProtocolChanges.HighSeas) != 0; } }
+		public bool NewCharacterList { get { return (_ProtocolChanges & ProtocolChanges.NewCharacterList) != 0; } }
+		public bool NewCharacterCreation { get { return (_ProtocolChanges & ProtocolChanges.NewCharacterCreation) != 0; } }
+		public bool ExtendedStatus { get { return (_ProtocolChanges & ProtocolChanges.ExtendedStatus) != 0; } }
+		public bool NewMobileIncoming { get { return ( _ProtocolChanges & ProtocolChanges.NewMobileIncoming ) != 0; } }
 
 		public bool IsUOTDClient {
 			get {
-				return ( (m_Flags & ClientFlags.UOTD) != 0 || ( m_Version != null && m_Version.Type == ClientType.UOTD ) );
+				return (m_Flags & ClientFlags.UOTD) != 0 || m_Version != null && m_Version.Type == ClientType.UOTD;
 			}
 		}
 
 		public bool IsSAClient {
 			get {
-				return ( m_Version != null && m_Version.Type == ClientType.SA );
+				return m_Version != null && m_Version.Type == ClientType.SA;
 			}
 		}
 
@@ -1202,7 +1201,7 @@ namespace Server.Network {
 				for ( int i = ExpansionInfo.Table.Length - 1; i >= 0; i-- ) {
 					ExpansionInfo info = ExpansionInfo.Table[i];
 
-					if ( ( info.RequiredClient != null && this.Version >= info.RequiredClient ) || ( ( this.Flags & info.ClientFlags ) != 0 ) ) {
+					if ( info.RequiredClient != null && this.Version >= info.RequiredClient || ( this.Flags & info.ClientFlags ) != 0 ) {
 						return info;
 					}
 				}
@@ -1220,13 +1219,13 @@ namespace Server.Network {
 
 		public bool SupportsExpansion( ExpansionInfo info, bool checkCoreExpansion )
         {
-			if ( info == null || ( checkCoreExpansion && 1 < info.ID ) )
+			if ( info == null || checkCoreExpansion && 1 < info.ID )
 				return false;
 
 			if ( info.RequiredClient != null )
-				return ( this.Version >= info.RequiredClient );
+				return this.Version >= info.RequiredClient;
 
-			return ( ( this.Flags & info.ClientFlags ) != 0 );
+			return ( this.Flags & info.ClientFlags ) != 0;
 		}
 
 		public bool SupportsExpansion( Expansion ex, bool checkCoreExpansion ) {

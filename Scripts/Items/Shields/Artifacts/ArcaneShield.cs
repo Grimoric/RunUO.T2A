@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ArcaneShield : WoodenKiteShield
+    public class ArcaneShield : WoodenKiteShield
 	{
 		public override int LabelNumber{ get{ return 1061101; } } // Arcane Shield 
 		public override int ArtifactRarity{ get{ return 11; } }

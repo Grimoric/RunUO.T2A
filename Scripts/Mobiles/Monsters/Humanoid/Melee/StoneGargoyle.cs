@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a gargoyle corpse" )]
+    [CorpseName( "a gargoyle corpse" )]
 	public class StoneGargoyle : BaseCreature
 	{
 		[Constructable]

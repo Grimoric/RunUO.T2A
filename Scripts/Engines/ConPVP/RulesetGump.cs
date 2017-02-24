@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Engines.ConPVP
 {
-	public class RulesetGump : Gump
+    public class RulesetGump : Gump
 	{
 		private Mobile m_From;
 		private Ruleset m_Ruleset;
@@ -56,7 +55,7 @@ namespace Server.Engines.ConPVP
 
 			AddPage( 0 );
 
-			int height = 35 + 10 + 2 + (count * 22) + 2 + 30;
+			int height = 35 + 10 + 2 + count * 22 + 2 + 30;
 
 			AddBackground( 0, 0, 260, height, 9250 );
 			AddBackground( 10, 10, 240, height - 20, 0xDAC );

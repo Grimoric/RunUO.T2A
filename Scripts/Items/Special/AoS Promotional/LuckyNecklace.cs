@@ -1,9 +1,6 @@
-﻿using System;
-using Server.Mobiles;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	public class LuckyNecklace : BaseJewel
+    public class LuckyNecklace : BaseJewel
 	{
 		public override int Hue{ get { return 1150; } }
 		public override int LabelNumber{ get { return 1075239; } }  //Lucky Necklace	1075239

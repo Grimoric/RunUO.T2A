@@ -18,12 +18,11 @@
  *
  ***************************************************************************/
 
-using System;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	public abstract class GumpEntry
+    public abstract class GumpEntry
 	{
 		private Gump m_Parent;
 

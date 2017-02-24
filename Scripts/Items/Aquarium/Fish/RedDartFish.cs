@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class RedDartFish : BaseFish
+    public class RedDartFish : BaseFish
 	{		
 		public override int LabelNumber{ get{ return 1073834; } } // A Red Dart Fish 
 		

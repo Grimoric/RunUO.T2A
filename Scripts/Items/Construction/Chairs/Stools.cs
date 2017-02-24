@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[Furniture]
+    [Furniture]
 	public class Stool : Item
 	{
 		[Constructable]

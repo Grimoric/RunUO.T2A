@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Network;
 
 namespace Server.Engines.Mahjong
 {
-	public delegate void OnMahjongPacketReceive( MahjongGame game, NetState state, PacketReader pvSrc );
+    public delegate void OnMahjongPacketReceive( MahjongGame game, NetState state, PacketReader pvSrc );
 
 	public sealed class MahjongPacketHandlers
 	{

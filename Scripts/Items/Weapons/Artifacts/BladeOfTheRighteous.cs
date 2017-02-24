@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class BladeOfTheRighteous : Longsword
+    public class BladeOfTheRighteous : Longsword
 	{
 		public override int LabelNumber{ get{ return 1061107; } } // Blade of the Righteous
 		public override int ArtifactRarity{ get{ return 10; } }

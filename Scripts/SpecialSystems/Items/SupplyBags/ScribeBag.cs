@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class ScribeBag : Bag
+    public class ScribeBag : Bag
 	{
 		public override string DefaultName
 		{

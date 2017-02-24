@@ -1,10 +1,8 @@
 using System;
-using Server.Network;
-using Server.Items;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0xF50, 0xF4F )]
+    [FlipableAttribute( 0xF50, 0xF4F )]
 	public class Crossbow : BaseRanged
 	{
 		public override int EffectID{ get{ return 0x1BFE; } }

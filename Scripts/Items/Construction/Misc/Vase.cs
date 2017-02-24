@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class Vase : Item
+    public class Vase : Item
 	{
 		[Constructable]
 		public Vase() : base( 0xB46 )

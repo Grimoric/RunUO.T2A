@@ -1,10 +1,8 @@
 using System;
-using Server;
-using Server.Items;
 
 namespace Server.Items
 {
-	public class PotionKeg : Item
+    public class PotionKeg : Item
 	{
 		private PotionEffect m_Type;
 		private int m_Held;
@@ -51,7 +49,7 @@ namespace Server.Items
 		{
 			int held = Math.Max( 0, Math.Min( m_Held, 100 ) );
 
-			this.Weight = 20 + ((held * 80) / 100);
+			this.Weight = 20 + held * 80 / 100;
 		}
 
 		public PotionKeg( Serial serial ) : base( serial )
@@ -99,7 +97,7 @@ namespace Server.Items
 					return 1072658 + ( int )m_Type - ( int )PotionEffect.Conflagration;
 				}
 
-				return (m_Held > 0 ? 1041620 + (int)m_Type : 1041641); 
+				return m_Held > 0 ? 1041620 + (int)m_Type : 1041641; 
 			} 
 		}
 

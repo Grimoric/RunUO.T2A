@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class APersonalLetterAddressedToAhie : TransientItem
+    public class APersonalLetterAddressedToAhie : TransientItem
 	{
 		public override int LabelNumber{ get{ return 1073128; } } // A personal letter addressed to: Ahie
 

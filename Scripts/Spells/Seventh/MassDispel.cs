@@ -1,14 +1,11 @@
-using System;
 using System.Collections.Generic;
-using Server.Misc;
-using Server.Network;
 using Server.Items;
 using Server.Targeting;
 using Server.Mobiles;
 
 namespace Server.Spells.Seventh
 {
-	public class MassDispelSpell : MagerySpell
+    public class MassDispelSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Mass Dispel", "Vas An Ort",
@@ -67,7 +64,7 @@ namespace Server.Spells.Seventh
 					if ( bc == null )
 						continue;
 
-					double dispelChance = (50.0 + ((100 * (Caster.Skills.Magery.Value - bc.DispelDifficulty)) / (bc.DispelFocus*2))) / 100;
+					double dispelChance = (50.0 + 100 * (Caster.Skills.Magery.Value - bc.DispelDifficulty) / (bc.DispelFocus*2)) / 100;
 
 					if ( dispelChance > Utility.RandomDouble() )
 					{

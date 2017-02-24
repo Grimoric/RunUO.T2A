@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class LOSBlocker : Item
+    public class LOSBlocker : Item
 	{
 		public static void Initialize()
 		{

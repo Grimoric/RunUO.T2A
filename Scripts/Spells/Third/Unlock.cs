@@ -1,11 +1,10 @@
-using System;
 using Server.Targeting;
 using Server.Network;
 using Server.Items;
 
 namespace Server.Spells.Third
 {
-	public class UnlockSpell : MagerySpell
+    public class UnlockSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Unlock Spell", "Ex Por",

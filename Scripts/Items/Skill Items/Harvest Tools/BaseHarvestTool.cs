@@ -43,13 +43,13 @@ namespace Server.Items
 
 		public void ScaleUses()
 		{
-			m_UsesRemaining = (m_UsesRemaining * GetUsesScalar()) / 100;
+			m_UsesRemaining = m_UsesRemaining * GetUsesScalar() / 100;
 			InvalidateProperties();
 		}
 
 		public void UnscaleUses()
 		{
-			m_UsesRemaining = (m_UsesRemaining * 100) / GetUsesScalar();
+			m_UsesRemaining = m_UsesRemaining * 100 / GetUsesScalar();
 		}
 
 		public int GetUsesScalar()
@@ -146,9 +146,9 @@ namespace Server.Items
 				m_Mobile = mobile;
 				m_Value = value;
 
-				bool stoneMining = ( mobile.StoneMining && mobile.Skills[SkillName.Mining].Base >= 100.0 );
+				bool stoneMining = mobile.StoneMining && mobile.Skills[SkillName.Mining].Base >= 100.0;
 
-				if ( mobile.ToggleMiningStone == value || ( value && !stoneMining ) )
+				if ( mobile.ToggleMiningStone == value || value && !stoneMining )
 					this.Flags |= CMEFlags.Disabled;
 			}
 

@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Spells.Fourth;
-using Server.Targeting;
 
 namespace Server.Items
 {
-	public class GreaterHealWand : BaseWand
+    public class GreaterHealWand : BaseWand
 	{
 		[Constructable]
 		public GreaterHealWand() : base( WandEffect.GreaterHealing, 1, 5 )

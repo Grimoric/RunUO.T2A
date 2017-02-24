@@ -1,14 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
-using Server.Items;
 using Server.Engines.Harvest;
 using Server.ContextMenus;
 
 namespace Server.Items
 {
-	public abstract class BasePoleArm : BaseMeleeWeapon, IUsesRemaining
+    public abstract class BasePoleArm : BaseMeleeWeapon, IUsesRemaining
 	{
 		public override int DefHitSound{ get{ return 0x237; } }
 		public override int DefMissSound{ get{ return 0x238; } }
@@ -107,7 +104,7 @@ namespace Server.Items
 		{
 			base.OnHit( attacker, defender, damageBonus );
 
-			if (  (attacker.Player || attacker.Body.IsHuman) && Layer == Layer.TwoHanded && (attacker.Skills[SkillName.Anatomy].Value / 400.0) >= Utility.RandomDouble() && Engines.ConPVP.DuelContext.AllowSpecialAbility( attacker, "Concussion Blow", false ) )
+			if (  (attacker.Player || attacker.Body.IsHuman) && Layer == Layer.TwoHanded && attacker.Skills[SkillName.Anatomy].Value / 400.0 >= Utility.RandomDouble() && Engines.ConPVP.DuelContext.AllowSpecialAbility( attacker, "Concussion Blow", false ) )
 			{
 				StatMod mod = defender.GetStatMod( "Concussion" );
 

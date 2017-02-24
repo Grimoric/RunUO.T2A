@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class Cauldron : Item
+    public class Cauldron : Item
 	{
 		public override string DefaultName
 		{

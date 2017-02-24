@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class HallowedSpellbook : Spellbook
+    public class HallowedSpellbook : Spellbook
 	{
 		public override int LabelNumber { get { return 1077620; } } // Hallowed Spellbook
 

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Gumps;
 using Server.Items;
 using Server.Spells;
@@ -14,7 +13,7 @@ using Server.Engines.VeteranRewards;
 
 namespace Server.Mobiles
 {
-	public enum StatueType
+    public enum StatueType
 	{
 		Marble,
 		Jade,
@@ -147,7 +146,7 @@ namespace Server.Mobiles
 			{
 				BaseHouse house = BaseHouse.FindHouseAt( this );
 
-				if ( ( house != null && house.IsCoOwner( from ) ) || (int) from.AccessLevel > (int) AccessLevel.Counselor )
+				if ( house != null && house.IsCoOwner( @from ) || (int) from.AccessLevel > (int) AccessLevel.Counselor )
 					list.Add( new DemolishEntry( this ) );
 			}
 		}
@@ -655,7 +654,7 @@ namespace Server.Mobiles
 				Point3D doorLoc = door.GetWorldLocation();
 				int doorHeight = door.ItemData.CalcHeight;
 
-				if ( Utility.InRange( doorLoc, p, 1 ) && (p.Z == doorLoc.Z || ((p.Z + height) > doorLoc.Z && (doorLoc.Z + doorHeight) > p.Z)) )
+				if ( Utility.InRange( doorLoc, p, 1 ) && (p.Z == doorLoc.Z || p.Z + height > doorLoc.Z && doorLoc.Z + doorHeight > p.Z) )
 					return AddonFitResult.DoorTooClose;
 			}
 

@@ -68,7 +68,7 @@ namespace Server.Gumps
 		private static readonly int EntryCount = 15;
 
 		private static readonly int TotalWidth = OffsetSize + EntryWidth + OffsetSize + SetWidth + OffsetSize;
-		private static readonly int TotalHeight = OffsetSize + ((EntryHeight + OffsetSize) * (EntryCount + 1));
+		private static readonly int TotalHeight = OffsetSize + (EntryHeight + OffsetSize) * (EntryCount + 1);
 
 		private static readonly int BackWidth = BorderSize + TotalWidth + BorderSize;
 		private static readonly int BackHeight = BorderSize + TotalHeight + BorderSize;
@@ -127,7 +127,7 @@ namespace Server.Gumps
 			{
 				Mobile m = states[i].Mobile;
 
-				if ( m != null && (m == owner || !m.Hidden || owner.AccessLevel >= m.AccessLevel || (m is PlayerMobile && ((PlayerMobile)m).VisibilityList.Contains( owner ) ) ) )
+				if ( m != null && (m == owner || !m.Hidden || owner.AccessLevel >= m.AccessLevel || m is PlayerMobile && ((PlayerMobile)m).VisibilityList.Contains( owner ) ) )
 				{
 					if ( filter != null && ( m.Name == null || m.Name.ToLower().IndexOf( filter ) < 0 ) )
 						continue;
@@ -145,14 +145,14 @@ namespace Server.Gumps
 		{
 			m_Page = page;
 
-			int count = m_Mobiles.Count - (page * EntryCount);
+			int count = m_Mobiles.Count - page * EntryCount;
 
 			if ( count < 0 )
 				count = 0;
 			else if ( count > EntryCount )
 				count = EntryCount;
 
-			int totalHeight = OffsetSize + ((EntryHeight + OffsetSize) * (count + 1));
+			int totalHeight = OffsetSize + (EntryHeight + OffsetSize) * (count + 1);
 
 			AddPage( 0 );
 
@@ -162,7 +162,7 @@ namespace Server.Gumps
 			int x = BorderSize + OffsetSize;
 			int y = BorderSize + OffsetSize;
 
-			int emptyWidth = TotalWidth - PrevWidth - NextWidth - (OffsetSize * 4) - (OldStyle ? SetWidth + OffsetSize : 0);
+			int emptyWidth = TotalWidth - PrevWidth - NextWidth - OffsetSize * 4 - (OldStyle ? SetWidth + OffsetSize : 0);
 
 			if ( !OldStyle )
 				AddImageTiled( x - (OldStyle ? OffsetSize : 0), y, emptyWidth + (OldStyle ? OffsetSize * 2 : 0), EntryHeight, EntryGumpID );
@@ -172,7 +172,7 @@ namespace Server.Gumps
 			x += emptyWidth + OffsetSize;
 
 			if ( OldStyle )
-				AddImageTiled( x, y, TotalWidth - (OffsetSize * 3) - SetWidth, EntryHeight, HeaderGumpID );
+				AddImageTiled( x, y, TotalWidth - OffsetSize * 3 - SetWidth, EntryHeight, HeaderGumpID );
 			else
 				AddImageTiled( x, y, PrevWidth, EntryHeight, HeaderGumpID );
 
@@ -265,7 +265,7 @@ namespace Server.Gumps
 				}
 				default:
 				{
-					int index = (m_Page * EntryCount) + (info.ButtonID - 3);
+					int index = m_Page * EntryCount + (info.ButtonID - 3);
 
 					if ( index >= 0 && index < m_Mobiles.Count )
 					{
@@ -281,7 +281,7 @@ namespace Server.Gumps
 							from.SendMessage( "That player is no longer online." );
 							from.SendGump( new WhoGump( from, m_Mobiles, m_Page ) );
 						}
-						else if ( m == from || !m.Hidden || from.AccessLevel >= m.AccessLevel || (m is PlayerMobile && ((PlayerMobile)m).VisibilityList.Contains( from ))) 
+						else if ( m == from || !m.Hidden || from.AccessLevel >= m.AccessLevel || m is PlayerMobile && ((PlayerMobile)m).VisibilityList.Contains( @from )) 
 						{
 							from.SendGump( new ClientGump( from, m.NetState ) );
 						}

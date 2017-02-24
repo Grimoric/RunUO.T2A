@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Spells;
 
 namespace Server.Items
 {
-	public class CureLevelInfo
+    public class CureLevelInfo
 	{
 		private Poison m_Poison;
 		private double m_Chance;

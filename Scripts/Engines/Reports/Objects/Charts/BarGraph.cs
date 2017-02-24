@@ -114,7 +114,7 @@ namespace Server.Engines.Reports
 			int[] totals = new int[24];
 			int[] counts = new int[24];
 
-			int min = history.Snapshots.Count - (7 * 24); // averages over one week
+			int min = history.Snapshots.Count - 7 * 24; // averages over one week
 
 			if ( min < 0 )
 				min = 0;
@@ -145,7 +145,7 @@ namespace Server.Engines.Reports
 				if ( counts[i%totals.Length] == 0 )
 					val = 0;
 				else
-					val = (totals[i%totals.Length] + (counts[i%totals.Length] / 2)) / counts[i%totals.Length];
+					val = (totals[i%totals.Length] + counts[i%totals.Length] / 2) / counts[i%totals.Length];
 
 				int realHours = i%totals.Length;
 				int hours;
@@ -248,7 +248,7 @@ namespace Server.Engines.Reports
 		{
 			BarGraph barGraph = new BarGraph( valueName + " over time", "graphs_" + valueName.ToLower() + "_ot", 10, "Time", valueName, BarGraphRenderMode.Lines );
 
-			TimeSpan ts = TimeSpan.FromHours( (max*step)-0.5 );
+			TimeSpan ts = TimeSpan.FromHours( max*step-0.5 );
 
 			DateTime mostRecent = history.Snapshots[history.Snapshots.Count - 1].TimeStamp;
 			DateTime minTime = mostRecent - ts;
@@ -266,7 +266,7 @@ namespace Server.Engines.Reports
 				if ( timeStamp < minTime )
 					continue;
 
-				if ( (i % step) != 0 )
+				if ( i % step != 0 )
 					continue;
 
 				int val = LookupReportValue( ss, reportName, valueName );

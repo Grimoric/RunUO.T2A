@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Mobiles;
 using System.Collections.Generic;
 
 namespace Server.Factions
 {
-	public class PlayerState : IComparable
+    public class PlayerState : IComparable
 	{
 		private Mobile m_Mobile;
 		private Faction m_Faction;
@@ -48,7 +47,7 @@ namespace Server.Factions
 							m_RankIndex = m_Faction.ZeroRankOffset;
 							m_Faction.ZeroRankOffset++;
 						}
-						while ( ( m_RankIndex - 1 ) >= 0 ) {
+						while ( m_RankIndex - 1 >= 0 ) {
 							PlayerState p = m_Owner[m_RankIndex-1] as PlayerState;
 							if ( value > p.KillPoints ) {
 								m_Owner[m_RankIndex] = p;
@@ -68,7 +67,7 @@ namespace Server.Factions
 								return;
 							}
 
-							while ( ( m_RankIndex + 1 ) < m_Faction.ZeroRankOffset ) {
+							while ( m_RankIndex + 1 < m_Faction.ZeroRankOffset ) {
 								PlayerState p = m_Owner[m_RankIndex+1] as PlayerState;
 								m_Owner[m_RankIndex+1] = this;
 								m_Owner[m_RankIndex] = p;
@@ -80,7 +79,7 @@ namespace Server.Factions
 							m_Faction.ZeroRankOffset--;
 						}
 						else {
-							while ( ( m_RankIndex + 1 ) < m_Faction.ZeroRankOffset ) {
+							while ( m_RankIndex + 1 < m_Faction.ZeroRankOffset ) {
 								PlayerState p = m_Owner[m_RankIndex+1] as PlayerState;
 								if ( value < p.KillPoints ) {
 									m_Owner[m_RankIndex+1] = this;
@@ -116,7 +115,7 @@ namespace Server.Factions
 					else if ( m_RankIndex == -1 )
 						percent = 0;
 					else
-						percent = ( ( m_Faction.ZeroRankOffset - m_RankIndex ) * 1000 ) / m_Faction.ZeroRankOffset;
+						percent = ( m_Faction.ZeroRankOffset - m_RankIndex ) * 1000 / m_Faction.ZeroRankOffset;
 
 					for ( int i = 0; i < ranks.Length; i++ ) {
 						RankDefinition check = ranks[i];
@@ -137,7 +136,7 @@ namespace Server.Factions
 
 		public DateTime LastHonorTime{ get{ return m_LastHonorTime; } set{ m_LastHonorTime = value; } }
 		public DateTime Leaving{ get{ return m_Leaving; } set{ m_Leaving = value; } }
-		public bool IsLeaving{ get{ return ( m_Leaving > DateTime.MinValue ); } }
+		public bool IsLeaving{ get{ return m_Leaving > DateTime.MinValue; } }
 
 		public bool IsActive{ get{ return m_IsActive; } set{ m_IsActive = value; } }
 

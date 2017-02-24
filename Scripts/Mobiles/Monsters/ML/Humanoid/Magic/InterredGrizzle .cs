@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName("an interred grizzle corpse")]
+    [CorpseName("an interred grizzle corpse")]
 	public class InterredGrizzle  : BaseCreature
 	{
 		[Constructable]
@@ -93,7 +88,7 @@ namespace Server.Mobiles
 
 		private int RandomPoint( int mid )
 		{
-			return ( mid + Utility.RandomMinMax( -2, 2 ) );
+			return mid + Utility.RandomMinMax( -2, 2 );
 		}
 
 		public virtual Point3D GetSpawnPosition( int range )
@@ -106,7 +101,7 @@ namespace Server.Mobiles
 			if( map == null )
 				return from;
 
-			Point3D loc = new Point3D( ( RandomPoint( X ) ), ( RandomPoint( Y ) ), Z );
+			Point3D loc = new Point3D( RandomPoint( X ), RandomPoint( Y ), Z );
 
 			loc.Z = Map.GetAverageZ( loc.X, loc.Y );
 

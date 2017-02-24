@@ -1,10 +1,8 @@
 using System;
-using Server;
-using Server.Network;
 
 namespace Server.Items
 {
-	public class GiantSpikeTrap : BaseTrap
+    public class GiantSpikeTrap : BaseTrap
 	{
 		[Constructable]
 		public GiantSpikeTrap() : base( 1 )

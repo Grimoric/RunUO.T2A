@@ -1,9 +1,6 @@
-using System;
-using Server.Mobiles;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "an ice snake corpse" )]
+    [CorpseName( "an ice snake corpse" )]
 	[TypeAlias( "Server.Mobiles.Icesnake" )]
 	public class IceSnake : BaseCreature
 	{

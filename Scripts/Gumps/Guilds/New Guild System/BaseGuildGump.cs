@@ -1,14 +1,12 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Gumps;
 using Server.Network;
-using Server.Factions;
 using Server.Misc;
 
 namespace Server.Guilds
 {
-	public abstract class BaseGuildGump : Gump
+    public abstract class BaseGuildGump : Gump
 	{
 		private Guild m_Guild;
 		private PlayerMobile m_Player;
@@ -76,12 +74,12 @@ namespace Server.Guilds
 
 		public static bool IsLeader( Mobile m, Guild g )
 		{
-			return !( m.Deleted || g.Disbanded || !( m is PlayerMobile ) || (m.AccessLevel < AccessLevel.GameMaster && g.Leader != m) );
+			return !( m.Deleted || g.Disbanded || !( m is PlayerMobile ) || m.AccessLevel < AccessLevel.GameMaster && g.Leader != m );
 		}
 
 		public static bool IsMember( Mobile m, Guild g )
 		{
-			return !( m.Deleted || g.Disbanded || !( m is PlayerMobile ) || (m.AccessLevel < AccessLevel.GameMaster && !g.IsMember( m )) );
+			return !( m.Deleted || g.Disbanded || !( m is PlayerMobile ) || m.AccessLevel < AccessLevel.GameMaster && !g.IsMember( m ) );
 		}
 
 		public static bool CheckProfanity( string s )

@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Hag
 {
-	public class WitchApprenticeQuest : QuestSystem
+    public class WitchApprenticeQuest : QuestSystem
 	{
 		private static Type[] m_TypeReferenceTable = new Type[]
 			{

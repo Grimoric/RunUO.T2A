@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class MirrorOfPurification : Item
+    public class MirrorOfPurification : Item
 	{
 		public override int LabelNumber{ get{ return 1075304; } } // Mirror of Purification
 

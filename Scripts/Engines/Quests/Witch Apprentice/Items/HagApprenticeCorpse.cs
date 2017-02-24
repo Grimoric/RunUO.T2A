@@ -1,16 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
 using Server.Misc;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Hag
 {
-	public class HagApprenticeCorpse : Corpse
+    public class HagApprenticeCorpse : Corpse
 	{
 		private static Mobile GetOwner()
 		{

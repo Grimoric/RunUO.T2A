@@ -1,12 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Server;
-using Server.Multis;
-using Server.Network;
 
 namespace Server.Items
 {
-	[Furniture]
+    [Furniture]
 	[Flipable( 0x2815, 0x2816 )]
 	public class TallCabinet : BaseContainer
 	{

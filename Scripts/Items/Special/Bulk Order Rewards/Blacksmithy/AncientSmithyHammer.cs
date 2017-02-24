@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x13E4, 0x13E3 )]
+    [FlipableAttribute( 0x13E4, 0x13E3 )]
 	public class AncientSmithyHammer : BaseTool
 	{
 		private int m_Bonus;

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class PieceWhiteKing : BasePiece
+    public class PieceWhiteKing : BasePiece
 	{
 		public override string DefaultName
 		{

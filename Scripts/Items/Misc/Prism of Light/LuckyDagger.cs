@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class LuckyDagger : Item
+    public class LuckyDagger : Item
 	{
 		[Constructable]
 		public LuckyDagger() : base( 0xF52 )

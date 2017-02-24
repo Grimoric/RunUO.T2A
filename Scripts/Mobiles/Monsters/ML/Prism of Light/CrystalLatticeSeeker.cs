@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a Crystal Lattice Seeker corpse" )]
+    [CorpseName( "a Crystal Lattice Seeker corpse" )]
 	public class CrystalLatticeSeeker : BaseCreature
 	{
 		[Constructable]

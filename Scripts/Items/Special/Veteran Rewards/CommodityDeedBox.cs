@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.VeteranRewards;
 
 namespace Server.Items
-{	
-	[Furniture]
+{
+    [Furniture]
 	public class CommodityDeedBox : BaseContainer, IRewardItem
 	{
 		public override int LabelNumber{ get { return 1080523; } } // Commodity Deed Box

@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using Server;
-using Server.Items;
 using Server.Gumps;
 using Server.Network;
 using Server.Targeting;
@@ -9,7 +6,7 @@ using Server.Mobiles;
 
 namespace Server.Engines.ConPVP
 {
-	public class ParticipantGump : Gump
+    public class ParticipantGump : Gump
 	{
 		private Mobile m_From;
 		private DuelContext m_Context;
@@ -53,7 +50,7 @@ namespace Server.Engines.ConPVP
 
 			AddPage( 0 );
 			
-			int height = 35 + 10 + 22 + 22 + 30 + 22 + 2 + (count * 22) + 2 + 30;
+			int height = 35 + 10 + 22 + 22 + 30 + 22 + 2 + count * 22 + 2 + 30;
 
 			AddBackground( 0, 0, 300, height, 9250 );
 			AddBackground( 10, 10, 280, height - 20, 0xDAC );
@@ -170,7 +167,7 @@ namespace Server.Engines.ConPVP
 						m_Participant.Players[bid].Mobile.SendMessage( "You have been removed from the duel." );
 
 						if ( m_Participant.Players[bid].Mobile is PlayerMobile  )
-							((PlayerMobile)(m_Participant.Players[bid].Mobile)).DuelPlayer = null;
+							((PlayerMobile)m_Participant.Players[bid].Mobile).DuelPlayer = null;
 
 						m_Participant.Players[bid] = null;
 						m_From.SendMessage( "They have been removed from the duel." );

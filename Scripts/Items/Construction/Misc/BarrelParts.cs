@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class BarrelLid : Item
+    public class BarrelLid : Item
 	{
 		[Constructable]
 		public BarrelLid() : base(0x1DB8)

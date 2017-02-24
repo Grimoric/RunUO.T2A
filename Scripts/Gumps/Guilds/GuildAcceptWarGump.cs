@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Guilds;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	public class GuildAcceptWarGump : GuildListGump
+    public class GuildAcceptWarGump : GuildListGump
 	{
 		public GuildAcceptWarGump( Mobile from, Guild guild ) : base( from, guild, true, guild.WarInvitations )
 		{

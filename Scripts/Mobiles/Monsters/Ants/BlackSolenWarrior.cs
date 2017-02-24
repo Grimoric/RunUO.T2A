@@ -1,11 +1,9 @@
-using System;
-using System.Collections;
 using Server.Items;
 using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a solen warrior corpse" )]
+    [CorpseName( "a solen warrior corpse" )]
 	public class BlackSolenWarrior : BaseCreature
 	{
 		private bool m_BurstSac;
@@ -47,7 +45,7 @@ namespace Server.Mobiles
 
 			SolenHelper.PackPicnicBasket( this );
 
-			PackItem( new ZoogiFungus( ( 0.05 > Utility.RandomDouble() )? 13 : 3 ) );
+			PackItem( new ZoogiFungus( 0.05 > Utility.RandomDouble()? 13 : 3 ) );
 
 			if ( Utility.RandomDouble() < 0.05 )
 				PackItem( new BraceletOfBinding() );

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Network
 {
-	public class UpdateStatueAnimation : Packet
+    public class UpdateStatueAnimation : Packet
 	{
 		public UpdateStatueAnimation( Mobile m, int status, int animation, int frame ) : base( 0xBF, 17 )
 		{

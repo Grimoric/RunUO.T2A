@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class TanBook : BaseBook
+    public class TanBook : BaseBook
 	{
 		[Constructable]
 		public TanBook() : base( 0xFF0 )

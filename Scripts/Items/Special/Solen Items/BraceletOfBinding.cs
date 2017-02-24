@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.ContextMenus;
 using Server.Network;
 using Server.Prompts;
@@ -11,7 +9,7 @@ using Server.Mobiles;
 
 namespace Server.Items
 {
-	public class BraceletOfBinding : BaseBracelet, TranslocationItem
+    public class BraceletOfBinding : BaseBracelet, TranslocationItem
 	{
 		private int m_Charges;
 		private int m_Recharges;

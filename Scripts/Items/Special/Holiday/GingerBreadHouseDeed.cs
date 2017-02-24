@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class GingerBreadHouseAddon : BaseAddon
+    public class GingerBreadHouseAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed{ get{ return new GingerBreadHouseDeed(); } }
 
@@ -13,7 +10,7 @@ namespace Server.Items
 			{
 				LocalizedAddonComponent laoc = new LocalizedAddonComponent( i, 1077395 ); // Gingerbread House
 				laoc.Light = LightType.SouthSmall;
-				AddComponent( laoc, (i==0x2be5) ? -1 : 0, (i==0x2be7) ? -1 : 0, 0 ); 
+				AddComponent( laoc, i==0x2be5 ? -1 : 0, i==0x2be7 ? -1 : 0, 0 ); 
 			}
 		}
 

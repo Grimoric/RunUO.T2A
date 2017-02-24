@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ProtectorsEssence : Item
+    public class ProtectorsEssence : Item
 	{
 		public override int LabelNumber{ get{ return 1073159; } } // Protector's Essence
 

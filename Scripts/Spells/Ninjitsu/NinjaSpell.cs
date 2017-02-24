@@ -1,13 +1,9 @@
 using System;
-using Server;
-using Server.Spells;
-using Server.Network;
-using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Spells.Ninjitsu
 {
-	public abstract class NinjaSpell : Spell
+    public abstract class NinjaSpell : Spell
 	{
 		public abstract double RequiredSkill{ get; }
 		public abstract int RequiredMana{ get; }

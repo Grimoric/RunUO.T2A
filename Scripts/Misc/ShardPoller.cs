@@ -1,16 +1,14 @@
 using System;
 using System.Net;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
-using Server;
 using Server.Gumps;
 using Server.Network;
 using Server.Prompts;
 
 namespace Server.Misc
 {
-	public class ShardPoller : Item
+    public class ShardPoller : Item
 	{
 		private string m_Title;
 
@@ -65,7 +63,7 @@ namespace Server.Misc
 
 				try
 				{
-					TimeSpan ts = (m_StartTime + m_Duration) - DateTime.Now;
+					TimeSpan ts = m_StartTime + m_Duration - DateTime.Now;
 
 					if ( ts < TimeSpan.Zero )
 						return TimeSpan.Zero;
@@ -462,7 +460,7 @@ namespace Server.Misc
 			string title;
 
 			if ( editing )
-				title = ( isCompleted ? "Poll Completed" : "Poll Editor" );
+				title = isCompleted ? "Poll Completed" : "Poll Editor";
 			else
 				title = "Shard Poll";
 
@@ -502,7 +500,7 @@ namespace Server.Misc
 				else
 					AddRadio( 24, y - 15, 0x25F9, 0x25FC, false, 1 + i );
 
-				AddHtml( 60, y - (9 * option.LineBreaks), 250, 18 * option.LineBreaks, Color( text, LabelColor32 ), false, false );
+				AddHtml( 60, y - 9 * option.LineBreaks, 250, 18 * option.LineBreaks, Color( text, LabelColor32 ), false, false );
 
 				y += optHeight/2;
 				y += 5;

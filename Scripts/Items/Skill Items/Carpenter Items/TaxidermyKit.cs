@@ -1,12 +1,11 @@
 using System;
-using Server;
 using Server.Multis;
 using Server.Mobiles;
 using Server.Targeting;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x1EBA, 0x1EBB )]
+    [FlipableAttribute( 0x1EBA, 0x1EBB )]
 	public class TaxidermyKit : Item
 	{
 		public override int LabelNumber{ get{ return 1041279; } } // a taxidermy kit

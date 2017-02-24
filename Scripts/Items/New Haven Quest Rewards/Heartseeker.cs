@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class Heartseeker : CompositeBow
+    public class Heartseeker : CompositeBow
 	{
 		public override int LabelNumber{ get{ return 1078210; } } // Heartseeker
 

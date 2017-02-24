@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
-using Server.Gumps;
 using Server.Items;
 
 namespace Server.Engines.Quests.Samurai
 {
-	public class Haochi : BaseQuester
+    public class Haochi : BaseQuester
 	{
 		[Constructable]
 		public Haochi() : base( "the Honorable Samurai Legend" )

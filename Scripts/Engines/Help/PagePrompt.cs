@@ -1,10 +1,8 @@
-using System;
-using Server.Network;
 using Server.Prompts;
 
 namespace Server.Engines.Help
 {
-	public class PagePrompt : Prompt
+    public class PagePrompt : Prompt
 	{
 		private PageType m_Type;
 

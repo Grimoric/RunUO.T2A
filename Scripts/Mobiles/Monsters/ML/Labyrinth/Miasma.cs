@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a Miasma corpse" )]
+    [CorpseName( "a Miasma corpse" )]
 	public class Miasma : Scorpion
 	{
 		[Constructable]
@@ -46,7 +44,7 @@ namespace Server.Mobiles
 			/* yes, this is OSI style */
 		public override double WeaponAbilityChance { get { return 0.75; } }
 		public override double HitPoisonChance { get { return 0.35; } }
-		public override Poison HitPoison { get { return ( Poison.Lethal ); } }
+		public override Poison HitPoison { get { return Poison.Lethal; } }
 		public override bool HasManaOveride { get { return true; } }
 		public override bool GivesMLMinorArtifact { get { return true; } }
 		public override int TreasureMapLevel { get { return 5; } }

@@ -1,13 +1,11 @@
 using System;
 using System.Collections;
-using Server;
-using Server.Gumps;
 using Server.Network;
 using Server.Commands;
 
 namespace Server.Gumps
 {
-	public class EditSkillGump : Gump
+    public class EditSkillGump : Gump
 	{
 		public static readonly bool OldStyle = PropsConfig.OldStyle;
 
@@ -46,7 +44,7 @@ namespace Server.Gumps
 		private static readonly int EntryWidth = 160;
 
 		private static readonly int TotalWidth = OffsetSize + EntryWidth + OffsetSize + SetWidth + OffsetSize;
-		private static readonly int TotalHeight = OffsetSize + (2 * (EntryHeight + OffsetSize));
+		private static readonly int TotalHeight = OffsetSize + 2 * (EntryHeight + OffsetSize);
 
 		private static readonly int BackWidth = BorderSize + TotalWidth + BorderSize;
 		private static readonly int BackHeight = BorderSize + TotalHeight + BorderSize;
@@ -185,7 +183,7 @@ namespace Server.Gumps
 		private static readonly int TypeWidth = NameWidth + OffsetSize + ValueWidth;
 
 		private static readonly int TotalWidth = OffsetSize + NameWidth + OffsetSize + ValueWidth + OffsetSize + SetWidth + OffsetSize;
-		private static readonly int TotalHeight = OffsetSize + ((EntryHeight + OffsetSize) * (EntryCount + 1));
+		private static readonly int TotalHeight = OffsetSize + (EntryHeight + OffsetSize) * (EntryCount + 1);
 
 		private static readonly int BackWidth = BorderSize + TotalWidth + BorderSize;
 		private static readonly int BackHeight = BorderSize + TotalHeight + BorderSize;
@@ -280,7 +278,7 @@ namespace Server.Gumps
 
 		public int GetButtonID( int type, int index )
 		{
-			return 1 + (index * 3) + type;
+			return 1 + index * 3 + type;
 		}
 
 		public SkillsGump( Mobile from, Mobile target ) : this( from, target, null )
@@ -300,7 +298,7 @@ namespace Server.Gumps
 			if ( selected != null )
 				count += selected.Skills.Length;
 
-			int totalHeight = OffsetSize + ((EntryHeight + OffsetSize) * (count + 1));
+			int totalHeight = OffsetSize + (EntryHeight + OffsetSize) * (count + 1);
 
 			AddPage( 0 );
 
@@ -310,10 +308,10 @@ namespace Server.Gumps
 			int x = BorderSize + OffsetSize;
 			int y = BorderSize + OffsetSize;
 
-			int emptyWidth = TotalWidth - PrevWidth - NextWidth - (OffsetSize * 4) - (OldStyle ? SetWidth + OffsetSize : 0);
+			int emptyWidth = TotalWidth - PrevWidth - NextWidth - OffsetSize * 4 - (OldStyle ? SetWidth + OffsetSize : 0);
 
 			if ( OldStyle )
-				AddImageTiled( x, y, TotalWidth - (OffsetSize * 3) - SetWidth, EntryHeight, HeaderGumpID );
+				AddImageTiled( x, y, TotalWidth - OffsetSize * 3 - SetWidth, EntryHeight, HeaderGumpID );
 			else
 				AddImageTiled( x, y, PrevWidth, EntryHeight, HeaderGumpID );
 
@@ -343,7 +341,7 @@ namespace Server.Gumps
 
 				x += PrevWidth + OffsetSize;
 
-				x -= (OldStyle ? OffsetSize : 0);
+				x -= OldStyle ? OffsetSize : 0;
 
 				AddImageTiled( x, y, emptyWidth + (OldStyle ? OffsetSize * 2 : 0), EntryHeight, EntryGumpID );
 				AddLabel( x + TextOffsetX, y, TextHue, group.Name );
@@ -375,7 +373,7 @@ namespace Server.Gumps
 
 						x += PrevWidth + OffsetSize;
 
-						x -= (OldStyle ? OffsetSize : 0);
+						x -= OldStyle ? OffsetSize : 0;
 
 						AddImageTiled( x, y, emptyWidth + (OldStyle ? OffsetSize * 2 : 0) - OffsetSize - IndentWidth, EntryHeight, EntryGumpID );
 						AddLabel( x + TextOffsetX, y, TextHue, sk == null ? "(null)" : sk.Name );
@@ -419,7 +417,7 @@ namespace Server.Gumps
 						}
 					}
 
-					AddImageTiled( indentMaskX, indentMaskY, IndentWidth + OffsetSize, (group.Skills.Length * (EntryHeight + OffsetSize)) - (i < (m_Groups.Length - 1) ? OffsetSize : 0), BackGumpID + 4 );
+					AddImageTiled( indentMaskX, indentMaskY, IndentWidth + OffsetSize, @group.Skills.Length * (EntryHeight + OffsetSize) - (i < m_Groups.Length - 1 ? OffsetSize : 0), BackGumpID + 4 );
 				}
 			}
 		}

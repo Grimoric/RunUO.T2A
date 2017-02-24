@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Multis;
 
 namespace Server.Items
 {
-	public class ContractOfEmployment : Item
+    public class ContractOfEmployment : Item
 	{
 		public override int LabelNumber{ get{ return 1041243; } } // a contract of employment
 

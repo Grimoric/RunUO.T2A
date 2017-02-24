@@ -1,11 +1,8 @@
 using System;
-using System.Text;
-using Server;
-using Server.Items;
 
 namespace Server.Items
 {
-	public enum TrophyRank
+    public enum TrophyRank
 	{
 		Bronze,
 		Silver,

@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class MetallicClothDyetub : DyeTub
+    public class MetallicClothDyetub : DyeTub
 	{
 		public override int LabelNumber { get { return 1152920; } } // Metallic Cloth ... 
 

@@ -1,9 +1,8 @@
 using System;
-using Server.Items;
 
 namespace Server.Items
 {
-	[Flipable]
+    [Flipable]
 	public class LeafGloves : BaseArmor, IArcaneEquip
 	{
 		public override Race RequiredRace { get { return Race.Elf; } }
@@ -98,7 +97,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool IsArcane
 		{
-			get{ return ( m_MaxArcaneCharges > 0 && m_CurArcaneCharges >= 0 ); }
+			get{ return m_MaxArcaneCharges > 0 && m_CurArcaneCharges >= 0; }
 		}
 
 		public void Update()

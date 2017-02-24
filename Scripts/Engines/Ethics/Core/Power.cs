@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Server.Ethics
 {
-	public abstract class Power
+    public abstract class Power
 	{
 		protected PowerDefinition m_Definition;
 

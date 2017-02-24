@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a demon knight corpse" )]
+    [CorpseName( "a demon knight corpse" )]
 	public class DemonKnight : BaseCreature
 	{
 		public override bool IgnoreYoungProtection { get { return false; } }

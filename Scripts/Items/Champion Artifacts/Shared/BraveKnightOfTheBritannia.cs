@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class BraveKnightOfTheBritannia : Katana
+    public class BraveKnightOfTheBritannia : Katana
 	{
 		public override int LabelNumber{ get{ return 1094909; } } // Brave Knight of The Britannia [Replica]
 

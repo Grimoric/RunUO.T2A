@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Factions
 {
-	public class JoinStoneGump : FactionGump
+    public class JoinStoneGump : FactionGump
 	{
 		private PlayerMobile m_From;
 		private Faction m_Faction;
@@ -30,8 +28,8 @@ namespace Server.Factions
 			AddHtml( 125, 60, 200, 20, faction.Commander != null ? faction.Commander.Name : "Nobody", false, false );
 
 			AddHtmlLocalized( 20, 80, 100, 20, 1011457, false, false ); // Tithe rate : 
-			if ( faction.Tithe >= 0 && faction.Tithe <= 100 && (faction.Tithe % 10) == 0 )
-				AddHtmlLocalized( 125, 80, 350, 20, 1011480 + (faction.Tithe / 10), false, false );
+			if ( faction.Tithe >= 0 && faction.Tithe <= 100 && faction.Tithe % 10 == 0 )
+				AddHtmlLocalized( 125, 80, 350, 20, 1011480 + faction.Tithe / 10, false, false );
 			else
 				AddHtml( 125, 80, 350, 20, faction.Tithe + "%", false, false );
 

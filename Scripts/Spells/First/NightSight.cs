@@ -1,11 +1,8 @@
-using System;
 using Server.Targeting;
-using Server.Network;
-using Server;
 
 namespace Server.Spells.First
 {
-	public class NightSightSpell : MagerySpell
+    public class NightSightSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Night Sight", "In Lor",

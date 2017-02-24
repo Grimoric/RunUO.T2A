@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Spells
 {
-	public class SpellInfo
+    public class SpellInfo
 	{
 		private string m_Name;
 		private string m_Mantra;

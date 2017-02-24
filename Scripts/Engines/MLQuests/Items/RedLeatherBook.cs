@@ -1,9 +1,6 @@
-﻿using System;
-using Server;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	public class RedLeatherBook : BlueBook
+    public class RedLeatherBook : BlueBook
 	{
 		[Constructable]
 		public RedLeatherBook()

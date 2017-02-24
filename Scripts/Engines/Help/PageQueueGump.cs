@@ -1,13 +1,12 @@
 using System;
 using System.IO;
 using System.Collections;
-using Server;
 using Server.Network;
 using Server.Gumps;
 
 namespace Server.Engines.Help
 {
-	public class MessageSentGump : Gump
+    public class MessageSentGump : Gump
 	{
 		private string m_Name, m_Text;
 		private Mobile m_Mobile;
@@ -82,12 +81,12 @@ namespace Server.Engines.Help
 				{
 					PageEntry e = m_List[i];
 
-					if ( i >= 5 && (i % 5) == 0 )
+					if ( i >= 5 && i % 5 == 0 )
 					{
-						Add( new GumpButton( 368, 12, 0xFA5, 0xFA7, 0, GumpButtonType.Page, (i / 5) + 1 ) );
+						Add( new GumpButton( 368, 12, 0xFA5, 0xFA7, 0, GumpButtonType.Page, i / 5 + 1 ) );
 						Add( new GumpLabel( 298, 12, 2100, "Next Page" ) );
-						Add( new GumpPage( (i / 5) + 1 ) );
-						Add( new GumpButton( 12, 12, 0xFAE, 0xFB0, 0, GumpButtonType.Page, (i / 5) ) );
+						Add( new GumpPage( i / 5 + 1 ) );
+						Add( new GumpButton( 12, 12, 0xFAE, 0xFB0, 0, GumpButtonType.Page, i / 5 ) );
 						Add( new GumpLabel( 48, 12, 2100, "Previous Page" ) );
 					}
 
@@ -95,8 +94,8 @@ namespace Server.Engines.Help
 
 					string html = String.Format( "[{0}] {1} <basefont color=#{2:X6}>[<u>{3}</u>]</basefont>", typeString, e.Message, e.Handler == null ? 0xFF0000 : 0xFF, e.Handler == null ? "Unhandled" : "Handling" );
 
-					Add( new GumpHtml( 12, 44 + ((i % 5) * 80), 350, 70, html, true, true ) );
-					Add( new GumpButton( 370, 44 + ((i % 5) * 80) + 24, 0xFA5, 0xFA7, i + 1, GumpButtonType.Reply, 0 ) );
+					Add( new GumpHtml( 12, 44 + i % 5 * 80, 350, 70, html, true, true ) );
+					Add( new GumpButton( 370, 44 + i % 5 * 80 + 24, 0xFA5, 0xFA7, i + 1, GumpButtonType.Reply, 0 ) );
 				}
 			}
 			else
@@ -264,7 +263,7 @@ namespace Server.Engines.Help
 
 			from.CloseGump( typeof( PredefGump ) );
 
-			bool canEdit = ( from.AccessLevel >= AccessLevel.GameMaster );
+			bool canEdit = @from.AccessLevel >= AccessLevel.GameMaster;
 
 			AddPage( 0 );
 
@@ -283,11 +282,11 @@ namespace Server.Engines.Help
 
 				for ( i = 0; i < list.Count; ++i )
 				{
-					if ( i >= 5 && (i % 5) == 0 )
+					if ( i >= 5 && i % 5 == 0 )
 					{
-						AddButton( 368, 10, 0xFA5, 0xFA7, 0, GumpButtonType.Page, (i / 5) + 1 );
+						AddButton( 368, 10, 0xFA5, 0xFA7, 0, GumpButtonType.Page, i / 5 + 1 );
 						AddLabel( 298, 10, 2100, "Next Page" );
-						AddPage( (i / 5) + 1 );
+						AddPage( i / 5 + 1 );
 						AddButton( 12, 10, 0xFAE, 0xFB0, 0, GumpButtonType.Page, i / 5 );
 						AddLabel( 48, 10, 2100, "Previous Page" );
 					}
@@ -296,37 +295,37 @@ namespace Server.Engines.Help
 
 					string html = String.Format( "<u>{0}</u><br>{1}", resp.Title, resp.Message );
 
-					AddHtml( 12, 44 + ((i % 5) * 80), 350, 70, html, true, true );
+					AddHtml( 12, 44 + i % 5 * 80, 350, 70, html, true, true );
 
 					if ( canEdit )
 					{
-						AddButton( 370, 44 + ((i % 5) * 80) + 24, 0xFA5, 0xFA7, 2 + (i * 3), GumpButtonType.Reply, 0 );
+						AddButton( 370, 44 + i % 5 * 80 + 24, 0xFA5, 0xFA7, 2 + i * 3, GumpButtonType.Reply, 0 );
 
 						if ( i > 0 )
-							AddButton( 377, 44 + ((i % 5) * 80) + 2, 0x15E0, 0x15E4, 3 + (i * 3), GumpButtonType.Reply, 0 );
+							AddButton( 377, 44 + i % 5 * 80 + 2, 0x15E0, 0x15E4, 3 + i * 3, GumpButtonType.Reply, 0 );
 						else
-							AddImage( 377, 44 + ((i % 5) * 80) + 2, 0x25E4 );
+							AddImage( 377, 44 + i % 5 * 80 + 2, 0x25E4 );
 
-						if ( i < (list.Count - 1) )
-							AddButton( 377, 44 + ((i % 5) * 80) + 70 - 2 - 16, 0x15E2, 0x15E6, 4 + (i * 3), GumpButtonType.Reply, 0 );
+						if ( i < list.Count - 1 )
+							AddButton( 377, 44 + i % 5 * 80 + 70 - 2 - 16, 0x15E2, 0x15E6, 4 + i * 3, GumpButtonType.Reply, 0 );
 						else
-							AddImage( 377, 44 + ((i % 5) * 80) + 70 - 2 - 16, 0x25E8 );
+							AddImage( 377, 44 + i % 5 * 80 + 70 - 2 - 16, 0x25E8 );
 					}
 				}
 
 				if ( canEdit )
 				{
-					if ( i >= 5 && (i % 5) == 0 )
+					if ( i >= 5 && i % 5 == 0 )
 					{
-						AddButton( 368, 10, 0xFA5, 0xFA7, 0, GumpButtonType.Page, (i / 5) + 1 );
+						AddButton( 368, 10, 0xFA5, 0xFA7, 0, GumpButtonType.Page, i / 5 + 1 );
 						AddLabel( 298, 10, 2100, "Next Page" );
-						AddPage( (i / 5) + 1 );
+						AddPage( i / 5 + 1 );
 						AddButton( 12, 10, 0xFAE, 0xFB0, 0, GumpButtonType.Page, i / 5 );
 						AddLabel( 48, 10, 2100, "Previous Page" );
 					}
 
-					AddButton( 12, 44 + ((i % 5) * 80), 0xFAB, 0xFAD, 1, GumpButtonType.Reply, 0 );
-					AddHtml( 45, 44 + ((i % 5) * 80), 200, 20, Color( "New Response", LabelColor32 ), false, false );
+					AddButton( 12, 44 + i % 5 * 80, 0xFAB, 0xFAD, 1, GumpButtonType.Reply, 0 );
+					AddHtml( 45, 44 + i % 5 * 80, 200, 20, Color( "New Response", LabelColor32 ), false, false );
 				}
 			}
 			else if ( canEdit )
@@ -402,7 +401,7 @@ namespace Server.Engines.Help
 							}
 							case 2: // move down
 							{
-								if ( index < (list.Count - 1) )
+								if ( index < list.Count - 1 )
 								{
 									list.RemoveAt( index );
 									list.Insert( index + 1, resp );
@@ -500,18 +499,18 @@ namespace Server.Engines.Help
 				AddLabel( 18, 38, 2100, "Sender:" );
 				AddLabelCropped( 128, 38, 264, 20, 2100, String.Format( "{0} {1} [{2}]", entry.Sender.RawName, entry.Sender.Location, entry.Sender.Map ) );
 
-				AddButton( 18, bottom - (buttons * 22), 0xFAB, 0xFAD, 8, GumpButtonType.Reply, 0 );
-				AddImageTiled( 52, bottom - (buttons * 22) + 1, 340, 80, 0xA40/*0xBBC*//*0x2458*/ );
-				AddImageTiled( 53, bottom - (buttons * 22) + 2, 338, 78, 0xBBC/*0x2426*/ );
-				AddTextEntry( 55, bottom - (buttons++ * 22) + 2, 336, 78, 0x480, 0, "" );
+				AddButton( 18, bottom - buttons * 22, 0xFAB, 0xFAD, 8, GumpButtonType.Reply, 0 );
+				AddImageTiled( 52, bottom - buttons * 22 + 1, 340, 80, 0xA40/*0xBBC*//*0x2458*/ );
+				AddImageTiled( 53, bottom - buttons * 22 + 2, 338, 78, 0xBBC/*0x2426*/ );
+				AddTextEntry( 55, bottom - buttons++ * 22 + 2, 336, 78, 0x480, 0, "" );
 
-				AddButton( 18, bottom - (buttons * 22), 0xFA5, 0xFA7, 0, GumpButtonType.Page, 2 );
-				AddLabel( 52, bottom - (buttons++ * 22), 2100, "Predefined Response" );
+				AddButton( 18, bottom - buttons * 22, 0xFA5, 0xFA7, 0, GumpButtonType.Page, 2 );
+				AddLabel( 52, bottom - buttons++ * 22, 2100, "Predefined Response" );
 
 				if ( entry.Sender != m )
 				{
-					AddButton( 18, bottom - (buttons * 22), 0xFA5, 0xFA7, 1, GumpButtonType.Reply, 0 );
-					AddLabel( 52, bottom - (buttons++ * 22), 2100, "Go to Sender" );
+					AddButton( 18, bottom - buttons * 22, 0xFA5, 0xFA7, 1, GumpButtonType.Reply, 0 );
+					AddLabel( 52, bottom - buttons++ * 22, 2100, "Go to Sender" );
 				}
 
 				AddLabel(  18, 58, 2100, "Handler:" );
@@ -520,11 +519,11 @@ namespace Server.Engines.Help
 				{
 					AddLabelCropped( 128, 58, 264, 20, 2100, "Unhandled" );
 
-					AddButton( 18, bottom - (buttons * 22), 0xFB1, 0xFB3, 5, GumpButtonType.Reply, 0 );
-					AddLabel( 52, bottom - (buttons++ * 22), 2100, "Delete Page" );
+					AddButton( 18, bottom - buttons * 22, 0xFB1, 0xFB3, 5, GumpButtonType.Reply, 0 );
+					AddLabel( 52, bottom - buttons++ * 22, 2100, "Delete Page" );
 
-					AddButton( 18, bottom - (buttons * 22), 0xFB7, 0xFB9, 4, GumpButtonType.Reply, 0 );
-					AddLabel( 52, bottom - (buttons++ * 22), 2100, "Handle Page" );
+					AddButton( 18, bottom - buttons * 22, 0xFB7, 0xFB9, 4, GumpButtonType.Reply, 0 );
+					AddLabel( 52, bottom - buttons++ * 22, 2100, "Handle Page" );
 				}
 				else
 				{
@@ -532,29 +531,29 @@ namespace Server.Engines.Help
 
 					if ( entry.Handler != m )
 					{
-						AddButton( 18, bottom - (buttons * 22), 0xFA5, 0xFA7, 2, GumpButtonType.Reply, 0 );
-						AddLabel( 52, bottom - (buttons++ * 22), 2100, "Go to Handler" );
+						AddButton( 18, bottom - buttons * 22, 0xFA5, 0xFA7, 2, GumpButtonType.Reply, 0 );
+						AddLabel( 52, bottom - buttons++ * 22, 2100, "Go to Handler" );
 					}
 					else
 					{
-						AddButton( 18, bottom - (buttons * 22), 0xFA2, 0xFA4, 6, GumpButtonType.Reply, 0 );
-						AddLabel( 52, bottom - (buttons++ * 22), 2100, "Abandon Page" );
+						AddButton( 18, bottom - buttons * 22, 0xFA2, 0xFA4, 6, GumpButtonType.Reply, 0 );
+						AddLabel( 52, bottom - buttons++ * 22, 2100, "Abandon Page" );
 
-						AddButton( 18, bottom - (buttons * 22), 0xFB7, 0xFB9, 7, GumpButtonType.Reply, 0 );
-						AddLabel( 52, bottom - (buttons++ * 22), 2100, "Page Handled" );
+						AddButton( 18, bottom - buttons * 22, 0xFB7, 0xFB9, 7, GumpButtonType.Reply, 0 );
+						AddLabel( 52, bottom - buttons++ * 22, 2100, "Page Handled" );
 					}
 				}
 
 				AddLabel(  18, 78, 2100, "Page Location:" );
 				AddLabelCropped( 128, 78, 264, 20, 2100, String.Format( "{0} [{1}]", entry.PageLocation, entry.PageMap ) );
 
-				AddButton( 18, bottom - (buttons * 22), 0xFA5, 0xFA7, 3, GumpButtonType.Reply, 0 );
-				AddLabel( 52, bottom - (buttons++ * 22), 2100, "Go to Page Location" );
+				AddButton( 18, bottom - buttons * 22, 0xFA5, 0xFA7, 3, GumpButtonType.Reply, 0 );
+				AddLabel( 52, bottom - buttons++ * 22, 2100, "Go to Page Location" );
 
 				if ( entry.SpeechLog != null )
 				{
-					AddButton( 18, bottom - (buttons * 22), 0xFA5, 0xFA7, 10, GumpButtonType.Reply, 0 );
-					AddLabel( 52, bottom - (buttons++ * 22), 2100, "View Speech Log" );
+					AddButton( 18, bottom - buttons * 22, 0xFA5, 0xFA7, 10, GumpButtonType.Reply, 0 );
+					AddLabel( 52, bottom - buttons++ * 22, 2100, "View Speech Log" );
 				}
 
 				AddLabel(  18, 98, 2100, "Page Type:" );
@@ -580,8 +579,8 @@ namespace Server.Engines.Help
 
 					for ( int i = 0; i < preresp.Count; ++i )
 					{
-						AddButton( 18, 40 + (i * 22), 0xFA5, 0xFA7, 100 + i, GumpButtonType.Reply, 0 );
-						AddLabel( 52, 40 + (i * 22), 2100, ((PredefinedResponse)preresp[i]).Title );
+						AddButton( 18, 40 + i * 22, 0xFA5, 0xFA7, 100 + i, GumpButtonType.Reply, 0 );
+						AddLabel( 52, 40 + i * 22, 2100, ((PredefinedResponse)preresp[i]).Title );
 					}
 				}
 			}

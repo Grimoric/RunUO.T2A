@@ -1,14 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Server.Items;
-using Server.Targeting;
-using Server.Misc;
 using Server.Engines.CannedEvil;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "the remains of Meraktus" )]
+    [CorpseName( "the remains of Meraktus" )]
 	public class Meraktus : BaseChampion
 	{
 		public override ChampionSkullType SkullType{ get{ return ChampionSkullType.Pain; } }

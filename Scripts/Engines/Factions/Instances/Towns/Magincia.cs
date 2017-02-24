@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Factions
 {
-	public class Magincia : Town
+    public class Magincia : Town
 	{
 		public Magincia()
 		{

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class LightFlowerTapestryEastAddon : BaseAddon
+    public class LightFlowerTapestryEastAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed{ get{ return new LightFlowerTapestryEastDeed(); } }
 

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class JocklesQuicksword : Longsword
+    public class JocklesQuicksword : Longsword
 	{
 		public override int LabelNumber{ get{ return 1077666; } } // Jockles' Quicksword
 

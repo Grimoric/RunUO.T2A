@@ -1,8 +1,4 @@
-using System;
 using System.Xml;
-using Server;
-using Server.Mobiles;
-using Server.Spells;
 using Server.Spells.Seventh;
 using Server.Spells.Fourth;
 using Server.Spells.Sixth;
@@ -10,7 +6,7 @@ using Server.Spells.Chivalry;
 
 namespace Server.Regions
 {
-	public class GreenAcres : BaseRegion
+    public class GreenAcres : BaseRegion
 	{
 		public GreenAcres( XmlElement xml, Map map, Region parent ) : base( xml, map, parent )
 		{

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x2B6E, 0x3165 )]
+    [FlipableAttribute( 0x2B6E, 0x3165 )]
 	public class Circlet : BaseArmor
 	{
 		public override int BasePhysicalResistance{ get{ return 1; } }

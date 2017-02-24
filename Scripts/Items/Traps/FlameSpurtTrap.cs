@@ -85,7 +85,7 @@ namespace Server.Items
 				if ( !mob.Player || !mob.Alive || mob.AccessLevel > AccessLevel.Player )
 					continue;
 
-				if ( ( (this.Z + 8) >= mob.Z && (mob.Z + 16) > this.Z ) )
+				if ( this.Z + 8 >= mob.Z && mob.Z + 16 > this.Z )
 				{
 					foundPlayer = true;
 					break;

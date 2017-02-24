@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Targeting;
-
 namespace Server.Items
 {
-	public class Fish : Item, ICarvable
+    public class Fish : Item, ICarvable
 	{
 		public void Carve( Mobile from, Item item )
 		{

@@ -1,11 +1,9 @@
 using System;
 using Server.Targeting;
-using Server.Items;
-using Server.Network;
 
 namespace Server.Items
 {
-	public abstract class CookableFood : Item
+    public abstract class CookableFood : Item
 	{
 		private int m_CookingLevel;
 
@@ -149,7 +147,7 @@ namespace Server.Items
 				{
 					m_From.EndAction( typeof( CookableFood ) );
 
-					if ( m_From.Map != m_Map || (m_Point != null && m_From.GetDistanceToSqrt( m_Point ) > 3) )
+					if ( m_From.Map != m_Map || m_Point != null && m_From.GetDistanceToSqrt( m_Point ) > 3 )
 					{
 						m_From.SendLocalizedMessage( 500686 ); // You burn the food to a crisp! It's ruined.
 						return;
@@ -717,7 +715,7 @@ namespace Server.Items
 		public BrightlyColoredEggs() : base( 0x9B5, 15 )
 		{
 			Weight = 0.5;
-			Hue = 3 + (Utility.Random( 20 ) * 5);
+			Hue = 3 + Utility.Random( 20 ) * 5;
 		}
 
 		public BrightlyColoredEggs( Serial serial ) : base( serial )
@@ -753,7 +751,7 @@ namespace Server.Items
 		public EasterEggs() : base( 0x9B5, 15 )
 		{
 			Weight = 0.5;
-			Hue = 3 + (Utility.Random( 20 ) * 5);
+			Hue = 3 + Utility.Random( 20 ) * 5;
 		}
 
 		public EasterEggs( Serial serial ) : base( serial )

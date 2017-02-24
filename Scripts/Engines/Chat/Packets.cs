@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Network;
 
 namespace Server.Engines.Chat
 {
-	public sealed class ChatMessagePacket : Packet
+    public sealed class ChatMessagePacket : Packet
 	{
 		public ChatMessagePacket( Mobile who, int number, string param1, string param2 ) : base( 0xB2 )
 		{
@@ -14,7 +13,7 @@ namespace Server.Engines.Chat
 			if ( param2 == null )
 				param2 = String.Empty;
 
-			EnsureCapacity( 13 + ((param1.Length + param2.Length) * 2) );
+			EnsureCapacity( 13 + (param1.Length + param2.Length) * 2 );
 
 			m_Stream.Write( (ushort) (number - 20) );
 

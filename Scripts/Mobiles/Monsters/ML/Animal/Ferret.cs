@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Engines.Quests;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a ferret corpse" )]
+    [CorpseName( "a ferret corpse" )]
 	public class Ferret : BaseCreature
 	{
 		[Constructable]

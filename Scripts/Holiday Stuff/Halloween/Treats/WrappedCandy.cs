@@ -1,9 +1,6 @@
-﻿using System;
-using Server;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	public class WrappedCandy : CandyCane
+    public class WrappedCandy : CandyCane
 	{
 		public override int LabelNumber { get { return 1096950; } } /* wrapped candy */ 
 

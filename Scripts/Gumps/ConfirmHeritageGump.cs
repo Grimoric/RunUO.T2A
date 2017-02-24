@@ -1,11 +1,10 @@
 ﻿using System;
-using Server;
 using Server.Items;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	public class ConfirmHeritageGump : Gump
+    public class ConfirmHeritageGump : Gump
 	{
 		private HeritageToken m_Token;
 		private Type[] m_Selected;

@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 
 namespace Server.Engines.Quests.Matriarch
 {
-	public class SolenMatriarchQuest : QuestSystem
+    public class SolenMatriarchQuest : QuestSystem
 	{
 		private static Type[] m_TypeReferenceTable = new Type[]
 			{

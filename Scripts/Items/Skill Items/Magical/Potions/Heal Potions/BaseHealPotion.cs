@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Network;
 
 namespace Server.Items
 {
-	public abstract class BaseHealPotion : BasePotion
+    public abstract class BaseHealPotion : BasePotion
 	{
 		public abstract int MinHeal { get; }
 		public abstract int MaxHeal { get; }

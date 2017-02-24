@@ -1,7 +1,6 @@
 using System;
 using System.Reflection;
 using System.Collections;
-using Server;
 using Server.Commands.Generic;
 using Server.Network;
 using Server.Prompts;
@@ -9,7 +8,7 @@ using Server.Commands;
 
 namespace Server.Gumps
 {
-	public class SetObjectGump : Gump
+    public class SetObjectGump : Gump
 	{
 		private PropertyInfo m_Property;
 		private Mobile m_Mobile;
@@ -56,7 +55,7 @@ namespace Server.Gumps
 		private static readonly int EntryWidth = 212;
 
 		private static readonly int TotalWidth = OffsetSize + EntryWidth + OffsetSize + SetWidth + OffsetSize;
-		private static readonly int TotalHeight = OffsetSize + (5 * (EntryHeight + OffsetSize));
+		private static readonly int TotalHeight = OffsetSize + 5 * (EntryHeight + OffsetSize);
 
 		private static readonly int BackWidth = BorderSize + TotalWidth + BorderSize;
 		private static readonly int BackHeight = BorderSize + TotalHeight + BorderSize;

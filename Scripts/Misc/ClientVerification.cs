@@ -1,5 +1,4 @@
 using System;
-using Server;
 using System.Diagnostics;
 using System.IO;
 using Server.Network;
@@ -8,7 +7,7 @@ using Server.Mobiles;
 
 namespace Server.Misc
 {
-	public class ClientVerification
+    public class ClientVerification
 	{
 		private enum OldClientResponse
 		{
@@ -129,7 +128,7 @@ namespace Server.Misc
 			if ( state.Mobile == null || state.Mobile.AccessLevel > AccessLevel.Player )
 				return;
 
-			if( Required != null && version < Required && ( m_OldClientResponse == OldClientResponse.Kick ||( m_OldClientResponse == OldClientResponse.LenientKick && (DateTime.Now - state.Mobile.CreationTime) > m_AgeLeniency && state.Mobile is PlayerMobile && ((PlayerMobile)state.Mobile).GameTime > m_GameTimeLeniency )))
+			if( Required != null && version < Required && ( m_OldClientResponse == OldClientResponse.Kick ||m_OldClientResponse == OldClientResponse.LenientKick && DateTime.Now - state.Mobile.CreationTime > m_AgeLeniency && state.Mobile is PlayerMobile && ((PlayerMobile)state.Mobile).GameTime > m_GameTimeLeniency))
 			{
 				kickMessage = String.Format( "This server requires your client version be at least {0}.", Required );
 			}

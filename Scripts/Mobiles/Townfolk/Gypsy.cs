@@ -1,11 +1,8 @@
-using System;
 using Server.Items;
-using Server;
-using Server.Misc;
 
 namespace Server.Mobiles
 {
-	public class Gypsy : BaseCreature
+    public class Gypsy : BaseCreature
 	{
 
 

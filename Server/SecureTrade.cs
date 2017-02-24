@@ -19,14 +19,13 @@
  ***************************************************************************/
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Server.Items;
 using Server.Network;
 
 namespace Server
 {
-	public class SecureTrade
+    public class SecureTrade
 	{
 		private SecureTradeInfo m_From, m_To;
 		private bool m_Valid;
@@ -209,8 +208,8 @@ namespace Server
 			m_From = new SecureTradeInfo( this, from, new SecureTradeContainer( this ) );
 			m_To = new SecureTradeInfo( this, to, new SecureTradeContainer( this ) );
 
-			bool from6017 = ( from.NetState == null ? false : from.NetState.ContainerGridLines );
-			bool to6017   = ( to.NetState == null ? false : to.NetState.ContainerGridLines );
+			bool from6017 = @from.NetState == null ? false : @from.NetState.ContainerGridLines;
+			bool to6017   = to.NetState == null ? false : to.NetState.ContainerGridLines;
 
 			from.Send( new MobileStatus( from, to ) );
 			from.Send( new UpdateSecureTrade( m_From.Container, false, false ) );

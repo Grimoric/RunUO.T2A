@@ -1,12 +1,11 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Targeting;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class GreenThorns : Item
+    public class GreenThorns : Item
 	{
 		public override int LabelNumber { get { return 1060837; } } // green thorns
 
@@ -277,7 +276,7 @@ namespace Server.Items
 				bool contains = false;
 
 				for ( int i = 0; !contains && i < taep.Tiles.Length; i += 2 )
-					contains = ( tileID >= taep.Tiles[i] && tileID <= taep.Tiles[i + 1] );
+					contains = tileID >= taep.Tiles[i] && tileID <= taep.Tiles[i + 1];
 
 				if ( contains )
 				{

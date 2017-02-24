@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Naturalist
 {
-	public class StudyNestsObjective : QuestObjective
+    public class StudyNestsObjective : QuestObjective
 	{
 		public override object Message
 		{

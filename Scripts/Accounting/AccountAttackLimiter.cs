@@ -1,15 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
-using System.Net.Sockets;
-using Server;
 using Server.Network;
 
 namespace Server.Accounting
 {
-	public class AccountAttackLimiter
+    public class AccountAttackLimiter
 	{
 		public static bool Enabled = true;
 
@@ -30,7 +27,7 @@ namespace Server.Accounting
 			if ( accessLog == null )
 				return true;
 
-			return ( DateTime.Now >= (accessLog.LastAccessTime + ComputeThrottle( accessLog.Counts )) );
+			return DateTime.Now >= accessLog.LastAccessTime + ComputeThrottle( accessLog.Counts );
 		}
 
 		private static List<InvalidAccountAccessLog> m_List = new List<InvalidAccountAccessLog>();
@@ -125,7 +122,7 @@ namespace Server.Accounting
 
 		public bool HasExpired
 		{
-			get{ return ( DateTime.Now >= ( m_LastAccessTime + TimeSpan.FromHours( 1.0 ) ) ); }
+			get{ return DateTime.Now >= m_LastAccessTime + TimeSpan.FromHours( 1.0 ); }
 		}
 
 		public int Counts

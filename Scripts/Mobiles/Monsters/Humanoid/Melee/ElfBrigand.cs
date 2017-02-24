@@ -1,14 +1,9 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.ContextMenus;
-using Server.Misc;
-using Server.Network;
 
 namespace Server.Mobiles
 {
-	// TODO: Needs some Spellweaving abilities
-	public class ElfBrigand : BaseCreature
+    // TODO: Needs some Spellweaving abilities
+    public class ElfBrigand : BaseCreature
 	{
 		public override bool ClickTitle{ get{ return false; } }
 

@@ -1,10 +1,8 @@
-using System;
 using System.Collections;
-using Server;
 
 namespace Server.Engines.Mahjong
 {
-	public class MahjongTileTypeGenerator
+    public class MahjongTileTypeGenerator
 	{
 		private ArrayList m_LeftTileTypes;
 

@@ -1,10 +1,8 @@
-using System;
-using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	public class SandMiningBook : Item
+    public class SandMiningBook : Item
 	{
 		public override string DefaultName
 		{

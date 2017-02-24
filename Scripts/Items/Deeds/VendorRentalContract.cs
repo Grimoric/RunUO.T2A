@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Multis;
 using Server.ContextMenus;
 using Server.Gumps;
@@ -10,7 +8,7 @@ using Server.Targeting;
 
 namespace Server.Items
 {
-	public class VendorRentalContract : Item
+    public class VendorRentalContract : Item
 	{
 		public override int LabelNumber{ get{ return 1062332; } } // a vendor rental contract
 

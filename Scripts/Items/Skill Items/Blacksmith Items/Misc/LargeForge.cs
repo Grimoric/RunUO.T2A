@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[Server.Engines.Craft.Forge]
+    [Server.Engines.Craft.Forge]
 	public class LargeForgeWest : Item
 	{
 		private InternalItem m_Item;

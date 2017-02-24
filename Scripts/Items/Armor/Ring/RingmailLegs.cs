@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x13f0, 0x13f1 )]
+    [FlipableAttribute( 0x13f0, 0x13f1 )]
 	public class RingmailLegs : BaseArmor
 	{
 		public override int BasePhysicalResistance{ get{ return 3; } }

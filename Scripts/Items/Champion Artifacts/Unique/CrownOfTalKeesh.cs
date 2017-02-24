@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class CrownOfTalKeesh : Bandana
+    public class CrownOfTalKeesh : Bandana
 	{
 		public override int LabelNumber{ get{ return 1094903; } } // Crown of Tal'Keesh [Replica]
 

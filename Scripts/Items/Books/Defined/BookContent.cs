@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class BookContent
+    public class BookContent
 	{
 		private string m_Title;
 		private string m_Author;

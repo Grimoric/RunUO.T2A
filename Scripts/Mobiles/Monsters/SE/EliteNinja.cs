@@ -1,13 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.ContextMenus;
-using Server.Misc;
-using Server.Network;
 
 namespace Server.Mobiles
 {
-	public class EliteNinja : BaseCreature
+    public class EliteNinja : BaseCreature
 	{
 		public override bool ClickTitle{ get{ return false; } }
 

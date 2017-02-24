@@ -1,10 +1,8 @@
-using System;
-using Server.Mobiles;
 using Server.Engines.PartySystem;
 
 namespace Server.ContextMenus
 {
-	public class RemoveFromPartyEntry : ContextMenuEntry
+    public class RemoveFromPartyEntry : ContextMenuEntry
 	{
 		private Mobile m_From;
 		private Mobile m_Target;

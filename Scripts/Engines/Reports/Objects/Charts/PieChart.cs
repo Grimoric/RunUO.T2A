@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Engines.Reports
 {
-	public class PieChart : Chart
+    public class PieChart : Chart
 	{
 		#region Type Identification
 		public static readonly PersistableType ThisTypeID = new PersistableType( "pc", new ConstructCallback( Construct ) );

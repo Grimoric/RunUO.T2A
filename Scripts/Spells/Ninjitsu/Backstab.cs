@@ -1,14 +1,9 @@
 using System;
-using System.Collections;
-using Server.Network;
-using Server.Items;
-using Server.Mobiles;
-using Server.Targeting;
 using Server.SkillHandlers;
 
 namespace Server.Spells.Ninjitsu
 {
-	public class Backstab : NinjaMove
+    public class Backstab : NinjaMove
 	{
 		public Backstab()
 		{
@@ -23,7 +18,7 @@ namespace Server.Spells.Ninjitsu
 		{
 			double ninjitsu = attacker.Skills[SkillName.Ninjitsu].Value;
 
-			return 1.0 + (ninjitsu / 360) + Tracking.GetStalkingBonus( attacker, defender ) / 100;
+			return 1.0 + ninjitsu / 360 + Tracking.GetStalkingBonus( attacker, defender ) / 100;
 		}
 
 		public override bool Validate( Mobile from )

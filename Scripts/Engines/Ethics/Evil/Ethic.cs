@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Server.Factions;
 
 namespace Server.Ethics.Evil
 {
-	public sealed class EvilEthic : Ethic
+    public sealed class EvilEthic : Ethic
 	{
 		public EvilEthic()
 		{
@@ -31,7 +28,7 @@ namespace Server.Ethics.Evil
 		{
 			Faction fac = Faction.Find( mob );
 
-			return ( fac is Minax || fac is Shadowlords );
+			return fac is Minax || fac is Shadowlords;
 		}
 	}
 }

@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
-using Server.Misc;
 using Server.Items;
-using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	public abstract class BaseGuard : Mobile
+    public abstract class BaseGuard : Mobile
 	{
 		public static void Spawn( Mobile caller, Mobile target )
 		{

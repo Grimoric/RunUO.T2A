@@ -1,5 +1,4 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Multis;
 using Server.Spells;
@@ -7,7 +6,7 @@ using Server.Targeting;
 
 namespace Server.Items
 {
-	public class SpecialFishingNet : Item
+    public class SpecialFishingNet : Item
 	{
 		public override int LabelNumber{ get{ return 1041079; } } // a special fishing net
 
@@ -141,7 +140,7 @@ namespace Server.Items
 			{
 				from.SendLocalizedMessage( 500979 ); // You cannot see that location.
 			}
-			else if ( RequireDeepWater ? FullValidation( map, x, y ) : ( ValidateDeepWater( map, x, y ) || ValidateUndeepWater( map, obj, ref z ) ) )
+			else if ( RequireDeepWater ? FullValidation( map, x, y ) : ValidateDeepWater( map, x, y ) || ValidateUndeepWater( map, obj, ref z ) )
 			{
 				Point3D p = new Point3D( x, y, z );
 
@@ -255,7 +254,7 @@ namespace Server.Items
 
 				LandTile t = map.Tiles.GetLandTile( tx, ty );
 
-				if ( t.Z == p.Z && ( (t.ID >= 0xA8 && t.ID <= 0xAB) || (t.ID >= 0x136 && t.ID <= 0x137) ) && !Spells.SpellHelper.CheckMulti( new Point3D( tx, ty, p.Z ), map ) )
+				if ( t.Z == p.Z && ( t.ID >= 0xA8 && t.ID <= 0xAB || t.ID >= 0x136 && t.ID <= 0x137 ) && !Spells.SpellHelper.CheckMulti( new Point3D( tx, ty, p.Z ), map ) )
 				{
 					x = tx;
 					y = ty;
@@ -327,7 +326,7 @@ namespace Server.Items
 			bool water = false;
 
 			for ( int i = 0; !water && i < m_WaterTiles.Length; i += 2 )
-				water = ( tileID >= m_WaterTiles[i] && tileID <= m_WaterTiles[i + 1] );
+				water = tileID >= m_WaterTiles[i] && tileID <= m_WaterTiles[i + 1];
 
 			return water;
 		}

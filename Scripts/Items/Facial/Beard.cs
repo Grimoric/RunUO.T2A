@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public abstract class Beard : Item
+    public abstract class Beard : Item
 	{
 		/*public static Beard CreateByID( int id, int hue )
 		{
@@ -38,7 +36,7 @@ namespace Server.Items
 
 		public override bool VerifyMove( Mobile from )
 		{
-			return ( from.AccessLevel >= AccessLevel.GameMaster );
+			return @from.AccessLevel >= AccessLevel.GameMaster;
 		}
 
 		public override DeathMoveResult OnParentDeath( Mobile parent )

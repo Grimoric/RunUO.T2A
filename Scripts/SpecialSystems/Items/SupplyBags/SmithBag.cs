@@ -1,10 +1,6 @@
-using System; 
-using Server; 
-using Server.Items;
-
 namespace Server.Items
-{ 
-	public class SmithBag : Bag 
+{
+    public class SmithBag : Bag 
 	{ 
 		[Constructable] 
 		public SmithBag() : this( 5000 ) 

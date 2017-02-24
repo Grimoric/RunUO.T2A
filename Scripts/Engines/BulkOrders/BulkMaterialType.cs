@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Items;
 
 namespace Server.Engines.BulkOrders
 {
-	public enum BulkMaterialType
+    public enum BulkMaterialType
 	{
 		None,
 		DullCopper,

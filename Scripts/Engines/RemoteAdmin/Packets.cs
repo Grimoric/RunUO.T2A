@@ -1,14 +1,12 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Items;
 using Server.Network;
 using Server.Accounting;
-using Server.Commands;
 
 namespace Server.RemoteAdmin
 {
-	public enum LoginResponse : byte
+    public enum LoginResponse : byte
 	{
 		NoUser = 0,
 		BadIP,
@@ -61,7 +59,7 @@ namespace Server.RemoteAdmin
 			string netVer = Environment.Version.ToString();
 			string os = Environment.OSVersion.ToString();
 
-			EnsureCapacity( 1 + 2 + (10*4) + netVer.Length+1 + os.Length+1 );
+			EnsureCapacity( 1 + 2 + 10*4 + netVer.Length+1 + os.Length+1 );
 			int banned = 0;
 			int active = 0;
 
@@ -127,7 +125,7 @@ namespace Server.RemoteAdmin
 	{
 		public CompactServerInfo() : base( 0x51 )
 		{
-			EnsureCapacity( 1 + 2 + (4 * 4) + 8 );
+			EnsureCapacity( 1 + 2 + 4 * 4 + 8 );
 
 			m_Stream.Write( (int)NetState.Instances.Count - 1 );                      // Clients
 			m_Stream.Write( (int)World.Items.Count );                                 // Items

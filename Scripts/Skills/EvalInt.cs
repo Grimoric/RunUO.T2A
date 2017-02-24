@@ -1,12 +1,11 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Network;
 using Server.Targeting;
 
 namespace Server.SkillHandlers
 {
-	public class EvalInt
+    public class EvalInt
 	{
 		public static void Initialize()
 		{
@@ -49,7 +48,7 @@ namespace Server.SkillHandlers
 					int marginOfError = Math.Max( 0, 20 - (int)(from.Skills[SkillName.EvalInt].Value / 5) );
 
 					int intel = targ.Int + Utility.RandomMinMax( -marginOfError, +marginOfError );
-					int mana = ((targ.Mana * 100) / Math.Max( targ.ManaMax, 1 )) + Utility.RandomMinMax( -marginOfError, +marginOfError );
+					int mana = targ.Mana * 100 / Math.Max( targ.ManaMax, 1 ) + Utility.RandomMinMax( -marginOfError, +marginOfError );
 
 					int intMod = intel / 10;
 					int mnMod = mana / 10;
@@ -76,7 +75,7 @@ namespace Server.SkillHandlers
 					} 
 					else 
 					{
-						targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1038166 + (body / 11), from.NetState ); // You cannot judge his/her/its mental abilities.
+						targ.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1038166 + body / 11, from.NetState ); // You cannot judge his/her/its mental abilities.
 					}
 				}
 				else if ( targeted is Item )

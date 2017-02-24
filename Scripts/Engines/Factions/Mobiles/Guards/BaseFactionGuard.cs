@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
@@ -9,7 +7,7 @@ using Server.Factions.AI;
 
 namespace Server.Factions
 {
-	public abstract class BaseFactionGuard : BaseCreature
+    public abstract class BaseFactionGuard : BaseCreature
 	{
 		private Faction m_Faction;
 		private Town m_Town;
@@ -165,7 +163,7 @@ namespace Server.Factions
 		{
 			string name = this.Name;
 
-			return ( name != null && Insensitive.StartsWith( speech, name ) );
+			return name != null && Insensitive.StartsWith( speech, name );
 		}
  
 		public override void OnSpeech( SpeechEventArgs e )
@@ -270,7 +268,7 @@ namespace Server.Factions
 			{
 				string text = String.Concat( "(Guard, ", m_Faction.Definition.FriendlyName, ")" );
 
-				int hue = ( Faction.Find( from ) == m_Faction ? 98 : 38 );
+				int hue = Faction.Find( @from ) == m_Faction ? 98 : 38;
 
 				PrivateOverheadMessage( MessageType.Label, hue, true, text, from.NetState );
 			}

@@ -1,13 +1,9 @@
-using System;
 using System.Collections.Generic;
-using Server.Network;
 using Server.Items;
-using Server.Mobiles;
-using Server.Targeting;
 
 namespace Server.Spells.Bushido
 {
-	public class MomentumStrike : SamuraiMove
+    public class MomentumStrike : SamuraiMove
 	{
 		public MomentumStrike()
 		{

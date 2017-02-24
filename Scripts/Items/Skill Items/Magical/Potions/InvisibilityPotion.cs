@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using Server;
 
 namespace Server.Items
 {
-	public class InvisibilityPotion : BasePotion
+    public class InvisibilityPotion : BasePotion
 	{		
 		public override int LabelNumber{ get{ return 1072941; } } // Potion of Invisibility
 

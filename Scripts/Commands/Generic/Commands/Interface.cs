@@ -2,15 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using Server;
 using Server.Gumps;
 using Server.Network;
-using Server.Targeting;
 using Server.Targets;
 
 namespace Server.Commands.Generic
 {
-	public class InterfaceCommand : BaseCommand
+    public class InterfaceCommand : BaseCommand
 	{
 		public InterfaceCommand()
 		{
@@ -87,7 +85,7 @@ namespace Server.Commands.Generic
 			else
 				AddEntryHeader( 20 );
 
-			AddEntryHtml( 40 + ( m_Columns.Length * 130 ) - 20 + ( ( m_Columns.Length - 2 ) * OffsetSize ), Center( String.Format( "Page {0} of {1}", m_Page+1, (m_List.Count + EntriesPerPage - 1) / EntriesPerPage ) ) );
+			AddEntryHtml( 40 + m_Columns.Length * 130 - 20 + ( m_Columns.Length - 2 ) * OffsetSize, Center( String.Format( "Page {0} of {1}", m_Page+1, (m_List.Count + EntriesPerPage - 1) / EntriesPerPage ) ) );
 
 			if ( (m_Page + 1) * EntriesPerPage < m_List.Count )
 				AddEntryButton( 20, ArrowRightID1, ArrowRightID2, 2, ArrowRightWidth, ArrowRightHeight );
@@ -189,9 +187,9 @@ namespace Server.Commands.Generic
 						AddEntryHtml( 130, value );
 					}
 
-					bool isSelected = ( m_Select != null && obj == m_Select );
+					bool isSelected = m_Select != null && obj == m_Select;
 
-					AddEntryButton( 20, ( isSelected ? 9762 : ArrowRightID1 ), ( isSelected ? 9763 : ArrowRightID2 ), 3 + i, ArrowRightWidth, ArrowRightHeight );
+					AddEntryButton( 20, isSelected ? 9762 : ArrowRightID1, isSelected ? 9763 : ArrowRightID2, 3 + i, ArrowRightWidth, ArrowRightHeight );
 				}
 			}
 
@@ -357,7 +355,7 @@ namespace Server.Commands.Generic
 				{
 					Mobile owner = m_Item.RootParent as Mobile;
 
-					if ( owner != null && (owner.Map != null && owner.Map != Map.Internal) && !BaseCommand.IsAccessible( m_From, owner ) /* !m_From.CanSee( owner )*/ )
+					if ( owner != null && owner.Map != null && owner.Map != Map.Internal && !BaseCommand.IsAccessible( m_From, owner ) /* !m_From.CanSee( owner )*/ )
 					{
 						m_From.SendMessage( "You can not get what you can not see." );
 					}

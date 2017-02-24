@@ -1,11 +1,8 @@
-using System;
-using Server;
-using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Doom
 {
-	public class AcceptConversation : QuestConversation
+    public class AcceptConversation : QuestConversation
 	{
 		public override object Message
 		{

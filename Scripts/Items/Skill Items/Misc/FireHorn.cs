@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Network;
 using Server.Targeting;
 using Server.Spells;
 
 namespace Server.Items
 {
-	public class FireHorn : Item
+    public class FireHorn : Item
 	{
 		public override int LabelNumber{ get{ return 1060456; } } // fire horn
 
@@ -69,7 +68,7 @@ namespace Server.Items
 			int music = from.Skills[SkillName.Musicianship].Fixed;
 
 			int sucChance = 500 + ( music - 775 ) * 2;
-			double dSucChance = ((double)sucChance) / 1000.0;
+			double dSucChance = (double)sucChance / 1000.0;
 
 			if ( !from.CheckSkill( SkillName.Musicianship, dSucChance ) )
 			{
@@ -115,8 +114,8 @@ namespace Server.Items
 				if ( playerVsPlayer )
 					total /= 3;
 
-				maxDamage = ( total * 2 ) / 30;
-				minDamage = ( maxDamage * 7 ) / 10;
+				maxDamage = total * 2 / 30;
+				minDamage = maxDamage * 7 / 10;
 
 				double damage = Utility.RandomMinMax( minDamage, maxDamage );
 

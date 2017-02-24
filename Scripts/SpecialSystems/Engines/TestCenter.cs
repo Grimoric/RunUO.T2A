@@ -66,7 +66,7 @@ namespace Server.Misc
 			}
 			else
 			{
-				if ( (value + from.RawDex + from.RawInt) > from.StatCap )
+				if ( value + @from.RawDex + @from.RawInt > from.StatCap )
 				{
 					from.SendLocalizedMessage( 1005629 ); // You can not exceed the stat cap.  Try setting another stat lower first.
 				}
@@ -86,7 +86,7 @@ namespace Server.Misc
 			}
 			else
 			{
-				if ( (from.RawStr + value + from.RawInt) > from.StatCap )
+				if ( @from.RawStr + value + @from.RawInt > from.StatCap )
 				{
 					from.SendLocalizedMessage( 1005629 ); // You can not exceed the stat cap.  Try setting another stat lower first.
 				}
@@ -106,7 +106,7 @@ namespace Server.Misc
 			}
 			else
 			{
-				if ( (from.RawStr + from.RawDex + value) > from.StatCap )
+				if ( @from.RawStr + @from.RawDex + value > from.StatCap )
 				{
 					from.SendLocalizedMessage( 1005629 ); // You can not exceed the stat cap.  Try setting another stat lower first.
 				}
@@ -122,7 +122,7 @@ namespace Server.Misc
 		{
 			SkillName index;
 
-			if( !Enum.TryParse( name, true, out index ) || ( (int)index > 51) || ( (int)index > 48) )
+			if( !Enum.TryParse( name, true, out index ) || (int)index > 51 || (int)index > 48 )
 			{
 				from.SendLocalizedMessage( 1005631 ); // You have specified an invalid skill to set.
 				return;
@@ -141,7 +141,7 @@ namespace Server.Misc
 					int newFixedPoint = (int)(value * 10.0);
 					int oldFixedPoint = skill.BaseFixedPoint;
 
-					if ( ((skill.Owner.Total - oldFixedPoint) + newFixedPoint) > skill.Owner.Cap )
+					if ( skill.Owner.Total - oldFixedPoint + newFixedPoint > skill.Owner.Cap )
 					{
 						from.SendMessage( "You can not exceed the skill cap.  Try setting another skill lower first." );
 					}
@@ -202,7 +202,7 @@ namespace Server.Misc
 						{
 							string v = strings[i];
 
-							if ( (sb.Length + 1 + v.Length) >= 256 )
+							if ( sb.Length + 1 + v.Length >= 256 )
 							{
 								sender.Send( new AsciiMessage( Server.Serial.MinusOne, -1, MessageType.Label, 0x35, 3, "System", sb.ToString() ) );
 								sb = new StringBuilder();

@@ -1,18 +1,16 @@
-using System;
-
 namespace Server.Items
 {
-	/// <summary>
-	/// This special move represents a significant change to the use of poisons in Age of Shadows.
-	/// Now, only certain weapon types — those that have Infectious Strike as an available special move — will be able to be poisoned.
-	/// Targets will no longer be poisoned at random when hit by poisoned weapons.
-	/// Instead, the wielder must use this ability to deliver the venom.
-	/// While no skill in Poisoning is directly required to use this ability, being knowledgeable in the application and use of toxins
-	/// will allow a character to use Infectious Strike at reduced mana cost and with a chance to inflict more deadly poison on his victim.
-	/// With this change, weapons will no longer be corroded by poison.
-	/// Level 5 poison will be possible when using this special move.
-	/// </summary>
-	public class InfectiousStrike : WeaponAbility
+    /// <summary>
+    /// This special move represents a significant change to the use of poisons in Age of Shadows.
+    /// Now, only certain weapon types — those that have Infectious Strike as an available special move — will be able to be poisoned.
+    /// Targets will no longer be poisoned at random when hit by poisoned weapons.
+    /// Instead, the wielder must use this ability to deliver the venom.
+    /// While no skill in Poisoning is directly required to use this ability, being knowledgeable in the application and use of toxins
+    /// will allow a character to use Infectious Strike at reduced mana cost and with a chance to inflict more deadly poison on his victim.
+    /// With this change, weapons will no longer be corroded by poison.
+    /// Level 5 poison will be possible when using this special move.
+    /// </summary>
+    public class InfectiousStrike : WeaponAbility
 	{
 		public InfectiousStrike()
 		{
@@ -55,7 +53,7 @@ namespace Server.Items
 			if ( maxLevel < 0 ) maxLevel = 0;
 			if ( p.Level > maxLevel ) p = Poison.GetPoison( maxLevel );
 
-			if ( (attacker.Skills[SkillName.Poisoning].Value / 100.0) > Utility.RandomDouble() )
+			if ( attacker.Skills[SkillName.Poisoning].Value / 100.0 > Utility.RandomDouble() )
 			{
 				int level = p.Level + 1;
 				Poison newPoison = Poison.GetPoison( level );

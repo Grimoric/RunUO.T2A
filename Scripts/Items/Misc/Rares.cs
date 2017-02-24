@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class Rope : Item
+    public class Rope : Item
 	{
 		[Constructable]
 		public Rope() : this( 1 )

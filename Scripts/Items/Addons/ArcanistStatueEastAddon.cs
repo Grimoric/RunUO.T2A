@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ArcanistStatueEastAddon : BaseAddon
+    public class ArcanistStatueEastAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed{ get{ return new ArcanistStatueEastDeed(); } }
 

@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a minion's corpse" )]
+    [CorpseName( "a minion's corpse" )]
 	public class ExodusMinion : BaseCreature
 	{
 		private bool m_FieldActive;

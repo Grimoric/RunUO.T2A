@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Items
 {
-	public abstract class StValentinesBear : Item
+    public abstract class StValentinesBear : Item
 	{
 		public override string DefaultName
 		{
@@ -62,12 +61,12 @@ namespace Server.Items
 
 		public bool IsSigned
 		{
-			get { return ( m_Line1 != null || m_Line2 != null || m_Line3 != null ); }
+			get { return m_Line1 != null || m_Line2 != null || m_Line3 != null; }
 		}
 
 		public bool CanSign
 		{
-			get { return ( !IsSigned || DateTime.Now <= m_EditLimit ); }
+			get { return !IsSigned || DateTime.Now <= m_EditLimit; }
 		}
 
 		public StValentinesBear( int itemid, string name )
@@ -223,7 +222,7 @@ namespace Server.Items
 			{
 				TextRelay tr = info.GetTextEntry( idx );
 
-				return ( tr == null ) ? null : tr.Text;
+				return tr == null ? null : tr.Text;
 			}
 		}
 	}

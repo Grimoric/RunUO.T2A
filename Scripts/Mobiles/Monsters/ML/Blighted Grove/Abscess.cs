@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an Abscess corpse" )]
+    [CorpseName( "an Abscess corpse" )]
 	public class Abscess : Hydra
 	{
 		[Constructable]

@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class AncientWildStaff : WildStaff
+    public class AncientWildStaff : WildStaff
 	{
 		public override int LabelNumber{ get{ return 1073550; } } // ancient wild staff
 

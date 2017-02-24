@@ -1,11 +1,8 @@
-using System;
 using Server.Items;
-using Server;
-using Server.Misc;
 
 namespace Server.Mobiles
 {
-	public class Artist : BaseCreature
+    public class Artist : BaseCreature
 	{
 		public override bool CanTeach { get { return true; } }
 

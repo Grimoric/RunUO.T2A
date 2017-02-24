@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class KaburJournal : RedBook
+    public class KaburJournal : RedBook
 	{
 		public static readonly BookContent Content = new BookContent
 			(

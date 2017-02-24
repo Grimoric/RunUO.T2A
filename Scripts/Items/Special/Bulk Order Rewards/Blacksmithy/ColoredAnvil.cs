@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	[Anvil, Flipable( 0xFAF, 0xFB0 )]
+    [Anvil, Flipable( 0xFAF, 0xFB0 )]
 	public class ColoredAnvil : Item
 	{
 		[Constructable]

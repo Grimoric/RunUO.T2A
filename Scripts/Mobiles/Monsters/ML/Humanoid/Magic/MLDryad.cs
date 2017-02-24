@@ -1,9 +1,8 @@
 using System;
-using Server.Engines.Plants;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a dryad's corpse" )]
+    [CorpseName( "a dryad's corpse" )]
 	public class MLDryad : BaseCreature
 	{
 		public override bool InitialInnocent { get { return true; } }

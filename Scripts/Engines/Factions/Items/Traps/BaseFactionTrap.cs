@@ -1,12 +1,10 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Network;
-using Server.Regions;
 
 namespace Server.Factions
 {
-	public enum AllowedPlacing
+    public enum AllowedPlacing
 	{
 		Everywhere,
 
@@ -79,7 +77,7 @@ namespace Server.Factions
 			Effects.PlaySound( this.Location, this.Map, this.EffectSound );
 			DoAttackEffect( from );
 
-			int silverToAward = ( from.Alive ? 20 : 40 );
+			int silverToAward = @from.Alive ? 20 : 40;
 
 			if ( silverToAward > 0 && m_Placer != null && m_Faction != null )
 			{
@@ -158,7 +156,7 @@ namespace Server.Factions
 
 			if ( !CheckDecay() && CheckRange( m.Location, oldLocation, 6 ) )
 			{
-				if ( Faction.Find( m ) != null && ((m.Skills[SkillName.DetectHidden].Value - 80.0) / 20.0) > Utility.RandomDouble() )
+				if ( Faction.Find( m ) != null && (m.Skills[SkillName.DetectHidden].Value - 80.0) / 20.0 > Utility.RandomDouble() )
 					PrivateOverheadLocalizedMessage( m, 1010154, MessageHue, "", "" ); // [Faction Trap]
 			}
 		}
@@ -194,7 +192,7 @@ namespace Server.Factions
 			if ( decayPeriod == TimeSpan.MaxValue )
 				return false;
 
-			if ( (m_TimeOfPlacement + decayPeriod) < DateTime.Now )
+			if ( m_TimeOfPlacement + decayPeriod < DateTime.Now )
 			{
 				Timer.DelayCall( TimeSpan.Zero, new TimerCallback( Delete ) );
 				return true;
@@ -276,7 +274,7 @@ namespace Server.Factions
 			if ( faction == null )
 				return false;
 
-			return ( faction != m_Faction );
+			return faction != m_Faction;
 		}
 	}
 }

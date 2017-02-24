@@ -1,13 +1,9 @@
 using System;
-using System.Collections;
-using Server.Targeting;
-using Server.Network;
-using Server.Mobiles;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	public class ArcherAI : BaseAI
+    public class ArcherAI : BaseAI
 	{
 		public ArcherAI(BaseCreature m) : base (m)
 		{
@@ -42,7 +38,7 @@ namespace Server.Mobiles
 				return true;
 			}
 
-			if ( (m_Mobile.LastMoveTime + TimeSpan.FromSeconds( 1.0 )) < DateTime.Now )
+			if ( m_Mobile.LastMoveTime + TimeSpan.FromSeconds( 1.0 ) < DateTime.Now )
 			{
 				if (WalkMobileRange(m_Mobile.Combatant, 1, true, m_Mobile.RangeFight, m_Mobile.Weapon.MaxRange))
 				{

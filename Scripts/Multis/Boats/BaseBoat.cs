@@ -1,14 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
-using Server.Movement;
 using Server.Network;
 
 namespace Server.Multis
 {
-	public enum BoatOrder
+    public enum BoatOrder
 	{
 		Move,
 		Course,
@@ -85,7 +82,7 @@ namespace Server.Multis
 		public Direction Moving{ get{ return m_Moving; } set{ m_Moving = value; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public bool IsMoving{ get{ return ( m_MoveTimer != null ); } }
+		public bool IsMoving{ get{ return m_MoveTimer != null; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int Speed{ get{ return m_Speed; } set{ m_Speed = value; } }
@@ -202,14 +199,14 @@ namespace Server.Multis
 
 			if ( m_TillerMan != null )
 			{
-				m_TillerMan.Location = new Point3D( X + (xOffset * TillerManDistance) + (m_Facing == Direction.North ? 1 : 0), Y + (yOffset * TillerManDistance), m_TillerMan.Z );
+				m_TillerMan.Location = new Point3D( X + xOffset * TillerManDistance + (m_Facing == Direction.North ? 1 : 0), Y + yOffset * TillerManDistance, m_TillerMan.Z );
 				m_TillerMan.SetFacing( m_Facing );
 				m_TillerMan.InvalidateProperties();
 			}
 
 			if ( m_Hold != null )
 			{
-				m_Hold.Location = new Point3D( X + (xOffset * HoldDistance), Y + (yOffset * HoldDistance), m_Hold.Z );
+				m_Hold.Location = new Point3D( X + xOffset * HoldDistance, Y + yOffset * HoldDistance, m_Hold.Z );
 				m_Hold.SetFacing( m_Facing );
 			}
 		}
@@ -568,9 +565,9 @@ namespace Server.Multis
 			if ( CheckDecay() )
 				return false;
 
-			bool drift = ( dir != Forward && dir != ForwardLeft && dir != ForwardRight );
-			TimeSpan interval = (fast ? (drift ? FastDriftInterval : FastInterval) : (drift ? SlowDriftInterval : SlowInterval));
-			int speed = (fast ? (drift ? FastDriftSpeed : FastSpeed) : (drift ? SlowDriftSpeed : SlowSpeed));
+			bool drift = dir != Forward && dir != ForwardLeft && dir != ForwardRight;
+			TimeSpan interval = fast ? (drift ? FastDriftInterval : FastInterval) : (drift ? SlowDriftInterval : SlowInterval);
+			int speed = fast ? (drift ? FastDriftSpeed : FastSpeed) : (drift ? SlowDriftSpeed : SlowSpeed);
 			int clientSpeed = fast ? 0x4 : 0x3;
 
 			if ( StartMove( dir, speed, clientSpeed, interval, false, true ) )
@@ -589,7 +586,7 @@ namespace Server.Multis
 			if ( CheckDecay() )
 				return false;
 
-			bool drift = ( dir != Forward );
+			bool drift = dir != Forward;
 			TimeSpan interval = drift ? FastDriftInterval : FastInterval;
 			int speed = drift ? FastDriftSpeed : FastSpeed;
 
@@ -679,7 +676,7 @@ namespace Server.Multis
 			List<IEntity> ents = GetMovingEntities();
 
 			if ( ents.Count >= 1 )
-				return ( ents[0] is Mobile ) ? DryDockResult.Mobiles : DryDockResult.Items;
+				return ents[0] is Mobile ? DryDockResult.Mobiles : DryDockResult.Items;
 
 			return DryDockResult.Valid;
 		}
@@ -949,7 +946,7 @@ namespace Server.Multis
 
 				return false;
 			}
-			else if ( ( this.Map != Map.Trammel && this.Map != Map.Felucca ) || NextNavPoint < 0 || NextNavPoint >= MapItem.Pins.Count )
+			else if ( this.Map != Map.Trammel && this.Map != Map.Felucca || NextNavPoint < 0 || NextNavPoint >= MapItem.Pins.Count )
 			{
 				if ( message && TillerMan != null )
 					TillerMan.Say( 1042551 ); // I don't see that navpoint, sir.
@@ -1197,7 +1194,7 @@ namespace Server.Multis
 
 					bool hasWater = false;
 
-					if ( landTile.Z == p.Z && ((landTile.ID >= 168 && landTile.ID <= 171) || (landTile.ID >= 310 && landTile.ID <= 311)) )
+					if ( landTile.Z == p.Z && (landTile.ID >= 168 && landTile.ID <= 171 || landTile.ID >= 310 && landTile.ID <= 311) )
 						hasWater = true;
 
 					int z = p.Z;
@@ -1212,7 +1209,7 @@ namespace Server.Multis
 					for ( int i = 0; i < tiles.Length; ++i )
 					{
 						StaticTile tile = tiles[i];
-						bool isWater = ( tile.ID >= 0x1796 && tile.ID <= 0x17B2 );
+						bool isWater = tile.ID >= 0x1796 && tile.ID <= 0x17B2;
 
 						if ( tile.Z == p.Z && isWater )
 							hasWater = true;
@@ -1352,7 +1349,7 @@ namespace Server.Multis
 
 				return false;
 			}
-			else if ( ( this.Map != Map.Trammel && this.Map != Map.Felucca ) || NextNavPoint < 0 || NextNavPoint >= MapItem.Pins.Count )
+			else if ( this.Map != Map.Trammel && this.Map != Map.Felucca || NextNavPoint < 0 || NextNavPoint >= MapItem.Pins.Count )
 			{
 				if ( message && TillerMan != null )
 					TillerMan.Say( 1042551 ); // I don't see that navpoint, sir.
@@ -1432,7 +1429,7 @@ namespace Server.Multis
 
 			for ( int i = 1; i <= speed; ++i )
 			{
-				if ( !CanFit( new Point3D( X + (i * rx), Y + (i * ry), Z ), Map, ItemID ) )
+				if ( !CanFit( new Point3D( X + i * rx, Y + i * ry, Z ), Map, ItemID ) )
 				{
 					if ( i == 1 )
 					{
@@ -1473,7 +1470,7 @@ namespace Server.Multis
 
 					for ( int j = 1; j <= speed; ++j )
 					{
-						if ( !CanFit( new Point3D( newX + (j * rx), newY + (j * ry), Z ), Map, ItemID ) )
+						if ( !CanFit( new Point3D( newX + j * rx, newY + j * ry, Z ), Map, ItemID ) )
 						{
 							if ( message && m_TillerMan != null )
 								m_TillerMan.Say( 501424 ); // Ar, we've stopped sir.
@@ -1656,10 +1653,10 @@ namespace Server.Multis
 			Movement.Movement.Offset( facing, ref xOffset, ref yOffset );
 
 			if ( m_TillerMan != null )
-				m_TillerMan.Location = new Point3D( X + (xOffset * TillerManDistance) + (facing == Direction.North ? 1 : 0), Y + (yOffset * TillerManDistance), m_TillerMan.Z );
+				m_TillerMan.Location = new Point3D( X + xOffset * TillerManDistance + (facing == Direction.North ? 1 : 0), Y + yOffset * TillerManDistance, m_TillerMan.Z );
 
 			if ( m_Hold != null )
-				m_Hold.Location = new Point3D( X + (xOffset * HoldDistance), Y + (yOffset * HoldDistance), m_Hold.Z );
+				m_Hold.Location = new Point3D( X + xOffset * HoldDistance, Y + yOffset * HoldDistance, m_Hold.Z );
 
 			int count = (int)(m_Facing - old) & 0x7;
 			count /= 2;

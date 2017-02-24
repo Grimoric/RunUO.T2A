@@ -1,9 +1,6 @@
-using System;
-using Server.Mobiles;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "an ostard corpse" )]
+    [CorpseName( "an ostard corpse" )]
 	public class FrenziedOstard : BaseMount
 	{
 		[Constructable]

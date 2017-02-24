@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a ghostly corpse" )]
+    [CorpseName( "a ghostly corpse" )]
 	public class Shade : BaseCreature
 	{
 		[Constructable]

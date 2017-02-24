@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an earth elemental corpse" )]
+    [CorpseName( "an earth elemental corpse" )]
 	public class EarthElemental : BaseCreature
 	{
 		public override double DispelDifficulty{ get{ return 117.5; } }

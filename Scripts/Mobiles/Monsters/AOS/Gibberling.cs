@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a gibberling corpse" )]
+    [CorpseName( "a gibberling corpse" )]
 	public class Gibberling : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()

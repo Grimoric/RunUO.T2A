@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[TypeAlias( "Server.Mobiles.ToxicElemental" )]
+    [TypeAlias( "Server.Mobiles.ToxicElemental" )]
 	[CorpseName( "an acid elemental corpse" )]
 	public class AcidElemental : BaseCreature
 	{

@@ -1,12 +1,8 @@
 using System;
-using System.Collections;
-using Server.Network;
-using Server.Items;
-using Server.Targeting;
 
 namespace Server.Spells.Necromancy
 {
-	public class HorrificBeastSpell : TransformationSpell
+    public class HorrificBeastSpell : TransformationSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Horrific Beast", "Rel Xen Vas Bal",

@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Commands;
-using Server.Engines.MLQuests.Definitions;
 using Server.Engines.MLQuests.Gumps;
 using Server.Engines.MLQuests.Objectives;
 using Server.Gumps;
@@ -11,12 +9,11 @@ using Server.Network;
 using System.Collections;
 using Server.Commands.Generic;
 using Server.Items;
-using Server.Targeting;
 using System.IO;
 
 namespace Server.Engines.MLQuests
 {
-	public static class MLQuestSystem
+    public static class MLQuestSystem
 	{
 		public static bool Enabled { get { return false; } }
 
@@ -76,7 +73,7 @@ namespace Server.Engines.MLQuests
 						if ( type == null || !baseQuestType.IsAssignableFrom( type ) )
 						{
 							if ( Debug )
-								Console.WriteLine( "Warning: {1} quest type '{0}'", split[0], ( type == null ) ? "Unknown" : "Invalid" );
+								Console.WriteLine( "Warning: {1} quest type '{0}'", split[0], type == null ? "Unknown" : "Invalid" );
 
 							continue;
 						}
@@ -101,7 +98,7 @@ namespace Server.Engines.MLQuests
 							if ( questerType == null || !baseQuesterType.IsAssignableFrom( questerType ) )
 							{
 								if ( Debug )
-									Console.WriteLine( "Warning: {1} quester type '{0}'", split[i], ( questerType == null ) ? "Unknown" : "Invalid" );
+									Console.WriteLine( "Warning: {1} quester type '{0}'", split[i], questerType == null ? "Unknown" : "Invalid" );
 
 								continue;
 							}
@@ -262,7 +259,7 @@ namespace Server.Engines.MLQuests
 				return;
 			}
 
-			bool enable = ( e.Length == 2 ) ? e.GetBoolean( 1 ) : true;
+			bool enable = e.Length == 2 ? e.GetBoolean( 1 ) : true;
 
 			quest.SaveEnabled = enable;
 			m.SendMessage( "Serialization for quest {0} is now {1}.", quest.GetType().Name, enable ? "enabled" : "disabled" );
@@ -283,7 +280,7 @@ namespace Server.Engines.MLQuests
 				return;
 			}
 
-			bool enable = ( e.Length == 1 ) ? e.GetBoolean( 0 ) : true;
+			bool enable = e.Length == 1 ? e.GetBoolean( 0 ) : true;
 
 			foreach ( MLQuest quest in m_Quests.Values )
 				quest.SaveEnabled = enable;
@@ -341,7 +338,7 @@ namespace Server.Engines.MLQuests
 				{
 					MLQuestInstance instance = context.FindInstance( questEntry );
 
-					if ( instance != null && ( instance.Quester == quester || ( !questEntry.IsEscort && instance.QuesterType == questerType ) ) )
+					if ( instance != null && ( instance.Quester == quester || !questEntry.IsEscort && instance.QuesterType == questerType ) )
 					{
 						entry = instance;
 						quest = questEntry;
@@ -373,7 +370,7 @@ namespace Server.Engines.MLQuests
 			// 4. Random quest
 			quest = RandomStarterQuest( quester, pm, context );
 
-			return ( quest != null );
+			return quest != null;
 		}
 
 		public static void OnDoubleClick( IQuestGiver quester, PlayerMobile pm )
@@ -665,7 +662,7 @@ namespace Server.Engines.MLQuests
 
 			foreach ( MLQuest quest in quests )
 			{
-				if ( quest.IsChainTriggered || ( context != null && context.IsDoingQuest( quest ) ) )
+				if ( quest.IsChainTriggered || context != null && context.IsDoingQuest( quest ) )
 					continue;
 
 				/*
@@ -743,7 +740,7 @@ namespace Server.Engines.MLQuests
 
 		public static void WriteQuestRef( GenericWriter writer, MLQuest quest )
 		{
-			writer.Write( ( quest != null && quest.SaveEnabled ) ? quest.GetType().FullName : null );
+			writer.Write( quest != null && quest.SaveEnabled ? quest.GetType().FullName : null );
 		}
 
 		public static MLQuest ReadQuestRef( GenericReader reader )

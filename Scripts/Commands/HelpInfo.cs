@@ -1,19 +1,16 @@
 using System;
-using Server;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
 using Server.Gumps;
 using Server.Network;
-using Server.Commands;
 using Server.Commands.Generic;
-using CommandInfo=Server.Commands.Docs.DocCommandEntry;
-using CommandInfoSorter=Server.Commands.Docs.CommandEntrySorter;
+using CommandInfo = Server.Commands.Docs.DocCommandEntry;
+using CommandInfoSorter = Server.Commands.Docs.CommandEntrySorter;
 
 namespace Server.Commands
 {
-	public class HelpInfo
+    public class HelpInfo
 	{
 
 		private static Dictionary<string, CommandInfo> m_HelpInfos = new Dictionary<string, CommandInfo>();
@@ -92,7 +89,7 @@ namespace Server.Commands
 
 				attrs = mi.GetCustomAttributes( typeof( AliasesAttribute ), false );
 
-				AliasesAttribute aliases = (attrs.Length == 0 ? null : attrs[0] as AliasesAttribute);
+				AliasesAttribute aliases = attrs.Length == 0 ? null : attrs[0] as AliasesAttribute;
 
 				string descString = desc.Description.Replace( "<", "(" ).Replace( ">", ")" );
 

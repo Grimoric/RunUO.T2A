@@ -9,10 +9,10 @@
 		public override int DefaultGumpID { get { return 0x3e; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public virtual bool IsEmpty { get { return ( m_Quantity <= 0 ); } }
+		public virtual bool IsEmpty { get { return m_Quantity <= 0; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public virtual bool IsFull { get { return ( m_Quantity >= MaxQuantity ); } }
+		public virtual bool IsFull { get { return m_Quantity >= MaxQuantity; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public virtual int Quantity
@@ -25,11 +25,11 @@
 			{
 				if( value != m_Quantity )
 				{
-					m_Quantity = ( value < 1 ) ? 0 : ( value > MaxQuantity ) ? MaxQuantity : value;
+					m_Quantity = value < 1 ? 0 : value > MaxQuantity ? MaxQuantity : value;
 
-					Movable = ( !IsLockedDown ) ? IsEmpty : false;
+					Movable = !IsLockedDown ? IsEmpty : false;
 
-					ItemID = ( IsEmpty ) ? voidItem_ID : fullItem_ID;
+					ItemID = IsEmpty ? voidItem_ID : fullItem_ID;
 
 					if( !IsEmpty )
 					{
@@ -49,7 +49,7 @@
 		public BaseWaterContainer( int Item_Id, bool filled )
 			: base( Item_Id )
 		{
-			m_Quantity = ( filled ) ? MaxQuantity : 0;
+			m_Quantity = filled ? MaxQuantity : 0;
 		}
 
 		public override void OnDoubleClick( Mobile from )

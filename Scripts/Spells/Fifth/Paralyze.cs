@@ -1,12 +1,10 @@
 using System;
 using Server.Mobiles;
 using Server.Targeting;
-using Server.Network;
-using Server.Spells.Chivalry;
 
 namespace Server.Spells.Fifth
 {
-	public class ParalyzeSpell : MagerySpell
+    public class ParalyzeSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Paralyze", "An Ex Por",
@@ -42,7 +40,7 @@ namespace Server.Spells.Fifth
 
                 // Algorithm: ((20% of magery) + 7) seconds [- 50% if resisted]
 
-                double duration = 7.0 + (Caster.Skills[SkillName.Magery].Value * 0.2);
+                double duration = 7.0 + Caster.Skills[SkillName.Magery].Value * 0.2;
 
 				if ( CheckResisted( m ) )
 					duration *= 0.75;

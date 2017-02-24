@@ -1,12 +1,11 @@
 using System;
-using Server.Mobiles;
 using Server.Items;
 using Server.Spells;
 using Server.Engines.VeteranRewards;
 
 namespace Server.Mobiles
 {
-	public class EtherealMount : Item, IMount, IMountItem, Engines.VeteranRewards.IRewardItem
+    public class EtherealMount : Item, IMount, IMountItem, Engines.VeteranRewards.IRewardItem
 	{
 		private int m_MountedID;
 		private int m_RegularID;
@@ -151,7 +150,7 @@ namespace Server.Mobiles
 				from.SendLocalizedMessage( 1042317, "", 0x41 ); // You may not ride at this time
 				return false;
 			}
-			else if( ( from.Followers + FollowerSlots ) > from.FollowersMax )
+			else if( @from.Followers + FollowerSlots > from.FollowersMax )
 			{
 				from.SendLocalizedMessage( 1049679 ); // You have too many followers to summon your mount.
 				return false;
@@ -379,7 +378,7 @@ namespace Server.Mobiles
 			{
 				get
 				{
-					return TimeSpan.FromSeconds( ( ( m_Mount.IsDonationItem && RewardSystem.GetRewardLevel( m_Rider ) < 3 ) ? ( 7.5 + 2.0 ) : 2.0 ) );
+					return TimeSpan.FromSeconds( m_Mount.IsDonationItem && RewardSystem.GetRewardLevel( m_Rider ) < 3 ? 7.5 + 2.0 : 2.0 );
 				}
 			}
 

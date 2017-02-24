@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Mobiles;
 using Server.Commands;
 
 namespace Server.Engines.Craft
 {
-	public class Recipe
+    public class Recipe
 	{
 		public static void Initialize()
 		{

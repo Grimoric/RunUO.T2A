@@ -1,13 +1,12 @@
 using System;
 using System.IO;
 using System.Text;
-using Server;
 using Server.Network;
 using Server.Guilds;
 
 namespace Server.Misc
 {
-	public class StatusPage : Timer
+    public class StatusPage : Timer
 	{
 		public static bool Enabled = false;
 

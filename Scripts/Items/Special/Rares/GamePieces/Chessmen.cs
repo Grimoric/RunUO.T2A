@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class Chessmen : Item
+    public class Chessmen : Item
 	{
 
 		[Constructable]

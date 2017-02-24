@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x2FCA, 0x3180 )]
+    [FlipableAttribute( 0x2FCA, 0x3180 )]
 	public class LeafTonlet : BaseArmor
 	{
 		public override Race RequiredRace { get { return Race.Elf; } }

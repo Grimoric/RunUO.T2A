@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class DecayedCorpse : Container
+    public class DecayedCorpse : Container
 	{
 		private Timer m_DecayTimer;
 		private DateTime m_DecayTime;

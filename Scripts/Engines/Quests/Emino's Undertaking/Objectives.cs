@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Ninja
 {
-	public class FindEminoBeginObjective : QuestObjective
+    public class FindEminoBeginObjective : QuestObjective
 	{
 		public override object Message
 		{

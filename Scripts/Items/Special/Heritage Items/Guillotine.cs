@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Spells;
 using Server.Network;
 
 namespace Server.Items
 {
-	[Flipable( 0x125E, 0x1230 )]
+    [Flipable( 0x125E, 0x1230 )]
 	public class GuillotineComponent : AddonComponent
 	{
 		public override int LabelNumber { get { return 1024656; } } // Guillotine

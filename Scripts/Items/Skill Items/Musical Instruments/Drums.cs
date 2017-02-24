@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class Drums : BaseInstrument
+    public class Drums : BaseInstrument
 	{
 		[Constructable]
 		public Drums() : base( 0xE9C, 0x38, 0x39 )

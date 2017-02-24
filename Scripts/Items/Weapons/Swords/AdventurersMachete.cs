@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class AdventurersMachete : ElvenMachete
+    public class AdventurersMachete : ElvenMachete
 	{
 		public override int LabelNumber{ get{ return 1073533; } } // adventurer's machete
 

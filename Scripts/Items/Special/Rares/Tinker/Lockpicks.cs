@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class Lockpicks : Item
+    public class Lockpicks : Item
 	{
 
 		[Constructable]

@@ -1,10 +1,6 @@
-using System;
-using Server.Items;
-using Server.Network;
-
 namespace Server.Items
 {
-	public class BlueSnowflake : Item
+    public class BlueSnowflake : Item
 	{
 		[Constructable]
 		public BlueSnowflake() : base( 0x232E )

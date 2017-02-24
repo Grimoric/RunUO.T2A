@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0xDF1, 0xDF0 )]
+    [FlipableAttribute( 0xDF1, 0xDF0 )]
 	public class BlackStaff : BaseStaff
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }

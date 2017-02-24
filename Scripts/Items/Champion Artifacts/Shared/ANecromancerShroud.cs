@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ANecromancerShroud : Robe
+    public class ANecromancerShroud : Robe
 	{
 		public override int LabelNumber{ get{ return 1094913; } } // A Necromancer Shroud [Replica]
 

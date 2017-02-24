@@ -1,10 +1,9 @@
 using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Second
 {
-	public class StrengthSpell : MagerySpell
+    public class StrengthSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Strength", "Uus Mani",

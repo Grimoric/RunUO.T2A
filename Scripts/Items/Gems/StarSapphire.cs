@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class StarSapphire : Item
+    public class StarSapphire : Item
 	{
 		public override double DefaultWeight
 		{

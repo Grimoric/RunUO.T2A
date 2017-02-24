@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Engines.BulkOrders;
 
 namespace Server.Mobiles
 {
-	public class Blacksmith : BaseVendor
+    public class Blacksmith : BaseVendor
 	{
 		private List<SBInfo> m_SBInfos = new List<SBInfo>();
 		protected override List<SBInfo> SBInfos{ get { return m_SBInfos; } }
@@ -62,7 +61,7 @@ namespace Server.Mobiles
 		{
 			base.InitOutfit();
 
-			Item item = ( Utility.RandomBool() ? null : new Server.Items.RingmailChest() );
+			Item item = Utility.RandomBool() ? null : new Server.Items.RingmailChest();
 
 			if ( item != null && !EquipItem( item ) )
 			{
@@ -93,7 +92,7 @@ namespace Server.Mobiles
 				else
 					pm.NextSmithBulkOrder = TimeSpan.FromHours( 1.0 );
 
-				if ( theirSkill >= 70.1 && ((theirSkill - 40.0) / 300.0) > Utility.RandomDouble() )
+				if ( theirSkill >= 70.1 && (theirSkill - 40.0) / 300.0 > Utility.RandomDouble() )
 					return new LargeSmithBOD();
 
 				return SmallSmithBOD.CreateRandomFor( from );
@@ -104,12 +103,12 @@ namespace Server.Mobiles
 
 		public override bool IsValidBulkOrder( Item item )
 		{
-			return ( item is SmallSmithBOD || item is LargeSmithBOD );
+			return item is SmallSmithBOD || item is LargeSmithBOD;
 		}
 
 		public override bool SupportsBulkOrders( Mobile from )
 		{
-			return ( from is PlayerMobile && from.Skills[SkillName.Blacksmith].Base > 0 );
+			return @from is PlayerMobile && @from.Skills[SkillName.Blacksmith].Base > 0;
 		}
 
 		public override TimeSpan GetNextBulkOrder( Mobile from )

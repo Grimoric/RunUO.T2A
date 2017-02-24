@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	public class SewingKit : BaseTool
+    public class SewingKit : BaseTool
 	{
 		public override CraftSystem CraftSystem{ get{ return DefTailoring.CraftSystem; } }
 

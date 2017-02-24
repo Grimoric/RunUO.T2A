@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class LegacyOfTheDreadLord : Bardiche
+    public class LegacyOfTheDreadLord : Bardiche
 	{
 		public override int LabelNumber{ get{ return 1060860; } } // Legacy of the Dread Lord
 		public override int ArtifactRarity{ get{ return 10; } }

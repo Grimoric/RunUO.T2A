@@ -1,14 +1,12 @@
 using System;
-using Server;
 using Server.Gumps;
 using Server.Multis;
-using Server.Mobiles;
 using Server.Network;
 using Server.Targeting;
 
 namespace Server.Items
 {
-	public class WreathAddon : Item, IDyable, IAddon
+    public class WreathAddon : Item, IDyable, IAddon
 	{
 		[Constructable]
 		public WreathAddon() : this( Utility.RandomDyedHue() )

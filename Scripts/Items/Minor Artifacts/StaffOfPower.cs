@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class StaffOfPower : BlackStaff
+    public class StaffOfPower : BlackStaff
 	{
 		public override int LabelNumber{ get{ return 1070692; } }
 

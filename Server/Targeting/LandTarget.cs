@@ -18,11 +18,10 @@
  *
  ***************************************************************************/
 
-using System;
 
 namespace Server.Targeting
 {
-	public class LandTarget : IPoint3D
+    public class LandTarget : IPoint3D
 	{
 		private Point3D m_Location;
 		private int m_TileID;

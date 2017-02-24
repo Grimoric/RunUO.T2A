@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	[PropertyObject]
+    [PropertyObject]
 	public class TalismanAttribute
 	{
 		private Type m_Type;
@@ -100,7 +99,7 @@ namespace Server.Items
 
 		private static bool GetSaveFlag( SaveFlag flags, SaveFlag toGet )
 		{
-			return ( (flags & toGet) != 0 );
+			return (flags & toGet) != 0;
 		}
 
 		[Flags]

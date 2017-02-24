@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class TaintedTreeSample : Item // On OSI the base class is Kindling, and it's ignitable...
+    public class TaintedTreeSample : Item // On OSI the base class is Kindling, and it's ignitable...
 	{
 		public override int LabelNumber{ get{ return 1074997; } } // Tainted Tree Sample
 

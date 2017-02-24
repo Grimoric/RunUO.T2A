@@ -1,17 +1,15 @@
 using System;
 using System.Text;
 using System.Collections.Generic;
-using Server;
 using Server.Prompts;
 using Server.Gumps;
 using Server.Network;
 using Server.Items;
-using Server.Misc;
 using Server.Commands;
 
 namespace Server.Mobiles
 {
-	public interface ITownCrierEntryList
+    public interface ITownCrierEntryList
 	{
 		List<TownCrierEntry> Entries{ get; }
 		TownCrierEntry GetRandomEntry();
@@ -46,7 +44,7 @@ namespace Server.Mobiles
 			}
 		}
 
-		public bool IsEmpty{ get{ return ( m_Entries == null || m_Entries.Count == 0 ); } }
+		public bool IsEmpty{ get{ return m_Entries == null || m_Entries.Count == 0; } }
 
 		public GlobalTownCrierEntryList()
 		{
@@ -117,7 +115,7 @@ namespace Server.Mobiles
 
 		public string[] Lines{ get{ return m_Lines; } }
 		public DateTime ExpireTime{ get{ return m_ExpireTime; } }
-		public bool Expired{ get{ return ( DateTime.Now >= m_ExpireTime ); } }
+		public bool Expired{ get{ return DateTime.Now >= m_ExpireTime; } }
 
 		public TownCrierEntry( string[] lines, TimeSpan duration )
 		{
@@ -263,8 +261,8 @@ namespace Server.Mobiles
 			if ( entries != null )
 				count = entries.Count;
 
-			AddImageTiled( 0, 0, 300, 38 + (count == 0 ? 20 : (count * 85)), 0xA40 );
-			AddAlphaRegion( 1, 1, 298, 36 + (count == 0 ? 20 : (count * 85)) );
+			AddImageTiled( 0, 0, 300, 38 + (count == 0 ? 20 : count * 85), 0xA40 );
+			AddAlphaRegion( 1, 1, 298, 36 + (count == 0 ? 20 : count * 85) );
 
 			AddHtml( 8, 8, 300 - 8 - 30, 20, "<basefont color=#FFFFFF><center>TOWN CRIER MESSAGES</center></basefont>", false, false );
 
@@ -313,9 +311,9 @@ namespace Server.Mobiles
 						sb.Append( tce.Lines[j] );
 					}
 
-					AddHtml( 8, 35 + (i * 85), 254, 80, sb.ToString(), true, true );
+					AddHtml( 8, 35 + i * 85, 254, 80, sb.ToString(), true, true );
 
-					AddButton( 300 - 8 - 26, 35 + (i * 85), 0x15E1, 0x15E5, 2 + i, GumpButtonType.Reply, 0 );
+					AddButton( 300 - 8 - 26, 35 + i * 85, 0x15E1, 0x15E5, 2 + i, GumpButtonType.Reply, 0 );
 				}
 			}
 		}
@@ -448,7 +446,7 @@ namespace Server.Mobiles
 
 		public override bool HandlesOnSpeech( Mobile from )
 		{
-			return ( m_NewsTimer == null && from.Alive && InRange( from, 12 ) );
+			return m_NewsTimer == null && @from.Alive && InRange( @from, 12 );
 		}
 
 		public override void OnSpeech( SpeechEventArgs e )

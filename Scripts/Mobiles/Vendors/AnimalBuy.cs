@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
-using Server.Items;
 
 namespace Server.Mobiles
 {
-	public class AnimalBuyInfo : GenericBuyInfo
+    public class AnimalBuyInfo : GenericBuyInfo
 	{
 		private int m_ControlSlots;
 

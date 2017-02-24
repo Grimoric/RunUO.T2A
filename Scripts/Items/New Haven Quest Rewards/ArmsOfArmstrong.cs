@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ArmsOfArmstrong : LeatherArms
+    public class ArmsOfArmstrong : LeatherArms
 	{
 		public override int LabelNumber{ get{ return 1077675; } } // Arms of Armstrong
 

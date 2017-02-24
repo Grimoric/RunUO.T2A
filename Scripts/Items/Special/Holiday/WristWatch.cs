@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class WristWatch : Clock
+    public class WristWatch : Clock
 	{
 		public override int LabelNumber { get { return 1041421; } } // a wrist watch
 		public override double DefaultWeight { get { return 1.0; } }

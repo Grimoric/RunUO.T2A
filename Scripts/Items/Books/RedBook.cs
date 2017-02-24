@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class RedBook : BaseBook
+    public class RedBook : BaseBook
 	{
 		[Constructable]
 		public RedBook() : base( 0xFF1 )

@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class MarkScroll : SpellScroll
+    public class MarkScroll : SpellScroll
 	{
 		[Constructable]
 		public MarkScroll() : this( 1 )

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ShrineOfWisdomAddon : BaseAddon
+    public class ShrineOfWisdomAddon : BaseAddon
 	{
 		[Constructable]
 		public ShrineOfWisdomAddon()

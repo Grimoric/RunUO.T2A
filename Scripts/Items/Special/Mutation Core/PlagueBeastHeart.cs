@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class PlagueBeastHeart : PlagueBeastInnard
+    public class PlagueBeastHeart : PlagueBeastInnard
 	{
 		private Timer m_Timer;
 

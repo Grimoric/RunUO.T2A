@@ -1,13 +1,10 @@
-using System;
 using System.IO;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 
 namespace Server.Network
 {
-	public sealed class CorpseEquip : Packet
+    public sealed class CorpseEquip : Packet
 	{
 		public CorpseEquip( Mobile beholder, Corpse beheld ) : base( 0x89 )
 		{
@@ -19,7 +16,7 @@ namespace Server.Network
 			if( beheld.FacialHair != null && beheld.FacialHair.ItemID > 0 )
 				count++;
 
-			EnsureCapacity( 8 + (count * 5) );
+			EnsureCapacity( 8 + count * 5 );
 
 			m_Stream.Write( (int) beheld.Serial );
 
@@ -63,7 +60,7 @@ namespace Server.Network
 			if( beheld.FacialHair != null && beheld.FacialHair.ItemID > 0 )
 				count++;
 
-			EnsureCapacity( 5 + (count * 19) );
+			EnsureCapacity( 5 + count * 19 );
 
 			long pos = m_Stream.Position;
 
@@ -136,7 +133,7 @@ namespace Server.Network
 			if (beheld.FacialHair != null && beheld.FacialHair.ItemID > 0)
 				count++;
 
-			EnsureCapacity(5 + (count * 20));
+			EnsureCapacity(5 + count * 20);
 
 			long pos = m_Stream.Position;
 

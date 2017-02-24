@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Spells;
 using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Engines.Doom
 {
-	public class LampRoomBox : Item
+    public class LampRoomBox : Item
 	{
 		private LeverPuzzleController m_Controller;
 		private Mobile m_Wanderer;
@@ -26,7 +24,7 @@ namespace Server.Engines.Doom
 			if ( m_Controller.Enabled )
 				return;
 
-			if ( (m_Wanderer == null || !m_Wanderer.Alive) )
+			if ( m_Wanderer == null || !m_Wanderer.Alive )
 			{
 				m_Wanderer = new WandererOfTheVoid();
 				m_Wanderer.MoveToWorld( LeverPuzzleController.lr_Enter, Map.Malas );

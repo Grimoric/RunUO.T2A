@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Network;
 using Server.Mobiles;
 using Server.Spells;
 
 namespace Server.Items
 {
-	public class SolenAntHoleComponent : AddonComponent
+    public class SolenAntHoleComponent : AddonComponent
 	{
 		public SolenAntHoleComponent( int itemID ) : base( itemID )
 		{

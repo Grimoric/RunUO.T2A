@@ -1,13 +1,11 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Network;
-using Server.Spells;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	public abstract class WeaponAbility
+    public abstract class WeaponAbility
 	{
 		public virtual int BaseMana{ get{ return 0; } }
 
@@ -127,7 +125,7 @@ namespace Server.Items
 
 			if ( from.Mana < mana )
 			{
-				if( ( from is BaseCreature ) && ( from as BaseCreature ).HasManaOveride )
+				if( @from is BaseCreature && ( from as BaseCreature ).HasManaOveride )
 				{
 					return true;
 				}
@@ -318,7 +316,7 @@ namespace Server.Items
 
 			BaseWeapon weapon = m.Weapon as BaseWeapon;
 
-			return ( weapon != null && (weapon.PrimaryAbility == a || weapon.SecondaryAbility == a) );
+			return weapon != null && (weapon.PrimaryAbility == a || weapon.SecondaryAbility == a);
 		}
 
 		public virtual bool ValidatesDuringHit{ get { return true; } }
@@ -384,7 +382,7 @@ namespace Server.Items
 
 		private static WeaponAbilityContext GetContext( Mobile m )
 		{
-			return ( m_PlayersTable[m] as WeaponAbilityContext );
+			return m_PlayersTable[m] as WeaponAbilityContext;
 		}
 
 		private class WeaponAbilityTimer : Timer

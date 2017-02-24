@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class RangersShortbow : MagicalShortbow
+    public class RangersShortbow : MagicalShortbow
 	{
 		public override int LabelNumber{ get{ return 1073509; } } // ranger's shortbow
 

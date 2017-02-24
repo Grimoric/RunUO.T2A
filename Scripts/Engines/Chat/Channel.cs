@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Server;
 
 namespace Server.Engines.Chat
 {
-	public class Channel
+    public class Channel
 	{
 		private string m_Name;
 		private string m_Password;
@@ -76,7 +75,7 @@ namespace Server.Engines.Chat
 
 		public bool CanTalk( ChatUser user )
 		{
-			return ( !m_VoiceRestricted || m_Voices.Contains( user ) || m_Moderators.Contains( user ) );
+			return !m_VoiceRestricted || m_Voices.Contains( user ) || m_Moderators.Contains( user );
 		}
 
 		public bool IsModerator( ChatUser user )
@@ -91,7 +90,7 @@ namespace Server.Engines.Chat
 
 		public bool ValidatePassword( string password )
 		{
-			return ( m_Password == null || Insensitive.Equals( m_Password, password ) );
+			return m_Password == null || Insensitive.Equals( m_Password, password );
 		}
 
 		public bool ValidateModerator( ChatUser user )
@@ -150,7 +149,7 @@ namespace Server.Engines.Chat
 				m_Users.Add( user );
 				user.CurrentChannel = this;
 				
-				if ( user.Mobile.AccessLevel >= AccessLevel.GameMaster || (!m_AlwaysAvailable && m_Users.Count == 1) )
+				if ( user.Mobile.AccessLevel >= AccessLevel.GameMaster || !m_AlwaysAvailable && m_Users.Count == 1 )
 					AddModerator( user );
 
 				SendUsersTo( user );
@@ -230,7 +229,7 @@ namespace Server.Engines.Chat
 				RemoveUser( user );
 				ChatSystem.SendCommandTo( user.Mobile, ChatCommand.AddUserToChannel, user.GetColorCharacter() + user.Username );
 
-				SendMessage( 44, user.Username ) ; // %1 has been kicked out of the conference.
+				SendMessage( 44, user.Username ); // %1 has been kicked out of the conference.
 			}
 
 			if ( wasBanned && moderator != null )
@@ -496,7 +495,7 @@ namespace Server.Engines.Chat
 				m_Channels.Add( channel );
 			}
 
-			ChatUser.GlobalSendCommand( ChatCommand.AddChannel, name, "0" ) ; 
+			ChatUser.GlobalSendCommand( ChatCommand.AddChannel, name, "0" ); 
 
 			return channel;
 		}
@@ -513,7 +512,7 @@ namespace Server.Engines.Chat
 
 			if ( m_Channels.Contains( channel ) && channel.m_Users.Count == 0 )
 			{
-				ChatUser.GlobalSendCommand( ChatCommand.RemoveChannel, channel.Name ) ;
+				ChatUser.GlobalSendCommand( ChatCommand.RemoveChannel, channel.Name );
 
 				channel.m_Moderators.Clear();
 				channel.m_Voices.Clear();

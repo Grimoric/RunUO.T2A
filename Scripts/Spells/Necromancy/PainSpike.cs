@@ -1,12 +1,10 @@
 using System;
 using System.Collections;
-using Server.Network;
-using Server.Items;
 using Server.Targeting;
 
 namespace Server.Spells.Necromancy
 {
-	public class PainSpikeSpell : NecromancerSpell
+    public class PainSpikeSpell : NecromancerSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Pain Spike", "In Sar",
@@ -49,7 +47,7 @@ namespace Server.Spells.Necromancy
 				m.FixedParticles( 0x37C4, 1, 8, 9502, 39, 4, EffectLayer.Head );
 				m.PlaySound( 0x210 );
 
-				double damage = ((GetDamageSkill( Caster ) - GetResistSkill( m )) / 10) + (m.Player ? 18 : 30);
+				double damage = (GetDamageSkill( Caster ) - GetResistSkill( m )) / 10 + (m.Player ? 18 : 30);
 				m.CheckSkill( SkillName.MagicResist, 0.0, 120.0 );	//Skill check for gain
 
 				if ( damage < 1 )

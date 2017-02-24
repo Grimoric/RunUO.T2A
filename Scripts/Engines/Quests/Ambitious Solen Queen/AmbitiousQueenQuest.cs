@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 
 namespace Server.Engines.Quests.Ambitious
 {
-	public class AmbitiousQueenQuest : QuestSystem
+    public class AmbitiousQueenQuest : QuestSystem
 	{
 		private static Type[] m_TypeReferenceTable = new Type[]
 			{

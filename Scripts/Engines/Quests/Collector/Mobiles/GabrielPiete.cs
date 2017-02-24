@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Collector
 {
-	public class GabrielPiete : BaseQuester
+    public class GabrielPiete : BaseQuester
 	{
 		[Constructable]
 		public GabrielPiete() : base( "the renowned minstrel" )
@@ -48,10 +45,10 @@ namespace Server.Engines.Quests.Collector
 			if ( qs == null )
 				return false;
 
-			return ( qs.IsObjectiveInProgress( typeof( FindGabrielObjective ) )
-				|| qs.IsObjectiveInProgress( typeof( FindSheetMusicObjective ) )
-				|| qs.IsObjectiveInProgress( typeof( ReturnSheetMusicObjective ) )
-				|| qs.IsObjectiveInProgress( typeof( ReturnAutographObjective ) ) );
+			return qs.IsObjectiveInProgress( typeof( FindGabrielObjective ) )
+			       || qs.IsObjectiveInProgress( typeof( FindSheetMusicObjective ) )
+			       || qs.IsObjectiveInProgress( typeof( ReturnSheetMusicObjective ) )
+			       || qs.IsObjectiveInProgress( typeof( ReturnAutographObjective ) );
 		}
 
 		public override void OnTalk( PlayerMobile player, bool contextMenu )

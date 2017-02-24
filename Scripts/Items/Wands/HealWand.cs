@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Spells.First;
-using Server.Targeting;
 
 namespace Server.Items
 {
-	public class HealWand : BaseWand
+    public class HealWand : BaseWand
 	{
 		[Constructable]
 		public HealWand() : base( WandEffect.Healing, 10, 25 )

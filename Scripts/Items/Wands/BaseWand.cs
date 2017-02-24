@@ -1,5 +1,4 @@
 using System;
-using System.Text;
 using System.Collections;
 using Server.Network;
 using Server.Targeting;
@@ -7,7 +6,7 @@ using Server.Spells;
 
 namespace Server.Items
 {
-	public enum WandEffect
+    public enum WandEffect
 	{
 		Clumsiness,
 		Identification,

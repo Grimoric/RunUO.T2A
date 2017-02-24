@@ -1,12 +1,10 @@
 using System;
 using System.Collections;
-using Server;
-using Server.Network;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a kappa corpse" )]
+    [CorpseName( "a kappa corpse" )]
 	public class Kappa : BaseCreature
 	{
 
@@ -153,11 +151,11 @@ namespace Server.Mobiles
 				int rand = Utility.Random( 1, 100 );
 				if ( willKill )
 				{
-					amt = ((( rand % 5 ) >> 2 ) + 3);
+					amt = (( rand % 5 ) >> 2 ) + 3;
 				} 
-				if ( ( Hits < 100 ) && ( rand < 21 ) ) 
+				if ( Hits < 100 && rand < 21 ) 
 				{
-					target = ( rand % 2 ) < 1 ? this : from;
+					target = rand % 2 < 1 ? this : from;
 					amt++;
 				}
 				if ( amt > 0 )

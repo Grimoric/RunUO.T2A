@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Engines.Quests.Matriarch
 {
-	public class DontOfferConversation : QuestConversation
+    public class DontOfferConversation : QuestConversation
 	{
 		private bool m_Friend;
 

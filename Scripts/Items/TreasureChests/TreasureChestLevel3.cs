@@ -18,17 +18,17 @@ namespace Server.Items
 			switch( Utility.RandomList( 0, 1, 2 ) )
 			{
 				case 0:// Wooden Chest
-					this.ItemID = ( UseFirstItemId ? 0xe42 : 0xe43 );
+					this.ItemID = UseFirstItemId ? 0xe42 : 0xe43;
 					this.GumpID = 0x49;
 					break;
 
 				case 1:// Metal Chest
-					this.ItemID = ( UseFirstItemId ? 0x9ab : 0xe7c );
+					this.ItemID = UseFirstItemId ? 0x9ab : 0xe7c;
 					this.GumpID = 0x4A;
 					break;
 
 				case 2:// Metal Golden Chest
-					this.ItemID = ( UseFirstItemId ? 0xe40 : 0xe41 );
+					this.ItemID = UseFirstItemId ? 0xe40 : 0xe41;
 					this.GumpID = 0x42;
 					break;
 			}
@@ -56,7 +56,7 @@ namespace Server.Items
 
 			RequiredSkill = 84;
 			LockLevel = this.RequiredSkill - Utility.Random( 1, 10 );
-			MaxLockLevel = this.RequiredSkill + Utility.Random( 1, 10 ); ;
+			MaxLockLevel = this.RequiredSkill + Utility.Random( 1, 10 );
 
 			// According to OSI, loot in level 3 chest is:
 			//  Gold 250 - 350

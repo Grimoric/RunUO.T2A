@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Misc
 {
-	[AttributeUsage( AttributeTargets.Class )]
+    [AttributeUsage( AttributeTargets.Class )]
 	public class DispellableAttribute : Attribute
 	{
 	}

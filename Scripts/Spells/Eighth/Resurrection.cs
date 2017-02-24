@@ -1,11 +1,9 @@
-using System;
 using Server.Targeting;
-using Server.Network;
 using Server.Gumps;
 
 namespace Server.Spells.Eighth
 {
-	public class ResurrectionSpell : MagerySpell
+    public class ResurrectionSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Resurrection", "An Corp",

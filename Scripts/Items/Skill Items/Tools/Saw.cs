@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x1034, 0x1035 )]
+    [FlipableAttribute( 0x1034, 0x1035 )]
 	public class Saw : BaseTool
 	{
 		public override CraftSystem CraftSystem{ get{ return DefCarpentry.CraftSystem; } }

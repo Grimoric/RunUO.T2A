@@ -1,15 +1,13 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Items;
-using Server.Spells;
 using Server.Network;
 using System.Collections.Generic;
 using Server.Engines.CannedEvil;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a corpse of Ilhenir" )]
+    [CorpseName( "a corpse of Ilhenir" )]
 	public class Ilhenir : BaseChampion
 	{
 		public override ChampionSkullType SkullType { get { return ChampionSkullType.Pain; } }
@@ -272,7 +270,7 @@ namespace Server.Mobiles
 
 		private int RandomPoint( int mid )
 		{
-			return ( mid + Utility.RandomMinMax( -2, 2 ) );
+			return mid + Utility.RandomMinMax( -2, 2 );
 		}
 
 		public virtual Point3D GetSpawnPosition( int range )
@@ -285,7 +283,7 @@ namespace Server.Mobiles
 			if( map == null )
 				return from;
 
-			Point3D loc = new Point3D( ( RandomPoint( X ) ), ( RandomPoint( Y ) ), Z );
+			Point3D loc = new Point3D( RandomPoint( X ), RandomPoint( Y ), Z );
 
 			loc.Z = Map.GetAverageZ( loc.X, loc.Y );
 
@@ -379,7 +377,7 @@ namespace Server.Mobiles
 
 					if ( wearable != null && wearable.HitPoints >= 10 && Utility.RandomDouble() < 0.25 )
 					{
-						wearable.HitPoints -= ( wearable.HitPoints == 10 ) ? Utility.Random( 1, 5 ) : 10;
+						wearable.HitPoints -= wearable.HitPoints == 10 ? Utility.Random( 1, 5 ) : 10;
 						damaged = true;
 					}
 				}
@@ -417,7 +415,7 @@ namespace Server.Mobiles
 			m_Corrosive = reader.ReadBool();
 
 			m_Timer = Timer.DelayCall( TimeSpan.Zero, TimeSpan.FromSeconds( 1 ), OnTick );
-			m_Ticks = ( ItemID == 0x122A ) ? 0 : 30;
+			m_Ticks = ItemID == 0x122A ? 0 : 30;
 		}
 	}
 }

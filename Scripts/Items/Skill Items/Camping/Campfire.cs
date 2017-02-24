@@ -1,13 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Server;
 using Server.Network;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	public enum CampfireStatus
+    public enum CampfireStatus
 	{
 		Burning,
 		Extinguishing,

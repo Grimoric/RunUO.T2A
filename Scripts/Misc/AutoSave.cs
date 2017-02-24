@@ -1,11 +1,10 @@
 using System;
 using System.IO;
-using Server;
 using Server.Commands;
 
 namespace Server.Misc
 {
-	public class AutoSave : Timer
+    public class AutoSave : Timer
 	{
 		private static TimeSpan m_Delay = TimeSpan.FromMinutes( 5.0 );
 		private static TimeSpan m_Warning = TimeSpan.Zero;

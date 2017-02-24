@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class MelisandesCorrodedHatchet : Hatchet
+    public class MelisandesCorrodedHatchet : Hatchet
 	{
 		public override int LabelNumber{ get{ return 1072115; } } // Melisande's Corroded Hatchet
 

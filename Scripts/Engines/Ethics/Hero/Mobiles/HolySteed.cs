@@ -1,11 +1,9 @@
 using System;
-using Server;
 using Server.Ethics;
-using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a holy corpse" )]
+    [CorpseName( "a holy corpse" )]
 	public class HolySteed : BaseMount
 	{
 		public override bool IsDispellable { get{ return false; } }

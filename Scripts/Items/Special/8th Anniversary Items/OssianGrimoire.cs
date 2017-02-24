@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	public class OssianGrimoire : NecromancerSpellbook, ITokunoDyable
+    public class OssianGrimoire : NecromancerSpellbook, ITokunoDyable
 	{
 		public override int LabelNumber { get { return 1078148; } } // Ossian Grimoire
 

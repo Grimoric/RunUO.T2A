@@ -1,9 +1,8 @@
-using System;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a tormented minotaur corpse" )]
+    [CorpseName( "a tormented minotaur corpse" )]
 	public class TormentedMinotaur : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()

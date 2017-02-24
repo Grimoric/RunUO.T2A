@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public enum MoonPhase
+    public enum MoonPhase
 	{
 		NewMoon,
 		WaxingCrescentMoon,
@@ -57,7 +56,7 @@ namespace Server.Items
 			GetTime( map, x, y, out hours, out minutes, out totalMinutes );
 
 			if ( map != null )
-				totalMinutes /= 10 + (map.MapIndex * 20);
+				totalMinutes /= 10 + map.MapIndex * 20;
 
 			return (MoonPhase)(totalMinutes % 8);
 		}
@@ -81,7 +80,7 @@ namespace Server.Items
 			// Really on OSI this must be by subserver
 			totalMinutes += x / 16;
 
-			hours = (totalMinutes / 60) % 24;
+			hours = totalMinutes / 60 % 24;
 			minutes = totalMinutes % 60;
 		}
 

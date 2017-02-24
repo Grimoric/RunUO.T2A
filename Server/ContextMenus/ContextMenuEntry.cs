@@ -18,17 +18,15 @@
  *
  ***************************************************************************/
 
-using System;
-using Server;
 using Server.Network;
 
 namespace Server.ContextMenus
 {
-	/// <summary>
-	/// Represents a single entry of a <see cref="ContextMenu">context menu</see>.
-	/// <seealso cref="ContextMenu" />
-	/// </summary>
-	public class ContextMenuEntry
+    /// <summary>
+    /// Represents a single entry of a <see cref="ContextMenu">context menu</see>.
+    /// <seealso cref="ContextMenu" />
+    /// </summary>
+    public class ContextMenuEntry
 	{
 		private int m_Number;
 		private int m_Color;

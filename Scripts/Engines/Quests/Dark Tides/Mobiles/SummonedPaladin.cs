@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 
 namespace Server.Engines.Quests.Necro
 {
-	public class SummonedPaladin : BaseCreature
+    public class SummonedPaladin : BaseCreature
 	{
 		private PlayerMobile m_Necromancer;
 		private bool m_ToDelete;

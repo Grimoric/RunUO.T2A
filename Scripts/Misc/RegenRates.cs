@@ -1,5 +1,4 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Spells;
 using Server.Spells.Necromancy;
@@ -8,7 +7,7 @@ using Server.Mobiles;
 
 namespace Server.Misc
 {
-	public class RegenRates
+    public class RegenRates
 	{
 		[CallPriority( 10 )]
 		public static void Configure()
@@ -28,7 +27,7 @@ namespace Server.Misc
 			double n = (double)cur / max;
 			double v = Math.Sqrt( m.Skills[skill].Value * 0.005 );
 
-			n *= (1.0 - v);
+			n *= 1.0 - v;
 			n += v;
 
 			m.CheckSkill( skill, n );
@@ -51,7 +50,7 @@ namespace Server.Misc
 			if ( from is BaseCreature && !((BaseCreature)from).IsAnimatedDead )
 				points += 4;
 
-			if ( (from is BaseCreature && ((BaseCreature)from).IsParagon) || from is Leviathan )
+			if ( @from is BaseCreature && ((BaseCreature)@from).IsParagon || from is Leviathan )
 				points += 40;
 			if ( points < 0 )
 				points = 0;
@@ -74,7 +73,7 @@ namespace Server.Misc
 
 			int points =(int)(from.Skills[SkillName.Focus].Value * 0.1);
 
-			if( (from is BaseCreature && ((BaseCreature)from).IsParagon) || from is Leviathan )
+			if( @from is BaseCreature && ((BaseCreature)@from).IsParagon || from is Leviathan )
 				points += 40;
 
 			int cappedPoints = AosAttributes.GetValue( from, AosAttribute.RegenStam );
@@ -109,7 +108,7 @@ namespace Server.Misc
 			if ( medPoints <= 0 )
 				rate = 7.0;
 			else if ( medPoints <= 100 )
-				rate = 7.0 - (239*medPoints/2400) + (19*medPoints*medPoints/48000);
+				rate = 7.0 - 239*medPoints/2400 + 19*medPoints*medPoints/48000;
 			else if ( medPoints < 120 )
 				rate = 1.0;
 			else

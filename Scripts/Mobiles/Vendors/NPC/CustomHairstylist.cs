@@ -1,14 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
-using Server.Items;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Mobiles
 {
-	public class CustomHairstylist : BaseVendor
+    public class CustomHairstylist : BaseVendor
 	{
 		private List<SBInfo> m_SBInfos = new List<SBInfo>();
 		protected override List<SBInfo> SBInfos{ get { return m_SBInfos; } }
@@ -148,7 +145,7 @@ namespace Server.Mobiles
 			from.CloseGump( typeof( ChangeHairHueGump ) );
 			from.CloseGump( typeof( ChangeHairstyleGump ) );
 
-			bool isFemale = ( from.Female || from.Body.IsFemale );
+			bool isFemale = @from.Female || @from.Body.IsFemale;
 
 			int balance = Banker.GetBalance( from );
 			int canAfford = 0;
@@ -161,7 +158,7 @@ namespace Server.Mobiles
 
 			AddPage( 0 );
 
-			AddBackground( 50, 10, 450, 100 + (canAfford * 25), 2600 );
+			AddBackground( 50, 10, 450, 100 + canAfford * 25, 2600 );
 
 			AddHtmlLocalized( 100, 40, 350, 20, 1018356, false, false ); // Choose your hairstyle change:
 
@@ -172,11 +169,11 @@ namespace Server.Mobiles
 				if ( balance >= sellList[i].Price && (!sellList[i].FacialHair || !isFemale) )
 				{
 					if ( sellList[i].TitleString != null )
-						AddHtml( 140, 75 + (index * 25), 300, 20, sellList[i].TitleString, false, false );
+						AddHtml( 140, 75 + index * 25, 300, 20, sellList[i].TitleString, false, false );
 					else
-						AddHtmlLocalized( 140, 75 + (index * 25), 300, 20, sellList[i].Title, false, false );
+						AddHtmlLocalized( 140, 75 + index * 25, 300, 20, sellList[i].Title, false, false );
 
-					AddButton( 100, 75 + (index++ * 25), 4005, 4007, 1 + i, GumpButtonType.Reply, 0 );
+					AddButton( 100, 75 + index++ * 25, 4005, 4007, 1 + i, GumpButtonType.Reply, 0 );
 				}
 			}
 		}
@@ -191,7 +188,7 @@ namespace Server.Mobiles
 
 				int balance = Banker.GetBalance( m_From );
 
-				bool isFemale = ( m_From.Female || m_From.Body.IsFemale );
+				bool isFemale = m_From.Female || m_From.Body.IsFemale;
 
 				if ( buyInfo.FacialHair && isFemale )
 				{
@@ -323,8 +320,8 @@ namespace Server.Mobiles
 			{
 				ChangeHairHueEntry entry = entries[i];
 
-				AddLabel( 130, 59 + (i * 22), entry.Hues[0] - 1, entry.Name );
-				AddButton( 207, 60 + (i * 22), 5224, 5224, 0, GumpButtonType.Page, 1 + i );
+				AddLabel( 130, 59 + i * 22, entry.Hues[0] - 1, entry.Name );
+				AddButton( 207, 60 + i * 22, 5224, 5224, 0, GumpButtonType.Page, 1 + i );
 			}
 
 			for ( int i = 0; i < entries.Length; ++i )
@@ -337,8 +334,8 @@ namespace Server.Mobiles
 
 				for ( int j = 0; j < hues.Length; ++j )
 				{
-					AddLabel( 278 + ((j / 16) * 80), 52 + ((j % 16) * 17), hues[j] - 1, name );
-					AddRadio( 260 + ((j / 16) * 80), 52 + ((j % 16) * 17), 210, 211, false, (j * entries.Length) + i );
+					AddLabel( 278 + j / 16 * 80, 52 + j % 16 * 17, hues[j] - 1, name );
+					AddRadio( 260 + j / 16 * 80, 52 + j % 16 * 17, 210, 211, false, j * entries.Length + i );
 				}
 			}
 		}
@@ -459,20 +456,20 @@ namespace Server.Mobiles
 			from.CloseGump( typeof( ChangeHairHueGump ) );
 			from.CloseGump( typeof( ChangeHairstyleGump ) );
 
-			int tableWidth = ( m_FacialHair ? 2 : 3 );
-			int tableHeight = ( (entries.Length + tableWidth - ( m_FacialHair ? 1 : 2 )) / tableWidth );
+			int tableWidth = m_FacialHair ? 2 : 3;
+			int tableHeight = (entries.Length + tableWidth - ( m_FacialHair ? 1 : 2 )) / tableWidth;
 			int offsetWidth = 123;
-			int offsetHeight = ( m_FacialHair ? 70 : 65 );
+			int offsetHeight = m_FacialHair ? 70 : 65;
 
 			AddPage( 0 );
 
-			AddBackground( 0, 0, 81 + (tableWidth * offsetWidth), 105 + (tableHeight * offsetHeight), 2600 );
+			AddBackground( 0, 0, 81 + tableWidth * offsetWidth, 105 + tableHeight * offsetHeight, 2600 );
 
-			AddButton( 45, 45 + (tableHeight * offsetHeight), 4005, 4007, 1, GumpButtonType.Reply, 0 );
-			AddHtmlLocalized( 77, 45 + (tableHeight * offsetHeight), 90, 35, 1006044, false, false ); // Ok
+			AddButton( 45, 45 + tableHeight * offsetHeight, 4005, 4007, 1, GumpButtonType.Reply, 0 );
+			AddHtmlLocalized( 77, 45 + tableHeight * offsetHeight, 90, 35, 1006044, false, false ); // Ok
 
-			AddButton( 81 + (tableWidth * offsetWidth) - 180, 45 + (tableHeight * offsetHeight), 4005, 4007, 0, GumpButtonType.Reply, 0 );
-			AddHtmlLocalized( 81 + (tableWidth * offsetWidth) - 148, 45 + (tableHeight * offsetHeight), 90, 35, 1006045, false, false ); // Cancel
+			AddButton( 81 + tableWidth * offsetWidth - 180, 45 + tableHeight * offsetHeight, 4005, 4007, 0, GumpButtonType.Reply, 0 );
+			AddHtmlLocalized( 81 + tableWidth * offsetWidth - 148, 45 + tableHeight * offsetHeight, 90, 35, 1006045, false, false ); // Cancel
 
 			if ( !facialHair )
 				AddHtmlLocalized( 50, 15, 350, 20, 1018353, false, false ); // <center>New Hairstyle</center>
@@ -486,19 +483,19 @@ namespace Server.Mobiles
 
 				if ( entries[i].GumpID != 0 )
 				{
-					AddRadio( 40 + (xTable * offsetWidth), 70 + (yTable * offsetHeight), 208, 209, false, i );
-					AddBackground( 87 + (xTable * offsetWidth), 50 + (yTable * offsetHeight), 50, 50, 2620 );
-					AddImage( 87 + (xTable * offsetWidth) + entries[i].X, 50 + (yTable * offsetHeight) + entries[i].Y, entries[i].GumpID );
+					AddRadio( 40 + xTable * offsetWidth, 70 + yTable * offsetHeight, 208, 209, false, i );
+					AddBackground( 87 + xTable * offsetWidth, 50 + yTable * offsetHeight, 50, 50, 2620 );
+					AddImage( 87 + xTable * offsetWidth + entries[i].X, 50 + yTable * offsetHeight + entries[i].Y, entries[i].GumpID );
 				}
 				else if ( !facialHair )
 				{
-					AddRadio( 40 + ((xTable + 1) * offsetWidth), 240, 208, 209, false, i );
-					AddHtmlLocalized( 60 + ((xTable + 1) * offsetWidth), 240, 85, 35, 1011064, false, false ); // Bald
+					AddRadio( 40 + (xTable + 1) * offsetWidth, 240, 208, 209, false, i );
+					AddHtmlLocalized( 60 + (xTable + 1) * offsetWidth, 240, 85, 35, 1011064, false, false ); // Bald
 				}
 				else
 				{
-					AddRadio( 40 + (xTable * offsetWidth), 70 + (yTable * offsetHeight), 208, 209, false, i );
-					AddHtmlLocalized( 60 + (xTable * offsetWidth), 70 + (yTable * offsetHeight), 85, 35, 1011064, false, false ); // Bald
+					AddRadio( 40 + xTable * offsetWidth, 70 + yTable * offsetHeight, 208, 209, false, i );
+					AddHtmlLocalized( 60 + xTable * offsetWidth, 70 + yTable * offsetHeight, 85, 35, 1011064, false, false ); // Bald
 				}
 			}
 		}
@@ -534,7 +531,7 @@ namespace Server.Mobiles
 
 						if ( entry.ItemID == 0 )
 						{
-							if ( m_FacialHair ? (facialHairID == 0) : (hairID == 0) )
+							if ( m_FacialHair ? facialHairID == 0 : hairID == 0 )
 								return;
 
 							if ( Banker.Withdraw( m_From, m_Price ) )

@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class GreaterHealScroll : SpellScroll
+    public class GreaterHealScroll : SpellScroll
 	{
 		[Constructable]
 		public GreaterHealScroll() : this( 1 )

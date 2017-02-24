@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a Putrefier corpse" )]
+    [CorpseName( "a Putrefier corpse" )]
 	public class Putrefier : Balron
 	{
 		[Constructable]

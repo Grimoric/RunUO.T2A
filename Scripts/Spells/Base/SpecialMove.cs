@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Server;
-using Server.Items;
-using Server.Mobiles;
 using Server.Network;
 using Server.Spells.Ninjitsu;
 using Server.Spells.Bushido;
 
 namespace Server.Spells
 {
-	public abstract class SpecialMove
+    public abstract class SpecialMove
 	{
 		public virtual int BaseMana{ get{ return 0; } }
 
@@ -266,7 +263,7 @@ namespace Server.Spells
 
 		private static SpecialMoveContext GetContext( Mobile m )
 		{
-			return ( m_PlayersTable.ContainsKey( m ) ? m_PlayersTable[m] : null );
+			return m_PlayersTable.ContainsKey( m ) ? m_PlayersTable[m] : null;
 		}
 
 		public static bool GetContext( Mobile m, Type type )
@@ -277,7 +274,7 @@ namespace Server.Spells
 			if ( context == null )
 				return false;
 
-			return ( context.Type == type );
+			return context.Type == type;
 		}
 
 		private class SpecialMoveTimer : Timer

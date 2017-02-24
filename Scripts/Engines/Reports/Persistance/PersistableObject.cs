@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-
 namespace Server.Engines.Reports
 {
-	public abstract class PersistableObject
+    public abstract class PersistableObject
 	{
 		public abstract PersistableType TypeID{ get; }
 

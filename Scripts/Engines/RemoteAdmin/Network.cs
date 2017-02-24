@@ -1,5 +1,4 @@
 using System;
-using Server;
 using System.Text;
 using System.Collections;
 using Server.Accounting;
@@ -7,7 +6,7 @@ using Server.Network;
 
 namespace Server.RemoteAdmin
 {
-	public class AdminNetwork
+    public class AdminNetwork
 	{
 		private const string ProtocolVersion = "2";
 

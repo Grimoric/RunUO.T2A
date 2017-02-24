@@ -1,12 +1,11 @@
 using System;
-using Server;
 using Server.Gumps;
 using Server.Mobiles;
 using Server.Targeting;
 
 namespace Server.SkillHandlers
 {
-	public class AnimalLore
+    public class AnimalLore
 	{
 		public static void Initialize()
 		{
@@ -151,7 +150,7 @@ namespace Server.SkillHandlers
 			AddImage( 140, 138, 2091 );
 			AddImage( 140, 335, 2091 );
 
-			int pages = 3 ;
+			int pages = 3;
 			int page = 0;
 
 
@@ -284,7 +283,7 @@ namespace Server.SkillHandlers
 			AddImage( 128, 224, 2086 );
 			AddHtmlLocalized( 147, 222, 160, 18, 1049594, 200, false, false ); // Loyalty Rating
 
-			AddHtmlLocalized( 153, 240, 160, 18, (!c.Controlled || c.Loyalty == 0) ? 1061643 : 1049595 + (c.Loyalty / 10), LabelColor, false, false );
+			AddHtmlLocalized( 153, 240, 160, 18, !c.Controlled || c.Loyalty == 0 ? 1061643 : 1049595 + c.Loyalty / 10, LabelColor, false, false );
 
 			AddButton( 340, 358, 5601, 5605, 0, GumpButtonType.Page, 1 );
 			AddButton( 317, 358, 5603, 5607, 0, GumpButtonType.Page, page - 1 );

@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Targeting;
 using Server.Items;
 
 namespace Server.SkillHandlers
 {
-	public class Inscribe
+    public class Inscribe
 	{
 		public static void Initialize()
 		{

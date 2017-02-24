@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x143E, 0x143F )]
+    [FlipableAttribute( 0x143E, 0x143F )]
 	public class Halberd : BasePoleArm
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }

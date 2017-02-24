@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class TheDragonsTail : NoDachi
+    public class TheDragonsTail : NoDachi
 	{
 		public override int LabelNumber { get { return 1078015; } } // The Dragon's Tail
 

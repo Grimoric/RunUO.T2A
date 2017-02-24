@@ -1,9 +1,8 @@
 using System;
-using Server.Mobiles;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x13E3, 0x13E4 )]
+    [FlipableAttribute( 0x13E3, 0x13E4 )]
 	public class HammerOfHephaestus : SmithHammer
 	{
 		public override int LabelNumber{ get{ return 1077740; } } // Hammer of Hephaestus

@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using Server;
 
 namespace Server
 {
-	public class NameList
+    public class NameList
 	{
 		private string m_Type;
 		private string[] m_List;

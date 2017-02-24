@@ -1,14 +1,11 @@
 using System;
-using Server;
-using Server.Targeting;
-using System.Collections;
 using System.Collections.Generic;
 using Server.ContextMenus;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x27AA, 0x27F5 )]
+    [FlipableAttribute( 0x27AA, 0x27F5 )]
 	public class Fukiya : Item, INinjaWeapon
 	{
 		public virtual int WrongAmmoMessage { get { return 1063329; } } //You can only load fukiya darts

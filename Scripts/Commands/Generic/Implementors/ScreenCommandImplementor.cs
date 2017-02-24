@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Commands.Generic
 {
-	public class ScreenCommandImplementor : BaseCommandImplementor
+    public class ScreenCommandImplementor : BaseCommandImplementor
 	{
 		public ScreenCommandImplementor()
 		{

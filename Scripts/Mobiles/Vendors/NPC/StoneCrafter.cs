@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
-using Server;
 
 namespace Server.Mobiles
 {
-	[TypeAlias( "Server.Mobiles.GargoyleStonecrafter" )]
+    [TypeAlias( "Server.Mobiles.GargoyleStonecrafter" )]
 	public class StoneCrafter : BaseVendor
 	{
 		private List<SBInfo> m_SBInfos = new List<SBInfo>();

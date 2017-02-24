@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
 using Server.Network;
 using Server.Targeting;
 using Server.Prompts;
 
 namespace Server.Items
 {
-	public enum KeyType
+    public enum KeyType
 	{
 		Copper = 0x100E,
 		Gold   = 0x100F,

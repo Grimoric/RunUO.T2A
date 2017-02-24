@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[Flipable( 0x1055, 0x1056 )]
+    [Flipable( 0x1055, 0x1056 )]
 	public class Hinge : Item
 	{
 		[Constructable]

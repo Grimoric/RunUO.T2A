@@ -1,12 +1,10 @@
 using System;
-using Server;
 using Server.Network;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Server.Items
 {
-	public class WarningItem : Item
+    public class WarningItem : Item
 	{
 		private string m_WarningString;
 		private int m_WarningNumber;
@@ -96,7 +94,7 @@ namespace Server.Items
 
 		public virtual void Broadcast( Mobile triggerer )
 		{
-			if ( m_Broadcasting || (DateTime.Now < (m_LastBroadcast + m_ResetDelay)) )
+			if ( m_Broadcasting || DateTime.Now < m_LastBroadcast + m_ResetDelay )
 				return;
 
 			m_LastBroadcast = DateTime.Now;

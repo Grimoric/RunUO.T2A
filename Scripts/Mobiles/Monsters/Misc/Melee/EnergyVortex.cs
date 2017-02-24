@@ -1,11 +1,8 @@
 using System;
-using Server;
-using Server.Items;
-using System.Collections;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an energy vortex corpse" )]
+    [CorpseName( "an energy vortex corpse" )]
 	public class EnergyVortex : BaseCreature
 	{
 		public override bool DeleteCorpseOnDeath { get { return Summoned; } }

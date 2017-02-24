@@ -1,14 +1,9 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Guilds;
 using Server.Network;
-using Server.Prompts;
-using Server.Targeting;
 
 namespace Server.Gumps
 {
-	public class GuildGump : Gump
+    public class GuildGump : Gump
 	{
 		private Mobile m_Mobile;
 		private Guild m_Guild;
@@ -128,22 +123,22 @@ namespace Server.Gumps
 
 		public static bool BadLeader( Mobile m, Guild g )
 		{
-			if ( m.Deleted || g.Disbanded || (m.AccessLevel < AccessLevel.GameMaster && g.Leader != m) )
+			if ( m.Deleted || g.Disbanded || m.AccessLevel < AccessLevel.GameMaster && g.Leader != m )
 				return true;
 
 			Item stone = g.Guildstone;
 
-			return ( stone == null || stone.Deleted || !m.InRange( stone.GetWorldLocation(), 2 ) );
+			return stone == null || stone.Deleted || !m.InRange( stone.GetWorldLocation(), 2 );
 		}
 
 		public static bool BadMember( Mobile m, Guild g )
 		{
-			if ( m.Deleted || g.Disbanded || (m.AccessLevel < AccessLevel.GameMaster && !g.IsMember( m )) )
+			if ( m.Deleted || g.Disbanded || m.AccessLevel < AccessLevel.GameMaster && !g.IsMember( m ) )
 				return true;
 
 			Item stone = g.Guildstone;
 
-			return ( stone == null || stone.Deleted || !m.InRange( stone.GetWorldLocation(), 2 ) );
+			return stone == null || stone.Deleted || !m.InRange( stone.GetWorldLocation(), 2 );
 		}
 
 		public override void OnResponse( NetState sender, RelayInfo info )

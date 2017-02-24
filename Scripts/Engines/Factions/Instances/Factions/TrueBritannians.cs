@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Factions
 {
-	public class TrueBritannians : Faction
+    public class TrueBritannians : Faction
 	{
 		private static Faction m_Instance;
 

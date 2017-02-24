@@ -3,9 +3,7 @@ using System.IO;
 using System.Text;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Misc;
-using Server.Items;
 using Server.Guilds;
 using Server.Mobiles;
 using Server.Accounting;
@@ -13,7 +11,7 @@ using Server.Commands;
 
 namespace Server.Engines.MyRunUO
 {
-	public class MyRunUO : Timer
+    public class MyRunUO : Timer
 	{
 		private static double CpuInterval = 0.1; // Processor runs every 0.1 seconds
 		private static double CpuPercent = 0.25; // Processor runs for 25% of Interval, or ~25ms. This should take around 25% cpu
@@ -175,7 +173,7 @@ namespace Server.Engines.MyRunUO
 				case Stage.DumpingGuilds: DumpGuilds( endTime ); break;
 			}
 
-			return ( m_Stage == Stage.Complete );
+			return m_Stage == Stage.Complete;
 		}
 
 		private static ArrayList m_MobilesToUpdate = new ArrayList();
@@ -352,13 +350,13 @@ namespace Server.Engines.MyRunUO
 				guildTitle = SafeString( guildTitle );
 
 			string notoTitle = SafeString( Titles.ComputeTitle( null, mob ) );
-			string female = ( mob.Female ? "1" : "0" );
+			string female = mob.Female ? "1" : "0";
 			
-			bool pubBool = ( mob is PlayerMobile ) && ( ((PlayerMobile)mob).PublicMyRunUO );
+			bool pubBool = mob is PlayerMobile && ((PlayerMobile)mob).PublicMyRunUO;
 
-			string pubString = ( pubBool ? "1" : "0" );
+			string pubString = pubBool ? "1" : "0";
 
-			string guildId = ( mob.Guild == null ? "NULL" : mob.Guild.Id.ToString() );
+			string guildId = mob.Guild == null ? "NULL" : mob.Guild.Id.ToString();
 
 			if ( Config.LoadDataInFile )
 			{

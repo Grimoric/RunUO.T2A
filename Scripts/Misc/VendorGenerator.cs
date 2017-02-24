@@ -100,20 +100,20 @@ namespace Server
 		{
 			itemID &= TileData.MaxLandValue;
 
-			return ( itemID >= 0x406 && itemID <= 0x51A );
+			return itemID >= 0x406 && itemID <= 0x51A;
 		}
 
 		private static bool IsStaticFloor( int itemID )
 		{
-			return ( itemID >= 0x495 && itemID <= 0x514 )
-				|| ( itemID >= 0x519 && itemID <= 0x53A );
+			return itemID >= 0x495 && itemID <= 0x514
+				|| itemID >= 0x519 && itemID <= 0x53A;
 		}
 
 		private static bool IsDisplayCase( int itemID )
 		{
-			return ( itemID >= 0xB00 && itemID <= 0xB02 )
-				|| ( itemID >= 0xB06 && itemID <= 0xB0A )
-				|| ( itemID >= 0xB0D && itemID <= 0xB17 );
+			return itemID >= 0xB00 && itemID <= 0xB02
+				|| itemID >= 0xB06 && itemID <= 0xB0A
+				|| itemID >= 0xB0D && itemID <= 0xB17;
 		}
 
 		private static void Process( Map map, Rectangle2D[] regions )
@@ -398,7 +398,7 @@ namespace Server
 			if ( itemID >= 0xF78 && itemID <= 0xF91 )
 				res |= ShopFlags.Reagent;
 
-			if ( (itemID >= 0xE35 && itemID <= 0xE3A) || (itemID >= 0xEF4 && itemID <= 0xEF9) || (itemID >= 0x1F2D && itemID <= 0x1F72) )
+			if ( itemID >= 0xE35 && itemID <= 0xE3A || itemID >= 0xEF4 && itemID <= 0xEF9 || itemID >= 0x1F2D && itemID <= 0x1F72 )
 				res |= ShopFlags.Scroll;
 
 			if ( itemID == 0xE38 || itemID == 0xEFA )
@@ -462,7 +462,7 @@ namespace Server
 			map.GetAverageZ( x, y, ref lowZ, ref avgZ, ref topZ );
 			TileFlag landFlags = TileData.LandTable[lt.ID & TileData.MaxLandValue].Flags;
 
-			if ( (landFlags & TileFlag.Impassable) != 0 && topZ > z && (z + 16) > lowZ )
+			if ( (landFlags & TileFlag.Impassable) != 0 && topZ > z && z + 16 > lowZ )
 				return false;
 			else if ( (landFlags & TileFlag.Impassable) == 0 && z == avgZ && !lt.Ignored )
 				hasSurface = true;
@@ -481,9 +481,9 @@ namespace Server
 				surface = id.Surface;
 				impassable = id.Impassable;
 
-				if ( (surface || impassable) && (staticTiles[i].Z + id.CalcHeight) > z && (z + 16) > staticTiles[i].Z )
+				if ( (surface || impassable) && staticTiles[i].Z + id.CalcHeight > z && z + 16 > staticTiles[i].Z )
 					return false;
-				else if ( surface && !impassable && z == (staticTiles[i].Z + id.CalcHeight) )
+				else if ( surface && !impassable && z == staticTiles[i].Z + id.CalcHeight )
 					hasSurface = true;
 			}
 
@@ -500,9 +500,9 @@ namespace Server
 					surface = id.Surface;
 					impassable = id.Impassable;
 
-					if ( (surface || impassable) && (item.Z + id.CalcHeight) > z && (z + 16) > item.Z )
+					if ( (surface || impassable) && item.Z + id.CalcHeight > z && z + 16 > item.Z )
 						return false;
-					else if ( surface && !impassable && z == (item.Z + id.CalcHeight) )
+					else if ( surface && !impassable && z == item.Z + id.CalcHeight )
 						hasSurface = true;
 				}
 			}

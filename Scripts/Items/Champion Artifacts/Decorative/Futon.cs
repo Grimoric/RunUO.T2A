@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[Flipable]
+    [Flipable]
 	public class Futon : Item
 	{
 		[Constructable]

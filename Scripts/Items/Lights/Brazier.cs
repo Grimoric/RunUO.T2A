@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class Brazier : BaseLight
+    public class Brazier : BaseLight
 	{
 		public override int LitItemID{ get { return 0xE31; } }
 		

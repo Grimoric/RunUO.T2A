@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class MonsterousInterredGrizzleMaggots : Item
+    public class MonsterousInterredGrizzleMaggots : Item
 	{
 		public override int LabelNumber{ get{ return 1075090; } } // Monsterous Interred Grizzle Maggots
 

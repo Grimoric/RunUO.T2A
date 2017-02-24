@@ -1,5 +1,3 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Multis;
 using Server.Network;
@@ -7,8 +5,8 @@ using Server.Targeting;
 using Server.Engines.VeteranRewards;
 
 namespace Server.Items
-{	
-	public class DecorativeShield : Item, IAddon, IRewardItem
+{
+    public class DecorativeShield : Item, IAddon, IRewardItem
 	{
 		public override bool ForceShowProperties{ get{ return ObjectPropertyList.Enabled; } }
 

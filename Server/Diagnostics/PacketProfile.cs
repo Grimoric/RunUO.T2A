@@ -20,11 +20,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
-namespace Server.Diagnostics {
-	public abstract class BasePacketProfile : BaseProfile {
+namespace Server.Diagnostics
+{
+    public abstract class BasePacketProfile : BaseProfile {
 		private long _totalLength;
 
 		public long TotalLength {

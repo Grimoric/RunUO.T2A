@@ -1,11 +1,9 @@
 using System;
-using Server;
-using Server.Network;
 using Server.Engines.PartySystem;
 
 namespace Server.Items
 {
-	public class MoonstoneGate : Moongate
+    public class MoonstoneGate : Moongate
 	{
 		private Mobile m_Caster;
 
@@ -34,7 +32,7 @@ namespace Server.Items
 			Party casterParty = Party.Get( m_Caster );
 			Party userParty = Party.Get( m );
 
-			if ( m == m_Caster || (casterParty != null && userParty == casterParty) )
+			if ( m == m_Caster || casterParty != null && userParty == casterParty )
 				base.CheckGate( m, range );
 		}
 
@@ -46,7 +44,7 @@ namespace Server.Items
 			Party casterParty = Party.Get( m_Caster );
 			Party userParty = Party.Get( m );
 
-			if ( m == m_Caster || (casterParty != null && userParty == casterParty) )
+			if ( m == m_Caster || casterParty != null && userParty == casterParty )
 				base.UseGate( m );
 		}
 

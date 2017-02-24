@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a Saliva corpse" )]
+    [CorpseName( "a Saliva corpse" )]
 	public class Saliva : Harpy
 	{
 		[Constructable]

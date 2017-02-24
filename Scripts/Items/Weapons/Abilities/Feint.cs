@@ -1,14 +1,13 @@
 
 using System;
 using System.Collections;
-using Server.Items;
 
 namespace Server.Items
 {
-	/// <summary>
-	/// Gain a defensive advantage over your primary opponent for a short time.
-	/// </summary>
-	public class Feint : WeaponAbility
+    /// <summary>
+    /// Gain a defensive advantage over your primary opponent for a short time.
+    /// </summary>
+    public class Feint : WeaponAbility
 	{
 		private static Hashtable m_Registry = new Hashtable();
 		public static Hashtable Registry { get { return m_Registry; } }

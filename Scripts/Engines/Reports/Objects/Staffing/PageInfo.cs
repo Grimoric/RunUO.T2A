@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
-using Server;
-using Server.Engines;
 using Server.Engines.Help;
 
 namespace Server.Engines.Reports
 {
-	public enum PageResolution
+    public enum PageResolution
 	{
 		None,
 		Handled,
@@ -154,7 +151,7 @@ namespace Server.Engines.Reports
 
 		public bool IsStaffResolution( PageResolution res )
 		{
-			return ( res == PageResolution.Handled );
+			return res == PageResolution.Handled;
 		}
 
 		public static PageResolution ResFromResp( string resp )

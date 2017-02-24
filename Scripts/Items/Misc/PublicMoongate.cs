@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Commands;
 using Server.Gumps;
 using Server.Mobiles;
@@ -9,7 +8,7 @@ using Server.Spells;
 
 namespace Server.Items
 {
-	public class PublicMoongate : Item
+    public class PublicMoongate : Item
 	{
 		public override bool ForceShowProperties{ get{ return ObjectPropertyList.Enabled; } }
 
@@ -369,8 +368,8 @@ namespace Server.Items
 
 			for ( int i = 0; i < checkLists.Length; ++i )
 			{
-				AddButton( 10, 35 + (i * 25), 2117, 2118, 0, GumpButtonType.Page, Array.IndexOf( m_Lists, checkLists[i] ) + 1 );
-				AddHtmlLocalized( 30, 35 + (i * 25), 150, 20, checkLists[i].Number, false, false );
+				AddButton( 10, 35 + i * 25, 2117, 2118, 0, GumpButtonType.Page, Array.IndexOf( m_Lists, checkLists[i] ) + 1 );
+				AddHtmlLocalized( 30, 35 + i * 25, 150, 20, checkLists[i].Number, false, false );
 			}
 
 			for ( int i = 0; i < m_Lists.Length; ++i )
@@ -383,15 +382,15 @@ namespace Server.Items
 
 			AddPage( index + 1 );
 
-			AddButton( 10, 35 + (offset * 25), 2117, 2118, 0, GumpButtonType.Page, index + 1 );
-			AddHtmlLocalized( 30, 35 + (offset * 25), 150, 20, list.SelNumber, false, false );
+			AddButton( 10, 35 + offset * 25, 2117, 2118, 0, GumpButtonType.Page, index + 1 );
+			AddHtmlLocalized( 30, 35 + offset * 25, 150, 20, list.SelNumber, false, false );
 
 			PMEntry[] entries = list.Entries;
 
 			for ( int i = 0; i < entries.Length; ++i )
 			{
-				AddRadio( 200, 35 + (i * 25), 210, 211, false, (index * 100) + i );
-				AddHtmlLocalized( 225, 35 + (i * 25), 150, 20, entries[i].Number, false, false );
+				AddRadio( 200, 35 + i * 25, 210, 211, false, index * 100 + i );
+				AddHtmlLocalized( 225, 35 + i * 25, 150, 20, entries[i].Number, false, false );
 			}
 		}
 

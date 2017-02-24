@@ -1,16 +1,14 @@
 using System;
 using System.IO;
-using System.Collections;
-using Server;
 using Server.Regions;
 
 namespace Server
 {
-	public class TreasureRegion : BaseRegion
+    public class TreasureRegion : BaseRegion
 	{
 		private const int Range = 5; // No house may be placed within 5 tiles of the treasure
 
-		public TreasureRegion( int x, int y, Map map ): base( null, map, Region.DefaultPriority, new Rectangle2D( x - Range, y - Range, 1 + (Range * 2), 1 + (Range * 2) ) )
+		public TreasureRegion( int x, int y, Map map ): base( null, map, Region.DefaultPriority, new Rectangle2D( x - Range, y - Range, 1 + Range * 2, 1 + Range * 2 ) )
 		{
 			GoLocation = new Point3D( x, y, map.GetAverageZ( x, y ) );
 

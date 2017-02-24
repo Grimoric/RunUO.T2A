@@ -1,15 +1,11 @@
 using System;
-using Server;
-using Server.Engines.MLQuests;
 using Server.Mobiles;
 using Server.Gumps;
-using System.Collections.Generic;
 using Server.Misc;
-using Server.Items;
 
 namespace Server.Engines.MLQuests.Objectives
 {
-	public class EscortObjective : BaseObjective
+    public class EscortObjective : BaseObjective
 	{
 		private QuestArea m_Destination;
 
@@ -31,7 +27,7 @@ namespace Server.Engines.MLQuests.Objectives
 
 		public override bool CanOffer( IQuestGiver quester, PlayerMobile pm, bool message )
 		{
-			if ( ( quester is BaseCreature && ( (BaseCreature)quester ).Controlled ) || ( quester is BaseEscortable && ( (BaseEscortable)quester ).IsBeingDeleted ) )
+			if ( quester is BaseCreature && ( (BaseCreature)quester ).Controlled || quester is BaseEscortable && ( (BaseEscortable)quester ).IsBeingDeleted )
 				return false;
 
 			MLQuestContext context = MLQuestSystem.GetContext( pm );
@@ -145,7 +141,7 @@ namespace Server.Engines.MLQuests.Objectives
 				if ( pm.Young || m_Escort.Region.IsPartOf( "Haven Island" ) )
 					Titles.AwardFame( pm, 10, true );
 				else
-					VirtueHelper.AwardVirtue( pm, VirtueName.Compassion, ( m_Escort is BaseEscortable && ( (BaseEscortable)m_Escort ).IsPrisoner ) ? 400 : 200 );
+					VirtueHelper.AwardVirtue( pm, VirtueName.Compassion, m_Escort is BaseEscortable && ( (BaseEscortable)m_Escort ).IsPrisoner ? 400 : 200 );
 
 				EndFollow( m_Escort );
 				StopTimer();

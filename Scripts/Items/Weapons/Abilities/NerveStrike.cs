@@ -1,12 +1,11 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	/// <summary>
-	/// Does damage and paralyses your opponent for a short time.
-	/// </summary>
-	public class NerveStrike : WeaponAbility
+    /// <summary>
+    /// Does damage and paralyses your opponent for a short time.
+    /// </summary>
+    public class NerveStrike : WeaponAbility
 	{
 		public NerveStrike()
 		{

@@ -1,11 +1,10 @@
 using System;
-using Server.Mobiles;
 using Server.Network;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a ki-rin corpse" )]
+    [CorpseName( "a ki-rin corpse" )]
 	public class Kirin : BaseMount
 	{
 		public override bool AllowFemaleRider{ get{ return false; } }
@@ -25,7 +24,7 @@ namespace Server.Mobiles
 			if( Rider == null || attacker == null )	//sanity
 				return false;
 
-			if( (Rider.Hits - damage) < 30 && Rider.Map == attacker.Map && Rider.InRange( attacker, 18 ) )	//Range and map checked here instead of other base fuction because of abiliites that don't need to check this
+			if( Rider.Hits - damage < 30 && Rider.Map == attacker.Map && Rider.InRange( attacker, 18 ) )	//Range and map checked here instead of other base fuction because of abiliites that don't need to check this
 			{
 				attacker.BoltEffect( 0 );
 				// 35~100 damage, unresistable, by the Ki-rin.

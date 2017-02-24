@@ -1,14 +1,13 @@
 
 using System;
-using Server;
 using System.Collections;
 
 namespace Server.Items
 {
-	/// <summary>
-	/// Attack faster as you swing with both weapons.
-	/// </summary>
-	public class DualWield : WeaponAbility
+    /// <summary>
+    /// Attack faster as you swing with both weapons.
+    /// </summary>
+    public class DualWield : WeaponAbility
 	{
 		private static Hashtable m_Registry = new Hashtable();
 		public static Hashtable Registry { get { return m_Registry; } }

@@ -1,12 +1,10 @@
 using System;
 using System.Collections;
-using Server.Network;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Spells.Necromancy
 {
-	public class CurseWeaponSpell : NecromancerSpell
+    public class CurseWeaponSpell : NecromancerSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Curse Weapon", "An Sanct Gra Char",
@@ -49,7 +47,7 @@ namespace Server.Spells.Necromancy
 				Caster.FixedParticles( 0x37B9, 1, 14, 9502, 32, 5, (EffectLayer)255 );
 				new SoundEffectTimer( Caster ).Start();
 
-				TimeSpan duration = TimeSpan.FromSeconds( (Caster.Skills[SkillName.SpiritSpeak].Value / 3.4) + 1.0 );
+				TimeSpan duration = TimeSpan.FromSeconds( Caster.Skills[SkillName.SpiritSpeak].Value / 3.4 + 1.0 );
 
 
 				Timer t = (Timer)m_Table[weapon];

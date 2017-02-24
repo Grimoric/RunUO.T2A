@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class PresetMap : MapItem
+    public class PresetMap : MapItem
 	{
 		private int m_LabelNumber;
 
@@ -31,7 +28,7 @@ namespace Server.Items
 			Bounds = entry.Bounds;
 		}
 
-		public override int LabelNumber{ get{ return (m_LabelNumber == 0 ? base.LabelNumber : m_LabelNumber); } }
+		public override int LabelNumber{ get{ return m_LabelNumber == 0 ? base.LabelNumber : m_LabelNumber; } }
 
 		public PresetMap( Serial serial ) : base( serial )
 		{

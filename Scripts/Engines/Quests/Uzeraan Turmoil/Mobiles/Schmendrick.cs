@@ -1,13 +1,10 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 using Server.Gumps;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Haven
 {
-	public class Schmendrick : BaseQuester
+    public class Schmendrick : BaseQuester
 	{
 		[Constructable]
 		public Schmendrick() : base( "the High Mage" )
@@ -55,7 +52,7 @@ namespace Server.Engines.Quests.Haven
 		{
 			UzeraanTurmoilQuest qs = to.Quest as UzeraanTurmoilQuest;
 
-			return ( qs != null && qs.FindObjective( typeof( FindSchmendrickObjective ) ) != null );
+			return qs != null && qs.FindObjective( typeof( FindSchmendrickObjective ) ) != null;
 		}
 
 		public override void OnTalk( PlayerMobile player, bool contextMenu )

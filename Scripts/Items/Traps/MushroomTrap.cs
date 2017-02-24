@@ -1,11 +1,9 @@
 using System;
-using Server;
-using Server.Network;
 using Server.Regions;
 
 namespace Server.Items
 {
-	public class MushroomTrap : BaseTrap
+    public class MushroomTrap : BaseTrap
 	{
 		[Constructable]
 		public MushroomTrap() : base( 0x1125 )

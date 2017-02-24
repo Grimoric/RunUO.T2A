@@ -1,12 +1,10 @@
 using System;
-using Server;
-using Server.Misc;
 using Server.Items;
 using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a juggernaut corpse" )]
+    [CorpseName( "a juggernaut corpse" )]
 	public class Juggernaut : BaseCreature
 	{
 		private bool m_Stunning;

@@ -76,9 +76,9 @@ namespace Server.SkillHandlers
 					BaseFactionTrap trap = (BaseFactionTrap) targeted;
 					Faction faction = Faction.Find( from );
 
-					FactionTrapRemovalKit kit = ( from.Backpack == null ? null : from.Backpack.FindItemByType( typeof( FactionTrapRemovalKit ) ) as FactionTrapRemovalKit );
+					FactionTrapRemovalKit kit = @from.Backpack == null ? null : @from.Backpack.FindItemByType( typeof( FactionTrapRemovalKit ) ) as FactionTrapRemovalKit;
 
-					bool isOwner = ( trap.Placer == from || ( trap.Faction != null && trap.Faction.IsCommander( from ) ) );
+					bool isOwner = trap.Placer == @from || trap.Faction != null && trap.Faction.IsCommander( @from );
 
 					if ( faction == null )
 					{

@@ -19,19 +19,15 @@
  ***************************************************************************/
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using Server;
 using Server.Diagnostics;
-using Server.Network;
 
 namespace Server.Network
 {
-	public class MessagePump
+    public class MessagePump
 	{
 		private Listener[] m_Listeners;
 		private Queue<NetState> m_Queue;

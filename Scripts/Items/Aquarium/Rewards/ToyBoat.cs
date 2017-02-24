@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x14F3, 0x14F4 )]
+    [FlipableAttribute( 0x14F3, 0x14F4 )]
 	public class ToyBoat : Item
 	{
 		public override int LabelNumber{ get{ return 1074363; } } // A toy boat

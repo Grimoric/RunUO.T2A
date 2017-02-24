@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Guilds;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	public class GuildRescindDeclarationGump : GuildListGump
+    public class GuildRescindDeclarationGump : GuildListGump
 	{
 		public GuildRescindDeclarationGump( Mobile from, Guild guild ) : base( from, guild, true, guild.WarDeclarations )
 		{

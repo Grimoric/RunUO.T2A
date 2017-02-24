@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	public class MalletAndChisel : BaseTool
+    public class MalletAndChisel : BaseTool
 	{
 		public override CraftSystem CraftSystem { get { return DefMasonry.CraftSystem; } }
 

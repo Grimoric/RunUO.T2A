@@ -1,14 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
-using Server.Multis;
 using Server.Gumps;
 using Server.ContextMenus;
 
 namespace Server.Multis
 {
-	public class HouseSign : Item
+    public class HouseSign : Item
 	{
 		private BaseHouse m_Owner;
 		private Mobile m_OrgOwner;
@@ -43,7 +40,7 @@ namespace Server.Multis
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool RestrictDecay
 		{
-			get{ return ( m_Owner != null && m_Owner.RestrictDecay ); }
+			get{ return m_Owner != null && m_Owner.RestrictDecay; }
 			set{ if ( m_Owner != null ) m_Owner.RestrictDecay = value; }
 		}
 
@@ -83,7 +80,7 @@ namespace Server.Multis
 			base.GetProperties( list );
 
 			list.Add( 1061639, Utility.FixHtml( GetName() ) ); // Name: ~1_NAME~
-			list.Add( 1061640, (m_Owner == null || m_Owner.Owner == null) ? "nobody" : m_Owner.Owner.Name ); // Owner: ~1_OWNER~
+			list.Add( 1061640, m_Owner == null || m_Owner.Owner == null ? "nobody" : m_Owner.Owner.Name ); // Owner: ~1_OWNER~
 
 			if ( m_Owner != null )
 			{

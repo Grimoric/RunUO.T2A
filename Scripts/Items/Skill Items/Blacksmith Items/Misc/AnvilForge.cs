@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0xFAF, 0xFB0 )]
+    [FlipableAttribute( 0xFAF, 0xFB0 )]
 	[Server.Engines.Craft.Anvil]
 	public class Anvil : Item
 	{

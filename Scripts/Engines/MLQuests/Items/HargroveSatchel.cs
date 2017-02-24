@@ -1,9 +1,6 @@
-﻿using System;
-using Server;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	public class HargroveSatchel : Backpack
+    public class HargroveSatchel : Backpack
 	{
 		[Constructable]
 		public HargroveSatchel()

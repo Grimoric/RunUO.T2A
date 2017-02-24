@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Samurai
 {
-	public class HaochisKatanaGenerator : Item
+    public class HaochisKatanaGenerator : Item
 	{
 		[Constructable]
 		public HaochisKatanaGenerator() : base( 0x1B7B )

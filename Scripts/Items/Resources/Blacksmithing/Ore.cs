@@ -1,13 +1,10 @@
-using System;
-using Server.Items;
-using Server.Network;
 using Server.Targeting;
 using Server.Engines.Craft;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	public abstract class BaseOre : Item
+    public abstract class BaseOre : Item
 	{
 		private CraftResource m_Resource;
 
@@ -172,7 +169,7 @@ namespace Server.Items
 				else if ( obj is StaticTarget )
 					itemID = ((StaticTarget)obj).ItemID;
 
-				return ( itemID == 4017 || (itemID >= 6522 && itemID <= 6569) );
+				return itemID == 4017 || itemID >= 6522 && itemID <= 6569;
 			}
 
 			protected override void OnTarget( Mobile from, object targeted )
@@ -247,12 +244,12 @@ namespace Server.Items
 						}
 					}
 
-					if ( ( ore.ItemID == 0x19B9 && worth > 120000 ) || ( ( ore.ItemID == 0x19B8 || ore.ItemID == 0x19BA ) && worth > 60000 ) || ( ore.ItemID == 0x19B7 && worth > 30000 ) )
+					if ( ore.ItemID == 0x19B9 && worth > 120000 || ( ore.ItemID == 0x19B8 || ore.ItemID == 0x19BA ) && worth > 60000 || ore.ItemID == 0x19B7 && worth > 30000 )
 					{
 						from.SendLocalizedMessage( 1062844 ); // There is too much ore to combine.
 						return;
 					}
-					else if ( ore.RootParent is Mobile && ( plusWeight + ((Mobile)ore.RootParent).Backpack.TotalWeight ) > ((Mobile)ore.RootParent).Backpack.MaxWeight )
+					else if ( ore.RootParent is Mobile && plusWeight + ((Mobile)ore.RootParent).Backpack.TotalWeight > ((Mobile)ore.RootParent).Backpack.MaxWeight )
 					{
 						from.SendLocalizedMessage( 501978 ); // The weight is too great to combine in a container.
 						return;

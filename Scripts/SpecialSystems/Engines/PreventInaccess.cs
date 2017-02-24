@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
-using Server;
 
 namespace Server.Misc
 {
-	/*
+    /*
 	 * This system prevents the inability for server staff to
 	 * access their server due to data overflows during login.
 	 *
@@ -17,7 +15,7 @@ namespace Server.Misc
 	 *
 	 * This system does not affect non-staff players.
 	 */
-	public static class PreventInaccess
+    public static class PreventInaccess
 	{
 		public static readonly bool Enabled = true;
 
@@ -67,7 +65,7 @@ namespace Server.Misc
 
 		private static bool HasDisconnected( Mobile m )
 		{
-			return ( m.NetState == null || m.NetState.Socket == null );
+			return m.NetState == null || m.NetState.Socket == null;
 		}
 
 		private static LocationInfo GetRandomDestination()

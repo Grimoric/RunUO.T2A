@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Server;
-using Server.Misc;
 using Server.Items;
 using Server.Gumps;
 
 namespace Server.Mobiles
 {
-	public abstract class BaseHealer : BaseVendor
+    public abstract class BaseHealer : BaseVendor
 	{
 		private List<SBInfo> m_SBInfos = new List<SBInfo>();
 		protected override List<SBInfo> SBInfos{ get { return m_SBInfos; } }

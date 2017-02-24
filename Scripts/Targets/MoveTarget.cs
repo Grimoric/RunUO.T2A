@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Targeting;
 using Server.Commands;
 using Server.Commands.Generic;
 
 namespace Server.Targets
 {
-	public class MoveTarget : Target
+    public class MoveTarget : Target
 	{
 		private object m_Object;
 

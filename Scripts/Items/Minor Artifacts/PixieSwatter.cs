@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class PixieSwatter : Scepter
+    public class PixieSwatter : Scepter
 	{
 		public override int LabelNumber{ get{ return 1070854; } } // Pixie Swatter
 

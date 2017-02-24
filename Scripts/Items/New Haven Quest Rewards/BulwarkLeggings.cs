@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class BulwarkLeggings : RingmailLegs
+    public class BulwarkLeggings : RingmailLegs
 	{
 		public override int LabelNumber{ get{ return 1077727; } } // Bulwark Leggings
 

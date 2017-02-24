@@ -13,7 +13,7 @@ namespace Server.Items
 
 		[Constructable]
 		public IcyPatch()
-			: this((Utility.Random(10) == 0) ? 0x122A : 0x122F)
+			: this(Utility.Random(10) == 0 ? 0x122A : 0x122F)
 		{
 		}
 
@@ -49,7 +49,7 @@ namespace Server.Items
 			if (freeze)
 			{
 				m.Frozen = freeze;
-				Timer.DelayCall(TimeSpan.FromSeconds((message==1095162) ? 2.0 : 1.25), new TimerStateCallback(EndFall_Callback), m);
+				Timer.DelayCall(TimeSpan.FromSeconds(message==1095162 ? 2.0 : 1.25), new TimerStateCallback(EndFall_Callback), m);
 			}
 
 			m.SendLocalizedMessage(message);
@@ -68,7 +68,7 @@ namespace Server.Items
 					Timer.DelayCall(TimeSpan.FromSeconds(0), new TimerStateCallback(Relocate_Callback), new object[] { m, p });
 				}
 
-				arg = new object[] { m, (21 + Utility.Random(2)), !m.Female ? 0x426 : 0x317 };
+				arg = new object[] { m, 21 + Utility.Random(2), !m.Female ? 0x426 : 0x317 };
 			}
 			else if (message == 1095161)
 			{

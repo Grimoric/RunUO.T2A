@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x27A4, 0x27EF )]
+    [FlipableAttribute( 0x27A4, 0x27EF )]
 	public class Wakizashi : BaseSword
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.FrenziedWhirlwind; } }

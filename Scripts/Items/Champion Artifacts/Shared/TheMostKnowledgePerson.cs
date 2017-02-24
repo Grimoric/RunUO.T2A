@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class TheMostKnowledgePerson : BaseOuterTorso
+    public class TheMostKnowledgePerson : BaseOuterTorso
 	{
 		public override int LabelNumber{ get{ return 1094893; } } // The Most Knowledge Person [Replica]
 

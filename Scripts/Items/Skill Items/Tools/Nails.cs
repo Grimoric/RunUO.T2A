@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	[Flipable( 0x102E, 0x102F )]
+    [Flipable( 0x102E, 0x102F )]
 	public class Nails : BaseTool
 	{
 		public override CraftSystem CraftSystem{ get{ return DefCarpentry.CraftSystem; } }

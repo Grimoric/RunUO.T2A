@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	[Flipable( 0x2645, 0x2646 )]
+    [Flipable( 0x2645, 0x2646 )]
 	public class DragonHelm : BaseArmor
 	{
 		public override int BasePhysicalResistance{ get{ return 3; } }

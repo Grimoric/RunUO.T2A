@@ -19,9 +19,7 @@
  ***************************************************************************/
 
 using System;
-using System.CodeDom;
 using System.CodeDom.Compiler;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -33,7 +31,7 @@ using System.Diagnostics;
 
 namespace Server
 {
-	public static class ScriptCompiler
+    public static class ScriptCompiler
 	{
 		private static Assembly[] m_Assemblies;
 
@@ -95,7 +93,7 @@ namespace Server
 
 			AppendCompilerOption( ref sb, "/d:Framework_4_0" );
 
-			return (sb == null ? null : sb.ToString());
+			return sb == null ? null : sb.ToString();
 		}
 
 		private static void AppendCompilerOption( ref StringBuilder sb, string define )
@@ -418,7 +416,7 @@ namespace Server
 						continue;
 					}
 
-					Dictionary<string, List<CompilerError>> table = (e.IsWarning ? warnings : errors);
+					Dictionary<string, List<CompilerError>> table = e.IsWarning ? warnings : errors;
 
 					List<CompilerError> list = null;
 					table.TryGetValue( file, out list );

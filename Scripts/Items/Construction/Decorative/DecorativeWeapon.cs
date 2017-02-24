@@ -1,9 +1,6 @@
-using System;
-using Server.Network;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x155E, 0x155F, 0x155C, 0x155D )] 
+    [FlipableAttribute( 0x155E, 0x155F, 0x155C, 0x155D )] 
 	public class DecorativeBowWest : Item
 	{
 		[Constructable]

@@ -1,10 +1,8 @@
-using System;
 using System.Collections;
-using Server;
 
 namespace Server.Engines.Mahjong
 {
-	public class MahjongPlayers
+    public class MahjongPlayers
 	{
 		private MahjongGame m_Game;
 		private Mobile[] m_Players;

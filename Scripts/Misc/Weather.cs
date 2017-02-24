@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Network;
 
 namespace Server.Misc
 {
-	public class Weather
+    public class Weather
 	{
 		private static Map[] m_Facets;
 		private static Dictionary<Map, List<Weather>> m_WeatherByFacet = new Dictionary<Map, List<Weather>>();
@@ -132,16 +130,16 @@ namespace Server.Misc
 
 		public static bool CheckIntersection( Rectangle2D r1, Rectangle2D r2 )
 		{
-			if ( r1.X >= (r2.X + r2.Width) )
+			if ( r1.X >= r2.X + r2.Width )
 				return false;
 
-			if ( r2.X >= (r1.X + r1.Width) )
+			if ( r2.X >= r1.X + r1.Width )
 				return false;
 
-			if ( r1.Y >= (r2.Y + r2.Height) )
+			if ( r1.Y >= r2.Y + r2.Height )
 				return false;
 
-			if ( r2.Y >= (r1.Y + r1.Height) )
+			if ( r2.Y >= r1.Y + r1.Height )
 				return false;
 
 			return true;
@@ -155,10 +153,10 @@ namespace Server.Misc
 			if ( small.Y < big.Y )
 				return false;
 
-			if ( (small.X + small.Width) > (big.X + big.Width) )
+			if ( small.X + small.Width > big.X + big.Width )
 				return false;
 
-			if ( (small.Y + small.Height) > (big.Y + big.Height) )
+			if ( small.Y + small.Height > big.Y + big.Height )
 				return false;
 
 			return true;
@@ -188,7 +186,7 @@ namespace Server.Misc
 			if ( list != null )
 				list.Add( this );
 
-			Timer.DelayCall( TimeSpan.FromSeconds( (0.2+(Utility.RandomDouble()*0.8)) * interval.TotalSeconds ), interval, new TimerCallback( OnTick ) );
+			Timer.DelayCall( TimeSpan.FromSeconds( (0.2+Utility.RandomDouble()*0.8) * interval.TotalSeconds ), interval, new TimerCallback( OnTick ) );
 		}
 
 		public virtual void Reposition()
@@ -237,8 +235,8 @@ namespace Server.Misc
 
 			for ( int i = 0; i < 5; ++i ) // try 5 times to find a valid spot
 			{
-				int xOffset = (m_MoveSpeed * m_MoveAngleX) / 100;
-				int yOffset = (m_MoveSpeed * m_MoveAngleY) / 100;
+				int xOffset = m_MoveSpeed * m_MoveAngleX / 100;
+				int yOffset = m_MoveSpeed * m_MoveAngleY / 100;
 
 				Rectangle2D oldArea = m_Area[0];
 				Rectangle2D newArea = new Rectangle2D( oldArea.X + xOffset, oldArea.Y + yOffset, oldArea.Width, oldArea.Height );
@@ -261,8 +259,8 @@ namespace Server.Misc
 		{
 			if ( m_Stage == 0 )
 			{
-				m_Active = ( m_ChanceOfPercipitation > Utility.Random( 100 ) );
-				m_ExtremeTemperature = ( m_ChanceOfExtremeTemperature > Utility.Random( 100 ) );
+				m_Active = m_ChanceOfPercipitation > Utility.Random( 100 );
+				m_ExtremeTemperature = m_ChanceOfExtremeTemperature > Utility.Random( 100 );
 
 				if ( m_MoveSpeed > 0 )
 				{
@@ -289,7 +287,7 @@ namespace Server.Misc
 				}
 				else
 				{
-					density = 150 - (m_Stage * 5);
+					density = 150 - m_Stage * 5;
 
 					if ( density < 10 )
 						density = 10;
@@ -316,7 +314,7 @@ namespace Server.Misc
 					if ( mob == null || mob.Map != m_Facet )
 						continue;
 
-					bool contains = ( m_Area.Length == 0 );
+					bool contains = m_Area.Length == 0;
 
 					for ( int j = 0; !contains && j < m_Area.Length; ++j )
 						contains = m_Area[j].Contains( mob.Location );
@@ -367,7 +365,7 @@ namespace Server.Misc
 				Weather w = list[i];
 
 				for ( int j = 0; j < w.Area.Length; ++j )
-					AddWorldPin( w.Area[j].X + (w.Area[j].Width/2), w.Area[j].Y + (w.Area[j].Height/2) );
+					AddWorldPin( w.Area[j].X + w.Area[j].Width/2, w.Area[j].Y + w.Area[j].Height/2 );
 			}
 
 			base.OnDoubleClick( from );

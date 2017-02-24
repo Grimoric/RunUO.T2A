@@ -1,11 +1,10 @@
 using System;
 using Server.Mobiles;
-using Server.Network;
 using Server.Targeting;
 
 namespace Server.Spells.Eighth
 {
-	public class EnergyVortexSpell : MagerySpell
+    public class EnergyVortexSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Energy Vortex", "Vas Corp Por",
@@ -29,7 +28,7 @@ namespace Server.Spells.Eighth
 			if ( !base.CheckCast() )
 				return false;
 
-			if ( (Caster.Followers + 1) > Caster.FollowersMax )
+			if ( Caster.Followers + 1 > Caster.FollowersMax )
 			{
 				Caster.SendLocalizedMessage( 1049645 ); // You have too many followers to summon that creature.
 				return false;

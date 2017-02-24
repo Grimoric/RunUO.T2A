@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Hag
 {
-	public enum Ingredient
+    public enum Ingredient
 	{
 		SheepLiver,
 		RabbitsFoot,

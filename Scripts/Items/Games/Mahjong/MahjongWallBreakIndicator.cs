@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Engines.Mahjong
 {
-	public class MahjongWallBreakIndicator
+    public class MahjongWallBreakIndicator
 	{
 		public static MahjongPieceDim GetDimensions( Point2D position )
 		{

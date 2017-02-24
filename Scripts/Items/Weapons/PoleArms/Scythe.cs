@@ -1,11 +1,8 @@
-using System;
-using Server.Network;
-using Server.Items;
 using Server.Engines.Harvest;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x26BA, 0x26C4 )]
+    [FlipableAttribute( 0x26BA, 0x26C4 )]
 	public class Scythe : BasePoleArm
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }

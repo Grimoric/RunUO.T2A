@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Gumps;
-using Server.Items;
 using Server.Mobiles;
-using Server.Network;
 using Server.Targeting;
 
 namespace Server.Items
 {
-	public class Bandage : Item, IDyable
+    public class Bandage : Item, IDyable
 	{
 		public static int Range = 1; 
 
@@ -214,11 +211,11 @@ namespace Server.Items
 				patientNumber = -1;
 				playSound = false;
 			}
-			else if ( !m_Patient.Alive || (petPatient != null && petPatient.IsDeadPet) )
+			else if ( !m_Patient.Alive || petPatient != null && petPatient.IsDeadPet )
 			{
 				double healing = m_Healer.Skills[primarySkill].Value;
 				double anatomy = m_Healer.Skills[secondarySkill].Value;
-				double chance = ((healing - 68.0) / 50.0) - (m_Slips * 0.02);
+				double chance = (healing - 68.0) / 50.0 - m_Slips * 0.02;
 
 				if ( (checkSkills = healing >= 80.0 && anatomy >= 80.0) && chance > Utility.RandomDouble() )	//TODO: Dbl check doesn't check for faction of the horse here?
 				{
@@ -309,13 +306,13 @@ namespace Server.Items
 
 				double healing = m_Healer.Skills[primarySkill].Value;
 				double anatomy = m_Healer.Skills[secondarySkill].Value;
-				double chance = ((healing - 30.0) / 50.0) - (m_Patient.Poison.Level * 0.1) - (m_Slips * 0.02);
+				double chance = (healing - 30.0) / 50.0 - m_Patient.Poison.Level * 0.1 - m_Slips * 0.02;
 
-				if ( (checkSkills = (healing >= 60.0 && anatomy >= 60.0)) && chance > Utility.RandomDouble() )
+				if ( (checkSkills = healing >= 60.0 && anatomy >= 60.0) && chance > Utility.RandomDouble() )
 				{
 					if ( m_Patient.CurePoison( m_Healer ) )
 					{
-						healerNumber = (m_Healer == m_Patient) ? -1 : 1010058; // You have cured the target of all poisons.
+						healerNumber = m_Healer == m_Patient ? -1 : 1010058; // You have cured the target of all poisons.
 						patientNumber = 1010059; // You have been cured of all poisons.
 					}
 					else
@@ -339,7 +336,7 @@ namespace Server.Items
 			}
 			else if ( MortalStrike.IsWounded( m_Patient ) )
 			{
-				healerNumber = ( m_Healer == m_Patient ? 1005000 : 1010398 );
+				healerNumber = m_Healer == m_Patient ? 1005000 : 1010398;
 				patientNumber = -1;
 				playSound = false;
 			}
@@ -355,7 +352,7 @@ namespace Server.Items
 
 				double healing = m_Healer.Skills[primarySkill].Value;
 				double anatomy = m_Healer.Skills[secondarySkill].Value;
-				double chance = ((healing + 10.0) / 100.0) - (m_Slips * 0.02);
+				double chance = (healing + 10.0) / 100.0 - m_Slips * 0.02;
 
 				if ( chance > Utility.RandomDouble() )
 				{
@@ -363,10 +360,10 @@ namespace Server.Items
 
 					double min, max;
 
-					min = (anatomy / 5.0) + (healing / 5.0) + 3.0;
-					max = (anatomy / 5.0) + (healing / 2.0) + 10.0;
+					min = anatomy / 5.0 + healing / 5.0 + 3.0;
+					max = anatomy / 5.0 + healing / 2.0 + 10.0;
 
-					double toHeal = min + (Utility.RandomDouble() * (max - min));
+					double toHeal = min + Utility.RandomDouble() * (max - min);
 
 					if ( m_Patient.Body.IsMonster || m_Patient.Body.IsAnimal )
 						toHeal += m_Patient.HitsMax / 100;
@@ -422,7 +419,7 @@ namespace Server.Items
 
 		public static BandageContext BeginHeal( Mobile healer, Mobile patient )
 		{
-			bool isDeadPet = ( patient is BaseCreature && ((BaseCreature)patient).IsDeadPet );
+			bool isDeadPet = patient is BaseCreature && ((BaseCreature)patient).IsDeadPet;
 
 			if ( patient is Golem )
 			{
@@ -444,15 +441,15 @@ namespace Server.Items
 			{
 				healer.DoBeneficial( patient );
 
-				bool onSelf = ( healer == patient );
+				bool onSelf = healer == patient;
 				int dex = healer.Dex;
 
 				double seconds;
-				double resDelay = ( patient.Alive ? 0.0 : 5.0 );
+				double resDelay = patient.Alive ? 0.0 : 5.0;
 
 				if ( onSelf )
 				{
-					seconds = 9.4 + (0.6 * ((double)(120 - dex) / 10));
+					seconds = 9.4 + 0.6 * ((double)(120 - dex) / 10);
 				}
 				else
 				{

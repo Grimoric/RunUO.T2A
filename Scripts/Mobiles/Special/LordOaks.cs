@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Engines.CannedEvil;
 
 namespace Server.Mobiles
 {
-	public class LordOaks : BaseChampion
+    public class LordOaks : BaseChampion
 	{
 		private Mobile m_Queen;
 		private bool m_SpawnedQueen;

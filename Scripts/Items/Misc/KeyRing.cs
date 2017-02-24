@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Targeting;
 using System.Collections.Generic;
 
 namespace Server.Items
 {
-	public class KeyRing : Item
+    public class KeyRing : Item
 	{
 		public static readonly int MaxKeys = 20;
 

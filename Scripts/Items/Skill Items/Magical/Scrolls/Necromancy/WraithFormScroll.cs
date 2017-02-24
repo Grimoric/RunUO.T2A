@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class WraithFormScroll : SpellScroll
+    public class WraithFormScroll : SpellScroll
 	{
 		[Constructable]
 		public WraithFormScroll() : this( 1 )

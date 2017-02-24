@@ -1,15 +1,13 @@
 using System;
 using Server.Network;
-using Server.Multis;
 using Server.Items;
 using Server.Targeting;
 using Server.Misc;
-using Server.Regions;
 using Server.Mobiles;
 
 namespace Server.Spells.Seventh
 {
-	public class GateTravelSpell : MagerySpell
+    public class GateTravelSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Gate Travel", "Vas Rel Por",
@@ -116,7 +114,7 @@ namespace Server.Spells.Seventh
 			{
 				Caster.SendLocalizedMessage( 501942 ); // That location is blocked.
 			}
-			else if ( (checkMulti && SpellHelper.CheckMulti( loc, map )) )
+			else if ( checkMulti && SpellHelper.CheckMulti( loc, map ) )
 			{
 				Caster.SendLocalizedMessage( 501942 ); // That location is blocked.
 			}

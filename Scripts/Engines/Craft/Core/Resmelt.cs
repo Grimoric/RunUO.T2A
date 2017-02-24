@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Targeting;
 using Server.Items;
 
 namespace Server.Engines.Craft
 {
-	public enum SmeltResult
+    public enum SmeltResult
 	{
 		Success,
 		Invalid,
@@ -90,7 +89,7 @@ namespace Server.Engines.Craft
 					Type resourceType = info.ResourceTypes[0];
 					Item ingot = (Item)Activator.CreateInstance( resourceType );
 
-					if ( item is DragonBardingDeed || (item is BaseArmor && ((BaseArmor)item).PlayerConstructed) || (item is BaseWeapon && ((BaseWeapon)item).PlayerConstructed) || (item is BaseClothing && ((BaseClothing)item).PlayerConstructed) )
+					if ( item is DragonBardingDeed || item is BaseArmor && ((BaseArmor)item).PlayerConstructed || item is BaseWeapon && ((BaseWeapon)item).PlayerConstructed || item is BaseClothing && ((BaseClothing)item).PlayerConstructed )
 						ingot.Amount = craftResource.Amount / 2;
 					else
 						ingot.Amount = 1;

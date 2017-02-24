@@ -1,11 +1,8 @@
-using System;
 using System.Collections;
-using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.First
 {
-	public class ReactiveArmorSpell : MagerySpell
+    public class ReactiveArmorSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Reactive Armor", "Flam Sanct",

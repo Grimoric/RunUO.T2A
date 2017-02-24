@@ -389,7 +389,7 @@ namespace Server.Items
 		/// </summary>
 		public static bool IsStandard( CraftResource resource )
 		{
-			return ( resource == CraftResource.None || resource == CraftResource.Iron || resource == CraftResource.RegularLeather || resource == CraftResource.RegularWood );
+			return resource == CraftResource.None || resource == CraftResource.Iron || resource == CraftResource.RegularLeather || resource == CraftResource.RegularWood;
 		}
 
 		private static Hashtable m_TypeTable;
@@ -503,7 +503,7 @@ namespace Server.Items
 		{
 			CraftResourceInfo info = GetInfo( resource );
 
-			return ( info == null ? 0 : info.Number );
+			return info == null ? 0 : info.Number;
 		}
 
 		/// <summary>
@@ -513,7 +513,7 @@ namespace Server.Items
 		{
 			CraftResourceInfo info = GetInfo( resource );
 
-			return ( info == null ? 0 : info.Hue );
+			return info == null ? 0 : info.Hue;
 		}
 
 		/// <summary>
@@ -523,7 +523,7 @@ namespace Server.Items
 		{
 			CraftResourceInfo info = GetInfo( resource );
 
-			return ( info == null ? String.Empty : info.Name );
+			return info == null ? String.Empty : info.Name;
 		}
 
 		/// <summary>

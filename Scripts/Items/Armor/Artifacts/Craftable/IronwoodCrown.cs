@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class IronwoodCrown : RavenHelm
+    public class IronwoodCrown : RavenHelm
 	{
 		public override int LabelNumber{ get{ return 1072924; } } // Ironwood Crown
 

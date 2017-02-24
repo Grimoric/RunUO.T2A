@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Spells.Necromancy
 {
-	public abstract class NecromancerSpell : Spell
+    public abstract class NecromancerSpell : Spell
 	{
 		public abstract double RequiredSkill{ get; }
 		public abstract int RequiredMana{ get; }

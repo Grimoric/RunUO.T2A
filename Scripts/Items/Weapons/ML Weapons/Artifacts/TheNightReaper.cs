@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class TheNightReaper : RepeatingCrossbow
+    public class TheNightReaper : RepeatingCrossbow
 	{
 		public override int LabelNumber{ get{ return 1072912; } } // The Night Reaper
 

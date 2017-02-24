@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Engines.Quests.Haven
 {
-	public class AcceptConversation : QuestConversation
+    public class AcceptConversation : QuestConversation
 	{
 		public override object Message
 		{

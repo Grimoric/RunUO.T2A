@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Spells;
-
 namespace Server.Items
 {
-	public class NecromancerSpellbook : Spellbook
+    public class NecromancerSpellbook : Spellbook
 	{
 		public override SpellbookType SpellbookType{ get{ return SpellbookType.Necromancer; } }
 		public override int BookOffset{ get{ return 100; } }

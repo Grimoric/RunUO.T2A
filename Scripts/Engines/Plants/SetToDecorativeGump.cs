@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Engines.Plants
 {
-	public class SetToDecorativeGump : Gump
+    public class SetToDecorativeGump : Gump
 	{
 		private PlantItem m_Plant;
 

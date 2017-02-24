@@ -1,13 +1,9 @@
 using System;
-using Server;
-using Server.Gumps;
-using Server.Network;
 using Server.Mobiles;
-using Server.Engines.Quests;
 
 namespace Server.Items
 {
-	public class ScrollofTranscendence : SpecialScroll
+    public class ScrollofTranscendence : SpecialScroll
 	{
 		public override int LabelNumber { get { return 1094934; } } // Scroll of Transcendence
 		
@@ -103,12 +99,12 @@ namespace Server.Items
 			
 			double newValue = Value;
 
-			if ( ( tskill + newValue ) > tcap )
+			if ( tskill + newValue > tcap )
 				newValue = tcap - tskill;
 
 			if ( tskill < tcap && from.Skills[Skill].Lock == SkillLock.Up )
 			{
-				if ( ( from.SkillsTotal + newValue * 10 ) > from.SkillsCap )
+				if ( @from.SkillsTotal + newValue * 10 > from.SkillsCap )
 				{
 					int ns = from.Skills.Length; // number of items in from.Skills[]
 
@@ -156,7 +152,7 @@ namespace Server.Items
 		{
 			base.Deserialize(reader);
 
-			int version = ( InheritsItem ? 0 : reader.ReadInt() ); //Required for SpecialScroll insertion
+			int version = InheritsItem ? 0 : reader.ReadInt(); //Required for SpecialScroll insertion
 
 			LootType = LootType.Cursed;
 			Insured = false;

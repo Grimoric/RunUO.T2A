@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Gumps
 {
-	public class ConfirmBreakCrystalGump : BaseConfirmGump
+    public class ConfirmBreakCrystalGump : BaseConfirmGump
 	{
 		public override int LabelNumber{ get{ return 1075084; } } // This statuette will be destroyed when its trapped creature is summoned. The creature will be bonded to you but will disappear if released. <br><br>Do you wish to proceed?
 	

@@ -1,14 +1,12 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Accounting;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Server.Engines.VeteranRewards
 {
-	public class RewardSystem
+    public class RewardSystem
 	{
 		private static RewardCategory[] m_Categories;
 		private static RewardList[] m_Lists;
@@ -75,9 +73,9 @@ namespace Server.Engines.VeteranRewards
 				return false;
 			}
 
-			TimeSpan totalTime = (DateTime.Now - acct.Created);
+			TimeSpan totalTime = DateTime.Now - acct.Created;
 
-			ts = ( list.Age - totalTime );
+			ts = list.Age - totalTime;
 
 			if ( ts <= TimeSpan.Zero )
 				return true;
@@ -97,7 +95,7 @@ namespace Server.Engines.VeteranRewards
 
 		public static int GetRewardLevel( Account acct )
 		{
-			TimeSpan totalTime = (DateTime.Now - acct.Created);
+			TimeSpan totalTime = DateTime.Now - acct.Created;
 
 			int level = (int)(totalTime.TotalDays / RewardInterval.TotalDays);
 
@@ -119,9 +117,9 @@ namespace Server.Engines.VeteranRewards
 
 		public static bool HasHalfLevel( Account acct )
 		{
-			TimeSpan totalTime = (DateTime.Now - acct.Created);
+			TimeSpan totalTime = DateTime.Now - acct.Created;
 
-			Double level = (totalTime.TotalDays / RewardInterval.TotalDays);
+			Double level = totalTime.TotalDays / RewardInterval.TotalDays;
 
 			return level >= 0.5;
 		}
@@ -179,7 +177,7 @@ namespace Server.Engines.VeteranRewards
 				cur = Utility.ToInt32( tag );
 
 			if ( level >= 6 )
-				max = 9 + ((level - 6) * 2);
+				max = 9 + (level - 6) * 2;
 			else
 				max = 2 + level;
 		}
@@ -189,7 +187,7 @@ namespace Server.Engines.VeteranRewards
 			if ( m_Lists == null )
 				SetupRewardTables();
 
-			bool isRelaxedRules = ( item is DyeTub || item is MonsterStatuette );
+			bool isRelaxedRules = item is DyeTub || item is MonsterStatuette;
 
 			Type type = item.GetType();
 
@@ -219,7 +217,7 @@ namespace Server.Engines.VeteranRewards
 							bool match = true;
 
 							for ( int k = 0; match && k < args.Length; ++k )
-								match = ( args[k].Equals( entries[j].Args[k] ) );
+								match = args[k].Equals( entries[j].Args[k] );
 
 							if ( match )
 							{
@@ -244,7 +242,7 @@ namespace Server.Engines.VeteranRewards
 		{
 			int level = GetRewardYear( item, args );
 
-			return 1076216 + ( ( level < 10 ) ? level : ( level < 12 ) ? (( level - 9 ) + 4240 ) : (( level - 11 ) + 37585 ) );
+			return 1076216 + ( level < 10 ? level : level < 12 ? level - 9 + 4240 : level - 11 + 37585 );
 		}
 
 		public static int GetRewardYear( Item item, object[] args )
@@ -271,7 +269,7 @@ namespace Server.Engines.VeteranRewards
 							bool match = true;
 
 							for ( int k = 0; match && k < args.Length; ++k )
-								match = ( args[k].Equals( entries[j].Args[k] ) );
+								match = args[k].Equals( entries[j].Args[k] );
 
 							if ( match )
 								return i + 1;
@@ -495,7 +493,7 @@ namespace Server.Engines.VeteranRewards
 					level = 0;
 
 				if ( SkillCapRewards )
-					e.Mobile.SkillsCap = 7000 + (level * 50);
+					e.Mobile.SkillsCap = 7000 + level * 50;
 				else
 					e.Mobile.SkillsCap = 7000;
 			}

@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using Server.Targeting;
-using Server.Items;
 using Server.Engines.Harvest;
 using System.Collections.Generic;
 using Server.ContextMenus;
@@ -9,7 +5,7 @@ using Server.Network;
 
 namespace Server.Items
 {
-	public class FishingPole : Item
+    public class FishingPole : Item
 	{
 		[Constructable]
 		public FishingPole() : base( 0x0DC0 )

@@ -1,10 +1,9 @@
 using System;
-using Server.Mobiles;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a vorpal bunny corpse" )]
+    [CorpseName( "a vorpal bunny corpse" )]
 	public class VorpalBunny : BaseCreature
 	{
 		[Constructable]

@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
-using Server.Items;
 using Server.Multis;
 
 namespace Server.Mobiles
 {
-	public class SBShipwright : SBInfo
+    public class SBShipwright : SBInfo
 	{
 		private List<GenericBuyInfo> m_BuyInfo = new InternalBuyInfo();
 		private IShopSellInfo m_SellInfo = new InternalSellInfo();

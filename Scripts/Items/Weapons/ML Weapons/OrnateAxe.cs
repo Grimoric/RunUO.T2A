@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x2D28, 0x2D34 )]
+    [FlipableAttribute( 0x2D28, 0x2D34 )]
 	public class OrnateAxe : BaseAxe
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Disarm; } }

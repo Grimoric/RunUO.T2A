@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Targeting;
 using Server.Engines.Craft;
 namespace Server.Items
 {
-	[TypeAlias( "Server.Items.DragonBarding" )]
+    [TypeAlias( "Server.Items.DragonBarding" )]
 	public class DragonBardingDeed : Item, ICraftable
 	{
 		private bool m_Exceptional;
@@ -124,7 +123,7 @@ namespace Server.Items
 
 		public int OnCraft( int quality, bool makersMark, Mobile from, CraftSystem craftSystem, Type typeRes, BaseTool tool, CraftItem craftItem, int resHue )
 		{
-			Exceptional = ( quality >= 2 );
+			Exceptional = quality >= 2;
 
 			if ( makersMark )
 				Crafter = from;

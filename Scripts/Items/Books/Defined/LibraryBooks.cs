@@ -1,10 +1,7 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	#region A Grammar of Orcish
-	public class GrammarOfOrcish : BaseBook
+    #region A Grammar of Orcish
+    public class GrammarOfOrcish : BaseBook
 	{
 		public static readonly BookContent Content = new BookContent
 			(

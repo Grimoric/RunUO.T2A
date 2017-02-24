@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class DeathShroud : BaseSuit
+    public class DeathShroud : BaseSuit
 	{
 		[Constructable]
 		public DeathShroud() : base( AccessLevel.GameMaster, 0x0, 0x204E )

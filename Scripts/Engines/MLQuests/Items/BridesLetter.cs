@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class BridesLetter : Item
+    public class BridesLetter : Item
 	{
 		public override int LabelNumber{ get{ return 1075301; } } // Bride's Letter
 

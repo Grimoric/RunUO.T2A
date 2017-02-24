@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Items;
-using Server.Mobiles;
 
 namespace Server.Factions
 {
-	public class FactionDragoon : BaseFactionGuard
+    public class FactionDragoon : BaseFactionGuard
 	{
 		public override GuardAI GuardAI{ get{ return GuardAI.Magic | GuardAI.Melee | GuardAI.Smart | GuardAI.Bless | GuardAI.Curse; } }
 

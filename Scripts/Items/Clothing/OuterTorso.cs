@@ -497,7 +497,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool IsArcane
 		{
-			get{ return ( m_MaxArcaneCharges > 0 && m_CurArcaneCharges >= 0 ); }
+			get{ return m_MaxArcaneCharges > 0 && m_CurArcaneCharges >= 0; }
 		}
 
 		public void Update()

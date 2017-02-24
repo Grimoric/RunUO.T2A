@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Multis;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class TillerMan : Item
+    public class TillerMan : Item
 	{
 		private BaseBoat m_Boat;
 

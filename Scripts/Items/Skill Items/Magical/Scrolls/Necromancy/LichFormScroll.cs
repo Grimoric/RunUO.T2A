@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class LichFormScroll : SpellScroll
+    public class LichFormScroll : SpellScroll
 	{
 		[Constructable]
 		public LichFormScroll() : this( 1 )

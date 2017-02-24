@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class EnchantedTitanLegBone : ShortSpear
+    public class EnchantedTitanLegBone : ShortSpear
 	{
 		public override int LabelNumber{ get{ return 1063482; } }
 

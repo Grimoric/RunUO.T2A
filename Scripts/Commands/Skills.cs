@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Targeting;
 
 namespace Server.Commands
 {
-	public class SkillsCommand
+    public class SkillsCommand
 	{
 		public static void Initialize()
 		{

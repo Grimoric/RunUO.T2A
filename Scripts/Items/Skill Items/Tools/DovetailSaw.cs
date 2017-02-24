@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	[Flipable( 0x1028, 0x1029 )]
+    [Flipable( 0x1028, 0x1029 )]
 	public class DovetailSaw : BaseTool
 	{
 		public override CraftSystem CraftSystem{ get{ return DefCarpentry.CraftSystem; } }

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using Server.Network;
 using Server.Items;
 using Server.Targeting;
 using Server.Spells.Necromancy;
@@ -8,7 +6,7 @@ using Server.Spells.Fourth;
 
 namespace Server.Spells.Chivalry
 {
-	public class RemoveCurseSpell : PaladinSpell
+    public class RemoveCurseSpell : PaladinSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Remove Curse", "Extermo Vomica",

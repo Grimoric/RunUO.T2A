@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x26BB, 0x26C5 )]
+    [FlipableAttribute( 0x26BB, 0x26C5 )]
 	public class BoneHarvester : BaseSword
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ParalyzingBlow; } }

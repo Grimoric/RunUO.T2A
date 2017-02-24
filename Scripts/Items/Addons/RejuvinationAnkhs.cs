@@ -1,10 +1,8 @@
 using System;
-using Server;
-using Server.Network;
 
 namespace Server.Items
 {
-	public class RejuvinationAddonComponent : AddonComponent
+    public class RejuvinationAddonComponent : AddonComponent
 	{
 		public RejuvinationAddonComponent( int itemID ) : base( itemID )
 		{

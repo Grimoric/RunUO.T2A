@@ -1,13 +1,9 @@
-using System;
-using System.Collections;
-using Server;
-using Server.Items;
 using System.Collections.Generic;
 using Server.Mobiles;
 
 namespace Server.Engines.BulkOrders
 {
-	[TypeAlias( "Scripts.Engines.BulkOrders.LargeBOD" )]
+    [TypeAlias( "Scripts.Engines.BulkOrders.LargeBOD" )]
 	public abstract class LargeBOD : Item
 	{
 		private int m_AmountMax;
@@ -72,7 +68,7 @@ namespace Server.Engines.BulkOrders
 			for ( int i = 0; i < chances.Length; ++i )
 			{
 				if ( random < chances[i] )
-					return ( i == 0 ? BulkMaterialType.None : start + (i - 1) );
+					return i == 0 ? BulkMaterialType.None : start + (i - 1);
 
 				random -= chances[i];
 			}

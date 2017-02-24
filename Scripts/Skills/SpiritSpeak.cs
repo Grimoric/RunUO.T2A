@@ -1,12 +1,11 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Spells;
 using Server.Network;
 
 namespace Server.SkillHandlers
 {
-	class SpiritSpeak
+    class SpiritSpeak
 	{
 		public static void Initialize()
 		{
@@ -158,7 +157,7 @@ namespace Server.SkillHandlers
 				{
 					Caster.CheckSkill( SkillName.SpiritSpeak, 0.0, 120.0 );
 
-					if ( Utility.RandomDouble() > (Caster.Skills[SkillName.SpiritSpeak].Value / 100.0) )
+					if ( Utility.RandomDouble() > Caster.Skills[SkillName.SpiritSpeak].Value / 100.0 )
 					{
 						Caster.SendLocalizedMessage( 502443 ); // You fail your attempt at contacting the netherworld.
 					}

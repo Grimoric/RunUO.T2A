@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Collector
 {
-	public class ElwoodMcCarrin : BaseQuester
+    public class ElwoodMcCarrin : BaseQuester
 	{
 		[Constructable]
 		public ElwoodMcCarrin() : base( "the well-known collector" )

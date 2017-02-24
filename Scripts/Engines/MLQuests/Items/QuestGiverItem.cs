@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Engines.MLQuests.Items
 {
-	public abstract class QuestGiverItem : Item, IQuestGiver
+    public abstract class QuestGiverItem : Item, IQuestGiver
 	{
 		private List<MLQuest> m_MLQuests;
 
@@ -27,7 +26,7 @@ namespace Server.Engines.MLQuests.Items
 			}
 		}
 
-		public bool CanGiveMLQuest { get { return ( MLQuests.Count != 0 ); } }
+		public bool CanGiveMLQuest { get { return MLQuests.Count != 0; } }
 
 		public QuestGiverItem( int itemId )
 			: base( itemId )
@@ -104,7 +103,7 @@ namespace Server.Engines.MLQuests.Items
 			}
 		}
 
-		public bool CanGiveMLQuest { get { return ( MLQuests.Count != 0 ); } }
+		public bool CanGiveMLQuest { get { return MLQuests.Count != 0; } }
 
 		public TransientQuestGiverItem( int itemId, TimeSpan lifeSpan )
 			: base( itemId, lifeSpan )

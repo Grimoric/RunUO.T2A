@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class ColdForgedBlade : ElvenSpellblade
+    public class ColdForgedBlade : ElvenSpellblade
 	{
 		public override int LabelNumber{ get{ return 1072916; } } // Cold Forged Blade
 

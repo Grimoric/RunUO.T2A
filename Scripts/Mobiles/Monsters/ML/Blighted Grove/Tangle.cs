@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a Tangle corpse" )]
+    [CorpseName( "a Tangle corpse" )]
 	public class Tangle : BogThing
 	{
 		[Constructable]

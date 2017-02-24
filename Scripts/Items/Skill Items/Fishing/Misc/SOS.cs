@@ -1,10 +1,9 @@
 using System;
-using Server.Network;
 using Server.Gumps;
 
 namespace Server.Items
 {
-	[Flipable( 0x14ED, 0x14EE )]
+    [Flipable( 0x14ED, 0x14EE )]
 	public class SOS : Item
 	{
 		public override int LabelNumber
@@ -26,7 +25,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool IsAncient
 		{
-			get{ return ( m_Level >= 4 ); }
+			get{ return m_Level >= 4; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -242,7 +241,7 @@ namespace Server.Items
 			bool water = false;
 
 			for ( int i = 0; !water && i < m_WaterTiles.Length; i += 2 )
-				water = ( tileID >= m_WaterTiles[i] && tileID <= m_WaterTiles[i + 1] );
+				water = tileID >= m_WaterTiles[i] && tileID <= m_WaterTiles[i + 1];
 
 			return water;
 		}

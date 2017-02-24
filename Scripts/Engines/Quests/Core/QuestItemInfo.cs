@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Gumps;
 
 namespace Server.Engines.Quests
 {
-	public class QuestItemInfo
+    public class QuestItemInfo
 	{
 		private object m_Name;
 		private int m_ItemID;
@@ -32,7 +30,7 @@ namespace Server.Engines.Quests
 	{
 		public QuestItemInfoGump( QuestItemInfo[] info ) : base( 485, 75 )
 		{
-			int height = 100 + (info.Length * 75);
+			int height = 100 + info.Length * 75;
 
 			AddPage( 0 );
 
@@ -64,8 +62,8 @@ namespace Server.Engines.Quests
 			{
 				QuestItemInfo cur = info[i];
 
-				AddHtmlObject( 25, 65 + (i * 75), 110, 20, cur.Name, 1153, false, false );
-				AddItem( 45, 85 + (i * 75), cur.ItemID );
+				AddHtmlObject( 25, 65 + i * 75, 110, 20, cur.Name, 1153, false, false );
+				AddItem( 45, 85 + i * 75, cur.ItemID );
 			}
 		}
 	}

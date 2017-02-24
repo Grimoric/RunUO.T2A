@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x1403, 0x1402 )]
+    [FlipableAttribute( 0x1403, 0x1402 )]
 	public class ShortSpear : BaseSpear
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ShadowStrike; } }

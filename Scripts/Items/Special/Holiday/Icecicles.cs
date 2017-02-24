@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	public class IcicleLargeSouth : Item
+    public class IcicleLargeSouth : Item
 	{
 		[Constructable]
 		public IcicleLargeSouth()

@@ -1,11 +1,9 @@
 using System;
 using Server.Mobiles;
-using Server.Network;
-using Server.Targeting;
 
 namespace Server.Spells.Eighth
 {
-	public class FireElementalSpell : MagerySpell
+    public class FireElementalSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Fire Elemental", "Kal Vas Xen Flam",
@@ -29,7 +27,7 @@ namespace Server.Spells.Eighth
 			if ( !base.CheckCast() )
 				return false;
 
-			if ( (Caster.Followers + 4) > Caster.FollowersMax )
+			if ( Caster.Followers + 4 > Caster.FollowersMax )
 			{
 				Caster.SendLocalizedMessage( 1049645 ); // You have too many followers to summon that creature.
 				return false;
@@ -42,7 +40,7 @@ namespace Server.Spells.Eighth
 		{
 			if ( CheckSequence() )
 			{
-				TimeSpan duration = TimeSpan.FromSeconds( (2 * Caster.Skills.Magery.Fixed) / 5 );
+				TimeSpan duration = TimeSpan.FromSeconds( 2 * Caster.Skills.Magery.Fixed / 5 );
 
 				SpellHelper.Summon( new FireElemental(), Caster, 0x217, duration, false, false );
 			}

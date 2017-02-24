@@ -98,7 +98,7 @@ namespace Server.Items
 			else
 				ItemID = InactiveItemID;
 
-			Visible = ( ItemID != 0x1 );
+			Visible = ItemID != 0x1;
 		}
 
 		public override void Serialize( GenericWriter writer )

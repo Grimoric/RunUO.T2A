@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Factions
 {
-	public class RankDefinition
+    public class RankDefinition
 	{
 		private int m_Rank;
 		private int m_Required;

@@ -1,14 +1,12 @@
 using System;
-using System.Collections;
 using System.Text;
-using Server;
 using Server.Mobiles;
 using Server.Targeting;
 using Server.Items;
 
 namespace Server.SkillHandlers
 {
-	public class ForensicEvaluation
+    public class ForensicEvaluation
 	{
 		public static void Initialize()
 		{
@@ -54,12 +52,12 @@ namespace Server.SkillHandlers
 						Corpse c = (Corpse)target;
 
 						if ( c.m_Forensicist != null )
-							from.SendLocalizedMessage( 1042750, c.m_Forensicist ) ; // The forensicist  ~1_NAME~ has already discovered that:
+							from.SendLocalizedMessage( 1042750, c.m_Forensicist ); // The forensicist  ~1_NAME~ has already discovered that:
 						else
 							c.m_Forensicist = from.Name;
 
 						if ( ((Body)c.Amount).IsHuman )
-							from.SendLocalizedMessage( 1042751, ( c.Killer == null ? "no one" : c.Killer.Name ) );//This person was killed by ~1_KILLER_NAME~
+							from.SendLocalizedMessage( 1042751, c.Killer == null ? "no one" : c.Killer.Name );//This person was killed by ~1_KILLER_NAME~
 
 						if ( c.Looters.Count > 0 )
 						{

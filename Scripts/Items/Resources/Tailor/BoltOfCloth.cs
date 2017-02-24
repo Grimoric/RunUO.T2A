@@ -1,10 +1,8 @@
-using System;
-using Server.Items;
 using Server.Network;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0xF95, 0xF96, 0xF97, 0xF98, 0xF99, 0xF9A, 0xF9B, 0xF9C )]
+    [FlipableAttribute( 0xF95, 0xF96, 0xF97, 0xF98, 0xF99, 0xF9A, 0xF9B, 0xF9C )]
 	public class BoltOfCloth : Item, IScissorable, IDyable, ICommodity
 	{
 		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
@@ -60,7 +58,7 @@ namespace Server.Items
 
 		public override void OnSingleClick( Mobile from )
 		{
-			int number = (Amount == 1) ? 1049122 : 1049121;
+			int number = Amount == 1 ? 1049122 : 1049121;
 
 			from.Send( new MessageLocalized( Serial, ItemID, MessageType.Label, 0x3B2, 3, number, "", (Amount * 50).ToString() ) );
 		}

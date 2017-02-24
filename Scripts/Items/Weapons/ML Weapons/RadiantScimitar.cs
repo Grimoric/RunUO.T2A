@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x2D33, 0x2D27 )]
+    [FlipableAttribute( 0x2D33, 0x2D27 )]
 	public class RadiantScimitar : BaseSword
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }

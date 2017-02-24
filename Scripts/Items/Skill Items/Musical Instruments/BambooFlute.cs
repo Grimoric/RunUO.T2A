@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class BambooFlute : BaseInstrument
+    public class BambooFlute : BaseInstrument
 	{
 		[Constructable]
 		public BambooFlute() : base( 0x2805, 0x504, 0x503 )

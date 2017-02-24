@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Engines.Craft
 {
-	public class CraftGroup
+    public class CraftGroup
 	{
 		private CraftItemCol m_arCraftItem;
 

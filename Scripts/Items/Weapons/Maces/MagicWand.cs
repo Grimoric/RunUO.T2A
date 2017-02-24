@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class MagicWand : BaseBashing
+    public class MagicWand : BaseBashing
 	{
 		public override WeaponAbility PrimaryAbility { get { return WeaponAbility.Dismount; } }
 		public override WeaponAbility SecondaryAbility { get { return WeaponAbility.Disarm; } }

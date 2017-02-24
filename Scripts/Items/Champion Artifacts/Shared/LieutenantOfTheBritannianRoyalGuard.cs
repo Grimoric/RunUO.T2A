@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class LieutenantOfTheBritannianRoyalGuard : BodySash
+    public class LieutenantOfTheBritannianRoyalGuard : BodySash
 	{
 		public override int LabelNumber{ get{ return 1094910; } } // Lieutenant of the Britannian Royal Guard [Replica]
 

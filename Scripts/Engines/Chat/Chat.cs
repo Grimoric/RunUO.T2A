@@ -1,12 +1,11 @@
 using System;
-using Server;
 using Server.Misc;
 using Server.Network;
 using Server.Accounting;
 
 namespace Server.Engines.Chat
 {
-	public class ChatSystem
+    public class ChatSystem
 	{
 		private static bool m_Enabled = true;
 

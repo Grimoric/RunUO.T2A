@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a Lady Marai corpse" )]
+    [CorpseName( "a Lady Marai corpse" )]
 	public class LadyMarai : SkeletalKnight
 	{
 		[Constructable]

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class MediumStoneTableEastAddon : BaseAddon
+    public class MediumStoneTableEastAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed{ get{ return new MediumStoneTableEastDeed(); } }
 

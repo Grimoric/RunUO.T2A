@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
-using Server.Items;
-using Server.Targeting;
 using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a lizardman corpse" )]
+    [CorpseName( "a lizardman corpse" )]
 	public class Lizardman : BaseCreature
 	{
 		public override InhumanSpeech SpeechType{ get{ return InhumanSpeech.Lizardman; } }

@@ -1,9 +1,8 @@
-using System;
 using Server.Mobiles;
 
 namespace Server.ContextMenus
 {
-	public class TeachEntry : ContextMenuEntry
+    public class TeachEntry : ContextMenuEntry
 	{
 		private SkillName m_Skill;
 		private BaseCreature m_Mobile;

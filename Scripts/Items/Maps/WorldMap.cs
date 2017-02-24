@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class WorldMap : MapItem
+    public class WorldMap : MapItem
 	{
 		[Constructable]
 		public WorldMap()

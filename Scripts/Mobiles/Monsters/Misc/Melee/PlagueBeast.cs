@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a plague beast corpse" )]
+    [CorpseName( "a plague beast corpse" )]
 	public class PlagueBeast : BaseCreature, IDevourer
 	{
 		private int m_DevourTotal;
@@ -23,7 +21,7 @@ namespace Server.Mobiles
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int DevourGoal
 		{
-			get { return ( IsParagon ? m_DevourGoal + 25 : m_DevourGoal ); }
+			get { return IsParagon ? m_DevourGoal + 25 : m_DevourGoal; }
 			set { m_DevourGoal = value; }
 		}
 
@@ -232,7 +230,7 @@ namespace Server.Mobiles
                 maxhits = (int)(maxhits * Paragon.HitsBuff);
 
 			if( hp < 1000 )
-				hp = (hp * 100) / 60;
+				hp = hp * 100 / 60;
 
 			if( HitsMaxSeed >= maxhits )
 			{
@@ -245,7 +243,7 @@ namespace Server.Mobiles
 			}
 			else
 			{
-				int min = (hp / 2) + 10;
+				int min = hp / 2 + 10;
 				int max = hp + 20;
 				int hpToIncrease = Utility.RandomMinMax( min, max );
 

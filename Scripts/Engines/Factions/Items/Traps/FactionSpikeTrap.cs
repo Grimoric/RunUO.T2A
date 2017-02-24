@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Factions
 {
-	public class FactionSpikeTrap : BaseFactionTrap
+    public class FactionSpikeTrap : BaseFactionTrap
 	{
 		public override int LabelNumber{ get{ return 1044601; } } // faction spike trap
 

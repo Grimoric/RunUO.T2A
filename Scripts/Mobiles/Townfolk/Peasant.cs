@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Items;
-using EDI = Server.Mobiles.EscortDestinationInfo;
 
 namespace Server.Mobiles
 {
-	public class Peasant : BaseEscortable
+    public class Peasant : BaseEscortable
 	{
 		[Constructable]
 		public Peasant()

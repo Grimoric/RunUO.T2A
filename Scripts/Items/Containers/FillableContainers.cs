@@ -109,7 +109,7 @@ namespace Server.Items
 
 		public void CheckRespawn()
 		{
-			bool canSpawn = ( m_Content != null && !Deleted && GetItemsCount() <= SpawnThreshold && !Movable && Parent == null && !IsLockedDown && !IsSecure );
+			bool canSpawn = m_Content != null && !Deleted && GetItemsCount() <= SpawnThreshold && !Movable && Parent == null && !IsLockedDown && !IsSecure;
 
 			if( canSpawn )
 			{
@@ -279,7 +279,7 @@ namespace Server.Items
 
 		protected override int GetSpawnCount()
 		{
-			return ( 5 - GetItemsCount() );
+			return 5 - GetItemsCount();
 		}
 
 		public override void AcquireContent()

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class LordBlackthorneSuit : BaseSuit
+    public class LordBlackthorneSuit : BaseSuit
 	{
 		[Constructable]
 		public LordBlackthorneSuit() : base( AccessLevel.GameMaster, 0x0, 0x2043 )

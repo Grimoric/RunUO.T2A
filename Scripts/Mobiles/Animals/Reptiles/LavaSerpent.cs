@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Items;
-using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a lava serpent corpse" )]
+    [CorpseName( "a lava serpent corpse" )]
 	[TypeAlias( "Server.Mobiles.Lavaserpant" )]
 	public class LavaSerpent : BaseCreature
 	{

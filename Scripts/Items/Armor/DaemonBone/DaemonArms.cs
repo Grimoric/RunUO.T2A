@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x144e, 0x1453 )]
+    [FlipableAttribute( 0x144e, 0x1453 )]
 	public class DaemonArms : BaseArmor
 	{
 		public override int BasePhysicalResistance{ get{ return 6; } }

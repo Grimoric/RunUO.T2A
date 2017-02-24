@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
-using Server;
 
 namespace Server.Mobiles
 {
-	public class Waiter : BaseVendor
+    public class Waiter : BaseVendor
 	{
 		private List<SBInfo> m_SBInfos = new List<SBInfo>();
 		protected override List<SBInfo> SBInfos{ get { return m_SBInfos; } }

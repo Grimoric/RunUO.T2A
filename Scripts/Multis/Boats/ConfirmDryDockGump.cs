@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Multis
 {
-	public class ConfirmDryDockGump : Gump
+    public class ConfirmDryDockGump : Gump
 	{
 		private Mobile m_From;
 		private BaseBoat m_Boat;

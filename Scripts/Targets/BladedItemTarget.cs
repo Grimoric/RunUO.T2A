@@ -1,5 +1,3 @@
-using System;
-using Server;
 using Server.Targeting;
 using Server.Items;
 using Server.Engines.Harvest;
@@ -9,7 +7,7 @@ using Server.Engines.Quests.Hag;
 
 namespace Server.Targets
 {
-	public class BladedItemTarget : Target
+    public class BladedItemTarget : Target
 	{
 		private Item m_Item;
 
@@ -20,7 +18,7 @@ namespace Server.Targets
 
 		protected override void OnTargetOutOfRange( Mobile from, object targeted )
 		{
-			if ( targeted is UnholyBone && from.InRange( ((UnholyBone)targeted), 12 ) )
+			if ( targeted is UnholyBone && from.InRange( (UnholyBone)targeted, 12 ) )
 				((UnholyBone)targeted).Carve( from, m_Item );
 			else
 				base.OnTargetOutOfRange (from, targeted);

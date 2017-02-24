@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Server;
 
 namespace Server.Engines.MLQuests
 {
-	[AttributeUsage( AttributeTargets.Class )]
+    [AttributeUsage( AttributeTargets.Class )]
 	public class QuesterNameAttribute : Attribute
 	{
 		private string m_QuesterName;
@@ -36,7 +35,7 @@ namespace Server.Engines.MLQuests
 			else
 				result = t.Name;
 
-			return ( m_Cache[t] = result );
+			return m_Cache[t] = result;
 		}
 	}
 }

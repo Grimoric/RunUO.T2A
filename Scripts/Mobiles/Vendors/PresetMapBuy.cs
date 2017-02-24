@@ -1,10 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	public class PresetMapBuyInfo : GenericBuyInfo
+    public class PresetMapBuyInfo : GenericBuyInfo
 	{
 		private PresetMapEntry m_Entry;
 

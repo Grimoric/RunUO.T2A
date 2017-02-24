@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a solen infiltrator corpse" )]
+    [CorpseName( "a solen infiltrator corpse" )]
 	public class BlackSolenInfiltratorWarrior : BaseCreature
 	{
 		[Constructable]
@@ -44,7 +41,7 @@ namespace Server.Mobiles
 
 			SolenHelper.PackPicnicBasket( this );
 
-			PackItem( new ZoogiFungus( ( 0.05 > Utility.RandomDouble() )? 13 : 3 ) );		
+			PackItem( new ZoogiFungus( 0.05 > Utility.RandomDouble()? 13 : 3 ) );		
 		}
 
 		public override int GetAngerSound()

@@ -1,10 +1,8 @@
 using System;
-using Server;
-using Server.Network;
 
 namespace Server.Items
 {
-	public enum StoneFaceTrapType
+    public enum StoneFaceTrapType
 	{
 		NorthWestWall,
 		NorthWall,
@@ -31,13 +29,13 @@ namespace Server.Items
 			{
 				bool breathing = this.Breathing;
 
-				ItemID = ( breathing ? GetFireID( value ) : GetBaseID( value ) );
+				ItemID = breathing ? GetFireID( value ) : GetBaseID( value );
 			}
 		}
 
 		public bool Breathing
 		{
-			get{ return ( ItemID == GetFireID( this.Type ) ); }
+			get{ return ItemID == GetFireID( this.Type ); }
 			set
 			{
 				if ( value )

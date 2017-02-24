@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class FangOfRactus : Kryss
+    public class FangOfRactus : Kryss
 	{
 		public override int LabelNumber{ get{ return 1094892; } } // Fang of Ractus [Replica]
 

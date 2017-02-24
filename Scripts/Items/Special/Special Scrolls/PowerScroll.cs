@@ -1,13 +1,9 @@
 using System;
-using Server;
-using Server.Gumps;
-using Server.Network;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Server.Items
 {
-	public class PowerScroll : SpecialScroll
+    public class PowerScroll : SpecialScroll
 	{
 		public override int Message { get { return 1049469; } } /* Using a scroll increases the maximum amount of a specific skill or your maximum statistics.
 																* When used, the effect is not immediately seen without a gain of points with that skill or statistics.
@@ -111,7 +107,7 @@ namespace Server.Items
 			min /= 5;
 			max /= 5;
 
-			return new PowerScroll( Skills[Utility.Random( Skills.Count )], 100 + ( Utility.RandomMinMax( min, max ) * 5 ) );
+			return new PowerScroll( Skills[Utility.Random( Skills.Count )], 100 + Utility.RandomMinMax( min, max ) * 5 );
 		}
 
 		public static PowerScroll CreateRandomNoCraft( int min, int max )
@@ -126,7 +122,7 @@ namespace Server.Items
 				skillName = Skills[Utility.Random( Skills.Count )];
 			} while ( skillName == SkillName.Blacksmith || skillName == SkillName.Tailoring );
 
-			return new PowerScroll( skillName, 100 + (Utility.RandomMinMax( min, max ) * 5));
+			return new PowerScroll( skillName, 100 + Utility.RandomMinMax( min, max ) * 5);
 		}
 
 		public PowerScroll() : this( SkillName.Alchemy, 0.0 )
@@ -220,7 +216,7 @@ namespace Server.Items
 		{
 			base.Deserialize( reader );
 
-			int version = ( InheritsItem ? 0 : reader.ReadInt() ); // Required for SpecialScroll insertion
+			int version = InheritsItem ? 0 : reader.ReadInt(); // Required for SpecialScroll insertion
 
 			if ( Value == 105.0 || Skill == SkillName.Blacksmith || Skill == SkillName.Tailoring )
 			{

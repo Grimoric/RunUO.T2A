@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Net.Mail;
 using System.IO;
-using Server;
 using Server.Mobiles;
 using Server.Network;
 using Server.Misc;
@@ -13,7 +12,7 @@ using System.Collections.Generic;
 
 namespace Server.Engines.Help
 {
-	public enum PageType
+    public enum PageType
 	{
 		Bug,
 		Stuck,
@@ -338,7 +337,7 @@ namespace Server.Engines.Help
 				if ( m != null && m.AccessLevel >= AccessLevel.Counselor && m.AutoPageNotify && !IsHandling( m ) )
 					m.SendMessage( "A new page has been placed in the queue." );
 
-				if ( m != null && m.AccessLevel >= AccessLevel.Counselor && m.AutoPageNotify && m.LastMoveTime >= (DateTime.Now - TimeSpan.FromMinutes( 10.0 )) )
+				if ( m != null && m.AccessLevel >= AccessLevel.Counselor && m.AutoPageNotify && m.LastMoveTime >= DateTime.Now - TimeSpan.FromMinutes( 10.0 ) )
 					isStaffOnline = true;
 			}
 

@@ -1,10 +1,8 @@
-using System;
 using Server.Items;
-using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a giant serpent corpse" )]
+    [CorpseName( "a giant serpent corpse" )]
 	[TypeAlias( "Server.Mobiles.Serpant" )]
 	public class GiantSerpent : BaseCreature
 	{
@@ -54,7 +52,7 @@ namespace Server.Mobiles
 		}
 
 		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
-		public override Poison HitPoison{ get{ return (0.8 >= Utility.RandomDouble() ? Poison.Greater : Poison.Deadly); } }
+		public override Poison HitPoison{ get{ return 0.8 >= Utility.RandomDouble() ? Poison.Greater : Poison.Deadly; } }
 
 		public override bool DeathAdderCharmable{ get{ return true; } }
 

@@ -1,12 +1,10 @@
-using System;
-
 namespace Server.Items
 {
-	/// <summary>
-	/// Available on some crossbows, this special move allows archers to fire while on the move.
-	/// This shot is somewhat less accurate than normal, but the ability to fire while running is a clear advantage.
-	/// </summary>
-	public class MovingShot : WeaponAbility
+    /// <summary>
+    /// Available on some crossbows, this special move allows archers to fire while on the move.
+    /// This shot is somewhat less accurate than normal, but the ability to fire while running is a clear advantage.
+    /// </summary>
+    public class MovingShot : WeaponAbility
 	{
 		public MovingShot()
 		{
@@ -17,7 +15,7 @@ namespace Server.Items
 
 		public override bool OnBeforeSwing( Mobile attacker, Mobile defender )
 		{
-			return ( Validate( attacker ) && CheckMana( attacker, true ) );
+			return Validate( attacker ) && CheckMana( attacker, true );
 		}
 		
 		public override void OnMiss( Mobile attacker, Mobile defender )

@@ -1,5 +1,4 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Gumps;
 using Server.Targeting;
@@ -7,7 +6,7 @@ using Server.Regions;
 
 namespace Server
 {
-	public class HonorVirtue
+    public class HonorVirtue
 	{
 		
 		private static readonly TimeSpan UseDelay = TimeSpan.FromMinutes( 5.0 ); 
@@ -61,7 +60,7 @@ namespace Server
 				case VirtueLevel.Follower: return 90;
 				case VirtueLevel.Knight: return 300;
 
-				default: return 0 ;
+				default: return 0;
 			}
 		}
 
@@ -146,7 +145,7 @@ namespace Server
 			}
 
 			BaseCreature cret = target as BaseCreature;
-			if ( target.Body.IsHuman && (cret == null || (!cret.AlwaysAttackable && !cret.AlwaysMurderer)) )
+			if ( target.Body.IsHuman && (cret == null || !cret.AlwaysAttackable && !cret.AlwaysMurderer) )
 			{
 
 				if( reg == null || reg.IsDisabled() )
@@ -225,7 +224,7 @@ namespace Server
 
 			m_Timer = new InternalTimer( this );
 			m_Timer.Start();
-			source.m_hontime = (DateTime.Now + TimeSpan.FromMinutes( 40 ));
+			source.m_hontime = DateTime.Now + TimeSpan.FromMinutes( 40 );
 
 			Timer.DelayCall( TimeSpan.FromMinutes( 40 ),
 				delegate() {
@@ -268,7 +267,7 @@ namespace Server
 			if ( from == m_Source )
 			{
 				if ( m_Target.CanSee( m_Source ) && m_Target.InLOS( m_Source ) && ( m_Source.InRange( m_Target, 1 )
-					|| ( m_Source.Location == m_InitialLocation && m_Source.Map == m_InitialMap ) ) )
+					|| m_Source.Location == m_InitialLocation && m_Source.Map == m_InitialMap ) )
 				{
 					m_HonorDamage += amount;
 				}
@@ -358,7 +357,7 @@ namespace Server
 			if ( m_Source.Virtues.Honor > targetFame )
 				return;
 
-			double dGain = ( targetFame / 100 ) * (m_HonorDamage / m_TotalDamage );	//Initial honor gain is 100th of the monsters honor
+			double dGain = targetFame / 100 * (m_HonorDamage / m_TotalDamage );	//Initial honor gain is 100th of the monsters honor
 
 			if ( m_HonorDamage == m_TotalDamage && m_FirstHit == FirstHit.Granted)
 				dGain = dGain * 1.5;							//honor gain is increased alot more if the combat was fully honorable
@@ -393,7 +392,7 @@ namespace Server
 
 		public int PerfectionLuckBonus
 		{
-			get{ return (m_Perfection * m_Perfection) / 10; }
+			get{ return m_Perfection * m_Perfection / 10; }
 		}
 
 		public bool CheckDistance()

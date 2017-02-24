@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x1411, 0x141a )]
+    [FlipableAttribute( 0x1411, 0x141a )]
 	public class PlateLegs : BaseArmor
 	{
 		public override int BasePhysicalResistance{ get{ return 5; } }

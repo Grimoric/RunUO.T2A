@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class WrathOfTheDryad : GnarledStaff
+    public class WrathOfTheDryad : GnarledStaff
 	{
 		public override int LabelNumber{ get{ return 1070853; } } // Wrath of the Dryad
 

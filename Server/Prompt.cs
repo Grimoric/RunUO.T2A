@@ -18,12 +18,10 @@
  *
  ***************************************************************************/
 
-using System;
-using Server.Network;
 
 namespace Server.Prompts
 {
-	public abstract class Prompt
+    public abstract class Prompt
 	{
 		private int m_Serial;
 		private static int m_Serials;

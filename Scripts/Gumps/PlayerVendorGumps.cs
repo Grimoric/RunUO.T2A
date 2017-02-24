@@ -1,17 +1,14 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 using Server.Network;
 using Server.HuePickers;
-using Server.Multis;
 
 namespace Server.Gumps
 {
-	public class PlayerVendorBuyGump : Gump
+    public class PlayerVendorBuyGump : Gump
 	{
 		private PlayerVendor m_Vendor;
 		private VendorItem m_VI;
@@ -130,7 +127,7 @@ namespace Server.Gumps
 			AddHtml( 40, 120, 260, 20, "My charge per day is:", false, false );
 			AddLabel( 300, 120, 0, perDay.ToString() );
 
-			double days = (m_Vendor.HoldGold + m_Vendor.BankAccount) / ((double)perDay);
+			double days = (m_Vendor.HoldGold + m_Vendor.BankAccount) / (double)perDay;
 
 			AddHtmlLocalized( 40, 25, 260, 20, 1038318, false, false ); // Amount of days I can work: 
 			AddLabel( 300, 25, 0, ((int)days).ToString() );
@@ -515,8 +512,8 @@ namespace Server.Gumps
 				for ( int c=0;c<cat.Entries.Length;c++ )
 				{
 					CustomItem entry = (CustomItem)cat.Entries[c];
-					x = 198 + (c%3)*129;
-					y = 38 + (c/3)*67;
+					x = 198 + c%3*129;
+					y = 38 + c/3*67;
 
 					AddHtmlLocalized( x, y, 100, entry.LongText ? 36 : 18, entry.LocNumber, false, false );
 

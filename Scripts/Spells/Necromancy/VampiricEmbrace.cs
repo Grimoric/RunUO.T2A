@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
-using Server.Network;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Spells.Necromancy
 {
-	public class VampiricEmbraceSpell : TransformationSpell
+    public class VampiricEmbraceSpell : TransformationSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Vampiric Embrace", "Rel Xen An Sanct",

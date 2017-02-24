@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class DecoObsidian : Item
+    public class DecoObsidian : Item
 	{
 
 		[Constructable]

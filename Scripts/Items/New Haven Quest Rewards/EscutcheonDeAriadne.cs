@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class EscutcheonDeAriadne : MetalKiteShield
+    public class EscutcheonDeAriadne : MetalKiteShield
 	{
 		public override int LabelNumber{ get{ return 1077694; } } // Escutcheon de Ariadne
 

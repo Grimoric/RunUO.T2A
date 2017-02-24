@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a Rend corpse" )]
+    [CorpseName( "a Rend corpse" )]
 	public class Rend : Reptalon
 	{
 		[Constructable]

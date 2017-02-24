@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class DecorativePlateKabuto : BaseArmor
+    public class DecorativePlateKabuto : BaseArmor
 	{
 		public override int BasePhysicalResistance{ get{ return 6; } }
 		public override int BaseFireResistance{ get{ return 2; } }

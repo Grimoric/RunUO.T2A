@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Samurai
 {
-	public class HonorCandle : CandleLong
+    public class HonorCandle : CandleLong
 	{
 		private static readonly TimeSpan LitDuration = TimeSpan.FromSeconds( 20.0 );
 

@@ -19,18 +19,14 @@
  ***************************************************************************/
 
 using System;
-using System.Text;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using Server.Accounting;
 using Server.Gumps;
 using Server.Targeting;
 using Server.Items;
 using Server.Menus;
 using Server.Mobiles;
-using Server.Movement;
 using Server.Prompts;
 using Server.HuePickers;
 using Server.ContextMenus;
@@ -39,7 +35,7 @@ using CV = Server.ClientVersion;
 
 namespace Server.Network
 {
-	public enum MessageType
+    public enum MessageType
 	{
 		Regular = 0x00,
 		System = 0x01,
@@ -358,7 +354,7 @@ namespace Server.Network
 					{
 						SecureTrade trade = cont.Trade;
 
-						bool value = ( pvSrc.ReadInt32() != 0 );
+						bool value = pvSrc.ReadInt32() != 0;
 
 						if ( trade != null && trade.From.Mobile == state.Mobile )
 						{
@@ -399,7 +395,7 @@ namespace Server.Network
 			{
 				msgSize -= 1+2+4+1;
 
-				if ( (msgSize / 7) > 100 )
+				if ( msgSize / 7 > 100 )
 					return;
 
 				List<BuyItemResponse> buyList = new List<BuyItemResponse>( msgSize / 7 );
@@ -442,7 +438,7 @@ namespace Server.Network
 			}
 
 			int count = pvSrc.ReadUInt16();
-			if ( count < 100 && pvSrc.Size == (1+2+4+2+(count*6)) )
+			if ( count < 100 && pvSrc.Size == 1+2+4+2+count*6 )
 			{
 				List<SellItemResponse> sellList = new List<SellItemResponse>( count );
 
@@ -979,7 +975,7 @@ namespace Server.Network
 			Mobile from = state.Mobile;
 			Item item = from.Holding;
 
-			bool valid = ( item != null && item.HeldBy == from && item.Map == Map.Internal );
+			bool valid = item != null && item.HeldBy == @from && item.Map == Map.Internal;
 
 			from.Holding = null;
 
@@ -1516,7 +1512,7 @@ namespace Server.Network
 
 			Mobile m = state.Mobile;
 
-			if ( (state.Sequence == 0 && seq != 0) || !m.Move( dir ) )
+			if ( state.Sequence == 0 && seq != 0 || !m.Move( dir ) )
 			{
 				state.Send( new MovementRej( seq, m ) );
 				state.Sequence = 0;
@@ -1559,7 +1555,7 @@ namespace Server.Network
 			bool ok = false;
 
 			for ( int i = 0; !ok && i < m_ValidAnimations.Length; ++i )
-				ok = ( action == m_ValidAnimations[i] );
+				ok = action == m_ValidAnimations[i];
 
 			if ( from != null && ok && from.Alive && from.Body.IsHuman && !from.Mounted )
 				from.Animate( action, 7, 1, true, false, 0 );
@@ -1628,7 +1624,7 @@ namespace Server.Network
 
 			int length = pvSrc.Size-3;
 
-			if ( length < 0 || (length%4) != 0 )
+			if ( length < 0 || length%4 != 0 )
 				return;
 
 			int count = length/4;
@@ -1980,7 +1976,7 @@ namespace Server.Network
 			{
 				bool authOK = false;
 
-				ulong razorFeatures = (((ulong)pvSrc.ReadUInt32())<<32) | ((ulong)pvSrc.ReadUInt32());
+				ulong razorFeatures = ((ulong)pvSrc.ReadUInt32()<<32) | (ulong)pvSrc.ReadUInt32();
 
 				if ( razorFeatures == (ulong)FeatureProtection.DisabledFeatures )
 				{
@@ -2183,12 +2179,12 @@ namespace Server.Network
 			0x05, 0x06 -> Gargoyle Male, Gargoyle Female
 			*/
 
-			bool female = ((genderRace % 2) != 0);
+			bool female = genderRace % 2 != 0;
 
 			Race race = null;
 
 			if ( state.StygianAbyss ) {
-				byte raceID = (byte)(genderRace < 4 ? 0 : ((genderRace / 2) - 1));
+				byte raceID = (byte)(genderRace < 4 ? 0 : genderRace / 2 - 1);
 				race = Race.Races[raceID];
 			} else {
 				race = Race.Races[(byte)(genderRace / 2)];
@@ -2307,11 +2303,11 @@ namespace Server.Network
 			0x05, 0x06 -> Gargoyle Male, Gargoyle Female
 			*/
 
-			bool female = ((genderRace % 2) != 0);
+			bool female = genderRace % 2 != 0;
 
 			Race race = null;
 
-			byte raceID = (byte)(genderRace < 4 ? 0 : ((genderRace / 2) - 1));
+			byte raceID = (byte)(genderRace < 4 ? 0 : genderRace / 2 - 1);
 			race = Race.Races[raceID];
 		
 			if( race == null )

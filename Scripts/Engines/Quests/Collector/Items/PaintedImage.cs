@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Engines.Quests.Collector
 {
-	public class PaintedImage : Item
+    public class PaintedImage : Item
 	{
 		private ImageType m_Image;
 

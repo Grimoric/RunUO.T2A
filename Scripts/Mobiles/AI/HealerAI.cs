@@ -1,15 +1,11 @@
-using System;
-using System.Collections;
 using Server.Targeting;
-using Server.Network;
-using Server.Spells;
 using Server.Spells.First;
 using Server.Spells.Second;
 using Server.Spells.Fourth;
 
 namespace Server.Mobiles
 {
-	public class HealerAI : BaseAI
+    public class HealerAI : BaseAI
 	{
 		private static NeedDelegate m_Cure = new NeedDelegate( NeedCure );
 		private static NeedDelegate m_GHeal = new NeedDelegate( NeedGHeal );
@@ -60,7 +56,7 @@ namespace Server.Mobiles
 						if ( m_Mobile.Debug )
 							m_Mobile.DebugSay( "{0} needs a cure", toHelp.Name );
 
-						if ( !(new CureSpell( m_Mobile, null )).Cast() )
+						if ( !new CureSpell( m_Mobile, null ).Cast() )
 							new CureSpell( m_Mobile, null ).Cast();
 					}
 					else if ( NeedGHeal( toHelp ) )
@@ -68,7 +64,7 @@ namespace Server.Mobiles
 						if ( m_Mobile.Debug )
 							m_Mobile.DebugSay( "{0} needs a greater heal", toHelp.Name );
 
-						if ( !(new GreaterHealSpell( m_Mobile, null )).Cast() )
+						if ( !new GreaterHealSpell( m_Mobile, null ).Cast() )
 							new HealSpell( m_Mobile, null ).Cast();
 					}
 					else if ( NeedLHeal( toHelp ) )

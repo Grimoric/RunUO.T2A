@@ -1,14 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
-using Server.Mobiles;
 using Server.ContextMenus;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a giant beetle corpse" )]
+    [CorpseName( "a giant beetle corpse" )]
 	public class Beetle : BaseMount
 	{
 		public virtual double BoostedSpeed{ get{ return 0.1; } }

@@ -1,11 +1,9 @@
-using System;
-using System.Collections;
 using Server.Items;
 using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a solen warrior corpse" )]
+    [CorpseName( "a solen warrior corpse" )]
 	public class RedSolenWarrior : BaseCreature
 	{
 		private bool m_BurstSac;
@@ -45,7 +43,7 @@ namespace Server.Mobiles
 			VirtualArmor = 35;
 
 			SolenHelper.PackPicnicBasket( this );
-			PackItem( new ZoogiFungus( ( 0.05 < Utility.RandomDouble() )? 3 : 13 ) );
+			PackItem( new ZoogiFungus( 0.05 < Utility.RandomDouble()? 3 : 13 ) );
 
 			if ( Utility.RandomDouble() < 0.05 )
 				PackItem( new BraceletOfBinding() );

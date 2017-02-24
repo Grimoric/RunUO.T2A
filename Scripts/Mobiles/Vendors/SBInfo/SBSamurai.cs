@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	public class SBSamurai : SBInfo
+    public class SBSamurai : SBInfo
 	{
 		private List<GenericBuyInfo> m_BuyInfo = new InternalBuyInfo();
 		private IShopSellInfo m_SellInfo = new InternalSellInfo();

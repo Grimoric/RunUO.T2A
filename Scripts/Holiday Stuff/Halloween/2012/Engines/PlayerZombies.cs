@@ -115,7 +115,7 @@ namespace Server.Engines.Events
 				{
 					Map map = Utility.RandomBool() ? Map.Trammel : Map.Felucca;
 
-					Point3D home = ( GetRandomPointInRect( m_Cemetaries[ Utility.Random( m_Cemetaries.Length ) ], map ));
+					Point3D home = GetRandomPointInRect( m_Cemetaries[ Utility.Random( m_Cemetaries.Length ) ], map );
 
 					if( map.CanSpawnMobile( home ) )
 					{
@@ -198,7 +198,7 @@ namespace Server.Engines.Events
 		{
 			m_DeadPlayer = player;
 
-			Name = ( player != null ) ? String.Format( "{0}'s {1}", player.Name, m_Name ) : m_Name;
+			Name = player != null ? String.Format( "{0}'s {1}", player.Name, m_Name ) : m_Name;
 
 			Body = 0x93;
 			BaseSoundID = 0x1c3;

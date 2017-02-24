@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class WoundingAssassinSpike : AssassinSpike
+    public class WoundingAssassinSpike : AssassinSpike
 	{
 		public override int LabelNumber{ get{ return 1073520; } } // wounding assassin spike
 

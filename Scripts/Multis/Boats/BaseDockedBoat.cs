@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Regions;
 using Server.Targeting;
 using Server.Engines.CannedEvil;
 
 namespace Server.Multis
 {
-	public abstract class BaseDockedBoat : Item
+    public abstract class BaseDockedBoat : Item
 	{
 		private int m_MultiID;
 		private Point3D m_Offset;

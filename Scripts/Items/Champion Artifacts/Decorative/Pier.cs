@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class Pier : Item
+    public class Pier : Item
 	{
 		/*
 		 * This does not make a lot of sense, being a "Pier"

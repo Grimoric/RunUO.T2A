@@ -18,13 +18,10 @@
  *
  ***************************************************************************/
 
-using System;
-using System.Text;
-using System.IO;
 
 namespace Server.Network
 {
-	public class EncodedReader
+    public class EncodedReader
 	{
 		private PacketReader m_Reader;
 

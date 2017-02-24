@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Misc
 {
-	public class RaceDefinitions
+    public class RaceDefinitions
 	{
 		public static void Configure()
 		{
@@ -37,7 +34,7 @@ namespace Server.Misc
 				if( itemID == 0 )
 					return true;
 
-				if( (female && itemID == 0x2048) || (!female && itemID == 0x2046 ) )
+				if( female && itemID == 0x2048 || !female && itemID == 0x2046 )
 					return false;	//Buns & Receeding Hair
 
 				if( itemID >= 0x203B && itemID <= 0x203D )
@@ -61,7 +58,7 @@ namespace Server.Misc
 					case 5: return 0x2047;	//Afro
 					case 6: return 0x2049;	//Pig tails
 					case 7: return 0x204A;	//Krisna
-					default: return (female ? 0x2046 : 0x2048);	//Buns or Receeding Hair
+					default: return female ? 0x2046 : 0x2048;	//Buns or Receeding Hair
 				}
 			}
 
@@ -89,7 +86,7 @@ namespace Server.Misc
 
 				int rand = Utility.Random( 7 );
 
-				return ((rand < 4) ? 0x203E : 0x2047) + rand;
+				return (rand < 4 ? 0x203E : 0x2047) + rand;
 			}
 
 			public override int ClipSkinHue( int hue )
@@ -154,7 +151,7 @@ namespace Server.Misc
 				if( itemID == 0 )
 					return true;
 
-				if( (female && (itemID == 0x2FCD || itemID == 0x2FBF)) || (!female && (itemID == 0x2FCC || itemID == 0x2FD0)) )
+				if( female && (itemID == 0x2FCD || itemID == 0x2FBF) || !female && (itemID == 0x2FCC || itemID == 0x2FD0) )
 					return false;
 
 				if( itemID >= 0x2FBF && itemID <= 0x2FC2 )
@@ -176,14 +173,14 @@ namespace Server.Misc
 					case 3: return 0x2FCE;	//Knob
 					case 4: return 0x2FCF;	//Braided
 					case 5: return 0x2FD1;	//Spiked
-					case 6: return (female ? 0x2FCC : 0x2FBF);	//Flower or Mid-long
-					default: return (female ? 0x2FD0 : 0x2FCD);	//Bun or Long
+					case 6: return female ? 0x2FCC : 0x2FBF;	//Flower or Mid-long
+					default: return female ? 0x2FD0 : 0x2FCD;	//Bun or Long
 				}
 			}
 
 			public override bool ValidateFacialHair( bool female, int itemID )
 			{
-				return (itemID == 0);
+				return itemID == 0;
 			}
 
 			public override int RandomFacialHair( bool female )

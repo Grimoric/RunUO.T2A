@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 using Server.Mobiles;
 
 namespace Server.Guilds
 {
-	public delegate void SearchSelectionCallback( GuildDisplayType display );
+    public delegate void SearchSelectionCallback( GuildDisplayType display );
 
 	public class GuildAdvancedSearchGump : BaseGuildGump
 	{

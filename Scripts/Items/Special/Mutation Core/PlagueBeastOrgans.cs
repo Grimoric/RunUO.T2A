@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class PlagueBeastOrgan : PlagueBeastInnard
+    public class PlagueBeastOrgan : PlagueBeastInnard
 	{
 		public virtual bool IsCuttable { get { return false; } }
 

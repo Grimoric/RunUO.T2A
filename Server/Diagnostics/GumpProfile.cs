@@ -20,10 +20,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Server.Diagnostics {
-	public class GumpProfile : BaseProfile {
+namespace Server.Diagnostics
+{
+    public class GumpProfile : BaseProfile {
 		private static Dictionary<Type, GumpProfile> _profiles = new Dictionary<Type, GumpProfile>();
 
 		public static IEnumerable<GumpProfile> Profiles {

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class NightSightPotion : BasePotion
+    public class NightSightPotion : BasePotion
 	{
 		[Constructable]
 		public NightSightPotion() : base( 0xF06, PotionEffect.Nightsight )

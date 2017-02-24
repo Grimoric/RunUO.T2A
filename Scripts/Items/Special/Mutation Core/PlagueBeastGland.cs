@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class PlagueBeastGland : Item
+    public class PlagueBeastGland : Item
 	{
 		[Constructable]
 		public PlagueBeastGland() : base( 0x1CEF )

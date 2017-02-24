@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Network;
 
 namespace Server.Misc
 {
-	public enum ProfanityAction
+    public enum ProfanityAction
 	{
 		None,			// no action taken
 		Disallow,		// speech is not displayed

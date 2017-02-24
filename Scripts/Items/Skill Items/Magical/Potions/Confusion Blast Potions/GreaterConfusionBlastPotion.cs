@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class GreaterConfusionBlastPotion : BaseConfusionBlastPotion
+    public class GreaterConfusionBlastPotion : BaseConfusionBlastPotion
 	{
 		public override int Radius{ get{ return 7; } }
 

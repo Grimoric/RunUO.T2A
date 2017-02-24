@@ -1,9 +1,8 @@
-using System;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Samurai
 {
-	public class DiseasedCat : BaseCreature
+    public class DiseasedCat : BaseCreature
 	{
 		[Constructable]
 		public DiseasedCat() : base( AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.2, 0.4 )

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class LeggingsOfBane : ChainLegs
+    public class LeggingsOfBane : ChainLegs
 	{
 		public override int LabelNumber{ get{ return 1061100; } } // Leggings of Bane
 		public override int ArtifactRarity{ get{ return 11; } }

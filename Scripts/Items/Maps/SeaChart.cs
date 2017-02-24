@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class SeaChart : MapItem
+    public class SeaChart : MapItem
 	{
 		[Constructable]
 		public SeaChart()

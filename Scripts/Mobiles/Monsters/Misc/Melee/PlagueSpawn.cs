@@ -1,13 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server.Items;
-using Server.Targeting;
 using Server.ContextMenus;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a plague spawn corpse" )]
+    [CorpseName( "a plague spawn corpse" )]
 	public class PlagueSpawn : BaseCreature
 	{
 		private Mobile m_Owner;

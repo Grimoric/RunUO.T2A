@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class WeakenScroll : SpellScroll
+    public class WeakenScroll : SpellScroll
 	{
 		[Constructable]
 		public WeakenScroll() : this( 1 )

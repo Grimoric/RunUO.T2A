@@ -1,15 +1,12 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using Server;
 using Server.Gumps;
 using Server.Network;
-using Server.Targeting;
 using Server.Mobiles;
 
 namespace Server.Engines.ConPVP
 {
-	public class AcceptDuelGump : Gump
+    public class AcceptDuelGump : Gump
 	{
 		private Mobile m_Challenger, m_Challenged;
 		private DuelContext m_Context;
@@ -124,7 +121,7 @@ namespace Server.Engines.ConPVP
 			public DateTime m_Expire;
 
 			public Mobile Ignored{ get{ return m_Ignored; } }
-			public bool Expired{ get{ return ( DateTime.Now >= m_Expire ); } }
+			public bool Expired{ get{ return DateTime.Now >= m_Expire; } }
 
 			private static TimeSpan ExpireDelay = TimeSpan.FromMinutes( 15.0 );
 

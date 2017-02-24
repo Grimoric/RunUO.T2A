@@ -1,11 +1,9 @@
 using System;
-using Server;
 using Server.Ethics;
-using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an evil corpse" )]
+    [CorpseName( "an evil corpse" )]
 	public class UnholyFamiliar : BaseCreature
 	{
 		public override bool IsDispellable { get { return false; } }

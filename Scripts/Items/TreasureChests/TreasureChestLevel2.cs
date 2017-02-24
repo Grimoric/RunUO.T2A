@@ -19,42 +19,42 @@ namespace Server.Items
 			switch( Utility.RandomList( 0, 1, 2, 3, 4, 5, 6, 7 ) )
 			{
 				case 0:// Large Crate
-					this.ItemID = ( UseFirstItemId ? 0xe3c : 0xe3d );
+					this.ItemID = UseFirstItemId ? 0xe3c : 0xe3d;
 					this.GumpID = 0x44;
 					break;
 
 				case 1:// Medium Crate
-					this.ItemID = ( UseFirstItemId ? 0xe3e : 0xe3f );
+					this.ItemID = UseFirstItemId ? 0xe3e : 0xe3f;
 					this.GumpID = 0x44;
 					break;
 
 				case 2:// Small Crate
-					this.ItemID = ( UseFirstItemId ? 0x9a9 : 0xe7e );
+					this.ItemID = UseFirstItemId ? 0x9a9 : 0xe7e;
 					this.GumpID = 0x44;
 					break;
 
 				case 3:// Wooden Chest
-					this.ItemID = ( UseFirstItemId ? 0xe42 : 0xe43 );
+					this.ItemID = UseFirstItemId ? 0xe42 : 0xe43;
 					this.GumpID = 0x49;
 					break;
 
 				case 4:// Metal Chest
-					this.ItemID = ( UseFirstItemId ? 0x9ab : 0xe7c );
+					this.ItemID = UseFirstItemId ? 0x9ab : 0xe7c;
 					this.GumpID = 0x4A;
 					break;
 
 				case 5:// Metal Golden Chest
-					this.ItemID = ( UseFirstItemId ? 0xe40 : 0xe41 );
+					this.ItemID = UseFirstItemId ? 0xe40 : 0xe41;
 					this.GumpID = 0x42;
 					break;
 
 				case 6:// Keg
-					this.ItemID = ( UseFirstItemId ? 0xe7f : 0xe7f );
+					this.ItemID = UseFirstItemId ? 0xe7f : 0xe7f;
 					this.GumpID = 0x3e;
 					break;
 
 				case 7:// Barrel
-					this.ItemID = ( UseFirstItemId ? 0xe77 : 0xe77 );
+					this.ItemID = UseFirstItemId ? 0xe77 : 0xe77;
 					this.GumpID = 0x3e;
 					break;
 			}
@@ -82,7 +82,7 @@ namespace Server.Items
 
 			RequiredSkill = 72;
 			LockLevel = this.RequiredSkill - Utility.Random( 1, 10 );
-			MaxLockLevel = this.RequiredSkill + Utility.Random( 1, 10 ); ;
+			MaxLockLevel = this.RequiredSkill + Utility.Random( 1, 10 );
 
 			// According to OSI, loot in level 2 chest is:
 			//  Gold 80 - 150

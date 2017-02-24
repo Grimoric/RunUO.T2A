@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x13B2, 0x13B1 )]
+    [FlipableAttribute( 0x13B2, 0x13B1 )]
 	public class JukaBow : Bow
 	{
 		public override int AosStrengthReq{ get{ return 80; } }
@@ -16,7 +12,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool IsModified
 		{
-			get{ return ( Hue == 0x453 ); }
+			get{ return Hue == 0x453; }
 		}
 
 		[Constructable]

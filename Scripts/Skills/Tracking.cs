@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Gumps;
 using Server.Network;
-using Server.Spells.Necromancy;
-using Server.Spells;
 
 namespace Server.SkillHandlers
 {
-	public class Tracking
+    public class Tracking
 	{
 		public static void Initialize()
 		{
@@ -61,7 +58,7 @@ namespace Server.SkillHandlers
 			int xDelta = info.m_Location.X - target.X;
 			int yDelta = info.m_Location.Y - target.Y;
 
-			double bonus = Math.Sqrt( (xDelta * xDelta) + (yDelta * yDelta) );
+			double bonus = Math.Sqrt( xDelta * xDelta + yDelta * yDelta );
 
 			m_Table.Remove( tracker );	//Reset as of Pub 40, counting it as bug for Core.SE.
 
@@ -207,17 +204,17 @@ namespace Server.SkillHandlers
 
 		private static bool IsAnimal( Mobile m )
 		{
-			return ( !m.Player && m.Body.IsAnimal );
+			return !m.Player && m.Body.IsAnimal;
 		}
 
 		private static bool IsMonster( Mobile m )
 		{
-			return ( !m.Player && m.Body.IsMonster );
+			return !m.Player && m.Body.IsMonster;
 		}
 
 		private static bool IsHumanNPC( Mobile m )
 		{
-			return ( !m.Player && m.Body.IsHuman );
+			return !m.Player && m.Body.IsHuman;
 		}
 
 		private static bool IsPlayer( Mobile m )
@@ -260,11 +257,11 @@ namespace Server.SkillHandlers
 			{
 				Mobile m = list[i];
 
-				AddItem( 20 + ((i % 4) * 100), 20 + ((i / 4) * 155), ShrinkTable.Lookup( m ) );
-				AddButton( 20 + ((i % 4) * 100), 130 + ((i / 4) * 155), 4005, 4007, i + 1, GumpButtonType.Reply, 0 );
+				AddItem( 20 + i % 4 * 100, 20 + i / 4 * 155, ShrinkTable.Lookup( m ) );
+				AddButton( 20 + i % 4 * 100, 130 + i / 4 * 155, 4005, 4007, i + 1, GumpButtonType.Reply, 0 );
 
 				if ( m.Name != null )
-					AddHtml( 20 + ((i % 4) * 100), 90 + ((i / 4) * 155), 90, 40, m.Name, false, false );
+					AddHtml( 20 + i % 4 * 100, 90 + i / 4 * 155, 90, 40, m.Name, false, false );
 			}
 		}
 
@@ -341,7 +338,7 @@ namespace Server.SkillHandlers
 				Stop();
 				return;
 			}
-			else if ( m_From.NetState == null || m_From.Deleted || m_Target.Deleted || m_From.Map != m_Target.Map || !m_From.InRange( m_Target, m_Range ) || ( m_Target.Hidden && m_Target.AccessLevel > m_From.AccessLevel ) )
+			else if ( m_From.NetState == null || m_From.Deleted || m_Target.Deleted || m_From.Map != m_Target.Map || !m_From.InRange( m_Target, m_Range ) || m_Target.Hidden && m_Target.AccessLevel > m_From.AccessLevel )
 			{
 				m_Arrow.Stop();
 				Stop();

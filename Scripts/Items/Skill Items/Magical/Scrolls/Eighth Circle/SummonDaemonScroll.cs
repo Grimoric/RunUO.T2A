@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class SummonDaemonScroll : SpellScroll
+    public class SummonDaemonScroll : SpellScroll
 	{
 		[Constructable]
 		public SummonDaemonScroll() : this( 1 )

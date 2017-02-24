@@ -1,10 +1,8 @@
 using System;
-using Server;
-using Server.Items;
 
 namespace Server.Items
 {
-	public abstract class BaseSpear : BaseMeleeWeapon
+    public abstract class BaseSpear : BaseMeleeWeapon
 	{
 		public override int DefHitSound{ get{ return 0x23C; } }
 		public override int DefMissSound{ get{ return 0x238; } }
@@ -39,7 +37,7 @@ namespace Server.Items
 		{
 			base.OnHit( attacker, defender, damageBonus );
 
-			if (  Layer == Layer.TwoHanded && (attacker.Skills[SkillName.Anatomy].Value / 400.0) >= Utility.RandomDouble() && Engines.ConPVP.DuelContext.AllowSpecialAbility( attacker, "Paralyzing Blow", false ) )
+			if (  Layer == Layer.TwoHanded && attacker.Skills[SkillName.Anatomy].Value / 400.0 >= Utility.RandomDouble() && Engines.ConPVP.DuelContext.AllowSpecialAbility( attacker, "Paralyzing Blow", false ) )
 			{
 				defender.SendMessage( "You receive a paralyzing blow!" ); // Is this not localized?
 				defender.Freeze( TimeSpan.FromSeconds( 2.0 ) );

@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a ravager corpse" )]
+    [CorpseName( "a ravager corpse" )]
 	public class Ravager : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()

@@ -74,7 +74,7 @@ namespace Server.Engines.Harvest
 
 				m_Current = m_Maximum - amount;
 
-				double minutes = min + (rnd * (max - min));
+				double minutes = min + rnd * (max - min);
 				if ( m_Definition.RaceBonus && from.Race == Race.Elf )	//def.RaceBonus = Core.ML
 					minutes *= .75;	//25% off the time.  
 

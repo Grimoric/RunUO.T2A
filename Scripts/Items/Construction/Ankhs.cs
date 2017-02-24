@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Gumps;
 using Server.Mobiles;
 using Server.ContextMenus;
 
 namespace Server.Items
 {
-	public class Ankhs
+    public class Ankhs
 	{
 		public const int ResurrectRange = 2;
 		public const int TitheRange = 2;

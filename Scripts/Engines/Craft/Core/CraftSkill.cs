@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Engines.Craft
 {
-	public class CraftSkill
+    public class CraftSkill
 	{
 		private SkillName m_SkillToMake;
 		private double m_MinSkill;

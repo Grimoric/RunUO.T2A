@@ -1,12 +1,8 @@
-using System; 
-using System.Collections; 
-using Server.Misc; 
-using Server.Items; 
-using Server.Mobiles; 
+using Server.Items;
 
-namespace Server.Mobiles 
-{ 
-	public class Guardian : BaseCreature 
+namespace Server.Mobiles
+{
+    public class Guardian : BaseCreature 
 	{ 
 		[Constructable] 
 		public Guardian() : base( AIType.AI_Archer, FightMode.Aggressor, 10, 1, 0.2, 0.4 ) 

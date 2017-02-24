@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Server;
 
 namespace Server.Misc
 {
-	[Flags]
+    [Flags]
 	public enum IHSFlags
 	{
 		None		= 0x00,
@@ -495,7 +494,7 @@ namespace Server.Misc
 					}
 				}
 
-				int maxWords = (split.Length / 2) + 1;
+				int maxWords = split.Length / 2 + 1;
 
 				if ( maxWords < 2 )
 					maxWords = 2;
@@ -535,7 +534,7 @@ namespace Server.Misc
 			if ( (m_Flags & IHSFlags.OnMovement) == 0 )
 				return; // not enabled
 
-			if ( !mover.Player || (mover.Hidden && mover.AccessLevel > AccessLevel.Player) )
+			if ( !mover.Player || mover.Hidden && mover.AccessLevel > AccessLevel.Player )
 				return;
 
 			if ( !mob.InRange( mover, 5 ) || mob.InRange( oldLocation, 5 ) )

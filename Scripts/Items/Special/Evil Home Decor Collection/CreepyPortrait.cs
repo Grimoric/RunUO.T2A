@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Network;
 
 namespace Server.Items
 {
-	[Flipable( 0x2A69, 0x2A6D )]
+    [Flipable( 0x2A69, 0x2A6D )]
 	public class CreepyPortraitComponent : AddonComponent
 	{
 		public override int LabelNumber { get { return 1074481; } } // Creepy portrait

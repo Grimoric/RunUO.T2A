@@ -21,15 +21,14 @@
 using System;
 using System.IO;
 using System.Text;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Server.Network
 {
-	/// <summary>
-	/// Provides functionality for writing primitive binary data.
-	/// </summary>
-	public class PacketWriter
+    /// <summary>
+    /// Provides functionality for writing primitive binary data.
+    /// </summary>
+    public class PacketWriter
 	{
 		private static Stack<PacketWriter> m_Pool = new Stack<PacketWriter>();
 
@@ -269,7 +268,7 @@ namespace Server.Network
 
 			int length = value.Length;
 
-			m_Stream.SetLength( m_Stream.Length + ( ( length + 1 ) * 2 ) );
+			m_Stream.SetLength( m_Stream.Length + ( length + 1 ) * 2 );
 
 			m_Stream.Position += Encoding.Unicode.GetBytes( value, 0, length, m_Stream.GetBuffer(), (int)m_Stream.Position );
 			m_Stream.Position += 2;
@@ -300,7 +299,7 @@ namespace Server.Network
 
 			m_Stream.SetLength( m_Stream.Length + size );
 
-			if ( ( length * 2 ) >= size )
+			if ( length * 2 >= size )
 				m_Stream.Position += Encoding.Unicode.GetBytes( value, 0, length, m_Stream.GetBuffer(), (int)m_Stream.Position );
 			else
 			{
@@ -336,7 +335,7 @@ namespace Server.Network
 
 			int length = value.Length;
 
-			m_Stream.SetLength( m_Stream.Length + ( ( length + 1 ) * 2 ) );
+			m_Stream.SetLength( m_Stream.Length + ( length + 1 ) * 2 );
 
 			m_Stream.Position += Encoding.BigEndianUnicode.GetBytes( value, 0, length, m_Stream.GetBuffer(), (int)m_Stream.Position );
 			m_Stream.Position += 2;
@@ -367,7 +366,7 @@ namespace Server.Network
 
 			m_Stream.SetLength( m_Stream.Length + size );
 
-			if ( ( length * 2 ) >= size )
+			if ( length * 2 >= size )
 				m_Stream.Position += Encoding.BigEndianUnicode.GetBytes( value, 0, length, m_Stream.GetBuffer(), (int)m_Stream.Position );
 			else
 			{

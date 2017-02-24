@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Doom
 {
-	public class SummoningAltar : AbbatoirAddon
+    public class SummoningAltar : AbbatoirAddon
 	{
 		private BoneDemon m_Daemon;
 

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class CurePotion : BaseCurePotion
+    public class CurePotion : BaseCurePotion
 	{
 		private static CureLevelInfo[] m_OldLevelInfo = new CureLevelInfo[]
 			{

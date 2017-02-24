@@ -1,13 +1,9 @@
-using System;
-using Server;
-using Server.Items;
 using Server.Multis;
-using Server.Multis.Deeds;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	public class HouseTransferGump : Gump
+    public class HouseTransferGump : Gump
 	{
 		private Mobile m_From, m_To;
 		private BaseHouse m_House;

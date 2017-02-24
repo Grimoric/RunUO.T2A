@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Mobiles
 {
-	public class CapturedHordeMinion : HordeMinion
+    public class CapturedHordeMinion : HordeMinion
 	{
 		[Constructable]
 		public CapturedHordeMinion()

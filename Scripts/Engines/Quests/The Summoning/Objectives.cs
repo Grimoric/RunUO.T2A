@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using System.Collections.Generic;
 
 namespace Server.Engines.Quests.Doom
 {
-	public class CollectBonesObjective : QuestObjective
+    public class CollectBonesObjective : QuestObjective
 	{
 		public override object Message
 		{

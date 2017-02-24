@@ -18,13 +18,11 @@
  *
  ***************************************************************************/
 
-using System;
-using Server;
 using Server.Network;
 
 namespace Server
 {
-	public class QuestArrow
+    public class QuestArrow
 	{
 		private Mobile m_Mobile;
 		private Mobile m_Target;

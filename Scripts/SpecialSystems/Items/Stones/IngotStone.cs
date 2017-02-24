@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class IngotStone : Item
+    public class IngotStone : Item
 	{
 		public override string DefaultName
 		{

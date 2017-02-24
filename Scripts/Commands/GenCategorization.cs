@@ -3,12 +3,11 @@ using System.IO;
 using System.Xml;
 using System.Collections;
 using System.Reflection;
-using Server;
 using Server.Items;
 
 namespace Server.Commands
 {
-	public class Categorization
+    public class Categorization
 	{
 		private static CategoryEntry m_RootItems, m_RootMobiles;
 
@@ -106,7 +105,7 @@ namespace Server.Commands
 					int itemID = item.ItemID;
 
 					if ( item is BaseAddon && ((BaseAddon)item).Components.Count == 1 )
-						itemID = ((AddonComponent)(((BaseAddon)item).Components[0])).ItemID;
+						itemID = ((AddonComponent)((BaseAddon)item).Components[0]).ItemID;
 
 					if ( itemID > TileData.MaxItemValue )
 						itemID = 1;
@@ -189,7 +188,7 @@ namespace Server.Commands
 
 			ConstructorInfo ctor = type.GetConstructor( Type.EmptyTypes );
 
-			return ( ctor != null && ctor.IsDefined( typeofConstructable, false ) );
+			return ctor != null && ctor.IsDefined( typeofConstructable, false );
 		}
 
 		private static void AddTypes( Assembly asm, ArrayList types )
@@ -325,7 +324,7 @@ namespace Server.Commands
 			bool isMatch = false;
 
 			for ( int i = 0; !isMatch && i < m_Matches.Length; ++i )
-				isMatch = ( type == m_Matches[i] || type.IsSubclassOf( m_Matches[i] ) );
+				isMatch = type == m_Matches[i] || type.IsSubclassOf( m_Matches[i] );
 
 			return isMatch;
 		}

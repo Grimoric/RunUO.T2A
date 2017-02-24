@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Gumps;
 using Server.Items;
 using Server.Multis;
@@ -10,7 +9,7 @@ using Server.Network;
 
 namespace Server.Engines.Plants
 {
-	public enum PlantStatus
+    public enum PlantStatus
 	{
 		BowlOfDirt		= 0,
 		Seed			= 1,
@@ -308,7 +307,7 @@ namespace Server.Engines.Plants
 					}
 					else
 					{
-						args += String.Format( "\t#{0}\t#{1}", ( typeInfo.PlantCategory == PlantCategory.Default ) ? hueInfo.Name : (int)typeInfo.PlantCategory, GetLocalizedPlantStatus() );
+						args += String.Format( "\t#{0}\t#{1}", typeInfo.PlantCategory == PlantCategory.Default ? hueInfo.Name : (int)typeInfo.PlantCategory, GetLocalizedPlantStatus() );
 
 						list.Add( hueInfo.IsBright() ? 1060832 : 1060831, args ); // a ~1_val~ of ~2_val~ dirt with a ~3_val~ [bright] ~4_val~ ~5_val~
 					}

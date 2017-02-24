@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class PinkFancyRugAddon : BaseAddon
+    public class PinkFancyRugAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed { get { return new PinkFancyRugDeed(); } }
 

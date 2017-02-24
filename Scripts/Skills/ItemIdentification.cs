@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Targeting;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	public class ItemIdentification
+    public class ItemIdentification
 	{
 		public static void Initialize()
 		{

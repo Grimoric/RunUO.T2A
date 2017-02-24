@@ -62,7 +62,7 @@ namespace Server.Spells.Spellweaving
 
 			double skill = Caster.Skills.Spellweaving.Value;
 
-			TimeSpan duration = TimeSpan.FromSeconds( 12 + (int)(skill / 24) + (FocusLevel * 2) );
+			TimeSpan duration = TimeSpan.FromSeconds( 12 + (int)(skill / 24) + FocusLevel * 2 );
 
 			Timer.DelayCall<Mobile>( duration, new TimerStateCallback<Mobile>( RemoveEffect ), Caster );
 

@@ -1,12 +1,10 @@
 using System;
 using System.Collections;
-using Server.Network;
-using Server.Items;
 using Server.Targeting;
 
 namespace Server.Spells.Necromancy
 {
-	public class StrangleSpell : NecromancerSpell
+    public class StrangleSpell : NecromancerSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Strangle", "In Bal Nox",
@@ -94,7 +92,7 @@ namespace Server.Spells.Necromancy
                     }
                     else
                     {
-                        int delay = (int)(Math.Ceiling((1.0 + (5 * i_Count)) / i_MaxCount));
+                        int delay = (int)Math.Ceiling((1.0 + 5 * i_Count) / i_MaxCount);
 
                         if (delay <= 5)
                             i_HitDelay = delay;
@@ -180,7 +178,7 @@ namespace Server.Spells.Necromancy
 					}
 					else
 					{
-						int delay = (int)(Math.Ceiling( (1.0 + (5 * m_Count)) / m_MaxCount ) );
+						int delay = (int)Math.Ceiling( (1.0 + 5 * m_Count) / m_MaxCount );
 
 						if ( delay <= 5 )
 							m_HitDelay = delay;
@@ -199,9 +197,9 @@ namespace Server.Spells.Necromancy
 				{
 					m_NextHit = DateTime.Now + TimeSpan.FromSeconds( m_HitDelay );
 
-					double damage = m_MinBaseDamage + (Utility.RandomDouble() * (m_MaxBaseDamage - m_MinBaseDamage));
+					double damage = m_MinBaseDamage + Utility.RandomDouble() * (m_MaxBaseDamage - m_MinBaseDamage);
 
-					damage *= (3 - (((double)m_Target.Stam / m_Target.StamMax) * 2));
+					damage *= 3 - (double)m_Target.Stam / m_Target.StamMax * 2;
 
 					if ( damage < 1 )
 						damage = 1;

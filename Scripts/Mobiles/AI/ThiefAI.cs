@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using Server.Targeting;
-using Server.Network;
 using Server.Items;
 
 //
@@ -11,7 +8,7 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-	public class ThiefAI : BaseAI
+    public class ThiefAI : BaseAI
 	{
 		public ThiefAI(BaseCreature m) : base (m)
 		{
@@ -68,7 +65,7 @@ namespace Server.Mobiles
 				if (  !m_Mobile.DisarmReady && m_Mobile.Skills[SkillName.Wrestling].Value >= 80.0 && m_Mobile.Skills[SkillName.ArmsLore].Value >= 80.0 && m_toDisarm != null )
 					EventSink.InvokeDisarmRequest( new DisarmRequestEventArgs( m_Mobile ) );
 
-				if ( m_toDisarm != null && m_toDisarm.IsChildOf( combatant.Backpack ) && m_Mobile.NextSkillTime <= DateTime.Now && (m_toDisarm.LootType != LootType.Blessed && m_toDisarm.LootType != LootType.Newbied) )
+				if ( m_toDisarm != null && m_toDisarm.IsChildOf( combatant.Backpack ) && m_Mobile.NextSkillTime <= DateTime.Now && m_toDisarm.LootType != LootType.Blessed && m_toDisarm.LootType != LootType.Newbied )
 				{
 					m_Mobile.DebugSay( "Trying to steal from combatant." );
 					m_Mobile.UseSkill( SkillName.Stealing );
@@ -140,7 +137,7 @@ namespace Server.Mobiles
 
 					int diff = combatant.Hits - m_Mobile.Hits;
 
-					flee = ( Utility.Random( 0, 100 ) > (10 + diff) ); // (10 + diff)% chance to flee
+					flee = Utility.Random( 0, 100 ) > 10 + diff; // (10 + diff)% chance to flee
 				}
 				else
 				{

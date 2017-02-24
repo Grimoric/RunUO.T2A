@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class Shell : Item
+    public class Shell : Item
 	{
 		public override int LabelNumber{ get{ return 1074598; } } // A shell
 		public override double DefaultWeight{ get{ return 1.0; } }

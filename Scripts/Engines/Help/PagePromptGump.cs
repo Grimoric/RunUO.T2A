@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Engines.Help
 {
-	public class PagePromptGump : Gump
+    public class PagePromptGump : Gump
 	{
 		private Mobile m_From;
 		private PageType m_Type;
@@ -40,7 +38,7 @@ namespace Server.Engines.Help
 			else
 			{
 				TextRelay entry = info.GetTextEntry( 0 );
-				string text = ( entry == null ? "" : entry.Text.Trim() );
+				string text = entry == null ? "" : entry.Text.Trim();
 
 				if ( text.Length == 0 )
 				{

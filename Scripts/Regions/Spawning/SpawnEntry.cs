@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Mobiles;
 using Server.Commands;
 
 namespace Server.Regions
 {
-	public class SpawnEntry : ISpawner
+    public class SpawnEntry : ISpawner
 	{
 		public static readonly TimeSpan DefaultMinSpawnTime = TimeSpan.FromMinutes( 2.0 );
 		public static readonly TimeSpan DefaultMaxSpawnTime = TimeSpan.FromMinutes( 5.0 );

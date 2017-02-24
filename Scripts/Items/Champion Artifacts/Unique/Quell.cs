@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class Quell : Bardiche
+    public class Quell : Bardiche
 	{
 		public override int LabelNumber{ get{ return 1094928; } } // Quell [Replica]
 

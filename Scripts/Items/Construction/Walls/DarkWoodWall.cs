@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public enum DarkWoodWallTypes
+    public enum DarkWoodWallTypes
 	{
 		Corner,
 		SouthWall,

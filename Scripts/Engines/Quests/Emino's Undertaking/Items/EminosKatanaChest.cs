@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Engines.Quests.Ninja
 {
-	public class EminosKatanaChest : WoodenChest
+    public class EminosKatanaChest : WoodenChest
 	{
 		[Constructable]
 		public EminosKatanaChest()

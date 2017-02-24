@@ -1,11 +1,8 @@
-using System;
 using Server.Items;
-using Server;
-using Server.Misc;
 
 namespace Server.Mobiles
 {
-	public class Sculptor : BaseCreature
+    public class Sculptor : BaseCreature
 	{
 		[Constructable]
 		public Sculptor()

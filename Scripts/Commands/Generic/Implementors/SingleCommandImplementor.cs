@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Targeting;
 
 namespace Server.Commands.Generic
 {
-	public class SingleCommandImplementor : BaseCommandImplementor
+    public class SingleCommandImplementor : BaseCommandImplementor
 	{
 		public SingleCommandImplementor()
 		{

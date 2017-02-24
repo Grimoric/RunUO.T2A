@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Server;
-using Server.Items;
 using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Commands
 {
-	public class ConvertPlayers
+    public class ConvertPlayers
 	{
 		public static void Initialize()
 		{

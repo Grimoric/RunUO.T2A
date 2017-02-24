@@ -2,14 +2,13 @@ using System;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Engines.Quests.Haven;
 using Server.Engines.Quests.Necro;
 
 namespace Server.Commands
 {
-	public class DecorateMag
+    public class DecorateMag
 	{
 		public static void Initialize()
 		{
@@ -134,7 +133,7 @@ namespace Server.Commands
 					bool bloodied = false;
 
 					for ( int i = 0; !bloodied && i < m_Params.Length; ++i )
-						bloodied = ( m_Params[i] == "Bloodied" );
+						bloodied = m_Params[i] == "Bloodied";
 
 					if ( m_Type == typeofAnkhWest )
 						item = new AnkhWest( bloodied );

@@ -1,16 +1,13 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Items;
 using Server.Mobiles;
-using Server.Network;
 using Server.Regions;
 using Server.Commands;
 using System.Collections.Generic;
 
 namespace Server.Engines.Doom
 {
-	public enum GauntletSpawnerState
+    public enum GauntletSpawnerState
 	{
 		InSequence,
 		InProgress,
@@ -105,7 +102,7 @@ namespace Server.Engines.Doom
 				m_State = value;
 
 				int hue = 0;
-				bool lockDoors = ( m_State == GauntletSpawnerState.InProgress );
+				bool lockDoors = m_State == GauntletSpawnerState.InProgress;
 
 				switch ( m_State )
 				{
@@ -461,8 +458,8 @@ namespace Server.Engines.Doom
 					m_Creatures = reader.ReadStrongMobileList();
 
 					m_TypeName = reader.ReadString();
-					m_Door = reader.ReadItem<BaseDoor>(); ;
-					m_Addon = reader.ReadItem<BaseAddon>(); ;
+					m_Door = reader.ReadItem<BaseDoor>();
+					m_Addon = reader.ReadItem<BaseAddon>();
 					m_Sequence = reader.ReadItem<GauntletSpawner>();
 
 					State = (GauntletSpawnerState)reader.ReadInt();

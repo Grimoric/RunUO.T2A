@@ -1,12 +1,8 @@
 using System;
-using System.Collections;
-using Server.Network;
-using Server.Items;
-using Server.Targeting;
 
 namespace Server.Spells.Necromancy
 {
-	public class LichFormSpell : TransformationSpell
+    public class LichFormSpell : TransformationSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Lich Form", "Rel Xen Corp Ort",

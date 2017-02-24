@@ -18,13 +18,11 @@
  *
  ***************************************************************************/
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Server.Network
 {
-	public class BufferPool
+    public class BufferPool
 	{
 		private static List<BufferPool> m_Pools = new List<BufferPool>();
 

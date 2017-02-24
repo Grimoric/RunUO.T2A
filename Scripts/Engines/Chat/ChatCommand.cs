@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Engines.Chat
 {
-	public enum ChatCommand
+    public enum ChatCommand
 	{
 		/// <summary>
 		/// Add a channel to top list.

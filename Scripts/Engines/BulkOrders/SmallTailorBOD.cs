@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Engines.Craft;
-using Server.Items;
 
 namespace Server.Engines.BulkOrders
 {
-	public class SmallTailorBOD : SmallBOD
+    public class SmallTailorBOD : SmallBOD
 	{
 		public static double[] m_TailoringMaterialChances = new double[]
 			{
@@ -118,7 +116,7 @@ namespace Server.Engines.BulkOrders
 				if ( theirSkill >= 70.1 )
 					excChance = (theirSkill + 80.0) / 200.0;
 
-				bool reqExceptional = ( excChance > Utility.RandomDouble() );
+				bool reqExceptional = excChance > Utility.RandomDouble();
 
 
 				CraftSystem system = DefTailoring.CraftSystem;
@@ -189,7 +187,7 @@ namespace Server.Engines.BulkOrders
 				else
 					material = BulkMaterialType.None;
 
-				bool reqExceptional = Utility.RandomBool() || (material == BulkMaterialType.None);
+				bool reqExceptional = Utility.RandomBool() || material == BulkMaterialType.None;
 
 				SmallBulkEntry entry = entries[Utility.Random( entries.Length )];
 

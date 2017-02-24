@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Gumps;
-using Server.Network;
 using Server.Engines.VeteranRewards;
 
 namespace Server.Items
 {
-	public enum MinotaurStatueType
+    public enum MinotaurStatueType
 	{
 		AttackSouth		= 100,
 		AttackEast		= 101,

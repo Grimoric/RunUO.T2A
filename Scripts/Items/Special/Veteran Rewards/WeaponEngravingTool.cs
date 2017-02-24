@@ -1,5 +1,4 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Targeting;
 using Server.Gumps;
@@ -7,7 +6,7 @@ using Server.Engines.VeteranRewards;
 
 namespace Server.Items
 {
-	public class WeaponEngravingTool : Item, IUsesRemaining, IRewardItem
+    public class WeaponEngravingTool : Item, IUsesRemaining, IRewardItem
 	{				
 		public override int LabelNumber{ get{ return 1076158; } } // Weapon Engraving Tool
 	

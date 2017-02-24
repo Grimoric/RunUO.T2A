@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	public class DragonEasterEgg : Item, IDyable
+    public class DragonEasterEgg : Item, IDyable
 	{
 		public override int LabelNumber { get { return 1097278; } }
 

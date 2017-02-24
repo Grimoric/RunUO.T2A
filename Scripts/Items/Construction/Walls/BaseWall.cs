@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public abstract class BaseWall : Item
+    public abstract class BaseWall : Item
 	{
 		public BaseWall( int itemID ) : base( itemID )
 		{

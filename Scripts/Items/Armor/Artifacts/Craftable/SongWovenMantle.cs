@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class SongWovenMantle : LeafArms
+    public class SongWovenMantle : LeafArms
 	{
 		public override int LabelNumber{ get{ return 1072931; } } // Song Woven Mantle
 

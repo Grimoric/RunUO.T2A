@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class LocalizedSign : Sign
+    public class LocalizedSign : Sign
 	{
 		private int m_LabelNumber;
 
@@ -13,7 +10,7 @@ namespace Server.Items
 		public int Number{ get{ return m_LabelNumber; } set{ m_LabelNumber = value; InvalidateProperties(); } }
 
 		[Constructable]
-		public LocalizedSign( SignType type, SignFacing facing, int labelNumber ) : base( ( 0xB95 + (2 * (int)type) ) + (int)facing )
+		public LocalizedSign( SignType type, SignFacing facing, int labelNumber ) : base( 0xB95 + 2 * (int)type + (int)facing )
 		{
 			m_LabelNumber = labelNumber;
 		}

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[Flipable( 0x1059, 0x105A )]
+    [Flipable( 0x1059, 0x105A )]
 	public class SextantParts : Item
 	{
 		[Constructable]

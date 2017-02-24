@@ -1,13 +1,9 @@
 using System;
 using System.Collections;
-using Server;
-using Server.Items;
-using Server.Gumps;
-using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a shadow wisp corpse" )]
+    [CorpseName( "a shadow wisp corpse" )]
 	public class ShadowWispFamiliar : BaseFamiliar
 	{
 		public ShadowWispFamiliar()
@@ -50,7 +46,7 @@ namespace Server.Mobiles
 			if ( DateTime.Now < m_NextFlare )
 				return;
 
-			m_NextFlare = DateTime.Now + TimeSpan.FromSeconds( 5.0 + (25.0 * Utility.RandomDouble()) );
+			m_NextFlare = DateTime.Now + TimeSpan.FromSeconds( 5.0 + 25.0 * Utility.RandomDouble() );
 
 			this.FixedEffect( 0x37C4, 1, 12, 1109, 6 );
 			this.PlaySound( 0x1D3 );
@@ -82,15 +78,15 @@ namespace Server.Mobiles
 				bool friendly = true;
 
 				for ( int j = 0; friendly && j < caster.Aggressors.Count; ++j )
-					friendly = ( caster.Aggressors[j].Attacker != m );
+					friendly = caster.Aggressors[j].Attacker != m;
 
 				for ( int j = 0; friendly && j < caster.Aggressed.Count; ++j )
-					friendly = ( caster.Aggressed[j].Defender != m );
+					friendly = caster.Aggressed[j].Defender != m;
 
 				if ( friendly )
 				{
 					m.FixedEffect( 0x37C4, 1, 12, 1109, 3 ); // At player
-					m.Mana += 1 - (m.Karma / 1000);
+					m.Mana += 1 - m.Karma / 1000;
 				}
 			}
 		}

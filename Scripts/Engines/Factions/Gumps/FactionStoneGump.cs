@@ -1,5 +1,3 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Mobiles;
 using Server.Network;
@@ -7,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Server.Factions
 {
-	public class FactionStoneGump : FactionGump
+    public class FactionStoneGump : FactionGump
 	{
 		private PlayerMobile m_From;
 		private Faction m_Faction;
@@ -33,8 +31,8 @@ namespace Server.Factions
 			AddHtml( 125, 60, 200, 20, faction.Commander != null ? faction.Commander.Name : "Nobody", false, false );
 
 			AddHtmlLocalized( 20, 80, 100, 20, 1011457, false, false ); // Tithe rate : 
-			if ( faction.Tithe >= 0 && faction.Tithe <= 100 && (faction.Tithe % 10) == 0 )
-				AddHtmlLocalized( 125, 80, 350, 20, 1011480 + (faction.Tithe / 10), false, false );
+			if ( faction.Tithe >= 0 && faction.Tithe <= 100 && faction.Tithe % 10 == 0 )
+				AddHtmlLocalized( 125, 80, 350, 20, 1011480 + faction.Tithe / 10, false, false );
 			else
 				AddHtml( 125, 80, 350, 20, faction.Tithe + "%", false, false );
 
@@ -94,19 +92,19 @@ namespace Server.Factions
 			{
 				Town town = towns[i];
 
-				AddHtmlText( 40, 55 + (i * 30), 150, 20, town.Definition.TownName, false, false );
+				AddHtmlText( 40, 55 + i * 30, 150, 20, town.Definition.TownName, false, false );
 
 				if ( town.Owner == null )
 				{
-					AddHtmlLocalized( 200, 55 + (i * 30), 150, 20, 1011462, false, false ); // : Neutral
+					AddHtmlLocalized( 200, 55 + i * 30, 150, 20, 1011462, false, false ); // : Neutral
 				}
 				else
 				{
-					AddHtmlLocalized( 200, 55 + (i * 30), 150, 20, town.Owner.Definition.OwnerLabel, false, false );
+					AddHtmlLocalized( 200, 55 + i * 30, 150, 20, town.Owner.Definition.OwnerLabel, false, false );
 
 					BaseMonolith monolith = town.Monolith;
 
-					AddImage( 20, 60 + (i * 30), ( monolith != null && monolith.Sigil != null && monolith.Sigil.IsPurifying ) ? 0x938 : 0x939 );
+					AddImage( 20, 60 + i * 30, monolith != null && monolith.Sigil != null && monolith.Sigil.IsPurifying ? 0x938 : 0x939 );
 				}
 			}
 
@@ -155,11 +153,11 @@ namespace Server.Factions
 					MerchantTitleInfo info = infos[i];
 
 					if ( MerchantTitles.IsQualified( from, info ) )
-						AddButton( 20, 100 + (i * 30), 4005, 4007, ToButtonID( 1, i + 1 ), GumpButtonType.Reply, 0 );
+						AddButton( 20, 100 + i * 30, 4005, 4007, ToButtonID( 1, i + 1 ), GumpButtonType.Reply, 0 );
 					else
-						AddImage( 20, 100 + (i * 30), 4020 );
+						AddImage( 20, 100 + i * 30, 4020 );
 
-					AddHtmlText( 55, 100 + (i * 30), 200, 20, info.Label, false, false );
+					AddHtmlText( 55, 100 + i * 30, 200, 20, info.Label, false, false );
 				}
 
 				AddHtmlLocalized( 55, 340, 100, 20, 1011447, false, false ); // BACK
@@ -176,8 +174,8 @@ namespace Server.Factions
 				AddHtmlLocalized( 20, 30, 200, 20, 1011461, false, false ); // COMMANDER OPTIONS
 
 				AddHtmlLocalized( 20, 70, 120, 20, 1011457, false, false ); // Tithe rate : 
-				if ( faction.Tithe >= 0 && faction.Tithe <= 100 && (faction.Tithe % 10) == 0 )
-					AddHtmlLocalized( 140, 70, 250, 20, 1011480 + (faction.Tithe / 10), false, false );
+				if ( faction.Tithe >= 0 && faction.Tithe <= 100 && faction.Tithe % 10 == 0 )
+					AddHtmlLocalized( 140, 70, 250, 20, 1011480 + faction.Tithe / 10, false, false );
 				else
 					AddHtml( 140, 70, 250, 20, faction.Tithe + "%", false, false );
 
@@ -210,12 +208,12 @@ namespace Server.Factions
 					{
 						Town town = towns[i];
 
-						AddHtmlText( 55, 75 + (i * 30), 200, 20, town.Definition.TownName, false, false );
+						AddHtmlText( 55, 75 + i * 30, 200, 20, town.Definition.TownName, false, false );
 
 						if ( town.Owner == faction )
-							AddButton( 20, 75 + (i * 30), 4005, 4007, ToButtonID( 2, i ), GumpButtonType.Reply, 0 );
+							AddButton( 20, 75 + i * 30, 4005, 4007, ToButtonID( 2, i ), GumpButtonType.Reply, 0 );
 						else
-							AddImage( 20, 75 + (i * 30), 4020 );
+							AddImage( 20, 75 + i * 30, 4020 );
 					}
 
 					AddHtmlLocalized( 55, 310, 100, 20, 1011447, false, false ); // BACK

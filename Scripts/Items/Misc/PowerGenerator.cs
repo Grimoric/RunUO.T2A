@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class PowerGenerator : BaseAddon
+    public class PowerGenerator : BaseAddon
 	{
 		[Constructable]
 		public PowerGenerator() : this( Utility.RandomMinMax( 3, 6 ) )

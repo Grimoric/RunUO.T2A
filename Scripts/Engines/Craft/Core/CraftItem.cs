@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Factions;
 using Server.Mobiles;
@@ -9,7 +7,7 @@ using Server.Commands;
 
 namespace Server.Engines.Craft
 {
-	public enum ConsumeType
+    public enum ConsumeType
 	{
 		All, Half, None
 	}
@@ -403,7 +401,7 @@ namespace Server.Engines.Craft
 			bool neverColor = false;
 
 			for ( int i = 0; !neverColor && i < m_NeverColorTable.Length; ++i )
-				neverColor = ( type == m_NeverColorTable[i] || type.IsSubclassOf( m_NeverColorTable[i] ) );
+				neverColor = type == m_NeverColorTable[i] || type.IsSubclassOf( m_NeverColorTable[i] );
 
 			if ( neverColor )
 				return false;
@@ -411,7 +409,7 @@ namespace Server.Engines.Craft
 			bool inItemTable = false;
 
 			for ( int i = 0; !inItemTable && i < m_ColoredItemTable.Length; ++i )
-				inItemTable = ( type == m_ColoredItemTable[i] || type.IsSubclassOf( m_ColoredItemTable[i] ) );
+				inItemTable = type == m_ColoredItemTable[i] || type.IsSubclassOf( m_ColoredItemTable[i] );
 
 			return inItemTable;
 		}
@@ -429,7 +427,7 @@ namespace Server.Engines.Craft
 			bool inResourceTable = false;
 
 			for ( int i = 0; !inResourceTable && i < m_ColoredResourceTable.Length; ++i )
-				inResourceTable = ( type == m_ColoredResourceTable[i] || type.IsSubclassOf( m_ColoredResourceTable[i] ) );
+				inResourceTable = type == m_ColoredResourceTable[i] || type.IsSubclassOf( m_ColoredResourceTable[i] );
 
 			return inResourceTable;
 		}
@@ -445,7 +443,7 @@ namespace Server.Engines.Craft
 
 			foreach ( Item item in eable )
 			{
-				if ( (item.Z + 16) > from.Z && (from.Z + 16) > item.Z && Find( item.ItemID, itemIDs ) )
+				if ( item.Z + 16 > from.Z && @from.Z + 16 > item.Z && Find( item.ItemID, itemIDs ) )
 				{
 					eable.Free();
 					return true;
@@ -468,7 +466,7 @@ namespace Server.Engines.Craft
 						int z = tiles[i].Z;
 						int id = tiles[i].ID;
 
-						if ( (z + 16) > from.Z && (from.Z + 16) > z && Find( id, itemIDs ) )
+						if ( z + 16 > from.Z && @from.Z + 16 > z && Find( id, itemIDs ) )
 							return true;
 					}
 				}
@@ -482,7 +480,7 @@ namespace Server.Engines.Craft
 			bool contains = false;
 
 			for ( int i = 0; !contains && i < itemIDs.Length; i += 2 )
-				contains = ( itemID >= itemIDs[i] && itemID <= itemIDs[i + 1] );
+				contains = itemID >= itemIDs[i] && itemID <= itemIDs[i + 1];
 
 			return contains;
 		}
@@ -645,7 +643,7 @@ namespace Server.Engines.Craft
 
 			maxAmount = int.MaxValue;
 
-			CraftSubResCol resCol = ( m_UseSubRes2 ? craftSystem.CraftSubRes2 : craftSystem.CraftSubRes );
+			CraftSubResCol resCol = m_UseSubRes2 ? craftSystem.CraftSubRes2 : craftSystem.CraftSubRes;
 
 			for ( int i = 0; i < types.Length; ++i )
 			{
@@ -653,7 +651,7 @@ namespace Server.Engines.Craft
 				Type baseType = craftRes.ItemType;
 
 				// Resource Mutation
-				if ( (baseType == resCol.ResType) && ( typeRes != null ) )
+				if ( baseType == resCol.ResType && typeRes != null )
 				{
 					baseType = typeRes;
 
@@ -876,7 +874,7 @@ namespace Server.Engines.Craft
 				case CraftECA.FiftyPercentChanceMinusTenPercent: chance = chance * 0.5 - 0.1; break;
 				case CraftECA.ChanceMinusSixtyToFourtyFive:
 				{
-					double offset = 0.60 - ((from.Skills[system.MainSkill].Value - 95.0) * 0.03);
+					double offset = 0.60 - (@from.Skills[system.MainSkill].Value - 95.0) * 0.03;
 
 					if ( offset < 0.45 )
 						offset = 0.45;
@@ -906,7 +904,7 @@ namespace Server.Engines.Craft
 			if ( GetExceptionalChance( craftSystem, chance, from ) > Utility.RandomDouble() )
 				quality = 2;
 
-			return ( chance > Utility.RandomDouble() );
+			return chance > Utility.RandomDouble();
 		}
 
 		public double GetSuccessChance( Mobile from, Type typeRes, CraftSystem craftSystem, bool gainSkills, ref bool allRequiredSkills )
@@ -942,7 +940,7 @@ namespace Server.Engines.Craft
 			double chance;
 
 			if ( allRequiredSkills )
-				chance = craftSystem.GetChanceAtMin( this ) + ((valMainSkill - minMainSkill) / (maxMainSkill - minMainSkill) * (1.0 - craftSystem.GetChanceAtMin( this )));
+				chance = craftSystem.GetChanceAtMin( this ) + (valMainSkill - minMainSkill) / (maxMainSkill - minMainSkill) * (1.0 - craftSystem.GetChanceAtMin( this ));
 			else
 				chance = 0.0;
 
@@ -964,7 +962,7 @@ namespace Server.Engines.Craft
 		{
 			if ( from.BeginAction( typeof( CraftSystem ) ) )
 			{
-				if( RequiredExpansion == Expansion.None || ( from.NetState != null && from.NetState.SupportsExpansion( RequiredExpansion ) ) )
+				if( RequiredExpansion == Expansion.None || @from.NetState != null && @from.NetState.SupportsExpansion( RequiredExpansion ) )
 				{
 					bool allRequiredSkills = true;
 					double chance = GetSuccessChance( from, typeRes, craftSystem, false, ref allRequiredSkills );
@@ -993,7 +991,7 @@ namespace Server.Engines.Craft
 											context.OnMade( this );
 
 										int iMin = craftSystem.MinCraftEffect;
-										int iMax = (craftSystem.MaxCraftEffect - iMin) + 1;
+										int iMax = craftSystem.MaxCraftEffect - iMin + 1;
 										int iRandom = Utility.Random( iMax );
 										iRandom += iMin + 1;
 										new InternalTimer( from, craftSystem, this, typeRes, tool, iRandom ).Start();
@@ -1246,7 +1244,7 @@ namespace Server.Engines.Craft
 			}
 			else
 			{
-				ConsumeType consumeType = ( UseAllRes ? ConsumeType.Half : ConsumeType.All );
+				ConsumeType consumeType = UseAllRes ? ConsumeType.Half : ConsumeType.All;
 				int resHue = 0;
 				int maxAmount = 0;
 

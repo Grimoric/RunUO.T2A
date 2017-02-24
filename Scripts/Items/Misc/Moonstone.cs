@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Network;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	public enum MoonstoneType
+    public enum MoonstoneType
 	{
 		Felucca, Trammel
 	}
@@ -71,7 +70,7 @@ namespace Server.Items
 			{
 				from.SendLocalizedMessage( 1061632 ); // You can't do that while carrying the sigil.
 			}
-			else if ( from.Map == GetTargetMap() || ( from.Map != Map.Trammel && from.Map != Map.Felucca ) )
+			else if ( from.Map == GetTargetMap() || @from.Map != Map.Trammel && @from.Map != Map.Felucca )
 			{
 				from.SendLocalizedMessage( 1005401 ); // You cannot bury the stone here.
 			}
@@ -108,7 +107,7 @@ namespace Server.Items
 
 		public Map GetTargetMap()
 		{
-			return ( m_Type == MoonstoneType.Felucca ) ? Map.Felucca : Map.Trammel;
+			return m_Type == MoonstoneType.Felucca ? Map.Felucca : Map.Trammel;
 		}
 
 		private class SettleTimer : Timer

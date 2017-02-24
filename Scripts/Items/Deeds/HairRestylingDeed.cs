@@ -1,14 +1,10 @@
-using System;
 using Server.Mobiles;
 using Server.Network;
-using Server.Prompts;
-using Server.Items;
-using Server.Targeting;
 using Server.Gumps;
 
 namespace Server.Items
 {
-	public class HairRestylingDeed : Item
+    public class HairRestylingDeed : Item
 	{
 		public override int LabelNumber{ get{ return 1041061; } } // a coupon for a free hair restyling
 
@@ -67,15 +63,15 @@ namespace Server.Items
 
 				AddHtmlLocalized( 210, 342, 90, 35, 1011012, false, false );// <CENTER>HAIRSTYLE SELECTION MENU</center>
 
-				int[][] RacialData = (from.Race == Race.Human) ? HumanArray : ElvenArray;
+				int[][] RacialData = @from.Race == Race.Human ? HumanArray : ElvenArray;
 
 				for(int i=1; i<RacialData.Length; i++)
 				{
-					AddHtmlLocalized( LayoutArray[i][2], LayoutArray[i][3], (i==1) ? 125 : 80, (i==1) ? 70 : 35, (m_From.Female) ? RacialData[i][0] : RacialData[i][1], false, false );
+					AddHtmlLocalized( LayoutArray[i][2], LayoutArray[i][3], i==1 ? 125 : 80, i==1 ? 70 : 35, m_From.Female ? RacialData[i][0] : RacialData[i][1], false, false );
 					if ( LayoutArray[i][4] != 0 )
 					{
 						AddBackground( LayoutArray[i][0], LayoutArray[i][1], 50, 50, 0xA3C );
-						AddImage( LayoutArray[i][4], LayoutArray[i][5], (m_From.Female) ? RacialData[i][4] : RacialData[i][5] );
+						AddImage( LayoutArray[i][4], LayoutArray[i][5], m_From.Female ? RacialData[i][4] : RacialData[i][5] );
 					}
 					AddButton( LayoutArray[i][6], LayoutArray[i][7], 0xFA5, 0xFA7, i, GumpButtonType.Reply, 0 );
 				}
@@ -92,14 +88,14 @@ namespace Server.Items
 				if ( info.ButtonID < 1 || info.ButtonID > 10 )
 					return;
 
-				int[][] RacialData = (m_From.Race == Race.Human) ? HumanArray : ElvenArray;
+				int[][] RacialData = m_From.Race == Race.Human ? HumanArray : ElvenArray;
 
 				if ( m_From is PlayerMobile )
 				{
 					PlayerMobile pm = (PlayerMobile)m_From;
 
 					pm.SetHairMods( -1, -1 ); // clear any hairmods (disguise kit, incognito)
-					m_From.HairItemID = (m_From.Female) ? RacialData[info.ButtonID][2] : RacialData[info.ButtonID][3];
+					m_From.HairItemID = m_From.Female ? RacialData[info.ButtonID][2] : RacialData[info.ButtonID][3];
 					m_Deed.Delete();
 				}
 			}

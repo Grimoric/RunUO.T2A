@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class PoisonPotion : BasePoisonPotion
+    public class PoisonPotion : BasePoisonPotion
 	{
 		public override Poison Poison{ get{ return Poison.Regular; } }
 

@@ -1,13 +1,10 @@
-using System;
 using System.Collections;
-using Server;
 using Server.Gumps;
-using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Engines.Quests
 {
-	public abstract class QuestConversation
+    public abstract class QuestConversation
 	{
 		private QuestSystem m_System;
 		private bool m_HasBeenRead;

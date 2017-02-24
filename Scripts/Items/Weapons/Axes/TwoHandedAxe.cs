@@ -1,10 +1,6 @@
-using System;
-using Server.Items;
-using Server.Network;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x1443, 0x1442 )]
+    [FlipableAttribute( 0x1443, 0x1442 )]
 	public class TwoHandedAxe : BaseAxe
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.DoubleStrike; } }

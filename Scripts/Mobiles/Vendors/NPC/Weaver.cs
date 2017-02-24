@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Engines.BulkOrders;
 
 namespace Server.Mobiles
 {
-	public class Weaver : BaseVendor
+    public class Weaver : BaseVendor
 	{
 		private List<SBInfo> m_SBInfos = new List<SBInfo>();
 		protected override List<SBInfo> SBInfos{ get { return m_SBInfos; } }
@@ -44,7 +43,7 @@ namespace Server.Mobiles
 				else
 					pm.NextTailorBulkOrder = TimeSpan.FromHours( 1.0 );
 
-				if ( theirSkill >= 70.1 && ((theirSkill - 40.0) / 300.0) > Utility.RandomDouble() )
+				if ( theirSkill >= 70.1 && (theirSkill - 40.0) / 300.0 > Utility.RandomDouble() )
 					return new LargeTailorBOD();
 
 				return SmallTailorBOD.CreateRandomFor( from );
@@ -55,12 +54,12 @@ namespace Server.Mobiles
 
 		public override bool IsValidBulkOrder( Item item )
 		{
-			return ( item is SmallTailorBOD || item is LargeTailorBOD );
+			return item is SmallTailorBOD || item is LargeTailorBOD;
 		}
 
 		public override bool SupportsBulkOrders( Mobile from )
 		{
-			return ( from is PlayerMobile && from.Skills[SkillName.Tailoring].Base > 0 );
+			return @from is PlayerMobile && @from.Skills[SkillName.Tailoring].Base > 0;
 		}
 
 		public override TimeSpan GetNextBulkOrder( Mobile from )

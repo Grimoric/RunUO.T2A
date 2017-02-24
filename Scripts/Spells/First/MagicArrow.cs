@@ -1,10 +1,8 @@
-using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.First
 {
-	public class MagicArrowSpell : MagerySpell
+    public class MagicArrowSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Magic Arrow", "In Por Ylem",

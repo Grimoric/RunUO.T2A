@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class StarRoomGate : Moongate
+    public class StarRoomGate : Moongate
 	{
 		private bool m_Decays;
 		private DateTime m_DecayTime;

@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class HangingLantern : BaseLight
+    public class HangingLantern : BaseLight
 	{
 		public override int LitItemID{ get { return 0xA1A; } }
 		public override int UnlitItemID{ get { return 0xA1D; } }

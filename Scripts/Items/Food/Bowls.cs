@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class EmptyWoodenBowl : Item
+    public class EmptyWoodenBowl : Item
 	{
 		[Constructable]
 		public EmptyWoodenBowl() : base( 0x15F8 )

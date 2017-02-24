@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class CandleShort : BaseLight
+    public class CandleShort : BaseLight
 	{
 		public override int LitItemID{ get { return 0x142C; } }
 		public override int UnlitItemID{ get { return 0x142F; } }

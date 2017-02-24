@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class AlchemistTableSouthAddon : BaseAddon
+    public class AlchemistTableSouthAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed{ get{ return new AlchemistTableSouthDeed(); } }
 

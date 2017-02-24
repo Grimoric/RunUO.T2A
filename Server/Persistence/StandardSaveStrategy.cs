@@ -20,16 +20,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Threading;
-using System.Diagnostics;
-
-using Server;
 using Server.Guilds;
 
-namespace Server {
-	public class StandardSaveStrategy : SaveStrategy {
+namespace Server
+{
+    public class StandardSaveStrategy : SaveStrategy {
 		public enum SaveOption
 		{
 			Normal,
@@ -51,7 +46,7 @@ namespace Server {
 
 		protected bool PermitBackgroundWrite { get { return _permitBackgroundWrite; } set { _permitBackgroundWrite = value; } }
 
-		protected bool UseSequentialWriters { get { return (StandardSaveStrategy.SaveType == SaveOption.Normal || !_permitBackgroundWrite); } }
+		protected bool UseSequentialWriters { get { return StandardSaveStrategy.SaveType == SaveOption.Normal || !_permitBackgroundWrite; } }
 
 		public override void Save(SaveMetrics metrics, bool permitBackgroundWrite)
 		{
@@ -134,7 +129,7 @@ namespace Server {
 
 			idx.Write( ( int ) items.Count );
 			foreach ( Item item in items.Values ) {
-				if ( item.Decays && item.Parent == null && item.Map != Map.Internal && ( item.LastMoved + item.DecayTime ) <= DateTime.Now ) {
+				if ( item.Decays && item.Parent == null && item.Map != Map.Internal && item.LastMoved + item.DecayTime <= DateTime.Now ) {
 					_decayQueue.Enqueue( item );
 				}
 

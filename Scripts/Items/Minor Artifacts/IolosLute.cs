@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class IolosLute : Lute
+    public class IolosLute : Lute
 	{
 		public override int LabelNumber{ get{ return 1063479; } }
 

@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class SnowGlobe : Item
+    public class SnowGlobe : Item
 	{
 		public override double DefaultWeight { get { return 1.0; } }
 

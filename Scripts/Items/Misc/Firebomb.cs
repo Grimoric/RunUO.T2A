@@ -139,7 +139,7 @@ namespace Server.Items
 						{
 							victim = toDamage[i];
 
-							if ( m_LitBy == null || (SpellHelper.ValidIndirectTarget( m_LitBy, victim ) && m_LitBy.CanBeHarmful( victim, false )) )
+							if ( m_LitBy == null || SpellHelper.ValidIndirectTarget( m_LitBy, victim ) && m_LitBy.CanBeHarmful( victim, false ) )
 							{
 								if ( m_LitBy != null )
 									m_LitBy.DoHarmful( victim );
@@ -147,7 +147,7 @@ namespace Server.Items
 								AOS.Damage( victim, m_LitBy, Utility.Random( 3 ) + 4, 0, 100, 0, 0, 0 );
 							}
 						}
-						(new FirebombField( m_LitBy, toDamage )).MoveToWorld( Location, Map );
+						new FirebombField( m_LitBy, toDamage ).MoveToWorld( Location, Map );
 					}
 
 					m_Timer.Stop();
@@ -249,7 +249,7 @@ namespace Server.Items
 
 		public override bool OnMoveOver( Mobile m )
 		{
-			if ( ItemID == 0x398C && m_LitBy == null || (SpellHelper.ValidIndirectTarget( m_LitBy, m ) && m_LitBy.CanBeHarmful( m, false )) )
+			if ( ItemID == 0x398C && m_LitBy == null || SpellHelper.ValidIndirectTarget( m_LitBy, m ) && m_LitBy.CanBeHarmful( m, false ) )
 			{
 				if ( m_LitBy != null )
 					m_LitBy.DoHarmful( m );
@@ -283,7 +283,7 @@ namespace Server.Items
 			{
 				victim = m_Burning[i];
 
-				if ( victim.Location == Location && victim.Map == Map && (m_LitBy == null || ( SpellHelper.ValidIndirectTarget( m_LitBy, victim ) && m_LitBy.CanBeHarmful( victim, false ) )) )
+				if ( victim.Location == Location && victim.Map == Map && (m_LitBy == null || SpellHelper.ValidIndirectTarget( m_LitBy, victim ) && m_LitBy.CanBeHarmful( victim, false )) )
 				{
 					if ( m_LitBy != null )
 						m_LitBy.DoHarmful( victim );

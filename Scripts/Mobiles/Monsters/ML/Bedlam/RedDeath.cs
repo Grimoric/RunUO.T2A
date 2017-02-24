@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a Red Death corpse" )]
+    [CorpseName( "a Red Death corpse" )]
 	public class RedDeath : SkeletalMount
 	{
 		[Constructable]

@@ -1,14 +1,13 @@
 using System;
 using System.Collections;
 using Server.Targeting;
-using Server.Network;
 using Server.Misc;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Spells.Fifth
 {
-	public class PoisonFieldSpell : MagerySpell
+    public class PoisonFieldSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Poison Field", "In Nox Grav",
@@ -71,7 +70,7 @@ namespace Server.Spells.Fifth
 
 				int itemID = eastToWest ? 0x3915 : 0x3922;
 
-				TimeSpan duration = TimeSpan.FromSeconds( 3 + (Caster.Skills.Magery.Fixed / 25) );
+				TimeSpan duration = TimeSpan.FromSeconds( 3 + Caster.Skills.Magery.Fixed / 25 );
 
 				for ( int i = -2; i <= 2; ++i )
 				{
@@ -233,12 +232,12 @@ namespace Server.Spells.Fifth
 
 						if ( map != null && caster != null )
 						{
-							bool eastToWest = ( m_Item.ItemID == 0x3915 );
-							IPooledEnumerable eable = map.GetMobilesInBounds( new Rectangle2D( m_Item.X - (eastToWest ? 0 : 1), m_Item.Y - (eastToWest ? 1 : 0), (eastToWest ? 1 : 2), (eastToWest ? 2 : 1) ) );
+							bool eastToWest = m_Item.ItemID == 0x3915;
+							IPooledEnumerable eable = map.GetMobilesInBounds( new Rectangle2D( m_Item.X - (eastToWest ? 0 : 1), m_Item.Y - (eastToWest ? 1 : 0), eastToWest ? 1 : 2, eastToWest ? 2 : 1 ) );
 
 							foreach ( Mobile m in eable )
 							{
-								if ( (m.Z + 16) > m_Item.Z && (m_Item.Z + 12) > m.Z && SpellHelper.ValidIndirectTarget( caster, m ) && caster.CanBeHarmful( m, false ) )
+								if ( m.Z + 16 > m_Item.Z && m_Item.Z + 12 > m.Z && SpellHelper.ValidIndirectTarget( caster, m ) && caster.CanBeHarmful( m, false ) )
 									m_Queue.Enqueue( m );
 							}
 

@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Commands;
 
 namespace Server.Items
 {
-	public class StealableArtifactsSpawner : Item
+    public class StealableArtifactsSpawner : Item
 	{
 		public class StealableEntry
 		{

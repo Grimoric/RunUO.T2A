@@ -1,15 +1,12 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Network;
 using Server.Mobiles;
-using Server.Spells;
-using Server.Spells.Necromancy;
 using Server.Spells.Ninjitsu;
 
 namespace Server
 {
-	public class PoisonImpl : Poison
+    public class PoisonImpl : Poison
 	{
 		[CallPriority( 10 )]
 		public static void Configure()
@@ -23,9 +20,9 @@ namespace Server
 
 		public static Poison IncreaseLevel( Poison oldPoison )
 		{
-			Poison newPoison = ( oldPoison == null ? null : GetPoison( oldPoison.Level + 1 ) );
+			Poison newPoison = oldPoison == null ? null : GetPoison( oldPoison.Level + 1 );
 
-			return ( newPoison == null ? oldPoison : newPoison );
+			return newPoison == null ? oldPoison : newPoison;
 		}
 
 		// Info
@@ -76,7 +73,7 @@ namespace Server
 
 			protected override void OnTick()
 			{
-				if ( (m_Poison.Level < 3 && OrangePetals.UnderEffect( m_Mobile )) || AnimalForm.UnderTransformation( m_Mobile, typeof( Unicorn ) ) )
+				if ( m_Poison.Level < 3 && OrangePetals.UnderEffect( m_Mobile ) || AnimalForm.UnderTransformation( m_Mobile, typeof( Unicorn ) ) )
 				{
 					if ( m_Mobile.CurePoison( m_Mobile ) )
 					{
@@ -130,7 +127,7 @@ namespace Server
 				if ( 0.60 <= Utility.RandomDouble() ) // OSI: randomly revealed between first and third damage tick, guessing 60% chance
 						m_Mobile.RevealingAction();
 
-				if ( (m_Index % m_Poison.m_MessageInterval) == 0 )
+				if ( m_Index % m_Poison.m_MessageInterval == 0 )
 					m_Mobile.OnPoisoned( m_From, m_Poison, m_Poison );
 			}
 		}

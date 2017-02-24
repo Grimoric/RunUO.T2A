@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ThorvaldsMedallion : Item
+    public class ThorvaldsMedallion : Item
 	{
 		public override int LabelNumber{ get{ return 1074232; } } // Thorvald's Medallion
 

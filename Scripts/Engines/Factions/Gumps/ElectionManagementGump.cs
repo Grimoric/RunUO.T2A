@@ -1,12 +1,10 @@
 using System;
-using Server;
 using Server.Gumps;
-using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Factions
 {
-	public class ElectionManagementGump : Gump
+    public class ElectionManagementGump : Gump
 	{
 		public string Right( string text )
 		{
@@ -144,7 +142,7 @@ namespace Server.Factions
 				{
 					Voter voter = (Voter)candidate.Voters[i];
 
-					AddButton( 13, 138 + (idx * 20), 4002, 4004, 4 + i, GumpButtonType.Reply, 0 );
+					AddButton( 13, 138 + idx * 20, 4002, 4004, 4 + i, GumpButtonType.Reply, 0 );
 
 					object[] fields = voter.AcquireFields();
 
@@ -156,22 +154,22 @@ namespace Server.Factions
 
 						if ( obj is Mobile )
 						{
-							AddHtml( x + 2, 140 + (idx * 20), 150, 20, Color( ((Mobile)obj).Name, LabelColor ), false, false );
+							AddHtml( x + 2, 140 + idx * 20, 150, 20, Color( ((Mobile)obj).Name, LabelColor ), false, false );
 							x += 150;
 						}
 						else if ( obj is System.Net.IPAddress )
 						{
-							AddHtml( x, 140 + (idx * 20), 100, 20, Color( Center( obj.ToString() ), LabelColor ), false, false );
+							AddHtml( x, 140 + idx * 20, 100, 20, Color( Center( obj.ToString() ), LabelColor ), false, false );
 							x += 100;
 						}
 						else if ( obj is DateTime )
 						{
-							AddHtml( x, 140 + (idx * 20), 80, 20, Color( Center( FormatTimeSpan( ((DateTime)obj) - election.LastStateTime ) ), LabelColor ), false, false );
+							AddHtml( x, 140 + idx * 20, 80, 20, Color( Center( FormatTimeSpan( (DateTime)obj - election.LastStateTime ) ), LabelColor ), false, false );
 							x += 80;
 						}
 						else if ( obj is int )
 						{
-							AddHtml( x, 140 + (idx * 20), 60, 20, Color( Center( (int)obj + "%" ), LabelColor ), false, false );
+							AddHtml( x, 140 + idx * 20, 60, 20, Color( Center( (int)obj + "%" ), LabelColor ), false, false );
 							x += 60;
 						}
 					}
@@ -208,9 +206,9 @@ namespace Server.Factions
 					if ( mob == null )
 						continue;
 
-					AddButton( 13, 118 + (i * 20), 4005, 4007, 2 + i, GumpButtonType.Reply, 0 );
-					AddHtml( 47, 120 + (i * 20), 150, 20, Color( mob.Name, LabelColor ), false, false );
-					AddHtml( 195, 120 + (i * 20), 80, 20, Color( Center( cd.Votes.ToString() ), LabelColor ), false, false );
+					AddButton( 13, 118 + i * 20, 4005, 4007, 2 + i, GumpButtonType.Reply, 0 );
+					AddHtml( 47, 120 + i * 20, 150, 20, Color( mob.Name, LabelColor ), false, false );
+					AddHtml( 195, 120 + i * 20, 80, 20, Color( Center( cd.Votes.ToString() ), LabelColor ), false, false );
 				}
 			}
 		}

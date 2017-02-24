@@ -1,9 +1,8 @@
-using System;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an enslaved gargoyle corpse" )]
+    [CorpseName( "an enslaved gargoyle corpse" )]
 	public class EnslavedGargoyle : BaseCreature
 	{
 		[Constructable]

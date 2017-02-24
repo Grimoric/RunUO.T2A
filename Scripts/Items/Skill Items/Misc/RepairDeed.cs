@@ -1,13 +1,11 @@
 using System;
-using Server;
-using Server.Targeting;
 using Server.Engines.Craft;
 using Server.Mobiles;
 using Server.Regions;
 
 namespace Server.Items
 {
-	public class RepairDeed : Item
+    public class RepairDeed : Item
 	{
 		private class RepairSkillInfo
 		{
@@ -82,7 +80,7 @@ namespace Server.Items
 		public double SkillLevel
 		{
 			get { return m_SkillLevel; }
-			set { m_SkillLevel = Math.Max( Math.Min( value, 120.0 ), 0 ) ; InvalidateProperties(); }
+			set { m_SkillLevel = Math.Max( Math.Min( value, 120.0 ), 0 ); InvalidateProperties(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -159,9 +157,9 @@ namespace Server.Items
 			int skill = (int)(skillLevel/10);
 
 			if( skill >= 11 )
-				return (1062008 + skill-11);
+				return 1062008 + skill-11;
 			else if( skill >=5 )
-				return (1061123 + skill-5);
+				return 1061123 + skill-5;
 
 			switch( skill )
 			{

@@ -1,13 +1,11 @@
 using System;
 using System.Net;
-using System.Collections;
-using Server;
 using Server.Mobiles;
 using System.Collections.Generic;
 
 namespace Server.Factions
 {
-	public class Election
+    public class Election
 	{
 		public static readonly TimeSpan PendingPeriod = TimeSpan.FromDays( 5.0 );
 		public static readonly TimeSpan CampaignPeriod = TimeSpan.FromDays( 1.0 );
@@ -47,7 +45,7 @@ namespace Server.Factions
 					case ElectionState.Campaign: period = CampaignPeriod; break;
 				}
 
-				TimeSpan until = (m_LastStateTime + period) - DateTime.Now;
+				TimeSpan until = m_LastStateTime + period - DateTime.Now;
 
 				if ( until < TimeSpan.Zero )
 					until = TimeSpan.Zero;
@@ -206,17 +204,17 @@ namespace Server.Factions
 
 		public bool IsCandidate( Mobile mob )
 		{
-			return ( FindCandidate( mob ) != null );
+			return FindCandidate( mob ) != null;
 		}
 
 		public bool CanVote( Mobile mob )
 		{
-			return ( m_State == ElectionState.Election && !HasVoted( mob ) );
+			return m_State == ElectionState.Election && !HasVoted( mob );
 		}
 
 		public bool HasVoted( Mobile mob )
 		{
-			return ( FindVoter( mob ) != null );
+			return FindVoter( mob ) != null;
 		}
 
 		public Candidate FindCandidate( Mobile mob )
@@ -261,7 +259,7 @@ namespace Server.Factions
 
 			PlayerState pl = PlayerState.Find( mob );
 
-			return ( pl != null && pl.Faction == m_Faction && pl.Rank.Rank >= CandidateRank );
+			return pl != null && pl.Faction == m_Faction && pl.Rank.Rank >= CandidateRank;
 		}
 
 		public void Slice()
@@ -280,7 +278,7 @@ namespace Server.Factions
 			{
 				case ElectionState.Pending:
 				{
-					if ( (m_LastStateTime + PendingPeriod) > DateTime.Now )
+					if ( m_LastStateTime + PendingPeriod > DateTime.Now )
 						break;
 
 					m_Faction.Broadcast( 1038023 ); // Campaigning for the Faction Commander election has begun.
@@ -292,7 +290,7 @@ namespace Server.Factions
 				}
 				case ElectionState.Campaign:
 				{
-					if ( (m_LastStateTime + CampaignPeriod) > DateTime.Now )
+					if ( m_LastStateTime + CampaignPeriod > DateTime.Now )
 						break;
 
 					if ( m_Candidates.Count == 0 )
@@ -332,7 +330,7 @@ namespace Server.Factions
 				}
 				case ElectionState.Election:
 				{
-					if ( (m_LastStateTime + VotingPeriod) > DateTime.Now )
+					if ( m_LastStateTime + VotingPeriod > DateTime.Now )
 						break;
 
 					m_Faction.Broadcast( 1038024 ); // The results for the Faction Commander election are in
@@ -421,11 +419,11 @@ namespace Server.Factions
 
 			int sk = m_From.Skills.Total;
 
-			int factorSkills = 50 + ( (sk * 100 ) / 10000 );
-			int factorKillPts = 100 + (kp*2);
-			int factorGameTime = 50 + (int) ( (gameTime.Ticks * 100) / TimeSpan.TicksPerDay );
+			int factorSkills = 50 + sk * 100 / 10000;
+			int factorKillPts = 100 + kp*2;
+			int factorGameTime = 50 + (int) ( gameTime.Ticks * 100 / TimeSpan.TicksPerDay );
 
-			int totalFactor = ( factorSkills * factorKillPts * Math.Max( factorGameTime, 100 ) ) / 10000;
+			int totalFactor = factorSkills * factorKillPts * Math.Max( factorGameTime, 100 ) / 10000;
 
 			if ( totalFactor > 100 )
 				totalFactor = 100;

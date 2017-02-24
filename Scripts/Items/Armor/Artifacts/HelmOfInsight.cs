@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class HelmOfInsight : PlateHelm
+    public class HelmOfInsight : PlateHelm
 	{
 		public override int LabelNumber{ get{ return 1061096; } } // Helm of Insight
 		public override int ArtifactRarity{ get{ return 11; } }

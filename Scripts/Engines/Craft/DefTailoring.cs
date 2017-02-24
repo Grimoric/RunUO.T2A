@@ -67,7 +67,7 @@ namespace Server.Engines.Craft
 			bool contains = false;
 
 			for ( int i = 0; !contains && i < m_TailorColorables.Length; ++i )
-				contains = ( m_TailorColorables[i] == type );
+				contains = m_TailorColorables[i] == type;
 
 			return contains;
 		}

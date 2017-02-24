@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Factions
 {
-	public class Trinsic : Town
+    public class Trinsic : Town
 	{
 		public Trinsic()
 		{

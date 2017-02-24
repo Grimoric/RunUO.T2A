@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Engines.BulkOrders
 {
-	public class BOBFilter
+    public class BOBFilter
 	{
 		private int m_Type;
 		private int m_Quality;
@@ -11,7 +9,7 @@ namespace Server.Engines.BulkOrders
 
 		public bool IsDefault
 		{
-			get{ return ( m_Type == 0 && m_Quality == 0 && m_Material == 0 && m_Quantity == 0 ); }
+			get{ return m_Type == 0 && m_Quality == 0 && m_Material == 0 && m_Quantity == 0; }
 		}
 
 		public void Clear()

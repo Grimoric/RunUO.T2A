@@ -53,9 +53,9 @@ namespace Server.Mobiles
 			SetResistance( ResistanceType.Poison, (int)(10*scalar), (int)(25*scalar) );
 			SetResistance( ResistanceType.Energy, (int)(30*scalar), (int)(40*scalar) );
 
-			SetSkill( SkillName.MagicResist, (150.1*scalar), (190.0*scalar) );
-			SetSkill( SkillName.Tactics, (60.1*scalar), (100.0*scalar) );
-			SetSkill( SkillName.Wrestling, (60.1*scalar), (100.0*scalar) );
+			SetSkill( SkillName.MagicResist, 150.1*scalar, 190.0*scalar );
+			SetSkill( SkillName.Tactics, 60.1*scalar, 100.0*scalar );
+			SetSkill( SkillName.Wrestling, 60.1*scalar, 100.0*scalar );
 
 			if ( summoned )
 			{
@@ -187,7 +187,7 @@ namespace Server.Mobiles
 		{
 			if ( Controlled || Summoned )
 			{
-				Mobile master = ( this.ControlMaster );
+				Mobile master = this.ControlMaster;
 
 				if ( master == null )
 					master = this.SummonMaster;

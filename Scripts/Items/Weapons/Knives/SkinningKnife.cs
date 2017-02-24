@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0xEC4, 0xEC5 )]
+    [FlipableAttribute( 0xEC4, 0xEC5 )]
 	public class SkinningKnife : BaseKnife
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ShadowStrike; } }

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class TunicOfGuarding : LeatherChest
+    public class TunicOfGuarding : LeatherChest
 	{
 		public override int LabelNumber{ get{ return 1077693; } } // Tunic of Guarding
 

@@ -1,14 +1,12 @@
 using System;
-using Server.Items;
 using Server.Factions;
 using Server.Mobiles;
 using Server.Multis;
 using Server.Targeting;
-using Server.Regions;
 
 namespace Server.SkillHandlers
 {
-	public class DetectHidden
+    public class DetectHidden
 	{
 		public static void Initialize()
 		{
@@ -51,7 +49,7 @@ namespace Server.SkillHandlers
 
 				BaseHouse house = BaseHouse.FindHouseAt( p, src.Map, 16 );
 
-				bool inHouse = ( house != null && house.IsFriend( src ) );
+				bool inHouse = house != null && house.IsFriend( src );
 
 				if ( inHouse )
 					range = 22;
@@ -67,7 +65,7 @@ namespace Server.SkillHandlers
 							double ss = srcSkill + Utility.Random( 21 ) - 10;
 							double ts = trg.Skills[SkillName.Hiding].Value + Utility.Random( 21 ) - 10;
 
-							if ( src.AccessLevel >= trg.AccessLevel && ( ss >= ts || ( inHouse && house.IsInside( trg ) ) ) )
+							if ( src.AccessLevel >= trg.AccessLevel && ( ss >= ts || inHouse && house.IsInside( trg ) ) )
 							{
 								if ( trg is ShadowKnight && (trg.X != p.X || trg.Y != p.Y) )
 									continue;

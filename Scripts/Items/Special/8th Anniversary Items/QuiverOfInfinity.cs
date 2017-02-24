@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	public class QuiverOfInfinity : BaseQuiver, ITokunoDyable
+    public class QuiverOfInfinity : BaseQuiver, ITokunoDyable
 	{
 		public override int LabelNumber { get { return 1075201; } } // Quiver of Infinity
 

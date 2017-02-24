@@ -1,10 +1,9 @@
 using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Second
 {
-	public class AgilitySpell : MagerySpell
+    public class AgilitySpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Agility", "Ex Uus",

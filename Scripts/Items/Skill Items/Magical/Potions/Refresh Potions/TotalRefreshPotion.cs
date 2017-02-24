@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class TotalRefreshPotion : BaseRefreshPotion
+    public class TotalRefreshPotion : BaseRefreshPotion
 	{
 		public override double Refresh{ get{ return 1.0; } }
 

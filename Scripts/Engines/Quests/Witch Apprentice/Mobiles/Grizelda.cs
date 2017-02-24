@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Hag
 {
-	public class Grizelda : BaseQuester
+    public class Grizelda : BaseQuester
 	{
 		public override bool ClickTitle{ get{ return true; } }
 

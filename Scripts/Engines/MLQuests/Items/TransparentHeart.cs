@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class TransparentHeart : GoldEarrings
+    public class TransparentHeart : GoldEarrings
 	{
 		public override int LabelNumber{ get{ return 1075400; } } // Transparent Heart
 

@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Guilds;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	public class DeclareFealtyGump : GuildMobileListGump
+    public class DeclareFealtyGump : GuildMobileListGump
 	{
 		public DeclareFealtyGump( Mobile from, Guild guild ) : base( from, guild, true, guild.Members )
 		{

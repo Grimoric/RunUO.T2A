@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a hiryu corpse" )]
+    [CorpseName( "a hiryu corpse" )]
 	public class LesserHiryu : BaseMount
 	{
 		public override double WeaponAbilityChance { get { return 0.07; } } /* 1 in 15 chance of using; 1 in 5 chance of success */
@@ -134,7 +133,7 @@ namespace Server.Mobiles
 				return tamingChance;
 			}
 
-			double skill = (useBaseSkill? m.Skills.Bushido.Base : m.Skills.Bushido.Value);
+			double skill = useBaseSkill? m.Skills.Bushido.Base : m.Skills.Bushido.Value;
 
 			if( skill < 90.0 )
 			{

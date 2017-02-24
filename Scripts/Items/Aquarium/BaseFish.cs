@@ -1,10 +1,8 @@
 using System;
-using Server;
-using Server.Items;
 
 namespace Server.Items
 {
-	public class BaseFish : Item
+    public class BaseFish : Item
 	{
 		private static readonly TimeSpan DeathDelay = TimeSpan.FromMinutes( 5 );
 
@@ -13,7 +11,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool Dead
 		{
-			get{ return ( ItemID == 0x3B0C ); }
+			get{ return ItemID == 0x3B0C; }
 		}
 
 		[Constructable]

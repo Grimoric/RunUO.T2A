@@ -1,9 +1,6 @@
-using System;
-using Server.Mobiles;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a hellsteed corpse" )]
+    [CorpseName( "a hellsteed corpse" )]
 	public class HellSteed : BaseMount
 	{
 		public override bool HasBreath { get { return true; } }

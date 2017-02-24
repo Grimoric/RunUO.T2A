@@ -1,11 +1,9 @@
 using System;
-using Server.Network;
 using Server.Targeting;
-using Server.Items;
 
 namespace Server.Items
 {
-	public interface ILockpickable : IPoint2D
+    public interface ILockpickable : IPoint2D
 	{
 		int LockLevel{ get; set; }
 		bool Locked{ get; set; }

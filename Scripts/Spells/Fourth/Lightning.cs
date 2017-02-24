@@ -1,10 +1,8 @@
-using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Fourth
 {
-	public class LightningSpell : MagerySpell
+    public class LightningSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Lightning", "Por Ort Grav",

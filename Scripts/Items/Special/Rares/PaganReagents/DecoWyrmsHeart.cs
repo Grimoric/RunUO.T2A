@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class DecoWyrmsHeart : Item
+    public class DecoWyrmsHeart : Item
 	{
 
 		[Constructable]

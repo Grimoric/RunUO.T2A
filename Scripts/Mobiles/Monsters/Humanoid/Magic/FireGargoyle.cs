@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a charred corpse" )]
+    [CorpseName( "a charred corpse" )]
 	public class FireGargoyle : BaseCreature
 	{
 		[Constructable]

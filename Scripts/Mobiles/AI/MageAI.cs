@@ -36,7 +36,7 @@ namespace Server.Mobiles
 
 		public virtual bool SmartAI
 		{
-			get { return ( m_Mobile is BaseVendor || m_Mobile is BaseEscortable || m_Mobile is Changeling ); }
+			get { return m_Mobile is BaseVendor || m_Mobile is BaseEscortable || m_Mobile is Changeling; }
 		}
 
 		public virtual bool IsNecromancer
@@ -112,13 +112,13 @@ namespace Server.Mobiles
 			}
 			else
 			{
-				if( Utility.Random( 0, 4 + ( m_Mobile.Hits == 0 ? m_Mobile.HitsMax : ( m_Mobile.HitsMax / m_Mobile.Hits ) ) ) < 3 )
+				if( Utility.Random( 0, 4 + ( m_Mobile.Hits == 0 ? m_Mobile.HitsMax : m_Mobile.HitsMax / m_Mobile.Hits ) ) < 3 )
 					return null;
 			}
 
 			Spell spell = null;
 
-			if( m_Mobile.Hits < ( m_Mobile.HitsMax - 50 ) )
+			if( m_Mobile.Hits < m_Mobile.HitsMax - 50 )
 			{
 				if ( UseNecromancy() )
 				{
@@ -132,7 +132,7 @@ namespace Server.Mobiles
 						spell = new HealSpell( m_Mobile, null );
 				}
 			}
-			else if( m_Mobile.Hits < ( m_Mobile.HitsMax - 10 ) )
+			else if( m_Mobile.Hits < m_Mobile.HitsMax - 10 )
 			{
 				spell = new HealSpell( m_Mobile, null );
 			}
@@ -211,7 +211,7 @@ namespace Server.Mobiles
 
 		public void Run( Direction d )
 		{
-			if( ( m_Mobile.Spell != null && m_Mobile.Spell.IsCasting ) || m_Mobile.Paralyzed || m_Mobile.Frozen || m_Mobile.DisallowAllMoves )
+			if( m_Mobile.Spell != null && m_Mobile.Spell.IsCasting || m_Mobile.Paralyzed || m_Mobile.Frozen || m_Mobile.DisallowAllMoves )
 				return;
 
 			m_Mobile.Direction = d | Direction.Running;
@@ -223,7 +223,7 @@ namespace Server.Mobiles
 		public virtual bool UseNecromancy()
 		{
 			if ( IsNecromancer )
-				return ( Utility.Random( m_Mobile.Skills[ SkillName.Magery ].BaseFixedPoint + m_Mobile.Skills[ SkillName.Necromancy ].BaseFixedPoint ) >= m_Mobile.Skills[ SkillName.Magery ].BaseFixedPoint );
+				return Utility.Random( m_Mobile.Skills[ SkillName.Magery ].BaseFixedPoint + m_Mobile.Skills[ SkillName.Necromancy ].BaseFixedPoint ) >= m_Mobile.Skills[ SkillName.Magery ].BaseFixedPoint;
 
 			return false;
 		}
@@ -235,7 +235,7 @@ namespace Server.Mobiles
 
 		public virtual Spell GetRandomDamageSpellNecro()
 		{
-			int bound = ( m_Mobile.Skills[ SkillName.Necromancy ].Value >= 100 ) ? 5 : 3;
+			int bound = m_Mobile.Skills[ SkillName.Necromancy ].Value >= 100 ? 5 : 3;
 
 			switch( Utility.Random( bound ) )
 			{
@@ -349,7 +349,7 @@ namespace Server.Mobiles
 
 				if( IsNecromancer )
 				{
-					double psDamage = ( ( m_Mobile.Skills[ SkillName.SpiritSpeak ].Value - c.Skills[ SkillName.MagicResist ].Value ) / 10 ) + ( c.Player ? 18 : 30 );
+					double psDamage = ( m_Mobile.Skills[ SkillName.SpiritSpeak ].Value - c.Skills[ SkillName.MagicResist ].Value ) / 10 + ( c.Player ? 18 : 30 );
 
 					if( psDamage > c.Hits )
 						return new PainSpikeSpell( m_Mobile, null );
@@ -551,17 +551,17 @@ namespace Server.Mobiles
 
 		private TimeSpan GetDelay( Spell spell )
 		{
-			if( SmartAI || ( spell is DispelSpell ) )
+			if( SmartAI || spell is DispelSpell )
 			{
 				return TimeSpan.FromSeconds( m_Mobile.ActiveSpeed );
 			}
 			else
 			{
 				double del = ScaleBySkill( 3.0, SkillName.Magery );
-				double min = 6.0 - ( del * 0.75 );
-				double max = 6.0 - ( del * 1.25 );
+				double min = 6.0 - del * 0.75;
+				double max = 6.0 - del * 1.25;
 
-				return TimeSpan.FromSeconds( min + ( ( max - min ) * Utility.RandomDouble() ) );
+				return TimeSpan.FromSeconds( min + ( max - min ) * Utility.RandomDouble() );
 			}
 		}
 
@@ -647,7 +647,7 @@ namespace Server.Mobiles
 
 						int diff = c.Hits - m_Mobile.Hits;
 
-						flee = ( Utility.Random( 0, 100 ) > ( 10 + diff ) ); // (10 + diff)% chance to flee
+						flee = Utility.Random( 0, 100 ) > 10 + diff; // (10 + diff)% chance to flee
 					}
 					else
 					{
@@ -782,7 +782,7 @@ namespace Server.Mobiles
 		{
 			Mobile c = m_Mobile.Combatant;
 
-			if( ( m_Mobile.Mana > 20 || m_Mobile.Mana == m_Mobile.ManaMax ) && m_Mobile.Hits > ( m_Mobile.HitsMax / 2 ) )
+			if( ( m_Mobile.Mana > 20 || m_Mobile.Mana == m_Mobile.ManaMax ) && m_Mobile.Hits > m_Mobile.HitsMax / 2 )
 			{
 				m_Mobile.DebugSay( "I am stronger now, my guard is up" );
 				Action = ActionType.Guard;
@@ -920,7 +920,7 @@ namespace Server.Mobiles
 
 		public bool CanDispel( Mobile m )
 		{
-			return ( m is BaseCreature && ( (BaseCreature)m ).Summoned && m_Mobile.CanBeHarmful( m, false ) && !( (BaseCreature)m ).IsAnimatedDead );
+			return m is BaseCreature && ( (BaseCreature)m ).Summoned && m_Mobile.CanBeHarmful( m, false ) && !( (BaseCreature)m ).IsAnimatedDead;
 		}
 
 		private static int[] m_Offsets = new int[]
@@ -959,11 +959,11 @@ namespace Server.Mobiles
 			if( targ == null )
 				return false;
 
-			bool isReveal = ( targ is RevealSpell.InternalTarget );
-			bool isDispel = ( targ is DispelSpell.InternalTarget );
-			bool isParalyze = ( targ is ParalyzeSpell.InternalTarget );
-			bool isTeleport = ( targ is TeleportSpell.InternalTarget );
-			bool isInvisible = ( targ is InvisibilitySpell.InternalTarget );
+			bool isReveal = targ is RevealSpell.InternalTarget;
+			bool isDispel = targ is DispelSpell.InternalTarget;
+			bool isParalyze = targ is ParalyzeSpell.InternalTarget;
+			bool isTeleport = targ is TeleportSpell.InternalTarget;
+			bool isInvisible = targ is InvisibilitySpell.InternalTarget;
 			bool teleportAway = false;
 
 			Mobile toTarget;

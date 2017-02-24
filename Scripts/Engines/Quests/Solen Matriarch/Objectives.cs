@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 
 namespace Server.Engines.Quests.Matriarch
 {
-	public class KillInfiltratorsObjective : QuestObjective
+    public class KillInfiltratorsObjective : QuestObjective
 	{
 		public override object Message
 		{

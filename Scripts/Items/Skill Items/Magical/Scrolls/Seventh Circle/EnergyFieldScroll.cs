@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class EnergyFieldScroll : SpellScroll
+    public class EnergyFieldScroll : SpellScroll
 	{
 		[Constructable]
 		public EnergyFieldScroll() : this( 1 )

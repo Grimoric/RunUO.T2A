@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Server.Engines.MLQuests.Rewards;
 using Server.Engines.MLQuests.Objectives;
 using Server.Items;
-using Server.Gumps;
 using Server.Mobiles;
 
 namespace Server.Engines.MLQuests.Definitions
 {
-	#region Human To Elf Quests
+    #region Human To Elf Quests
 
-	public class Seasons : MLQuest
+    public class Seasons : MLQuest
 	{
 		public override bool RecordCompletion { get { return true; } }
 
@@ -128,7 +125,7 @@ namespace Server.Engines.MLQuests.Definitions
 			{
 				Pitcher pitcher = item as Pitcher; // Only pitchers work
 
-				return ( pitcher != null && pitcher.Content == BeverageType.Water && pitcher.Quantity > 0 );
+				return pitcher != null && pitcher.Content == BeverageType.Water && pitcher.Quantity > 0;
 			}
 		}
 	}

@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 using Server.Network;
 
 namespace Server.Engines.Quests.Haven
 {
-	public class FindUzeraanBeginObjective : QuestObjective
+    public class FindUzeraanBeginObjective : QuestObjective
 	{
 		public override object Message
 		{

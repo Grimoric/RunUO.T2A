@@ -1,12 +1,11 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 using Server.Network;
 
 namespace Server.Engines.Quests.Necro
 {
-	public class KronusScroll : QuestItem
+    public class KronusScroll : QuestItem
 	{
 		public override int LabelNumber { get { return 1060149; } } // Calling of Kronus
 

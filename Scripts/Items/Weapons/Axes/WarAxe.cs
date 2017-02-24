@@ -1,11 +1,8 @@
-using System;
-using Server.Items;
-using Server.Network;
 using Server.Engines.Harvest;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x13B0, 0x13AF )]
+    [FlipableAttribute( 0x13B0, 0x13AF )]
 	public class WarAxe : BaseAxe
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ArmorIgnore; } }

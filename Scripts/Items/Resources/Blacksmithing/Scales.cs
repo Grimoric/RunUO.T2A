@@ -1,10 +1,6 @@
-using System;
-using Server.Items;
-using Server.Network;
-
 namespace Server.Items
 {
-	public abstract class BaseScales : Item, ICommodity
+    public abstract class BaseScales : Item, ICommodity
 	{
 		public override int LabelNumber{ get{ return 1053139; } } // dragon scales
 

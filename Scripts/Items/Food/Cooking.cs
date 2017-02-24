@@ -1,11 +1,9 @@
 using System;
 using Server.Targeting;
-using Server.Items;
-using Server.Network;
 
 namespace Server.Items
 {
-	public class UtilityItem
+    public class UtilityItem
 	{
 		static public int RandomChoice( int itemID1, int itemID2 )
 		{
@@ -484,7 +482,7 @@ namespace Server.Items
 			if ( !Movable )
 				return;
 
-			if ( (ItemID == 0x1039 || ItemID == 0x1045) )
+			if ( ItemID == 0x1039 || ItemID == 0x1045 )
 				++ItemID;
 
 #if false

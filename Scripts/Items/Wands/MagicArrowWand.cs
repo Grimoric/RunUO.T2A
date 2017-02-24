@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Spells.First;
-using Server.Targeting;
 
 namespace Server.Items
 {
-	public class MagicArrowWand : BaseWand
+    public class MagicArrowWand : BaseWand
 	{
 		[Constructable]
 		public MagicArrowWand() : base( WandEffect.MagicArrow, 5, 30 )

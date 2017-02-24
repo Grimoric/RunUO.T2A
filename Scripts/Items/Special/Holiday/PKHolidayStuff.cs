@@ -1,11 +1,6 @@
-using System;
-using Server.Mobiles;
-using Server.Network;
-using System.Collections.Generic;
-
 namespace Server.Items
 {
-	public class Coal : Item
+    public class Coal : Item
 	{
 		public override string DefaultName{ get { return "Coal"; }}
 

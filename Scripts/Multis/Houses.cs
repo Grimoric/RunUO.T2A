@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Items;
 using Server.Multis.Deeds;
 
 namespace Server.Multis
 {
-	public class SmallOldHouse : BaseHouse
+    public class SmallOldHouse : BaseHouse
 	{
 		public static Rectangle2D[] AreaArray = new Rectangle2D[]{ new Rectangle2D(-3,-3,7,7 ), new Rectangle2D( -1, 4, 3, 1 ) };
 
@@ -519,7 +516,7 @@ namespace Server.Multis
 
 	public class SmallShop : BaseHouse
 	{
-		public override Rectangle2D[] Area { get { return ( ItemID == 0x40A2 ? AreaArray1 : AreaArray2 ); } }
+		public override Rectangle2D[] Area { get { return ItemID == 0x40A2 ? AreaArray1 : AreaArray2; } }
 		public override Point3D BaseBanLocation { get { return new Point3D( 3, 4, 0 ); } }
 
 		public override int DefaultPrice{ get{ return 63000; } }

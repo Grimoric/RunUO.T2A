@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Mobiles;
-
 namespace Server.Items
 {
-	public class VacationWafer : Item
+    public class VacationWafer : Item
 	{
 		public const int VacationDays = 7;
 

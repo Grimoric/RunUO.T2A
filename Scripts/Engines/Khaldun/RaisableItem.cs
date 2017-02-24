@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class RaisableItem : Item
+    public class RaisableItem : Item
 	{
 		private int m_MaxElevation;
 		private int m_MoveSound;

@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Network;
 
 namespace Server.Commands.Generic
 {
-	public class OnlineCommandImplementor : BaseCommandImplementor
+    public class OnlineCommandImplementor : BaseCommandImplementor
 	{
 		public OnlineCommandImplementor()
 		{

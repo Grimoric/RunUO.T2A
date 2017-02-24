@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class RuneCarvingKnife : AssassinSpike
+    public class RuneCarvingKnife : AssassinSpike
 	{
 		public override int LabelNumber{ get{ return 1072915; } } // Rune Carving Knife
 

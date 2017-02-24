@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Guilds;
 using Server.Network;
 using System.Collections.Generic;
 
 namespace Server.Gumps
 {
-	public class GuildWarGump : Gump
+    public class GuildWarGump : Gump
 	{
 		private Mobile m_Mobile;
 		private Guild m_Guild;
@@ -47,7 +44,7 @@ namespace Server.Gumps
 				{
 					Guild g = enemies[i];
 
-					AddHtml( 20, 65 + (i * 20), 300, 20, g.Name, false, false );
+					AddHtml( 20, 65 + i * 20, 300, 20, g.Name, false, false );
 				}
 			}
 
@@ -73,7 +70,7 @@ namespace Server.Gumps
 				{
 					Guild g = (Guild)declared[i];
 
-					AddHtml( 20, 65 + (i * 20), 300, 20, g.Name, false, false );
+					AddHtml( 20, 65 + i * 20, 300, 20, g.Name, false, false );
 				}
 			}
 
@@ -96,7 +93,7 @@ namespace Server.Gumps
 				{
 					Guild g = invites[i];
 
-					AddHtml( 20, 65 + (i * 20), 300, 20, g.Name, false, false );
+					AddHtml( 20, 65 + i * 20, 300, 20, g.Name, false, false );
 				}
 			}
 		}

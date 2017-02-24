@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x27A3, 0x27EE )]
+    [FlipableAttribute( 0x27A3, 0x27EE )]
 	public class Tessen : BaseBashing
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Feint; } }

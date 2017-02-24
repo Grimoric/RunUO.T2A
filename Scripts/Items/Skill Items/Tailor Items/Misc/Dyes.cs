@@ -1,10 +1,9 @@
-using System;
 using Server.Targeting;
 using Server.HuePickers;
 
 namespace Server.Items
 {
-	public class Dyes : Item /* , IUsesRemaining */ /* TODO complete usesremaing */
+    public class Dyes : Item /* , IUsesRemaining */ /* TODO complete usesremaing */
 	{
 		/*
 		public bool ShowUsesRemaining { get { return false; } set { } }

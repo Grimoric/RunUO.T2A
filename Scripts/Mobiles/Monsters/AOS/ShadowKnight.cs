@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a shadow knight corpse" )]
+    [CorpseName( "a shadow knight corpse" )]
 	public class ShadowKnight : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()
@@ -122,7 +121,7 @@ namespace Server.Mobiles
 
 		public override void OnThink()
 		{
-			if ( !m_HasTeleportedAway && Hits < (HitsMax / 2) )
+			if ( !m_HasTeleportedAway && Hits < HitsMax / 2 )
 			{
 				Map map = this.Map;
 
@@ -131,8 +130,8 @@ namespace Server.Mobiles
 					// try 10 times to find a teleport spot
 					for ( int i = 0; i < 10; ++i )
 					{
-						int x = X + (Utility.RandomMinMax( 5, 10 ) * (Utility.RandomBool() ? 1 : -1));
-						int y = Y + (Utility.RandomMinMax( 5, 10 ) * (Utility.RandomBool() ? 1 : -1));
+						int x = X + Utility.RandomMinMax( 5, 10 ) * (Utility.RandomBool() ? 1 : -1);
+						int y = Y + Utility.RandomMinMax( 5, 10 ) * (Utility.RandomBool() ? 1 : -1);
 						int z = Z;
 
 						if ( !map.CanFit( x, y, z, 16, false, false ) )

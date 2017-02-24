@@ -1,5 +1,3 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Network;
 using Server.Prompts;
@@ -9,7 +7,7 @@ using Server.Multis;
 
 namespace Server.Gumps
 {
-	public abstract class BaseVendorRentalGump : Gump
+    public abstract class BaseVendorRentalGump : Gump
 	{
 		protected enum GumpType
 		{

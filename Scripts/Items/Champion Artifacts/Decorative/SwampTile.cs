@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class SwampTile : Item
+    public class SwampTile : Item
 	{
 		[Constructable]
 		public SwampTile() : base( 0x320D )

@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
@@ -8,7 +7,7 @@ using Server.Prompts;
 
 namespace Server.Engines.BulkOrders
 {
-	public class BOBGump : Gump
+    public class BOBGump : Gump
 	{
 		private PlayerMobile m_From;
 		private BulkOrderBook m_Book;
@@ -36,7 +35,7 @@ namespace Server.Engines.BulkOrders
 			{
 				BOBLargeEntry e = (BOBLargeEntry)obj;
 
-				return CheckFilter( e.Material, e.AmountMax, true, e.RequireExceptional, e.DeedType, ( e.Entries.Length > 0 ? e.Entries[0].ItemType : null ) );
+				return CheckFilter( e.Material, e.AmountMax, true, e.RequireExceptional, e.DeedType, e.Entries.Length > 0 ? e.Entries[0].ItemType : null );
 			}
 			else if ( obj is BOBSmallEntry )
 			{
@@ -50,7 +49,7 @@ namespace Server.Engines.BulkOrders
 
 		public bool CheckFilter( BulkMaterialType mat, int amountMax, bool isLarge, bool reqExc, BODType deedType, Type itemType )
 		{
-			BOBFilter f = ( m_From.UseOwnFilter ? m_From.BOBFilter : m_Book.Filter );
+			BOBFilter f = m_From.UseOwnFilter ? m_From.BOBFilter : m_Book.Filter;
 
 			if ( f.IsDefault )
 				return true;
@@ -76,24 +75,24 @@ namespace Server.Engines.BulkOrders
 			{
 				default:
 				case  0: return true;
-				case  1: return ( deedType == BODType.Smith );
-				case  2: return ( deedType == BODType.Tailor );
+				case  1: return deedType == BODType.Smith;
+				case  2: return deedType == BODType.Tailor;
 
-				case  3: return ( mat == BulkMaterialType.None && BGTClassifier.Classify( deedType, itemType ) == BulkGenericType.Iron );
-				case  4: return ( mat == BulkMaterialType.DullCopper );
-				case  5: return ( mat == BulkMaterialType.ShadowIron );
-				case  6: return ( mat == BulkMaterialType.Copper );
-				case  7: return ( mat == BulkMaterialType.Bronze );
-				case  8: return ( mat == BulkMaterialType.Gold );
-				case  9: return ( mat == BulkMaterialType.Agapite );
-				case 10: return ( mat == BulkMaterialType.Verite );
-				case 11: return ( mat == BulkMaterialType.Valorite );
+				case  3: return mat == BulkMaterialType.None && BGTClassifier.Classify( deedType, itemType ) == BulkGenericType.Iron;
+				case  4: return mat == BulkMaterialType.DullCopper;
+				case  5: return mat == BulkMaterialType.ShadowIron;
+				case  6: return mat == BulkMaterialType.Copper;
+				case  7: return mat == BulkMaterialType.Bronze;
+				case  8: return mat == BulkMaterialType.Gold;
+				case  9: return mat == BulkMaterialType.Agapite;
+				case 10: return mat == BulkMaterialType.Verite;
+				case 11: return mat == BulkMaterialType.Valorite;
 
-				case 12: return ( mat == BulkMaterialType.None && BGTClassifier.Classify( deedType, itemType ) == BulkGenericType.Cloth );
-				case 13: return ( mat == BulkMaterialType.None && BGTClassifier.Classify( deedType, itemType ) == BulkGenericType.Leather );
-				case 14: return ( mat == BulkMaterialType.Spined );
-				case 15: return ( mat == BulkMaterialType.Horned );
-				case 16: return ( mat == BulkMaterialType.Barbed );
+				case 12: return mat == BulkMaterialType.None && BGTClassifier.Classify( deedType, itemType ) == BulkGenericType.Cloth;
+				case 13: return mat == BulkMaterialType.None && BGTClassifier.Classify( deedType, itemType ) == BulkGenericType.Leather;
+				case 14: return mat == BulkMaterialType.Spined;
+				case 15: return mat == BulkMaterialType.Horned;
+				case 16: return mat == BulkMaterialType.Barbed;
 			}
 		}
 
@@ -127,7 +126,7 @@ namespace Server.Engines.BulkOrders
 					else
 						add = 1;
 
-					if ( (slots + add) > 10 )
+					if ( slots + add > 10 )
 						break;
 
 					slots += add;
@@ -151,7 +150,7 @@ namespace Server.Engines.BulkOrders
 			int i;
 			object obj;
 
-			for (i=0; (i < index) && (i < list.Count); i++)
+			for (i=0; i < index && i < list.Count; i++)
 			{
 				obj = list[i];
 				if (CheckFilter(obj))
@@ -180,7 +179,7 @@ namespace Server.Engines.BulkOrders
 			 */
 			if (count + sizeDropped > 10)
 			{
-				while ((i < list.Count) && (count <= 10))
+				while (i < list.Count && count <= 10)
 				{
 					obj = list[i];
 					if (CheckFilter(obj))
@@ -290,7 +289,7 @@ namespace Server.Engines.BulkOrders
 				default:
 				{
 					bool canDrop = m_Book.IsChildOf( m_From.Backpack );
-					bool canPrice = canDrop || (m_Book.RootParent is PlayerVendor);
+					bool canPrice = canDrop || m_Book.RootParent is PlayerVendor;
 
 					index -= 5;
 
@@ -317,7 +316,7 @@ namespace Server.Engines.BulkOrders
 							if ( item != null )
 							{
 								Container pack = m_From.Backpack;
-								if ((pack == null) || ((pack != null) && (!pack.CheckHold(m_From, item, true, true, 0, item.PileWeight + item.TotalWeight))))
+								if (pack == null || pack != null && !pack.CheckHold(m_From, item, true, true, 0, item.PileWeight + item.TotalWeight))
 								{
 									m_From.SendLocalizedMessage(503204); // You do not have room in your backpack for this
 									m_From.SendGump(new BOBGump(m_From, m_Book, m_Page, null));
@@ -507,14 +506,14 @@ namespace Server.Engines.BulkOrders
 			PlayerVendor pv = book.RootParent as PlayerVendor;
 
 			bool canDrop = book.IsChildOf( from.Backpack );
-			bool canBuy = ( pv != null );
-			bool canPrice = ( canDrop || canBuy );
+			bool canBuy = pv != null;
+			bool canPrice = canDrop || canBuy;
 
 			if ( canBuy )
 			{
 				VendorItem vi = pv.GetVendorItem( book );
 
-				canBuy = ( vi != null && !vi.IsForSale );
+				canBuy = vi != null && !vi.IsForSale;
 			}
 
 			int width = 600;
@@ -544,14 +543,14 @@ namespace Server.Engines.BulkOrders
 			AddImageTiled( 313, 64, 100, 352, 1416 );
 			AddImageTiled( 415, 64, 76, 352, 200 );
 
-			for ( int i = index; i < (index + count) && i >= 0 && i < list.Count; ++i )
+			for ( int i = index; i < index + count && i >= 0 && i < list.Count; ++i )
 			{
 				object obj = list[i];
 
 				if ( !CheckFilter( obj ) )
 					continue;
 
-				AddImageTiled( 24, 94 + (tableIndex * 32), canPrice ? 573 : 489, 2, 2624 );
+				AddImageTiled( 24, 94 + tableIndex * 32, canPrice ? 573 : 489, 2, 2624 );
 
 				if ( obj is BOBLargeEntry )
 					tableIndex += ((BOBLargeEntry)obj).Entries.Length;
@@ -575,7 +574,7 @@ namespace Server.Engines.BulkOrders
 			AddButton( 35, 32, 4005, 4007, 1, GumpButtonType.Reply, 0 );
 			AddHtmlLocalized( 70, 32, 200, 32, 1062476, LabelColor, false, false ); // Set Filter
 
-			BOBFilter f = ( from.UseOwnFilter ? from.BOBFilter : book.Filter );
+			BOBFilter f = @from.UseOwnFilter ? @from.BOBFilter : book.Filter;
 
 			if ( f.IsDefault )
 				AddHtmlLocalized( canPrice ? 470 : 386, 32, 120, 32, 1062475, 16927, false, false ); // Using No Filter
@@ -621,7 +620,7 @@ namespace Server.Engines.BulkOrders
 				AddHtmlLocalized( 260, 416, 150, 20, 1011066, LabelColor, false, false ); // Next page
 			}
 
-			for ( int i = index; i < (index + count) && i >= 0 && i < list.Count; ++i )
+			for ( int i = index; i < index + count && i >= 0 && i < list.Count; ++i )
 			{
 				object obj = list[i];
 
@@ -632,14 +631,14 @@ namespace Server.Engines.BulkOrders
 				{
 					BOBLargeEntry e = (BOBLargeEntry)obj;
 
-					int y = 96 + (tableIndex * 32);
+					int y = 96 + tableIndex * 32;
 
 					if ( canDrop )
-						AddButton( 35, y + 2, 5602, 5606, 5 + (i * 2), GumpButtonType.Reply, 0 );
+						AddButton( 35, y + 2, 5602, 5606, 5 + i * 2, GumpButtonType.Reply, 0 );
 
-					if ( canDrop || (canBuy && e.Price > 0) )
+					if ( canDrop || canBuy && e.Price > 0 )
 					{
-						AddButton( 579, y + 2, 2117, 2118, 6 + (i * 2), GumpButtonType.Reply, 0 );
+						AddButton( 579, y + 2, 2117, 2118, 6 + i * 2, GumpButtonType.Reply, 0 );
 						AddLabel( 495, y, 1152, e.Price.ToString() );
 					}
 
@@ -673,14 +672,14 @@ namespace Server.Engines.BulkOrders
 				{
 					BOBSmallEntry e = (BOBSmallEntry)obj;
 
-					int y = 96 + (tableIndex++ * 32);
+					int y = 96 + tableIndex++ * 32;
 
 					if ( canDrop )
-						AddButton( 35, y + 2, 5602, 5606, 5 + (i * 2), GumpButtonType.Reply, 0 );
+						AddButton( 35, y + 2, 5602, 5606, 5 + i * 2, GumpButtonType.Reply, 0 );
 
-					if ( canDrop || (canBuy && e.Price > 0) )
+					if ( canDrop || canBuy && e.Price > 0 )
 					{
-						AddButton( 579, y + 2, 2117, 2118, 6 + (i * 2), GumpButtonType.Reply, 0 );
+						AddButton( 579, y + 2, 2117, 2118, 6 + i * 2, GumpButtonType.Reply, 0 );
 						AddLabel( 495, y, 1152, e.Price.ToString() );
 					}
 

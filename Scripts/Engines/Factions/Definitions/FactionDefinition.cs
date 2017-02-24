@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Factions
 {
-	public class FactionDefinition
+    public class FactionDefinition
 	{
 		private int m_Sort;
 

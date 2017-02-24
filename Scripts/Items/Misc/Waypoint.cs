@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Targeting;
 using Server.Commands;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x1f14, 0x1f15, 0x1f16, 0x1f17 )]
+    [FlipableAttribute( 0x1f14, 0x1f15, 0x1f16, 0x1f17 )]
 	public class WayPoint : Item
 	{
 		public static void Initialize()

@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Samurai
 {
-	public class FindHaochiObjective : QuestObjective
+    public class FindHaochiObjective : QuestObjective
 	{
 		public override object Message
 		{

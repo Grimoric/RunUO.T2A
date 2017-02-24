@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Spells.Fourth;
-using Server.Targeting;
 
 namespace Server.Items
 {
-	public class LightningWand : BaseWand
+    public class LightningWand : BaseWand
 	{
 		[Constructable]
 		public LightningWand() : base( WandEffect.Lightning, 5, 20 )

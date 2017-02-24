@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using Server.Gumps;
 using Server.Guilds;
 using Server.Network;
@@ -8,7 +7,7 @@ using Server.Multis;
 
 namespace Server.Items
 {
-	public class Guildstone : Item, IAddon, IChopable
+    public class Guildstone : Item, IAddon, IChopable
 	{
 		private Guild m_Guild;
 		private string m_GuildName;
@@ -201,10 +200,10 @@ namespace Server.Items
 				PlayerState guildState = PlayerState.Find( m_Guild.Leader );
 				PlayerState targetState = PlayerState.Find( from );
 
-				Faction guildFaction = (guildState == null ? null : guildState.Faction);
-				Faction targetFaction = (targetState == null ? null : targetState.Faction);
+				Faction guildFaction = guildState == null ? null : guildState.Faction;
+				Faction targetFaction = targetState == null ? null : targetState.Faction;
 
-				if( guildFaction != targetFaction || (targetState != null && targetState.IsLeaving) )
+				if( guildFaction != targetFaction || targetState != null && targetState.IsLeaving )
 					return;
 
 				if( guildState != null && targetState != null )
@@ -250,7 +249,7 @@ namespace Server.Items
 
 			BaseHouse house = BaseHouse.FindHouseAt( this );
 
-			if( ( house == null && m_BeforeChangeover ) || ( house != null && house.IsOwner( from ) && house.Addons.Contains( this ) ))
+			if( house == null && m_BeforeChangeover || house != null && house.IsOwner( @from ) && house.Addons.Contains( this ))
 			{
 				Effects.PlaySound( GetWorldLocation(), Map, 0x3B3 );
 				from.SendLocalizedMessage( 500461 ); // You destroy the item.

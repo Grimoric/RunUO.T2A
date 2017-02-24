@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class SandstoneFountainAddon : BaseAddon
+    public class SandstoneFountainAddon : BaseAddon
 	{
 		[Constructable]
 		public SandstoneFountainAddon()

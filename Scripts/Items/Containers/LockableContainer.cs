@@ -1,11 +1,10 @@
 using System;
 using Server.Network;
-using Server.Items;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	public abstract class LockableContainer : TrapableContainer, ILockable, ILockpickable, ICraftable, IShipwreckedItem
+    public abstract class LockableContainer : TrapableContainer, ILockable, ILockpickable, ICraftable, IShipwreckedItem
 	{
 		private bool m_Locked;
 		private int m_LockLevel, m_MaxLockLevel, m_RequiredSkill;
@@ -187,7 +186,7 @@ namespace Server.Items
 
 					if ( version < 4 )
 					{
-						if ( (m_MaxLockLevel - m_LockLevel) == 40 )
+						if ( m_MaxLockLevel - m_LockLevel == 40 )
 						{
 							m_RequiredSkill = m_LockLevel + 6;
 							m_LockLevel = m_RequiredSkill - 10;

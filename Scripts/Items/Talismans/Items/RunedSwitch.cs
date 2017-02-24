@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Targeting;
 
 namespace Server.Items
 {
-	public class RunedSwitch : Item
+    public class RunedSwitch : Item
 	{
 		public override int LabelNumber{ get{ return 1072896; } } // runed switch
 

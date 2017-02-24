@@ -1,14 +1,10 @@
-using System;
-using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using Server;
-using Server.Misc;
 using Server.Network;
 
 namespace Server
 {
-	public class SocketOptions
+    public class SocketOptions
 	{
 		private const bool NagleEnabled = false; // Should the Nagle algorithm be enabled? This may reduce performance
 		private const int CoalesceBufferSize = 512; // MSS that the core will use when buffering packets

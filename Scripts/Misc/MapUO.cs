@@ -1,13 +1,11 @@
 using System;
-using Server;
 using Server.Network;
-using Server.Mobiles;
 using Server.Engines.PartySystem;
 using Server.Guilds;
 
 namespace Server.Misc
 {
-	public static partial class MapUO
+    public static partial class MapUO
 	{
 		private static class Settings
 		{
@@ -61,7 +59,7 @@ namespace Server.Misc
 		{
 			public sealed class PartyTrack : ProtocolExtension
 			{
-				public PartyTrack( Mobile from, Party party ) : base( 0x01, ( ( party.Members.Count - 1 ) * 9 ) + 4 )
+				public PartyTrack( Mobile from, Party party ) : base( 0x01, ( party.Members.Count - 1 ) * 9 + 4 )
 				{
 					for ( int i = 0; i < party.Members.Count; ++i )
 					{
@@ -93,7 +91,7 @@ namespace Server.Misc
 					m_Stream.Write( (int) 0 );
 				}
 
-				public GuildTrack( Mobile from, Guild guild, bool locations ) : base( 0x02, ( ( guild.Members.Count - 1 ) * ( locations ? 10 : 4 ) ) + 5 )
+				public GuildTrack( Mobile from, Guild guild, bool locations ) : base( 0x02, ( guild.Members.Count - 1 ) * ( locations ? 10 : 4 ) + 5 )
 				{
 					m_Stream.Write( (byte) ( locations ? 1 : 0 ) );
 

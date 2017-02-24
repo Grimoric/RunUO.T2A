@@ -20,20 +20,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Diagnostics;
 using System.Collections.Concurrent;
-using System.Linq;
-
-using Server;
 using Server.Guilds;
 
 namespace Server
 {
-	public sealed class DynamicSaveStrategy : SaveStrategy
+    public sealed class DynamicSaveStrategy : SaveStrategy
 	{
 		public override string Name { get { return "Dynamic"; } }
 
@@ -92,7 +85,7 @@ namespace Server
 		{
 			Task commitTask = Task.Factory.StartNew(() =>
 			{
-				while (!(threadWriter.IsCompleted))
+				while (!threadWriter.IsCompleted)
 				{
 					QueuedMemoryWriter writer;
 
@@ -132,7 +125,7 @@ namespace Server
 
 					writer.QueueForIndex(item, size);
 
-					if (item.Decays && item.Parent == null && item.Map != Map.Internal && DateTime.Now > (item.LastMoved + item.DecayTime))
+					if (item.Decays && item.Parent == null && item.Map != Map.Internal && DateTime.Now > item.LastMoved + item.DecayTime)
 					{
 						_decayBag.Add(item);
 					}
@@ -280,7 +273,7 @@ namespace Server
 			//Equiv to GenericWriter.Write( (int)count );
 			byte[] buffer = new byte[4];
 
-			buffer[0] = (byte)(count);
+			buffer[0] = (byte)count;
 			buffer[1] = (byte)(count >> 8);
 			buffer[2] = (byte)(count >> 16);
 			buffer[3] = (byte)(count >> 24);

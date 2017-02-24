@@ -1,11 +1,9 @@
 using System;
-using Server;
 using Server.Mobiles;
-using Server.Factions;
 
 namespace Server.Misc
 {
-	public class SkillCheck
+    public class SkillCheck
 	{
 		private static readonly bool AntiMacroCode = true;		//Change this to false to disable anti-macro code
 
@@ -122,7 +120,7 @@ namespace Server.Misc
 			if ( from.Skills.Cap == 0 )
 				return false;
 
-			bool success = ( chance >= Utility.RandomDouble() );
+			bool success = chance >= Utility.RandomDouble();
 			double gc = (double)(from.Skills.Cap - from.Skills.Total) / from.Skills.Cap;
 			gc += ( skill.Cap - skill.Base ) / skill.Cap;
 			gc /= 2;
@@ -138,7 +136,7 @@ namespace Server.Misc
 			if ( from is BaseCreature && ((BaseCreature)from).Controlled )
 				gc *= 2;
 
-			if ( from.Alive && ( ( gc >= Utility.RandomDouble() && AllowGain( from, skill, amObj ) ) || skill.Base < 10.0 ) )
+			if ( from.Alive && ( gc >= Utility.RandomDouble() && AllowGain( @from, skill, amObj ) || skill.Base < 10.0 ) )
 				Gain( from, skill );
 
 			return success;
@@ -208,7 +206,7 @@ namespace Server.Misc
 
 				Skills skills = from.Skills;
 
-				if ( from.Player && ( skills.Total / skills.Cap ) >= Utility.RandomDouble() )//( skills.Total >= skills.Cap )
+				if ( from.Player && skills.Total / skills.Cap >= Utility.RandomDouble() )//( skills.Total >= skills.Cap )
 				{
 					for ( int i = 0; i < skills.Length; ++i )
 					{
@@ -229,7 +227,7 @@ namespace Server.Misc
 					toGain *= Utility.RandomMinMax(2, 5);
 				#endregion
 
-				if ( !from.Player || (skills.Total + toGain) <= skills.Cap )
+				if ( !from.Player || skills.Total + toGain <= skills.Cap )
 				{
 					skill.BaseFixedPoint += toGain;
 				}
@@ -239,11 +237,11 @@ namespace Server.Misc
 			{
 				SkillInfo info = skill.Info;
 
-				if ( from.StrLock == StatLockType.Up && (info.StrGain / 33.3) > Utility.RandomDouble() )
+				if ( from.StrLock == StatLockType.Up && info.StrGain / 33.3 > Utility.RandomDouble() )
 					GainStat( from, Stat.Str );
-				else if ( from.DexLock == StatLockType.Up && (info.DexGain / 33.3) > Utility.RandomDouble() )
+				else if ( from.DexLock == StatLockType.Up && info.DexGain / 33.3 > Utility.RandomDouble() )
 					GainStat( from, Stat.Dex );
-				else if ( from.IntLock == StatLockType.Up && (info.IntGain / 33.3) > Utility.RandomDouble() )
+				else if ( from.IntLock == StatLockType.Up && info.IntGain / 33.3 > Utility.RandomDouble() )
 					GainStat( from, Stat.Int );
 			}
 		}
@@ -252,9 +250,9 @@ namespace Server.Misc
 		{
 			switch ( stat )
 			{
-				case Stat.Str: return ( from.StrLock == StatLockType.Down && from.RawStr > 10 );
-				case Stat.Dex: return ( from.DexLock == StatLockType.Down && from.RawDex > 10 );
-				case Stat.Int: return ( from.IntLock == StatLockType.Down && from.RawInt > 10 );
+				case Stat.Str: return @from.StrLock == StatLockType.Down && @from.RawStr > 10;
+				case Stat.Dex: return @from.DexLock == StatLockType.Down && @from.RawDex > 10;
+				case Stat.Int: return @from.IntLock == StatLockType.Down && @from.RawInt > 10;
 			}
 
 			return false;
@@ -270,9 +268,9 @@ namespace Server.Misc
 
 			switch ( stat )
 			{
-				case Stat.Str: return ( from.StrLock == StatLockType.Up && from.RawStr < 125 );
-				case Stat.Dex: return ( from.DexLock == StatLockType.Up && from.RawDex < 125 );
-				case Stat.Int: return ( from.IntLock == StatLockType.Up && from.RawInt < 125 );
+				case Stat.Str: return @from.StrLock == StatLockType.Up && @from.RawStr < 125;
+				case Stat.Dex: return @from.DexLock == StatLockType.Up && @from.RawDex < 125;
+				case Stat.Int: return @from.IntLock == StatLockType.Up && @from.RawInt < 125;
 			}
 
 			return false;
@@ -280,7 +278,7 @@ namespace Server.Misc
 
 		public static void IncreaseStat( Mobile from, Stat stat, bool atrophy )
 		{
-			atrophy = atrophy || (from.RawStatTotal >= from.StatCap);
+			atrophy = atrophy || @from.RawStatTotal >= @from.StatCap;
 
 			switch ( stat )
 			{
@@ -342,10 +340,10 @@ namespace Server.Misc
 				case Stat.Str:
 				{
 					if ( from is BaseCreature && ((BaseCreature)from).Controlled ) {
-						if ( (from.LastStrGain + m_PetStatGainDelay) >= DateTime.Now )
+						if ( @from.LastStrGain + m_PetStatGainDelay >= DateTime.Now )
 							return;
 					}
-					else if( (from.LastStrGain + m_StatGainDelay) >= DateTime.Now )
+					else if( @from.LastStrGain + m_StatGainDelay >= DateTime.Now )
 						return;
 
 					from.LastStrGain = DateTime.Now;
@@ -354,10 +352,10 @@ namespace Server.Misc
 				case Stat.Dex:
 				{
 					if ( from is BaseCreature && ((BaseCreature)from).Controlled ) {
-						if ( (from.LastDexGain + m_PetStatGainDelay) >= DateTime.Now )
+						if ( @from.LastDexGain + m_PetStatGainDelay >= DateTime.Now )
 							return;
 					}
-					else if( (from.LastDexGain + m_StatGainDelay) >= DateTime.Now )
+					else if( @from.LastDexGain + m_StatGainDelay >= DateTime.Now )
 						return;
 
 					from.LastDexGain = DateTime.Now;
@@ -366,11 +364,11 @@ namespace Server.Misc
 				case Stat.Int:
 				{
 					if ( from is BaseCreature && ((BaseCreature)from).Controlled ) {
-						if ( (from.LastIntGain + m_PetStatGainDelay) >= DateTime.Now )
+						if ( @from.LastIntGain + m_PetStatGainDelay >= DateTime.Now )
 							return;
 					}
 
-					else if( (from.LastIntGain + m_StatGainDelay) >= DateTime.Now )
+					else if( @from.LastIntGain + m_StatGainDelay >= DateTime.Now )
 						return;
 
 					from.LastIntGain = DateTime.Now;
@@ -378,7 +376,7 @@ namespace Server.Misc
 				}
 			}
 
-			bool atrophy = ( (from.RawStatTotal / (double)from.StatCap) >= Utility.RandomDouble() );
+			bool atrophy = @from.RawStatTotal / (double)@from.StatCap >= Utility.RandomDouble();
 
 			IncreaseStat( from, stat, atrophy );
 		}

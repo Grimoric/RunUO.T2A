@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	public class Ninja : BaseCreature
+    public class Ninja : BaseCreature
 	{
 		public override bool CanTeach{ get{ return true; } }
 		public override bool ClickTitle{ get{ return false; } }

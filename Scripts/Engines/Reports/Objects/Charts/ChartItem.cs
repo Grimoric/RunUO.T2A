@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Engines.Reports
 {
-	public class ChartItem : PersistableObject
+    public class ChartItem : PersistableObject
 	{
 		#region Type Identification
 		public static readonly PersistableType ThisTypeID = new PersistableType( "ci", new ConstructCallback( Construct ) );

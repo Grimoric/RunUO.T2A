@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Items
 {
-	[Flipable( 0x456E, 0x456F )]
+    [Flipable( 0x456E, 0x456F )]
 	public class SnowStatuePegasus : Item
 	{
 		public override bool ForceShowProperties { get { return ObjectPropertyList.Enabled; } }

@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Guilds;
 
 namespace Server.Items
 {
-	public class OrderShield : BaseShield
+    public class OrderShield : BaseShield
 	{
 		public override int BasePhysicalResistance{ get{ return 1; } }
 		public override int BaseFireResistance{ get{ return 0; } }

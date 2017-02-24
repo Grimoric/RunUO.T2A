@@ -1,10 +1,9 @@
 using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Sixth
 {
-	public class ExplosionSpell : MagerySpell
+    public class ExplosionSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Explosion", "Vas Ort Flam",

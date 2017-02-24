@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public abstract class BaseFloor : Item
+    public abstract class BaseFloor : Item
 	{
 		public BaseFloor( int itemID, int count ) : base( Utility.Random( itemID, count ) )
 		{

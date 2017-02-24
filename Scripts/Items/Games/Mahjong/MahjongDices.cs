@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Engines.Mahjong
 {
-	public class MahjongDices
+    public class MahjongDices
 	{
 		private MahjongGame m_Game;
 		private int m_First;

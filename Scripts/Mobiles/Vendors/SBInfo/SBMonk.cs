@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
-using Server.Items;
 
 namespace Server.Mobiles
 {
-	public class SBMonk : SBInfo
+    public class SBMonk : SBInfo
 	{
 		private List<GenericBuyInfo> m_BuyInfo = new InternalBuyInfo();
 		private IShopSellInfo m_SellInfo = new InternalSellInfo();

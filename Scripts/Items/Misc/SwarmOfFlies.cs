@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class SwarmOfFlies : Item
+    public class SwarmOfFlies : Item
 	{
 		public override string DefaultName
 		{

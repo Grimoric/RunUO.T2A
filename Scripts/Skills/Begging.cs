@@ -1,5 +1,4 @@
 using System;
-using Server;
 using Server.Misc;
 using Server.Targeting;
 using Server.Items;
@@ -7,7 +6,7 @@ using Server.Network;
 
 namespace Server.SkillHandlers
 {
-	public class Begging
+    public class Begging
 	{
 		public static void Initialize()
 		{
@@ -106,7 +105,7 @@ namespace Server.SkillHandlers
 				{
 					Container theirPack = m_Target.Backpack;
 
-					double badKarmaChance = 0.5 - ((double)m_From.Karma / 8570);
+					double badKarmaChance = 0.5 - (double)m_From.Karma / 8570;
 
 					if ( theirPack == null )
 					{
@@ -119,7 +118,7 @@ namespace Server.SkillHandlers
 					else if ( m_From.CheckTargetSkill( SkillName.Begging, m_Target, 0.0, 100.0 ) )
 					{
 						int toConsume = theirPack.GetAmount( typeof( Gold ) ) / 10;
-						int max = 10 + (m_From.Fame / 2500);
+						int max = 10 + m_From.Fame / 2500;
 
 						if ( max > 14 )
 							max = 14;

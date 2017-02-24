@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Network;
 
 namespace Server.Mobiles
 {
-	public class SolenHelper
+    public class SolenHelper
 	{
 		public static void PackPicnicBasket( BaseCreature solen )
 		{

@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Commands;
 
 namespace Server.Items
 {
-	public class MarkContainer : LockableContainer
+    public class MarkContainer : LockableContainer
 	{
 		public static void Initialize()
 		{

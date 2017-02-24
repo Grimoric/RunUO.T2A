@@ -1,14 +1,13 @@
 using System;
 using System.Collections;
 using Server.Targeting;
-using Server.Network;
 using Server.Misc;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Spells.Fourth
 {
-	public class FireFieldSpell : MagerySpell
+    public class FireFieldSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Fire Field", "In Flam Grav",
@@ -71,7 +70,7 @@ namespace Server.Spells.Fourth
 
 				int itemID = eastToWest ? 0x398C : 0x3996;
 
-				TimeSpan duration = TimeSpan.FromSeconds( 4.0 + (Caster.Skills[SkillName.Magery].Value * 0.5) );
+				TimeSpan duration = TimeSpan.FromSeconds( 4.0 + Caster.Skills[SkillName.Magery].Value * 0.5 );
 
 				for ( int i = -2; i <= 2; ++i )
 				{
@@ -252,7 +251,7 @@ namespace Server.Spells.Fourth
 						{
 							foreach ( Mobile m in m_Item.GetMobilesInRange( 0 ) )
 							{
-								if ( (m.Z + 16) > m_Item.Z && (m_Item.Z + 12) > m.Z && m != caster && SpellHelper.ValidIndirectTarget( caster, m ) && caster.CanBeHarmful( m, false ) )
+								if ( m.Z + 16 > m_Item.Z && m_Item.Z + 12 > m.Z && m != caster && SpellHelper.ValidIndirectTarget( caster, m ) && caster.CanBeHarmful( m, false ) )
 									m_Queue.Enqueue( m );
 							}
 

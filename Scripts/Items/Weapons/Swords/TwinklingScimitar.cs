@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class TwinklingScimitar : RadiantScimitar
+    public class TwinklingScimitar : RadiantScimitar
 	{
 		public override int LabelNumber{ get{ return 1073544; } } // twinkling scimitar
 

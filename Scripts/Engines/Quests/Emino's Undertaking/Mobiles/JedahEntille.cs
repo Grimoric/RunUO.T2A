@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
-using Server.Network;
 
 namespace Server.Engines.Quests.Ninja
 {
-	public class JedahEntille : BaseQuester
+    public class JedahEntille : BaseQuester
 	{
 		[Constructable]
 		public JedahEntille() : base( "the Silent" )

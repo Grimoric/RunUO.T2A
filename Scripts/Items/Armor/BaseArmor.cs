@@ -1,16 +1,14 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Server.Network;
 using Server.Engines.Craft;
 using Server.Factions;
 using AMA = Server.Items.ArmorMeditationAllowance;
 using AMT = Server.Items.ArmorMaterialType;
-using ABT = Server.Items.ArmorBodyType;
 
 namespace Server.Items
 {
-	public abstract class BaseArmor : Item, IScissorable, IFactionItem, ICraftable, IWearableDurability
+    public abstract class BaseArmor : Item, IScissorable, IFactionItem, ICraftable, IWearableDurability
 	{
 		#region Factions
 		private FactionItem m_FactionState;
@@ -25,7 +23,7 @@ namespace Server.Items
 				if ( m_FactionState == null )
 					Hue = CraftResources.GetHue( Resource );
 
-				LootType = ( m_FactionState == null ? LootType.Regular : LootType.Blessed );
+				LootType = m_FactionState == null ? LootType.Regular : LootType.Blessed;
 			}
 		}
 		#endregion
@@ -114,7 +112,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public AMA MeditationAllowance
 		{
-			get{ return ( m_Meditate == (AMA)(-1) ? OldMedAllowance : m_Meditate ); }
+			get{ return m_Meditate == (AMA)(-1) ? OldMedAllowance : m_Meditate; }
 			set{ m_Meditate = value; }
 		}
 
@@ -138,7 +136,7 @@ namespace Server.Items
 		{
 			get
 			{
-				return ( BaseArmorRating * ArmorScalar );
+				return BaseArmorRating * ArmorScalar;
 			}
 		}
 
@@ -149,7 +147,7 @@ namespace Server.Items
 				int ar = BaseArmorRating;
 
 				if ( m_Protection != ArmorProtectionLevel.Regular )
-					ar += 10 + (5 * (int)m_Protection);
+					ar += 10 + 5 * (int)m_Protection;
 
 				switch ( m_Resource )
 				{
@@ -166,7 +164,7 @@ namespace Server.Items
 					case CraftResource.BarbedLeather:	ar += 16; break;
 				}
 
-				ar += -8 + (8 * (int)m_Quality);
+				ar += -8 + 8 * (int)m_Quality;
 				return ScaleArmorByDurability( ar );
 			}
 		}
@@ -175,49 +173,49 @@ namespace Server.Items
 		{
 			get
 			{
-				return ( ArmorRating * ArmorScalar );
+				return ArmorRating * ArmorScalar;
 			}
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int StrBonus
 		{
-			get{ return ( m_StrBonus == -1 ? OldStrBonus : m_StrBonus ); }
+			get{ return m_StrBonus == -1 ? OldStrBonus : m_StrBonus; }
 			set{ m_StrBonus = value; InvalidateProperties(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int DexBonus
 		{
-			get{ return ( m_DexBonus == -1 ? OldDexBonus : m_DexBonus ); }
+			get{ return m_DexBonus == -1 ? OldDexBonus : m_DexBonus; }
 			set{ m_DexBonus = value; InvalidateProperties(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int IntBonus
 		{
-			get{ return ( m_IntBonus == -1 ? OldIntBonus : m_IntBonus ); }
+			get{ return m_IntBonus == -1 ? OldIntBonus : m_IntBonus; }
 			set{ m_IntBonus = value; InvalidateProperties(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int StrRequirement
 		{
-			get{ return ( m_StrReq == -1 ? OldStrReq : m_StrReq ); }
+			get{ return m_StrReq == -1 ? OldStrReq : m_StrReq; }
 			set{ m_StrReq = value; InvalidateProperties(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int DexRequirement
 		{
-			get{ return ( m_DexReq == -1 ? OldDexReq : m_DexReq ); }
+			get{ return m_DexReq == -1 ? OldDexReq : m_DexReq; }
 			set{ m_DexReq = value; InvalidateProperties(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int IntRequirement
 		{
-			get{ return ( m_IntReq == -1 ? OldIntReq : m_IntReq ); }
+			get{ return m_IntReq == -1 ? OldIntReq : m_IntReq; }
 			set{ m_IntReq = value; InvalidateProperties(); }
 		}
 
@@ -503,8 +501,8 @@ namespace Server.Items
 		{
 			int scale = 100 + GetDurabilityBonus();
 
-			m_HitPoints = ((m_HitPoints * 100) + (scale - 1)) / scale;
-			m_MaxHitPoints = ((m_MaxHitPoints * 100) + (scale - 1)) / scale;
+			m_HitPoints = (m_HitPoints * 100 + (scale - 1)) / scale;
+			m_MaxHitPoints = (m_MaxHitPoints * 100 + (scale - 1)) / scale;
 			InvalidateProperties();
 		}
 
@@ -512,8 +510,8 @@ namespace Server.Items
 		{
 			int scale = 100 + GetDurabilityBonus();
 
-			m_HitPoints = ((m_HitPoints * scale) + 99) / 100;
-			m_MaxHitPoints = ((m_MaxHitPoints * scale) + 99) / 100;
+			m_HitPoints = (m_HitPoints * scale + 99) / 100;
+			m_MaxHitPoints = (m_MaxHitPoints * scale + 99) / 100;
 			InvalidateProperties();
 		}
 
@@ -560,7 +558,7 @@ namespace Server.Items
 				{
 					Item res = (Item)Activator.CreateInstance( CraftResources.GetInfo( m_Resource ).ResourceTypes[0] );
 
-					ScissorHelper( from, res, m_PlayerConstructed ? (item.Resources.GetAt( 0 ).Amount / 2) : 1 );
+					ScissorHelper( from, res, m_PlayerConstructed ? item.Resources.GetAt( 0 ).Amount / 2 : 1 );
 					return true;
 				}
 				catch
@@ -650,9 +648,9 @@ namespace Server.Items
 			int scale = 100;
 
 			if ( m_MaxHitPoints > 0 && m_HitPoints < m_MaxHitPoints )
-				scale = 50 + ((50 * m_HitPoints) / m_MaxHitPoints);
+				scale = 50 + 50 * m_HitPoints / m_MaxHitPoints;
 
-			return ( armor * scale ) / 100;
+			return armor * scale / 100;
 		}
 
 		protected void Invalidate()
@@ -673,7 +671,7 @@ namespace Server.Items
 
 		private static bool GetSaveFlag( SaveFlag flags, SaveFlag toGet )
 		{
-			return ( (flags & toGet) != 0 );
+			return (flags & toGet) != 0;
 		}
 
 		[Flags]
@@ -853,7 +851,7 @@ namespace Server.Items
 						m_EnergyBonus = reader.ReadEncodedInt();
 
 					if ( GetSaveFlag( flags, SaveFlag.Identified ) )
-						m_Identified = ( version >= 7 || reader.ReadBool() );
+						m_Identified = version >= 7 || reader.ReadBool();
 
 					if ( GetSaveFlag( flags, SaveFlag.MaxHitPoints ) )
 						m_MaxHitPoints = reader.ReadEncodedInt();
@@ -1167,17 +1165,17 @@ namespace Server.Items
 					int dexBonus = ComputeStatBonus( StatType.Dex ), dexReq = ComputeStatReq( StatType.Dex );
 					int intBonus = ComputeStatBonus( StatType.Int ), intReq = ComputeStatReq( StatType.Int );
 
-					if( from.Dex < dexReq || (from.Dex + dexBonus) < 1 )
+					if( from.Dex < dexReq || @from.Dex + dexBonus < 1 )
 					{
 						from.SendLocalizedMessage( 502077 ); // You do not have enough dexterity to equip this item.
 						return false;
 					}
-					else if( from.Str < strReq || (from.Str + strBonus) < 1 )
+					else if( from.Str < strReq || @from.Str + strBonus < 1 )
 					{
 						from.SendLocalizedMessage( 500213 ); // You are not strong enough to equip that.
 						return false;
 					}
-					else if( from.Int < intReq || (from.Int + intBonus) < 1 )
+					else if( from.Int < intReq || @from.Int + intBonus < 1 )
 					{
 						from.SendMessage( "You are not smart enough to equip that." );
 						return false;
@@ -1194,10 +1192,10 @@ namespace Server.Items
 				return true;
 
 			if ( Layer == Layer.Pants )
-				return ( m.FindItemOnLayer( Layer.InnerLegs ) != null );
+				return m.FindItemOnLayer( Layer.InnerLegs ) != null;
 
 			if ( Layer == Layer.Shirt )
-				return ( m.FindItemOnLayer( Layer.InnerTorso ) != null );
+				return m.FindItemOnLayer( Layer.InnerTorso ) != null;
 
 			return false;
 		}
@@ -1365,7 +1363,7 @@ namespace Server.Items
 			if ( base.AllowEquipedCast( from ) )
 				return true;
 
-			return ( m_AosAttributes.SpellChanneling != 0 );
+			return m_AosAttributes.SpellChanneling != 0;
 		}
 
 		public virtual int GetLuckBonus()
@@ -1441,7 +1439,7 @@ namespace Server.Items
 			if ( (prop = GetLowerStatReq()) != 0 )
 				list.Add( 1060435, prop.ToString() ); // lower requirements ~1_val~%
 
-			if ( (prop = (GetLuckBonus() + m_AosAttributes.Luck)) != 0 )
+			if ( (prop = GetLuckBonus() + m_AosAttributes.Luck) != 0 )
 				list.Add( 1060436, prop.ToString() ); // luck ~1_val~
 
 			if ( (prop = m_AosArmorAttributes.MageArmor) != 0 )
@@ -1523,7 +1521,7 @@ namespace Server.Items
 				if ( m_Protection > ArmorProtectionLevel.Regular && m_Protection <= ArmorProtectionLevel.Invulnerability )
 					attrs.Add( new EquipInfoAttribute( 1038005 + (int)m_Protection ) );
 			}
-			else if ( m_Durability != ArmorDurabilityLevel.Regular || (m_Protection > ArmorProtectionLevel.Regular && m_Protection <= ArmorProtectionLevel.Invulnerability) )
+			else if ( m_Durability != ArmorDurabilityLevel.Regular || m_Protection > ArmorProtectionLevel.Regular && m_Protection <= ArmorProtectionLevel.Invulnerability )
 				attrs.Add( new EquipInfoAttribute( 1038000 ) ); // Unidentified
 
 			int number;
@@ -1570,7 +1568,7 @@ namespace Server.Items
 
 			if( Quality == ArmorQuality.Exceptional )
 			{
-				DistributeBonuses( (tool is BaseRunicTool ? 6 : 14) );
+				DistributeBonuses( tool is BaseRunicTool ? 6 : 14 );
 			}
 
 			return quality;

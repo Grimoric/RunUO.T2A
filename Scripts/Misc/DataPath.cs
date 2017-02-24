@@ -1,11 +1,10 @@
 using System;
 using System.IO;
 using Microsoft.Win32;
-using Server;
 
 namespace Server.Misc
 {
-	public class DataPath
+    public class DataPath
 	{
 		/* If you have not installed Ultima Online,
 		 * or wish the server to use a separate set of datafiles,

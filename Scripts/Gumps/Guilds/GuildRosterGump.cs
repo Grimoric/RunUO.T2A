@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Guilds;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	public class GuildRosterGump : GuildMobileListGump
+    public class GuildRosterGump : GuildMobileListGump
 	{
 		public GuildRosterGump( Mobile from, Guild guild ) : base( from, guild, false, guild.Members )
 		{

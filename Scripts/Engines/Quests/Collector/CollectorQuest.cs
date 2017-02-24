@@ -1,11 +1,9 @@
 using System;
-using Server;
-using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Collector
 {
-	public class CollectorQuest : QuestSystem
+    public class CollectorQuest : QuestSystem
 	{
 		private static Type[] m_TypeReferenceTable = new Type[]
 			{

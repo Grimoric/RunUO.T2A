@@ -1,5 +1,4 @@
 using System;
-using Server;
 using Server.Gumps;
 using Server.Mobiles;
 using Server.Targeting;
@@ -7,7 +6,7 @@ using Server.Network;
 
 namespace Server
 {
-	public class SacrificeVirtue
+    public class SacrificeVirtue
 	{
 		private static TimeSpan GainDelay = TimeSpan.FromDays( 1.0 );
 		private static TimeSpan LossDelay = TimeSpan.FromDays( 7.0 );
@@ -40,7 +39,7 @@ namespace Server
 
 			try
 			{
-				if ( (pm.LastSacrificeLoss + LossDelay) < DateTime.Now )
+				if ( pm.LastSacrificeLoss + LossDelay < DateTime.Now )
 				{
 					if ( VirtueHelper.Atrophy( from, VirtueName.Sacrifice, LossAmount ) )
 						from.SendLocalizedMessage( 1052041 ); // You have lost some Sacrifice.
@@ -108,7 +107,7 @@ namespace Server
 			{
 				from.SendLocalizedMessage( 1052014 ); // You cannot sacrifice your fame for that creature.
 			}
-			else if ( ((targ.Hits * 100) / Math.Max( targ.HitsMax, 1 )) < 90 )
+			else if ( targ.Hits * 100 / Math.Max( targ.HitsMax, 1 ) < 90 )
 			{
 				from.SendLocalizedMessage( 1052013 ); // You cannot sacrifice for this monster because it is too damaged.
 			}
@@ -124,7 +123,7 @@ namespace Server
 			{
 				from.SendLocalizedMessage( 1052017 ); // You do not have enough fame to sacrifice.
 			}
-			else if ( DateTime.Now < (pm.LastSacrificeGain + GainDelay) )
+			else if ( DateTime.Now < pm.LastSacrificeGain + GainDelay )
 			{
 				from.SendLocalizedMessage( 1052016 ); // You must wait approximately one day before sacrificing again.
 			}
@@ -176,7 +175,7 @@ namespace Server
 			if ( m is BaseCreature && (((BaseCreature)m).Controlled || ((BaseCreature)m).Summoned) )
 				return false;
 
-			return ( m is Lich || m is Succubus || m is Daemon || m is EvilMage || m is EnslavedGargoyle || m is GargoyleEnforcer );
+			return m is Lich || m is Succubus || m is Daemon || m is EvilMage || m is EnslavedGargoyle || m is GargoyleEnforcer;
 		}
 
 		private class InternalTarget : Target

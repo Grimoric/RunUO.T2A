@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class DirtPatch : Item
+    public class DirtPatch : Item
 	{
 		[Constructable]
 		public DirtPatch(): base(0x0913)

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class OrcChieftainHelm : OrcHelm
+    public class OrcChieftainHelm : OrcHelm
 	{
 		public override int LabelNumber{ get{ return 1094924; } } // Orc Chieftain Helm [Replica]
 

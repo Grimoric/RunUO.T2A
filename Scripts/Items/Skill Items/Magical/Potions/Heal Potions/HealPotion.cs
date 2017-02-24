@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class HealPotion : BaseHealPotion
+    public class HealPotion : BaseHealPotion
 	{
 		public override int MinHeal { get { return 6; } }
 		public override int MaxHeal { get { return 20; } }

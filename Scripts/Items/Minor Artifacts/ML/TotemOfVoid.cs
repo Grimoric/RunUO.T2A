@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	public class TotemOfVoid : BaseTalisman
+    public class TotemOfVoid : BaseTalisman
 	{
 		public override int LabelNumber{ get{ return 1075035; } } // Totem of the Void
 		public override bool ForceShowName{ get{ return true; } }

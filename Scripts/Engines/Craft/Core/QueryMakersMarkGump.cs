@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Gumps;
 using Server.Items;
 
 namespace Server.Engines.Craft
 {
-	public class QueryMakersMarkGump : Gump
+    public class QueryMakersMarkGump : Gump
 	{
 		private int m_Quality;
 		private Mobile m_From;
@@ -41,7 +40,7 @@ namespace Server.Engines.Craft
 
 		public override void OnResponse( Server.Network.NetState sender, RelayInfo info )
 		{
-			bool makersMark = ( info.ButtonID == 1 );
+			bool makersMark = info.ButtonID == 1;
 
 			if ( makersMark )
 				m_From.SendLocalizedMessage( 501808 ); // You mark the item.

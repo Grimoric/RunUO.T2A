@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a crystal vortex corpse" )]
+    [CorpseName( "a crystal vortex corpse" )]
 	public class CrystalVortex : BaseCreature
 	{
 		[Constructable]

@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	[Flipable]
+    [Flipable]
 	public class WallTorch : BaseLight
 	{
 		public override int LitItemID

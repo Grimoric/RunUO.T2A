@@ -1,11 +1,9 @@
-﻿using System;
-using Server;
-using Server.Gumps;
+﻿using Server.Gumps;
 using Server.Network;
 
 namespace Server.Items
 {
-	public abstract class PromotionalToken : Item
+    public abstract class PromotionalToken : Item
 	{
 		public abstract Item CreateItemFor( Mobile from );
 

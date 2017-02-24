@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
-using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a minotaur corpse" )]
+    [CorpseName( "a minotaur corpse" )]
 	public class MinotaurScout : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()

@@ -1,13 +1,12 @@
 using System;
-using Server;
 using System.Collections;
 
 namespace Server.Items
 {
-	/// <summary>
-	/// Raises your physical resistance for a short time while lowering your ability to inflict damage. Requires Bushido or Ninjitsu skill.
-	/// </summary>
-	public class DefenseMastery : WeaponAbility
+    /// <summary>
+    /// Raises your physical resistance for a short time while lowering your ability to inflict damage. Requires Bushido or Ninjitsu skill.
+    /// </summary>
+    public class DefenseMastery : WeaponAbility
 	{
 		public DefenseMastery()
 		{

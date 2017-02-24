@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[Flipable( 0x9F4, 0x9F5, 0x9A3, 0x9A4 )]
+    [Flipable( 0x9F4, 0x9F5, 0x9A3, 0x9A4 )]
 	public class Fork : Item
 	{
 		[Constructable]

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class GuantletsOfAnger : PlateGloves
+    public class GuantletsOfAnger : PlateGloves
 	{
 		public override int LabelNumber{ get{ return 1094902; } } // Gauntlets of Anger [Replica]
 

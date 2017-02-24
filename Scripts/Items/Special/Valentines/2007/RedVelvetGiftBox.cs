@@ -1,6 +1,3 @@
-using System;
-using Server;
-
 /*
  * Simply add this box with param true to create the entire valentine's 2007 package.
  * Adding it with no params or false will create an empty box.
@@ -8,7 +5,7 @@ using Server;
 
 namespace Server.Items
 {
-	public class RedVelvetGiftBox : BaseContainer
+    public class RedVelvetGiftBox : BaseContainer
 	{
 		public override int DefaultGumpID { get { return 0x3f; } }
 		public override int LabelNumber { get { return 1077596; } } // A Red Velvet Box
@@ -29,8 +26,8 @@ namespace Server.Items
 			{
 				for (int i = 0; i < 5; i++)
 				{
-					AddToBox(new ValentinesCardSouth(), new Point3D(60 + (i * 10), 47, 0));
-					AddToBox(new ValentinesCardEast(), new Point3D(20 + (i * 10), 72, 0));
+					AddToBox(new ValentinesCardSouth(), new Point3D(60 + i * 10, 47, 0));
+					AddToBox(new ValentinesCardEast(), new Point3D(20 + i * 10, 72, 0));
 				}
 				AddToBox(new Bacon(), new Point3D(90, 85, 0));
 				AddToBox(new RoseInAVase(), new Point3D(130, 55, 0));

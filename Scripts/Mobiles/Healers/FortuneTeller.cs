@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	public class FortuneTeller : BaseHealer
+    public class FortuneTeller : BaseHealer
 	{
 		public override bool CanTeach{ get{ return true; } }
 
@@ -14,10 +11,10 @@ namespace Server.Mobiles
 			if ( !base.CheckTeach( skill, from ) )
 				return false;
 
-			return ( skill == SkillName.Anatomy )
-				|| ( skill == SkillName.Healing )
-				|| ( skill == SkillName.Forensics )
-				|| ( skill == SkillName.SpiritSpeak );
+			return skill == SkillName.Anatomy
+				|| skill == SkillName.Healing
+				|| skill == SkillName.Forensics
+				|| skill == SkillName.SpiritSpeak;
 		}
 
 		[Constructable]

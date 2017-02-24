@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace Server.Ethics.Hero
 {
-	public sealed class HolyShield : Power
+    public sealed class HolyShield : Power
 	{
 		public HolyShield()
 		{

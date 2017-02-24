@@ -19,12 +19,11 @@
  ***************************************************************************/
 
 using System;
-using System.Collections;
 using System.IO;
 
 namespace Server
 {
-	public static class MultiData
+    public static class MultiData
 	{
 		private static MultiComponentList[] m_Components;
 
@@ -111,7 +110,7 @@ namespace Server
 
 								m_Components[index] = new MultiComponentList( bin, length / 12 );
 
-								bin.BaseStream.Seek( 24 + (i * 20), SeekOrigin.Begin );
+								bin.BaseStream.Seek( 24 + i * 20, SeekOrigin.Begin );
 							}
 						}
 
@@ -184,7 +183,7 @@ namespace Server
 				{
 					ItemData data = TileData.ItemTable[itemID & TileData.MaxItemValue];
 
-					if ( oldTiles[i].Z == z && (oldTiles[i].Height > 0 == data.Height > 0 ) )
+					if ( oldTiles[i].Z == z && oldTiles[i].Height > 0 == data.Height > 0 )
 					{
 						bool newIsRoof = ( data.Flags & TileFlag.Roof) != 0;
 						bool oldIsRoof = (TileData.ItemTable[oldTiles[i].ID & TileData.MaxItemValue].Flags & TileFlag.Roof ) != 0;
@@ -556,8 +555,8 @@ namespace Server
 			}
 
 			m_Center = new Point2D( -m_Min.m_X, -m_Min.m_Y );
-			m_Width = (m_Max.m_X - m_Min.m_X) + 1;
-			m_Height = (m_Max.m_Y - m_Min.m_Y) + 1;
+			m_Width = m_Max.m_X - m_Min.m_X + 1;
+			m_Height = m_Max.m_Y - m_Min.m_Y + 1;
 
 			TileList[][] tiles = new TileList[m_Width][];
 			m_Tiles = new StaticTile[m_Width][][];

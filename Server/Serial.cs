@@ -39,7 +39,7 @@ namespace Server
 		{
 			get
 			{
-				while ( World.FindMobile( m_LastMobile = (m_LastMobile + 1) ) != null );
+				while ( World.FindMobile( m_LastMobile = m_LastMobile + 1 ) != null );
 
 				return m_LastMobile;
 			}
@@ -49,7 +49,7 @@ namespace Server
 		{
 			get
 			{
-				while ( World.FindItem( m_LastItem = (m_LastItem + 1) ) != null );
+				while ( World.FindItem( m_LastItem = m_LastItem + 1 ) != null );
 
 				return m_LastItem;
 			}
@@ -72,7 +72,7 @@ namespace Server
 		{
 			get
 			{
-				return ( m_Serial > 0 && m_Serial < 0x40000000 );
+				return m_Serial > 0 && m_Serial < 0x40000000;
 			}
 		}
 
@@ -80,7 +80,7 @@ namespace Server
 		{
 			get
 			{
-				return ( m_Serial >= 0x40000000 && m_Serial <= 0x7FFFFFFF );
+				return m_Serial >= 0x40000000 && m_Serial <= 0x7FFFFFFF;
 			}
 		}
 
@@ -88,7 +88,7 @@ namespace Server
 		{
 			get
 			{
-				return ( m_Serial > 0 );
+				return m_Serial > 0;
 			}
 		}
 

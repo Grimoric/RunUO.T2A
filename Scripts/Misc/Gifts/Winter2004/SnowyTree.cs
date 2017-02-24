@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Network;
-
 namespace Server.Items
 {
-	public class SnowyTree : Item
+    public class SnowyTree : Item
 	{
 		[Constructable]
 		public SnowyTree() : base( 0x2377 )

@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x0FBF, 0x0FC0 )]
+    [FlipableAttribute( 0x0FBF, 0x0FC0 )]
 	public class MapmakersPen : BaseTool
 	{
 		public override CraftSystem CraftSystem{ get{ return DefCartography.CraftSystem; } }

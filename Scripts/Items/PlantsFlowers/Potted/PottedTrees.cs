@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class PottedTree : Item
+    public class PottedTree : Item
 	{
 		[Constructable]
 		public PottedTree() : base(0x11C8)

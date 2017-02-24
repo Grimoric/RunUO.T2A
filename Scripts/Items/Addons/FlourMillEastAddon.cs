@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Network;
 using System.Collections.Generic;
 
 namespace Server.Items
 {
-	public interface IFlourMill
+    public interface IFlourMill
 	{
 		int MaxFlour{ get; }
 		int CurFlour{ get; set; }
@@ -42,19 +40,19 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool HasFlour
 		{
-			get{ return ( m_Flour > 0 ); }
+			get{ return m_Flour > 0; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool IsFull
 		{
-			get{ return ( m_Flour >= MaxFlour ); }
+			get{ return m_Flour >= MaxFlour; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool IsWorking
 		{
-			get{ return ( m_Timer != null ); }
+			get{ return m_Timer != null; }
 		}
 
 		public void StartWorking( Mobile from )
@@ -80,7 +78,7 @@ namespace Server.Items
 			{
 				SackFlour flour = new SackFlour();
 
-				flour.ItemID = ( Utility.RandomBool() ? 4153 : 4165 );
+				flour.ItemID = Utility.RandomBool() ? 4153 : 4165;
 
 				if ( from.PlaceInBackpack( flour ) )
 				{

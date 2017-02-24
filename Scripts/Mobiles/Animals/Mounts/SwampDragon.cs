@@ -1,10 +1,8 @@
-using System;
 using Server.Items;
-using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a swamp dragon corpse" )]
+    [CorpseName( "a swamp dragon corpse" )]
 	public class SwampDragon : BaseMount
 	{
 		private bool m_BardingExceptional;

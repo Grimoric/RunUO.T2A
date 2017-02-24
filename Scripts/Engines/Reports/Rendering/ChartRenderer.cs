@@ -1,18 +1,17 @@
 using System;
 using System.Drawing;
-using System.Collections;
 
 namespace Server.Engines.Reports
 {
-	//*********************************************************************
-	//
-	// Chart Class
-	//
-	// Base class implementation for BarChart and PieChart
-	//
-	//*********************************************************************
+    //*********************************************************************
+    //
+    // Chart Class
+    //
+    // Base class implementation for BarChart and PieChart
+    //
+    //*********************************************************************
 
-	public abstract class ChartRenderer
+    public abstract class ChartRenderer
 	{
 		private const int _colorLimit = 9;
 

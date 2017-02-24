@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class StitchersMittens : LeafGloves
+    public class StitchersMittens : LeafGloves
 	{
 		public override int LabelNumber{ get{ return 1072932; } } // Stitcher's Mittens
 

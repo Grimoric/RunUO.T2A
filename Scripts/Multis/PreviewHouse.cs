@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 
 namespace Server.Multis
 {
-	public class PreviewHouse : BaseMulti
+    public class PreviewHouse : BaseMulti
 	{
 		private List<Item> m_Components;
 		private Timer m_Timer;

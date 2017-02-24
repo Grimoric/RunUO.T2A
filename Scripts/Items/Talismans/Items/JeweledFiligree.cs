@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class JeweledFiligree : Item
+    public class JeweledFiligree : Item
 	{
 		public override int LabelNumber{ get{ return 1072894; } } // jeweled filigree
 

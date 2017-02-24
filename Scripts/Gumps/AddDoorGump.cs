@@ -1,12 +1,11 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Network;
 using Server.Commands;
 
 namespace Server.Gumps
 {
-	public class AddDoorGump : Gump
+    public class AddDoorGump : Gump
 	{
 		private int m_Type;
 
@@ -54,8 +53,8 @@ namespace Server.Gumps
 
 				for ( int i = 0; i < m_Types.Length; ++i )
 				{
-					AddButton( 30 + (i * 49), 13, 0x2624, 0x2625, i + 1, GumpButtonType.Reply, 0 );
-					AddItem( 22 + (i * 49), 20, m_Types[i].m_BaseID );
+					AddButton( 30 + i * 49, 13, 0x2624, 0x2625, i + 1, GumpButtonType.Reply, 0 );
+					AddItem( 22 + i * 49, 20, m_Types[i].m_BaseID );
 				}
 			}
 		}

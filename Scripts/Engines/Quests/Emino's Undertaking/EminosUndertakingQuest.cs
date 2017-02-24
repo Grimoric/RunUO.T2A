@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Ninja
 {
-	public class EminosUndertakingQuest : QuestSystem
+    public class EminosUndertakingQuest : QuestSystem
 	{
 		private static Type[] m_TypeReferenceTable = new Type[]
 			{
@@ -127,7 +126,7 @@ namespace Server.Engines.Quests.Ninja
 				{
 					Container pack = from.Backpack;
 
-					return ( pack == null || pack.FindItemByType( typeof( NoteForZoel ) ) == null );
+					return pack == null || pack.FindItemByType( typeof( NoteForZoel ) ) == null;
 				}
 			}
 
@@ -149,7 +148,7 @@ namespace Server.Engines.Quests.Ninja
 				{
 					Container pack = from.Backpack;
 
-					return ( pack == null || pack.FindItemByType( typeof( EminosKatana ) ) == null );
+					return pack == null || pack.FindItemByType( typeof( EminosKatana ) ) == null;
 				}
 			}
 

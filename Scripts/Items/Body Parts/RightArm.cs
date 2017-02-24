@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class RightArm : Item
+    public class RightArm : Item
 	{
 		[Constructable]
 		public RightArm() : base( 0x1DA2 )

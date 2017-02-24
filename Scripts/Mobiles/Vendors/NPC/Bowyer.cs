@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
-using Server;
 
 namespace Server.Mobiles
 {
-	[TypeAlias( "Server.Mobiles.Bower" )]
+    [TypeAlias( "Server.Mobiles.Bower" )]
 	public class Bowyer : BaseVendor
 	{
 		private List<SBInfo> m_SBInfos = new List<SBInfo>();

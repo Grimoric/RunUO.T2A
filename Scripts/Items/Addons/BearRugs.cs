@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class BrownBearRugEastAddon : BaseAddon
+    public class BrownBearRugEastAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed{ get{ return new BrownBearRugEastDeed(); } }
 

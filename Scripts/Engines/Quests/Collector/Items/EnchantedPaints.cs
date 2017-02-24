@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Targeting;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Collector
 {
-	public class EnchantedPaints : QuestItem
+    public class EnchantedPaints : QuestItem
 	{
 		[Constructable]
 		public EnchantedPaints() : base( 0xFC1 )
@@ -85,7 +82,7 @@ namespace Server.Engines.Quests.Collector
 							if ( targeted is Mobile )
 							{
 								ImageType image;
-								CaptureResponse response = obj.CaptureImage(( targeted.GetType().Name=="GreaterMongbat" ? new Mongbat().GetType() : targeted.GetType() ), out image );
+								CaptureResponse response = obj.CaptureImage(targeted.GetType().Name=="GreaterMongbat" ? new Mongbat().GetType() : targeted.GetType(), out image );
 
 								switch ( response )
 								{

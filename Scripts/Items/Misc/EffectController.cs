@@ -81,7 +81,7 @@ namespace Server.Items
 		public Mobile SourceMobile{ get{ return m_Source as Mobile; } set{ m_Source = value; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public bool SourceNull{ get{ return ( m_Source == null ); } set{ if ( value ) m_Source = null; } }
+		public bool SourceNull{ get{ return m_Source == null; } set{ if ( value ) m_Source = null; } }
 
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -91,7 +91,7 @@ namespace Server.Items
 		public Mobile TargetMobile{ get{ return m_Target as Mobile; } set{ m_Target = value; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public bool TargetNull{ get{ return ( m_Target == null ); } set{ if ( value ) m_Target = null; } }
+		public bool TargetNull{ get{ return m_Target == null; } set{ if ( value ) m_Target = null; } }
 
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -161,7 +161,7 @@ namespace Server.Items
 				DoEffect( from );
 		}
 
-		public override bool HandlesOnMovement{ get{ return ( m_TriggerType == EffectTriggerType.InRange ); } }
+		public override bool HandlesOnMovement{ get{ return m_TriggerType == EffectTriggerType.InRange; } }
 
 		public override void OnMovement( Mobile m, Point3D oldLocation )
 		{
@@ -274,7 +274,7 @@ namespace Server.Items
 			if ( ent == null )
 				ent = this;
 
-			Effects.PlaySound( (ent is Item) ? ((Item)ent).GetWorldLocation() : ent.Location, ent.Map, m_SoundID );
+			Effects.PlaySound( ent is Item ? ((Item)ent).GetWorldLocation() : ent.Location, ent.Map, m_SoundID );
 		}
 
 		public void DoEffect( object trigger )

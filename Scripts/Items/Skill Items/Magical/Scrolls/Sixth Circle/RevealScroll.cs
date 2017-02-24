@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class RevealScroll : SpellScroll
+    public class RevealScroll : SpellScroll
 	{
 		[Constructable]
 		public RevealScroll() : this( 1 )

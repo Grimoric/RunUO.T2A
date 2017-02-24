@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Guilds;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	public class GuildWarAdminGump : Gump
+    public class GuildWarAdminGump : Gump
 	{
 		private Mobile m_Mobile;
 		private Guild m_Guild;
@@ -31,35 +28,35 @@ namespace Server.Gumps
 
 			if ( guild.Enemies.Count > 0 )
 			{
-				AddButton( 20, 160 + (count * 30), 4005, 4007, 2, GumpButtonType.Reply, 0 );
-				AddHtmlLocalized( 55, 160 + (count++ * 30), 400, 30, 1011103, false, false ); // Declare peace.
+				AddButton( 20, 160 + count * 30, 4005, 4007, 2, GumpButtonType.Reply, 0 );
+				AddHtmlLocalized( 55, 160 + count++ * 30, 400, 30, 1011103, false, false ); // Declare peace.
 			}
 			else
 			{
-				AddHtmlLocalized( 20, 160 + (count++ * 30), 400, 30, 1013033, false, false ); // No current wars
+				AddHtmlLocalized( 20, 160 + count++ * 30, 400, 30, 1013033, false, false ); // No current wars
 			}
 
 			if ( guild.WarInvitations.Count > 0 )
 			{
-				AddButton( 20, 160 + (count * 30), 4005, 4007, 3, GumpButtonType.Reply, 0 );
-				AddHtmlLocalized( 55, 160 + (count++ * 30), 400, 30, 1011100, false, false ); // Accept war invitations.
+				AddButton( 20, 160 + count * 30, 4005, 4007, 3, GumpButtonType.Reply, 0 );
+				AddHtmlLocalized( 55, 160 + count++ * 30, 400, 30, 1011100, false, false ); // Accept war invitations.
 
-				AddButton( 20, 160 + (count * 30), 4005, 4007, 4, GumpButtonType.Reply, 0 );
-				AddHtmlLocalized( 55, 160 + (count++ * 30), 400, 30, 1011101, false, false ); // Reject war invitations.
+				AddButton( 20, 160 + count * 30, 4005, 4007, 4, GumpButtonType.Reply, 0 );
+				AddHtmlLocalized( 55, 160 + count++ * 30, 400, 30, 1011101, false, false ); // Reject war invitations.
 			}
 			else
 			{
-				AddHtmlLocalized( 20, 160 + (count++ * 30), 400, 30, 1018012, false, false ); // No current invitations received for war.
+				AddHtmlLocalized( 20, 160 + count++ * 30, 400, 30, 1018012, false, false ); // No current invitations received for war.
 			}
 
 			if ( guild.WarDeclarations.Count > 0 )
 			{
-				AddButton( 20, 160 + (count * 30), 4005, 4007, 5, GumpButtonType.Reply, 0 );
-				AddHtmlLocalized( 55, 160 + (count++ * 30), 400, 30, 1011102, false, false ); // Rescind your war declarations.
+				AddButton( 20, 160 + count * 30, 4005, 4007, 5, GumpButtonType.Reply, 0 );
+				AddHtmlLocalized( 55, 160 + count++ * 30, 400, 30, 1011102, false, false ); // Rescind your war declarations.
 			}
 			else
 			{
-				AddHtmlLocalized( 20, 160 + (count++ * 30), 400, 30, 1013055, false, false ); // No current war declarations
+				AddHtmlLocalized( 20, 160 + count++ * 30, 400, 30, 1013055, false, false ); // No current war declarations
 			}
 
 			AddButton( 20, 400, 4005, 4007, 6, GumpButtonType.Reply, 0 );

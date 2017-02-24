@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Multis;
 using Server.Targeting;
@@ -10,7 +8,7 @@ using Server.Commands;
 
 namespace Server.Gumps
 {
-	public class ViewHousesGump : Gump
+    public class ViewHousesGump : Gump
 	{
 		public static void Initialize()
 		{
@@ -99,7 +97,7 @@ namespace Server.Gumps
 
 				for ( int i = 0; i < list.Count; ++i )
 				{
-					if ( (i % 15) == 0 )
+					if ( i % 15 == 0 )
 					{
 						if ( page > 0 )
 							AddButton( 207, 17, 0x15E1, 0x15E5, 0, GumpButtonType.Page, page+1 );
@@ -112,14 +110,14 @@ namespace Server.Gumps
 
 					object name = FindHouseName( list[i] );
 
-					AddHtml( 15, 40 + ((i % 15) * 20),  20, 20, Color( String.Format( "{0}.", i+1 ), White ), false, false );
+					AddHtml( 15, 40 + i % 15 * 20,  20, 20, Color( String.Format( "{0}.", i+1 ), White ), false, false );
 
 					if ( name is int )
-						AddHtmlLocalized( 35, 40 + ((i % 15) * 20), 160, 20, (int)name, White16, false, false );
+						AddHtmlLocalized( 35, 40 + i % 15 * 20, 160, 20, (int)name, White16, false, false );
 					else if ( name is string )
-						AddHtml( 35, 40 + ((i % 15) * 20), 160, 20, Color( (string)name, White ), false, false );
+						AddHtml( 35, 40 + i % 15 * 20, 160, 20, Color( (string)name, White ), false, false );
 
-					AddButton( 198, 39 + ((i % 15) * 20), 4005, 4007, i+1, GumpButtonType.Reply, 0 );
+					AddButton( 198, 39 + i % 15 * 20, 4005, 4007, i+1, GumpButtonType.Reply, 0 );
 				}
 			}
 			else
@@ -127,8 +125,8 @@ namespace Server.Gumps
 				string houseName, owner, location;
 				Map map = sel.Map;
 
-				houseName = (sel.Sign == null) ? "An Unnamed House" : sel.Sign.GetName();
-				owner = (sel.Owner == null) ? "nobody" : sel.Owner.Name;
+				houseName = sel.Sign == null ? "An Unnamed House" : sel.Sign.GetName();
+				owner = sel.Owner == null ? "nobody" : sel.Owner.Name;
 
 				int xLong = 0, yLat = 0, xMins = 0, yMins = 0;
 				bool xEast = false, ySouth = false;

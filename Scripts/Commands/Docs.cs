@@ -3,7 +3,6 @@ using System.IO;
 using System.Text;
 using System.Reflection;
 using System.Collections;
-using Server;
 using Server.Items;
 using Server.Engines.BulkOrders;
 using Server.Commands.Generic;
@@ -11,7 +10,7 @@ using System.Collections.Generic;
 
 namespace Server.Commands
 {
-	public class Docs
+    public class Docs
 	{
 		public static void Initialize()
 		{
@@ -124,7 +123,7 @@ namespace Server.Commands
 					MethodInfo getMethod = prop.GetGetMethod();
 					MethodInfo setMethod = prop.GetGetMethod();
 
-					return (getMethod != null && getMethod.IsStatic) || (setMethod != null && setMethod.IsStatic);
+					return getMethod != null && getMethod.IsStatic || setMethod != null && setMethod.IsStatic;
 				}
 
 				return false;
@@ -1571,7 +1570,7 @@ namespace Server.Commands
 
 					attrs = mi.GetCustomAttributes( typeof( AliasesAttribute ), false );
 
-					AliasesAttribute aliases = (attrs.Length == 0 ? null : attrs[0] as AliasesAttribute);
+					AliasesAttribute aliases = attrs.Length == 0 ? null : attrs[0] as AliasesAttribute;
 
 					string descString = desc.Description.Replace( "<", "&lt;" ).Replace( ">", "&gt;" );
 
@@ -2160,7 +2159,7 @@ namespace Server.Commands
 			{
 				object value = Enum.Parse( type, names[i] );
 
-				typeHtml.WriteLine( format, names[i], value, i < (names.Length - 1) ? "," : "" );
+				typeHtml.WriteLine( format, names[i], value, i < names.Length - 1 ? "," : "" );
 			}
 		}
 
@@ -2316,7 +2315,7 @@ namespace Server.Commands
 			MethodInfo getMethod = pi.GetGetMethod();
 			MethodInfo setMethod = pi.GetSetMethod();
 
-			if( (getMethod != null && getMethod.IsStatic) || (setMethod != null && setMethod.IsStatic) )
+			if( getMethod != null && getMethod.IsStatic || setMethod != null && setMethod.IsStatic )
 				html.Write( StaticString );
 
 			html.Write( GetPair( pi.PropertyType, pi.Name, false ) );
@@ -2580,7 +2579,7 @@ namespace Server.Commands
 		{
 			BodyEntry e = (BodyEntry)obj;
 
-			return (m_Body == e.m_Body && m_BodyType == e.m_BodyType && m_Name == e.m_Name);
+			return m_Body == e.m_Body && m_BodyType == e.m_BodyType && m_Name == e.m_Name;
 		}
 
 		public override int GetHashCode()

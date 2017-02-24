@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public abstract class BaseRefreshPotion : BasePotion
+    public abstract class BaseRefreshPotion : BasePotion
 	{
 		public abstract double Refresh{ get; }
 

@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Spells.First;
-using Server.Targeting;
 
 namespace Server.Items
 {
-	public class WeaknessWand : BaseWand
+    public class WeaknessWand : BaseWand
 	{
 		[Constructable]
 		public WeaknessWand() : base( WandEffect.Weakness, 5, 30 )

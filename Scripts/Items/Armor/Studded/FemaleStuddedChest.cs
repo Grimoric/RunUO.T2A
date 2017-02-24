@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x1c02, 0x1c03 )]
+    [FlipableAttribute( 0x1c02, 0x1c03 )]
 	public class FemaleStuddedChest : BaseArmor
 	{
 		public override int BasePhysicalResistance{ get{ return 2; } }

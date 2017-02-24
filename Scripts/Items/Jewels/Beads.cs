@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Network;
-
 namespace Server.Items
 {
-	public class Beads : Item
+    public class Beads : Item
 	{
 		[Constructable]
 		public Beads() : base( 0x108B )

@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	[Flipable( 0x1070, 0x1074 )]
+    [Flipable( 0x1070, 0x1074 )]
 	public class TrainingDummy : AddonComponent
 	{
 		private double m_MinSkill;
@@ -28,7 +27,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool Swinging
 		{
-			get{ return ( m_Timer != null ); } 
+			get{ return m_Timer != null; } 
 		}
 
 		[Constructable]
@@ -45,7 +44,7 @@ namespace Server.Items
 
 		public void UpdateItemID()
 		{
-			int baseItemID = (ItemID / 2) * 2;
+			int baseItemID = ItemID / 2 * 2;
 
 			ItemID = baseItemID + (Swinging ? 1 : 0);
 		}

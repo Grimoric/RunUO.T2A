@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Engines.Mahjong
 {
-	public enum MahjongPieceDirection
+    public enum MahjongPieceDirection
 	{
 		Up,
 		Left,

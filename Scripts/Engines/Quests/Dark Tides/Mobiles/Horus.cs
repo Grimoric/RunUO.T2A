@@ -1,17 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
 using Server.ContextMenus;
-using Server.Engines.Quests;
-using Server.Engines.Quests.Necro;
 
 namespace Server.Engines.Quests.Necro
 {
-	public class Horus : BaseQuester
+    public class Horus : BaseQuester
 	{
 		[Constructable]
 		public Horus() : base( "the Guardian" )
@@ -54,7 +49,7 @@ namespace Server.Engines.Quests.Necro
 		{
 			QuestSystem qs = to.Quest;
 
-			return ( qs is DarkTidesQuest && qs.IsObjectiveInProgress( typeof( FindCrystalCaveObjective ) ) );
+			return qs is DarkTidesQuest && qs.IsObjectiveInProgress( typeof( FindCrystalCaveObjective ) );
 		}
 
 		public override void OnTalk( PlayerMobile player, bool contextMenu )
@@ -129,7 +124,7 @@ namespace Server.Engines.Quests.Necro
 					if ( qs is DarkTidesQuest )
 					{
 						QuestObjective obj = qs.FindObjective( typeof( SpeakCavePasswordObjective ) );
-						bool enabled = ( obj != null && !obj.Completed );
+						bool enabled = obj != null && !obj.Completed;
 
 						list.Add( new SpeakPasswordEntry( this, pm, enabled ) );
 					}

@@ -18,17 +18,15 @@
  *
  ***************************************************************************/
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Server.ContextMenus
 {
-	/// <summary>
-	/// Represents the state of an active context menu. This includes who opened the menu, the menu's focus object, and a list of <see cref="ContextMenuEntry">entries</see> that the menu is composed of.
-	/// <seealso cref="ContextMenuEntry" />
-	/// </summary>
-	public class ContextMenu
+    /// <summary>
+    /// Represents the state of an active context menu. This includes who opened the menu, the menu's focus object, and a list of <see cref="ContextMenuEntry">entries</see> that the menu is composed of.
+    /// <seealso cref="ContextMenuEntry" />
+    /// </summary>
+    public class ContextMenu
 	{
 		private Mobile m_From;
 		private object m_Target;

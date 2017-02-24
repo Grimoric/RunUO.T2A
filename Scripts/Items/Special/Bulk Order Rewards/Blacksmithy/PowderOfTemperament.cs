@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Targeting;
-using Server.Engines.Craft;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class PowderOfTemperament : Item, IUsesRemaining
+    public class PowderOfTemperament : Item, IUsesRemaining
 	{
 		private int m_UsesRemaining;
 

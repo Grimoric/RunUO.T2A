@@ -1,13 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Multis;
-using Server.Regions;
 
 namespace Server.Items
 {
-	public enum AddonFitResult
+    public enum AddonFitResult
 	{
 		Valid,
 		Blocked,
@@ -129,7 +126,7 @@ namespace Server.Items
 		public bool CouldFit( IPoint3D p, Map map )
 		{
 			BaseHouse h = null;
-			return ( CouldFit( p, map, null, ref h ) == AddonFitResult.Valid );
+			return CouldFit( p, map, null, ref h ) == AddonFitResult.Valid;
 		}
 
 		public virtual AddonFitResult CouldFit( IPoint3D p, Map map, Mobile from, ref BaseHouse house )
@@ -141,7 +138,7 @@ namespace Server.Items
 			{
 				Point3D p3D = new Point3D( p.X + c.Offset.X, p.Y + c.Offset.Y, p.Z + c.Offset.Z );
 
-				if ( !map.CanFit( p3D.X, p3D.Y, p3D.Z, c.ItemData.Height, false, true, ( c.Z == 0 ) ) )
+				if ( !map.CanFit( p3D.X, p3D.Y, p3D.Z, c.ItemData.Height, false, true, c.Z == 0 ) )
 					return AddonFitResult.Blocked;
 				else if ( !CheckHouse( from, p3D, map, c.ItemData.Height, ref house ) )
 					return AddonFitResult.NotInHouse;
@@ -169,7 +166,7 @@ namespace Server.Items
 					Point3D addonLoc = new Point3D( p.X + c.Offset.X, p.Y + c.Offset.Y, p.Z + c.Offset.Z );
 					int addonHeight = c.ItemData.CalcHeight;
 						
-					if ( Utility.InRange( doorLoc, addonLoc, 1 ) && (addonLoc.Z == doorLoc.Z || ((addonLoc.Z + addonHeight) > doorLoc.Z && (doorLoc.Z + doorHeight) > addonLoc.Z)) )
+					if ( Utility.InRange( doorLoc, addonLoc, 1 ) && (addonLoc.Z == doorLoc.Z || addonLoc.Z + addonHeight > doorLoc.Z && doorLoc.Z + doorHeight > addonLoc.Z) )
 						return AddonFitResult.DoorTooClose;
 				}
 			}
@@ -181,7 +178,7 @@ namespace Server.Items
 		{
 			house = BaseHouse.FindHouseAt( p, map, height );
 
-			if ( house == null || ( from != null && !house.IsOwner( from ) ) )
+			if ( house == null || @from != null && !house.IsOwner( @from ) )
 				return false;
 
 			return true;
@@ -199,7 +196,7 @@ namespace Server.Items
 				StaticTile t = tiles[i];
 				ItemData id = TileData.ItemTable[t.ID & TileData.MaxItemValue];
 
-				if ( (id.Flags & TileFlag.Wall) != 0 && (z + 16) > t.Z && (t.Z + t.Height) > z )
+				if ( (id.Flags & TileFlag.Wall) != 0 && z + 16 > t.Z && t.Z + t.Height > z )
 					return true;
 			}
 

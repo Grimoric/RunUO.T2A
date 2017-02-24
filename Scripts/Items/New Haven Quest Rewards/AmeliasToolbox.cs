@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class AmeliasToolbox : TinkerTools
+    public class AmeliasToolbox : TinkerTools
 	{
 		public override int LabelNumber{ get{ return 1077749; } } // Amelias Toolbox
 

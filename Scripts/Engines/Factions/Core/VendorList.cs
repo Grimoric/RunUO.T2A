@@ -1,10 +1,9 @@
 using System;
-using Server;
 using System.Collections.Generic;
 
 namespace Server.Factions
 {
-	public class VendorList
+    public class VendorList
 	{
 		private VendorDefinition m_Definition;
 		private List<BaseFactionVendor> m_Vendors;

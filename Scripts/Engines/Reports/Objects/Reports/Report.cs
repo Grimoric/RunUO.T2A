@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Engines.Reports
 {
-	public class Report : PersistableObject
+    public class Report : PersistableObject
 	{
 		#region Type Identification
 		public static readonly PersistableType ThisTypeID = new PersistableType( "rp", new ConstructCallback( Construct ) );

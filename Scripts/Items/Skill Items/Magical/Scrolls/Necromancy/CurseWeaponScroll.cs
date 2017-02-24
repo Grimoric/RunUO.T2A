@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class CurseWeaponScroll : SpellScroll
+    public class CurseWeaponScroll : SpellScroll
 	{
 		[Constructable]
 		public CurseWeaponScroll() : this( 1 )

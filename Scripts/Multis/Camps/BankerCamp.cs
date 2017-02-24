@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Multis
 {
-	public class BankerCamp : BaseCamp
+    public class BankerCamp : BaseCamp
 	{
 		[Constructable]
 		public BankerCamp() : base( 0x1F6 )

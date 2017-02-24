@@ -1,11 +1,9 @@
-using System;
 using Server.Targeting;
-using Server.Network;
 using Server.Items;
 
 namespace Server.Spells.Second
 {
-	public class MagicTrapSpell : MagerySpell
+    public class MagicTrapSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Magic Trap", "In Jux",

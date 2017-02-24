@@ -1,10 +1,7 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	#region Basket1Artifact
-	public class Basket1Artifact : BaseDecorationContainerArtifact
+    #region Basket1Artifact
+    public class Basket1Artifact : BaseDecorationContainerArtifact
 	{
 		public override int ArtifactRarity{ get{ return 1; } }
 

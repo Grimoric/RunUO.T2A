@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Server.Multis;
 
 namespace Server.Items
 {
-	public class TrashBarrel : Container, IChopable
+    public class TrashBarrel : Container, IChopable
 	{
 		public override int LabelNumber{ get{ return 1041064; } } // a trash barrel
 

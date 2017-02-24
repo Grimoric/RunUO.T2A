@@ -1,8 +1,5 @@
 using System;
-using System.Text;
-using System.Collections;
 using Server.Network;
-using Server.Targeting;
 using Server.Mobiles;
 using Server.Spells;
 using Server.Spells.Necromancy;
@@ -15,7 +12,7 @@ using Server.Spells.Spellweaving;
 
 namespace Server.Items
 {
-	public interface ISlayer
+    public interface ISlayer
 	{
 		SlayerName Slayer { get; set; }
 		SlayerName Slayer2 { get; set; }
@@ -45,7 +42,7 @@ namespace Server.Items
 				if ( m_FactionState == null )
 					Hue = CraftResources.GetHue( Resource );
 
-				LootType = ( m_FactionState == null ? LootType.Regular : LootType.Blessed );
+				LootType = m_FactionState == null ? LootType.Regular : LootType.Blessed;
 			}
 		}
 		#endregion
@@ -304,56 +301,56 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int MaxRange
 		{
-			get{ return ( m_MaxRange == -1 ? OldMaxRange : m_MaxRange ); }
+			get{ return m_MaxRange == -1 ? OldMaxRange : m_MaxRange; }
 			set{ m_MaxRange = value; InvalidateProperties(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public WeaponAnimation Animation
 		{
-			get{ return ( m_Animation == (WeaponAnimation)(-1) ? OldAnimation : m_Animation ); } 
+			get{ return m_Animation == (WeaponAnimation)(-1) ? OldAnimation : m_Animation; } 
 			set{ m_Animation = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public WeaponType Type
 		{
-			get{ return ( m_Type == (WeaponType)(-1) ? OldType : m_Type ); }
+			get{ return m_Type == (WeaponType)(-1) ? OldType : m_Type; }
 			set{ m_Type = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public SkillName Skill
 		{
-			get{ return ( m_Skill == (SkillName)(-1) ? OldSkill : m_Skill ); }
+			get{ return m_Skill == (SkillName)(-1) ? OldSkill : m_Skill; }
 			set{ m_Skill = value; InvalidateProperties(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int HitSound
 		{
-			get{ return ( m_HitSound == -1 ? OldHitSound : m_HitSound ); }
+			get{ return m_HitSound == -1 ? OldHitSound : m_HitSound; }
 			set{ m_HitSound = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int MissSound
 		{
-			get{ return ( m_MissSound == -1 ? OldMissSound : m_MissSound ); }
+			get{ return m_MissSound == -1 ? OldMissSound : m_MissSound; }
 			set{ m_MissSound = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int MinDamage
 		{
-			get{ return ( m_MinDamage == -1 ? OldMinDamage : m_MinDamage ); }
+			get{ return m_MinDamage == -1 ? OldMinDamage : m_MinDamage; }
 			set{ m_MinDamage = value; InvalidateProperties(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int MaxDamage
 		{
-			get{ return ( m_MaxDamage == -1 ? OldMaxDamage : m_MaxDamage ); }
+			get{ return m_MaxDamage == -1 ? OldMaxDamage : m_MaxDamage; }
 			set{ m_MaxDamage = value; InvalidateProperties(); }
 		}
 
@@ -373,21 +370,21 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int StrRequirement
 		{
-			get{ return ( m_StrReq == -1 ? OldStrengthReq : m_StrReq ); }
+			get{ return m_StrReq == -1 ? OldStrengthReq : m_StrReq; }
 			set{ m_StrReq = value; InvalidateProperties(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int DexRequirement
 		{
-			get{ return ( m_DexReq == -1 ? OldDexterityReq : m_DexReq ); }
+			get{ return m_DexReq == -1 ? OldDexterityReq : m_DexReq; }
 			set{ m_DexReq = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int IntRequirement
 		{
-			get{ return ( m_IntReq == -1 ? OldIntelligenceReq : m_IntReq ); }
+			get{ return m_IntReq == -1 ? OldIntelligenceReq : m_IntReq; }
 			set{ m_IntReq = value; }
 		}
 
@@ -448,8 +445,8 @@ namespace Server.Items
 		{
 			int scale = 100 + GetDurabilityBonus();
 
-			m_Hits = ((m_Hits * 100) + (scale - 1)) / scale;
-			m_MaxHits = ((m_MaxHits * 100) + (scale - 1)) / scale;
+			m_Hits = (m_Hits * 100 + (scale - 1)) / scale;
+			m_MaxHits = (m_MaxHits * 100 + (scale - 1)) / scale;
 			InvalidateProperties();
 		}
 
@@ -457,8 +454,8 @@ namespace Server.Items
 		{
 			int scale = 100 + GetDurabilityBonus();
 
-			m_Hits = ((m_Hits * scale) + 99) / 100;
-			m_MaxHits = ((m_MaxHits * scale) + 99) / 100;
+			m_Hits = (m_Hits * scale + 99) / 100;
+			m_MaxHits = (m_MaxHits * scale + 99) / 100;
 			InvalidateProperties();
 		}
 
@@ -583,7 +580,7 @@ namespace Server.Items
 			int dexBonus = m_AosAttributes.BonusDex;
 			int intBonus = m_AosAttributes.BonusInt;
 
-			if ( (strBonus != 0 || dexBonus != 0 || intBonus != 0) )
+			if ( strBonus != 0 || dexBonus != 0 || intBonus != 0 )
 			{
 				Mobile m = from;
 
@@ -733,12 +730,12 @@ namespace Server.Items
 			if ( defValue <= -50.0 )
 				defValue = -49.9;
 
-			ourValue = (atkValue + 50.0);
-			theirValue = (defValue + 50.0);
+			ourValue = atkValue + 50.0;
+			theirValue = defValue + 50.0;
 
 			double chance = ourValue / (theirValue * 2.0);
 
-			chance *= 1.0 + ((double)bonus / 100);
+			chance *= 1.0 + (double)bonus / 100;
 
 			return attacker.CheckSkill( atkSkill.SkillName, chance );
 		}
@@ -890,9 +887,9 @@ namespace Server.Items
 			{
 				BaseWeapon weapon = defender.Weapon as BaseWeapon;
 
-				double divisor = (weapon.Layer == Layer.OneHanded) ? 48000.0 : 41140.0;
+				double divisor = weapon.Layer == Layer.OneHanded ? 48000.0 : 41140.0;
 
-				double chance = (parry * bushido) / divisor;
+				double chance = parry * bushido / divisor;
 
 				double aosChance = parry / 800.0;
 
@@ -918,7 +915,7 @@ namespace Server.Items
 				if ( chance > aosChance )
 					return defender.CheckSkill( SkillName.Parry, chance );
 				else
-					return (aosChance > Utility.RandomDouble()); // Only skillcheck if wielding a shield & there's no effect from Bushido
+					return aosChance > Utility.RandomDouble(); // Only skillcheck if wielding a shield & there's no effect from Bushido
 			}
 
 			return false;
@@ -1048,7 +1045,7 @@ namespace Server.Items
 				int from = (int)(virtualArmor * scalar) / 2;
 				int to = (int)(virtualArmor * scalar);
 
-				damage -= Utility.Random( from, (to - from) + 1 );
+				damage -= Utility.Random( from, to - @from + 1 );
 			}
 
 			return damage;
@@ -1061,7 +1058,7 @@ namespace Server.Items
 
 			BaseCreature bc = attacker as BaseCreature;
 
-			if ( bc == null || bc.PackInstinct == PackInstinct.None || (!bc.Controlled && !bc.Summoned) )
+			if ( bc == null || bc.PackInstinct == PackInstinct.None || !bc.Controlled && !bc.Summoned )
 				return 0;
 
 			Mobile master = bc.ControlMaster;
@@ -1080,7 +1077,7 @@ namespace Server.Items
 				{
 					BaseCreature tc = (BaseCreature)m;
 
-					if ( (tc.PackInstinct & bc.PackInstinct) == 0 || (!tc.Controlled && !tc.Summoned) )
+					if ( (tc.PackInstinct & bc.PackInstinct) == 0 || !tc.Controlled && !tc.Summoned )
 						continue;
 
 					Mobile theirMaster = tc.ControlMaster;
@@ -1120,7 +1117,7 @@ namespace Server.Items
 
 		public virtual void OnHit( Mobile attacker, Mobile defender, double damageBonus )
 		{
-			if ( MirrorImage.HasClone( defender ) && (defender.Skills.Ninjitsu.Value / 150.0) > Utility.RandomDouble() )
+			if ( MirrorImage.HasClone( defender ) && defender.Skills.Ninjitsu.Value / 150.0 > Utility.RandomDouble() )
 			{
 				Clone bc;
 
@@ -1322,13 +1319,13 @@ namespace Server.Items
 				move = null;
 			}
 
-			bool ignoreArmor = ( a is ArmorIgnore || (move != null && move.IgnoreArmor( attacker )) );
+			bool ignoreArmor = a is ArmorIgnore || move != null && move.IgnoreArmor( attacker );
 
 			damageGiven = AOS.Damage( defender, attacker, damage, ignoreArmor, phys, fire, cold, pois, nrgy, chaos, direct, false, this is BaseRanged, false );
 
-			double propertyBonus = ( move == null ) ? 1.0 : move.GetPropertyBonus( attacker );
+			double propertyBonus = move == null ? 1.0 : move.GetPropertyBonus( attacker );
 
-			if ( m_MaxHits > 0 && ((MaxRange <= 1 && (defender is Slime || defender is AcidElemental)) || Utility.Random( 25 ) == 0) ) // Stratics says 50% chance, seems more like 4%..
+			if ( m_MaxHits > 0 && (MaxRange <= 1 && (defender is Slime || defender is AcidElemental) || Utility.Random( 25 ) == 0) ) // Stratics says 50% chance, seems more like 4%..
 			{
 				if ( MaxRange <= 1 && (defender is Slime || defender is AcidElemental) )
 					attacker.LocalOverheadMessage( MessageType.Regular, 0x3B2, 500263 ); // *Acid blood scars your weapon!*
@@ -1405,7 +1402,7 @@ namespace Server.Items
 			if ( attacker.Player )
 			{
 				// Int bonus
-				damageBonus += (attacker.Int / 10);
+				damageBonus += attacker.Int / 10;
 
 				// SDI bonus
 				damageBonus += AosAttributes.GetValue( attacker, AosAttribute.SpellDamage );
@@ -1689,7 +1686,7 @@ namespace Server.Items
 
 			int appliedDamage = attrDamage;
 
-			if ( (appliedDamage + element) > 100 )
+			if ( appliedDamage + element > 100 )
 				appliedDamage = 100 - element;
 
 			if( appliedDamage > totalRemaining )
@@ -1762,7 +1759,7 @@ namespace Server.Items
 			 * : Vanq    : 9
 			 */
 			if ( m_DamageLevel != WeaponDamageLevel.Regular )
-				damage += (2 * (int)m_DamageLevel) - 1;
+				damage += 2 * (int)m_DamageLevel - 1;
 
 			return damage;
 		}
@@ -1870,7 +1867,7 @@ namespace Server.Items
 				damageBonus = 100;
 			#endregion
 
-			double totalBonus = strengthBonus + anatomyBonus + tacticsBonus + lumberBonus + ((double)(GetDamageBonus() + damageBonus) / 100.0);
+			double totalBonus = strengthBonus + anatomyBonus + tacticsBonus + lumberBonus + (double)(GetDamageBonus() + damageBonus) / 100.0;
 
 			return damage + (int)(damage * totalBonus);
 		}
@@ -1898,20 +1895,20 @@ namespace Server.Items
 			 * :  50.0 = unchanged
 			 * : 100.0 = 50% bonus
 			 */
-			damage += ( damage * ( ( attacker.Skills[SkillName.Tactics].Value - 50.0 ) / 100.0 ) );
+			damage += damage * ( ( attacker.Skills[SkillName.Tactics].Value - 50.0 ) / 100.0 );
 
 
 			/* Compute strength modifier
 			 * : 1% bonus for every 5 strength
 			 */
-			double modifiers = ( attacker.Str / 5.0 ) / 100.0;
+			double modifiers = attacker.Str / 5.0 / 100.0;
 
 			/* Compute anatomy modifier
 			 * : 1% bonus for every 5 points of anatomy
 			 * : +10% bonus at Grandmaster or higher
 			 */
 			double anatomyValue = attacker.Skills[SkillName.Anatomy].Value;
-			modifiers += ( ( anatomyValue / 5.0 ) / 100.0 );
+			modifiers += anatomyValue / 5.0 / 100.0;
 
 			if ( anatomyValue >= 100.0 )
 				modifiers += 0.1;
@@ -1924,7 +1921,7 @@ namespace Server.Items
 			{
 				double lumberValue = attacker.Skills[SkillName.Lumberjacking].Value;
 
-				modifiers += ( ( lumberValue / 5.0 ) / 100.0 );
+				modifiers += lumberValue / 5.0 / 100.0;
 
 				if ( lumberValue >= 100.0 )
 					modifiers += 0.1;
@@ -1932,14 +1929,14 @@ namespace Server.Items
 
 			// New quality bonus:
 			if ( m_Quality != WeaponQuality.Regular )
-				modifiers += ( ( (int)m_Quality - 1 ) * 0.2 );
+				modifiers += ( (int)m_Quality - 1 ) * 0.2;
 
 			// Virtual damage bonus:
 			if ( VirtualDamageBonus != 0 )
-				modifiers += ( VirtualDamageBonus / 100.0 );
+				modifiers += VirtualDamageBonus / 100.0;
 
 			// Apply bonuses
-			damage += ( damage * modifiers );
+			damage += damage * modifiers;
 
 			return ScaleDamageByDurability( (int)damage );
 		}
@@ -1949,7 +1946,7 @@ namespace Server.Items
 			int scale = 100;
 
 			if ( m_MaxHits > 0 && m_Hits < m_MaxHits )
-				scale = 50 + ((50 * m_Hits) / m_MaxHits);
+				scale = 50 + 50 * m_Hits / m_MaxHits;
 
 			return AOS.Scale( damage, scale );
 		}
@@ -2070,7 +2067,7 @@ namespace Server.Items
 
 		private static bool GetSaveFlag( SaveFlag flags, SaveFlag toGet )
 		{
-			return ( (flags & toGet) != 0 );
+			return (flags & toGet) != 0;
 		}
 
 		public override void Serialize( GenericWriter writer )
@@ -2304,7 +2301,7 @@ namespace Server.Items
 						m_Crafter = reader.ReadMobile();
 
 					if ( GetSaveFlag( flags, SaveFlag.Identified ) )
-						m_Identified = ( version >= 6 || reader.ReadBool() );
+						m_Identified = version >= 6 || reader.ReadBool();
 
 					if ( GetSaveFlag( flags, SaveFlag.StrReq ) )
 						m_StrReq = reader.ReadInt();
@@ -2698,7 +2695,7 @@ namespace Server.Items
 			if ( base.AllowEquipedCast( from ) )
 				return true;
 
-			return ( m_AosAttributes.SpellChanneling != 0 );
+			return m_AosAttributes.SpellChanneling != 0;
 		}
 
 		public virtual int ArtifactRarity
@@ -2773,7 +2770,7 @@ namespace Server.Items
 			if ( (prop = m_AosWeaponAttributes.UseBestSkill) != 0 )
 				list.Add( 1060400 ); // use best weapon skill
 
-			if ( (prop = (GetDamageBonus() + m_AosAttributes.WeaponDamage)) != 0 )
+			if ( (prop = GetDamageBonus() + m_AosAttributes.WeaponDamage) != 0 )
 				list.Add( 1060401, prop.ToString() ); // damage increase ~1_val~%
 
 			if ( (prop = m_AosAttributes.DefendChance) != 0 )
@@ -2788,7 +2785,7 @@ namespace Server.Items
 			if ( (prop = m_AosAttributes.CastSpeed) != 0 )
 				list.Add( 1060413, prop.ToString() ); // faster casting ~1_val~
 
-			if ( (prop = (GetHitChanceBonus() + m_AosAttributes.AttackChance)) != 0 )
+			if ( (prop = GetHitChanceBonus() + m_AosAttributes.AttackChance) != 0 )
 				list.Add( 1060415, prop.ToString() ); // hit chance increase ~1_val~%
 
 			if ( (prop = m_AosWeaponAttributes.HitColdArea) != 0 )
@@ -2857,7 +2854,7 @@ namespace Server.Items
 			if ( (prop = GetLowerStatReq()) != 0 )
 				list.Add( 1060435, prop.ToString() ); // lower requirements ~1_val~%
 
-			if ( (prop = (GetLuckBonus() + m_AosAttributes.Luck)) != 0 )
+			if ( (prop = GetLuckBonus() + m_AosAttributes.Luck) != 0 )
 				list.Add( 1060436, prop.ToString() ); // luck ~1_val~
 
 			if ( (prop = m_AosWeaponAttributes.MageWeapon) != 0 )

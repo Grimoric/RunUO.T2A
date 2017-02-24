@@ -1,13 +1,9 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Accounting;
-using Server.Engines;
-using Server.Engines.Help;
 
 namespace Server.Engines.Reports
 {
-	public abstract class BaseInfo : IComparable
+    public abstract class BaseInfo : IComparable
 	{
 		private static TimeSpan m_SortRange;
 
@@ -44,11 +40,11 @@ namespace Server.Engines.Reports
 						}
 
 						if ( mob != null && mob.Name != null && mob.Name.Length > 0 )
-							return ( m_Display = mob.Name );
+							return m_Display = mob.Name;
 					}
 				}
 
-				return ( m_Display = m_Account );
+				return m_Display = m_Account;
 			}
 		}
 

@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Misc;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a pixie corpse" )]
+    [CorpseName( "a pixie corpse" )]
 	public class ArcaneFey : BaseCreature
 	{
 		public override double DispelDifficulty { get { return 70.0; } }

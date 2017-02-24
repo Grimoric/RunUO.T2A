@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Engines.Mahjong
 {
-	public class MahjongTile
+    public class MahjongTile
 	{
 		public static MahjongPieceDim GetDimensions( Point2D position, MahjongPieceDirection direction )
 		{
@@ -56,7 +53,7 @@ namespace Server.Engines.Mahjong
 			int curHandArea = Dimensions.GetHandArea();
 			int newHandArea = dim.GetHandArea();
 
-			if ( !IsMovable || !dim.IsValid() || ( validHandArea >= 0 && ((curHandArea >= 0 && curHandArea != validHandArea) || (newHandArea >= 0 && newHandArea != validHandArea)) ) )
+			if ( !IsMovable || !dim.IsValid() || validHandArea >= 0 && (curHandArea >= 0 && curHandArea != validHandArea || newHandArea >= 0 && newHandArea != validHandArea) )
 				return;
 
 			m_Position = position;

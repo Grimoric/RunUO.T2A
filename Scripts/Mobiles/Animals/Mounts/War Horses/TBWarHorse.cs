@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Mobiles
 {
-	public class TBWarHorse : BaseWarHorse
+    public class TBWarHorse : BaseWarHorse
 	{
 		[Constructable]
 		public TBWarHorse() : base( 0x76, 0x3EB2, AIType.AI_Melee, FightMode.Aggressor, 10, 1, 0.2, 0.4 )

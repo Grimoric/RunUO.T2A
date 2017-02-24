@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class TalonBite : OrnateAxe
+    public class TalonBite : OrnateAxe
 	{
 		public override int LabelNumber{ get{ return 1075029; } } // Talon Bite
 

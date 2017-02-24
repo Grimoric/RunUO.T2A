@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class ElvenSpinningwheelEastAddon : BaseAddon, ISpinningWheel
+    public class ElvenSpinningwheelEastAddon : BaseAddon, ISpinningWheel
 	{
 		public override BaseAddonDeed Deed{ get{ return new ElvenSpinningwheelEastDeed(); } }
 

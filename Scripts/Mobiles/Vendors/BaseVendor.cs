@@ -82,7 +82,7 @@ namespace Server.Mobiles
 			Town town = Town.FromRegion( this.Region );
 
 			if ( town != null )
-				return ( 100 + town.Tax );
+				return 100 + town.Tax;
 
 			return 100;
 		}
@@ -211,7 +211,7 @@ namespace Server.Mobiles
 
 		public abstract void InitSBInfo();
 
-		public virtual bool IsTokunoVendor { get { return ( Map == Map.Tokuno ); } }
+		public virtual bool IsTokunoVendor { get { return Map == Map.Tokuno; } }
 
 		protected void LoadSBInfo()
 		{
@@ -570,7 +570,7 @@ namespace Server.Mobiles
 
 				Item item = playerItems[i];
 
-				if ( ( item.LastMoved + InventoryDecayTime ) <= DateTime.Now )
+				if ( item.LastMoved + InventoryDecayTime <= DateTime.Now )
 					item.Delete();
 			}
 
@@ -739,7 +739,7 @@ namespace Server.Mobiles
 					SayTo( from, 1045130 ); // That order is for some other shopkeeper.
 					return false;
 				}
-				else if ( ( dropped is SmallBOD && !( (SmallBOD)dropped ).Complete ) || ( dropped is LargeBOD && !( (LargeBOD)dropped ).Complete ) )
+				else if ( dropped is SmallBOD && !( (SmallBOD)dropped ).Complete || dropped is LargeBOD && !( (LargeBOD)dropped ).Complete )
 				{
 					SayTo( from, 1045131 ); // You have not completed the order yet.
 					return false;
@@ -975,7 +975,7 @@ namespace Server.Mobiles
 			if ( validBuy.Count == 0 )
 				return false;
 
-			bought = ( buyer.AccessLevel >= AccessLevel.GameMaster );
+			bought = buyer.AccessLevel >= AccessLevel.GameMaster;
 
 			cont = buyer.Backpack;
 			if ( !bought && cont != null )
@@ -1141,7 +1141,7 @@ namespace Server.Mobiles
 
 			foreach ( SellItemResponse resp in list )
 			{
-				if ( resp.Item.RootParent != seller || resp.Amount <= 0 || !resp.Item.IsStandardLoot() || !resp.Item.Movable || ( resp.Item is Container && ( (Container)resp.Item ).Items.Count != 0 ) )
+				if ( resp.Item.RootParent != seller || resp.Amount <= 0 || !resp.Item.IsStandardLoot() || !resp.Item.Movable || resp.Item is Container && ( (Container)resp.Item ).Items.Count != 0 )
 					continue;
 
 				foreach ( IShopSellInfo ssi in info )
@@ -1166,7 +1166,7 @@ namespace Server.Mobiles
 
 			foreach ( SellItemResponse resp in list )
 			{
-				if ( resp.Item.RootParent != seller || resp.Amount <= 0 || !resp.Item.IsStandardLoot() || !resp.Item.Movable || ( resp.Item is Container && ( (Container)resp.Item ).Items.Count != 0 ) )
+				if ( resp.Item.RootParent != seller || resp.Amount <= 0 || !resp.Item.IsStandardLoot() || !resp.Item.Movable || resp.Item is Container && ( (Container)resp.Item ).Items.Count != 0 )
 					continue;
 
 				foreach ( IShopSellInfo ssi in info )
@@ -1293,7 +1293,7 @@ namespace Server.Mobiles
 
 					if ( doubled > 0 )
 					{
-						writer.WriteEncodedInt( 1 + ( ( j * sbInfos.Count ) + i ) );
+						writer.WriteEncodedInt( 1 + j * sbInfos.Count + i );
 						writer.WriteEncodedInt( doubled );
 					}
 				}

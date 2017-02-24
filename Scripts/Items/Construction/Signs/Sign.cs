@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public enum SignFacing
+    public enum SignFacing
 	{
 		North,
 		West
@@ -77,7 +74,7 @@ namespace Server.Items
 	public class Sign : BaseSign
 	{
 		[Constructable]
-		public Sign( SignType type, SignFacing facing ) : base( ( 0xB95 + (2 * (int)type) ) + (int)facing )
+		public Sign( SignType type, SignFacing facing ) : base( 0xB95 + 2 * (int)type + (int)facing )
 		{
 		}
 

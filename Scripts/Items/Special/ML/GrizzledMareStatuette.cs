@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	public class GrizzledMareStatuette : BaseImprisonedMobile
+    public class GrizzledMareStatuette : BaseImprisonedMobile
 	{
 		public override int LabelNumber{ get{ return 1074475; } } // Grizzled Mare Statuette
 		public override BaseCreature Summon{ get { return new GrizzledMare(); } }
@@ -37,7 +36,7 @@ namespace Server.Items
 
 namespace Server.Mobiles
 {
-	public class GrizzledMare : HellSteed
+    public class GrizzledMare : HellSteed
 	{
 		public override bool DeleteOnRelease { get { return true; } }
 

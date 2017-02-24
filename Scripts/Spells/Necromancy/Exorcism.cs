@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Server.Network;
 using Server.Items;
 using Server.Engines.CannedEvil;
 using Server.Guilds;
@@ -10,7 +9,7 @@ using Server.Regions;
 
 namespace Server.Spells.Necromancy
 {
-	public class ExorcismSpell : NecromancerSpell
+    public class ExorcismSpell : NecromancerSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Exorcism", "Ort Corp Grav",

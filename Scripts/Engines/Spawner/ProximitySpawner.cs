@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Server;
 
 namespace Server.Mobiles
 {
-	public class ProximitySpawner : Spawner
+    public class ProximitySpawner : Spawner
 	{
 		private int m_TriggerRange;
 		private TextDefinition m_SpawnMessage;
@@ -120,7 +119,7 @@ namespace Server.Mobiles
 				return false;
 			}
 
-			return ( m.Alive && !m.IsDeadBondedPet && m.CanBeDamaged() && !m.Hidden );
+			return m.Alive && !m.IsDeadBondedPet && m.CanBeDamaged() && !m.Hidden;
 		}
 
 		public override void OnMovement( Mobile m, Point3D oldLocation )

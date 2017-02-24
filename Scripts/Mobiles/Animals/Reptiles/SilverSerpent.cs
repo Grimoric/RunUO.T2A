@@ -1,10 +1,8 @@
-using System;
-using Server.Mobiles;
 using Server.Factions;
 
 namespace Server.Mobiles
 {
-	[CorpseName("a silver serpent corpse")]
+    [CorpseName("a silver serpent corpse")]
 	[TypeAlias( "Server.Mobiles.Silverserpant" )]
 	public class SilverSerpent : BaseCreature
 	{

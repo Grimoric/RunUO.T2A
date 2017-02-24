@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	public class TithingGump : Gump
+    public class TithingGump : Gump
 	{
 		private Mobile m_From;
 		private int m_Offer;
@@ -90,8 +88,8 @@ namespace Server.Gumps
 					else if ( m_Offer < 0 )
 						m_Offer = 0;
 
-					if ( (m_From.TithingPoints + m_Offer) > 100000 ) // TODO: What's the maximum?
-						m_Offer = (100000 - m_From.TithingPoints);
+					if ( m_From.TithingPoints + m_Offer > 100000 ) // TODO: What's the maximum?
+						m_Offer = 100000 - m_From.TithingPoints;
 
 					if ( m_Offer <= 0 )
 					{

@@ -10,10 +10,9 @@
 
 namespace Server.Engines.Reports
 {
-    using System;
     using System.Collections;
-    
-    
+
+
     /// <summary>
     /// Strongly typed collection of Server.Engines.Reports.ReportItem.
     /// </summary>
@@ -35,7 +34,7 @@ namespace Server.Engines.Reports
         {
             get
             {
-                return ((Server.Engines.Reports.ReportItem)(this.List[index]));
+                return (Server.Engines.Reports.ReportItem)this.List[index];
             }
             set
             {
@@ -154,8 +153,8 @@ namespace Server.Engines.Reports
             {
                 get
                 {
-                    if (((_index == -1) 
-                                || (_index >= _collection.Count)))
+                    if (_index == -1 
+                        || _index >= _collection.Count)
                     {
                         throw new System.IndexOutOfRangeException("Enumerator not started.");
                     }
@@ -173,8 +172,8 @@ namespace Server.Engines.Reports
             {
                 get
                 {
-                    if (((_index == -1) 
-                                || (_index >= _collection.Count)))
+                    if (_index == -1 
+                        || _index >= _collection.Count)
                     {
                         throw new System.IndexOutOfRangeException("Enumerator not started.");
                     }
@@ -200,10 +199,10 @@ namespace Server.Engines.Reports
             /// <returns>true, if the enumerator was succesfully advanced to the next queue; false, if the enumerator has reached the end of the enumeration.</returns>
             public bool MoveNext()
             {
-                if ((_index 
-                            < (_collection.Count - 1)))
+                if (_index 
+                    < _collection.Count - 1)
                 {
-                    _index = (_index + 1);
+                    _index = _index + 1;
                     _currentElement = this._collection[_index];
                     return true;
                 }

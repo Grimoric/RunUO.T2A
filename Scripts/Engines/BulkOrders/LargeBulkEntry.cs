@@ -1,11 +1,9 @@
 using System;
-using System.IO;
 using System.Collections;
-using Server;
 
 namespace Server.Engines.BulkOrders
 {
-	public class LargeBulkEntry
+    public class LargeBulkEntry
 	{
 		private LargeBOD m_Owner;
 		private int m_Amount;

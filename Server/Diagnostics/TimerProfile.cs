@@ -18,13 +18,12 @@
  *
  ***************************************************************************/
 
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.IO;
 
-namespace Server.Diagnostics {
-	public class TimerProfile : BaseProfile {
+namespace Server.Diagnostics
+{
+    public class TimerProfile : BaseProfile {
 		private static Dictionary<string, TimerProfile> _profiles = new Dictionary<string, TimerProfile>();
 
 		public static IEnumerable<TimerProfile> Profiles {

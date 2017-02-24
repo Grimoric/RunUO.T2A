@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Network;
 using Server.Targeting;
 using Server.ContextMenus;
 
 namespace Server.Engines.Quests.Collector
 {
-	public class Obsidian : Item
+    public class Obsidian : Item
 	{
 		private static readonly string[] m_Names = new string[]
 			{

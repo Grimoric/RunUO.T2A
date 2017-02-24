@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ParrotPerchAddon : BaseAddon
+    public class ParrotPerchAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed{ get{ return new ParrotPerchDeed(); } }
 

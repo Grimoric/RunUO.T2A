@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class BloodOathScroll : SpellScroll
+    public class BloodOathScroll : SpellScroll
 	{
 		[Constructable]
 		public BloodOathScroll() : this( 1 )

@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x13FF, 0x13FE )]
+    [FlipableAttribute( 0x13FF, 0x13FE )]
 	public class Katana : BaseSword
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.DoubleStrike; } }

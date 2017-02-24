@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
 
 namespace Server.Engines.ConPVP
 {
-	public class Ruleset
+    public class Ruleset
 	{
 		private RulesetLayout m_Layout;
 		private BitArray m_Options;

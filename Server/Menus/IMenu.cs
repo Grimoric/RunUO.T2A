@@ -18,12 +18,11 @@
  *
  ***************************************************************************/
 
-using System;
 using Server.Network;
 
 namespace Server.Menus
 {
-	public interface IMenu
+    public interface IMenu
 	{
 		int Serial{ get; }
 		int EntryLength{ get; }

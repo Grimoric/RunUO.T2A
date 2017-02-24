@@ -18,13 +18,11 @@
  *
  ***************************************************************************/
 
-using System;
-using Server;
 using Server.Network;
 
 namespace Server
 {
-	public abstract class BaseHairInfo
+    public abstract class BaseHairInfo
 	{
 		private int m_ItemID;
 		private int m_Hue;
@@ -88,7 +86,7 @@ namespace Server
 
 		public static int FakeSerial( Mobile parent )
 		{
-			return (0x7FFFFFFF - 0x400 - (parent.Serial * 4));
+			return 0x7FFFFFFF - 0x400 - parent.Serial * 4;
 		}
 	}
 
@@ -111,7 +109,7 @@ namespace Server
 
 		public static int FakeSerial( Mobile parent )
 		{
-			return (0x7FFFFFFF - 0x400 - 1 - (parent.Serial * 4));
+			return 0x7FFFFFFF - 0x400 - 1 - parent.Serial * 4;
 		}
 	}
 

@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Engines.VeteranRewards
 {
-	public class RewardChoiceGump : Gump
+    public class RewardChoiceGump : Gump
 	{
 		private Mobile m_From;
 
@@ -72,14 +70,14 @@ namespace Server.Engines.VeteranRewards
 					continue;
 				}
 
-				AddButton( 100, 180 + (i * 40), 4005, 4005, 0, GumpButtonType.Page, page );
+				AddButton( 100, 180 + i * 40, 4005, 4005, 0, GumpButtonType.Page, page );
 
 				page += PagesPerCategory( categories[ i ] );
 
 				if ( categories[i].NameString != null )
-					AddHtml( 135, 180 + (i * 40), 300, 20, categories[i].NameString, false, false );
+					AddHtml( 135, 180 + i * 40, 300, 20, categories[i].NameString, false, false );
 				else
-					AddHtmlLocalized( 135, 180 + (i * 40), 300, 20, categories[i].Name, false, false );
+					AddHtmlLocalized( 135, 180 + i * 40, 300, 20, categories[i].Name, false, false );
 			}
 
 			page = 2;
@@ -104,7 +102,7 @@ namespace Server.Engines.VeteranRewards
 
 		private int GetButtonID( int type, int index )
 		{
-			return 2 + (index * 20) + type;
+			return 2 + index * 20 + type;
 		}
 
 		private void RenderCategory( RewardCategory category, int index, ref int page )
@@ -135,12 +133,12 @@ namespace Server.Engines.VeteranRewards
 					i = 0;
 				}
 
-				AddButton( 55 + ((i / 12) * 250), 80 + ((i % 12) * 25), 5540, 5541, GetButtonID( index, j ), GumpButtonType.Reply, 0 );
+				AddButton( 55 + i / 12 * 250, 80 + i % 12 * 25, 5540, 5541, GetButtonID( index, j ), GumpButtonType.Reply, 0 );
 
 				if ( entry.NameString != null )
-					AddHtml( 80 + ((i / 12) * 250), 80 + ((i % 12) * 25), 250, 20, entry.NameString, false, false );
+					AddHtml( 80 + i / 12 * 250, 80 + i % 12 * 25, 250, 20, entry.NameString, false, false );
 				else
-					AddHtmlLocalized( 80 + ((i / 12) * 250), 80 + ((i % 12) * 25), 250, 20, entry.Name, false, false );
+					AddHtmlLocalized( 80 + i / 12 * 250, 80 + i % 12 * 25, 250, 20, entry.Name, false, false );
 				++i;
 			}
 
@@ -174,8 +172,8 @@ namespace Server.Engines.VeteranRewards
 			{
 				--buttonID;
 
-				int type = (buttonID % 20);
-				int index = (buttonID / 20);
+				int type = buttonID % 20;
+				int index = buttonID / 20;
 
 				RewardCategory[] categories = RewardSystem.Categories;
 

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class PixieLeg : ChickenLeg
+    public class PixieLeg : ChickenLeg
 	{
 		public override int LabelNumber{ get{ return 1074613; } } // Pixie Leg
 

@@ -1,14 +1,10 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Multis;
-using Server.Multis.Deeds;
 using Server.Network;
-using Server.Mobiles;
 
 namespace Server.Gumps
 {
-	public class ConfirmHouseResize : Gump
+    public class ConfirmHouseResize : Gump
 	{
 		private Mobile m_Mobile;
 		private BaseHouse m_House;

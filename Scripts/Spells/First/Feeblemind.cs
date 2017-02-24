@@ -1,10 +1,9 @@
 using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.First
 {
-	public class FeeblemindSpell : MagerySpell
+    public class FeeblemindSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Feeblemind", "Rel Wis",

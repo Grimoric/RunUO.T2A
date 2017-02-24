@@ -1,12 +1,10 @@
-using System;
 using System.Collections;
-using Server;
 using Server.Network;
 using Server.Regions;
 
 namespace Server.Items
 {
-	public class Kindling : Item
+    public class Kindling : Item
 	{
 		[Constructable]
 		public Kindling() : this( 1 )

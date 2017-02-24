@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[Furniture]
+    [Furniture]
 	[FlipableAttribute( 0x2bd9, 0x2bda )]
 	public class GreenStocking : BaseContainer
 	{

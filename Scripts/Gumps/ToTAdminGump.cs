@@ -1,15 +1,11 @@
 using System;
-using Server;
-using Server.Gumps;
 using Server.Misc;
-using Server.Items;
 using Server.Network;
 using Server.Commands;
-using Server.Mobiles;
 
 namespace Server.Gumps
 {
-	public class ToTAdminGump : Gump
+    public class ToTAdminGump : Gump
 	{
 		private int m_ToTEras;
 		private static string[] m_ToTInfo = 
@@ -45,7 +41,7 @@ namespace Server.Gumps
 			m_ToTEras = Enum.GetValues( typeof( TreasuresOfTokunoEra ) ).Length - 1;
 			
 			AddPage( 0 );
-			AddBackground( 0, 0, 320, 75 + (m_ToTEras * 25), 9200 );
+			AddBackground( 0, 0, 320, 75 + m_ToTEras * 25, 9200 );
 			AddImageTiled( 25, 18, 270, 10, 9267 );
 			AddLabel( 75, 5, 54, "Treasures of Tokuno Admin" );
 			AddLabel( 10, 25, 54, "ToT Era" );
@@ -68,17 +64,17 @@ namespace Server.Gumps
 			
 			for ( int i = 0; i < m_ToTEras; i++ )
 			{
-				int yoffset = (i * 25);
+				int yoffset = i * 25;
 				
-				bool isThisDropEra = ((int)TreasuresOfTokuno.DropEra - 1) == i;
-				bool isThisRewardEra = ((int)TreasuresOfTokuno.RewardEra - 1) == i;
+				bool isThisDropEra = (int)TreasuresOfTokuno.DropEra - 1 == i;
+				bool isThisRewardEra = (int)TreasuresOfTokuno.RewardEra - 1 == i;
 				int dropButtonID = isThisDropEra ? 2361 : 2360;
 				int rewardButtonID = isThisRewardEra ? 2361 : 2360;
 				
 				AddLabel( 10, 70 + yoffset, 2100, "ToT " + ( i + 1 ) );
-				AddButton( 75, 75 + yoffset, dropButtonID, dropButtonID, 2 + ( i * 2 ), GumpButtonType.Reply, 0);
+				AddButton( 75, 75 + yoffset, dropButtonID, dropButtonID, 2 + i * 2, GumpButtonType.Reply, 0);
 				AddLabel( 90, 70 + yoffset, isThisDropEra ? 167 : 137, isThisDropEra ? "Active" : "Inactive" );
-				AddButton( 180, 75 + yoffset, rewardButtonID, rewardButtonID, 2 + ( i * 2 ) + 1, GumpButtonType.Reply, 0);
+				AddButton( 180, 75 + yoffset, rewardButtonID, rewardButtonID, 2 + i * 2 + 1, GumpButtonType.Reply, 0);
 				AddLabel( 195, 70 + yoffset, isThisRewardEra ? 167 : 137, isThisRewardEra ? "Active" : "Inactive" );
 				
 				AddButton( 285, 70 + yoffset, 4005, 4006, i, GumpButtonType.Page, 2 + i);
@@ -107,13 +103,13 @@ namespace Server.Gumps
 				if ( button % 2 == 0 )
 				{
 					selectedToT = button / 2;
-					TreasuresOfTokuno.DropEra = (TreasuresOfTokunoEra)( selectedToT );
+					TreasuresOfTokuno.DropEra = (TreasuresOfTokunoEra)selectedToT;
 					from.SendMessage( "Treasures of Tokuno " + selectedToT + " Drops have been enabled" );
 				}
 				else
 				{
 					selectedToT = (button - 1) / 2;
-					TreasuresOfTokuno.RewardEra = (TreasuresOfTokunoEra)( selectedToT );
+					TreasuresOfTokuno.RewardEra = (TreasuresOfTokunoEra)selectedToT;
 					from.SendMessage( "Treasures of Tokuno " + selectedToT + " Rewards have been enabled" );
 				}
 			}

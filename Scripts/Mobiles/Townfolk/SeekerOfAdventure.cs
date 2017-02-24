@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Items;
-using EDI = Server.Mobiles.EscortDestinationInfo;
 
 namespace Server.Mobiles
 {
-	public class SeekerOfAdventure : BaseEscortable
+    public class SeekerOfAdventure : BaseEscortable
 	{
 		private static string[] m_Dungeons = new string[]
 		{

@@ -1,10 +1,6 @@
-using System; 
-using Server; 
-using Server.Items;
-
-namespace Server.Items 
-{ 
-	public class BagOfingots : Bag 
+namespace Server.Items
+{
+    public class BagOfingots : Bag 
 	{ 
 		[Constructable] 
 		public BagOfingots() : this( 5000 ) 

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[Flipable( 0x2684, 0x2683 )]
+    [Flipable( 0x2684, 0x2683 )]
 	public class HoodedShroudOfShadows : BaseOuterTorso
 	{
 		[Constructable]

@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Mobiles;
-
 namespace Server.Items
 {
-	public class AquariumFood : Item
+    public class AquariumFood : Item
 	{		
 		public override int LabelNumber{ get{ return 1074819; } } // Aquarium food
 		

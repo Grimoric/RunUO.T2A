@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Network;
 
 namespace Server.Items
 {
-	public enum SpikeTrapType
+    public enum SpikeTrapType
 	{
 		WestWall,
 		NorthWall,
@@ -33,13 +32,13 @@ namespace Server.Items
 			{
 				bool extended = this.Extended;
 
-				ItemID = ( extended ? GetExtendedID( value ) : GetBaseID( value ) );
+				ItemID = extended ? GetExtendedID( value ) : GetBaseID( value );
 			}
 		}
 
 		public bool Extended
 		{
-			get{ return ( ItemID == GetExtendedID( this.Type ) ); }
+			get{ return ItemID == GetExtendedID( this.Type ); }
 			set
 			{
 				if ( value )

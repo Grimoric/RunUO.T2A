@@ -18,11 +18,10 @@
  *
  ***************************************************************************/
 
-using System;
 
 namespace Server
 {
-	[PropertyObject]
+    [PropertyObject]
 	public class VirtueInfo
 	{
 		private int[] m_Values;

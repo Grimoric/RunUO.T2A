@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	public class RunicSewingKit : BaseRunicTool
+    public class RunicSewingKit : BaseRunicTool
 	{
 		public override CraftSystem CraftSystem{ get{ return DefTailoring.CraftSystem; } }
 

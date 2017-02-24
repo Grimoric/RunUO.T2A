@@ -1,12 +1,10 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Hag
 {
-	public class Blackheart : BaseQuester
+    public class Blackheart : BaseQuester
 	{
 		[Constructable]
 		public Blackheart() : base( "the Drunken Pirate" )

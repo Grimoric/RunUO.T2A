@@ -1,12 +1,9 @@
 using System;
 using System.Collections;
-using Server.Network;
-using Server.Items;
-using Server.Mobiles;
 
 namespace Server.Spells.Bushido
 {
-	public class Confidence : SamuraiSpell
+    public class Confidence : SamuraiSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Confidence", null,
@@ -138,7 +135,7 @@ namespace Server.Spells.Bushido
 			public RegenTimer( Mobile m ) : base( TimeSpan.FromSeconds( 1.0 ), TimeSpan.FromSeconds( 1.0 ) )
 			{
 				m_Mobile = m;
-				m_Hits = 15 + (m.Skills.Bushido.Fixed * m.Skills.Bushido.Fixed / 57600);
+				m_Hits = 15 + m.Skills.Bushido.Fixed * m.Skills.Bushido.Fixed / 57600;
 				Priority = TimerPriority.TwoFiftyMS;
 			}
 
@@ -148,11 +145,11 @@ namespace Server.Spells.Bushido
 
 				if ( m_Ticks >= 5 )
 				{
-					m_Mobile.Hits += (m_Hits - (m_Hits * 4 / 5));
+					m_Mobile.Hits += m_Hits - m_Hits * 4 / 5;
 					StopRegenerating( m_Mobile );
 				}
 
-				m_Mobile.Hits += (m_Hits / 5);
+				m_Mobile.Hits += m_Hits / 5;
 			}
 		}
 	}

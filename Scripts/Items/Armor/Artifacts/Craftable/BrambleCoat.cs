@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class BrambleCoat : WoodlandChest
+    public class BrambleCoat : WoodlandChest
 	{
 		public override int LabelNumber{ get{ return 1072925; } } // Bramble Coat
 

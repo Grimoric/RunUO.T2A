@@ -90,7 +90,7 @@ namespace Server.Network
 
 		public int ReadInt32()
 		{
-			if ( (m_Index + 4) > m_Size )
+			if ( m_Index + 4 > m_Size )
 				return 0;
 
 			return (m_Data[m_Index++] << 24)
@@ -101,7 +101,7 @@ namespace Server.Network
 
 		public short ReadInt16()
 		{
-			if ( (m_Index + 2) > m_Size )
+			if ( m_Index + 2 > m_Size )
 				return 0;
 
 			return (short)((m_Data[m_Index++] << 8) | m_Data[m_Index++]);
@@ -109,7 +109,7 @@ namespace Server.Network
 
 		public byte ReadByte()
 		{
-			if ( (m_Index + 1) > m_Size )
+			if ( m_Index + 1 > m_Size )
 				return 0;
 
 			return m_Data[m_Index++];
@@ -117,7 +117,7 @@ namespace Server.Network
 
 		public uint ReadUInt32()
 		{
-			if ( (m_Index + 4) > m_Size )
+			if ( m_Index + 4 > m_Size )
 				return 0;
 
 			return (uint)((m_Data[m_Index++] << 24) | (m_Data[m_Index++] << 16) | (m_Data[m_Index++] << 8) | m_Data[m_Index++]);
@@ -125,7 +125,7 @@ namespace Server.Network
 
 		public ushort ReadUInt16()
 		{
-			if ( (m_Index + 2) > m_Size )
+			if ( m_Index + 2 > m_Size )
 				return 0;
 
 			return (ushort)((m_Data[m_Index++] << 8) | m_Data[m_Index++]);
@@ -133,7 +133,7 @@ namespace Server.Network
 
 		public sbyte ReadSByte()
 		{
-			if ( (m_Index + 1) > m_Size )
+			if ( m_Index + 1 > m_Size )
 				return 0;
 
 			return (sbyte)m_Data[m_Index++];
@@ -141,10 +141,10 @@ namespace Server.Network
 
 		public bool ReadBoolean()
 		{
-			if ( (m_Index + 1) > m_Size )
+			if ( m_Index + 1 > m_Size )
 				return false;
 
-			return ( m_Data[m_Index++] != 0 );
+			return m_Data[m_Index++] != 0;
 		}
 
 		public string ReadUnicodeStringLE()
@@ -153,7 +153,7 @@ namespace Server.Network
 
 			int c;
 
-			while ( (m_Index + 1) < m_Size && (c = (m_Data[m_Index++] | (m_Data[m_Index++] << 8))) != 0 )
+			while ( m_Index + 1 < m_Size && (c = m_Data[m_Index++] | (m_Data[m_Index++] << 8)) != 0 )
 				sb.Append( (char)c );
 
 			return sb.ToString();
@@ -171,7 +171,7 @@ namespace Server.Network
 
 			int c;
 
-			while ( (m_Index + 1) < bound && (c = (m_Data[m_Index++] | (m_Data[m_Index++] << 8))) != 0 )
+			while ( m_Index + 1 < bound && (c = m_Data[m_Index++] | (m_Data[m_Index++] << 8)) != 0 )
 			{
 				if ( IsSafeChar( c ) )
 					sb.Append( (char)c );
@@ -188,7 +188,7 @@ namespace Server.Network
 
 			int c;
 
-			while ( (m_Index + 1) < m_Size && (c = (m_Data[m_Index++] | (m_Data[m_Index++] << 8))) != 0 )
+			while ( m_Index + 1 < m_Size && (c = m_Data[m_Index++] | (m_Data[m_Index++] << 8)) != 0 )
 			{
 				if ( IsSafeChar( c ) )
 					sb.Append( (char)c );
@@ -203,7 +203,7 @@ namespace Server.Network
 
 			int c;
 
-			while ( (m_Index + 1) < m_Size && (c = ((m_Data[m_Index++] << 8) | m_Data[m_Index++])) != 0 )
+			while ( m_Index + 1 < m_Size && (c = (m_Data[m_Index++] << 8) | m_Data[m_Index++]) != 0 )
 			{
 				if ( IsSafeChar( c ) )
 					sb.Append( (char)c );
@@ -218,7 +218,7 @@ namespace Server.Network
 
 			int c;
 
-			while ( (m_Index + 1) < m_Size && (c = ((m_Data[m_Index++] << 8) | m_Data[m_Index++])) != 0 )
+			while ( m_Index + 1 < m_Size && (c = (m_Data[m_Index++] << 8) | m_Data[m_Index++]) != 0 )
 				sb.Append( (char)c );
 
 			return sb.ToString();
@@ -226,7 +226,7 @@ namespace Server.Network
 
 		public bool IsSafeChar( int c )
 		{
-			return ( c >= 0x20 && c < 0xFFFE );
+			return c >= 0x20 && c < 0xFFFE;
 		}
 
 		public string ReadUTF8StringSafe( int fixedLength )
@@ -380,7 +380,7 @@ namespace Server.Network
 
 			int c;
 
-			while ( (m_Index + 1) < bound && (c = ((m_Data[m_Index++] << 8) | m_Data[m_Index++])) != 0 )
+			while ( m_Index + 1 < bound && (c = (m_Data[m_Index++] << 8) | m_Data[m_Index++]) != 0 )
 			{
 				if ( IsSafeChar( c ) )
 					sb.Append( (char)c );
@@ -403,7 +403,7 @@ namespace Server.Network
 
 			int c;
 
-			while ( (m_Index + 1) < bound && (c = ((m_Data[m_Index++] << 8) | m_Data[m_Index++])) != 0 )
+			while ( m_Index + 1 < bound && (c = (m_Data[m_Index++] << 8) | m_Data[m_Index++]) != 0 )
 				sb.Append( (char)c );
 
 			m_Index = end;

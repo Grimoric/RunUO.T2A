@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Server.Network;
 using Server.Items;
-using Server.Targeting;
 using Server.Mobiles;
 using Server.Spells.Necromancy;
 
 namespace Server.Spells.Chivalry
 {
-	public class DispelEvilSpell : PaladinSpell
+    public class DispelEvilSpell : PaladinSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Dispel Evil", "Dispiro Malas",
@@ -66,7 +64,7 @@ namespace Server.Spells.Chivalry
 
 						if ( dispellable )
 						{
-							double dispelChance = (50.0 + ((100 * (chiv - bc.DispelDifficulty)) / (bc.DispelFocus*2))) / 100;
+							double dispelChance = (50.0 + 100 * (chiv - bc.DispelDifficulty) / (bc.DispelFocus*2)) / 100;
 							dispelChance *= dispelSkill / 100.0;
 
 							if ( dispelChance > Utility.RandomDouble() )
@@ -104,7 +102,7 @@ namespace Server.Spells.Chivalry
 
 						if ( drainChance > Utility.RandomDouble() )
 						{
-							int drain = (5 * dispelSkill) / 100;
+							int drain = 5 * dispelSkill / 100;
 
 							m.Stam -= drain;
 							m.Mana -= drain;

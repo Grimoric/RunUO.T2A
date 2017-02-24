@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class BaseShield : BaseArmor
+    public class BaseShield : BaseArmor
 	{
 		public override ArmorMaterialType MaterialType{ get{ return ArmorMaterialType.Plate; } }
 
@@ -52,7 +49,7 @@ namespace Server.Items
 				double ar = base.ArmorRating;
 
 				if ( m != null )
-					return ( ( m.Skills[SkillName.Parry].Value * ar ) / 200.0 ) + 1.0;
+					return m.Skills[SkillName.Parry].Value * ar / 200.0 + 1.0;
 				else
 					return ar;
 			}
@@ -65,7 +62,7 @@ namespace Server.Items
 				return damage;
 
 			double ar = this.ArmorRating;
-			double chance = (owner.Skills[SkillName.Parry].Value - (ar * 2.0)) / 100.0;
+			double chance = (owner.Skills[SkillName.Parry].Value - ar * 2.0) / 100.0;
 
 			if( chance < 0.01 )
 				chance = 0.01;

@@ -1,11 +1,9 @@
-using System;
 using Server.Items;
-using Server.Network;
 using Server.Targeting;
 
 namespace Server.ContextMenus
 {
-	public class AddToSpellbookEntry : ContextMenuEntry
+    public class AddToSpellbookEntry : ContextMenuEntry
 	{
 		public AddToSpellbookEntry() : base( 6144, 3 )
 		{

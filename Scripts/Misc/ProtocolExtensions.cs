@@ -1,12 +1,9 @@
 using System;
-using Server;
 using Server.Network;
-using Server.Mobiles;
-using Server.Engines.PartySystem;
 
 namespace Server.Misc
 {
-	public class ProtocolExtensions
+    public class ProtocolExtensions
 	{
 		private static PacketHandler[] m_Handlers = new PacketHandler[0x100];
 

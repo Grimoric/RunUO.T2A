@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Spells.Third;
-using Server.Targeting;
 
 namespace Server.Items
 {
-	public class FireballWand : BaseWand
+    public class FireballWand : BaseWand
 	{
 		[Constructable]
 		public FireballWand() : base( WandEffect.Fireball, 5, 15 )

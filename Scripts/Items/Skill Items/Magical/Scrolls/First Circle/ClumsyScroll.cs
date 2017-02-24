@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class ClumsyScroll : SpellScroll
+    public class ClumsyScroll : SpellScroll
 	{
 		[Constructable]
 		public ClumsyScroll() : this( 1 )

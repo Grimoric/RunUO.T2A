@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Items;
 
 namespace Server.Engines.CannedEvil
 {
-	public class ChampionAltar : PentagramAddon
+    public class ChampionAltar : PentagramAddon
 	{
 		private ChampionSpawn m_Spawn;
 

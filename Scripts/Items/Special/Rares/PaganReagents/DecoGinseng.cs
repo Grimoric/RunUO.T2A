@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class DecoGinseng : Item
+    public class DecoGinseng : Item
 	{
 
 		[Constructable]

@@ -20,12 +20,11 @@
 
 using System;
 using System.Text;
-using Server;
 using Server.Network;
 
 namespace Server
 {
-	public sealed class ObjectPropertyList : Packet
+    public sealed class ObjectPropertyList : Packet
 	{
 		private IEntity m_Entity;
 		private int m_Hash;
@@ -86,7 +85,7 @@ namespace Server
 
 		public void AddHash( int val )
 		{
-			m_Hash ^= (val & 0x3FFFFFF);
+			m_Hash ^= val & 0x3FFFFFF;
 			m_Hash ^= (val >> 26) & 0x3F;
 		}
 

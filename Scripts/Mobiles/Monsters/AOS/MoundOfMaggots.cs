@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a maggoty corpse" )] // TODO: Corpse name?
+    [CorpseName( "a maggoty corpse" )] // TODO: Corpse name?
 	public class MoundOfMaggots : BaseCreature
 	{
 		[Constructable]

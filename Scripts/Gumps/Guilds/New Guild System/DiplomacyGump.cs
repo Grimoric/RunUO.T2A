@@ -1,14 +1,11 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 using Server.Mobiles;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Server.Guilds
 {
-	public enum GuildDisplayType
+    public enum GuildDisplayType
 	{
 		All,
 		AwaitingAction,
@@ -107,12 +104,12 @@ namespace Server.Guilds
 		TextDefinition m_LowerText;
 
 		public GuildDiplomacyGump( PlayerMobile pm, Guild g ) 
-			: this( pm, g, GuildDiplomacyGump.NameComparer.Instance, true, "", 0, GuildDisplayType.All, Utility.CastConvertList<BaseGuild, Guild>( new List<BaseGuild>( Guild.List.Values ) ), (1063136 + (int)GuildDisplayType.All) )
+			: this( pm, g, GuildDiplomacyGump.NameComparer.Instance, true, "", 0, GuildDisplayType.All, Utility.CastConvertList<BaseGuild, Guild>( new List<BaseGuild>( Guild.List.Values ) ), 1063136 + (int)GuildDisplayType.All )
 		{
 		}
 
 		public GuildDiplomacyGump( PlayerMobile pm, Guild g, IComparer<Guild> currentComparer, bool ascending, string filter, int startNumber, GuildDisplayType display )
-			: this( pm, g, currentComparer, ascending, filter, startNumber, display, Utility.CastConvertList<BaseGuild, Guild>( new List<BaseGuild>( Guild.List.Values ) ), (1063136 + (int)display) )
+			: this( pm, g, currentComparer, ascending, filter, startNumber, display, Utility.CastConvertList<BaseGuild, Guild>( new List<BaseGuild>( Guild.List.Values ) ), 1063136 + (int)display )
 		{
 		}
 
@@ -152,7 +149,7 @@ namespace Server.Guilds
 		{
 			TextDefinition[] defs = new TextDefinition[aryLength];
 
-			defs[0] = ( g == guild ) ? Color( g.Name, 0x006600 ) : g.Name;
+			defs[0] = g == guild ? Color( g.Name, 0x006600 ) : g.Name;
 			defs[1] = g.Abbreviation;
 
 			defs[2] = 3000085; //Peace
@@ -265,7 +262,7 @@ namespace Server.Guilds
 			if( guild == o )
 				return new GuildInfoGump( pm, g );
 
-			return new OtherGuildInfo( pm, g, (Guild)o ) ;
+			return new OtherGuildInfo( pm, g, (Guild)o );
 		}
 
 		public override void OnResponse( NetState sender, RelayInfo info )

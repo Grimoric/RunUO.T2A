@@ -1,10 +1,8 @@
-using System;
 using System.Xml;
-using Server;
 
 namespace Server.Gumps
 {
-	public class ChildNode
+    public class ChildNode
 	{
 		private ParentNode m_Parent;
 

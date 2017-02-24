@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Guilds;
 using Server.Mobiles;
@@ -13,7 +12,7 @@ using Server.Commands.Generic;
 
 namespace Server.Factions
 {
-	[CustomEnum( new string[]{ "Minax", "Council of Mages", "True Britannians", "Shadowlords" } )]
+    [CustomEnum( new string[]{ "Minax", "Council of Mages", "True Britannians", "Shadowlords" } )]
 	public abstract class Faction : IComparable
 	{
 		public int ZeroRankOffset;
@@ -303,7 +302,7 @@ namespace Server.Factions
 			int killPoints = pl.KillPoints;
 
 			if ( pl.RankIndex != -1 ) {
-				while ( ( pl.RankIndex + 1 ) < ZeroRankOffset ) {
+				while ( pl.RankIndex + 1 < ZeroRankOffset ) {
 					PlayerState pNext = Members[pl.RankIndex+1] as PlayerState;
 					Members[pl.RankIndex+1] = pl;
 					Members[pl.RankIndex] = pNext;
@@ -368,7 +367,7 @@ namespace Server.Factions
 			}
 
 			if ( pl.RankIndex != -1 ) {
-				while ( ( pl.RankIndex + 1 ) < ZeroRankOffset ) {
+				while ( pl.RankIndex + 1 < ZeroRankOffset ) {
 					PlayerState pNext = Members[pl.RankIndex+1];
 					Members[pl.RankIndex+1] = pl;
 					Members[pl.RankIndex] = pNext;
@@ -463,7 +462,7 @@ namespace Server.Factions
 			if ( acct == null )
 				return false;
 
-			return ( acct.GetTag( "FactionBanned" ) != null );
+			return acct.GetTag( "FactionBanned" ) != null;
 		}
 
 		public void OnJoinAccepted( Mobile mob )
@@ -527,7 +526,7 @@ namespace Server.Factions
 			if ( mob == null )
 				return false;
 
-			return ( mob.AccessLevel >= AccessLevel.GameMaster || mob == Commander );
+			return mob.AccessLevel >= AccessLevel.GameMaster || mob == Commander;
 		}
 
 		public Faction()
@@ -552,7 +551,7 @@ namespace Server.Factions
 			if ( pl == null || !pl.IsLeaving )
 				return false;
 
-			if ( (pl.Leaving + LeavePeriod) >= DateTime.Now )
+			if ( pl.Leaving + LeavePeriod >= DateTime.Now )
 				return false;
 
 			mob.SendLocalizedMessage( 1005163 ); // You have now quit your faction
@@ -706,8 +705,8 @@ namespace Server.Factions
 
 			for ( int i = 0; i < Factions.Count; ++i )
 			{
-				hues[0+(i*2)] = Factions[i].Definition.HuePrimary;
-				hues[1+(i*2)] = Factions[i].Definition.HueSecondary;
+				hues[0+i*2] = Factions[i].Definition.HuePrimary;
+				hues[1+i*2] = Factions[i].Definition.HueSecondary;
 			}
 
 			int count = 0;
@@ -833,7 +832,7 @@ namespace Server.Factions
 			{
 				Sigil sigil = sigils[i];
 
-				if ( !sigil.IsBeingCorrupted && sigil.GraceStart != DateTime.MinValue && (sigil.GraceStart + Sigil.CorruptionGrace) < DateTime.Now )
+				if ( !sigil.IsBeingCorrupted && sigil.GraceStart != DateTime.MinValue && sigil.GraceStart + Sigil.CorruptionGrace < DateTime.Now )
 				{
 					if ( sigil.LastMonolith is StrongholdMonolith && ( sigil.Corrupted == null || sigil.LastMonolith.Faction != sigil.Corrupted ))
 					{
@@ -851,19 +850,19 @@ namespace Server.Factions
 
 				if ( sigil.LastMonolith == null || sigil.LastMonolith.Sigil == null )
 				{
-					if ( (sigil.LastStolen + Sigil.ReturnPeriod) < DateTime.Now )
+					if ( sigil.LastStolen + Sigil.ReturnPeriod < DateTime.Now )
 						sigil.ReturnHome();
 				}
 				else
 				{
-					if ( sigil.IsBeingCorrupted && (sigil.CorruptionStart + Sigil.CorruptionPeriod) < DateTime.Now )
+					if ( sigil.IsBeingCorrupted && sigil.CorruptionStart + Sigil.CorruptionPeriod < DateTime.Now )
 					{
 						sigil.Corrupted = sigil.Corrupting;
 						sigil.Corrupting = null;
 						sigil.CorruptionStart = DateTime.MinValue;
 						sigil.GraceStart = DateTime.MinValue;
 					}
-					else if ( sigil.IsPurifying && (sigil.PurificationStart + Sigil.PurificationPeriod) < DateTime.Now )
+					else if ( sigil.IsPurifying && sigil.PurificationStart + Sigil.PurificationPeriod < DateTime.Now )
 					{
 						sigil.PurificationStart = DateTime.MinValue;
 						sigil.Corrupted = null;
@@ -954,7 +953,7 @@ namespace Server.Factions
 			if ( silver <= 0 )
 				return 0;
 
-			int tithed = ( silver * Tithe ) / 100;
+			int tithed = silver * Tithe / 100;
 
 			Silver += tithed;
 
@@ -1018,7 +1017,7 @@ namespace Server.Factions
 			if ( smallest == null )
 				return true; // sanity
 
-			if ( StabilityFactor > 0 && (((this.Members.Count + influx) * 100) / StabilityFactor) > smallest.Members.Count )
+			if ( StabilityFactor > 0 && (this.Members.Count + influx) * 100 / StabilityFactor > smallest.Members.Count )
 				return false;
 
 			return true;
@@ -1035,7 +1034,7 @@ namespace Server.Factions
 
 			if ( pack != null )
 			{
-				Container killerPack = ( killer == null ? null : killer.Backpack );
+				Container killerPack = killer == null ? null : killer.Backpack;
 				Item[] sigils = pack.FindItemsByType( typeof( Sigil ) );
 
 				for ( int i = 0; i < sigils.Length; ++i )
@@ -1087,7 +1086,7 @@ namespace Server.Factions
 				{
 					Ethics.Player killerEPL = Ethics.Player.Find( killer );
 
-					if ( killerEPL != null && ( 100 - killerEPL.Power ) > Utility.Random( 100 ) )
+					if ( killerEPL != null && 100 - killerEPL.Power > Utility.Random( 100 ) )
 					{
 						++killerEPL.Power;
 						++killerEPL.History;
@@ -1125,7 +1124,7 @@ namespace Server.Factions
 					{
 						int powerTransfer = Math.Max( 1, victimEPL.Power / 5 );
 
-						if ( powerTransfer > ( 100 - killerEPL.Power ) )
+						if ( powerTransfer > 100 - killerEPL.Power )
 							powerTransfer = 100 - killerEPL.Power;
 
 						if ( powerTransfer > 0 )
@@ -1167,7 +1166,7 @@ namespace Server.Factions
 						victimState.KillPoints -= award;
 						killerState.KillPoints += award;
 
-						int offset = ( award != 1 ? 0 : 2 ); // for pluralization
+						int offset = award != 1 ? 0 : 2; // for pluralization
 
 						string args = String.Format( "{0}\t{1}\t{2}", award, victim.Name, killer.Name );
 
@@ -1182,7 +1181,7 @@ namespace Server.Factions
 						{
 							int powerTransfer = Math.Max( 1, victimEPL.Power / 5 );
 
-							if ( powerTransfer > ( 100 - killerEPL.Power ) )
+							if ( powerTransfer > 100 - killerEPL.Power )
 								powerTransfer = 100 - killerEPL.Power;
 
 							if ( powerTransfer > 0 )

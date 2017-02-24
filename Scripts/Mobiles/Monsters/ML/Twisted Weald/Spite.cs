@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a Spite corpse" )]
+    [CorpseName( "a Spite corpse" )]
 	public class Spite : Changeling
 	{
 		public override string DefaultName{ get{ return "Spite"; } }

@@ -1,15 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
-using Server.Items;
 using Server.Engines.Harvest;
 using Server.ContextMenus;
 using Server.Network;
 
 namespace Server.Items
 {
-	public interface IAxe
+    public interface IAxe
 	{
 		bool Axe( Mobile from, BaseAxe axe );
 	}
@@ -56,7 +53,7 @@ namespace Server.Items
 
 			int scale = GetUsesScalar();
 
-			m_UsesRemaining = ((m_UsesRemaining * 100) + (scale - 1)) / scale;
+			m_UsesRemaining = (m_UsesRemaining * 100 + (scale - 1)) / scale;
 			InvalidateProperties();
 		}
 
@@ -66,7 +63,7 @@ namespace Server.Items
 
 			int scale = GetUsesScalar();
 
-			m_UsesRemaining = ((m_UsesRemaining * scale) + 99) / 100;
+			m_UsesRemaining = (m_UsesRemaining * scale + 99) / 100;
 			InvalidateProperties();
 		}
 
@@ -154,7 +151,7 @@ namespace Server.Items
 		{
 			base.OnHit( attacker, defender, damageBonus );
 
-			if (  (attacker.Player || attacker.Body.IsHuman) && Layer == Layer.TwoHanded && (attacker.Skills[SkillName.Anatomy].Value / 400.0) >= Utility.RandomDouble() && Engines.ConPVP.DuelContext.AllowSpecialAbility( attacker, "Concussion Blow", false ) )
+			if (  (attacker.Player || attacker.Body.IsHuman) && Layer == Layer.TwoHanded && attacker.Skills[SkillName.Anatomy].Value / 400.0 >= Utility.RandomDouble() && Engines.ConPVP.DuelContext.AllowSpecialAbility( attacker, "Concussion Blow", false ) )
 			{
 				StatMod mod = defender.GetStatMod( "Concussion" );
 

@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
-using Server.Gumps;
 using Server.Items;
 
 namespace Server.Engines.Quests.Samurai
 {
-	public class HaochisGuardsman : BaseQuester
+    public class HaochisGuardsman : BaseQuester
 	{
 		[Constructable]
 		public HaochisGuardsman() : base( "the Guardsman of Daimyo Haochi" )

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class TravestysSushiPreparations : Item
+    public class TravestysSushiPreparations : Item
 	{
 		public override int LabelNumber{ get{ return 1075093; } } // Travesty's Sushi Preparations
 

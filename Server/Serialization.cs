@@ -23,16 +23,13 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using System.Reflection;
 using System.Threading;
 using System.Net;
-
-using Server;
 using Server.Guilds;
 
 namespace Server
 {
-	public abstract class GenericReader
+    public abstract class GenericReader
 	{
 		protected GenericReader() { }
 
@@ -272,14 +269,14 @@ namespace Server
 
 			while( v >= 0x80 )
 			{
-				if( (m_Index + 1) > m_Buffer.Length )
+				if( m_Index + 1 > m_Buffer.Length )
 					Flush();
 
 				m_Buffer[m_Index++] = (byte)(v | 0x80);
 				v >>= 7;
 			}
 
-			if( (m_Index + 1) > m_Buffer.Length )
+			if( m_Index + 1 > m_Buffer.Length )
 				Flush();
 
 			m_Buffer[m_Index++] = (byte)v;
@@ -308,10 +305,10 @@ namespace Server
 
 				while( charsLeft > 0 )
 				{
-					int charCount = (charsLeft > m_MaxBufferChars) ? m_MaxBufferChars : charsLeft;
+					int charCount = charsLeft > m_MaxBufferChars ? m_MaxBufferChars : charsLeft;
 					int byteLength = m_Encoding.GetBytes( value, current, charCount, m_CharacterBuffer, 0 );
 
-					if( (m_Index + byteLength) > m_Buffer.Length )
+					if( m_Index + byteLength > m_Buffer.Length )
 						Flush();
 
 					Buffer.BlockCopy( m_CharacterBuffer, 0, m_Buffer, m_Index, byteLength );
@@ -325,7 +322,7 @@ namespace Server
 			{
 				int byteLength = m_Encoding.GetBytes( value, 0, value.Length, m_CharacterBuffer, 0 );
 
-				if( (m_Index + byteLength) > m_Buffer.Length )
+				if( m_Index + byteLength > m_Buffer.Length )
 					Flush();
 
 				Buffer.BlockCopy( m_CharacterBuffer, 0, m_Buffer, m_Index, byteLength );
@@ -339,14 +336,14 @@ namespace Server
 			{
 				if( value == null )
 				{
-					if( (m_Index + 1) > m_Buffer.Length )
+					if( m_Index + 1 > m_Buffer.Length )
 						Flush();
 
 					m_Buffer[m_Index++] = 0;
 				}
 				else
 				{
-					if( (m_Index + 1) > m_Buffer.Length )
+					if( m_Index + 1 > m_Buffer.Length )
 						Flush();
 
 					m_Buffer[m_Index++] = 1;
@@ -404,7 +401,7 @@ namespace Server
 
 		public override void Write( long value )
 		{
-			if( (m_Index + 8) > m_Buffer.Length )
+			if( m_Index + 8 > m_Buffer.Length )
 				Flush();
 
 			m_Buffer[m_Index] = (byte)value;
@@ -420,7 +417,7 @@ namespace Server
 
 		public override void Write( ulong value )
 		{
-			if( (m_Index + 8) > m_Buffer.Length )
+			if( m_Index + 8 > m_Buffer.Length )
 				Flush();
 
 			m_Buffer[m_Index] = (byte)value;
@@ -436,7 +433,7 @@ namespace Server
 
 		public override void Write( int value )
 		{
-			if( (m_Index + 4) > m_Buffer.Length )
+			if( m_Index + 4 > m_Buffer.Length )
 				Flush();
 
 			m_Buffer[m_Index] = (byte)value;
@@ -448,7 +445,7 @@ namespace Server
 
 		public override void Write( uint value )
 		{
-			if( (m_Index + 4) > m_Buffer.Length )
+			if( m_Index + 4 > m_Buffer.Length )
 				Flush();
 
 			m_Buffer[m_Index] = (byte)value;
@@ -460,7 +457,7 @@ namespace Server
 
 		public override void Write( short value )
 		{
-			if( (m_Index + 2) > m_Buffer.Length )
+			if( m_Index + 2 > m_Buffer.Length )
 				Flush();
 
 			m_Buffer[m_Index] = (byte)value;
@@ -470,7 +467,7 @@ namespace Server
 
 		public override void Write( ushort value )
 		{
-			if( (m_Index + 2) > m_Buffer.Length )
+			if( m_Index + 2 > m_Buffer.Length )
 				Flush();
 
 			m_Buffer[m_Index] = (byte)value;
@@ -480,22 +477,22 @@ namespace Server
 
 		public unsafe override void Write( double value )
 		{
-			if( (m_Index + 8) > m_Buffer.Length )
+			if( m_Index + 8 > m_Buffer.Length )
 				Flush();
 
 			fixed( byte* pBuffer = m_Buffer )
-				*((double*)(pBuffer + m_Index)) = value;
+				*(double*)(pBuffer + m_Index) = value;
 
 			m_Index += 8;
 		}
 
 		public unsafe override void Write( float value )
 		{
-			if( (m_Index + 4) > m_Buffer.Length )
+			if( m_Index + 4 > m_Buffer.Length )
 				Flush();
 
 			fixed( byte* pBuffer = m_Buffer )
-				*((float*)(pBuffer + m_Index)) = value;
+				*(float*)(pBuffer + m_Index) = value;
 
 			m_Index += 4;
 		}
@@ -504,7 +501,7 @@ namespace Server
 
 		public override void Write( char value )
 		{
-			if( (m_Index + 8) > m_Buffer.Length )
+			if( m_Index + 8 > m_Buffer.Length )
 				Flush();
 
 			m_SingleCharBuffer[0] = value;
@@ -515,7 +512,7 @@ namespace Server
 
 		public override void Write( byte value )
 		{
-			if( (m_Index + 1) > m_Buffer.Length )
+			if( m_Index + 1 > m_Buffer.Length )
 				Flush();
 
 			m_Buffer[m_Index++] = value;
@@ -523,7 +520,7 @@ namespace Server
 
 		public override void Write( sbyte value )
 		{
-			if( (m_Index + 1) > m_Buffer.Length )
+			if( m_Index + 1 > m_Buffer.Length )
 				Flush();
 
 			m_Buffer[m_Index++] = (byte)value;
@@ -531,7 +528,7 @@ namespace Server
 
 		public override void Write( bool value )
 		{
-			if( (m_Index + 1) > m_Buffer.Length )
+			if( m_Index + 1 > m_Buffer.Length )
 				Flush();
 
 			m_Buffer[m_Index++] = (byte)(value ? 1 : 0);
@@ -977,9 +974,9 @@ namespace Server
 			long ticks = m_File.ReadInt64();
 			long now = DateTime.Now.Ticks;
 
-			if( ticks > 0 && (ticks+now) < 0 )
+			if( ticks > 0 && ticks+now < 0 )
 				return DateTime.MaxValue;
-			else if( ticks < 0 && (ticks+now) < 0 )
+			else if( ticks < 0 && ticks+now < 0 )
 				return DateTime.MinValue;
 
 			try { return new DateTime( now+ticks ); }

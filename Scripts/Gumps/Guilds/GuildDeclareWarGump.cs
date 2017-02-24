@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Guilds;
 using Server.Network;
 using Server.Factions;
@@ -8,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Server.Gumps
 {
-	public class GuildDeclareWarGump : GuildListGump
+    public class GuildDeclareWarGump : GuildListGump
 	{
 		public GuildDeclareWarGump( Mobile from, Guild guild, List<Guild> list )
 			: base( from, guild, true, list )
@@ -49,7 +46,7 @@ namespace Server.Gumps
 							{
 								m_Mobile.SendLocalizedMessage( 501184 ); // You cannot declare war against yourself!
 							}
-							else if ( (g.WarInvitations.Contains( m_Guild ) && m_Guild.WarDeclarations.Contains( g )) || m_Guild.IsWar( g ) )
+							else if ( g.WarInvitations.Contains( m_Guild ) && m_Guild.WarDeclarations.Contains( g ) || m_Guild.IsWar( g ) )
 							{
 								m_Mobile.SendLocalizedMessage( 501183 ); // You are already at war with that guild.
 							}

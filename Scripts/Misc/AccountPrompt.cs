@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Accounting;
 
 namespace Server.Misc
 {
-	public class AccountPrompt
+    public class AccountPrompt
 	{
 		public static void Initialize()
 		{

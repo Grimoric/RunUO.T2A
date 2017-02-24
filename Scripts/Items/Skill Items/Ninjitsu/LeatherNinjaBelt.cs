@@ -1,14 +1,11 @@
 using System;
-using Server;
-using Server.Targeting;
-using System.Collections;
 using System.Collections.Generic;
 using Server.ContextMenus;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x2790, 0x27DB )]
+    [FlipableAttribute( 0x2790, 0x27DB )]
 	public class LeatherNinjaBelt : BaseWaist, IDyable, INinjaWeapon
 	{
 		public override CraftResource DefaultResource{ get{ return CraftResource.RegularLeather; } }

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class KirinBrains : Item
+    public class KirinBrains : Item
 	{
 		public override int LabelNumber{ get{ return 1074612; } } // Ki-Rin Brains
 

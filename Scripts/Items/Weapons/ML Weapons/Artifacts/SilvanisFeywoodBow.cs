@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class SilvanisFeywoodBow : ElvenCompositeLongbow
+    public class SilvanisFeywoodBow : ElvenCompositeLongbow
 	{
 		public override int LabelNumber{ get{ return 1072955; } } // Silvani's Feywood Bow
 

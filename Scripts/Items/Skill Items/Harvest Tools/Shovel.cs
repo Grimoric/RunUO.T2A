@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Harvest;
 
 namespace Server.Items
 {
-	public class Shovel : BaseHarvestTool
+    public class Shovel : BaseHarvestTool
 	{
 		public override HarvestSystem HarvestSystem{ get{ return Mining.System; } }
 

@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Haven
 {
-	public class MilitiaCanoneer : BaseQuester
+    public class MilitiaCanoneer : BaseQuester
 	{
 		private bool m_Active;
 

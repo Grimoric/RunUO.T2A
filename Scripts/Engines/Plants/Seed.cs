@@ -1,11 +1,9 @@
 using System;
-using System.Text;
-using Server;
 using Server.Targeting;
 
 namespace Server.Engines.Plants
 {
-	public class Seed : Item
+    public class Seed : Item
 	{
 		private PlantType m_PlantType;
 		private PlantHue m_PlantHue;

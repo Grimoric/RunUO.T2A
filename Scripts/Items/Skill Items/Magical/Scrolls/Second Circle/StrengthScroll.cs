@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class StrengthScroll : SpellScroll
+    public class StrengthScroll : SpellScroll
 	{
 		[Constructable]
 		public StrengthScroll() : this( 1 )

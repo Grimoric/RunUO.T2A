@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Engines.Craft;
 using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class RecipeScroll : Item
+    public class RecipeScroll : Item
 	{
 		public override int LabelNumber { get { return 1074560; } } // recipe scroll
 

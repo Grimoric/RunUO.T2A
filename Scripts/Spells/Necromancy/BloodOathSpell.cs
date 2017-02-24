@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
-using Server.Network;
 using Server.Mobiles;
 using Server.Targeting;
 
 namespace Server.Spells.Necromancy
 {
-	public class BloodOathSpell : NecromancerSpell
+    public class BloodOathSpell : NecromancerSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Blood Oath", "In Jux Mani Xen",
@@ -76,7 +75,7 @@ namespace Server.Spells.Necromancy
 				m.FixedParticles( 0x375A, 1, 17, 9919, 33, 7, EffectLayer.Waist );
 				m.FixedParticles( 0x3728, 1, 13, 9502, 33, 7, (EffectLayer)255 );
 
-				TimeSpan duration = TimeSpan.FromSeconds( ((GetDamageSkill( Caster ) - GetResistSkill( m )) / 8) + 8 );
+				TimeSpan duration = TimeSpan.FromSeconds( (GetDamageSkill( Caster ) - GetResistSkill( m )) / 8 + 8 );
 				m.CheckSkill( SkillName.MagicResist, 0.0, 120.0 );	//Skill check for gain
 
 				timer = new ExpireTimer ( Caster, m, duration );

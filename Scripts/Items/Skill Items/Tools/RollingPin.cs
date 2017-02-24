@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	public class RollingPin : BaseTool
+    public class RollingPin : BaseTool
 	{
 		public override CraftSystem CraftSystem{ get{ return DefCooking.CraftSystem; } }
 

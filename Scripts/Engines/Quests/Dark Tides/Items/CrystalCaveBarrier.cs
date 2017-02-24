@@ -1,13 +1,8 @@
-using System;
-using Server;
-using Server.Items;
 using Server.Mobiles;
-using Server.Engines.Quests;
-using Server.Engines.Quests.Necro;
 
 namespace Server.Engines.Quests.Necro
 {
-	public class CrystalCaveBarrier : Item
+    public class CrystalCaveBarrier : Item
 	{
 		[Constructable]
 		public CrystalCaveBarrier() : base( 0x3967 )

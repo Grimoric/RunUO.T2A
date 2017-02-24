@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class EmptyToolKit : Item
+    public class EmptyToolKit : Item
 	{
 
 		[Constructable]

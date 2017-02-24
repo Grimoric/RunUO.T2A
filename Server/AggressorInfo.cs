@@ -20,12 +20,11 @@
 
 using System;
 using System.IO;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Server
 {
-	public class AggressorInfo
+    public class AggressorInfo
 	{
 		private Mobile m_Attacker, m_Defender;
 		private DateTime m_LastCombatTime;
@@ -109,7 +108,7 @@ namespace Server
 				if ( m_Queued )
 					DumpAccess();
 
-				return ( m_Attacker.Deleted || m_Defender.Deleted || DateTime.Now >= (m_LastCombatTime + m_ExpireDelay) );
+				return m_Attacker.Deleted || m_Defender.Deleted || DateTime.Now >= m_LastCombatTime + m_ExpireDelay;
 			}
 		}
 

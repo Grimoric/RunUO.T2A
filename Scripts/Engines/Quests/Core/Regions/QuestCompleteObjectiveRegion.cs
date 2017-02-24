@@ -1,17 +1,16 @@
 using System;
 using System.Xml;
-using Server;
 using Server.Regions;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests
 {
-	public class QuestCompleteObjectiveRegion : BaseRegion
+    public class QuestCompleteObjectiveRegion : BaseRegion
 	{
 		private Type m_Quest;
 		private Type m_Objective;
 
-		public Type Quest{ get{ return m_Quest ; } }
+		public Type Quest{ get{ return m_Quest; } }
 		public Type Objective{ get{ return m_Objective; } }
 
 		public QuestCompleteObjectiveRegion( XmlElement xml, Map map, Region parent ) : base( xml, map, parent )

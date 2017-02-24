@@ -1,5 +1,4 @@
 using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 using Server.Accounting;
@@ -9,7 +8,7 @@ using Server.Mobiles;
 
 namespace Server.Items
 {
-	public class SoulStone : Item, ISecurable
+    public class SoulStone : Item, ISecurable
 	{
 		public override int LabelNumber { get { return 1030899; } } // soulstone
 
@@ -298,8 +297,8 @@ namespace Server.Items
 							}
 						}
 
-						int x = ( p % 2 == 0 ) ? 10 : 260;
-						int y = ( p / 2 ) * 20 + 40;
+						int x = p % 2 == 0 ? 10 : 260;
+						int y = p / 2 * 20 + 40;
 
 						AddButton( x, y, 0xFA5, 0xFA6, i + 1, GumpButtonType.Reply, 0 );
 						AddHtmlLocalized( x + 45, y + 2, 200, 20, AosSkillBonuses.GetLabel( skill.SkillName ), 0x7FFF, false, false );

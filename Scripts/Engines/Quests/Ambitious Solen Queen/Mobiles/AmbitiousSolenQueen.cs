@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 
 namespace Server.Engines.Quests.Ambitious
 {
-	public abstract class BaseAmbitiousSolenQueen : BaseQuester
+    public abstract class BaseAmbitiousSolenQueen : BaseQuester
 	{
 		public abstract bool RedSolen{ get; }
 

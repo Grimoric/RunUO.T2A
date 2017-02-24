@@ -1,11 +1,8 @@
-using System;
-using Server;
-using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Ninja
 {
-	public class GuardianBarrier : Item
+    public class GuardianBarrier : Item
 	{
 		[Constructable]
 		public GuardianBarrier() : base( 0x3967 )

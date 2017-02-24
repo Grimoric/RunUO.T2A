@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class DecoGoldIngots : Item
+    public class DecoGoldIngots : Item
 	{
 
 		[Constructable]

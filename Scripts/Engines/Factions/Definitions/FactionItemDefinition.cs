@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Factions
 {
-	public class FactionItemDefinition
+    public class FactionItemDefinition
 	{
 		private int m_SilverCost;
 		private Type m_VendorType;

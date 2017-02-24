@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Targeting;
 using Server.Network;
 using Server.Mobiles;
 
 namespace Server.Spells.Fourth
 {
-	public class GreaterHealSpell : MagerySpell
+    public class GreaterHealSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Greater Heal", "In Vas Mani",
@@ -60,7 +58,7 @@ namespace Server.Spells.Fourth
 			}
 			else if ( m.Poisoned || Server.Items.MortalStrike.IsWounded( m ) )
 			{
-				Caster.LocalOverheadMessage( MessageType.Regular, 0x22, (Caster == m) ? 1005000 : 1010398 );
+				Caster.LocalOverheadMessage( MessageType.Regular, 0x22, Caster == m ? 1005000 : 1010398 );
 			}
 			else if ( CheckBSequence( m ) )
 			{

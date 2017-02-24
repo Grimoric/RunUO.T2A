@@ -1,9 +1,8 @@
-using System;
 using System.Collections.Generic;
 
 namespace Server.Factions
 {
-	public abstract class BaseMonolith : BaseSystemController
+    public abstract class BaseMonolith : BaseSystemController
 	{
 		private Town m_Town;
 		private Faction m_Faction;
@@ -48,7 +47,7 @@ namespace Server.Factions
 			set
 			{
 				m_Faction = value;
-				Hue = ( m_Faction == null ? 0 : m_Faction.Definition.HuePrimary );
+				Hue = m_Faction == null ? 0 : m_Faction.Definition.HuePrimary;
 			}
 		}
 

@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public enum ArmorQuality
+    public enum ArmorQuality
 	{
 		Low,
 		Regular,

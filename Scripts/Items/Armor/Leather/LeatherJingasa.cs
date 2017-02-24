@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class LeatherJingasa : BaseArmor
+    public class LeatherJingasa : BaseArmor
 	{
 		public override int BasePhysicalResistance{ get{ return 4; } }
 		public override int BaseFireResistance{ get{ return 3; } }

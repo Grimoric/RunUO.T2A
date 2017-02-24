@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Haven
 {
-	public class UzeraanTurmoilQuest : QuestSystem
+    public class UzeraanTurmoilQuest : QuestSystem
 	{
 		private static Type[] m_TypeReferenceTable = new Type[]
 			{
@@ -156,7 +155,7 @@ namespace Server.Engines.Quests.Haven
 				{
 					Container pack = from.Backpack;
 
-					return ( pack == null || pack.FindItemByType( typeof( SchmendrickScrollOfPower ) ) == null );
+					return pack == null || pack.FindItemByType( typeof( SchmendrickScrollOfPower ) ) == null;
 				}
 			}
 
@@ -178,7 +177,7 @@ namespace Server.Engines.Quests.Haven
 				{
 					Container pack = from.Backpack;
 
-					return ( pack == null || pack.FindItemByType( typeof( QuestFertileDirt ) ) == null );
+					return pack == null || pack.FindItemByType( typeof( QuestFertileDirt ) ) == null;
 				}
 			}
 
@@ -200,7 +199,7 @@ namespace Server.Engines.Quests.Haven
 				{
 					Container pack = from.Backpack;
 
-					return ( pack == null || pack.FindItemByType( typeof( QuestDaemonBlood ) ) == null );
+					return pack == null || pack.FindItemByType( typeof( QuestDaemonBlood ) ) == null;
 				}
 			}
 
@@ -222,7 +221,7 @@ namespace Server.Engines.Quests.Haven
 				{
 					Container pack = from.Backpack;
 
-					return ( pack == null || pack.FindItemByType( typeof( QuestDaemonBone ) ) == null );
+					return pack == null || pack.FindItemByType( typeof( QuestDaemonBone ) ) == null;
 				}
 			}
 

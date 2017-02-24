@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Items;
 
 namespace Server.Spells
 {
-	public abstract class MagerySpell : Spell
+    public abstract class MagerySpell : Spell
 	{
 		public MagerySpell( Mobile caster, Item scroll, SpellInfo info )
 			: base( caster, scroll, info )
@@ -52,7 +51,7 @@ namespace Server.Spells
 		public override double GetResistSkill( Mobile m )
 		{
 			int maxSkill = (1 + (int)Circle) * 10;
-			maxSkill += (1 + ((int)Circle / 6)) * 25;
+			maxSkill += (1 + (int)Circle / 6) * 25;
 
 			if( m.Skills[SkillName.MagicResist].Value < maxSkill )
 				m.CheckSkill( SkillName.MagicResist, 0.0, m.Skills[SkillName.MagicResist].Cap );
@@ -73,18 +72,18 @@ namespace Server.Spells
 				return true;
 
 			int maxSkill = (1 + (int)Circle) * 10;
-			maxSkill += (1 + ((int)Circle / 6)) * 25;
+			maxSkill += (1 + (int)Circle / 6) * 25;
 
 			if( target.Skills[SkillName.MagicResist].Value < maxSkill )
 				target.CheckSkill( SkillName.MagicResist, 0.0, target.Skills[SkillName.MagicResist].Cap );
 
-			return (n >= Utility.RandomDouble());
+			return n >= Utility.RandomDouble();
 		}
 
 		public virtual double GetResistPercentForCircle( Mobile target, SpellCircle circle )
 		{
 			double firstPercent = target.Skills[SkillName.MagicResist].Value / 5.0;
-			double secondPercent = target.Skills[SkillName.MagicResist].Value - (((Caster.Skills[CastSkill].Value - 20.0) / 5.0) + (1 + (int)circle) * 5.0);
+			double secondPercent = target.Skills[SkillName.MagicResist].Value - ((Caster.Skills[CastSkill].Value - 20.0) / 5.0 + (1 + (int)circle) * 5.0);
 
 			return (firstPercent > secondPercent ? firstPercent : secondPercent) / 2.0; // Seems should be about half of what stratics says.
 		}
@@ -99,7 +98,7 @@ namespace Server.Spells
 			if( Scroll is BaseWand )
 				return TimeSpan.Zero;
 
-			return TimeSpan.FromSeconds( 0.5 + (0.25 * (int)Circle) );
+			return TimeSpan.FromSeconds( 0.5 + 0.25 * (int)Circle );
 		}
 
 		public override TimeSpan CastDelayBase

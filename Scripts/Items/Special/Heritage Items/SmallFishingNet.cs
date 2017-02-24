@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[Flipable( 0x1EA3, 0x1EA4 )]
+    [Flipable( 0x1EA3, 0x1EA4 )]
 	public class SmallFishingNetComponent : AddonComponent
 	{
 		public override int LabelNumber { get { return 1076286; } } // Small Fish Net

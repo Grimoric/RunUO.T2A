@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Engines.Quests.Naturalist
 {
-	public class NestArea
+    public class NestArea
 	{
 		private static readonly NestArea[] m_Areas = new NestArea[]
 			{

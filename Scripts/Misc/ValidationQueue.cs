@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Server;
 
 namespace Server
 {
-	public delegate void ValidationEventHandler();
+    public delegate void ValidationEventHandler();
 
 	public static class ValidationQueue
 	{

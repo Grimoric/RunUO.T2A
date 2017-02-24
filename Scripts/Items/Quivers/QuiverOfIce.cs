@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class QuiverOfIce : ElvenQuiver
+    public class QuiverOfIce : ElvenQuiver
 	{
 		public override int LabelNumber{ get{ return 1073110; } } // quiver of ice
 	

@@ -1,10 +1,9 @@
 using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Second
 {
-	public class CunningSpell : MagerySpell
+    public class CunningSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Cunning", "Uus Wis",

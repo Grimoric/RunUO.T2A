@@ -1,17 +1,15 @@
 using System;
-using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using Server.Network;
 using Server.Prompts;
 using Server.Mobiles;
 using Server.Multis;
-using Server.Multis.Deeds;
 using Server.Items;
 
 namespace Server.Gumps
 {
-	public enum HouseGumpPageAOS
+    public enum HouseGumpPageAOS
 	{
 		Information,
 		Security,
@@ -73,7 +71,7 @@ namespace Server.Gumps
 
 		public void AddPageButton( int x, int y, int buttonID, int number, HouseGumpPageAOS page )
 		{
-			bool isSelection = ( m_Page == page );
+			bool isSelection = m_Page == page;
 
 			AddButton( x, y, isSelection ? 4006 : 4005, 4007, buttonID, GumpButtonType.Reply, 0 );
 			AddHtmlLocalized( x + 45, y, 200, 20, number, isSelection ? SelectedColor : LabelColor, false, false );
@@ -104,9 +102,9 @@ namespace Server.Gumps
 
 			for ( int i = 0; i < list.Count; ++i )
 			{
-				int xoffset = ((index % 20) / 10) * 200;
-				int yoffset = (index % 10) * 20;
-				int page = 1 + (index / 20);
+				int xoffset = index % 20 / 10 * 200;
+				int yoffset = index % 10 * 20;
+				int page = 1 + index / 20;
 
 				if ( page != lastPage )
 				{
@@ -164,7 +162,7 @@ namespace Server.Gumps
 
 		public int GetButtonID( int type, int index )
 		{
-			return 1 + (index * 15) + type;
+			return 1 + index * 15 + type;
 		}
 
 		private static int[] m_HangerNumbers = new int[]
@@ -234,11 +232,11 @@ namespace Server.Gumps
 
 				if ( lines != null )
 				{
-					for ( int i = 0, y = (114 - (lines.Count * 14)) / 2; i < lines.Count; ++i, y += 14 )
+					for ( int i = 0, y = (114 - lines.Count * 14) / 2; i < lines.Count; ++i, y += 14 )
 					{
 						string s = (string)lines[i];
 
-						AddLabel( 10 + ((160 - (s.Length * 8)) / 2), y, 0, s );
+						AddLabel( 10 + (160 - s.Length * 8) / 2, y, 0, s );
 					}
 				}
 			}
@@ -280,7 +278,7 @@ namespace Server.Gumps
 
 					AddHtmlLocalized( 20, 170, 380, 20, 1018032, SelectedColor, false, false ); // This house is properly placed.
 					AddHtmlLocalized( 20, 190, 380, 20, 1018035, SelectedColor, false, false ); // This house is of modern design.
-					AddHtmlLocalized( 20, 210, 380, 20, (house is HouseFoundation) ? 1060681 : 1060680, SelectedColor, false, false ); // This is a (pre | custom)-built house.
+					AddHtmlLocalized( 20, 210, 380, 20, house is HouseFoundation ? 1060681 : 1060680, SelectedColor, false, false ); // This is a (pre | custom)-built house.
 					AddHtmlLocalized( 20, 230, 380, 20, house.Public ? 1060678 : 1060679, SelectedColor, false, false ); // This house is (private | open to the public).
 
 					switch ( house.DecayType )
@@ -376,7 +374,7 @@ namespace Server.Gumps
 					int maxLockdowns = house.GetAosMaxLockdowns();
 					int curLockdowns = house.GetAosCurLockdowns();
 
-					int bonusStorage = (int)((house.BonusStorageScalar * 100)-100);
+					int bonusStorage = (int)(house.BonusStorageScalar * 100-100);
 
 					if( bonusStorage > 0 )
 					{
@@ -435,14 +433,14 @@ namespace Server.Gumps
 				}
 				case HouseGumpPageAOS.Customize:
 				{
-					bool isCustomizable = isOwner && ( house is HouseFoundation );
+					bool isCustomizable = isOwner && house is HouseFoundation;
 
-					AddButtonLabeled( 10, 120, GetButtonID( 5, 0 ), 1060759, isOwner && !isCustomizable && ( house.ConvertEntry != null ) ); // Convert Into Customizable House
+					AddButtonLabeled( 10, 120, GetButtonID( 5, 0 ), 1060759, isOwner && !isCustomizable && house.ConvertEntry != null ); // Convert Into Customizable House
 					AddButtonLabeled( 10, 160, GetButtonID( 5, 1 ), 1060765, isOwner && isCustomizable ); // Customize This House
 					AddButtonLabeled( 10, 180, GetButtonID( 5, 2 ), 1060760, isOwner && house.MovingCrate != null ); // Relocate Moving Crate
 					AddButtonLabeled( 10, 210, GetButtonID( 5, 3 ), 1060761, isOwner && house.Public ); // Change House Sign
 					AddButtonLabeled( 10, 230, GetButtonID( 5, 4 ), 1060762, isOwner && isCustomizable ); // Change House Sign Hanger
-					AddButtonLabeled( 10, 250, GetButtonID( 5, 5 ), 1060763, isOwner && isCustomizable && ( ((HouseFoundation)house).Signpost != null ) ); // Change Signpost
+					AddButtonLabeled( 10, 250, GetButtonID( 5, 5 ), 1060763, isOwner && isCustomizable && ((HouseFoundation)house).Signpost != null ); // Change Signpost
 					AddButtonLabeled( 10, 280, GetButtonID( 5, 6 ), 1062004, isOwner && isCustomizable ); // Change Foundation Style
 					AddButtonLabeled( 10, 310, GetButtonID( 5, 7 ), 1060764, isCoOwner ); // Rename House
 
@@ -460,8 +458,8 @@ namespace Server.Gumps
 				{
 					for ( int i = 0; i < m_HangerNumbers.Length; ++i )
 					{
-						int x = 50 + ((i % 3) * 100);
-						int y = 180 + ((i / 3) * 80);
+						int x = 50 + i % 3 * 100;
+						int y = 180 + i / 3 * 80;
 
 						AddButton( x, y, 4005, 4007, GetButtonID( 7, i ), GumpButtonType.Reply, 0 );
 						AddItem( x + 20, y, m_HangerNumbers[i] );
@@ -473,8 +471,8 @@ namespace Server.Gumps
 				{
 					for ( int i = 0; i < m_FoundationNumbers.Length; ++i )
 					{
-						int x = 15 + ((i % 5) * 80);
-						int y = 180 + ((i / 5) * 100);
+						int x = 15 + i % 5 * 80;
+						int y = 180 + i / 5 * 100;
 
 						AddButton( x, y, 4005, 4007, GetButtonID( 8, i ), GumpButtonType.Reply, 0 );
 						AddItem( x + 25, y, m_FoundationNumbers[i] );
@@ -491,7 +489,7 @@ namespace Server.Gumps
 						// Add standard signs
 						for ( int i = 0; i < 54; ++i )
 						{
-							_HouseSigns.Add( 2980 + ( i * 2 ) );
+							_HouseSigns.Add( 2980 + i * 2 );
 						}
 
 						// Add library and beekeeper signs ( ML )
@@ -507,12 +505,12 @@ namespace Server.Gumps
 					{
 						AddPage( i + 1 );
 
-						AddButton( 10, 360, 4005, 4007, 0, GumpButtonType.Page, ((i + 1) % pages ) + 1 );
+						AddButton( 10, 360, 4005, 4007, 0, GumpButtonType.Page, (i + 1) % pages + 1 );
 
-						for ( int j = 0; j < signsPerPage && totalSigns - ( signsPerPage * i ) - j > 0; ++j )
+						for ( int j = 0; j < signsPerPage && totalSigns - signsPerPage * i - j > 0; ++j )
 						{
-							int x = 30 + ((j % 6) * 60);
-							int y = 130 + ((j / 6) * 60);
+							int x = 30 + j % 6 * 60;
+							int y = 130 + j / 6 * 60;
 
 							AddButton( x, y, 4005, 4007, GetButtonID( 9, index ), GumpButtonType.Reply, 0 );
 							AddItem( x + 20, y, _HouseSigns[index++] );
@@ -577,12 +575,12 @@ namespace Server.Gumps
 					{
 						AddPage( i + 1 );
 
-						AddButton( 10, 360, 4005, 4007, 0, GumpButtonType.Page, ((i + 1) % 2) + 1 );
+						AddButton( 10, 360, 4005, 4007, 0, GumpButtonType.Page, (i + 1) % 2 + 1 );
 
 						for ( int j = 0; j < 16 && index < m_PostNumbers.Length; ++j )
 						{
-							int x = 15 + ((j % 8) * 50);
-							int y = 130 + ((j / 8) * 110);
+							int x = 15 + j % 8 * 50;
+							int y = 130 + j / 8 * 110;
 
 							AddButton( x, y, 4005, 4007, GetButtonID( 14, index ), GumpButtonType.Reply, 0 );
 							AddItem( x + 10, y, m_PostNumbers[index++] );
@@ -831,7 +829,7 @@ namespace Server.Gumps
 				return;
 
 			HouseFoundation foundation = m_House as HouseFoundation;
-			bool isCustomizable = ( foundation != null );
+			bool isCustomizable = foundation != null;
 
 			int val = info.ButtonID - 1;
 

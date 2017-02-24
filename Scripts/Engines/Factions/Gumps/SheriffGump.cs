@@ -1,15 +1,12 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Mobiles;
 using Server.Multis;
 using Server.Network;
-using Server.Targeting;
 using System.Collections.Generic;
 
 namespace Server.Factions
 {
-	public class SheriffGump : FactionGump
+    public class SheriffGump : FactionGump
 	{
 		private PlayerMobile m_From;
 		private Faction m_Faction;
@@ -18,7 +15,7 @@ namespace Server.Factions
 		private void CenterItem( int itemID, int x, int y, int w, int h )
 		{
 			Rectangle2D rc = ItemBounds.Table[itemID];
-			AddItem( x + ((w - rc.Width) / 2) - rc.X, y + ((h - rc.Height) / 2) - rc.Y, itemID );
+			AddItem( x + (w - rc.Width) / 2 - rc.X, y + (h - rc.Height) / 2 - rc.Y, itemID );
 		}
 
 		public SheriffGump( PlayerMobile from, Faction faction, Town town ) : base( 50, 50 )
@@ -87,7 +84,7 @@ namespace Server.Factions
 			for ( int i = 0; i < guardLists.Count; ++i )
 			{
 				GuardList guardList = guardLists[i];
-				int y = 90 + (i * 60);
+				int y = 90 + i * 60;
 
 				AddButton( 20, y, 4005, 4007, 0, GumpButtonType.Page, 4 + i );
 				CenterItem( guardList.Definition.ItemID, 50, y - 20, 70, 60 );

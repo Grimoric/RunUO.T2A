@@ -1,14 +1,11 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Gumps;
-using Server.Mobiles;
 using Server.Network;
 using Server.Engines.Craft;
 
 namespace Server.Factions
 {
-	public class FactionImbueGump : FactionGump
+    public class FactionImbueGump : FactionGump
 	{
 		private Item m_Item;
 		private Mobile m_Mobile;
@@ -97,7 +94,7 @@ namespace Server.Factions
 				m_Mobile.SendGump( new CraftGump( m_Mobile, m_CraftSystem, m_Tool, m_Notice ) );
 			else if ( m_Notice is string )
 				m_Mobile.SendMessage( (string) m_Notice );
-			else if ( m_Notice is int && ((int)m_Notice) > 0 )
+			else if ( m_Notice is int && (int)m_Notice > 0 )
 				m_Mobile.SendLocalizedMessage( (int) m_Notice );
 		}
 	}

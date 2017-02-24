@@ -1,11 +1,6 @@
-using System;
-using Server;
-using Server.Gumps;
-using Server.Network;
-
 namespace Server.Chat
 {
-	public class ChatSystem
+    public class ChatSystem
 	{
 		public static void Initialize()
 		{

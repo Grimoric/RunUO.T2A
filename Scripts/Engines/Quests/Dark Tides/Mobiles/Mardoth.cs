@@ -1,14 +1,10 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
-using Server.Engines.Quests;
-using Server.Engines.Quests.Necro;
 
 namespace Server.Engines.Quests.Necro
 {
-	public class Mardoth : BaseQuester
+    public class Mardoth : BaseQuester
 	{
 		[Constructable]
 		public Mardoth() : base( "the Ancient Necromancer" )
@@ -96,9 +92,9 @@ namespace Server.Engines.Quests.Necro
 			DarkTidesQuest qs = to.Quest as DarkTidesQuest;
 
 			if ( qs == null )
-				return ( to.Quest == null && QuestSystem.CanOfferQuest( to, typeof( DarkTidesQuest ) ) );
+				return to.Quest == null && QuestSystem.CanOfferQuest( to, typeof( DarkTidesQuest ) );
 
-			return ( qs.FindObjective( typeof( FindMardothAboutVaultObjective ) ) != null );
+			return qs.FindObjective( typeof( FindMardothAboutVaultObjective ) ) != null;
 		}
 
 		public override void OnTalk( PlayerMobile player, bool contextMenu )

@@ -1,12 +1,10 @@
 using System;
-using Server;
-using Server.Misc;
 using Server.Items;
 using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a betrayer corpse" )]
+    [CorpseName( "a betrayer corpse" )]
 	public class Betrayer : BaseCreature
 	{
 		private bool m_Stunning;

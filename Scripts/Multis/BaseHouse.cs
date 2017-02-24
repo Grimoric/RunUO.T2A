@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Misc;
 using Server.Mobiles;
@@ -13,11 +12,10 @@ using Server.Accounting;
 using Server.ContextMenus;
 using Server.Gumps;
 using Server.Guilds;
-using Server.Engines.BulkOrders;
 
 namespace Server.Multis
 {
-	public abstract class BaseHouse : BaseMulti
+    public abstract class BaseHouse : BaseMulti
 	{
 		public static bool NewVendorSystem{ get{ return false; } } // Is new player vendor system enabled?
 
@@ -112,10 +110,10 @@ namespace Server.Multis
 
 		public bool IsNewer( BaseHouse check, BaseHouse house )
 		{
-			DateTime checkTime = ( check.LastTraded > check.BuiltOn ? check.LastTraded : check.BuiltOn );
-			DateTime houseTime = ( house.LastTraded > house.BuiltOn ? house.LastTraded : house.BuiltOn );
+			DateTime checkTime = check.LastTraded > check.BuiltOn ? check.LastTraded : check.BuiltOn;
+			DateTime houseTime = house.LastTraded > house.BuiltOn ? house.LastTraded : house.BuiltOn;
 
-			return ( checkTime > houseTime );
+			return checkTime > houseTime;
 		}
 
 		public virtual bool CanDecay
@@ -124,7 +122,7 @@ namespace Server.Multis
 			{
 				DecayType type = this.DecayType;
 
-				return ( type == DecayType.Condemned || type == DecayType.ManualRefresh );
+				return type == DecayType.Condemned || type == DecayType.ManualRefresh;
 			}
 		}
 
@@ -149,7 +147,7 @@ namespace Server.Multis
 				{
 					DecayLevel stage = m_CurrentStage;
 
-					if ( stage == DecayLevel.Ageless || ( DynamicDecay.Decays( stage ) && m_NextDecayStage <= DateTime.Now ) )
+					if ( stage == DecayLevel.Ageless || DynamicDecay.Decays( stage ) && m_NextDecayStage <= DateTime.Now )
 						SetDynamicDecay( ++stage );
 
 					if ( stage == DecayLevel.Collapsed && ( HasRentedVendors || VendorInventories.Count > 0 ) )
@@ -177,10 +175,10 @@ namespace Server.Multis
 		public DecayLevel GetOldDecayLevel()
 		{
 			TimeSpan timeAfterRefresh = DateTime.Now - m_LastRefreshed;
-			int percent = (int) ((timeAfterRefresh.Ticks * 1000) / DecayPeriod.Ticks);
+			int percent = (int) (timeAfterRefresh.Ticks * 1000 / DecayPeriod.Ticks);
 
 			if ( percent >= 1000 ) // 100.0%
-				return ( HasRentedVendors || VendorInventories.Count > 0 ) ? DecayLevel.DemolitionPending : DecayLevel.Collapsed;
+				return HasRentedVendors || VendorInventories.Count > 0 ? DecayLevel.DemolitionPending : DecayLevel.Collapsed;
 			else if ( percent >= 950 ) // 95.0% - 99.9%
 				return DecayLevel.IDOC;
 			else if ( percent >= 750 ) // 75.0% - 94.9%
@@ -210,7 +208,7 @@ namespace Server.Multis
 			if ( m_Sign != null )
 				m_Sign.InvalidateProperties();
 
-			return ( oldLevel > DecayLevel.LikeNew );
+			return oldLevel > DecayLevel.LikeNew;
 		}
 
 		public virtual bool CheckDecay()
@@ -401,14 +399,14 @@ namespace Server.Multis
 			if ( !NewVendorSystem )
 				return CheckAosLockdowns( 10 );
 
-			return ( (PlayerVendors.Count + VendorRentalContracts.Count) < GetNewVendorSystemMaxVendors() );
+			return PlayerVendors.Count + VendorRentalContracts.Count < GetNewVendorSystemMaxVendors();
 		}
 
 		public const int MaximumBarkeepCount = 2;
 
 		public virtual bool CanPlaceNewBarkeep()
 		{
-			return ( PlayerBarkeepers.Count < MaximumBarkeepCount );
+			return PlayerBarkeepers.Count < MaximumBarkeepCount;
 		}
 
 		public static void IsThereVendor( Point3D location, Map map, out bool vendor, out bool rentalContract )
@@ -897,14 +895,14 @@ namespace Server.Multis
 
 		public virtual bool CheckAosLockdowns( int need )
 		{
-			return ( (GetAosCurLockdowns() + need) <= GetAosMaxLockdowns() );
+			return GetAosCurLockdowns() + need <= GetAosMaxLockdowns();
 		}
 
 		public virtual bool CheckAosStorage( int need )
 		{
 			int fromSecures, fromVendors, fromLockdowns, fromMovingCrate;
 
-			return ( (GetAosCurSecures( out fromSecures, out fromVendors, out fromLockdowns, out fromMovingCrate ) + need) <= GetAosMaxSecures() );
+			return GetAosCurSecures( out fromSecures, out fromVendors, out fromLockdowns, out fromMovingCrate ) + need <= GetAosMaxSecures();
 		}
 
 		public static void Configure()
@@ -934,21 +932,21 @@ namespace Server.Multis
 		{
 			BaseHouse house = FindHouseAt( item );
 
-			return ( house != null && house.IsLockedDown( item ) );
+			return house != null && house.IsLockedDown( item );
 		}
 
 		public static bool CheckSecured( Item item )
 		{
 			BaseHouse house = FindHouseAt( item );
 
-			return ( house != null && house.IsSecure( item ) );
+			return house != null && house.IsSecure( item );
 		}
 
 		public static bool CheckLockedDownOrSecured( Item item )
 		{
 			BaseHouse house = FindHouseAt( item );
 
-			return ( house != null && (house.IsSecure( item ) || house.IsLockedDown( item )) );
+			return house != null && (house.IsSecure( item ) || house.IsLockedDown( item ));
 		}
 
 		public static List<BaseHouse> GetHouses( Mobile m )
@@ -1013,7 +1011,7 @@ namespace Server.Multis
 			}
 
 			if ( house.IsLockedDown( item ) )
-				return house.IsCoOwner( m ) && (item is Container);
+				return house.IsCoOwner( m ) && item is Container;
 
 			return true;
 		}
@@ -1130,7 +1128,7 @@ namespace Server.Multis
 			if ( x < 0 || x >= mcl.Width || y < 0 || y >= mcl.Height )
 				return false;
 
-			if ( this is HouseFoundation && y < (mcl.Height-1) && p.Z >= this.Z )
+			if ( this is HouseFoundation && y < mcl.Height-1 && p.Z >= this.Z )
 				return true;
 
 			StaticTile[] tiles = mcl.Tiles[x][y];
@@ -1146,12 +1144,12 @@ namespace Server.Multis
 					continue;
 
 				// Signs and signposts are not considered part of the multi
-				if ( (id >= 0xB95 && id <= 0xC0E) || (id >= 0xC43 && id <= 0xC44) )
+				if ( id >= 0xB95 && id <= 0xC0E || id >= 0xC43 && id <= 0xC44 )
 					continue;
 
 				int tileZ = tile.Z + this.Z;
 
-				if ( p.Z == tileZ || (p.Z + height) > tileZ )
+				if ( p.Z == tileZ || p.Z + height > tileZ )
 					return true;
 			}
 
@@ -1474,7 +1472,7 @@ namespace Server.Multis
 				if ( door.Open )
 					p = new Point3D( p.X - door.Offset.X, p.Y - door.Offset.Y, p.Z - door.Offset.Z );
 
-				if ( (from.Z + 16) >= p.Z && (p.Z + 16) >= from.Z )
+				if ( @from.Z + 16 >= p.Z && p.Z + 16 >= from.Z )
 				{
 					if ( from.InRange( p, 1 ) )
 					{
@@ -1548,7 +1546,7 @@ namespace Server.Multis
 			if ( !locked )
 				i.SetLastMoved();
 
-			if ( (i is Container) && (!locked || !(i is BaseBoard || i is Aquarium || i is FishBowl)) )
+			if ( i is Container && (!locked || !(i is BaseBoard || i is Aquarium || i is FishBowl)) )
 			{
 				foreach ( Item c in i.Items )
 					SetLockdown( c, locked, checkContains );
@@ -1592,7 +1590,7 @@ namespace Server.Multis
 				{
 					m.SendLocalizedMessage( 501736 ); // You must lockdown the container first!
 				}
-				else if ( !(item is VendorRentalContract) && ( IsAosRules ? (!CheckAosLockdowns( amt ) || !CheckAosStorage( amt )) : (this.LockDownCount + amt) > m_MaxLockDowns ) )
+				else if ( !(item is VendorRentalContract) && ( IsAosRules ? !CheckAosLockdowns( amt ) || !CheckAosStorage( amt ) : this.LockDownCount + amt > m_MaxLockDowns ) )
 				{
 					m.SendLocalizedMessage( 1005379 );//That would exceed the maximum lock down limit for this house
 				}
@@ -1642,9 +1640,9 @@ namespace Server.Multis
 
 				string houseName, owner, location;
 
-				houseName = ( m_House == null ? "an unnamed house" : m_House.Sign.GetName() );
+				houseName = m_House == null ? "an unnamed house" : m_House.Sign.GetName();
 
-				Mobile houseOwner = ( m_House == null ? null : m_House.Owner );
+				Mobile houseOwner = m_House == null ? null : m_House.Owner;
 
 				if ( houseOwner == null )
 					owner = "nobody";
@@ -1739,7 +1737,7 @@ namespace Server.Multis
 		{
 			bool isValid = true;
 			Item sign = m_Sign;
-			Point3D p = ( sign == null ? Point3D.Zero : sign.GetWorldLocation() );
+			Point3D p = sign == null ? Point3D.Zero : sign.GetWorldLocation();
 
 			if ( from.Map != Map || to.Map != Map )
 				isValid = false;
@@ -1951,7 +1949,7 @@ namespace Server.Multis
 					// The maximum number of secure items has been reached :
 					m.SendLocalizedMessage( 1008142, true, MaxSecures.ToString() );
 				}
-				else if ( IsAosRules ? !CheckAosLockdowns( 1 ) : ((LockDownCount + 125) >= MaxLockDowns) )
+				else if ( IsAosRules ? !CheckAosLockdowns( 1 ) : LockDownCount + 125 >= MaxLockDowns )
 				{
 					m.SendLocalizedMessage( 1005379 ); // That would exceed the maximum lock down limit for this house
 				}
@@ -1978,7 +1976,7 @@ namespace Server.Multis
 
 		public virtual bool IsCombatRestricted( Mobile m )
 		{
-			if ( m == null || !m.Player || m.AccessLevel >= AccessLevel.GameMaster || !IsAosRules || ( m_Owner != null && m_Owner.AccessLevel >= AccessLevel.GameMaster ))
+			if ( m == null || !m.Player || m.AccessLevel >= AccessLevel.GameMaster || !IsAosRules || m_Owner != null && m_Owner.AccessLevel >= AccessLevel.GameMaster)
 				return false;
 
 			for ( int i = 0; i < m.Aggressed.Count; ++i )
@@ -1988,7 +1986,7 @@ namespace Server.Multis
 				Guild attackerGuild = m.Guild as Guild;
 				Guild defenderGuild = info.Defender.Guild as Guild;
 
-				if ( info.Defender.Player && info.Defender.Alive && (DateTime.Now - info.LastCombatTime) < HouseRegion.CombatHeatDelay && (attackerGuild == null || defenderGuild == null || defenderGuild != attackerGuild && !defenderGuild.IsEnemy( attackerGuild )) )
+				if ( info.Defender.Player && info.Defender.Alive && DateTime.Now - info.LastCombatTime < HouseRegion.CombatHeatDelay && (attackerGuild == null || defenderGuild == null || defenderGuild != attackerGuild && !defenderGuild.IsEnemy( attackerGuild )) )
 					return true;
 			}
 
@@ -2065,7 +2063,7 @@ namespace Server.Multis
 				return;
 			}
 
-			if ( IsAosRules ? !CheckAosLockdowns( 1 ) : ((LockDownCount + 1) > m_MaxLockDowns) )
+			if ( IsAosRules ? !CheckAosLockdowns( 1 ) : LockDownCount + 1 > m_MaxLockDowns )
 			{
 				from.SendLocalizedMessage( 1005379 );//That would exceed the maximum lock down limit for this house
 				return;
@@ -2090,7 +2088,7 @@ namespace Server.Multis
 				if ( door.Open )
 					p = new Point3D( p.X - door.Offset.X, p.Y - door.Offset.Y, p.Z - door.Offset.Z );
 
-				if ( (from.Z + 16) >= p.Z && (p.Z + 16) >= from.Z )
+				if ( @from.Z + 16 >= p.Z && p.Z + 16 >= from.Z )
 				{
 					if ( from.InRange( p, 1 ) )
 					{
@@ -2401,7 +2399,7 @@ namespace Server.Multis
 			{
 				writer.Write( (Point3D) relEntity.RelativeLocation );
 
-				if ( ( relEntity.Entity is Item && ((Item)relEntity.Entity).Deleted ) || ( relEntity.Entity is Mobile && ((Mobile)relEntity.Entity).Deleted ) )
+				if ( relEntity.Entity is Item && ((Item)relEntity.Entity).Deleted || relEntity.Entity is Mobile && ((Mobile)relEntity.Entity).Deleted )
 					writer.Write( (int) Serial.MinusOne );
 				else
 					writer.Write( (int) relEntity.Entity.Serial );
@@ -2474,7 +2472,7 @@ namespace Server.Multis
 					{
 						Item child = children[j];
 
-						if ( child.Decays && !child.IsLockedDown && !child.IsSecure && (child.LastMoved + child.DecayTime) <= DateTime.Now )
+						if ( child.Decays && !child.IsLockedDown && !child.IsSecure && child.LastMoved + child.DecayTime <= DateTime.Now )
 							Timer.DelayCall( TimeSpan.Zero, new TimerCallback( child.Delete ) );
 					}
 				}
@@ -2757,7 +2755,7 @@ namespace Server.Multis
 				bool canClaim = false;
 
 				if ( trans == null )
-					canClaim = ( house.CoOwners.Count > 0 );
+					canClaim = house.CoOwners.Count > 0;
 				/*{
 					for ( int j = 0; j < house.CoOwners.Count; ++j )
 					{
@@ -3265,7 +3263,7 @@ namespace Server.Multis
 			if( m == null || Owner == null || Owner.Guild == null )
 				return false;
 
-			return ( m.Guild == Owner.Guild );
+			return m.Guild == Owner.Guild;
 		}
 
 		public void RemoveKeys( Mobile m )
@@ -3339,7 +3337,7 @@ namespace Server.Multis
 			if ( m == null || m_Friends == null )
 				return false;
 
-			return ( IsCoOwner( m ) || m_Friends.Contains( m ) );
+			return IsCoOwner( m ) || m_Friends.Contains( m );
 		}
 
 		public bool IsBanned( Mobile m )
@@ -3370,7 +3368,7 @@ namespace Server.Multis
 			if ( m == null )
 				return false;
 
-			if ( m.AccessLevel > AccessLevel.Player || IsFriend( m ) || ( m_Access != null && m_Access.Contains( m ) ) )
+			if ( m.AccessLevel > AccessLevel.Player || IsFriend( m ) || m_Access != null && m_Access.Contains( m ) )
 				return true;
 
 			if ( m is BaseCreature )
@@ -3390,7 +3388,7 @@ namespace Server.Multis
 					if ( m == null )
 						return false;
 
-					if ( m.AccessLevel > AccessLevel.Player || IsFriend( m ) || ( m_Access != null && m_Access.Contains( m ) ) )
+					if ( m.AccessLevel > AccessLevel.Player || IsFriend( m ) || m_Access != null && m_Access.Contains( m ) )
 						return true;
 				}
 			}
@@ -3406,7 +3404,7 @@ namespace Server.Multis
 			if ( m_LockDowns == null )
 				return false;
 
-			return ( m_LockDowns.Contains( check ) || VendorRentalContracts.Contains( check ) );
+			return m_LockDowns.Contains( check ) || VendorRentalContracts.Contains( check );
 		}
 
 		public new bool IsSecure( Item item )
@@ -3420,7 +3418,7 @@ namespace Server.Multis
 			bool contains = false;
 
 			for ( int i = 0; !contains && i < m_Secures.Count; ++i )
-				contains = ( ((SecureInfo)m_Secures[i]).Item == item );
+				contains = ((SecureInfo)m_Secures[i]).Item == item;
 
 			return contains;
 		}
@@ -3881,7 +3879,7 @@ namespace Server.Multis
 				bool isOwned = house.Doors.Contains( item );
 
 				if ( !isOwned )
-					isOwned = ( house is HouseFoundation && ((HouseFoundation)house).IsFixture( item ) );
+					isOwned = house is HouseFoundation && ((HouseFoundation)house).IsFixture( item );
 
 				if ( !isOwned )
 					isOwned = house.IsLockedDown( item );
@@ -3941,7 +3939,7 @@ namespace Server.Multis
 
 		public override bool AllowHousing( Mobile from, Point3D p )
 		{
-			return ( from == m_RegionOwner || AccountHandler.CheckAccount( from, m_RegionOwner ) );
+			return @from == m_RegionOwner || AccountHandler.CheckAccount( @from, m_RegionOwner );
 		}
 	}
 }

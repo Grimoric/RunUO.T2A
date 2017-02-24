@@ -1,18 +1,14 @@
 using System;
-using System.Collections.Generic;
-using Server;
-using Server.ContextMenus;
 using Server.Engines.MLQuests.Objectives;
 using Server.Engines.MLQuests.Rewards;
 using Server.Items;
-using Server.Misc;
 using Server.Mobiles;
 
 namespace Server.Engines.MLQuests.Definitions
 {
-	#region Quests
+    #region Quests
 
-	public class SplitEnds : MLQuest
+    public class SplitEnds : MLQuest
 	{
 		public SplitEnds()
 		{
@@ -170,7 +166,7 @@ namespace Server.Engines.MLQuests.Definitions
 
 			public override bool CheckItem( Item item )
 			{
-				return ( item.ItemID == 6585 ); // Only large pieces count
+				return item.ItemID == 6585; // Only large pieces count
 			}
 		}
 	}

@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Spells
 {
-	public enum SpellCircle
+    public enum SpellCircle
 	{
 		First,
 		Second,

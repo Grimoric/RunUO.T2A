@@ -1,5 +1,4 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
@@ -7,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Server.Factions
 {
-	public class Sigil : BaseSystemController
+    public class Sigil : BaseSystemController
 	{
 		public const int OwnershipHue = 0xB;
 
@@ -93,30 +92,30 @@ namespace Server.Factions
 		[CommandProperty( AccessLevel.Counselor )]
 		public bool IsBeingCorrupted
 		{
-			get{ return ( m_LastMonolith is StrongholdMonolith && m_LastMonolith.Faction == m_Corrupting && m_Corrupting != null ); }
+			get{ return m_LastMonolith is StrongholdMonolith && m_LastMonolith.Faction == m_Corrupting && m_Corrupting != null; }
 		}
 
 		[CommandProperty( AccessLevel.Counselor )]
 		public bool IsCorrupted
 		{
-			get{ return ( m_Corrupted != null ); }
+			get{ return m_Corrupted != null; }
 		}
 
 		[CommandProperty( AccessLevel.Counselor )]
 		public bool IsPurifying
 		{
-			get{ return ( m_PurificationStart != DateTime.MinValue ); }
+			get{ return m_PurificationStart != DateTime.MinValue; }
 		}
 
 		[CommandProperty( AccessLevel.Counselor )]
 		public bool IsCorrupting
 		{
-			get{ return ( m_Corrupting != null && m_Corrupting != m_Corrupted ); }
+			get{ return m_Corrupting != null && m_Corrupting != m_Corrupted; }
 		}
 
 		public void Update()
 		{
-			ItemID = ( m_Town == null ? 0x1869 : m_Town.Definition.SigilID );
+			ItemID = m_Town == null ? 0x1869 : m_Town.Definition.SigilID;
 
 			if ( m_Town == null )
 				AssignName( null );
@@ -227,7 +226,7 @@ namespace Server.Factions
 		{
 			Container pack = mob.Backpack;
 
-			return ( pack != null && pack.FindItemByType( typeof( Sigil ) ) != null );
+			return pack != null && pack.FindItemByType( typeof( Sigil ) ) != null;
 		}
 
 		private void BeginCorrupting( Faction faction )
@@ -250,7 +249,7 @@ namespace Server.Factions
 				if ( !IsBeingCorrupted )
 					return TimeSpan.Zero;
 
-				TimeSpan ts = ( m_CorruptionStart + CorruptionPeriod ) - DateTime.Now;
+				TimeSpan ts = m_CorruptionStart + CorruptionPeriod - DateTime.Now;
 
 				if ( ts < TimeSpan.Zero )
 					ts = TimeSpan.Zero;
@@ -319,7 +318,7 @@ namespace Server.Factions
 							if ( m_Corrupted != newController )
 								BeginCorrupting( newController );
 						}
-						else if ( m_GraceStart > DateTime.MinValue && (m_GraceStart + CorruptionGrace) < DateTime.Now )
+						else if ( m_GraceStart > DateTime.MinValue && m_GraceStart + CorruptionGrace < DateTime.Now )
 						{
 							if ( m_Corrupted != newController )
 								BeginCorrupting( newController ); // grace time over, reset period
@@ -439,7 +438,7 @@ namespace Server.Factions
 			if ( monolith != null && !monolith.Deleted )
 				monolith.Sigil = this;
 
-			return ( monolith != null && !monolith.Deleted );
+			return monolith != null && !monolith.Deleted;
 		}
 
 		public override void OnParentDeleted( object parent )

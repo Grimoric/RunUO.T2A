@@ -1,12 +1,8 @@
-using System;
-using Server;
-using Server.Gumps;
-using Server.Network;
 using Server.Engines.VeteranRewards;
 
 namespace Server.Items
-{	
-	public class BloodyPentagramComponent : AddonComponent
+{
+    public class BloodyPentagramComponent : AddonComponent
 	{
 		public override bool DisplayWeight{ get{ return false; } }
 		public override int LabelNumber{ get{ return 1080279; } } // Bloody Pentagram

@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class TelekinisisScroll : SpellScroll
+    public class TelekinisisScroll : SpellScroll
 	{
 		[Constructable]
 		public TelekinisisScroll() : this( 1 )

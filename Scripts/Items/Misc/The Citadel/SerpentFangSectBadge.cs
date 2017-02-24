@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class SerpentFangSectBadge : Item
+    public class SerpentFangSectBadge : Item
 	{
 		public override int LabelNumber{ get{ return 1073139; } } // A Serpent Fang Sect Badge
 

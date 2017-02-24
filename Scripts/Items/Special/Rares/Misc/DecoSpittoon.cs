@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class DecoSpittoon : Item
+    public class DecoSpittoon : Item
 	{
 
 		[Constructable]

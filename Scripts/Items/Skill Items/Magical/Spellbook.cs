@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Commands;
 using Server.Engines.Craft;
 using Server.Network;
@@ -9,7 +8,7 @@ using Server.Targeting;
 
 namespace Server.Items
 {
-	public enum SpellbookType
+    public enum SpellbookType
 	{
 		Invalid = -1,
 		Regular,
@@ -246,7 +245,7 @@ namespace Server.Items
 
 				Spellbook book = list[i];
 
-				if ( !book.Deleted && (book.Parent == from || (pack != null && book.Parent == pack)) && ValidateSpellbook( book, spellID, type ) )
+				if ( !book.Deleted && (book.Parent == from || pack != null && book.Parent == pack) && ValidateSpellbook( book, spellID, type ) )
 					return book;
 
 				list.RemoveAt( i );
@@ -282,12 +281,12 @@ namespace Server.Items
 
 		public static Spellbook FindEquippedSpellbook( Mobile from )
 		{
-			return (from.FindItemOnLayer( Layer.OneHanded ) as Spellbook);
+			return @from.FindItemOnLayer( Layer.OneHanded ) as Spellbook;
 		}
 
 		public static bool ValidateSpellbook( Spellbook book, int spellID, SpellbookType type )
 		{
-			return ( book.SpellbookType == type && ( spellID == -1 || book.HasSpell( spellID ) ) );
+			return book.SpellbookType == type && ( spellID == -1 || book.HasSpell( spellID ) );
 		}
 
 		public override bool DisplayWeight { get { return false; } }
@@ -458,7 +457,7 @@ namespace Server.Items
 		{
 			spellID -= BookOffset;
 
-			return ( spellID >= 0 && spellID < BookCount && (m_Content & ((ulong)1 << spellID)) != 0 );
+			return spellID >= 0 && spellID < BookCount && (m_Content & ((ulong)1 << spellID)) != 0;
 		}
 
 		public Spellbook( Serial serial ) : base( serial )
@@ -631,7 +630,7 @@ namespace Server.Items
 		{
 			Container pack = from.Backpack;
 
-			if ( Parent == from || ( pack != null && Parent == pack ) )
+			if ( Parent == from || pack != null && Parent == pack )
 				DisplayTo( from );
 			else
 				from.SendLocalizedMessage( 500207 ); // The spellbook must be in your backpack (and not in a container within) to open.

@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Server.Network;
-using Server.Items;
 using Server.Targeting;
-using Server.Mobiles;
 
 namespace Server.Spells.Fourth
 {
-	public class ArchCureSpell : MagerySpell
+    public class ArchCureSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Arch Cure", "Vas An Nox",
@@ -51,7 +48,7 @@ namespace Server.Spells.Fourth
 
 				if ( map != null )
 				{
-					bool feluccaRules = ( map.Rules == MapRules.FeluccaRules );
+					bool feluccaRules = map.Rules == MapRules.FeluccaRules;
 
 					// You can target any living mobile directly, beneficial checks apply
 					if ( directTarget != null && Caster.CanBeBeneficial( directTarget, false ) )
@@ -87,7 +84,7 @@ namespace Server.Spells.Fourth
 
 						if ( poison != null )
 						{
-							int chanceToCure = 10000 + (int)(Caster.Skills[SkillName.Magery].Value * 75) - ((poison.Level + 1) * 1750);
+							int chanceToCure = 10000 + (int)(Caster.Skills[SkillName.Magery].Value * 75) - (poison.Level + 1) * 1750;
 							chanceToCure /= 100;
 							chanceToCure -= 1;
 
@@ -144,12 +141,12 @@ namespace Server.Spells.Fourth
 
 		private static bool IsInnocentTo( Mobile from, Mobile to )
 		{
-			return ( Notoriety.Compute( from, (Mobile)to ) == Notoriety.Innocent );
+			return Notoriety.Compute( @from, (Mobile)to ) == Notoriety.Innocent;
 		}
 
 		private static bool IsAllyTo( Mobile from, Mobile to )
 		{
-			return ( Notoriety.Compute( from, (Mobile)to ) == Notoriety.Ally );
+			return Notoriety.Compute( @from, (Mobile)to ) == Notoriety.Ally;
 		}
 
 		private class InternalTarget : Target

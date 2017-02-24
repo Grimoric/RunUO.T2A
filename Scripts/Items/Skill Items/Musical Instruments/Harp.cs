@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class Harp : BaseInstrument
+    public class Harp : BaseInstrument
 	{
 		[Constructable]
 		public Harp() : base( 0xEB1, 0x43, 0x44 )

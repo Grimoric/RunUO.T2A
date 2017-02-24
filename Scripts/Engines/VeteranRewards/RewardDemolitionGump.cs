@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Multis;
 using Server.Network;
 
 namespace Server.Gumps
-{		
-	public class RewardDemolitionGump : Gump
+{
+    public class RewardDemolitionGump : Gump
 	{
 		private IAddon m_Addon;
 		

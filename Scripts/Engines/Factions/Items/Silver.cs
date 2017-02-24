@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Factions
 {
-	public class Silver : Item
+    public class Silver : Item
 	{
 		public override double DefaultWeight
 		{

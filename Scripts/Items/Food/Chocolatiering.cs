@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class CocoaLiquor : Item
+    public class CocoaLiquor : Item
 	{
 		public override int LabelNumber { get { return 1080007; } } // Cocoa liquor
 		public override double DefaultWeight { get { return 1.0; } }

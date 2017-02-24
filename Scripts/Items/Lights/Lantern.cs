@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class Lantern : BaseEquipableLight
+    public class Lantern : BaseEquipableLight
 	{
 		public override int LitItemID
 		{

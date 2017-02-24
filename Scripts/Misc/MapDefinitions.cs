@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Misc
 {
-	public class MapDefinitions
+    public class MapDefinitions
 	{
 		public static void Configure()
 		{

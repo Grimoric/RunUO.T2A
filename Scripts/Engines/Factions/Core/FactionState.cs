@@ -28,7 +28,7 @@ namespace Server.Factions
 			{
 				for ( int i = 0; i < m_LastBroadcasts.Length; ++i )
 				{
-					if ( DateTime.Now >= (m_LastBroadcasts[i] + BroadcastPeriod) )
+					if ( DateTime.Now >= m_LastBroadcasts[i] + BroadcastPeriod )
 						return true;
 				}
 
@@ -36,11 +36,11 @@ namespace Server.Factions
 			}
 		}
 
-		public bool IsAtrophyReady{ get{ return DateTime.Now >= (m_LastAtrophy + TimeSpan.FromHours( 47.0 )); } }
+		public bool IsAtrophyReady{ get{ return DateTime.Now >= m_LastAtrophy + TimeSpan.FromHours( 47.0 ); } }
 
 		public int CheckAtrophy()
 		{
-			if ( DateTime.Now < (m_LastAtrophy + TimeSpan.FromHours( 47.0 )) )
+			if ( DateTime.Now < m_LastAtrophy + TimeSpan.FromHours( 47.0 ) )
 				return 0;
 
 			int distrib = 0;
@@ -72,7 +72,7 @@ namespace Server.Factions
 		{
 			for ( int i = 0; i < m_LastBroadcasts.Length; ++i )
 			{
-				if ( DateTime.Now >= (m_LastBroadcasts[i] + BroadcastPeriod) )
+				if ( DateTime.Now >= m_LastBroadcasts[i] + BroadcastPeriod )
 				{
 					m_LastBroadcasts[i] = DateTime.Now;
 					break;

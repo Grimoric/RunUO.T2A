@@ -22,23 +22,17 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Net;
-using System.Net.Sockets;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Server;
-using Server.Accounting;
-using Server.Gumps;
 using Server.Network;
 using System.Runtime;
 
 namespace Server
 {
-	public delegate void Slice();
+    public delegate void Slice();
 
 	public static class Core
 	{
@@ -84,7 +78,7 @@ namespace Server
 				if( m_ProfileStart > DateTime.MinValue )
 					m_ProfileTime += DateTime.Now - m_ProfileStart;
 
-				m_ProfileStart = (m_Profiling ? DateTime.Now : DateTime.MinValue);
+				m_ProfileStart = m_Profiling ? DateTime.Now : DateTime.MinValue;
 			}
 		}
 
@@ -245,7 +239,7 @@ namespace Server
 
 		private static bool OnConsoleEvent( ConsoleEventType type )
 		{
-			if( World.Saving || ( m_Service && type == ConsoleEventType.CTRL_LOGOFF_EVENT ) )
+			if( World.Saving || m_Service && type == ConsoleEventType.CTRL_LOGOFF_EVENT )
 				return true;
 			
 			Kill();	//Kill -> HandleClosed will hadnle waiting for the completion of flushign to disk
@@ -282,7 +276,7 @@ namespace Server
 					++c;
 				}
 
-				return (t / Math.Max( c, 1 ));
+				return t / Math.Max( c, 1 );
 			}
 		}
 
@@ -465,7 +459,7 @@ namespace Server
 					if( Slice != null )
 						Slice();
 
-					if( (++sample % sampleInterval) == 0 )
+					if( ++sample % sampleInterval == 0 )
 					{
 						now = DateTime.UtcNow;
 						m_CyclesPerSecond[m_CycleIndex++ % m_CyclesPerSecond.Length] =

@@ -1,11 +1,9 @@
 using System;
-using Server;
-using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class PlagueBeastVein : PlagueBeastComponent
+    public class PlagueBeastVein : PlagueBeastComponent
 	{
 		private bool m_Cut;
 

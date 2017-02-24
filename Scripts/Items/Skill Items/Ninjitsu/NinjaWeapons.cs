@@ -104,7 +104,7 @@ namespace Server.Items
 		{
 			if (weapon.UsesRemaining < MaxUses)
 			{
-				int need = Math.Min((MaxUses - weapon.UsesRemaining), ammo.UsesRemaining);
+				int need = Math.Min(MaxUses - weapon.UsesRemaining, ammo.UsesRemaining);
 
 				if (need > 0)
 				{
@@ -116,14 +116,14 @@ namespace Server.Items
 					{
 						if (weapon.UsesRemaining > 0)
 						{
-							if ((weapon.Poison == null && ammo.Poison != null)
-								|| ((weapon.Poison != null && ammo.Poison != null) && weapon.Poison.Level != ammo.Poison.Level))
+							if (weapon.Poison == null && ammo.Poison != null
+								|| weapon.Poison != null && ammo.Poison != null && weapon.Poison.Level != ammo.Poison.Level)
 							{
 								Unload(from, weapon);
 								need = Math.Min(MaxUses, ammo.UsesRemaining);
 							}
 						}
-						int poisonneeded = Math.Min((MaxUses - weapon.PoisonCharges), ammo.PoisonCharges);
+						int poisonneeded = Math.Min(MaxUses - weapon.PoisonCharges, ammo.PoisonCharges);
 
 						weapon.UsesRemaining += need;
 						weapon.PoisonCharges += poisonneeded;
@@ -370,7 +370,7 @@ namespace Server.Items
 			{
 				weapon = wep;
 
-				Enabled = (weapon.UsesRemaining > 0);
+				Enabled = weapon.UsesRemaining > 0;
 			}
 
 			public override void OnClick()

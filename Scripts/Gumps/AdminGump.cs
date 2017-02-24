@@ -3,8 +3,6 @@ using System.Net;
 using System.Text;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using Server;
 using Server.Items;
 using Server.Prompts;
 using Server.Network;
@@ -15,7 +13,7 @@ using Server.Misc;
 
 namespace Server.Gumps
 {
-	public enum AdminGumpPage
+    public enum AdminGumpPage
 	{
 		Information_General,
 		Information_Perf,
@@ -65,10 +63,10 @@ namespace Server.Gumps
 
 		public void AddPageButton( int x, int y, int buttonID, string text, AdminGumpPage page, params AdminGumpPage[] subPages )
 		{
-			bool isSelection = ( m_PageType == page );
+			bool isSelection = m_PageType == page;
 
 			for ( int i = 0; !isSelection && i < subPages.Length; ++i )
-				isSelection = ( m_PageType == subPages[i] );
+				isSelection = m_PageType == subPages[i];
 
 			AddSelectedButton( x, y, buttonID, text, isSelection );
 		}
@@ -103,7 +101,7 @@ namespace Server.Gumps
 
 		public int GetButtonID( int type, int index )
 		{
-			return 1 + (index * 11) + type;
+			return 1 + index * 11 + type;
 		}
 
 		public static string FormatTimeSpan( TimeSpan ts )
@@ -305,13 +303,13 @@ namespace Server.Gumps
 					sb.Append( "<br>Available: " );
 					sb.Append( curUser );
 					sb.Append( "<br>Usage: " );
-					sb.Append( ((maxUser - curUser) * 100) / maxUser );
+					sb.Append( (maxUser - curUser) * 100 / maxUser );
 					sb.Append( "%<br><br>IOCP Threads:<br>Capacity: " );
 					sb.Append( maxIOCP );
 					sb.Append( "<br>Available: " );
 					sb.Append( curIOCP );
 					sb.Append( "<br>Usage: " );
-					sb.Append( ((maxIOCP - curIOCP) * 100) / maxIOCP );
+					sb.Append( (maxIOCP - curIOCP) * 100 / maxIOCP );
 					sb.Append( "%" );
 
 					List<BufferPool> pools = BufferPool.Pools;
@@ -343,7 +341,7 @@ namespace Server.Gumps
 							sb.Append( " misses)<br>Available: " );
 							sb.Append( freeCount );
 							sb.Append( "<br>Usage: " );
-							sb.Append( ((currentCapacity - freeCount) * 100) / currentCapacity );
+							sb.Append( (currentCapacity - freeCount) * 100 / currentCapacity );
 							sb.Append( "% : " );
 							sb.Append( FormatByteAmount( (currentCapacity - freeCount) * bufferSize ) );
 							sb.Append( " of " );
@@ -422,13 +420,13 @@ namespace Server.Gumps
 					AddHtml( 20, 150, 380, 80, Color( "When enabled, only clients with an access level equal to or greater than the specified lockdown level may access the server. After setting a lockdown level, use the <em>Purge Invalid Clients</em> button to disconnect those clients without access.", LabelColor32 ), false, false );
 
 					AccessLevel level = Misc.AccountHandler.LockdownLevel;
-					bool isLockedDown = ( level > AccessLevel.Player );
+					bool isLockedDown = level > AccessLevel.Player;
 
 					AddSelectedButton( 20, 230, GetButtonID( 3, 500 ), "Not Locked Down", !isLockedDown );
-					AddSelectedButton( 20, 260, GetButtonID( 3, 504 ), "Administrators", ( isLockedDown && level <= AccessLevel.Administrator ) );
-					AddSelectedButton( 20, 280, GetButtonID( 3, 503 ), "Seers", ( isLockedDown && level <= AccessLevel.Seer ) );
-					AddSelectedButton( 20, 300, GetButtonID( 3, 502 ), "Game Masters", ( isLockedDown && level <= AccessLevel.GameMaster ) );
-					AddSelectedButton( 20, 320, GetButtonID( 3, 501 ), "Counselors", ( isLockedDown && level <= AccessLevel.Counselor ) );
+					AddSelectedButton( 20, 260, GetButtonID( 3, 504 ), "Administrators", isLockedDown && level <= AccessLevel.Administrator );
+					AddSelectedButton( 20, 280, GetButtonID( 3, 503 ), "Seers", isLockedDown && level <= AccessLevel.Seer );
+					AddSelectedButton( 20, 300, GetButtonID( 3, 502 ), "Game Masters", isLockedDown && level <= AccessLevel.GameMaster );
+					AddSelectedButton( 20, 320, GetButtonID( 3, 501 ), "Counselors", isLockedDown && level <= AccessLevel.Counselor );
 
 					AddButtonLabeled( 20, 350, GetButtonID( 3, 510 ), "Purge Invalid Clients" );
 
@@ -541,7 +539,7 @@ namespace Server.Gumps
 					if ( m_List.Count == 0 )
 						AddLabel( 12, 140, LabelHue, "There are no clients to display." );
 
-					for ( int i = 0, index = (listPage * 12); i < 12 && index >= 0 && index < m_List.Count; ++i, ++index )
+					for ( int i = 0, index = listPage * 12; i < 12 && index >= 0 && index < m_List.Count; ++i, ++index )
 					{
 						NetState ns = m_List[index] as NetState;
 
@@ -550,7 +548,7 @@ namespace Server.Gumps
 
 						Mobile m = ns.Mobile;
 						Account a = ns.Account as Account;
-						int offset = 140 + (i * 20);
+						int offset = 140 + i * 20;
 
 						if ( m == null )
 						{
@@ -593,7 +591,7 @@ namespace Server.Gumps
 					Account a = m.Account as Account;
 
 					AddLabel(  20, y, LabelHue, "Account:" );
-					AddLabel( 200, y, (a != null && a.Banned) ? RedHue : LabelHue, a == null ? "(no account)" : a.Username );
+					AddLabel( 200, y, a != null && a.Banned ? RedHue : LabelHue, a == null ? "(no account)" : a.Username );
 					AddButton( 380, y, 0xFA5, 0xFA7, GetButtonID( 7, 14 ), GumpButtonType.Reply, 0 );
 					y += 20;
 
@@ -680,14 +678,14 @@ namespace Server.Gumps
 
 					StringBuilder sb = new StringBuilder();
 
-					for ( int i = 0, index = (listPage * 12); i < 12 && index >= 0 && index < m_List.Count; ++i, ++index )
+					for ( int i = 0, index = listPage * 12; i < 12 && index >= 0 && index < m_List.Count; ++i, ++index )
 					{
 						DictionaryEntry de = (DictionaryEntry)m_List[index];
 
 						IPAddress ipAddr = (IPAddress)de.Key;
 						ArrayList accts = (ArrayList)de.Value;
 
-						int offset = 140 + (i * 20);
+						int offset = 140 + i * 20;
 
 						AddLabelCropped( 12, offset,  60, 20, LabelHue, accts.Count.ToString() );
 						AddLabelCropped( 72, offset, 120, 20, LabelHue, ipAddr.ToString() );
@@ -728,7 +726,7 @@ namespace Server.Gumps
 						// m_List.Sort( AccountComparer.Instance );
 					}
 
-					ArrayList rads = ( state as ArrayList );
+					ArrayList rads = state as ArrayList;
 
 					AddAccountHeader();
 
@@ -762,14 +760,14 @@ namespace Server.Gumps
 						AddButtonLabeled( 210, 410, GetButtonID( 5, 35 ), "Unmark house owners" );
 					}
 
-					for ( int i = 0, index = (listPage * 12); i < 12 && index >= 0 && index < m_List.Count; ++i, ++index )
+					for ( int i = 0, index = listPage * 12; i < 12 && index >= 0 && index < m_List.Count; ++i, ++index )
 					{
 						Account a = m_List[index] as Account;
 
 						if ( a == null )
 							continue;
 
-						int offset = 140 + (i * 20);
+						int offset = 140 + i * 20;
 
 						AccessLevel accessLevel;
 						bool online;
@@ -907,7 +905,7 @@ namespace Server.Gumps
 						}
 						else
 						{
-							TimeSpan remaining = (DateTime.Now - banTime);
+							TimeSpan remaining = DateTime.Now - banTime;
 
 							if ( remaining < TimeSpan.Zero )
 								remaining = TimeSpan.Zero;
@@ -1005,12 +1003,12 @@ namespace Server.Gumps
 					if ( m_List.Count == 0 )
 						AddHtml( 18, 243, 200, 60, Color( "This account has not yet been accessed.", LabelColor32 ), false, false );
 
-					for ( int i = 0, index = (listPage * 6); i < 6 && index >= 0 && index < m_List.Count; ++i, ++index )
+					for ( int i = 0, index = listPage * 6; i < 6 && index >= 0 && index < m_List.Count; ++i, ++index )
 					{
-						AddHtml( 18, 243 + (i * 22), 114, 20, Color( m_List[index].ToString(), LabelColor32 ), false, false );
-						AddButton( 130, 242 + (i * 22), 0xFA2, 0xFA4, GetButtonID( 8, index ), GumpButtonType.Reply, 0 );
-						AddButton( 160, 242 + (i * 22), 0xFA8, 0xFAA, GetButtonID( 9, index ), GumpButtonType.Reply, 0 );
-						AddButton( 190, 242 + (i * 22), 0xFB1, 0xFB3, GetButtonID( 10, index ), GumpButtonType.Reply, 0 );
+						AddHtml( 18, 243 + i * 22, 114, 20, Color( m_List[index].ToString(), LabelColor32 ), false, false );
+						AddButton( 130, 242 + i * 22, 0xFA2, 0xFA4, GetButtonID( 8, index ), GumpButtonType.Reply, 0 );
+						AddButton( 160, 242 + i * 22, 0xFA8, 0xFAA, GetButtonID( 9, index ), GumpButtonType.Reply, 0 );
+						AddButton( 190, 242 + i * 22, 0xFB1, 0xFB3, GetButtonID( 10, index ), GumpButtonType.Reply, 0 );
 					}
 
 					goto case AdminGumpPage.AccountDetails_Access;
@@ -1051,10 +1049,10 @@ namespace Server.Gumps
 					if ( m_List.Count == 0 )
 						AddHtml( 18, 243, 200, 60, Color( "There are no addresses in this list.", LabelColor32 ), false, false );
 
-					for ( int i = 0, index = (listPage * 6); i < 6 && index >= 0 && index < m_List.Count; ++i, ++index )
+					for ( int i = 0, index = listPage * 6; i < 6 && index >= 0 && index < m_List.Count; ++i, ++index )
 					{
-						AddHtml( 18, 243 + (i * 22), 114, 20, Color( m_List[index].ToString(), LabelColor32 ), false, false );
-						AddButton( 190, 242 + (i * 22), 0xFB1, 0xFB3, GetButtonID( 8, index ), GumpButtonType.Reply, 0 );
+						AddHtml( 18, 243 + i * 22, 114, 20, Color( m_List[index].ToString(), LabelColor32 ), false, false );
+						AddButton( 190, 242 + i * 22, 0xFB1, 0xFB3, GetButtonID( 8, index ), GumpButtonType.Reply, 0 );
 					}
 
 					goto case AdminGumpPage.AccountDetails_Access;
@@ -1081,7 +1079,7 @@ namespace Server.Gumps
 						if ( m == null )
 							continue;
 
-						int offset = 170 + (index * 20);
+						int offset = 170 + index * 20;
 
 						AddLabelCropped(  12, offset, 120, 20, GetHueFor( m ), m.Name );
 						AddLabelCropped( 132, offset, 120, 20, LabelHue, FormatAccessLevel( m.AccessLevel ) );
@@ -1183,14 +1181,14 @@ namespace Server.Gumps
 					if ( m_List.Count == 0 )
 						AddLabel( 12, 140, LabelHue, "The firewall list is empty." );
 
-					for ( int i = 0, index = (listPage * 12); i < 12 && index >= 0 && index < m_List.Count; ++i, ++index )
+					for ( int i = 0, index = listPage * 12; i < 12 && index >= 0 && index < m_List.Count; ++i, ++index )
 					{
 						object obj = m_List[index];
 
 						if ( !(obj is Firewall.IFirewallEntry ) )
 							break;
 
-						int offset = 140 + (i * 20);
+						int offset = 140 + i * 20;
 
 						AddLabelCropped( 12, offset, 358, 20, LabelHue, obj.ToString() );
 						AddButton( 380, offset - 1, 0xFA5, 0xFA7, GetButtonID( 6, index + 4 ), GumpButtonType.Reply, 0 );
@@ -1247,14 +1245,14 @@ namespace Server.Gumps
 					if ( m_List.Count == 0 )
 						AddLabelCropped( 12, 200, 398, 20, LabelHue, "No accounts found." );
 
-					for ( int i = 0, index = (listPage * 9); i < 9 && index >= 0 && index < m_List.Count; ++i, ++index )
+					for ( int i = 0, index = listPage * 9; i < 9 && index >= 0 && index < m_List.Count; ++i, ++index )
 					{
 						Account a = m_List[index] as Account;
 
 						if ( a == null )
 							continue;
 
-						int offset = 200 + (i * 20);
+						int offset = 200 + i * 20;
 
 						AccessLevel accessLevel;
 						bool online;
@@ -1781,7 +1779,7 @@ namespace Server.Gumps
 						case 211:
 						{
 							TextRelay relay = info.GetTextEntry( 0 );
-							string text = ( relay == null ? null : relay.Text.Trim() );
+							string text = relay == null ? null : relay.Text.Trim();
 
 							if ( text == null || text.Length == 0 )
 							{
@@ -1952,12 +1950,12 @@ namespace Server.Gumps
 						case 0:
 						case 1:
 						{
-							bool forName = ( index == 0 );
+							bool forName = index == 0;
 
 							ArrayList results = new ArrayList();
 
 							TextRelay matchEntry = info.GetTextEntry( 0 );
-							string match = ( matchEntry == null ? null : matchEntry.Text.Trim().ToLower() );
+							string match = matchEntry == null ? null : matchEntry.Text.Trim().ToLower();
 							string notice = null;
 
 							if ( match == null || match.Length == 0 )
@@ -1979,12 +1977,12 @@ namespace Server.Gumps
 										Mobile m = ns.Mobile;
 										IAccount a = ns.Account;
 
-										isMatch = ( m != null && m.Name.ToLower().IndexOf( match ) >= 0 )
-											|| ( a != null && a.Username.ToLower().IndexOf( match ) >= 0 );
+										isMatch = m != null && m.Name.ToLower().IndexOf( match ) >= 0
+											|| a != null && a.Username.ToLower().IndexOf( match ) >= 0;
 									}
 									else
 									{
-										isMatch = ( ns.ToString().IndexOf( match ) >= 0 );
+										isMatch = ns.ToString().IndexOf( match ) >= 0;
 									}
 
 									if ( isMatch )
@@ -2060,8 +2058,8 @@ namespace Server.Gumps
 							TextRelay unEntry = info.GetTextEntry( 0 );
 							TextRelay pwEntry = info.GetTextEntry( 1 );
 
-							string un = ( unEntry == null ? null : unEntry.Text.Trim() );
-							string pw = ( pwEntry == null ? null : pwEntry.Text.Trim() );
+							string un = unEntry == null ? null : unEntry.Text.Trim();
+							string pw = pwEntry == null ? null : pwEntry.Text.Trim();
 
 							Account dispAccount = null;
 							string notice;
@@ -2098,7 +2096,7 @@ namespace Server.Gumps
 							ArrayList results;
 
 							TextRelay matchEntry = info.GetTextEntry( 0 );
-							string match = ( matchEntry == null ? null : matchEntry.Text.Trim().ToLower() );
+							string match = matchEntry == null ? null : matchEntry.Text.Trim().ToLower();
 							string notice = null;
 
 							if ( match == null || match.Length == 0 )
@@ -2136,7 +2134,7 @@ namespace Server.Gumps
 								break;
 
 							a.SetUnspecifiedBan( from );
-							a.Banned = ( index == 10 );
+							a.Banned = index == 10;
 							CommandLogging.WriteLine( from, "{0} {1} {3} account {2}", from.AccessLevel, CommandLogging.Format( from ), a.Username, a.Banned ? "banning" : "unbanning" );
 							from.SendGump( new AdminGump( from, m_PageType, m_ListPage, m_List, String.Format( "The account has been {0}.", a.Banned ? "banned" : "unbanned" ), m_State ) );
 
@@ -2155,8 +2153,8 @@ namespace Server.Gumps
 							TextRelay passwordEntry = info.GetTextEntry( 0 );
 							TextRelay confirmEntry = info.GetTextEntry( 1 );
 
-							string password = ( passwordEntry == null ? null : passwordEntry.Text.Trim() );
-							string confirm = ( confirmEntry == null ? null : confirmEntry.Text.Trim() );
+							string password = passwordEntry == null ? null : passwordEntry.Text.Trim();
+							string confirm = confirmEntry == null ? null : confirmEntry.Text.Trim();
 
 							string notice;
 							AdminGumpPage page = AdminGumpPage.AccountDetails_ChangePassword;
@@ -2190,7 +2188,7 @@ namespace Server.Gumps
 
 							ArrayList list = GetSharedAccounts( a.LoginIPs );
 
-							if ( list.Count > 1 || (list.Count == 1 && !list.Contains( a )) )
+							if ( list.Count > 1 || list.Count == 1 && !list.Contains( a ) )
 							{
 								from.SendGump( new AdminGump( from, AdminGumpPage.Accounts, 0, list, null, new ArrayList() ) );
 							}
@@ -2262,7 +2260,7 @@ namespace Server.Gumps
 								break;
 
 							TextRelay entry = info.GetTextEntry( 0 );
-							string ip = ( entry == null ? null : entry.Text.Trim() );
+							string ip = entry == null ? null : entry.Text.Trim();
 
 							string notice;
 
@@ -2276,7 +2274,7 @@ namespace Server.Gumps
 
 								bool contains = false;
 								for ( int i = 0; !contains && i < list.Length; ++i )
-									contains = ( list[i] == ip );
+									contains = list[i] == ip;
 
 								if ( contains )
 								{
@@ -2402,7 +2400,7 @@ namespace Server.Gumps
 								bool empty = true;
 
 								for ( int i = 0; empty && i < acct.Length; ++i )
-									empty = ( acct[i] == null );
+									empty = acct[i] == null;
 
 								if ( empty )
 									results.Add( acct );
@@ -2411,7 +2409,7 @@ namespace Server.Gumps
 							if ( results.Count == 1 )
 								from.SendGump( new AdminGump( from, AdminGumpPage.AccountDetails_Information, 0, null, "One match found.", results[0] ) );
 							else
-								from.SendGump( new AdminGump( from, AdminGumpPage.Accounts, 0, results, (results.Count == 0 ? "Nothing matched your search terms." : null), new ArrayList() ) );
+								from.SendGump( new AdminGump( from, AdminGumpPage.Accounts, 0, results, results.Count == 0 ? "Nothing matched your search terms." : null, new ArrayList() ) );
 
 							break;
 						}
@@ -2428,7 +2426,7 @@ namespace Server.Gumps
 							if ( results.Count == 1 )
 								from.SendGump( new AdminGump( from, AdminGumpPage.AccountDetails_Information, 0, null, "One match found.", results[0] ) );
 							else
-								from.SendGump( new AdminGump( from, AdminGumpPage.Accounts, 0, results, (results.Count == 0 ? "Nothing matched your search terms." : null), new ArrayList() ) );
+								from.SendGump( new AdminGump( from, AdminGumpPage.Accounts, 0, results, results.Count == 0 ? "Nothing matched your search terms." : null, new ArrayList() ) );
 
 							break;
 						}
@@ -2445,7 +2443,7 @@ namespace Server.Gumps
 							if ( results.Count == 1 )
 								from.SendGump( new AdminGump( from, AdminGumpPage.AccountDetails_Information, 0, null, "One match found.", results[0] ) );
 							else
-								from.SendGump( new AdminGump( from, AdminGumpPage.Accounts, 0, results, (results.Count == 0 ? "Nothing matched your search terms." : null), new ArrayList() ) );
+								from.SendGump( new AdminGump( from, AdminGumpPage.Accounts, 0, results, results.Count == 0 ? "Nothing matched your search terms." : null, new ArrayList() ) );
 
 							break;
 						}
@@ -2492,7 +2490,7 @@ namespace Server.Gumps
 							if ( ips.Length == 0 )
 								from.SendGump( new AdminGump( from, AdminGumpPage.AccountDetails_Access_ClientIPs, 0, null, "This account has not yet been accessed.", m_State ) );
 							else
-								from.SendGump( new WarningGump( 1060635, 30720, String.Format( "You are about to clear the address list for account {0} containing {1} {2}. Do you wish to continue?", a, ips.Length, ( ips.Length == 1 ) ? "entry" : "entries" ), 0xFFC000, 420, 280, new WarningGumpCallback( RemoveLoginIPs_Callback ), a ) );
+								from.SendGump( new WarningGump( 1060635, 30720, String.Format( "You are about to clear the address list for account {0} containing {1} {2}. Do you wish to continue?", a, ips.Length, ips.Length == 1 ? "entry" : "entries" ), 0xFFC000, 420, 280, new WarningGumpCallback( RemoveLoginIPs_Callback ), a ) );
 
 							break;
 						}
@@ -2518,7 +2516,7 @@ namespace Server.Gumps
 									if ( m_List[index] is Account )
 										from.SendGump( new AdminGump( from, AdminGumpPage.AccountDetails_Information, 0, null, null, m_List[index] ) );
 									else if ( m_List[index] is DictionaryEntry )
-										from.SendGump( new AdminGump( from, AdminGumpPage.Accounts, 0, (ArrayList)(((DictionaryEntry)m_List[index]).Value), null, new ArrayList() ) );
+										from.SendGump( new AdminGump( from, AdminGumpPage.Accounts, 0, (ArrayList)((DictionaryEntry)m_List[index]).Value, null, new ArrayList() ) );
 								}
 							}
 
@@ -2535,7 +2533,7 @@ namespace Server.Gumps
 						case 0:
 						{
 							TextRelay matchEntry = info.GetTextEntry( 0 );
-							string match = ( matchEntry == null ? null : matchEntry.Text.Trim() );
+							string match = matchEntry == null ? null : matchEntry.Text.Trim();
 
 							string notice = null;
 							ArrayList results = new ArrayList();
@@ -2567,7 +2565,7 @@ namespace Server.Gumps
 						case 1:
 						{
 							TextRelay relay = info.GetTextEntry( 0 );
-							string text = ( relay == null ? null : relay.Text.Trim() );
+							string text = relay == null ? null : relay.Text.Trim();
 
 							if ( text == null || text.Length == 0 )
 							{
@@ -2824,7 +2822,7 @@ namespace Server.Gumps
 
 							ArrayList list = GetSharedAccounts( (IPAddress)obj );
 
-							if ( list.Count > 1 || (list.Count == 1 && !list.Contains( a )) )
+							if ( list.Count > 1 || list.Count == 1 && !list.Contains( a ) )
 								from.SendGump( new AdminGump( from, AdminGumpPage.Accounts, 0, list, null, new ArrayList() ) );
 							else
 								from.SendGump( new AdminGump( from, AdminGumpPage.AccountDetails_Access_ClientIPs, 0, null, "There are no other accounts which share that address.", m_State ) );

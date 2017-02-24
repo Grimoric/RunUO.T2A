@@ -1,10 +1,6 @@
-using System;
-using Server.Items;
-using Server.Network;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0xf45, 0xf46 )]
+    [FlipableAttribute( 0xf45, 0xf46 )]
 	public class ExecutionersAxe : BaseAxe
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }

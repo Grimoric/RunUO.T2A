@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a frozen ogre lord's corpse" )]
+    [CorpseName( "a frozen ogre lord's corpse" )]
 	[TypeAlias( "Server.Mobiles.ArticOgreLord" )]
 	public class ArcticOgreLord : BaseCreature
 	{

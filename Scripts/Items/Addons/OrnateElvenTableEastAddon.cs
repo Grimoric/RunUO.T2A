@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class OrnateElvenTableEastAddon : BaseAddon
+    public class OrnateElvenTableEastAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed{ get{ return new OrnateElvenTableEastDeed(); } }
 

@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0xE89, 0xE8a )]
+    [FlipableAttribute( 0xE89, 0xE8a )]
 	public class QuarterStaff : BaseStaff
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.DoubleStrike; } }

@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Network;
 using Server.Mobiles;
 
 namespace Server.Gumps
 {
-	public enum ResurrectMessage
+    public enum ResurrectMessage
 	{
 		ChaosShrine = 0,
 		VirtueShrine = 1,
@@ -222,7 +219,7 @@ namespace Server.Gumps
 
 				if( from.ShortTermMurders >= 5 )
 				{
-					double loss = (100.0 - (4.0 + (from.ShortTermMurders / 5.0))) / 100.0; // 5 to 15% loss
+					double loss = (100.0 - (4.0 + @from.ShortTermMurders / 5.0)) / 100.0; // 5 to 15% loss
 
 					if( loss < 0.85 )
 						loss = 0.85;

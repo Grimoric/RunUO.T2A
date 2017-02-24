@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	public class IronWorker : BaseVendor
+    public class IronWorker : BaseVendor
 	{
 		private List<SBInfo> m_SBInfos = new List<SBInfo>();
 		protected override List<SBInfo> SBInfos{ get { return m_SBInfos; } }
@@ -51,7 +49,7 @@ namespace Server.Mobiles
 		{
 			base.InitOutfit();
 
-			Item item = ( Utility.RandomBool() ? null : new Server.Items.RingmailChest() );
+			Item item = Utility.RandomBool() ? null : new Server.Items.RingmailChest();
 
 			if ( item != null && !EquipItem( item ) )
 			{

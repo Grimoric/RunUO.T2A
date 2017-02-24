@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ShroudOfDeciet : BoneChest
+    public class ShroudOfDeciet : BoneChest
 	{
 		public override int LabelNumber{ get{ return 1094914; } } // Shroud of Deceit [Replica]
 

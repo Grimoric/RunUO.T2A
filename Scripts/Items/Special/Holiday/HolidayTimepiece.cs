@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class HolidayTimepiece : Clock
+    public class HolidayTimepiece : Clock
 	{
 		public override int LabelNumber { get { return 1041113; } } // a holiday timepiece
 		public override double DefaultWeight { get { return 1.0; } }

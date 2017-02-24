@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Network;
-
 namespace Server.Items
 {
-	public class FestiveCactus : Item
+    public class FestiveCactus : Item
 	{
 		[Constructable]
 		public FestiveCactus() : base( 0x2376 )

@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class AgilityPotion : BaseAgilityPotion
+    public class AgilityPotion : BaseAgilityPotion
 	{
 		public override int DexOffset{ get{ return 10; } }
 		public override TimeSpan Duration{ get{ return TimeSpan.FromMinutes( 2.0 ); } }

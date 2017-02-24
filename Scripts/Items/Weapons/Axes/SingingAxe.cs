@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class SingingAxe : OrnateAxe
+    public class SingingAxe : OrnateAxe
 	{
 		public override int LabelNumber{ get{ return 1073546; } } // singing axe
 

@@ -1,14 +1,12 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Items;
 using Server.Gumps;
-using Server.Spells;
 using Server.Spells.Fifth;
 
 namespace Server.Spells.Seventh
 {
-	public class PolymorphSpell : MagerySpell
+    public class PolymorphSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Polymorph", "Vas Ylem Rel",
@@ -161,7 +159,7 @@ namespace Server.Spells.Seventh
 				m_Timers.Remove( m );
 			}
 
-			return ( t != null );
+			return t != null;
 		}
 
 		private static void EndPolymorph( Mobile m )

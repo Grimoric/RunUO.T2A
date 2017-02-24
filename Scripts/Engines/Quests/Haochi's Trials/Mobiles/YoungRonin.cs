@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 
 namespace Server.Engines.Quests.Samurai
 {
-	[CorpseName( "a young ronin's corpse" )]
+    [CorpseName( "a young ronin's corpse" )]
 	public class YoungRonin : BaseCreature
 	{
 		[Constructable]

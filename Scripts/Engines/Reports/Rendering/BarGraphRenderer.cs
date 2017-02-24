@@ -1,22 +1,21 @@
 using System;
 using System.Drawing;
-using System.Collections;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 
 namespace Server.Engines.Reports
 {
-	// Modified from MS sample
+    // Modified from MS sample
 
-	//*********************************************************************
-	//
-	// BarGraph Class
-	//
-	// This class uses GDI+ to render Bar Chart.
-	//
-	//*********************************************************************
+    //*********************************************************************
+    //
+    // BarGraph Class
+    //
+    // This class uses GDI+ to render Bar Chart.
+    //
+    //*********************************************************************
 
-	public class BarRegion
+    public class BarRegion
 	{
 		public int m_RangeFrom, m_RangeTo;
 		public string m_Name;
@@ -240,7 +239,7 @@ namespace Server.Engines.Reports
 								{
 									BarRegion reg = _regions[i];
 
-									RectangleF rc = new RectangleF( _xOrigin + (reg.m_RangeFrom * labelWidth), _yOrigin, (reg.m_RangeTo - reg.m_RangeFrom + 1) * labelWidth, _graphHeight );
+									RectangleF rc = new RectangleF( _xOrigin + reg.m_RangeFrom * labelWidth, _yOrigin, (reg.m_RangeTo - reg.m_RangeFrom + 1) * labelWidth, _graphHeight );
 
 									if ( rc.X+rc.Width > _xOrigin+_graphWidth )
 										rc.Width = _xOrigin+_graphWidth-rc.X;
@@ -338,7 +337,7 @@ namespace Server.Engines.Reports
 
 								if ( _renderMode == BarGraphRenderMode.Lines )
 								{
-									linePoints[pointIndex++] = new PointF( _xOrigin + item.StartPos + (_barWidth / 2), itemY );
+									linePoints[pointIndex++] = new PointF( _xOrigin + item.StartPos + _barWidth / 2, itemY );
 								}
 								else if ( _renderMode == BarGraphRenderMode.Bars )
 								{
@@ -378,12 +377,12 @@ namespace Server.Engines.Reports
 									graph.DrawLine( pen, pts[3], pts[6] );
 
 									// Draw data value
-									if (_displayBarData&&(i%_interval)==0)
+									if (_displayBarData&&i%_interval==0)
 									{
-										float sectionWidth = ( _barWidth + _spaceBtwBars );
-										float startX = _xOrigin + (i * sectionWidth) + (sectionWidth / 2);  // This draws the value on center of the bar
+										float sectionWidth = _barWidth + _spaceBtwBars;
+										float startX = _xOrigin + i * sectionWidth + sectionWidth / 2;  // This draws the value on center of the bar
 										float startY = itemY - 2f - valFont.Height;					  // Positioned on top of each bar by 2 pixels
-										RectangleF recVal = new RectangleF(startX-((sectionWidth * _interval) / 2), startY, sectionWidth * _interval, valFont.Height);
+										RectangleF recVal = new RectangleF(startX-sectionWidth * _interval / 2, startY, sectionWidth * _interval, valFont.Height);
 										SizeF sz = graph.MeasureString(item.Value.ToString("#,###.##"),valFont,recVal.Size,sfFormat);
 										//using ( SolidBrush brsh = new SolidBrush( Color.FromArgb( 180, 255, 255, 255 ) ) )
 										//	graph.FillRectangle( brsh, new RectangleF(recVal.X+((recVal.Width-sz.Width)/2),recVal.Y+((recVal.Height-sz.Height)/2),sz.Width+4,sz.Height) );
@@ -428,14 +427,14 @@ namespace Server.Engines.Reports
 									float itemY = _yOrigin + _graphHeight - item.SweepSize;
 
 									// Draw data value
-									if (_displayBarData&&(j%_interval)==0)
+									if (_displayBarData&&j%_interval==0)
 									{
 										graph.FillEllipse( brsFont, new RectangleF( linePoints[j].X-2.0f, linePoints[j].Y-2.0f, 4.0f, 4.0f ) );
 
-										float sectionWidth = ( _barWidth + _spaceBtwBars );
-										float startX = _xOrigin + (j * sectionWidth) + (sectionWidth/2);  // This draws the value on center of the bar
+										float sectionWidth = _barWidth + _spaceBtwBars;
+										float startX = _xOrigin + j * sectionWidth + sectionWidth/2;  // This draws the value on center of the bar
 										float startY = itemY - 2f - valFont.Height;					  // Positioned on top of each bar by 2 pixels
-										RectangleF recVal = new RectangleF(startX-((sectionWidth * _interval) / 2), startY, sectionWidth * _interval, valFont.Height);
+										RectangleF recVal = new RectangleF(startX-sectionWidth * _interval / 2, startY, sectionWidth * _interval, valFont.Height);
 										SizeF sz = graph.MeasureString(item.Value.ToString("#,###.##"),valFont,recVal.Size,sfFormat);
 										//using ( SolidBrush brsh = new SolidBrush( Color.FromArgb( 48, 255, 255, 255 ) ) )
 										//	graph.FillRectangle( brsh, new RectangleF(recVal.X+((recVal.Width-sz.Width)/2),recVal.Y+((recVal.Height-sz.Height)/2),sz.Width+4,sz.Height) );
@@ -482,7 +481,7 @@ namespace Server.Engines.Reports
 			Pen pen = null;
 			StringFormat sfVLabel = null;
 
-			float fo = (_yTitle==null?0.0f:20.0f);
+			float fo = _yTitle==null?0.0f:20.0f;
 			
 			try
 			{
@@ -521,7 +520,7 @@ namespace Server.Engines.Reports
 				{
 					for (int i=0; i<_yTickCount; i++)
 					{
-						float currentY = _topBuffer + (i * _yTickValue/_scaleFactor);	// Position for tick mark
+						float currentY = _topBuffer + i * _yTickValue/_scaleFactor;	// Position for tick mark
 						float labelY = currentY-lblFont.Height/2;						// Place label in the middle of tick
 						RectangleF lblRec = new RectangleF(_spacer+fo-6, labelY, _maxTickValueWidth, lblFont.Height);
 				
@@ -600,7 +599,7 @@ namespace Server.Engines.Reports
 					//					sfVLabel.FormatFlags=StringFormatFlags.DirectionVertical;
 
 					lblFont = new Font(_fontFamily, _labelFontSize+2.0f, FontStyle.Bold);
-					graph.DrawString(_xTitle,lblFont,brs,new RectangleF( _xOrigin, _yOrigin+_graphHeight+14.0f+(_renderMode==BarGraphRenderMode.Bars?10.0f:0.0f)+((DataPoints.Count/_interval)>24?16.0f:0.0f), _graphWidth, 20.0f ), lblFormat );
+					graph.DrawString(_xTitle,lblFont,brs,new RectangleF( _xOrigin, _yOrigin+_graphHeight+14.0f+(_renderMode==BarGraphRenderMode.Bars?10.0f:0.0f)+(DataPoints.Count/_interval>24?16.0f:0.0f), _graphWidth, 20.0f ), lblFormat );
 				}
 
 				lblFont = new Font(_fontFamily, _labelFontSize);
@@ -631,10 +630,10 @@ namespace Server.Engines.Reports
 				// Draw x labels
 				foreach(DataItem item in DataPoints)
 				{
-					if((i%_interval)==0)
+					if(i%_interval==0)
 					{
-						currentX = _xOrigin + (i * labelWidth)+of+(labelWidth/2);
-						RectangleF recLbl = new RectangleF(currentX-((labelWidth*_interval)/2), currentY+of, labelWidth*_interval, lblFont.Height*2);
+						currentX = _xOrigin + i * labelWidth+of+labelWidth/2;
+						RectangleF recLbl = new RectangleF(currentX-labelWidth*_interval/2, currentY+of, labelWidth*_interval, lblFont.Height*2);
 						string lblString = _displayLegend ? item.Label : item.Description;	// Decide what to show: short or long
 
 						graph.DrawString(lblString, lblFont, brs, recLbl, lblFormat);
@@ -684,7 +683,7 @@ namespace Server.Engines.Reports
 				{
 					DataItem point = DataPoints[i];
 					string text = point.Description + " (" + point.Label + ")";
-					float currentY = startY + _spacer + (i * (lblFont.Height + _spacer));
+					float currentY = startY + _spacer + i * (lblFont.Height + _spacer);
 					legendHeight += lblFont.Height + _spacer;
 
 					// Draw legend description
@@ -879,7 +878,7 @@ namespace Server.Engines.Reports
 				if (item.Value >= 0) item.SweepSize = item.Value/_scaleFactor;
 				
 				// (_spaceBtwBars/2) makes half white space for the first bar
-				item.StartPos = (_spaceBtwBars/2) + i * (_barWidth+_spaceBtwBars);
+				item.StartPos = _spaceBtwBars/2 + i * (_barWidth+_spaceBtwBars);
 				i++;
 			}
 		}

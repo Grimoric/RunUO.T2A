@@ -1,10 +1,7 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	//Is this a filler-type item? the clilocs don't match up and at a glacnce I can't find direct reference of it
-	[FlipableAttribute( 0x2B6D, 0x3164 )]
+    //Is this a filler-type item? the clilocs don't match up and at a glacnce I can't find direct reference of it
+    [FlipableAttribute( 0x2B6D, 0x3164 )]
 	public class FemaleElvenPlateChest : BaseArmor
 	{
 		public override int BasePhysicalResistance{ get{ return 5; } }

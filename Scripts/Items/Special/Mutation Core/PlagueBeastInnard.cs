@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class PlagueBeastInnard : Item, IScissorable, ICarvable
+    public class PlagueBeastInnard : Item, IScissorable, ICarvable
 	{
 		public PlagueBeastLord Owner
 		{

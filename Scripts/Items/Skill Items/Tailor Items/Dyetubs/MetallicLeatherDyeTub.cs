@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class MetallicLeatherDyeTub : LeatherDyeTub
+    public class MetallicLeatherDyeTub : LeatherDyeTub
 	{
 		public override CustomHuePicker CustomHuePicker{ get{ return null; } }
 

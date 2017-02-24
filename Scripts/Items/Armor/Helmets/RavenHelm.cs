@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x2B71, 0x3168 )]
+    [FlipableAttribute( 0x2B71, 0x3168 )]
 	public class RavenHelm : BaseArmor
 	{
 		public override Race RequiredRace { get { return Race.Elf; } }

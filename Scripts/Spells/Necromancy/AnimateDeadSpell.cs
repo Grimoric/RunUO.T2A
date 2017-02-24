@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Server.Network;
 using Server.Mobiles;
 using Server.Targeting;
 using Server.Items;
@@ -9,7 +8,7 @@ using Server.Engines.Quests.Necro;
 
 namespace Server.Spells.Necromancy
 {
-	public class AnimateDeadSpell : NecromancerSpell
+    public class AnimateDeadSpell : NecromancerSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Animate Dead", "Uus Corp",
@@ -65,7 +64,7 @@ namespace Server.Spells.Necromancy
 				CreatureGroup group = m_Groups[i];
 				Type[] types = group.m_Types;
 
-				bool contains = ( types.Length == 0 );
+				bool contains = types.Length == 0;
 
 				for ( int j = 0; !contains && j < types.Length; ++j )
 					contains = types[j].IsAssignableFrom( type );
@@ -198,7 +197,7 @@ namespace Server.Spells.Necromancy
 					type = c.Owner.GetType();
 				}
 
-				if( c.ItemID != 0x2006 || c.Animated || type == typeof( PlayerMobile ) || type == null || ( c.Owner != null && c.Owner.Fame < 100 ) || ( ( c.Owner != null ) && ( c.Owner is BaseCreature ) && ( ( ( BaseCreature )c.Owner ).Summoned || ( ( BaseCreature )c.Owner ).IsBonded ) ) )
+				if( c.ItemID != 0x2006 || c.Animated || type == typeof( PlayerMobile ) || type == null || c.Owner != null && c.Owner.Fame < 100 || c.Owner != null && c.Owner is BaseCreature && ( ( ( BaseCreature )c.Owner ).Summoned || ( ( BaseCreature )c.Owner ).IsBonded ) )
 				{
 					Caster.SendLocalizedMessage( 1061085 ); // There's not enough life force there to animate.
 				}

@@ -1,13 +1,12 @@
 using System;
 using Server.Targeting;
-using Server.Network;
 using Server.Misc;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Spells.Seventh
 {
-	public class EnergyFieldSpell : MagerySpell
+    public class EnergyFieldSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Energy Field", "In Sanct Grav",

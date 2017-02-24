@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	[Flipable]
+    [Flipable]
 	public class WhiteHangingLantern : BaseLight
 	{
 		public override int LitItemID

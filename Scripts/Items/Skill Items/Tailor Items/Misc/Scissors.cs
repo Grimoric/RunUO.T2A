@@ -1,11 +1,8 @@
-using System;
-using Server.Network;
 using Server.Targeting;
-using Server.Mobiles;
 
 namespace Server.Items
 {
-	public interface IScissorable
+    public interface IScissorable
 	{
 		bool Scissor( Mobile from, Scissors scissors );
 	}

@@ -18,11 +18,10 @@
  *
  ***************************************************************************/
 
-using System;
 
 namespace Server
 {
-	public abstract class PartyCommands
+    public abstract class PartyCommands
 	{
 		private static PartyCommands m_Handler;
 

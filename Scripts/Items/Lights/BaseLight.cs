@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public abstract class BaseLight : Item
+    public abstract class BaseLight : Item
 	{
 		private Timer m_Timer;
 		private DateTime m_End;

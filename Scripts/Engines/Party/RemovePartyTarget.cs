@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Targeting;
 
 namespace Server.Engines.PartySystem
 {
-	public class RemovePartyTarget : Target
+    public class RemovePartyTarget : Target
 	{
 		public RemovePartyTarget() : base( 8, false, TargetFlags.None )
 		{

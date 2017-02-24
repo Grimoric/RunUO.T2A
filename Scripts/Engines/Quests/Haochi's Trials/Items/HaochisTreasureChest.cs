@@ -1,12 +1,11 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Engines.Quests.Samurai
 {
-	public class HaochisTreasureChest : WoodenFootLocker
+    public class HaochisTreasureChest : WoodenFootLocker
 	{
 		[Constructable]
 		public HaochisTreasureChest()

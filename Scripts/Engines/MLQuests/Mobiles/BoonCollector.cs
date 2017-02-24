@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Server.Mobiles;
 using Server.Items;
 using Server.Network;
@@ -9,7 +8,7 @@ using Server.Engines.MLQuests.Definitions;
 
 namespace Server.Engines.MLQuests.Mobiles
 {
-	public abstract class DoneQuestCollector : BaseCreature, IRaceChanger
+    public abstract class DoneQuestCollector : BaseCreature, IRaceChanger
 	{
 		public override bool IsInvulnerable { get { return true; } }
 
@@ -64,7 +63,7 @@ namespace Server.Engines.MLQuests.Mobiles
 
 		public void TalkTo( PlayerMobile pm )
 		{
-			if ( pm == null || ( m_Timer != null && m_Timer.Running ) )
+			if ( pm == null || m_Timer != null && m_Timer.Running )
 				return;
 
 			int completed = CompletedCount( pm );
@@ -296,7 +295,7 @@ namespace Server.Engines.MLQuests.Mobiles
 
 		public override bool CanTalkTo( Mobile from )
 		{
-			return ( from.Race == Race.Human );
+			return @from.Race == Race.Human;
 		}
 
 		public override void DenyTalk( Mobile from )
@@ -392,7 +391,7 @@ namespace Server.Engines.MLQuests.Mobiles
 
 		public override bool CanTalkTo( Mobile from )
 		{
-			return ( from.Race == Race.Elf );
+			return @from.Race == Race.Elf;
 		}
 
 		public override void DenyTalk( Mobile from )

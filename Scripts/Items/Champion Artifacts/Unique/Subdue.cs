@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class Subdue : Scythe
+    public class Subdue : Scythe
 	{
 		public override int LabelNumber{ get{ return 1094930; } } // Subdue [Replica]
 

@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Engines.Quests.Doom
 {
-	public class GrandGrimoire : Item
+    public class GrandGrimoire : Item
 	{
 		public override int LabelNumber{ get{ return 1060801; } } // The Grand Grimoire
 

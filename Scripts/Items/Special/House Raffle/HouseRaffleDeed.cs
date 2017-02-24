@@ -1,11 +1,9 @@
 using System;
-using Server;
 using Server.Gumps;
-using Server.Misc;
 
 namespace Server.Items
 {
-	public class HouseRaffleDeed : Item
+    public class HouseRaffleDeed : Item
 	{
 		private HouseRaffleStone m_Stone;
 		private Point3D m_PlotLocation;
@@ -43,7 +41,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster, AccessLevel.Seer )]
 		public bool IsExpired
 		{
-			get { return ( m_Stone == null || m_Stone.Deleted || m_Stone.IsExpired ); }
+			get { return m_Stone == null || m_Stone.Deleted || m_Stone.IsExpired; }
 		}
 
 		public override string DefaultName
@@ -85,7 +83,7 @@ namespace Server.Items
 
 		public bool ValidLocation()
 		{
-			return ( m_PlotLocation != Point3D.Zero && m_Facet != null && m_Facet != Map.Internal );
+			return m_PlotLocation != Point3D.Zero && m_Facet != null && m_Facet != Map.Internal;
 		}
 
 		public override void GetProperties( ObjectPropertyList list )
@@ -225,7 +223,7 @@ namespace Server.Items
 						HouseRaffleStone.FormatLocation( deed.PlotLocation, deed.PlotFacet, false ),
 						deed.PlotFacet,
 						daysLeft,
-						( daysLeft == 1 ) ? "" : "s"
+						daysLeft == 1 ? "" : "s"
 					);
 				}
 			}

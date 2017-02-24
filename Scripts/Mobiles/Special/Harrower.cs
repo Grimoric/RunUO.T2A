@@ -1,13 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
-using Server.Engines.CannedEvil;
 
 namespace Server.Mobiles
 {
-	public class Harrower : BaseCreature
+    public class Harrower : BaseCreature
 	{
 		public Type[] UniqueList{ get{ return new Type[] { typeof( AcidProofRobe ) }; } }
 		public Type[] SharedList{ get{ return new Type[] { typeof( TheRobeOfBritanniaAri ) }; } }
@@ -73,7 +71,7 @@ namespace Server.Mobiles
 		{
 			get
 			{
-				return ( m_Instances.Count == 0 );
+				return m_Instances.Count == 0;
 			}
 		}
 

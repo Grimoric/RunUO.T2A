@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class GateTravelScroll : SpellScroll
+    public class GateTravelScroll : SpellScroll
 	{
 		[Constructable]
 		public GateTravelScroll() : this( 1 )

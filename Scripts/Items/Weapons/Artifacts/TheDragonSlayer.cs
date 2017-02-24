@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class TheDragonSlayer : Lance
+    public class TheDragonSlayer : Lance
 	{
 		public override int LabelNumber{ get{ return 1061248; } } // The Dragon Slayer
 		public override int ArtifactRarity{ get{ return 11; } }

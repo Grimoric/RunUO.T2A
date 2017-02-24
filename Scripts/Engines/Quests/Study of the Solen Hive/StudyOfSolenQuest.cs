@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Naturalist
 {
-	public class StudyOfSolenQuest : QuestSystem
+    public class StudyOfSolenQuest : QuestSystem
 	{
 		private static Type[] m_TypeReferenceTable = new Type[]
 			{

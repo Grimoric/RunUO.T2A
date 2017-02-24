@@ -1,5 +1,3 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Multis;
 using Server.Network;
@@ -7,8 +5,8 @@ using Server.Targeting;
 using Server.Engines.VeteranRewards;
 
 namespace Server.Items
-{	
-	public class FlamingHead : StoneFaceTrapNoDamage, IAddon, IRewardItem
+{
+    public class FlamingHead : StoneFaceTrapNoDamage, IAddon, IRewardItem
 	{
 		public override int LabelNumber{ get{ return 1041266; } } // Flaming Head
 		public override bool ForceShowProperties{ get{ return ObjectPropertyList.Enabled; } }

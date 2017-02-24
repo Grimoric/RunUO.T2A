@@ -1,9 +1,8 @@
-using System;
 using System.Xml;
 
 namespace Server.Accounting
 {
-	public class AccountTag
+    public class AccountTag
 	{
 		private string m_Name, m_Value;
 

@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Targeting
 {
-	public class WandTarget : Target
+    public class WandTarget : Target
 	{
 		private BaseWand m_Item;
 

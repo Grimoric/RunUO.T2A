@@ -1,11 +1,8 @@
-using System;
 using Server.Items;
-using Server.Targeting;
-using System.Collections;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a giant black widow spider corpse" )] // stupid corpse name
+    [CorpseName( "a giant black widow spider corpse" )] // stupid corpse name
 	public class GiantBlackWidow : BaseCreature
 	{
 		[Constructable]

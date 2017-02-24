@@ -1,5 +1,4 @@
 using System;
-using Server;
 using Server.Misc;
 using Server.Items;
 using Server.Mobiles;
@@ -8,7 +7,7 @@ using Server.Regions;
 
 namespace Server.SkillHandlers
 {
-	public class Snooping
+    public class Snooping
 	{
 		public static void Configure()
 		{
@@ -32,7 +31,7 @@ namespace Server.SkillHandlers
 
 			BaseCreature cret = to as BaseCreature;
 
-			if ( to.Body.IsHuman && (cret == null || (!cret.AlwaysAttackable && !cret.AlwaysMurderer)) )
+			if ( to.Body.IsHuman && (cret == null || !cret.AlwaysAttackable && !cret.AlwaysMurderer) )
 				return false; // in town we cannot snoop blue human npcs
 
 			return true;

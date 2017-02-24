@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	public class RunicFletcherTool : BaseRunicTool
+    public class RunicFletcherTool : BaseRunicTool
 	{
 		public override CraftSystem CraftSystem{ get{ return DefBowFletching.CraftSystem; } }
 

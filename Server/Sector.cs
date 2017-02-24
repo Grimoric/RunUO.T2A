@@ -19,13 +19,13 @@
  ***************************************************************************/
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Server.Items;
 using Server.Network;
 
-namespace Server {
-	public class RegionRect : IComparable {
+namespace Server
+{
+    public class RegionRect : IComparable {
 		private Region m_Region;
 		private Rectangle3D m_Rect;
 
@@ -100,7 +100,7 @@ namespace Server {
 
 		private void Replace<T>( ref List<T> list, T oldValue, T newValue ) {
 			if ( oldValue != null && newValue != null ) {
-				int index = ( list != null ? list.IndexOf( oldValue ) : -1 );
+				int index = list != null ? list.IndexOf( oldValue ) : -1;
 
 				if ( index >= 0 ) {
 					list[index] = newValue;
@@ -294,7 +294,7 @@ namespace Server {
 
 		public bool Active {
 			get {
-				return ( m_Active && m_Owner != Map.Internal );
+				return m_Active && m_Owner != Map.Internal;
 			}
 		}
 

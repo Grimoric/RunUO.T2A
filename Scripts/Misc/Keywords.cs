@@ -1,13 +1,10 @@
-using System;
-using Server;
-using Server.Items;
 using Server.Guilds;
 using Server.Mobiles;
 using Server.Gumps;
 
 namespace Server.Misc
 {
-	public class Keywords
+    public class Keywords
 	{
 		public static void Initialize()
 		{

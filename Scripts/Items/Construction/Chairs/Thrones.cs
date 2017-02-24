@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[Furniture]
+    [Furniture]
 	[Flipable(0xB32, 0xB33)]
 	public class Throne : Item
 	{

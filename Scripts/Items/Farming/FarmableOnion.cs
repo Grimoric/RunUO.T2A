@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Network;
-
 namespace Server.Items
 {
-	public class FarmableOnion : FarmableCrop
+    public class FarmableOnion : FarmableCrop
 	{
 		public static int GetCropID()
 		{

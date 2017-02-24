@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.ContextMenus;
 
 namespace Server.Mobiles
 {
-	public abstract class BaseFamiliar : BaseCreature
+    public abstract class BaseFamiliar : BaseCreature
 	{
 		public BaseFamiliar()
 			: base( AIType.AI_Melee, FightMode.Closest, 10, 1, .1, .1 )
@@ -26,7 +23,7 @@ namespace Server.Mobiles
 		{
 			if( !Deleted && ControlMaster != null && !ControlMaster.Deleted )
 			{
-				int range = ( RangeHome - 2 );
+				int range = RangeHome - 2;
 
 				if( !InRange( ControlMaster.Location, RangeHome ) )
 				{
@@ -36,8 +33,8 @@ namespace Server.Mobiles
 
 					if( Map == master.Map )
 					{
-						int x = ( X > master.X ) ? ( master.X + range ) : ( master.X - range );
-						int y = ( Y > master.Y ) ? ( master.Y + range ) : ( master.Y - range );
+						int x = X > master.X ? master.X + range : master.X - range;
+						int y = Y > master.Y ? master.Y + range : master.Y - range;
 
 						for( int i = 0; i < 10; i++ )
 						{
@@ -115,7 +112,7 @@ namespace Server.Mobiles
 
 		public virtual void EndRelease( Mobile from )
 		{
-			if ( from == null || (!Deleted && Controlled && from == ControlMaster && from.CheckAlive()) )
+			if ( from == null || !Deleted && Controlled && @from == ControlMaster && @from.CheckAlive() )
 			{
 				Effects.SendLocationParticles( EffectItem.Create( Location, Map, EffectItem.DefaultDuration ), 0x3728, 1, 13, 2100, 3, 5042, 0 );
 				PlaySound( 0x201 );

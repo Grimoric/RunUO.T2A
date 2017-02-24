@@ -1,9 +1,8 @@
-using System;
 using System.Collections.Generic;
 
 namespace Server.Factions
 {
-	public class FactionPersistance : Item
+    public class FactionPersistance : Item
 	{
 		private static FactionPersistance m_Instance;
 

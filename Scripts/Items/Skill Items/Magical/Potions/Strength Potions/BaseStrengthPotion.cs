@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public abstract class BaseStrengthPotion : BasePotion
+    public abstract class BaseStrengthPotion : BasePotion
 	{
 		public abstract int StrOffset{ get; }
 		public abstract TimeSpan Duration{ get; }

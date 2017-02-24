@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class FlamestrikeScroll : SpellScroll
+    public class FlamestrikeScroll : SpellScroll
 	{
 		[Constructable]
 		public FlamestrikeScroll() : this( 1 )

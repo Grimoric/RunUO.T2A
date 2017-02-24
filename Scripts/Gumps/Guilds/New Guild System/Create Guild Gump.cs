@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 using Server.Mobiles;
 
 namespace Server.Guilds
 {
-	public class CreateGuildGump : Gump
+    public class CreateGuildGump : Gump
 	{
 		public CreateGuildGump( PlayerMobile pm ) : this( pm, "Guild Name", "" )
 		{
@@ -55,8 +53,8 @@ namespace Server.Guilds
 					TextRelay tName = info.GetTextEntry( 5 );
 					TextRelay tAbbrev = info.GetTextEntry( 6 );
 
-					string guildName = (tName == null) ? "" : tName.Text;
-					string guildAbbrev = (tAbbrev == null) ? "" : tAbbrev.Text;
+					string guildName = tName == null ? "" : tName.Text;
+					string guildAbbrev = tAbbrev == null ? "" : tAbbrev.Text;
 
 					guildName = Utility.FixHtml( guildName.Trim() );
 					guildAbbrev = Utility.FixHtml( guildAbbrev.Trim() );

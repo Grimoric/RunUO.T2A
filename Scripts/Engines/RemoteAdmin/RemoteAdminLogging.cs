@@ -1,12 +1,11 @@
 using System;
 using System.IO;
-using Server;
 using Server.Accounting;
 using Server.Network;
 
 namespace Server.RemoteAdmin
 {
-	public class RemoteAdminLogging
+    public class RemoteAdminLogging
 	{
 		const string LogBaseDirectory = "Logs";
 		const string LogSubDirectory = "RemoteAdmin";

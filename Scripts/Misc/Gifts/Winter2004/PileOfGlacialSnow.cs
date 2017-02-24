@@ -1,11 +1,9 @@
 using System;
-using Server;
-using Server.Network;
 using Server.Targeting;
 
 namespace Server.Items
 {
-	public class PileOfGlacialSnow : Item
+    public class PileOfGlacialSnow : Item
 	{
 		[Constructable]
 		public PileOfGlacialSnow() : base( 0x913 )

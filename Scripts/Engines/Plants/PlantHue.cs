@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using Server;
 
 namespace Server.Engines.Plants
 {
-	[Flags]
+    [Flags]
 	public enum PlantHue
 	{
 		Plain			= 0x1 | Crossable | Reproduces,

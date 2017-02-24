@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public abstract class BasePoisonPotion : BasePotion
+    public abstract class BasePoisonPotion : BasePotion
 	{
 		public abstract Poison Poison{ get; }
 

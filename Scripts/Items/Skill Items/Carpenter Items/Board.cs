@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x1BD7, 0x1BDA )]
+    [FlipableAttribute( 0x1BD7, 0x1BDA )]
 	public class Board : Item, ICommodity
 	{
 		private CraftResource m_Resource;
@@ -109,7 +107,7 @@ namespace Server.Items
 					}
 			}
 
-			if ( (version == 0 && Weight == 0.1) || ( version <= 2 && Weight == 2 ) )
+			if ( version == 0 && Weight == 0.1 || version <= 2 && Weight == 2 )
 				Weight = -1;
 
 			if ( version <= 1 )

@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x1407, 0x1406 )]
+    [FlipableAttribute( 0x1407, 0x1406 )]
 	public class WarMace : BaseBashing
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.CrushingBlow; } }

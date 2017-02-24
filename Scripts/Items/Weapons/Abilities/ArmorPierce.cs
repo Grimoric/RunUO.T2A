@@ -1,12 +1,9 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	/// <summary>
-	/// Strike your opponent with great force, partially bypassing their armor and inflicting greater damage. Requires either Bushido or Ninjitsu skill
-	/// </summary>
-	public class ArmorPierce : WeaponAbility
+    /// <summary>
+    /// Strike your opponent with great force, partially bypassing their armor and inflicting greater damage. Requires either Bushido or Ninjitsu skill
+    /// </summary>
+    public class ArmorPierce : WeaponAbility
 	{
 		public ArmorPierce()
 		{

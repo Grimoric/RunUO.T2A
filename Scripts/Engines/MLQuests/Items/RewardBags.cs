@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Server;
-using Server.Items;
+﻿using Server.Items;
 
 namespace Server.Engines.MLQuests.Items
 {
-	public static class RewardBag
+    public static class RewardBag
 	{
 		public static void Fill( Container c, int itemCount, double talismanChance )
 		{

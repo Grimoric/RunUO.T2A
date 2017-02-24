@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class Obelisk : Item
+    public class Obelisk : Item
 	{
 		public override int LabelNumber{ get{ return 1016474; } } // an obelisk
 

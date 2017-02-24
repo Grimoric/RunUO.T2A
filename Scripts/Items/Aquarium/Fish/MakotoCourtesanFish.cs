@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class MakotoCourtesanFish : BaseFish
+    public class MakotoCourtesanFish : BaseFish
 	{		
 		public override int LabelNumber{ get{ return 1073835; } } // A Makoto Courtesan Fish
 		

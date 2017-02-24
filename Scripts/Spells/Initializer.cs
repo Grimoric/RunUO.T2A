@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Spells
 {
-	public class Initializer
+    public class Initializer
 	{
 		public static void Initialize()
 		{

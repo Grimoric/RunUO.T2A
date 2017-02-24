@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[Flipable( 0x105D, 0x105E )]
+    [Flipable( 0x105D, 0x105E )]
 	public class Springs : Item
 	{
 		[Constructable]

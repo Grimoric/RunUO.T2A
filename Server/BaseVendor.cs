@@ -18,17 +18,11 @@
  *
  ***************************************************************************/
 
-using System;
-using System.Collections;
-using Server.Items;
-using Server.Network;
-using Server.ContextMenus;
-using Server.Mobiles;
 using System.Collections.Generic;
 
 namespace Server.Mobiles
 {
-	public class BuyItemStateComparer : IComparer<BuyItemState>
+    public class BuyItemStateComparer : IComparer<BuyItemState>
 	{
 		public int Compare( BuyItemState l, BuyItemState r )
 		{

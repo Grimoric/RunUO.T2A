@@ -1,9 +1,6 @@
-using System;
-using Server.Network;
-
 namespace Server.Items
 {
-	public class FruitBasket : Food
+    public class FruitBasket : Food
 	{
 		[Constructable]
 		public FruitBasket() : base( 1, 0x993 )

@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public abstract class BaseStaff : BaseMeleeWeapon
+    public abstract class BaseStaff : BaseMeleeWeapon
 	{
 		public override int DefHitSound{ get{ return 0x233; } }
 		public override int DefMissSound{ get{ return 0x239; } }

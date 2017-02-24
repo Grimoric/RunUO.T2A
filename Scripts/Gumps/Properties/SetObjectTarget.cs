@@ -1,14 +1,13 @@
 using System;
 using System.Reflection;
 using System.Collections;
-using Server;
 using Server.Items;
 using Server.Targeting;
 using Server.Commands;
 
 namespace Server.Gumps
 {
-	public class SetObjectTarget : Target
+    public class SetObjectTarget : Target
 	{
 		private PropertyInfo m_Property;
 		private Mobile m_Mobile;

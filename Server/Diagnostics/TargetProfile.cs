@@ -20,10 +20,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Server.Diagnostics {
-	public class TargetProfile : BaseProfile {
+namespace Server.Diagnostics
+{
+    public class TargetProfile : BaseProfile {
 		private static Dictionary<Type, TargetProfile> _profiles = new Dictionary<Type, TargetProfile>();
 
 		public static IEnumerable<TargetProfile> Profiles {

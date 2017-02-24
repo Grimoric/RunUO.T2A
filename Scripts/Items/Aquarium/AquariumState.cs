@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public enum WaterState
+    public enum WaterState
 	{
 		Dead,
 		Dying,

@@ -1,15 +1,13 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Spells;
-using Server.Engines.PartySystem;
 
 namespace Server.Items
 {
-	/// <summary>
-	/// A quick attack to all enemies in range of your weapon that causes damage over time. Requires Bushido or Ninjitsu skill.
-	/// </summary>
-	public class FrenziedWhirlwind : WeaponAbility
+    /// <summary>
+    /// A quick attack to all enemies in range of your weapon that causes damage over time. Requires Bushido or Ninjitsu skill.
+    /// </summary>
+    public class FrenziedWhirlwind : WeaponAbility
 	{
 		public FrenziedWhirlwind()
 		{

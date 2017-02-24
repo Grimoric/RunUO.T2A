@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Server.Engines.MLQuests
 {
-	public class QuestArea
+    public class QuestArea
 	{
 		private TextDefinition m_Name; // So we can add custom names, different from the Region name
 		private string m_RegionName;
@@ -50,7 +48,7 @@ namespace Server.Engines.MLQuests
 
 		public bool Contains( Region reg )
 		{
-			if ( reg == null || ( m_ForceMap != null && reg.Map != m_ForceMap ) )
+			if ( reg == null || m_ForceMap != null && reg.Map != m_ForceMap )
 				return false;
 
 			return reg.IsPartOf( m_RegionName );
@@ -71,7 +69,7 @@ namespace Server.Engines.MLQuests
 			}
 
 			if ( !found )
-				Console.WriteLine( "Warning: QuestArea region '{0}' does not exist (ForceMap = {1})", m_RegionName, ( m_ForceMap == null ) ? "-null-" : m_ForceMap.ToString() );
+				Console.WriteLine( "Warning: QuestArea region '{0}' does not exist (ForceMap = {1})", m_RegionName, m_ForceMap == null ? "-null-" : m_ForceMap.ToString() );
 		}
 	}
 }

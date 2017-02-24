@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class MidnightBracers : BoneArms
+    public class MidnightBracers : BoneArms
 	{
 		public override int LabelNumber{ get{ return 1061093; } } // Midnight Bracers
 		public override int ArtifactRarity{ get{ return 11; } }

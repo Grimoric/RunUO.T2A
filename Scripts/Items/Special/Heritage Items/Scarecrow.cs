@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[Flipable( 0x1E34, 0x1E35 )]
+    [Flipable( 0x1E34, 0x1E35 )]
 	public class ScarecrowComponent : AddonComponent
 	{
 		public override int LabelNumber { get { return 1076608; } } // Scarecrow

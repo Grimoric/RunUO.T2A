@@ -1,12 +1,10 @@
 using System;
-using Server;
-using Server.Engines.MLQuests;
 using Server.Mobiles;
 using Server.Gumps;
 
 namespace Server.Engines.MLQuests.Objectives
 {
-	public class KillObjective : BaseObjective
+    public class KillObjective : BaseObjective
 	{
 		private int m_DesiredAmount;
 		private Type[] m_AcceptedTypes; // Example of Type[] requirement on OSI: killing X bone magis or skeletal mages (probably the same type on OSI though?)
@@ -164,7 +162,7 @@ namespace Server.Engines.MLQuests.Objectives
 
 		public override bool IsCompleted()
 		{
-			return ( m_Slain >= m_Objective.DesiredAmount );
+			return m_Slain >= m_Objective.DesiredAmount;
 		}
 
 		public override void WriteToGump( Gump g, ref int y )

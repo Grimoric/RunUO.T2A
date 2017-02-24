@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x13BB, 0x13C0 )]
+    [FlipableAttribute( 0x13BB, 0x13C0 )]
 	public class ChainCoif : BaseArmor
 	{
 		public override int BasePhysicalResistance{ get{ return 4; } }

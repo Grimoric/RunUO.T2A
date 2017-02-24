@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	public class Revenant : BaseCreature
+    public class Revenant : BaseCreature
 	{
 		private Mobile m_Target;
 		private DateTime m_ExpireTime;

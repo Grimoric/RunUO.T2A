@@ -1,12 +1,10 @@
-using System;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Factions
 {
-	public class FactionBoardVendor : BaseFactionVendor
+    public class FactionBoardVendor : BaseFactionVendor
 	{
 		public FactionBoardVendor( Town town, Faction faction ) : base( town, faction, "the LumberMan" ) // NOTE: title inconsistant, as OSI
 		{

@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Network;
 using Server.Targeting;
 using System.Collections.Generic;
 
 namespace Server.Items
 {
-	public class CrystalRechargeInfo
+    public class CrystalRechargeInfo
 	{
 		public static readonly CrystalRechargeInfo[] Table = new CrystalRechargeInfo[]
 			{
@@ -131,7 +129,7 @@ namespace Server.Items
 
 		public override void OnSpeech( SpeechEventArgs e )
 		{
-			if ( !Active || Receivers.Count == 0 || ( RootParent != null && !(RootParent is Mobile) ) )
+			if ( !Active || Receivers.Count == 0 || RootParent != null && !(RootParent is Mobile) )
 				return;
 
 			if ( e.Type == MessageType.Emote )

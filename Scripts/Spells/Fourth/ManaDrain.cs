@@ -1,11 +1,9 @@
-using System;
 using System.Collections.Generic;
-using Server.Network;
 using Server.Targeting;
 
 namespace Server.Spells.Fourth
 {
-	public class ManaDrainSpell : MagerySpell
+    public class ManaDrainSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Mana Drain", "Ort Rel",

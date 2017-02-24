@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	public class HeritageTokenGump : Gump
+    public class HeritageTokenGump : Gump
 	{
 		private HeritageToken m_Token;
 

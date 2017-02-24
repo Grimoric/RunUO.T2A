@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class HolySword : Longsword
+    public class HolySword : Longsword
 	{
 		public override int LabelNumber{ get{ return 1062921; } } // The Holy Sword
 

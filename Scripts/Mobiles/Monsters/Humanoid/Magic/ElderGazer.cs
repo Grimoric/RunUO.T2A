@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "an elder gazer corpse" )]
+    [CorpseName( "an elder gazer corpse" )]
 	public class ElderGazer : BaseCreature
 	{
 		[Constructable]

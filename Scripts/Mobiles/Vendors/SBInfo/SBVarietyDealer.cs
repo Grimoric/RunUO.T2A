@@ -61,7 +61,7 @@ namespace Server.Mobiles
 					else if ( i > 6 )
 						--itemID;
 
-					Add( new GenericBuyInfo( types[i], 12 + ((i / 8) * 10), 20, itemID, 0 ) );
+					Add( new GenericBuyInfo( types[i], 12 + i / 8 * 10, 20, itemID, 0 ) );
 				}
 
 				Add( new GenericBuyInfo( typeof( RecallRune ), 15, 10, 0x1f14, 0 ) );
@@ -109,7 +109,7 @@ namespace Server.Mobiles
 				Type[] types = Loot.RegularScrollTypes;
 
 				for ( int i = 0; i < types.Length; ++i )
-					Add( types[i], ((i / 8) + 2) * 5 );
+					Add( types[i], (i / 8 + 2) * 5 );
 			}
 		}
 	}

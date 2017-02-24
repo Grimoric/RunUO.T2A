@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Network;
 using Server.Targeting;
 using Server.Spells;
 
 namespace Server.Items
 {
-	public abstract class BaseExplosionPotion : BasePotion
+    public abstract class BaseExplosionPotion : BasePotion
 	{
 		public abstract int MinDamage { get; }
 		public abstract int MaxDamage { get; }
@@ -247,7 +246,7 @@ namespace Server.Items
 
 			foreach ( object o in eable )
 			{
-				if ( o is Mobile && (from == null || (SpellHelper.ValidIndirectTarget( from, (Mobile)o ) && from.CanBeHarmful( (Mobile)o, false ))))
+				if ( o is Mobile && (from == null || SpellHelper.ValidIndirectTarget( @from, (Mobile)o ) && @from.CanBeHarmful( (Mobile)o, false )))
 				{
 					toExplode.Add( o );
 					++toDamage;

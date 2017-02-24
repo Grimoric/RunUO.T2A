@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class Arrow : Item, ICommodity
+    public class Arrow : Item, ICommodity
 	{
 		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
 		bool ICommodity.IsDeedable { get { return true; } }

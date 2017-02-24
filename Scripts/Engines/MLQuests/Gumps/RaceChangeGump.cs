@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Server;
-using Server.Engines.MLQuests.Mobiles;
 using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
@@ -12,7 +10,7 @@ using Server.Spells.Seventh;
 
 namespace Server.Engines.MLQuests.Gumps
 {
-	public interface IRaceChanger
+    public interface IRaceChanger
 	{
 		bool CheckComplete( PlayerMobile from );
 		void ConsumeNeeded( PlayerMobile from );
@@ -99,7 +97,7 @@ namespace Server.Engines.MLQuests.Gumps
 
 		public static bool IsPending( NetState state )
 		{
-			return ( state != null && m_Pending.ContainsKey( state ) );
+			return state != null && m_Pending.ContainsKey( state );
 		}
 
 		private static void Offer( IRaceChanger owner, PlayerMobile from, Race targetRace )
@@ -213,7 +211,7 @@ namespace Server.Engines.MLQuests.Gumps
 				return;
 			}
 
-			if ( !CanChange( pm, targetRace ) || ( owner != null && !owner.CheckComplete( pm ) ) )
+			if ( !CanChange( pm, targetRace ) || owner != null && !owner.CheckComplete( pm ) )
 				return;
 
 			int hue = pvSrc.ReadUInt16();
@@ -329,7 +327,7 @@ namespace Server.Engines.MLQuests.Gumps
 				return;
 
 			if ( CheckComplete( pm ) )
-				pm.SendGump( new RaceChangeConfirmGump( this, pm, ( pm.Race == Race.Human ) ? Race.Elf : Race.Human ) );
+				pm.SendGump( new RaceChangeConfirmGump( this, pm, pm.Race == Race.Human ? Race.Elf : Race.Human ) );
 		}
 
 		public RaceChangeDeed( Serial serial )

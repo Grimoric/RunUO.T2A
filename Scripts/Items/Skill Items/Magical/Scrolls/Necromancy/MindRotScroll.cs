@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class MindRotScroll : SpellScroll
+    public class MindRotScroll : SpellScroll
 	{
 		[Constructable]
 		public MindRotScroll() : this( 1 )

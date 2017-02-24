@@ -1,9 +1,8 @@
-using System;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an inhuman corpse" )]
+    [CorpseName( "an inhuman corpse" )]
 	public class Cursed : BaseCreature
 	{
 		public override bool ClickTitle{ get{ return false; } }

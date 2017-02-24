@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Server.Targeting;
 
 namespace Server.Spells.Spellweaving
 {
-	public class GiftOfRenewalSpell : ArcanistSpell
+    public class GiftOfRenewalSpell : ArcanistSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Gift of Renewal", "Olorisstra",
@@ -57,7 +56,7 @@ namespace Server.Spells.Spellweaving
 					double skill = Caster.Skills[SkillName.Spellweaving].Value;
 
 					int hitsPerRound = 5 + (int)(skill / 24) + FocusLevel;
-					TimeSpan duration = TimeSpan.FromSeconds( 30 + (FocusLevel * 10) );
+					TimeSpan duration = TimeSpan.FromSeconds( 30 + FocusLevel * 10 );
 
 					GiftOfRenewalInfo info = new GiftOfRenewalInfo( Caster, m, hitsPerRound );
 

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Server.Mobiles;
 using Server.Items;
 using Server.Engines.MLQuests.Objectives;
@@ -8,9 +6,9 @@ using Server.Engines.MLQuests.Rewards;
 
 namespace Server.Engines.MLQuests.Definitions
 {
-	#region Quests
+    #region Quests
 
-	public class VilePoison : MLQuest
+    public class VilePoison : MLQuest
 	{
 		public override Type NextQuest { get { return typeof( ARockAndAHardPlace ); } }
 

@@ -1,14 +1,11 @@
-using System;
-using Server;
 using Server.Multis;
 using Server.Gumps;
-using Server.Items;
 using Server.Network;
 using Server.Engines.VeteranRewards;
 
 namespace Server.Items
 {
-	public enum MonsterStatuetteType
+    public enum MonsterStatuetteType
 	{
 		Crocodile,
 		Daemon,
@@ -236,7 +233,7 @@ namespace Server.Items
 		{
 			BaseHouse house = BaseHouse.FindHouseAt( this );
 
-			return ( house != null && house.IsOwner( mob ) );
+			return house != null && house.IsOwner( mob );
 		}
 
 		public override void OnDoubleClick( Mobile from )

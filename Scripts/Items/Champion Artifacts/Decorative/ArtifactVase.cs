@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class ArtifactVase : Item
+    public class ArtifactVase : Item
 	{
 		[Constructable]
 		public ArtifactVase() : base( 0x0B48 )

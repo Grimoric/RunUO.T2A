@@ -1,13 +1,10 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Network;
-using Server.Factions;
 using Server.Mobiles;
 
 namespace Server.Factions
 {
-	public class Keywords
+    public class Keywords
 	{
 		public static void Initialize()
 		{
@@ -104,10 +101,10 @@ namespace Server.Factions
 							if ( Faction.CheckLeaveTimer( from ) )
 								break;
 
-							TimeSpan remaining = ( pl.Leaving + Faction.LeavePeriod ) - DateTime.Now;
+							TimeSpan remaining = pl.Leaving + Faction.LeavePeriod - DateTime.Now;
 
 							if( remaining.TotalDays >= 1 )
-								from.SendLocalizedMessage( 1042743, remaining.TotalDays.ToString( "N0" ) ) ;// Your term of service will come to an end in ~1_DAYS~ days.
+								from.SendLocalizedMessage( 1042743, remaining.TotalDays.ToString( "N0" ) );// Your term of service will come to an end in ~1_DAYS~ days.
 							else if( remaining.TotalHours >= 1 )
 								from.SendLocalizedMessage( 1042741, remaining.TotalHours.ToString( "N0" ) ); // Your term of service will come to an end in ~1_HOURS~ hours.
 							else

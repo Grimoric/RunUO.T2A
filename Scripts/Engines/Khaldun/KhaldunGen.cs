@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Items;
 
 namespace Server.Commands
 {
-	public class GenKhaldun
+    public class GenKhaldun
 	{
 		private static int m_Count;
 		

@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Server.Mobiles;
 
 namespace Server.Ethics.Hero
 {
-	public sealed class SummonFamiliar : Power
+    public sealed class SummonFamiliar : Power
 	{
 		public SummonFamiliar()
 		{
@@ -28,7 +26,7 @@ namespace Server.Ethics.Hero
 				return;
 			}
 
-			if ( ( from.Mobile.Followers + 1 ) > from.Mobile.FollowersMax )
+			if ( @from.Mobile.Followers + 1 > from.Mobile.FollowersMax )
 			{
 				from.Mobile.SendLocalizedMessage( 1049645 ); // You have too many followers to summon that creature.
 				return;

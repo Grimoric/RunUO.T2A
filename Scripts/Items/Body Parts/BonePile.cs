@@ -1,10 +1,6 @@
-using System;
-using Server.Items;
-using Server.Network;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x1B09, 0x1B10 )]
+    [FlipableAttribute( 0x1B09, 0x1B10 )]
 	public class BonePile : Item, IScissorable
 	{
 		[Constructable]

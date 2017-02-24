@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class LampPost2 : BaseLight
+    public class LampPost2 : BaseLight
 	{
 		public override int LitItemID{ get { return 0xB22; } }
 		public override int UnlitItemID{ get { return 0xB23; } }

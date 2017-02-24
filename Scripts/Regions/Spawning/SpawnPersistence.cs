@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using Server;
-
 namespace Server.Regions
 {
-	public class SpawnPersistence : Item
+    public class SpawnPersistence : Item
 	{
 		private static SpawnPersistence m_Instance;
 

@@ -1,10 +1,8 @@
 using System;
-using Server.Network;
-using Server.Items;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x27A5, 0x27F0 )]
+    [FlipableAttribute( 0x27A5, 0x27F0 )]
 	public class Yumi : BaseRanged
 	{
 		public override int EffectID{ get{ return 0xF42; } }

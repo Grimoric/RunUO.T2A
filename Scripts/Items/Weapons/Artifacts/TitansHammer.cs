@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class TitansHammer : WarHammer
+    public class TitansHammer : WarHammer
 	{
 		public override int LabelNumber{ get{ return 1060024; } } // Titan's Hammer
 		public override int ArtifactRarity{ get{ return 10; } }

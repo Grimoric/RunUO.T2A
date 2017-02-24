@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x2FC9, 0x317F )]
+    [FlipableAttribute( 0x2FC9, 0x317F )]
 	public class LeafLegs : BaseArmor
 	{
 		public override Race RequiredRace { get { return Race.Elf; } }

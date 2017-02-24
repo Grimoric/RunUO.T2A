@@ -1,12 +1,10 @@
-using System;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Factions
 {
-	public class FactionOreVendor : BaseFactionVendor
+    public class FactionOreVendor : BaseFactionVendor
 	{
 		public FactionOreVendor( Town town, Faction faction ) : base( town, faction, "the Ore Man" )
 		{

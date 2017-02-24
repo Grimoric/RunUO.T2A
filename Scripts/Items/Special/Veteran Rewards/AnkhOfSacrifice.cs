@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Gumps;
 using Server.Mobiles;
 using Server.Network;
@@ -8,8 +7,8 @@ using Server.ContextMenus;
 using Server.Engines.VeteranRewards;
 
 namespace Server.Items
-{	
-	public class AnkhOfSacrificeComponent : AddonComponent
+{
+    public class AnkhOfSacrificeComponent : AddonComponent
 	{		
 		public override bool ForceShowProperties{ get{ return ObjectPropertyList.Enabled; } }
 		public override int LabelNumber{ get{ return 1027772; } } // Ankh of Sacrifice

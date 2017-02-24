@@ -1,11 +1,9 @@
-using System;
 using System.Collections;
-using Server;
 using Server.Items;
 
 namespace Server.Commands
 {
-	public class GenTeleporter
+    public class GenTeleporter
 	{
 		public GenTeleporter()
 		{

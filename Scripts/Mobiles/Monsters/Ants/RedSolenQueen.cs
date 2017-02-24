@@ -1,11 +1,9 @@
-using System;
-using System.Collections;
 using Server.Items;
 using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a solen queen corpse" )]
+    [CorpseName( "a solen queen corpse" )]
 	public class RedSolenQueen : BaseCreature
 	{
 		private bool m_BurstSac;
@@ -46,7 +44,7 @@ namespace Server.Mobiles
 
 			SolenHelper.PackPicnicBasket( this );
 
-			PackItem( new ZoogiFungus( ( Utility.RandomDouble() > 0.05 )? 5 : 25 ) );
+			PackItem( new ZoogiFungus( Utility.RandomDouble() > 0.05? 5 : 25 ) );
 
 			if( Utility.RandomDouble() < 0.05 )
 				PackItem( new BallOfSummoning() );

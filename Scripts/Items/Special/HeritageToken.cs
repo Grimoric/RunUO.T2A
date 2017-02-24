@@ -1,10 +1,9 @@
 ﻿using System;
-using Server;
 using Server.Gumps;
 
 namespace Server.Items
 {
-	public interface ITokunoDyable
+    public interface ITokunoDyable
 	{
 	}
 

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Multis;
 using Server.Gumps;
 using System.Collections.Generic;
@@ -8,10 +6,10 @@ using Server.ContextMenus;
 
 namespace Server.Items
 {
-	public class MetalHouseDoor : BaseHouseDoor
+    public class MetalHouseDoor : BaseHouseDoor
 	{
 		[Constructable]
-		public MetalHouseDoor( DoorFacing facing ) : base( facing, 0x675 + (2 * (int)facing), 0x676 + (2 * (int)facing), 0xEC, 0xF3, BaseDoor.GetOffset( facing ) )
+		public MetalHouseDoor( DoorFacing facing ) : base( facing, 0x675 + 2 * (int)facing, 0x676 + 2 * (int)facing, 0xEC, 0xF3, BaseDoor.GetOffset( facing ) )
 		{
 		}
 
@@ -37,7 +35,7 @@ namespace Server.Items
 	public class DarkWoodHouseDoor : BaseHouseDoor
 	{
 		[Constructable]
-		public DarkWoodHouseDoor( DoorFacing facing ) : base( facing, 0x6A5 + (2 * (int)facing), 0x6A6 + (2 * (int)facing), 0xEA, 0xF1, BaseDoor.GetOffset( facing ) )
+		public DarkWoodHouseDoor( DoorFacing facing ) : base( facing, 0x6A5 + 2 * (int)facing, 0x6A6 + 2 * (int)facing, 0xEA, 0xF1, BaseDoor.GetOffset( facing ) )
 		{
 		}
 
@@ -69,7 +67,7 @@ namespace Server.Items
 
 		[Constructable]
 		public GenericHouseDoor( DoorFacing facing, int baseItemID, int openedSound, int closedSound, bool autoAdjust )
-			: base( facing, baseItemID + (autoAdjust ? (2 * (int)facing) : 0), baseItemID + 1 + (autoAdjust ? (2 * (int)facing) : 0), openedSound, closedSound, BaseDoor.GetOffset( facing ) )
+			: base( facing, baseItemID + (autoAdjust ? 2 * (int)facing : 0), baseItemID + 1 + (autoAdjust ? 2 * (int)facing : 0), openedSound, closedSound, BaseDoor.GetOffset( facing ) )
 		{
 		}
 
@@ -166,7 +164,7 @@ namespace Server.Items
 		{
 			BaseHouse house = FindHouse();
 
-			return ( house == null || !house.IsAosRules );
+			return house == null || !house.IsAosRules;
 		}
 
 		public override void Use( Mobile from )
@@ -247,7 +245,7 @@ namespace Server.Items
 			int ry = from.Y - Y;
 			int az = Math.Abs( from.Z - Z );
 
-			return ( rx >= x && rx < (x+w) && ry >= y && ry < (y+h) && az <= 4 );
+			return rx >= x && rx < x+w && ry >= y && ry < y+h && az <= 4;
 		}
 	}
 }

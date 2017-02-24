@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[Furniture]
+    [Furniture]
 	[Flipable( 0x24D0, 0x24D1, 0x24D2, 0x24D3, 0x24D4 )]
 	public class BambooScreen : Item
 	{

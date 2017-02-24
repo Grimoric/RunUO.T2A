@@ -1,12 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 
 namespace Server.Accounting
 {
-	public class Accounts
+    public class Accounts
 	{
 		private static Dictionary<string, IAccount> m_Accounts = new Dictionary<string, IAccount>();
 

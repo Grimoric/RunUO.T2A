@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Network;
 using Server.Mobiles;
-using Server.Accounting;
 
 namespace Server.Gumps
 {
-	public class HonorSelf: Gump
+    public class HonorSelf: Gump
 	{
 		PlayerMobile m_from;
 		public HonorSelf( PlayerMobile from ) : base( 150, 50 )

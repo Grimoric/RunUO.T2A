@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Network;
 
 namespace Server.Multis
 {
-	public class MovingCrate : Container
+    public class MovingCrate : Container
 	{
 		public static readonly int MaxItemsPerSubcontainer = 20;
 		public static readonly int Rows = 3;

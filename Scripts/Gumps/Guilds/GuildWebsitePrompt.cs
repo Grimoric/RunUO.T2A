@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Guilds;
 using Server.Prompts;
 
 namespace Server.Gumps
 {
-	public class GuildWebsitePrompt : Prompt
+    public class GuildWebsitePrompt : Prompt
 	{
 		private Mobile m_Mobile;
 		private Guild m_Guild;

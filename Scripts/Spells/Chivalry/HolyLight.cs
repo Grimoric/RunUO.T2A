@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Server.Network;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Spells.Chivalry
 {
-	public class HolyLightSpell : PaladinSpell
+    public class HolyLightSpell : PaladinSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Holy Light", "Augus Luminos",

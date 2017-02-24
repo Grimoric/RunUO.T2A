@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Spells.Spellweaving;
 
 namespace Server.Items
 {
-	public abstract class BaseMeleeWeapon : BaseWeapon
+    public abstract class BaseMeleeWeapon : BaseWeapon
 	{
 		public BaseMeleeWeapon( int itemID ) : base( itemID )
 		{

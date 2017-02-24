@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0xF62, 0xF63 )]
+    [FlipableAttribute( 0xF62, 0xF63 )]
 	public class TribalSpear : BaseSpear
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ArmorIgnore; } }

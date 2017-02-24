@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Server;
 using Server.ContextMenus;
 using Server.Network;
 using Server.Gumps;
@@ -10,7 +9,7 @@ using Server.Multis;
 
 namespace Server.Items
 {
-	public class BookPageInfo
+    public class BookPageInfo
 	{
 		private string[] m_Lines;
 

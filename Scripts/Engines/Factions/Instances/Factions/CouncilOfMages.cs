@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Factions
 {
-	public class CouncilOfMages : Faction
+    public class CouncilOfMages : Faction
 	{
 		private static Faction m_Instance;
 

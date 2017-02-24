@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	public class EvilWanderingHealer : BaseHealer
+    public class EvilWanderingHealer : BaseHealer
 	{
 		public override bool CanTeach{ get{ return true; } }
 
@@ -13,11 +11,11 @@ namespace Server.Mobiles
 			if ( !base.CheckTeach( skill, from ) )
 				return false;
 
-			return ( skill == SkillName.Anatomy )
-				|| ( skill == SkillName.Camping )
-				|| ( skill == SkillName.Forensics )
-				|| ( skill == SkillName.Healing )
-				|| ( skill == SkillName.SpiritSpeak );
+			return skill == SkillName.Anatomy
+				|| skill == SkillName.Camping
+				|| skill == SkillName.Forensics
+				|| skill == SkillName.Healing
+				|| skill == SkillName.SpiritSpeak;
 		}
 
 		[Constructable]

@@ -1,5 +1,4 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Multis;
 using Server.Mobiles;
@@ -8,7 +7,7 @@ using Server.Targeting;
 
 namespace Server.Spells.Chivalry
 {
-	public class SacredJourneySpell : PaladinSpell
+    public class SacredJourneySpell : PaladinSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Sacred Journey", "Sanctum Viatas",
@@ -80,7 +79,7 @@ namespace Server.Spells.Chivalry
 			{
 				Caster.SendLocalizedMessage( 1061632 ); // You can't do that while carrying the sigil.
 			}
-			else if ( map == null || ( Caster.Map != map) )
+			else if ( map == null || Caster.Map != map )
 			{
 				Caster.SendLocalizedMessage( 1005569 ); // You can not recall to another facet.
 			}
@@ -114,7 +113,7 @@ namespace Server.Spells.Chivalry
 			{
 				Caster.SendLocalizedMessage( 501942 ); // That location is blocked.
 			}
-			else if ( (checkMulti && SpellHelper.CheckMulti( loc, map )) )
+			else if ( checkMulti && SpellHelper.CheckMulti( loc, map ) )
 			{
 				Caster.SendLocalizedMessage( 501942 ); // That location is blocked.
 			}

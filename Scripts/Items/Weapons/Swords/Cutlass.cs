@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x1441, 0x1440 )]
+    [FlipableAttribute( 0x1441, 0x1440 )]
 	public class Cutlass : BaseSword
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }

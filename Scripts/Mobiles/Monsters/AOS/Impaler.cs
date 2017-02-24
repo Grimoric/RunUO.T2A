@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an impaler corpse" )]
+    [CorpseName( "an impaler corpse" )]
 	public class Impaler : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()
@@ -68,7 +66,7 @@ namespace Server.Mobiles
 		public override bool Unprovokable{ get{ return false; } }
 		public override bool AreaPeaceImmune { get { return false; } }
 		public override Poison PoisonImmune{ get{ return Poison.Lethal; } }
-		public override Poison HitPoison{ get{ return (0.8 >= Utility.RandomDouble() ? Poison.Greater : Poison.Deadly); } }
+		public override Poison HitPoison{ get{ return 0.8 >= Utility.RandomDouble() ? Poison.Greater : Poison.Deadly; } }
 
 		public override int TreasureMapLevel{ get{ return 1; } }
 

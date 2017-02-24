@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class WitherScroll : SpellScroll
+    public class WitherScroll : SpellScroll
 	{
 		[Constructable]
 		public WitherScroll() : this( 1 )

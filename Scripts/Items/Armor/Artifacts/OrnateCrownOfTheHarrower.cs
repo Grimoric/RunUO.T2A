@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class OrnateCrownOfTheHarrower : BoneHelm
+    public class OrnateCrownOfTheHarrower : BoneHelm
 	{
 		public override int LabelNumber{ get{ return 1061095; } } // Ornate Crown of the Harrower
 		public override int ArtifactRarity{ get{ return 11; } }

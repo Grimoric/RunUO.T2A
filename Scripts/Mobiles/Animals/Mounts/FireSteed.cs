@@ -1,10 +1,9 @@
 using System;
 using Server.Items;
-using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a fire steed corpse" )]
+    [CorpseName( "a fire steed corpse" )]
 	public class FireSteed : BaseMount
 	{
 		[Constructable]

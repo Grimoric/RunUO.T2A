@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class Globe : Item
+    public class Globe : Item
 	{
 		[Constructable]
 		public Globe() : base( 0x1047 ) // It isn't flipable

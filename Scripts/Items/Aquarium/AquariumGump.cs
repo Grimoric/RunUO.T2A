@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
 using Server.Gumps;
-using Server.Items;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class AquariumGump : Gump
+    public class AquariumGump : Gump
 	{
 		private Aquarium m_Aquarium;
 

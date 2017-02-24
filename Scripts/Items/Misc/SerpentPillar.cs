@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Multis;
 
 namespace Server.Items
 {
-	public class SerpentPillar : Item
+    public class SerpentPillar : Item
 	{
 		private bool m_Active;
 		private string m_Word;

@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.VeteranRewards;
 
 namespace Server.Items
 {
-	public class ContestMiniHouse : MiniHouseAddon
+    public class ContestMiniHouse : MiniHouseAddon
 	{				
 		public override BaseAddonDeed Deed
 		{ 

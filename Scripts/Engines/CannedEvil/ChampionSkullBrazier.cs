@@ -1,13 +1,10 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Items;
 using Server.Targeting;
 using Server.Mobiles;
 
 namespace Server.Engines.CannedEvil
 {
-	public class ChampionSkullBrazier : AddonComponent
+    public class ChampionSkullBrazier : AddonComponent
 	{
 		private ChampionSkullPlatform m_Platform;
 		private ChampionSkullType m_Type;

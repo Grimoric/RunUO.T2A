@@ -1,13 +1,9 @@
 using System;
-using System.Collections;
-using Server;
-using Server.Misc;
-using Server.Items;
 using Server.Spells;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a meer corpse" )]
+    [CorpseName( "a meer corpse" )]
 	public class MeerWarrior : BaseCreature
 	{
 		[Constructable]

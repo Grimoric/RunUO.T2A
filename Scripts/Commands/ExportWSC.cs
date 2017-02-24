@@ -1,12 +1,10 @@
-using System;
 using System.Collections;
 using System.IO;
-using Server;
 using Server.Items;
 
 namespace Server.Commands
 {
-	public class ExportCommand
+    public class ExportCommand
 	{
 		private const string ExportFile = @"C:\Uo\WorldForge\items.wsc";
 

@@ -1,13 +1,11 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Items;
-using Server.Spells;
 using Server.Engines.CannedEvil;
 
 namespace Server.Mobiles
 {
-	public class Rikktor : BaseChampion
+    public class Rikktor : BaseChampion
 	{
 		public override ChampionSkullType SkullType{ get{ return ChampionSkullType.Power; } }
 

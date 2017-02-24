@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.CannedEvil;
 
 namespace Server.Items
 {
-	public class ChampionSkull : Item
+    public class ChampionSkull : Item
 	{
 		private ChampionSkullType m_Type;
 

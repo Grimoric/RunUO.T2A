@@ -1,14 +1,11 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
-using Server;
 
 namespace Server.Commands.Generic
 {
-	public sealed class OrderInfo
+    public sealed class OrderInfo
 	{
 		private Property m_Property;
 		private int m_Order;
@@ -21,14 +18,14 @@ namespace Server.Commands.Generic
 
 		public bool IsAscending
 		{
-			get { return ( m_Order > 0 ); }
-			set { m_Order = ( value ? +1 : -1 ); }
+			get { return m_Order > 0; }
+			set { m_Order = value ? +1 : -1; }
 		}
 
 		public bool IsDescending
 		{
-			get { return ( m_Order < 0 ); }
-			set { m_Order = ( value ? -1 : +1 ); }
+			get { return m_Order < 0; }
+			set { m_Order = value ? -1 : +1; }
 		}
 
 		public int Sign

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x2B70, 0x3167 )]
+    [FlipableAttribute( 0x2B70, 0x3167 )]
 	public class GemmedCirclet : BaseArmor
 	{
 		public override Race RequiredRace { get { return Race.Elf; } }

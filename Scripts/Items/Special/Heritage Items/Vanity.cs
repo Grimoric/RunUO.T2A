@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class VanityAddon : BaseAddonContainer
+    public class VanityAddon : BaseAddonContainer
 	{
 		public override BaseAddonContainerDeed Deed { get { return new VanityDeed(); } }
 		public override int LabelNumber { get { return 1074027; } } // Vanity
@@ -123,7 +121,7 @@ namespace Server.Items
 				if ( m_Deed == null || m_Deed.Deleted || info.ButtonID == 0 )
 					return;
 
-				m_Deed.m_East = ( info.ButtonID != 1 );
+				m_Deed.m_East = info.ButtonID != 1;
 				m_Deed.SendTarget( sender.Mobile );
 			}
 		}

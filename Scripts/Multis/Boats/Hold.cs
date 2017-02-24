@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Multis;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class Hold : Container
+    public class Hold : Container
 	{
 		private BaseBoat m_Boat;
 

@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using Server;
 
 namespace Server.Engines.PartySystem
 {
-	public class DeclineTimer : Timer
+    public class DeclineTimer : Timer
 	{
 		private Mobile m_Mobile, m_Leader;
 

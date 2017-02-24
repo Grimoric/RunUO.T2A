@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Mobiles;
 using Server.Targeting;
 using Server.Gumps;
@@ -9,7 +8,7 @@ using System.Collections.Generic;
 
 namespace Server.Engines.Help
 {
-	public class SpeechLog : IEnumerable<SpeechLogEntry>
+    public class SpeechLog : IEnumerable<SpeechLogEntry>
 	{
 		// Are speech logs enabled?
 		public static readonly bool Enabled = true;

@@ -1,10 +1,9 @@
-using System; 
-using Server.Items; 
+using Server.Items;
 
-namespace Server.Mobiles 
-{ 
-    
-	public class SpectralArmour : BaseCreature 
+namespace Server.Mobiles
+{
+
+    public class SpectralArmour : BaseCreature 
 	{ 
 		public override bool DeleteCorpseOnDeath{ get{ return true; } }
 

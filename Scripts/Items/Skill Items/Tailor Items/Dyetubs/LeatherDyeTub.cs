@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class LeatherDyeTub : DyeTub, Engines.VeteranRewards.IRewardItem
+    public class LeatherDyeTub : DyeTub, Engines.VeteranRewards.IRewardItem
 	{
 		public override bool AllowDyables{ get{ return false; } }
 		public override bool AllowLeather{ get{ return true; } }

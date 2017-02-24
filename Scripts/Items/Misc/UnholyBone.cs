@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	public class UnholyBone : Item, ICarvable
+    public class UnholyBone : Item, ICarvable
 	{
 		private SpawnTimer m_Timer;
 

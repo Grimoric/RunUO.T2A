@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Server.Engines.MLQuests.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.MLQuests.Rewards
 {
-	public class ItemReward : BaseReward
+    public class ItemReward : BaseReward
 	{
 		public static readonly ItemReward SmallBagOfTrinkets = new ItemReward( 1072268, typeof( SmallBagOfTrinkets ) ); // A small bag of trinkets.
 		public static readonly ItemReward BagOfTrinkets = new ItemReward( 1072341, typeof( BagOfTrinkets ) ); // A bag of trinkets.

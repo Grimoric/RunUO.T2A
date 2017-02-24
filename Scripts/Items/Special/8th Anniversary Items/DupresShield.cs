@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class DupresShield : BaseShield, ITokunoDyable
+    public class DupresShield : BaseShield, ITokunoDyable
 	{
 		public override int LabelNumber { get { return 1075196; } } // Dupre’s Shield
 

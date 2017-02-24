@@ -1,11 +1,9 @@
 using System;
-using Server;
-using Server.Gumps;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	public class GoGump : Gump
+    public class GoGump : Gump
 	{
 		public static readonly LocationTree Felucca = new LocationTree( "felucca.xml", Map.Felucca );
 		public static readonly LocationTree Trammel = new LocationTree( "trammel.xml", Map.Trammel );
@@ -59,7 +57,7 @@ namespace Server.Gumps
 		private static readonly int EntryCount = 15;
 
 		private static readonly int TotalWidth = OffsetSize + EntryWidth + OffsetSize + SetWidth + OffsetSize;
-		private static readonly int TotalHeight = OffsetSize + ((EntryHeight + OffsetSize) * (EntryCount + 1));
+		private static readonly int TotalHeight = OffsetSize + (EntryHeight + OffsetSize) * (EntryCount + 1);
 
 		private static readonly int BackWidth = BorderSize + TotalWidth + BorderSize;
 		private static readonly int BackHeight = BorderSize + TotalHeight + BorderSize;
@@ -106,14 +104,14 @@ namespace Server.Gumps
 			int x = BorderSize + OffsetSize;
 			int y = BorderSize + OffsetSize;
 
-			int count = node.Children.Length - (page * EntryCount);
+			int count = node.Children.Length - page * EntryCount;
 
 			if ( count < 0 )
 				count = 0;
 			else if ( count > EntryCount )
 				count = EntryCount;
 
-			int totalHeight = OffsetSize + ((EntryHeight + OffsetSize) * (count + 1));
+			int totalHeight = OffsetSize + (EntryHeight + OffsetSize) * (count + 1);
 
 			AddPage( 0 );
 
@@ -121,7 +119,7 @@ namespace Server.Gumps
 			AddImageTiled( BorderSize, BorderSize, TotalWidth - (OldStyle ? SetWidth + OffsetSize : 0), totalHeight, OffsetGumpID );
 
 			if ( OldStyle )
-				AddImageTiled( x, y, TotalWidth - (OffsetSize * 3) - SetWidth, EntryHeight, HeaderGumpID );
+				AddImageTiled( x, y, TotalWidth - OffsetSize * 3 - SetWidth, EntryHeight, HeaderGumpID );
 			else
 				AddImageTiled( x, y, PrevWidth, EntryHeight, HeaderGumpID );
 
@@ -135,7 +133,7 @@ namespace Server.Gumps
 
 			x += PrevWidth + OffsetSize;
 
-			int emptyWidth = TotalWidth - (PrevWidth * 2) - NextWidth - (OffsetSize * 5) - (OldStyle ? SetWidth + OffsetSize : 0);
+			int emptyWidth = TotalWidth - PrevWidth * 2 - NextWidth - OffsetSize * 5 - (OldStyle ? SetWidth + OffsetSize : 0);
 
 			if ( !OldStyle )
 				AddImageTiled( x - (OldStyle ? OffsetSize : 0), y, emptyWidth + (OldStyle ? OffsetSize * 2 : 0), EntryHeight, EntryGumpID );
@@ -145,7 +143,7 @@ namespace Server.Gumps
 			x += emptyWidth + OffsetSize;
 
 			if ( OldStyle )
-				AddImageTiled( x, y, TotalWidth - (OffsetSize * 3) - SetWidth, EntryHeight, HeaderGumpID );
+				AddImageTiled( x, y, TotalWidth - OffsetSize * 3 - SetWidth, EntryHeight, HeaderGumpID );
 			else
 				AddImageTiled( x, y, PrevWidth, EntryHeight, HeaderGumpID );
 

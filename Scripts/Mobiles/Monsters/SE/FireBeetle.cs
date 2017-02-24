@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a fire beetle corpse" )]
+    [CorpseName( "a fire beetle corpse" )]
 	[Server.Engines.Craft.Forge]
 	public class FireBeetle : BaseMount
 	{

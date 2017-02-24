@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class EmbroideredOakLeafCloak : BaseOuterTorso
+    public class EmbroideredOakLeafCloak : BaseOuterTorso
 	{
 		public override int LabelNumber{ get{ return 1094901; } } // Embroidered Oak Leaf Cloak [Replica]
 

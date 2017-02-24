@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.ContextMenus;
 using Server.Gumps;
 using Server.Items;
@@ -9,7 +8,7 @@ using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	public class AnimalTrainer : BaseVendor
+    public class AnimalTrainer : BaseVendor
 	{
 		private List<SBInfo> m_SBInfos = new List<SBInfo>();
 		protected override List<SBInfo> SBInfos{ get { return m_SBInfos; } }
@@ -77,8 +76,8 @@ namespace Server.Mobiles
 
 				AddPage( 0 );
 
-				AddBackground( 0, 0, 325, 50 + (list.Count * 20), 9250 );
-				AddAlphaRegion( 5, 5, 315, 40 + (list.Count * 20) );
+				AddBackground( 0, 0, 325, 50 + list.Count * 20, 9250 );
+				AddAlphaRegion( 5, 5, 315, 40 + list.Count * 20 );
 
 				AddHtml( 15, 15, 275, 20, "<BASEFONT COLOR=#FFFFFF>Select a pet to retrieve from the stables:</BASEFONT>", false, false );
 
@@ -89,8 +88,8 @@ namespace Server.Mobiles
 					if ( pet == null || pet.Deleted )
 						continue;
 
-					AddButton( 15, 39 + (i * 20), 10006, 10006, i + 1, GumpButtonType.Reply, 0 );
-					AddHtml( 32, 35 + (i * 20), 275, 18, String.Format( "<BASEFONT COLOR=#C0C0EE>{0}</BASEFONT>", pet.Name ), false, false );
+					AddButton( 15, 39 + i * 20, 10006, 10006, i + 1, GumpButtonType.Reply, 0 );
+					AddHtml( 32, 35 + i * 20, 275, 18, String.Format( "<BASEFONT COLOR=#C0C0EE>{0}</BASEFONT>", pet.Name ), false, false );
 				}
 			}
 
@@ -297,7 +296,7 @@ namespace Server.Mobiles
 				SayTo( from, 1048053 ); // You can't stable that!
 			}
 */
-			else if ( (pet is PackLlama || pet is PackHorse || pet is Beetle) && (pet.Backpack != null && pet.Backpack.Items.Count > 0) )
+			else if ( (pet is PackLlama || pet is PackHorse || pet is Beetle) && pet.Backpack != null && pet.Backpack.Items.Count > 0 )
 			{
 				SayTo( from, 1042563 ); // You need to unload your pet.
 			}
@@ -313,7 +312,7 @@ namespace Server.Mobiles
 			{
 				Container bank = from.FindBankNoCreate();
 
-				if ( ( from.Backpack != null && from.Backpack.ConsumeTotal( typeof( Gold ), 30 ) ) || ( bank != null && bank.ConsumeTotal( typeof( Gold ), 30 ) ) )
+				if ( @from.Backpack != null && @from.Backpack.ConsumeTotal( typeof( Gold ), 30 ) || bank != null && bank.ConsumeTotal( typeof( Gold ), 30 ) )
 				{
 					pet.ControlTarget = null;
 					pet.ControlOrder = OrderType.Stay;
@@ -349,7 +348,7 @@ namespace Server.Mobiles
 			bool claimed = false;
 			int stabled = 0;
 
-			bool claimByName = ( petName != null );
+			bool claimByName = petName != null;
 
 			for ( int i = 0; i < from.Stabled.Count; ++i )
 			{
@@ -398,7 +397,7 @@ namespace Server.Mobiles
 
 		public bool CanClaim( Mobile from, BaseCreature pet )
 		{
-			return ((from.Followers + pet.ControlSlots) <= from.FollowersMax);
+			return @from.Followers + pet.ControlSlots <= @from.FollowersMax;
 		}
 
 		private void DoClaim( Mobile from, BaseCreature pet )

@@ -1,10 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Server.Engines.VeteranRewards
 {
-	public class RewardCategory
+    public class RewardCategory
 	{
 		private int m_Name;
 		private string m_NameString;

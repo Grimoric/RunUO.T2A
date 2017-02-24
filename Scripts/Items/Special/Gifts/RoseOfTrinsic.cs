@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Network;
 using Server.Gumps;
 using Server.Multis;
@@ -9,7 +7,7 @@ using Server.ContextMenus;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x234C, 0x234D )]
+    [FlipableAttribute( 0x234C, 0x234D )]
 	public class RoseOfTrinsic : Item, ISecurable
 	{
 		private static readonly TimeSpan m_SpawnTime = TimeSpan.FromHours( 4.0 );

@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
-using Server;
 using Server.Commands;
 using Server.Engines.PartySystem;
 using Server.Factions;
@@ -21,7 +18,7 @@ using Server.Spells.Spellweaving;
 
 namespace Server.Engines.ConPVP
 {
-	public delegate void CountdownCallback( int count );
+    public delegate void CountdownCallback( int count );
 
 	public class DuelContext
 	{
@@ -83,7 +80,7 @@ namespace Server.Engines.ConPVP
 
 			DuelContext dc = pm.DuelContext;
 
-			return (dc == null || dc.InstAllowSpecialMove( from, name, move ));
+			return dc == null || dc.InstAllowSpecialMove( @from, name, move );
 		}
 
 		public bool InstAllowSpecialMove( Mobile from, string name, SpecialMove move )
@@ -213,7 +210,7 @@ namespace Server.Engines.ConPVP
 
 			DuelContext dc = pm.DuelContext;
 
-			return ( dc == null || dc.InstAllowSpecialAbility( from, name, message ) );
+			return dc == null || dc.InstAllowSpecialAbility( @from, name, message );
 		}
 
 		public bool InstAllowSpecialAbility( Mobile from, string name, bool message )
@@ -543,7 +540,7 @@ namespace Server.Engines.ConPVP
 				Item item = items[i];
 				Point3D loc = item.Location;
 
-				if ( (item.Layer == Layer.Hair || item.Layer == Layer.FacialHair) || !item.Movable )
+				if ( item.Layer == Layer.Hair || item.Layer == Layer.FacialHair || !item.Movable )
 					continue;
 
 				if ( pack != null )
@@ -698,7 +695,7 @@ namespace Server.Engines.ConPVP
 
 		public void Award( Mobile us, Mobile them, bool won )
 		{
-			Ladder ladder = ( m_Arena == null ? Ladder.Instance : m_Arena.AcquireLadder() );
+			Ladder ladder = m_Arena == null ? Ladder.Instance : m_Arena.AcquireLadder();
 
 			if ( ladder == null )
 				return;
@@ -715,7 +712,7 @@ namespace Server.Engines.ConPVP
 				return;
 
 			if ( m_Tournament != null )
-				xpGain *= ( xpGain > 0 ? 5 : 2 );
+				xpGain *= xpGain > 0 ? 5 : 2;
 
 			if ( won )
 				++ourEntry.Wins;
@@ -846,7 +843,7 @@ namespace Server.Engines.ConPVP
 			DuelPlayer pl1 = Find( m1 );
 			DuelPlayer pl2 = Find( m2 );
 
-			return ( pl1 != null && pl2 != null && pl1.Participant == pl2.Participant );
+			return pl1 != null && pl2 != null && pl1.Participant == pl2.Participant;
 		}
 
 		public Participant CheckCompletion()
@@ -864,7 +861,7 @@ namespace Server.Engines.ConPVP
 				{
 					++eliminated;
 
-					if ( eliminated == (m_Participants.Count - 1) )
+					if ( eliminated == m_Participants.Count - 1 )
 						hasWinner = true;
 				}
 				else
@@ -1028,7 +1025,7 @@ namespace Server.Engines.ConPVP
 			if ( m_AutoTieTimer != null )
 				m_AutoTieTimer.Stop();
 
-			TimeSpan ts = ( m_Tournament == null || m_Tournament.TournyType == TournyType.Standard )
+			TimeSpan ts = m_Tournament == null || m_Tournament.TournyType == TournyType.Standard
 				? AutoTieDelay
 				: TimeSpan.FromMinutes( 90.0 );
 
@@ -1156,7 +1153,7 @@ namespace Server.Engines.ConPVP
 			{
 				AggressorInfo info = m.Aggressed[i];
 
-				if ( info.Defender.Player && (DateTime.Now - info.LastCombatTime) < CombatDelay )
+				if ( info.Defender.Player && DateTime.Now - info.LastCombatTime < CombatDelay )
 					return true;
 			}
 
@@ -1164,7 +1161,7 @@ namespace Server.Engines.ConPVP
 			{
 				AggressorInfo info = m.Aggressors[i];
 
-				if ( info.Attacker.Player && (DateTime.Now - info.LastCombatTime) < CombatDelay )
+				if ( info.Attacker.Player && DateTime.Now - info.LastCombatTime < CombatDelay )
 					return true;
 			}
 
@@ -1836,7 +1833,7 @@ namespace Server.Engines.ConPVP
 
 					if ( players.Count > 1 )
 					{
-						for ( int leaderIndex = 0; (leaderIndex+1) < players.Count; leaderIndex += Party.Capacity )
+						for ( int leaderIndex = 0; leaderIndex+1 < players.Count; leaderIndex += Party.Capacity )
 						{
 							Mobile leader = (Mobile) players[leaderIndex];
 							Party party = Party.Get( leader );
@@ -1860,7 +1857,7 @@ namespace Server.Engines.ConPVP
 								if ( existing == party )
 									continue;
 
-								if ( (party.Members.Count + party.Candidates.Count) >= Party.Capacity )
+								if ( party.Members.Count + party.Candidates.Count >= Party.Capacity )
 								{
 									player.SendMessage( "You could not be added to the team party because it is at full capacity." );
 									leader.SendMessage( "{0} could not be added to the team party because it is at full capacity." );
@@ -2050,7 +2047,7 @@ namespace Server.Engines.ConPVP
 				m_Expire = DateTime.Now + TimeSpan.FromMinutes( 30.0 );
 			}
 
-			public bool Expired{ get{ return ( DateTime.Now >= m_Expire ); } }
+			public bool Expired{ get{ return DateTime.Now >= m_Expire; } }
 
 			public void Update()
 			{

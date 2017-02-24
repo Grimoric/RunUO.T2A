@@ -1,10 +1,8 @@
-using System;
 using Server.Mobiles;
-using Server.Items;
 
 namespace Server.Engines.Quests.Samurai
 {
-	public class HaochisKatana : QuestItem
+    public class HaochisKatana : QuestItem
 	{
 		public override int LabelNumber{ get{ return 1063165; } } // Daimyo Haochi's Katana
 

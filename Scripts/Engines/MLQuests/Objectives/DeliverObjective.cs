@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.MLQuests.Objectives
 {
-	public class DeliverObjective : BaseObjective
+    public class DeliverObjective : BaseObjective
 	{
 		private Type m_Delivery;
 		private int m_Amount;
@@ -175,7 +174,7 @@ namespace Server.Engines.MLQuests.Objectives
 		{
 			Type destType = m_Objective.Destination;
 
-			return ( destType != null && destType.IsAssignableFrom( type ) );
+			return destType != null && destType.IsAssignableFrom( type );
 		}
 
 		public override bool IsCompleted()

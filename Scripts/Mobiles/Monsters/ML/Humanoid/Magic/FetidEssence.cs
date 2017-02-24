@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName("a fetid essence corpse")]
+    [CorpseName("a fetid essence corpse")]
 	public class  FetidEssence  : BaseCreature
 	{
 		[Constructable]

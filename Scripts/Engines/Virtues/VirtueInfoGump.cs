@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server
 {
-	public class VirtueInfoGump : Gump
+    public class VirtueInfoGump : Gump
 	{
 		private Mobile m_Beholder;
 		private int m_Desc;
@@ -51,7 +49,7 @@ namespace Server
 				dots = 10;
 
 			for ( int i = 0; i < 10; ++i )
-				AddImage( 95 + (i * 17), 50, i < dots ? 2362 : 2360 );
+				AddImage( 95 + i * 17, 50, i < dots ? 2362 : 2360 );
 
 
 			if( value < 1 )
@@ -82,7 +80,7 @@ namespace Server
 
 			AddButton( 280, 43, 4014, 4014, 2, GumpButtonType.Reply, 0 );
 
-			AddHtmlLocalized( 83, 275, 400, 40, (webPage == null) ? 1052055 : 1052052, false, false ); // This virtue is not yet defined. OR -click to learn more (opens webpage)
+			AddHtmlLocalized( 83, 275, 400, 40, webPage == null ? 1052055 : 1052052, false, false ); // This virtue is not yet defined. OR -click to learn more (opens webpage)
 
 
 		}

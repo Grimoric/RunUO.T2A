@@ -1,12 +1,9 @@
-using System;
-using Server;
-using Server.Misc;
 using Server.Items;
 using Server.Guilds;
 
 namespace Server.Mobiles
 {
-	public class ChaosGuard : BaseShieldGuard
+    public class ChaosGuard : BaseShieldGuard
 	{
 		public override int Keyword{ get{ return 0x22; } } // *chaos shield*
 		public override BaseShield Shield{ get{ return new ChaosShield(); } }

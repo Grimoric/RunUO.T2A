@@ -25,7 +25,7 @@ namespace Server.Gumps
 		public int Hue{ get{ return m_Hue; } }
 		public CAGCategory Parent{ get{ return m_Parent; } }
 
-		public override string Caption{ get{ return ( m_Type == null ? "bad type" : m_Type.Name ); } }
+		public override string Caption{ get{ return m_Type == null ? "bad type" : m_Type.Name; } }
 
 		public override void OnClick( Mobile from, int page )
 		{
@@ -176,17 +176,17 @@ namespace Server.Gumps
 		public static readonly int    SetGumpID = PropsConfig.SetGumpID;
 
 		public static readonly int SetWidth = PropsConfig.SetWidth;
-		public static readonly int SetOffsetX = PropsConfig.SetOffsetX, SetOffsetY = PropsConfig.SetOffsetY + (((EntryHeight - 20) / 2) / 2);
+		public static readonly int SetOffsetX = PropsConfig.SetOffsetX, SetOffsetY = PropsConfig.SetOffsetY + (EntryHeight - 20) / 2 / 2;
 		public static readonly int SetButtonID1 = PropsConfig.SetButtonID1;
 		public static readonly int SetButtonID2 = PropsConfig.SetButtonID2;
 
 		public static readonly int PrevWidth = PropsConfig.PrevWidth;
-		public static readonly int PrevOffsetX = PropsConfig.PrevOffsetX, PrevOffsetY = PropsConfig.PrevOffsetY + (((EntryHeight - 20) / 2) / 2);
+		public static readonly int PrevOffsetX = PropsConfig.PrevOffsetX, PrevOffsetY = PropsConfig.PrevOffsetY + (EntryHeight - 20) / 2 / 2;
 		public static readonly int PrevButtonID1 = PropsConfig.PrevButtonID1;
 		public static readonly int PrevButtonID2 = PropsConfig.PrevButtonID2;
 
 		public static readonly int NextWidth = PropsConfig.NextWidth;
-		public static readonly int NextOffsetX = PropsConfig.NextOffsetX, NextOffsetY = PropsConfig.NextOffsetY + (((EntryHeight - 20) / 2) / 2);
+		public static readonly int NextOffsetX = PropsConfig.NextOffsetX, NextOffsetY = PropsConfig.NextOffsetY + (EntryHeight - 20) / 2 / 2;
 		public static readonly int NextButtonID1 = PropsConfig.NextButtonID1;
 		public static readonly int NextButtonID2 = PropsConfig.NextButtonID2;
 
@@ -202,7 +202,7 @@ namespace Server.Gumps
 		private static readonly int EntryCount = 15;
 
 		private static readonly int TotalWidth = OffsetSize + EntryWidth + OffsetSize + SetWidth + OffsetSize;
-		private static readonly int TotalHeight = OffsetSize + ((EntryHeight + OffsetSize) * (EntryCount + 1));
+		private static readonly int TotalHeight = OffsetSize + (EntryHeight + OffsetSize) * (EntryCount + 1);
 
 		private static readonly int BackWidth = BorderSize + TotalWidth + BorderSize;
 		private static readonly int BackHeight = BorderSize + TotalHeight + BorderSize;
@@ -231,14 +231,14 @@ namespace Server.Gumps
 
 			CAGNode[] nodes = m_Category.Nodes;
 
-			int count = nodes.Length - (page * EntryCount);
+			int count = nodes.Length - page * EntryCount;
 
 			if ( count < 0 )
 				count = 0;
 			else if ( count > EntryCount )
 				count = EntryCount;
 
-			int totalHeight = OffsetSize + ((EntryHeight + OffsetSize) * (count + 1));
+			int totalHeight = OffsetSize + (EntryHeight + OffsetSize) * (count + 1);
 
 			AddPage( 0 );
 
@@ -249,7 +249,7 @@ namespace Server.Gumps
 			int y = BorderSize + OffsetSize;
 
 			if ( OldStyle )
-				AddImageTiled( x, y, TotalWidth - (OffsetSize * 3) - SetWidth, EntryHeight, HeaderGumpID );
+				AddImageTiled( x, y, TotalWidth - OffsetSize * 3 - SetWidth, EntryHeight, HeaderGumpID );
 			else
 				AddImageTiled( x, y, PrevWidth, EntryHeight, HeaderGumpID );
 
@@ -263,17 +263,17 @@ namespace Server.Gumps
 
 			x += PrevWidth + OffsetSize;
 
-			int emptyWidth = TotalWidth - (PrevWidth * 2) - NextWidth - (OffsetSize * 5) - (OldStyle ? SetWidth + OffsetSize : 0);
+			int emptyWidth = TotalWidth - PrevWidth * 2 - NextWidth - OffsetSize * 5 - (OldStyle ? SetWidth + OffsetSize : 0);
 
 			if ( !OldStyle )
 				AddImageTiled( x - (OldStyle ? OffsetSize : 0), y, emptyWidth + (OldStyle ? OffsetSize * 2 : 0), EntryHeight, EntryGumpID );
 
-			AddHtml( x + TextOffsetX, y + ((EntryHeight - 20) / 2), emptyWidth - TextOffsetX, EntryHeight, String.Format( "<center>{0}</center>", m_Category.Caption ), false, false );
+			AddHtml( x + TextOffsetX, y + (EntryHeight - 20) / 2, emptyWidth - TextOffsetX, EntryHeight, String.Format( "<center>{0}</center>", m_Category.Caption ), false, false );
 
 			x += emptyWidth + OffsetSize;
 
 			if ( OldStyle )
-				AddImageTiled( x, y, TotalWidth - (OffsetSize * 3) - SetWidth, EntryHeight, HeaderGumpID );
+				AddImageTiled( x, y, TotalWidth - OffsetSize * 3 - SetWidth, EntryHeight, HeaderGumpID );
 			else
 				AddImageTiled( x, y, PrevWidth, EntryHeight, HeaderGumpID );
 
@@ -306,7 +306,7 @@ namespace Server.Gumps
 				CAGNode node = nodes[index];
 
 				AddImageTiled( x, y, EntryWidth, EntryHeight, EntryGumpID );
-				AddLabelCropped( x + TextOffsetX, y + ((EntryHeight - 20) / 2), EntryWidth - TextOffsetX, EntryHeight, TextHue, node.Caption );
+				AddLabelCropped( x + TextOffsetX, y + (EntryHeight - 20) / 2, EntryWidth - TextOffsetX, EntryHeight, TextHue, node.Caption );
 
 				x += EntryWidth + OffsetSize;
 
@@ -322,12 +322,12 @@ namespace Server.Gumps
 
 					Rectangle2D bounds = ItemBounds.Table[itemID];
 
-					if ( itemID != 1 && bounds.Height < (EntryHeight * 2) )
+					if ( itemID != 1 && bounds.Height < EntryHeight * 2 )
 					{
 						if ( bounds.Height < EntryHeight )
-							AddItem( x - OffsetSize - 22 - ((i % 2) * 44) - (bounds.Width / 2) - bounds.X, y + (EntryHeight / 2) - (bounds.Height / 2) - bounds.Y, itemID );
+							AddItem( x - OffsetSize - 22 - i % 2 * 44 - bounds.Width / 2 - bounds.X, y + EntryHeight / 2 - bounds.Height / 2 - bounds.Y, itemID );
 						else
-							AddItem( x - OffsetSize - 22 - ((i % 2) * 44) - (bounds.Width / 2) - bounds.X, y + EntryHeight - 1 - bounds.Height - bounds.Y, itemID );
+							AddItem( x - OffsetSize - 22 - i % 2 * 44 - bounds.Width / 2 - bounds.X, y + EntryHeight - 1 - bounds.Height - bounds.Y, itemID );
 					}
 				}
 			}
@@ -373,7 +373,7 @@ namespace Server.Gumps
 				}
 				default:
 				{
-					int index = (m_Page * EntryCount) + (info.ButtonID - 4);
+					int index = m_Page * EntryCount + (info.ButtonID - 4);
 
 					if ( index >= 0 && index < m_Category.Nodes.Length )
 						m_Category.Nodes[index].OnClick( from, m_Page );

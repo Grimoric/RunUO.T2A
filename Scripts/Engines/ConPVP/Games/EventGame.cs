@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Server;
 using Server.Items;
 
 namespace Server.Engines.ConPVP
 {
-	public abstract class EventController : Item
+    public abstract class EventController : Item
 	{
 		public abstract EventGame Construct( DuelContext dc );
 

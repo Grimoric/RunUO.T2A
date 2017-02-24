@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Haven
 {
-	public class DaemonBloodChest : MetalChest
+    public class DaemonBloodChest : MetalChest
 	{
 		[Constructable]
 		public DaemonBloodChest()
@@ -30,7 +27,7 @@ namespace Server.Engines.Quests.Haven
 				{
 					QuestObjective obj = qs.FindObjective( typeof( GetDaemonBloodObjective ) );
 
-					if ( (obj != null && !obj.Completed) || UzeraanTurmoilQuest.HasLostDaemonBlood( player ) )
+					if ( obj != null && !obj.Completed || UzeraanTurmoilQuest.HasLostDaemonBlood( player ) )
 					{
 						Item vial = new QuestDaemonBlood();
 

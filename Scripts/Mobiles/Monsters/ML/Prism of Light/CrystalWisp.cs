@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	public class CrystalWisp : Wisp
+    public class CrystalWisp : Wisp
 	{
 		[Constructable]
 		public CrystalWisp()

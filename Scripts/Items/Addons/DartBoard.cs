@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class DartBoard : AddonComponent
+    public class DartBoard : AddonComponent
 	{
 		public override bool NeedsWall{ get{ return true; } }
 		public override Point3D WallPosition{ get{ return this.East ? new Point3D( -1, 0, 0 ) : new Point3D( 0, -1, 0 ); } }
@@ -42,9 +40,9 @@ namespace Server.Items
 			if ( !from.InRange( this, 4 ) || !from.InLOS( this ) )
 				canThrow = false;
 			else if ( this.East )
-				canThrow = ( dir == Direction.Left || dir == Direction.West || dir == Direction.Up );
+				canThrow = dir == Direction.Left || dir == Direction.West || dir == Direction.Up;
 			else
-				canThrow = ( dir == Direction.Up || dir == Direction.North || dir == Direction.Right );
+				canThrow = dir == Direction.Up || dir == Direction.North || dir == Direction.Right;
 
 			if ( canThrow )
 				Throw( from );

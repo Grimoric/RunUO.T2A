@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Targeting;
 using Server.Network;
 using Server.Mobiles;
@@ -10,7 +9,7 @@ using Server.Spells.Spellweaving;
 
 namespace Server.SkillHandlers
 {
-	public class AnimalTaming
+    public class AnimalTaming
 	{
 		private static Hashtable m_BeingTamed = new Hashtable();
 
@@ -56,7 +55,7 @@ namespace Server.SkillHandlers
 		public static bool MustBeSubdued( BaseCreature bc )
 		{
             if (bc.Owners.Count > 0) { return false; } //Checks to see if the animal has been tamed before
-			return bc.SubdueBeforeTame && (bc.Hits > (bc.HitsMax / 10));
+			return bc.SubdueBeforeTame && bc.Hits > bc.HitsMax / 10;
 		}
 
 		public static void ScaleStats( BaseCreature bc, double scalar )
@@ -348,7 +347,7 @@ namespace Server.SkillHandlers
 						if ( !alreadyOwned ) // Passively check animal lore for gain
 							m_Tamer.CheckTargetSkill( SkillName.AnimalLore, m_Creature, 0.0, 120.0 );
 
-						double minSkill = m_Creature.MinTameSkill + (m_Creature.Owners.Count * 6.0);
+						double minSkill = m_Creature.MinTameSkill + m_Creature.Owners.Count * 6.0;
 
 						if ( minSkill > -24.9 && CheckMastery( m_Tamer, m_Creature ) )
 							minSkill = -24.9; // 50% at 0.0?

@@ -1,11 +1,8 @@
 using System;
-using System.Collections.Generic;
-using Server.Gumps;
-using Server.Multis;
 
 namespace Server.Items
 {
-	public class EnhancedBandage : Bandage
+    public class EnhancedBandage : Bandage
 	{
 		public static int HealingBonus { get { return 10; } }
 

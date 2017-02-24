@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Gumps;
 using Server.Multis;
 using Server.Mobiles;
@@ -9,7 +8,7 @@ using Server.Targeting;
 
 namespace Server.Items
 {
-	public class HousePlacementTool : Item
+    public class HousePlacementTool : Item
 	{
 		public override int LabelNumber{ get{ return 1060651; } } // a house placement tool
 
@@ -162,7 +161,7 @@ namespace Server.Items
 
 			for ( int i = 0; i < entries.Length; ++i )
 			{
-				int page = 1 + (i / 14);
+				int page = 1 + i / 14;
 				int index = i % 14;
 
 				if ( index == 0 )
@@ -184,7 +183,7 @@ namespace Server.Items
 
 				HousePlacementEntry entry = entries[i];
 
-				int y = 70 + (index * 20);
+				int y = 70 + index * 20;
 
 				AddButton( 10, y, 4005, 4007, 1 + i, GumpButtonType.Reply, 0 );
 				AddHtmlLocalized( 50, y, 225, 20, entry.Description, LabelColor, false, false );
@@ -568,7 +567,7 @@ namespace Server.Items
 
 			if ( obj is HousePlacementEntry )
 			{
-				return ((HousePlacementEntry)obj);
+				return (HousePlacementEntry)obj;
 			}
 			else if ( obj is ArrayList )
 			{

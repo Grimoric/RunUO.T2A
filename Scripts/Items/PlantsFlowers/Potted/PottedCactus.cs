@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class PottedCactus : Item
+    public class PottedCactus : Item
 	{
 		[Constructable]
 		public PottedCactus() : base(0x1E0F)

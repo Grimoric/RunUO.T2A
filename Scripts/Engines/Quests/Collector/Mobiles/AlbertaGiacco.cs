@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Collector
 {
-	public class AlbertaGiacco : BaseQuester
+    public class AlbertaGiacco : BaseQuester
 	{
 		[Constructable]
 		public AlbertaGiacco() : base( "the respected painter" )
@@ -47,9 +44,9 @@ namespace Server.Engines.Quests.Collector
 			if ( qs == null )
 				return false;
 
-			return ( qs.IsObjectiveInProgress( typeof( FindAlbertaObjective ) )
-				|| qs.IsObjectiveInProgress( typeof( SitOnTheStoolObjective ) )
-				|| qs.IsObjectiveInProgress( typeof( ReturnPaintingObjective ) ) );
+			return qs.IsObjectiveInProgress( typeof( FindAlbertaObjective ) )
+			       || qs.IsObjectiveInProgress( typeof( SitOnTheStoolObjective ) )
+			       || qs.IsObjectiveInProgress( typeof( ReturnPaintingObjective ) );
 		}
 
 		public override void OnTalk( PlayerMobile player, bool contextMenu )

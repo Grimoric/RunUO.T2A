@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 
 namespace Server.Engines.Quests.Ninja
 {
-	public class Henchman : BaseCreature
+    public class Henchman : BaseCreature
 	{
 		[Constructable]
 		public Henchman() : base( AIType.AI_Melee, FightMode.Aggressor, 10, 1, 0.2, 0.4 )

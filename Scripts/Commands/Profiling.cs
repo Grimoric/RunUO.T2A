@@ -1,14 +1,11 @@
 using System;
 using System.IO;
-using System.Text;
 using System.Collections;
-using System.Collections.Generic;
-using Server;
 using Server.Diagnostics;
 
 namespace Server.Commands
 {
-	public class Profiling
+    public class Profiling
 	{
 		public static void Initialize()
 		{
@@ -176,7 +173,7 @@ namespace Server.Commands
 				op.WriteLine( "# Items:" );
 
 				foreach ( DictionaryEntry de in items )
-					op.WriteLine( "{0}\t{1:F2}%\t{2}", de.Value, (100 * (int)de.Value) / (double)World.Items.Count, de.Key );
+					op.WriteLine( "{0}\t{1:F2}%\t{2}", de.Value, 100 * (int)de.Value / (double)World.Items.Count, de.Key );
 
 				op.WriteLine();
 				op.WriteLine();
@@ -184,7 +181,7 @@ namespace Server.Commands
 				op.WriteLine( "#Mobiles:" );
 
 				foreach ( DictionaryEntry de in mobiles )
-					op.WriteLine( "{0}\t{1:F2}%\t{2}", de.Value, (100 * (int)de.Value) / (double)World.Mobiles.Count, de.Key );
+					op.WriteLine( "{0}\t{1:F2}%\t{2}", de.Value, 100 * (int)de.Value / (double)World.Mobiles.Count, de.Key );
 			}
 
 			e.Mobile.SendMessage( "Object table has been generated. See the file : <runuo root>/objects.log" );
@@ -393,7 +390,7 @@ namespace Server.Commands
 					op.WriteLine();
 
 					foreach ( DictionaryEntry de in list )
-						op.WriteLine( "{0}\t{1:F2}%\t{2}", de.Value, (100 * (int)de.Value) / (double)total, de.Key );
+						op.WriteLine( "{0}\t{1:F2}%\t{2}", de.Value, 100 * (int)de.Value / (double)total, de.Key );
 				}
 			}
 			catch

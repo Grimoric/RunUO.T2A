@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class BlazeDyeTub : DyeTub
+    public class BlazeDyeTub : DyeTub
 	{
 		[Constructable]
 		public BlazeDyeTub()

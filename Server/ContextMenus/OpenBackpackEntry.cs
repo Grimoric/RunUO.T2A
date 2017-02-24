@@ -18,12 +18,10 @@
  *
  ***************************************************************************/
 
-using System;
-using Server.Items;
 
 namespace Server.ContextMenus
 {
-	public class OpenBackpackEntry : ContextMenuEntry
+    public class OpenBackpackEntry : ContextMenuEntry
 	{
 		private Mobile m_Mobile;
 

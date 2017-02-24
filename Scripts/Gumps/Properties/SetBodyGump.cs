@@ -2,14 +2,12 @@ using System;
 using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Network;
-using Server.HuePickers;
 using Server.Commands;
 
 namespace Server.Gumps
 {
-	public class SetBodyGump : Gump
+    public class SetBodyGump : Gump
 	{
 		private PropertyInfo m_Property;
 		private Mobile m_Mobile;
@@ -42,7 +40,7 @@ namespace Server.Gumps
 
 		public void AddTypeButton( int x, int y, int buttonID, string text, ModelBodyType type )
 		{
-			bool isSelection = (m_OurType == type);
+			bool isSelection = m_OurType == type;
 
 			AddButton( x, y - 1, isSelection ? 4006 : 4005, 4007, buttonID, GumpButtonType.Reply, 0 );
 			AddHtml( x + 35, y, 200, 20, Color( text, isSelection ? SelectedColor32 : LabelColor32 ), false, false );
@@ -89,17 +87,17 @@ namespace Server.Gumps
 			}
 			else
 			{
-				for( int i = 0, index = (ourPage * 12); i < 12 && index >= 0 && index < ourList.Count; ++i, ++index )
+				for( int i = 0, index = ourPage * 12; i < 12 && index >= 0 && index < ourList.Count; ++i, ++index )
 				{
 					InternalEntry entry = (InternalEntry)ourList[index];
 					int itemID = entry.ItemID;
 
 					Rectangle2D bounds = ItemBounds.Table[itemID & 0x3FFF];
 
-					int x = 15 + ((i % 4) * 125);
-					int y = 40 + ((i / 4) * 93);
+					int x = 15 + i % 4 * 125;
+					int y = 40 + i / 4 * 93;
 
-					AddItem( x + ((120 - bounds.Width) / 2) - bounds.X, y + ((69 - bounds.Height) / 2) - bounds.Y, itemID );
+					AddItem( x + (120 - bounds.Width) / 2 - bounds.X, y + (69 - bounds.Height) / 2 - bounds.Y, itemID );
 					AddButton( x + 6, y + 66, 0x98D, 0x98D, 7 + index, GumpButtonType.Reply, 0 );
 
 					x += 6;
@@ -155,7 +153,7 @@ namespace Server.Gumps
 				{
 					m_Mobile.SendGump( new SetBodyGump( m_Property, m_Mobile, m_Object, m_Stack, m_Page, m_List, m_OurPage - 1, m_OurList, m_OurType ) );
 				}
-				else if( index == 1 && ((m_OurPage + 1) * 12) < m_OurList.Count )
+				else if( index == 1 && (m_OurPage + 1) * 12 < m_OurList.Count )
 				{
 					m_Mobile.SendGump( new SetBodyGump( m_Property, m_Mobile, m_Object, m_Stack, m_Page, m_List, m_OurPage + 1, m_OurList, m_OurType ) );
 				}

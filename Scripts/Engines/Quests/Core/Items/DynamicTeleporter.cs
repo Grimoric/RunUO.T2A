@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests
 {
-	public abstract class DynamicTeleporter : Item
+    public abstract class DynamicTeleporter : Item
 	{
 		public override int LabelNumber{ get{ return 1049382; } } // a magical teleporter
 

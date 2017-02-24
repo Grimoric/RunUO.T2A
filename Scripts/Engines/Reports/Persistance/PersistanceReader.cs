@@ -98,7 +98,7 @@ namespace Server.Engines.Reports
 
 			obj.Deserialize( this );
 
-			m_HasChild = ( m_Xml.NodeType == XmlNodeType.Element );
+			m_HasChild = m_Xml.NodeType == XmlNodeType.Element;
 
 			return obj;
 		}

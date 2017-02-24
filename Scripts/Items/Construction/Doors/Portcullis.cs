@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class PortcullisNS : BaseDoor
+    public class PortcullisNS : BaseDoor
 	{
 		public override bool UseChainedFunctionality{ get{ return true; } }
 

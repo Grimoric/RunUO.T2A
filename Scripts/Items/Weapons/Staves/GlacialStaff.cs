@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class GlacialStaff : BlackStaff
+    public class GlacialStaff : BlackStaff
 	{
 		//TODO: Pre-AoS stuff
 		public override int LabelNumber{ get{ return 1017413; } } // Glacial Staff
@@ -16,7 +12,7 @@ namespace Server.Items
 			WeaponAttributes.HitHarm = 5 * Utility.RandomMinMax( 1, 5 );
 			WeaponAttributes.MageWeapon = Utility.RandomMinMax( 5, 10 );
 
-			AosElementDamages[AosElementAttribute.Cold] = 20 + (5 * Utility.RandomMinMax( 0, 6 ));
+			AosElementDamages[AosElementAttribute.Cold] = 20 + 5 * Utility.RandomMinMax( 0, 6 );
 
 		}
 

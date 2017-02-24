@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a horde minion corpse" )]
+    [CorpseName( "a horde minion corpse" )]
 	public class HordeMinion : BaseCreature
 	{
 		[Constructable]

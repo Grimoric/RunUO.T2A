@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a wailing banshee corpse" )]
+    [CorpseName( "a wailing banshee corpse" )]
 	public class WailingBanshee : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()

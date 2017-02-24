@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class BloodPentagram : BaseAddon
+    public class BloodPentagram : BaseAddon
 	{
 		[Constructable]
 		public BloodPentagram ()

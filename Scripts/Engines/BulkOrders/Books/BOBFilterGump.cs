@@ -1,13 +1,9 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Gumps;
-using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.BulkOrders
 {
-	public class BOBFilterGump : Gump
+    public class BOBFilterGump : Gump
 	{
 		private PlayerMobile m_From;
 		private BulkOrderBook m_Book;
@@ -85,19 +81,19 @@ namespace Server.Engines.BulkOrders
 				if ( number == 0 )
 					continue;
 
-				bool isSelected = ( filters[i, 1] == filterValue );
+				bool isSelected = filters[i, 1] == filterValue;
 
-				if ( !isSelected && (i % xOffsets.Length) == 0 )
-					isSelected = ( filterValue == 0 );
+				if ( !isSelected && i % xOffsets.Length == 0 )
+					isSelected = filterValue == 0;
 
-				AddHtmlLocalized( x + 35 + xOffsets[i % xOffsets.Length], y + ((i / xOffsets.Length) * yOffset), xWidths[i % xOffsets.Length], 32, number, isSelected ? 16927 : LabelColor, false, false );
-				AddButton( x + xOffsets[i % xOffsets.Length], y + ((i / xOffsets.Length) * yOffset), 4005, 4007, 4 + filterIndex + (i * 4), GumpButtonType.Reply, 0 );
+				AddHtmlLocalized( x + 35 + xOffsets[i % xOffsets.Length], y + i / xOffsets.Length * yOffset, xWidths[i % xOffsets.Length], 32, number, isSelected ? 16927 : LabelColor, false, false );
+				AddButton( x + xOffsets[i % xOffsets.Length], y + i / xOffsets.Length * yOffset, 4005, 4007, 4 + filterIndex + i * 4, GumpButtonType.Reply, 0 );
 			}
 		}
 
 		public override void OnResponse( Server.Network.NetState sender, RelayInfo info )
 		{
-			BOBFilter f = ( m_From.UseOwnFilter ? m_From.BOBFilter : m_Book.Filter );
+			BOBFilter f = m_From.UseOwnFilter ? m_From.BOBFilter : m_Book.Filter;
 
 			int index = info.ButtonID;
 
@@ -171,7 +167,7 @@ namespace Server.Engines.BulkOrders
 			m_From = from;
 			m_Book = book;
 
-			BOBFilter f = ( from.UseOwnFilter ? from.BOBFilter : book.Filter );
+			BOBFilter f = @from.UseOwnFilter ? @from.BOBFilter : book.Filter;
 
 			AddPage( 0 );
 
@@ -199,10 +195,10 @@ namespace Server.Engines.BulkOrders
 			AddHtmlLocalized( 26, 320, 120, 32, 1062217, LabelColor, false, false ); // Amount
 			AddFilterList( 25, 352, m_XOffsets_Amount, 40, m_AmountFilters, m_XWidths_Small, f.Quantity, 3 );
 
-			AddHtmlLocalized( 75, 416, 120, 32, 1062477, ( from.UseOwnFilter ? LabelColor : 16927 ), false, false ); // Set Book Filter
+			AddHtmlLocalized( 75, 416, 120, 32, 1062477, @from.UseOwnFilter ? LabelColor : 16927, false, false ); // Set Book Filter
 			AddButton( 40, 416, 4005, 4007, 1, GumpButtonType.Reply, 0 );
 
-			AddHtmlLocalized( 235, 416, 120, 32, 1062478, ( from.UseOwnFilter ? 16927 : LabelColor ), false, false ); // Set Your Filter
+			AddHtmlLocalized( 235, 416, 120, 32, 1062478, @from.UseOwnFilter ? 16927 : LabelColor, false, false ); // Set Your Filter
 			AddButton( 200, 416, 4005, 4007, 2, GumpButtonType.Reply, 0 );
 
 			AddHtmlLocalized( 405, 416, 120, 32, 1062231, LabelColor, false, false ); // Clear Filter

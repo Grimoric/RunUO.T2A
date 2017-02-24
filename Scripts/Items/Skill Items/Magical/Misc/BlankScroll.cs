@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class BlankScroll : Item, ICommodity
+    public class BlankScroll : Item, ICommodity
 	{
 		[Constructable]
 		public BlankScroll() : this( 1 )

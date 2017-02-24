@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class SpecialTreatForDrithen : Item
+    public class SpecialTreatForDrithen : Item
 	{
 		public override int LabelNumber{ get{ return 1074517; } } // Special Treat for Drithen
 

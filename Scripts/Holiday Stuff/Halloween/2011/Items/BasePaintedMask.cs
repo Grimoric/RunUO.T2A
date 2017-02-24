@@ -1,10 +1,9 @@
 ﻿using System;
 //using System.Collections.Generic;
-using System.Text;
 
 namespace Server.Items.Holiday
 {
-	[TypeAlias( "Server.Items.ClownMask", "Server.Items.DaemonMask", "Server.Items.PlagueMask" )]
+    [TypeAlias( "Server.Items.ClownMask", "Server.Items.DaemonMask", "Server.Items.PlagueMask" )]
 	public class BasePaintedMask : Item
 	{
 		public override string DefaultName

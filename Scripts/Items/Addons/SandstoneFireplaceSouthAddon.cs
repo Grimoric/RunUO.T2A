@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class SandstoneFireplaceSouthAddon : BaseAddon
+    public class SandstoneFireplaceSouthAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed{ get{ return new SandstoneFireplaceSouthDeed(); } }
 

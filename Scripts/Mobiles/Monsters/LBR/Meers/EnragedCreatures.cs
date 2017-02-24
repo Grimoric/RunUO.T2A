@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a hare corpse" )]
+    [CorpseName( "a hare corpse" )]
 	public class EnragedRabbit : BaseEnraged
 	{
 		public EnragedRabbit( Mobile summoner ) : base( summoner )
@@ -239,7 +237,7 @@ namespace Server.Mobiles
 				{
 					bc = (BaseCreature)Combatant;
 				}
-				if( Combatant.Player || ( bc != null && ( bc.Controlled || bc.SummonMaster != null )))
+				if( Combatant.Player || bc != null && ( bc.Controlled || bc.SummonMaster != null ))
 				{
 					SummonMaster.Combatant = Combatant;
 				}

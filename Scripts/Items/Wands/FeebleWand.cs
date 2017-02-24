@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Spells.First;
-using Server.Targeting;
 
 namespace Server.Items
 {
-	public class FeebleWand : BaseWand
+    public class FeebleWand : BaseWand
 	{
 		[Constructable]
 		public FeebleWand() : base( WandEffect.Feeblemindedness, 5, 30 )

@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Multis;
 using Server.Network;
 using Server.Guilds;
 
 namespace Server.Gumps
 {
-	public interface ISecurable
+    public interface ISecurable
 	{
 		SecureLevel Level{ get; set; }
 	}
@@ -21,7 +19,7 @@ namespace Server.Gumps
 
 			AddPage( 0 );
 
-			int offset = ( Guild.NewGuildSystem )? 20 : 0;
+			int offset = Guild.NewGuildSystem? 20 : 0;
 
 			AddBackground( 0, 0, 220, 160 + offset, 5054 );
 
@@ -58,12 +56,12 @@ namespace Server.Gumps
 
 		public int GetColor( SecureLevel level )
 		{
-			return ( m_Info.Level == level ) ? 0x7F18 : 0x7FFF;
+			return m_Info.Level == level ? 0x7F18 : 0x7FFF;
 		}
 
 		public int GetFirstID( SecureLevel level )
 		{
-			return ( m_Info.Level == level ) ? 4006 : 4005;
+			return m_Info.Level == level ? 4006 : 4005;
 		}
 
 		public override void OnResponse( NetState state, RelayInfo info )

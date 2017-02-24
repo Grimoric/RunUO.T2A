@@ -41,7 +41,7 @@ namespace Server.Items
 			}
 			set {
 				if ( base.ItemID != value ) {
-					Map facet = ( this.Parent == null ? this.Map : null );
+					Map facet = this.Parent == null ? this.Map : null;
 
 					if ( facet != null ) {
 						facet.OnLeave( this );

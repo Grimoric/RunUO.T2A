@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 using Server.Engines.VeteranRewards;
 
 namespace Server.Items
 {
-	public class RewardPottedCactus : Item, IRewardItem
+    public class RewardPottedCactus : Item, IRewardItem
 	{
 		public override bool ForceShowProperties{ get { return ObjectPropertyList.Enabled; } }
 

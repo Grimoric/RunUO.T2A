@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class MagekillerLeafblade : Leafblade
+    public class MagekillerLeafblade : Leafblade
 	{
 		public override int LabelNumber{ get{ return 1073523; } } // maagekiller leafblade
 

@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	[Flipable( 0x102C, 0x102D )]
+    [Flipable( 0x102C, 0x102D )]
 	public class MouldingPlane : BaseTool
 	{
 		public override CraftSystem CraftSystem{ get{ return DefCarpentry.CraftSystem; } }

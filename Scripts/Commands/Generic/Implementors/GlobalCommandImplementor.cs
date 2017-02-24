@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using Server;
 
 namespace Server.Commands.Generic
 {
-	public class GlobalCommandImplementor : BaseCommandImplementor
+    public class GlobalCommandImplementor : BaseCommandImplementor
 	{
 		public GlobalCommandImplementor()
 		{

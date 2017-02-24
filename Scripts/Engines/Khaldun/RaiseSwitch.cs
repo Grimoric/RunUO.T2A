@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class RaiseSwitch : Item
+    public class RaiseSwitch : Item
 	{
 		private RaisableItem m_RaisableItem;
 

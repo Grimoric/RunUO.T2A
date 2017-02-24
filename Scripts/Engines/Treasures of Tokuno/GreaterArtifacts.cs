@@ -1,11 +1,6 @@
-using Server;
-using System;
-using Server.Misc;
-using Server.Mobiles;
-
 namespace Server.Items
 {
-	public class DarkenedSky : Kama
+    public class DarkenedSky : Kama
 	{
 		public override int InitMinHits { get { return 255; } }
 		public override int InitMaxHits { get { return 255; } }
@@ -466,7 +461,7 @@ namespace Server.Items
 		}
 
 		[Constructable]
-		public PigmentsOfTokuno( PigmentType type ) : this( type, (type == PigmentType.None||type >= PigmentType.FadedCoal)? 10 : 50 )
+		public PigmentsOfTokuno( PigmentType type ) : this( type, type == PigmentType.None||type >= PigmentType.FadedCoal? 10 : 50 )
 		{
 		}
 
@@ -494,7 +489,7 @@ namespace Server.Items
 		{
 			base.Deserialize( reader );
 
-			int version = ( InheritsItem ? 0 : reader.ReadInt() ); // Required for BasePigmentsOfTokuno insertion
+			int version = InheritsItem ? 0 : reader.ReadInt(); // Required for BasePigmentsOfTokuno insertion
 			
 			switch ( version )
 			{

@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Network;
 
 namespace Server.Items
 {
-	[Flipable( 0x2A77, 0x2A78 )]
+    [Flipable( 0x2A77, 0x2A78 )]
 	public class MountedPixieLimeComponent : AddonComponent
 	{
 		public override int LabelNumber { get { return 1074482; } } // Mounted pixie

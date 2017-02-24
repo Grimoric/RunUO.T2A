@@ -1,10 +1,9 @@
 using System;
-using Server.Network;
 using Server.Targeting;
 
 namespace Server.Items
 {
-	public class Scales : Item
+    public class Scales : Item
 	{
 		[Constructable]
 		public Scales() : base( 0x1852 )
@@ -58,7 +57,7 @@ namespace Server.Items
 					Item item = (Item)targeted;
 					object root = item.RootParent;
 
-					if ( (root != null && root != from) || item.Parent == from )
+					if ( root != null && root != @from || item.Parent == from )
 					{
 						message = "You decide that item's current location is too awkward to get an accurate result.";
 					}

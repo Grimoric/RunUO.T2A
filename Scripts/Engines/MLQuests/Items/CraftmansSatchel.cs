@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Server;
 using Server.Engines.Craft;
 using Server.Items;
 
 namespace Server.Engines.MLQuests.Items
 {
-	public abstract class BaseCraftmansSatchel : Backpack
+    public abstract class BaseCraftmansSatchel : Backpack
 	{
 		protected static readonly Type[] m_TalismanType = new Type[] { typeof( RandomTalisman ) };
 

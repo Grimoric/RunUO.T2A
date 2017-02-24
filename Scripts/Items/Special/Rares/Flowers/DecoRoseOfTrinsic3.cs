@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class DecoRoseOfTrinsic3 : Item
+    public class DecoRoseOfTrinsic3 : Item
 	{
 
 		[Constructable]

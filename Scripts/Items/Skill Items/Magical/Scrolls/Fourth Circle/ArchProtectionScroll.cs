@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class ArchProtectionScroll : SpellScroll
+    public class ArchProtectionScroll : SpellScroll
 	{
 		[Constructable]
 		public ArchProtectionScroll() : this( 1 )

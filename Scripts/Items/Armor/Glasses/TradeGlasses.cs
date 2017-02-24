@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class TradeGlasses : ElvenGlasses
+    public class TradeGlasses : ElvenGlasses
 	{
 		public override int LabelNumber{ get{ return 1073362; } } //Reading Glasses of the Trades
 

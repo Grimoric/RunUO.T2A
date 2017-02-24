@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Gumps;
 using Server.Items;
 
 namespace Server.Engines.Quests.Ninja
 {
-	public class Emino : BaseQuester
+    public class Emino : BaseQuester
 	{
 		[Constructable]
 		public Emino() : base( "the Notorious" )

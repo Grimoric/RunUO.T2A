@@ -1,10 +1,6 @@
-using System;
-using Server.Items;
-using Server.Network;
-
 namespace Server.Items
 {
-	public abstract class BaseGranite : Item
+    public abstract class BaseGranite : Item
 	{
 		private CraftResource m_Resource;
 

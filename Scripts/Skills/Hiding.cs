@@ -1,12 +1,10 @@
 using System;
-using Server.Targeting;
-using Server.Items;
 using Server.Network;
 using Server.Multis;
 
 namespace Server.SkillHandlers
 {
-	public class Hiding
+    public class Hiding
 	{
 		private static bool m_CombatOverride;
 
@@ -58,8 +56,8 @@ namespace Server.SkillHandlers
 			//int range = 18 - (int)(m.Skills[SkillName.Hiding].Value / 10);
 			int range = Math.Min( (int)((100 - m.Skills[SkillName.Hiding].Value)/2) + 8, 18 );	//Cap of 18 not OSI-exact, intentional difference
 
-			bool badCombat = ( !m_CombatOverride && m.Combatant != null && m.InRange( m.Combatant.Location, range ) && m.Combatant.InLOS( m ) );
-			bool ok = ( !badCombat /*&& m.CheckSkill( SkillName.Hiding, 0.0 - bonus, 100.0 - bonus )*/ );
+			bool badCombat = !m_CombatOverride && m.Combatant != null && m.InRange( m.Combatant.Location, range ) && m.Combatant.InLOS( m );
+			bool ok = !badCombat;
 
 			if ( ok )
 			{
@@ -76,7 +74,7 @@ namespace Server.SkillHandlers
 					}
 				}
 
-				ok = ( !badCombat && m.CheckSkill( SkillName.Hiding, 0.0 - bonus, 100.0 - bonus ) );
+				ok = !badCombat && m.CheckSkill( SkillName.Hiding, 0.0 - bonus, 100.0 - bonus );
 			}
 
 			if ( badCombat )

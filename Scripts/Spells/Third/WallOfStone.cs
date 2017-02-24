@@ -1,13 +1,11 @@
 using System;
 using Server.Targeting;
-using Server.Network;
 using Server.Misc;
-using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Spells.Third
 {
-	public class WallOfStoneSpell : MagerySpell
+    public class WallOfStoneSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Wall of Stone", "In Sanct Ylem",

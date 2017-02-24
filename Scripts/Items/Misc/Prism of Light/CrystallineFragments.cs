@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class CrystallineFragments : Item
+    public class CrystallineFragments : Item
 	{
 		public override int LabelNumber{ get{ return 1073160; } } // Crystalline Fragments
 

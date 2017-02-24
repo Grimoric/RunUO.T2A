@@ -1,10 +1,7 @@
-using System;
-using Server.Network;
-
 namespace Server.Items
 {
 
-	[FlipableAttribute( 0x156C, 0x156D )] 
+    [FlipableAttribute( 0x156C, 0x156D )] 
 	public class DecorativeShield1 : Item
 	{
 		[Constructable]

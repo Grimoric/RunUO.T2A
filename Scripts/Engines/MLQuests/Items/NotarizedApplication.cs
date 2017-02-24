@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class NotarizedApplication : Item
+    public class NotarizedApplication : Item
 	{
 		public override int LabelNumber{ get{ return 1073135; } } // Notarized Application
 

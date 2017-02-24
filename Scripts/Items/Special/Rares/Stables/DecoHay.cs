@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class DecoHay : Item
+    public class DecoHay : Item
 	{
 
 		[Constructable]

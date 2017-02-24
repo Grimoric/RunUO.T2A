@@ -1,5 +1,4 @@
 using System;
-using Server;
 using Server.Commands;
 using Server.Accounting;
 using Server.Network;
@@ -7,7 +6,7 @@ using Server.Targeting;
 
 namespace Server
 {
-	public class HardwareInfo
+    public class HardwareInfo
 	{
 		private int m_InstanceID;
 		private int m_OSMajor, m_OSMinor, m_OSRevision;

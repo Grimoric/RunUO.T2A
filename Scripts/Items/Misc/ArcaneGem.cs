@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Targeting;
 
 namespace Server.Items
 {
-	public class ArcaneGem : Item
+    public class ArcaneGem : Item
 	{
 		public override string DefaultName
 		{
@@ -102,7 +99,7 @@ namespace Server.Items
 						if ( eq.CurArcaneCharges <= 0 )
 							item.Hue = DefaultArcaneHue;
 
-						if ( (eq.CurArcaneCharges + charges) > eq.MaxArcaneCharges )
+						if ( eq.CurArcaneCharges + charges > eq.MaxArcaneCharges )
 							eq.CurArcaneCharges = eq.MaxArcaneCharges;
 						else
 							eq.CurArcaneCharges += charges;
@@ -118,11 +115,11 @@ namespace Server.Items
 					bool isExceptional = false;
 
 					if ( item is BaseClothing )
-						isExceptional = ( ((BaseClothing)item).Quality == ClothingQuality.Exceptional );
+						isExceptional = ((BaseClothing)item).Quality == ClothingQuality.Exceptional;
 					else if ( item is BaseArmor )
-						isExceptional = ( ((BaseArmor)item).Quality == ArmorQuality.Exceptional );
+						isExceptional = ((BaseArmor)item).Quality == ArmorQuality.Exceptional;
 					else if ( item is BaseWeapon )
-						isExceptional = ( ((BaseWeapon)item).Quality == WeaponQuality.Exceptional );
+						isExceptional = ((BaseWeapon)item).Quality == WeaponQuality.Exceptional;
 
 					if ( isExceptional )
 					{

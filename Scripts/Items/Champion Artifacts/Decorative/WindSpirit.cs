@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class WindSpirit : Item
+    public class WindSpirit : Item
 	{
 		public override int LabelNumber{ get{ return 1094925; } } // Wind Spirit [Replica]
 

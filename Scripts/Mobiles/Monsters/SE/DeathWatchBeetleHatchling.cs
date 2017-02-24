@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a deathwatchbeetle hatchling corpse" )]
+    [CorpseName( "a deathwatchbeetle hatchling corpse" )]
 	[TypeAlias( "Server.Mobiles.DeathWatchBeetleHatchling" )]
 	public class DeathwatchBeetleHatchling : BaseCreature
 	{

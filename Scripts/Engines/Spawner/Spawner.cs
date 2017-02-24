@@ -1,13 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Text;
-using Server;
 using Server.Commands;
 using Server.Items;
-using Server.Network;
 using Server.Multis;
 using CPA = Server.CommandPropertyAttribute;
 
@@ -32,7 +29,7 @@ using CPA = Server.CommandPropertyAttribute;
 
 namespace Server.Mobiles
 {
-	public class Spawner : Item, ISpawner
+    public class Spawner : Item, ISpawner
 	{
 		private int m_Team;
 		private int m_HomeRange;
@@ -52,8 +49,8 @@ namespace Server.Mobiles
 		private bool m_IgnoreHousing;
 		private bool m_MobilesSeekHome;
 
-		public bool IsFull{ get{ return ( m_Spawned.Count >= m_Count ); } }
-		public bool IsEmpty{ get{ return ( m_Spawned.Count == 0 ); } }
+		public bool IsFull{ get{ return m_Spawned.Count >= m_Count; } }
+		public bool IsEmpty{ get{ return m_Spawned.Count == 0; } }
 
 		public List<string> SpawnNames
 		{
@@ -526,8 +523,8 @@ namespace Server.Mobiles
 
 						for ( int j = 0; j < remains; ++j )
 						{
-							props[j, 0] = args[i + (j * 2) + 1];
-							props[j, 1] = args[i + (j * 2) + 2];
+							props[j, 0] = args[i + j * 2 + 1];
+							props[j, 1] = args[i + j * 2 + 2];
 						}
 
 						Add.FixSetString( ref args, i );
@@ -609,7 +606,7 @@ namespace Server.Mobiles
 
 		public virtual bool CheckSpawnerFull()
 		{
-			return ( m_Spawned.Count >= m_Count );
+			return m_Spawned.Count >= m_Count;
 		}
 
 		public void Spawn( int index )
@@ -632,7 +629,7 @@ namespace Server.Mobiles
 			spawned.Spawner = this;
 			m_Spawned.Add( spawned );
 
-			Point3D loc = ( spawned is BaseVendor ? this.Location : GetSpawnPosition( spawned ) );
+			Point3D loc = spawned is BaseVendor ? this.Location : GetSpawnPosition( spawned );
 
 			spawned.OnBeforeSpawn( loc, map );
 			spawned.MoveToWorld( loc, map );
@@ -654,7 +651,7 @@ namespace Server.Mobiles
 				if ( m_Team > 0 )
 					bc.Team = m_Team;
 
-				bc.Home = ( m_UsesSpawnerHome ) ? this.HomeLocation : bc.Location ;
+				bc.Home = m_UsesSpawnerHome ? this.HomeLocation : bc.Location;
 			}
 
 			InvalidateProperties();
@@ -667,7 +664,7 @@ namespace Server.Mobiles
 
 		private int GetAdjustedLocation( int range, int side, int coord, int coord_this )
 		{
-			return ( ( ( coord > 0 ) ? coord : ( coord_this - range ) ) + ( Utility.Random( Math.Max( ( ( ( range * 2 ) + 1 ) + side ), 1 ) ) ) );
+			return ( coord > 0 ? coord : coord_this - range ) + Utility.Random( Math.Max( range * 2 + 1 + side, 1 ) );
 		}
 
 		public Point3D  GetSpawnPosition( ISpawnable spawned )
@@ -684,7 +681,7 @@ namespace Server.Mobiles
 				Mobile mob = (Mobile)spawned;
 
 				waterMob = mob.CanSwim;
-				waterOnlyMob = ( mob.CanSwim && mob.CantWalk );
+				waterOnlyMob = mob.CanSwim && mob.CantWalk;
 			}
 			else
 			{
@@ -699,8 +696,8 @@ namespace Server.Mobiles
 
 				int mapZ =  map.GetAverageZ( x, y );
 
-				if( m_IgnoreHousing || ( ( BaseHouse.FindHouseAt( new Point3D( x, y, mapZ ), Map, 16 ) == null && 
-					BaseHouse.FindHouseAt( new Point3D( x, y, this.Z ), Map, 16 ) == null ) ) )
+				if( m_IgnoreHousing || BaseHouse.FindHouseAt( new Point3D( x, y, mapZ ), Map, 16 ) == null && 
+				    BaseHouse.FindHouseAt( new Point3D( x, y, this.Z ), Map, 16 ) == null )
 				{
 					if( waterMob )
 					{
@@ -827,7 +824,7 @@ namespace Server.Mobiles
 			StringBuilder result = new StringBuilder();
 
 			for ( int i = 0; i < names.Count; ++i )
-				result.AppendFormat( "{0}{1}: {2}", ( i == 0 ) ? "" : "<BR>", names[i], counts[names[i]] );
+				result.AppendFormat( "{0}{1}: {2}", i == 0 ? "" : "<BR>", names[i], counts[names[i]] );
 
 			return result.ToString();
 		}

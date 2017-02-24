@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "an air elemental corpse" )]
+    [CorpseName( "an air elemental corpse" )]
 	public class SummonedAirElemental : BaseCreature
 	{
 		public override double DispelDifficulty{ get{ return 117.5; } }

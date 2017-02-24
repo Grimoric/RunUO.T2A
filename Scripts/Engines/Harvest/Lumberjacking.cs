@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Network;
 
 namespace Server.Engines.Harvest
 {
-	public class Lumberjacking : HarvestSystem
+    public class Lumberjacking : HarvestSystem
 	{
 		private static Lumberjacking m_System;
 

@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class SpellbladeOfDefense : ElvenSpellblade
+    public class SpellbladeOfDefense : ElvenSpellblade
 	{
 		public override int LabelNumber{ get{ return 1073516; } } // spellblade of defense
 

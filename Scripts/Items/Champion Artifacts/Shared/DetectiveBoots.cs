@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class DetectiveBoots : Boots
+    public class DetectiveBoots : Boots
 	{
 		public override int LabelNumber{ get{ return 1094894 + m_Level; } } // [Quality] Detective of the Royal Guard [Replica]
 

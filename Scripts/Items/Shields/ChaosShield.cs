@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Guilds;
 
 namespace Server.Items
 {
-	public class ChaosShield : BaseShield
+    public class ChaosShield : BaseShield
 	{
 		public override int BasePhysicalResistance{ get{ return 1; } }
 		public override int BaseFireResistance{ get{ return 0; } }

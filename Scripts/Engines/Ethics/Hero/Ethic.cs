@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Server.Factions;
 
 namespace Server.Ethics.Hero
 {
-	public sealed class HeroEthic : Ethic
+    public sealed class HeroEthic : Ethic
 	{
 		public HeroEthic()
 		{
@@ -34,7 +31,7 @@ namespace Server.Ethics.Hero
 
 			Faction fac = Faction.Find( mob );
 
-			return ( fac is TrueBritannians || fac is CouncilOfMages );
+			return fac is TrueBritannians || fac is CouncilOfMages;
 		}
 	}
 }

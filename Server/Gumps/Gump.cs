@@ -19,15 +19,13 @@
  ***************************************************************************/
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using Server;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	public class Gump
+    public class Gump
 	{
 		private List<GumpEntry> m_Entries;
 		private List<string> m_Strings;

@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Engines.BulkOrders
 {
-	public class SmallBODTarget : Target
+    public class SmallBODTarget : Target
 	{
 		private SmallBOD m_Deed;
 

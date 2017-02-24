@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class RandomWand
+    public class RandomWand
 	{
 		public static BaseWand CreateWand()
 		{

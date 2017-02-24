@@ -1,9 +1,8 @@
-using System;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a wyvern corpse" )]
+    [CorpseName( "a wyvern corpse" )]
 	public class Wyvern : BaseCreature
 	{
 		[Constructable]

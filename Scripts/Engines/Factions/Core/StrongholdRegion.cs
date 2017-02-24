@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Mobiles;
 using Server.Regions;
 
 namespace Server.Factions
 {
-	public class StrongholdRegion : BaseRegion
+    public class StrongholdRegion : BaseRegion
 	{
 		private Faction m_Faction;
 
@@ -40,7 +37,7 @@ namespace Server.Factions
 				}
 			}
 
-			return ( Faction.Find( m, true, true ) != null );
+			return Faction.Find( m, true, true ) != null;
 		}
 
 		public override bool AllowHousing( Mobile from, Point3D p )

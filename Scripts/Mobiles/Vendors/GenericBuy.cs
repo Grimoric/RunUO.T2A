@@ -1,12 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
-using Server.Network;
 
 namespace Server.Mobiles
 {
-	public class GenericBuyInfo : IBuyItemInfo
+    public class GenericBuyInfo : IBuyItemInfo
 	{
 		private class DisplayCache : Container
 		{
@@ -196,7 +194,7 @@ namespace Server.Mobiles
 						return (int)price;
 					}
 
-					return ( ((m_Price * m_PriceScalar) + 50) / 100 );
+					return (m_Price * m_PriceScalar + 50) / 100;
 				}
 
 				return m_Price;

@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Items
 {
-	public enum PuzzleChestCylinder
+    public enum PuzzleChestCylinder
 	{
 		None		= 0xE73,
 		LightBlue	= 0x186F,

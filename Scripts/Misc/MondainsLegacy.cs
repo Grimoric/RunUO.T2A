@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server
 {
-	public static class MondainsLegacy
+    public static class MondainsLegacy
 	{
 		public static Type[] Artifacts { get { return m_Artifacts; } }
 

@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a revenant lion corpse" )]
+    [CorpseName( "a revenant lion corpse" )]
 	public class RevenantLion : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()

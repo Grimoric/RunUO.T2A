@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Targeting;
 using Server.Engines.Harvest;
 
 namespace Server.Items
 {
-	public class ProspectorsTool : BaseBashing, IUsesRemaining
+    public class ProspectorsTool : BaseBashing, IUsesRemaining
 	{
 		private int m_UsesRemaining;
 
@@ -107,7 +106,7 @@ namespace Server.Items
 			{
 				from.SendLocalizedMessage( 1049048 ); // You cannot use your prospector tool on that.
 			}
-			else if ( veinIndex >= (def.Veins.Length - 1) )
+			else if ( veinIndex >= def.Veins.Length - 1 )
 			{
 				from.SendLocalizedMessage( 1049061 ); // You cannot improve valorite ore through prospecting.
 			}

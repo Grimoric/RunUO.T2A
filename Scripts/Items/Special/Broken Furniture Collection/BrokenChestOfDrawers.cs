@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[Flipable( 0xC24, 0xC25 )]
+    [Flipable( 0xC24, 0xC25 )]
 	public class BrokenChestOfDrawersComponent : AddonComponent
 	{
 		public override int LabelNumber { get { return 1076261; } } // Broken Chest of Drawers

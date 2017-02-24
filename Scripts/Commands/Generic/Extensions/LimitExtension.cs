@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using System.Text;
 
 namespace Server.Commands.Generic
 {
-	public sealed class LimitExtension : BaseExtension
+    public sealed class LimitExtension : BaseExtension
 	{
 		public static ExtensionInfo ExtInfo = new ExtensionInfo( 80, "Limit", 1, delegate() { return new LimitExtension(); } );
 

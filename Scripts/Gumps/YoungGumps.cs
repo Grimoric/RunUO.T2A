@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Network;
-using Server.Mobiles;
 using Server.Accounting;
 
 namespace Server.Gumps
 {
-	public class YoungDungeonWarning : Gump
+    public class YoungDungeonWarning : Gump
 	{
 		public YoungDungeonWarning() : base( 150, 200 )
 		{

@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class MagicTrapScroll : SpellScroll
+    public class MagicTrapScroll : SpellScroll
 	{
 		[Constructable]
 		public MagicTrapScroll() : this( 1 )

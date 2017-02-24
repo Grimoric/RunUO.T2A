@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public abstract class BaseBashing : BaseMeleeWeapon
+    public abstract class BaseBashing : BaseMeleeWeapon
 	{
 		public override int DefHitSound{ get{ return 0x233; } }
 		public override int DefMissSound{ get{ return 0x239; } }
@@ -46,7 +42,7 @@ namespace Server.Items
 		{
 			double damage = base.GetBaseDamage( attacker );
 
-			if (  (attacker.Player || attacker.Body.IsHuman) && Layer == Layer.TwoHanded && (attacker.Skills[SkillName.Anatomy].Value / 400.0) >= Utility.RandomDouble() && Engines.ConPVP.DuelContext.AllowSpecialAbility( attacker, "Crushing Blow", false ) )
+			if (  (attacker.Player || attacker.Body.IsHuman) && Layer == Layer.TwoHanded && attacker.Skills[SkillName.Anatomy].Value / 400.0 >= Utility.RandomDouble() && Engines.ConPVP.DuelContext.AllowSpecialAbility( attacker, "Crushing Blow", false ) )
 			{
 				damage *= 1.5;
 

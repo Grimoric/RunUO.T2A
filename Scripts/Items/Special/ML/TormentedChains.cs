@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class TormentedChains : Item
+    public class TormentedChains : Item
 	{
 	
 		[Constructable]

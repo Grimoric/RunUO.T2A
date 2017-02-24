@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class StoneFountainAddon : BaseAddon
+    public class StoneFountainAddon : BaseAddon
 	{
 		[Constructable]
 		public StoneFountainAddon()

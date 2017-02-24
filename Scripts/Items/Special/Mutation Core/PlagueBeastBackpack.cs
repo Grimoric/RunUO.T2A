@@ -1,10 +1,8 @@
-using System;
 using System.Collections.Generic;
-using Server;
 
 namespace Server.Items
 {
-	public class PlagueBeastBackpack : BaseContainer
+    public class PlagueBeastBackpack : BaseContainer
 	{
 		public override int DefaultMaxWeight { get { return 0; } }
 		public override int DefaultMaxItems { get { return 0; } }

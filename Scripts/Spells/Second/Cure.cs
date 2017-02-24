@@ -1,10 +1,8 @@
-using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Second
 {
-	public class CureSpell : MagerySpell
+    public class CureSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Cure", "An Nox",
@@ -50,7 +48,7 @@ namespace Server.Spells.Second
 
 				if ( p != null )
 				{
-					int chanceToCure = 10000 + (int)(Caster.Skills[SkillName.Magery].Value * 75) - ((p.Level + 1) * 1750);
+					int chanceToCure = 10000 + (int)(Caster.Skills[SkillName.Magery].Value * 75) - (p.Level + 1) * 1750;
 					chanceToCure /= 100;
 
 					if ( chanceToCure > Utility.Random( 100 ) )

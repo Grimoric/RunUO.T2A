@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class HeartOfTheLion : PlateChest
+    public class HeartOfTheLion : PlateChest
 	{
 		public override int LabelNumber{ get{ return 1070817; } } // Heart of the Lion
 

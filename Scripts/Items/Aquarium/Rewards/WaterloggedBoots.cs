@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class WaterloggedBoots : BaseShoes
+    public class WaterloggedBoots : BaseShoes
 	{
 		public override int LabelNumber{ get{ return 1074364; } } // Waterlogged boots
 

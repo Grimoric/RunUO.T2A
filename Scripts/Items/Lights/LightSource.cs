@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class LightSource : Item
+    public class LightSource : Item
 	{
 		[Constructable]
 		public LightSource() : base( 0x1647 )

@@ -1,10 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a ronin corpse" )]
+    [CorpseName( "a ronin corpse" )]
 	public class Ronin : BaseCreature
 	{
 		public override bool ClickTitle{ get{ return false; } }
@@ -15,7 +13,7 @@ namespace Server.Mobiles
 			SpeechHue = Utility.RandomDyedHue();
 			Hue = Utility.RandomSkinHue();
 			Name = "a ronin";
-			Body = (( this.Female = Utility.RandomBool() ) ? Body = 0x191 : Body = 0x190);
+			Body = ( this.Female = Utility.RandomBool() ) ? Body = 0x191 : Body = 0x190;
 			
 			Hue = Utility.RandomSkinHue();
 

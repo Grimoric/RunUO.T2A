@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a plant corpse" )]
+    [CorpseName( "a plant corpse" )]
 	public class BogThing : BaseCreature
 	{
 		[Constructable]
@@ -120,7 +119,7 @@ namespace Server.Mobiles
 
 				foreach ( Mobile m in toEat )
 				{
-					Hits += (m.Hits / 2);
+					Hits += m.Hits / 2;
 					m.Delete();
 				}
 			}
@@ -130,7 +129,7 @@ namespace Server.Mobiles
 		{
 			base.OnGotMeleeAttack( attacker );
 
-			if ( this.Hits > (this.HitsMax / 4) )
+			if ( this.Hits > this.HitsMax / 4 )
 			{
 				if ( 0.25 >= Utility.RandomDouble() )
 					SpawnBogling( attacker );

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[Flipable(0x312F, 0x3130)]
+    [Flipable(0x312F, 0x3130)]
 	public class SeveredHumanEars : Item
 	{
 		[Constructable]

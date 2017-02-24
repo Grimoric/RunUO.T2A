@@ -1,12 +1,10 @@
-﻿using System;
-using Server;
-using Server.Engines.MLQuests.Objectives;
+﻿using Server.Engines.MLQuests.Objectives;
 using Server.Engines.MLQuests.Rewards;
 using Server.Items;
 
 namespace Server.Engines.MLQuests.Definitions
 {
-	public class NewHavenEscort : BaseEscort
+    public class NewHavenEscort : BaseEscort
 	{
 		// New Haven escorts do not count for 'helping a human in need'
 		public override bool AwardHumanInNeed { get { return false; } }

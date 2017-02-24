@@ -1,9 +1,8 @@
-using System;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Samurai
 {
-	[CorpseName( "an injured wolf corpse" )]
+    [CorpseName( "an injured wolf corpse" )]
 	public class InjuredWolf : BaseCreature
 	{
 		[Constructable]

@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-
 namespace Server.Items
 {
-	public class Chessboard : BaseBoard
+    public class Chessboard : BaseBoard
 	{
 		public override int LabelNumber{ get{ return 1016450; } } // a chessboard
 
@@ -16,8 +13,8 @@ namespace Server.Items
 		{
 			for ( int i = 0; i < 8; i++ )
 			{
-				CreatePiece( new PieceBlackPawn( this ), 67, ( 25 * i ) + 17 );
-				CreatePiece( new PieceWhitePawn( this ), 192, ( 25 * i ) + 17 );
+				CreatePiece( new PieceBlackPawn( this ), 67, 25 * i + 17 );
+				CreatePiece( new PieceWhitePawn( this ), 192, 25 * i + 17 );
 			}
 
 			// Rook

@@ -1,10 +1,8 @@
 using System;
-using Server;
-using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a corporeal brume corpse" )]
+    [CorpseName( "a corporeal brume corpse" )]
 	public class CorporealBrume : BaseCreature
 	{
 		[Constructable]
@@ -47,7 +45,7 @@ namespace Server.Mobiles
 		}
 
 		// TODO: Verify area attack specifics
-		public override bool HasAura { get { return ( Combatant != null ); } }
+		public override bool HasAura { get { return Combatant != null; } }
 		public override TimeSpan AuraInterval { get { return TimeSpan.FromSeconds( 20 ); } }
 		public override int AuraRange { get { return 10; } }
 

@@ -1,5 +1,3 @@
-using System;
-using Server;
 using Server.Engines.MLQuests;
 using Server.Engines.MLQuests.Definitions;
 using Server.Mobiles;
@@ -7,7 +5,7 @@ using Server.Network;
 
 namespace Server.Items
 {
-	public class PrismaticCrystal : Item
+    public class PrismaticCrystal : Item
 	{
 		public override int LabelNumber{ get{ return 1074269; } } // prismatic crystal
 

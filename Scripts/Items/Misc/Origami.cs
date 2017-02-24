@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Network;
-
 namespace Server.Items
 {
-	public class OrigamiPaper : Item
+    public class OrigamiPaper : Item
 	{
 		public override int LabelNumber{ get{ return 1030288; } } // origami paper
 
@@ -29,7 +25,7 @@ namespace Server.Items
 
 				Item i = null;
 
-				switch ( Utility.Random( (from.BAC >= 5) ? 6 : 5) )
+				switch ( Utility.Random( @from.BAC >= 5 ? 6 : 5) )
 				{
 					case 0: i = new OrigamiButterfly();	break;
 					case 1: i = new OrigamiSwan();		break;

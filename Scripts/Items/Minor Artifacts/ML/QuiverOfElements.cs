@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class QuiverOfElements : BaseQuiver
+    public class QuiverOfElements : BaseQuiver
 	{
 		public override int LabelNumber{ get{ return 1075040; } } // Quiver of the Elements
 

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Engines.MLQuests.Gumps;
 using Server.Engines.MLQuests.Objectives;
 using Server.Engines.MLQuests.Rewards;
@@ -8,7 +7,7 @@ using Server.Mobiles;
 
 namespace Server.Engines.MLQuests
 {
-	public enum ObjectiveType
+    public enum ObjectiveType
 	{
 		All,
 		Any
@@ -119,7 +118,7 @@ namespace Server.Engines.MLQuests
 
 		public virtual bool RecordCompletion
 		{
-			get { return ( m_OneTimeOnly || m_HasRestartDelay ); }
+			get { return m_OneTimeOnly || m_HasRestartDelay; }
 		}
 
 		public virtual bool IsChainTriggered { get { return false; } }

@@ -1,14 +1,12 @@
 using System;
-using Server;
 using Server.Gumps;
 using Server.Multis;
-using Server.Mobiles;
 using Server.Network;
 using Server.Targeting;
 
 namespace Server.Items
 {
-	public class MistletoeAddon : Item, IDyable, IAddon
+    public class MistletoeAddon : Item, IDyable, IAddon
 	{
 		[Constructable]
 		public MistletoeAddon() : this( Utility.RandomDyedHue() )

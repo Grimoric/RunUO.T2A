@@ -1,10 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Server.Spells.Spellweaving
 {
-	public class AttuneWeaponSpell : ArcanistSpell
+    public class AttuneWeaponSpell : ArcanistSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Attune Weapon", "Haeldril",
@@ -47,10 +46,10 @@ namespace Server.Spells.Spellweaving
 
 				double skill = Caster.Skills[SkillName.Spellweaving].Value;
 
-				int damageAbsorb = (int)(18 + ((skill-10)/10)*3 + (FocusLevel * 6));
+				int damageAbsorb = (int)(18 + (skill-10)/10*3 + FocusLevel * 6);
 				Caster.MeleeDamageAbsorb = damageAbsorb;
 
-				TimeSpan duration = TimeSpan.FromSeconds( 60 + (FocusLevel * 12) );
+				TimeSpan duration = TimeSpan.FromSeconds( 60 + FocusLevel * 12 );
 
 				ExpireTimer t = new ExpireTimer( Caster, duration );
 				t.Start();

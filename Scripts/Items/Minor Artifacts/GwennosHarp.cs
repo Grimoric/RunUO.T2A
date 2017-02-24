@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class GwennosHarp : LapHarp
+    public class GwennosHarp : LapHarp
 	{
 		public override int LabelNumber{ get{ return 1063480; } }
 

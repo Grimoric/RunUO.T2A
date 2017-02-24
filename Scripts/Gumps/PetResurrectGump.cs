@@ -1,12 +1,10 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Network;
-using Server.Gumps;
 
 namespace Server.Gumps
 {
-	public class PetResurrectGump : Gump
+    public class PetResurrectGump : Gump
 	{
 		private BaseCreature m_Pet;
 		private double m_HitsScalar;

@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using Server.Misc;
 using Server.Mobiles;
 using Server.Network;
@@ -8,7 +7,7 @@ using Server.Regions;
 
 namespace Server.Items
 {
-	[DispellableFieldAttribute]
+    [DispellableFieldAttribute]
 	public class Moongate : Item
 	{
 		private Point3D m_Target;
@@ -122,7 +121,7 @@ namespace Server.Items
 			{
 				m.SendLocalizedMessage( 1049543 ); // You decide against traveling to Felucca while you are still young.
 			}
-			else if ( (m.Kills >= 5 && m_TargetMap != Map.Felucca) || ( m_TargetMap == Map.Tokuno && (flags & ClientFlags.Tokuno) == 0 ) || ( m_TargetMap == Map.Malas && (flags & ClientFlags.Malas) == 0 ) || ( m_TargetMap == Map.Ilshenar && (flags & ClientFlags.Ilshenar) == 0 ) )
+			else if ( m.Kills >= 5 && m_TargetMap != Map.Felucca || m_TargetMap == Map.Tokuno && (flags & ClientFlags.Tokuno) == 0 || m_TargetMap == Map.Malas && (flags & ClientFlags.Malas) == 0 || m_TargetMap == Map.Ilshenar && (flags & ClientFlags.Ilshenar) == 0 )
 			{
 				m.SendLocalizedMessage( 1019004 ); // You are not allowed to travel there.
 			}
@@ -191,7 +190,7 @@ namespace Server.Items
 
 		public virtual void BeginConfirmation( Mobile from )
 		{
-			if ( IsInTown( from.Location, from.Map ) && !IsInTown( m_Target, m_TargetMap ) || (from.Map != Map.Felucca && TargetMap == Map.Felucca && ShowFeluccaWarning) )
+			if ( IsInTown( from.Location, from.Map ) && !IsInTown( m_Target, m_TargetMap ) || @from.Map != Map.Felucca && TargetMap == Map.Felucca && ShowFeluccaWarning )
 			{
 				if ( from.AccessLevel == AccessLevel.Player || !from.Hidden )
 					from.Send( new PlaySound( 0x20E, from.Location ) );
@@ -230,7 +229,7 @@ namespace Server.Items
 
 			GuardedRegion reg = (GuardedRegion) Region.Find( p, map ).GetRegion( typeof( GuardedRegion ) );
 
-			return ( reg != null && !reg.IsDisabled() );
+			return reg != null && !reg.IsDisabled();
 		}
 
 		private class DelayTimer : Timer

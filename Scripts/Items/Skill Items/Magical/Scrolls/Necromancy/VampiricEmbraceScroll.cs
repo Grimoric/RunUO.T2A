@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class VampiricEmbraceScroll : SpellScroll
+    public class VampiricEmbraceScroll : SpellScroll
 	{
 		[Constructable]
 		public VampiricEmbraceScroll() : this( 1 )

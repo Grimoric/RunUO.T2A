@@ -1,11 +1,6 @@
-using System;
-using Server.Network;
-using Server.Targeting;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0xF52, 0xF51 )]
+    [FlipableAttribute( 0xF52, 0xF51 )]
 	public class Dagger : BaseKnife
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.InfectiousStrike; } }

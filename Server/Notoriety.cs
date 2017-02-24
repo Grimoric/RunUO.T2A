@@ -18,15 +18,10 @@
  *
  ***************************************************************************/
 
-using System;
-using System.Collections;
-using Server;
-using Server.Guilds;
-using Server.Items;
 
 namespace Server
 {
-	public delegate int NotorietyHandler( Mobile source, Mobile target );
+    public delegate int NotorietyHandler( Mobile source, Mobile target );
 
 	public static class Notoriety
 	{

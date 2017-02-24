@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class Gold : Item
+    public class Gold : Item
 	{
 		public override double DefaultWeight
 		{

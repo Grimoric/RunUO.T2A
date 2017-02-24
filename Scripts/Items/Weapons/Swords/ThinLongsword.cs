@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x13B8, 0x13B7 )]
+    [FlipableAttribute( 0x13B8, 0x13B7 )]
 	public class ThinLongsword : BaseSword
 	{
 		public override int AosStrengthReq{ get{ return 35; } }

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Mobiles;
 using Server.Targeting;
 using Server.Network;
@@ -8,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Server.Commands
 {
-	public class VisibilityList
+    public class VisibilityList
 	{
 		public static void Initialize()
 		{

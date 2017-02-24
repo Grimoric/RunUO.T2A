@@ -1,11 +1,9 @@
 using System;
-using Server;
 using Server.Mobiles;
-using Server.Spells;
 
 namespace Server.Items
 {
-	public class ClockworkAssembly : Item
+    public class ClockworkAssembly : Item
 	{
 		public override string DefaultName
 		{
@@ -38,7 +36,7 @@ namespace Server.Items
 				from.SendMessage( "You must have at least 60.0 skill in tinkering to construct a golem." );
 				return;
 			}
-			else if ( (from.Followers + 4) > from.FollowersMax )
+			else if ( @from.Followers + 4 > from.FollowersMax )
 			{
 				from.SendLocalizedMessage( 1049607 ); // You have too many followers to control that creature.
 				return;

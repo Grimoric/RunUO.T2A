@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.CannedEvil
 {
-	public class ChampionSkullPlatform : BaseAddon
+    public class ChampionSkullPlatform : BaseAddon
 	{
 		private ChampionSkullBrazier m_Power, m_Enlightenment, m_Venom, m_Pain, m_Greed, m_Death;
 
@@ -85,7 +82,7 @@ namespace Server.Engines.CannedEvil
 
 		public bool Validate( ChampionSkullBrazier brazier )
 		{
-			return ( brazier != null && brazier.Skull != null && !brazier.Skull.Deleted );
+			return brazier != null && brazier.Skull != null && !brazier.Skull.Deleted;
 		}
 
 		public ChampionSkullPlatform( Serial serial ) : base( serial )

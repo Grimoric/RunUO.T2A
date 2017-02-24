@@ -1,23 +1,20 @@
-using System;
 using Server.Items;
-using Server.Mobiles;
-using Server.Spells;
 
 namespace Server.Mobiles
 {
-	/// <summary>
-	/// This is a test creature
-	/// You can set its value in game
-	/// It die after 5 minutes, so your test server stay clean
-	/// Create a macro to help your creation "[add Dummy 1 15 7 -1 0.5 2"
-	/// 
-	/// A iTeam of negative will set a faction at random
-	/// 
-	/// Say Kill if you want them to die
-	/// 
-	/// </summary>
+    /// <summary>
+    /// This is a test creature
+    /// You can set its value in game
+    /// It die after 5 minutes, so your test server stay clean
+    /// Create a macro to help your creation "[add Dummy 1 15 7 -1 0.5 2"
+    /// 
+    /// A iTeam of negative will set a faction at random
+    /// 
+    /// Say Kill if you want them to die
+    /// 
+    /// </summary>
 
-	public class DummyMace : Dummy
+    public class DummyMace : Dummy
 	{
 
 		[Constructable]

@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class Lute : BaseInstrument
+    public class Lute : BaseInstrument
 	{
 		[Constructable]
 		public Lute() : base( 0xEB3, 0x4C, 0x4D )

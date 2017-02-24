@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[Server.Engines.Craft.Anvil]
+    [Server.Engines.Craft.Anvil]
 	public class AnvilComponent : AddonComponent
 	{
 		[Constructable]
@@ -252,7 +249,7 @@ namespace Server.Items
 				bool contains = false;
 
 				for ( int j = 0; !contains && j < toMatch.Length; ++j )
-					contains = ( itemID == toMatch[j] );
+					contains = itemID == toMatch[j];
 
 				if ( contains )
 				{

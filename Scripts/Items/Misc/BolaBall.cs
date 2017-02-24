@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class BolaBall : Item
+    public class BolaBall : Item
 	{
 		[Constructable]
 		public BolaBall() : this( 1 )

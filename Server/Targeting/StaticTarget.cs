@@ -18,11 +18,10 @@
  *
  ***************************************************************************/
 
-using System;
 
 namespace Server.Targeting
 {
-	public class StaticTarget : IPoint3D
+    public class StaticTarget : IPoint3D
 	{
 		private Point3D m_Location;
 		private int m_ItemID;

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class TuitionReimbursementForm : Item
+    public class TuitionReimbursementForm : Item
 	{
 		public override int LabelNumber{ get{ return 1074610; } } // Tuition Reimbursement Form (in triplicate)
 

@@ -1,15 +1,13 @@
-using System;
 using Server.Items;
 using Server.Multis;
 using Server.Mobiles;
 using Server.Network;
 using Server.Targeting;
-using Server.Regions;
 using Server.Spells.Necromancy;
 
 namespace Server.Spells.Fourth
 {
-	public class RecallSpell : MagerySpell
+    public class RecallSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Recall", "Kal Ort Por",
@@ -83,7 +81,7 @@ namespace Server.Spells.Fourth
 			{
 				Caster.SendLocalizedMessage( 1061632 ); // You can't do that while carrying the sigil.
 			}
-			else if ( map == null || ( Caster.Map != map) )
+			else if ( map == null || Caster.Map != map )
 			{
 				Caster.SendLocalizedMessage( 1005569 ); // You can not recall to another facet.
 			}
@@ -117,7 +115,7 @@ namespace Server.Spells.Fourth
 			{
 				Caster.SendLocalizedMessage( 501942 ); // That location is blocked.
 			}
-			else if ( (checkMulti && SpellHelper.CheckMulti( loc, map )) )
+			else if ( checkMulti && SpellHelper.CheckMulti( loc, map ) )
 			{
 				Caster.SendLocalizedMessage( 501942 ); // That location is blocked.
 			}

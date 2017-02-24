@@ -1,14 +1,9 @@
 using System;
-using System.Reflection;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
-using Server.Targeting;
-using CPA = Server.CommandPropertyAttribute;
 
 namespace Server.Commands.Generic
 {
-	public sealed class ObjectConditional
+    public sealed class ObjectConditional
 	{
 		private static readonly Type typeofItem = typeof( Item );
 		private static readonly Type typeofMobile = typeof( Mobile );
@@ -26,19 +21,19 @@ namespace Server.Commands.Generic
 
 		public bool IsItem
 		{
-			get { return ( m_ObjectType == null || m_ObjectType == typeofItem || m_ObjectType.IsSubclassOf( typeofItem ) ); }
+			get { return m_ObjectType == null || m_ObjectType == typeofItem || m_ObjectType.IsSubclassOf( typeofItem ); }
 		}
 
 		public bool IsMobile
 		{
-			get { return ( m_ObjectType == null || m_ObjectType == typeofMobile || m_ObjectType.IsSubclassOf( typeofMobile ) ); }
+			get { return m_ObjectType == null || m_ObjectType == typeofMobile || m_ObjectType.IsSubclassOf( typeofMobile ); }
 		}
 
 		public static readonly ObjectConditional Empty = new ObjectConditional( null, null );
 
 		public bool HasCompiled
 		{
-			get { return ( m_Conditionals != null ); }
+			get { return m_Conditionals != null; }
 		}
 
 		public void Compile( ref AssemblyEmitter emitter )

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class SmallMouthSuckerFin : BaseFish
+    public class SmallMouthSuckerFin : BaseFish
 	{		
 		public override int LabelNumber{ get{ return 1074590; } } // Small Mouth Sucker Fin
 		

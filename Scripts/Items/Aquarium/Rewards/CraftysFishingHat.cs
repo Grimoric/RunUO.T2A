@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class CraftysFishingHat : BaseHat
+    public class CraftysFishingHat : BaseHat
 	{
 		public override int LabelNumber{ get{ return 1074572; } } // Crafty's Fishing Hat
 

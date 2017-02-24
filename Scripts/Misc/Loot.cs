@@ -1,12 +1,9 @@
 using System;
-using System.IO;
-using System.Reflection;
-using Server;
 using Server.Items;
 
 namespace Server
 {
-	public class Loot
+    public class Loot
 	{
 		#region List definitions
 

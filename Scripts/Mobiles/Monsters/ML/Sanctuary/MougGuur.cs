@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
-using Server.Items;
-using Server.Targeting;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a Moug-Guur corpse" )]
+    [CorpseName( "a Moug-Guur corpse" )]
 	public class MougGuur : Ettin
 	{
 		[Constructable]

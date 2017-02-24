@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class BagOfNecromancerReagents : Bag
+    public class BagOfNecromancerReagents : Bag
 	{
 		[Constructable]
 		public BagOfNecromancerReagents() : this( 50 )

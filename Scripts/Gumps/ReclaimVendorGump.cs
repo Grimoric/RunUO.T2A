@@ -1,12 +1,10 @@
-using System;
 using System.Collections;
-using Server;
 using Server.Network;
 using Server.Multis;
 
 namespace Server.Gumps
 {
-	public class ReclaimVendorGump : Gump
+    public class ReclaimVendorGump : Gump
 	{
 		private BaseHouse m_House;
 		private ArrayList m_Vendors;

@@ -1,11 +1,8 @@
 using System;
-using System.Collections;
-using Server.Misc;
-using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a blade spirit corpse" )]
+    [CorpseName( "a blade spirit corpse" )]
 	public class BladeSpirits : BaseCreature
 	{
 		public override bool DeleteCorpseOnDeath { get { return false; } }

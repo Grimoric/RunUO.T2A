@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Gumps;
 
 namespace Server.Commands.Generic
 {
-	public enum ObjectTypes
+    public enum ObjectTypes
 	{
 		Both,
 		Items,

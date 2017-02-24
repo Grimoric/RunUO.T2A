@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Engines.ConPVP
 {
-	public class LadderItem : Item
+    public class LadderItem : Item
 	{
 		private LadderController m_Ladder;
 
@@ -90,7 +89,7 @@ namespace Server.Engines.ConPVP
 		{
 			string numStr = num.ToString( "N0" );
 
-			if ( (num%100) > 10 && (num%100) < 20 )
+			if ( num%100 > 10 && num%100 < 20 )
 				return numStr + "th";
 
 			switch ( num % 10 )
@@ -108,7 +107,7 @@ namespace Server.Engines.ConPVP
 
 			if ( info.ButtonID == 1 && m_Page > 0 )
 				from.SendGump( new LadderGump( m_Ladder, m_Page - 1 ) );
-			else if ( info.ButtonID == 2 && ((m_Page+1)*15)<Math.Min(m_List.Count,150) )
+			else if ( info.ButtonID == 2 && (m_Page+1)*15<Math.Min(m_List.Count,150) )
 				from.SendGump( new LadderGump( m_Ladder, m_Page + 1 ) );
 		}
 
@@ -134,12 +133,12 @@ namespace Server.Engines.ConPVP
 
 			int ct = end-start;
 
-			int height = 12 + 20 + (ct*20) + 23 + 12;
+			int height = 12 + 20 + ct*20 + 23 + 12;
 
 			AddBackground( 0, 0, 499, height, 0x2436 );
 
 			for ( int i = start + 1; i < end; i += 2 )
-				AddImageTiled( 12, 32 + ((i - start) * 20), 475, 20, 0x2430 );
+				AddImageTiled( 12, 32 + (i - start) * 20, 475, 20, 0x2430 );
 
 			AddAlphaRegion( 10, 10, 479, height - 20 );
 
@@ -148,7 +147,7 @@ namespace Server.Engines.ConPVP
 			else
 				AddImage( 446, height-12-2-16, 0x2626 );
 
-			if ( ((page+1)*15)<lc )
+			if ( (page+1)*15<lc )
 				AddButton( 466, height-12-2-16, 0x15E1, 0x15E5, 2, GumpButtonType.Reply, 0 );
 			else
 				AddImage( 466, height-12-2-16, 0x2622 );
@@ -166,7 +165,7 @@ namespace Server.Engines.ConPVP
 			{
 				LadderEntry entry = (LadderEntry)list[i];
 
-				int y = 32 + ((i - start) * 20);
+				int y = 32 + (i - start) * 20;
 				int x = 12;
 
 				AddBorderedText( x, y, 75, Center( Rank( i+1 ) ), 0xFFFFFF, 0 );
@@ -194,7 +193,7 @@ namespace Server.Engines.ConPVP
 				if ( xpOffset >= xpAdvance )
 					width = 109; // level 50
 				else
-					width = ((109 * xpOffset) + (xpAdvance / 2)) / (xpAdvance - 1);
+					width = (109 * xpOffset + xpAdvance / 2) / (xpAdvance - 1);
 
 				//AddImageTiled( 21, y + 6, width, 8, 0x2617 );
 				AddImageTiled( x + 3, y + 4, width, 11, 0x806 );
@@ -208,7 +207,7 @@ namespace Server.Engines.ConPVP
 
 				x += 50;
 
-				AddBorderedText( x + 5, y, 115 - 5, ( mob.Name ), 0xFFFFFF, 0 );
+				AddBorderedText( x + 5, y, 115 - 5, mob.Name, 0xFFFFFF, 0 );
 				x += 115;
 
 				AddBorderedText( x, y, 60, Center( entry.Wins.ToString() ), 0xFFFFFF, 0 );

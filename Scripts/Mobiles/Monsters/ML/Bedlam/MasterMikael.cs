@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a Master Mikael corpse" )]
+    [CorpseName( "a Master Mikael corpse" )]
 	public class MasterMikael : BoneMagi
 	{
 		[Constructable]

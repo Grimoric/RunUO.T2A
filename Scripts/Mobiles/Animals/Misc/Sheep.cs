@@ -1,12 +1,10 @@
 using System;
-using Server;
 using Server.Items;
-using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a sheep corpse" )]
+    [CorpseName( "a sheep corpse" )]
 	public class Sheep : BaseCreature, ICarvable
 	{
 		private DateTime m_NextWoolTime;
@@ -15,7 +13,7 @@ namespace Server.Mobiles
 		public DateTime NextWoolTime
 		{
 			get{ return m_NextWoolTime; }
-			set{ m_NextWoolTime = value; Body = ( DateTime.Now >= m_NextWoolTime ) ? 0xCF : 0xDF; }
+			set{ m_NextWoolTime = value; Body = DateTime.Now >= m_NextWoolTime ? 0xCF : 0xDF; }
 		}
 
 		public void Carve( Mobile from, Item item )
@@ -36,7 +34,7 @@ namespace Server.Mobiles
 		public override void OnThink()
 		{
 			base.OnThink();
-			Body = ( DateTime.Now >= m_NextWoolTime ) ? 0xCF : 0xDF;
+			Body = DateTime.Now >= m_NextWoolTime ? 0xCF : 0xDF;
 		}
 
 		[Constructable]
@@ -77,7 +75,7 @@ namespace Server.Mobiles
 		public override MeatType MeatType{ get{ return MeatType.LambLeg; } }
 		public override FoodType FavoriteFood{ get{ return FoodType.FruitsAndVegies | FoodType.GrainsAndHay; } }
 
-		public override int Wool{ get{ return (Body == 0xCF ? 3 : 0); } }
+		public override int Wool{ get{ return Body == 0xCF ? 3 : 0; } }
 
 		public Sheep( Serial serial ) : base( serial )
 		{

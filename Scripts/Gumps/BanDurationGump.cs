@@ -1,18 +1,10 @@
 using System;
-using System.Net;
-using System.Text;
 using System.Collections;
-using System.Diagnostics;
-using Server;
-using Server.Items;
-using Server.Prompts;
-using Server.Network;
 using Server.Accounting;
-using Server.Commands;
 
 namespace Server.Gumps
 {
-	public class BanDurationGump : Gump
+    public class BanDurationGump : Gump
 	{
 		private ArrayList m_List;
 
@@ -72,7 +64,7 @@ namespace Server.Gumps
 		public void AddInput( int bid, int idx, string name )
 		{
 			int x = 15;
-			int y = 95 + (idx * 50);
+			int y = 95 + idx * 50;
 
 			AddButtonLabeled( x, y, bid, name );
 			AddTextField( x + 35, y + 20, 100, 20, idx );
@@ -242,7 +234,7 @@ namespace Server.Gumps
 					a.SetBanTags( from, DateTime.Now, duration );
 
 					if ( comment != null )
-						a.Comments.Add( new AccountComment( from.RawName, String.Format( "Duration: {0}, Comment: {1}", (( duration == TimeSpan.MaxValue )? "Infinite" : duration.ToString()), comment ) ) );
+						a.Comments.Add( new AccountComment( from.RawName, String.Format( "Duration: {0}, Comment: {1}", duration == TimeSpan.MaxValue? "Infinite" : duration.ToString(), comment ) ) );
 				}
 
 				if ( duration == TimeSpan.MaxValue )

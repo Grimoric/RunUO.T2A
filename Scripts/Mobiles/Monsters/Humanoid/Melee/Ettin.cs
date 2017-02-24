@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
-using Server.Items;
-using Server.Targeting;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "an ettins corpse" )]
+    [CorpseName( "an ettins corpse" )]
 	public class Ettin : BaseCreature
 	{
 		[Constructable]

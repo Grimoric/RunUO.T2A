@@ -1,16 +1,13 @@
 using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 using Server.Mobiles;
-using System.Collections;
-using Server.Targets;
 using Server.Factions;
 using System.Collections.Generic;
 
 namespace Server.Guilds
 {
-	public class GuildRosterGump : BaseGuildListGump<PlayerMobile>
+    public class GuildRosterGump : BaseGuildListGump<PlayerMobile>
 	{
 		#region Comparers
 		private class NameComparer : IComparer<PlayerMobile>
@@ -145,7 +142,7 @@ namespace Server.Guilds
 		{
 			TextDefinition[] defs = new TextDefinition[aryLength];
 
-			string name = String.Format( "{0}{1}", pm.Name, ( player.GuildFealty == pm && player.GuildFealty != guild.Leader ) ? " *" : "" );
+			string name = String.Format( "{0}{1}", pm.Name, player.GuildFealty == pm && player.GuildFealty != guild.Leader ? " *" : "" );
 
 			if( pm == player )
 				name = Color( name, 0x006600 );
@@ -154,8 +151,8 @@ namespace Server.Guilds
 
 			defs[0] = name;
 			defs[1] = pm.GuildRank.Name;
-			defs[2] = (pm.NetState != null) ? new TextDefinition( 1063015 ): new TextDefinition( pm.LastOnline.ToString( "yyyy-MM-dd" ) ); 
-			defs[3] = (pm.GuildTitle == null) ? "" : pm.GuildTitle;
+			defs[2] = pm.NetState != null ? new TextDefinition( 1063015 ): new TextDefinition( pm.LastOnline.ToString( "yyyy-MM-dd" ) ); 
+			defs[3] = pm.GuildTitle == null ? "" : pm.GuildTitle;
 
 			return defs;
 		}
@@ -175,7 +172,7 @@ namespace Server.Guilds
 
 		public override Gump GetObjectInfoGump( PlayerMobile pm, Guild g, PlayerMobile o )
 		{
-			return new GuildMemberInfoGump( pm, g, o, false, false ) ;
+			return new GuildMemberInfoGump( pm, g, o, false, false );
 		}
 
 		public override void OnResponse( NetState sender, RelayInfo info )
@@ -209,8 +206,8 @@ namespace Server.Guilds
 			PlayerState guildState = PlayerState.Find( g.Leader );
 			PlayerState targetState = PlayerState.Find( targ );
 
-			Faction guildFaction = ( guildState == null ? null : guildState.Faction );
-			Faction targetFaction = ( targetState == null ? null : targetState.Faction );
+			Faction guildFaction = guildState == null ? null : guildState.Faction;
+			Faction targetFaction = targetState == null ? null : targetState.Faction;
 
 			if( pm == null || !IsMember( pm, guild ) || !pm.GuildRank.GetFlag( RankFlags.CanInvitePlayer ) )
 			{

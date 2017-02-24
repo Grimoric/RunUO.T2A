@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class ParalyzeFieldScroll : SpellScroll
+    public class ParalyzeFieldScroll : SpellScroll
 	{
 		[Constructable]
 		public ParalyzeFieldScroll() : this( 1 )

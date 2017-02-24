@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Factions
 {
-	public enum MerchantTitle
+    public enum MerchantTitle
 	{
 		None,
 		Scribe,
@@ -81,7 +79,7 @@ namespace Server.Factions
 			if ( mob == null || info == null )
 				return false;
 
-			return ( mob.Skills[info.Skill].Value >= info.Requirement );
+			return mob.Skills[info.Skill].Value >= info.Requirement;
 		}
 	}
 }

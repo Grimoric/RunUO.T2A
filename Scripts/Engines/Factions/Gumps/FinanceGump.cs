@@ -1,15 +1,13 @@
 using System;
-using Server;
 using Server.Gumps;
 using Server.Mobiles;
 using Server.Multis;
 using Server.Network;
-using Server.Targeting;
 using System.Collections.Generic;
 
 namespace Server.Factions
 {
-	public class FinanceGump : FactionGump
+    public class FinanceGump : FactionGump
 	{
 		private PlayerMobile m_From;
 		private Faction m_Faction;
@@ -63,10 +61,10 @@ namespace Server.Factions
 			{
 				int ofs = m_PriceOffsets[i];
 
-				int x = 20 + ((i / 6) * 150);
-				int y = 90 + ((i % 6) * 30);
+				int x = 20 + i / 6 * 150;
+				int y = 90 + i % 6 * 30;
 
-				AddRadio( x, y, 208, 209, ( town.Tax == ofs ), i+1 );
+				AddRadio( x, y, 208, 209, town.Tax == ofs, i+1 );
 
 				if ( ofs < 0 )
 					AddLabel( x + 35, y, 0x26, String.Concat( "- ", -ofs, "%" ) );
@@ -74,7 +72,7 @@ namespace Server.Factions
 					AddLabel( x + 35, y, 0x12A, String.Concat( "+ ", ofs, "%" ) );
 			}
 
-			AddRadio( 20, 270, 208, 209, ( town.Tax == 0 ), 0 );
+			AddRadio( 20, 270, 208, 209, town.Tax == 0, 0 );
 			AddHtmlLocalized( 55, 270, 90, 25, 1011542, false, false ); // normal
 
 			AddHtmlLocalized( 55, 330, 200, 25, 1011509, false, false ); // Set Prices
@@ -95,9 +93,9 @@ namespace Server.Factions
 			{
 				VendorList list = vendorLists[i];
 
-				AddButton( 20, 90 + (i * 40), 4005, 4007, 0, GumpButtonType.Page, 5 + i );
-				AddItem( 55, 90 + (i * 40), list.Definition.ItemID );
-				AddHtmlText( 100, 90 + (i * 40), 200, 25, list.Definition.Label, false, false );
+				AddButton( 20, 90 + i * 40, 4005, 4007, 0, GumpButtonType.Page, 5 + i );
+				AddItem( 55, 90 + i * 40, list.Definition.ItemID );
+				AddHtmlText( 100, 90 + i * 40, 200, 25, list.Definition.Label, false, false );
 			}
 
 			AddHtmlLocalized( 55, 360, 200, 25, 1011067, false, false );	//	Previous page

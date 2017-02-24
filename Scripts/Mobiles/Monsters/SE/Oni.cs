@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
-using Server.Items;
-using Server.Targeting;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "an oni corpse" )]
+    [CorpseName( "an oni corpse" )]
 	public class Oni : BaseCreature
 	{
 		[Constructable]

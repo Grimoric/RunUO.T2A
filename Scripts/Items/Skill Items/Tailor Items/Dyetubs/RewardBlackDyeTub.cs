@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class RewardBlackDyeTub : DyeTub, Engines.VeteranRewards.IRewardItem
+    public class RewardBlackDyeTub : DyeTub, Engines.VeteranRewards.IRewardItem
 	{
 		public override int LabelNumber{ get{ return 1006008; } } // Black Dye Tub
 

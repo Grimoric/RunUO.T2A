@@ -1,13 +1,9 @@
 using System;
 using System.Collections;
-using Server.Network;
-using Server.Items;
-using Server.Mobiles;
-using Server.Targeting;
 
 namespace Server.Spells.Ninjitsu
 {
-	public class KiAttack : NinjaMove
+    public class KiAttack : NinjaMove
 	{
 		public KiAttack()
 		{
@@ -96,7 +92,7 @@ namespace Server.Spells.Ninjitsu
 			int xDelta = info.m_Location.X - from.X;
 			int yDelta = info.m_Location.Y - from.Y;
 
-			double bonus = Math.Sqrt( (xDelta * xDelta) + (yDelta * yDelta) );
+			double bonus = Math.Sqrt( xDelta * xDelta + yDelta * yDelta );
 
 			if ( bonus > 20.0 )
 				bonus = 20.0;

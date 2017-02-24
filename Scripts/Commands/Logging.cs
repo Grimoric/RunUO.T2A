@@ -1,11 +1,10 @@
 using System;
 using System.IO;
-using Server;
 using Server.Accounting;
 
 namespace Server.Commands
 {
-	public class CommandLogging
+    public class CommandLogging
 	{
 		private static StreamWriter m_Output;
 		private static bool m_Enabled = true;
@@ -83,7 +82,7 @@ namespace Server.Commands
 
 				Account acct = from.Account as Account;
 
-				string name = ( acct == null ? from.Name : acct.Username );
+				string name = acct == null ? @from.Name : acct.Username;
 
 				AppendPath( ref path, "Logs" );
 				AppendPath( ref path, "Commands" );
@@ -121,7 +120,7 @@ namespace Server.Commands
 			bool isSafe = true;
 
 			for ( int i = 0; isSafe && i < m_NotSafe.Length; ++i )
-				isSafe = ( ip.IndexOf( m_NotSafe[i] ) == -1 );
+				isSafe = ip.IndexOf( m_NotSafe[i] ) == -1;
 
 			if ( isSafe )
 				return ip;

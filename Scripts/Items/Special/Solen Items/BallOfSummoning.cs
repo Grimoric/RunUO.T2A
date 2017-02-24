@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Mobiles;
 using Server.Targeting;
 using Server.ContextMenus;
@@ -12,7 +10,7 @@ using Server.Spells.Ninjitsu;
 
 namespace Server.Items
 {
-	public class BallOfSummoning : Item, TranslocationItem
+    public class BallOfSummoning : Item, TranslocationItem
 	{
 		private int m_Charges;
 		private int m_Recharges;
@@ -238,7 +236,7 @@ namespace Server.Items
 			{
 				MessageHelper.SendLocalizedMessageTo( this, from, 1054124, 0x36 ); // The Crystal Ball fills with a yellow mist. Why would you summon your pet while riding it?
 			}
-			else if ( pet.Map == Map.Internal && ( !pet.IsStabled || (from.Followers + pet.ControlSlots) > from.FollowersMax ) )
+			else if ( pet.Map == Map.Internal && ( !pet.IsStabled || @from.Followers + pet.ControlSlots > from.FollowersMax ) )
 			{
 				MessageHelper.SendLocalizedMessageTo( this, from, 1054125, 0x5 ); // The Crystal Ball fills with a blue mist. Your pet is not responding to the summons.
 			}

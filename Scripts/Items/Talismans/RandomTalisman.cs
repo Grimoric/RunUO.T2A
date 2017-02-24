@@ -1,11 +1,6 @@
-using System;
-using Server;
-using Server.Mobiles;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class RandomTalisman : BaseTalisman
+    public class RandomTalisman : BaseTalisman
 	{
 		[Constructable]
 		public RandomTalisman() : base( GetRandomItemID() )

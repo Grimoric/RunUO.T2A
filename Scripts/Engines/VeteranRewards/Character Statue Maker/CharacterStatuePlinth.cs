@@ -1,14 +1,11 @@
 using System;
-using System.Globalization;
-using Server;
 using Server.Gumps;
 using Server.Mobiles;
 using Server.Multis;
-using Server.Targets;
 
 namespace Server.Items
 {
-	public class CharacterStatuePlinth : Static, IAddon
+    public class CharacterStatuePlinth : Static, IAddon
 	{
 		public Item Deed{ get{ return new CharacterStatueDeed( m_Statue ); } }
 		public override int LabelNumber{ get{ return 1076201; } } // Character Statue

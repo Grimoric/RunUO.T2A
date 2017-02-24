@@ -1,19 +1,14 @@
-using System;
-using Server;
-using Server.Items;
 using Server.Mobiles;
-using Server.Engines.Quests;
-using Server.Engines.Quests.Necro;
 
 namespace Server.Engines.Quests.Necro
 {
-	public class DarkTidesHorn : HornOfRetreat
+    public class DarkTidesHorn : HornOfRetreat
 	{
 		public override bool ValidateUse( Mobile from )
 		{
 			PlayerMobile pm = from as PlayerMobile;
 
-			return ( pm != null && pm.Quest is DarkTidesQuest );
+			return pm != null && pm.Quest is DarkTidesQuest;
 		}
 
 		[Constructable]

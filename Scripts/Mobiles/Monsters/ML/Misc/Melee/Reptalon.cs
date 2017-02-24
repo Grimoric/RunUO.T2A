@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a reptalon corpse" )]
+    [CorpseName( "a reptalon corpse" )]
 	public class Reptalon : BaseMount
 	{
 		[Constructable]

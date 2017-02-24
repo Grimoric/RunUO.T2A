@@ -1,19 +1,18 @@
 using System;
 using Server.Spells;
-using Server;
 using Server.Network;
 using Server.Mobiles;
 using Server.Commands;
 using System.Collections.Generic;
 
-	/*
-	this is From me to you, Under no terms, Conditions...   K?  to apply you
-	just simply Unpatch/delete, Stick these in, Same location.. Restart
-	*/ 
+/*
+this is From me to you, Under no terms, Conditions...   K?  to apply you
+just simply Unpatch/delete, Stick these in, Same location.. Restart
+*/
 
 namespace Server.Engines.Doom
 {
-	public class LeverPuzzleController : Item
+    public class LeverPuzzleController : Item
 	{
 		private bool m_Enabled;
 		private static bool installed;
@@ -281,7 +280,7 @@ namespace Server.Engines.Doom
 				if( TheirKey == MyKey )
 				{
 					GenKey();
-					if (( m_Successful = ( m_Player=GetOccupant( 0 ))) != null )
+					if (( m_Successful = m_Player=GetOccupant( 0 )) != null )
 					{
 						SendLocationEffect( lp_Center,  0x1153, 0, 60, 1 ); 
 						PlaySounds( lp_Center, cs1 );
@@ -298,13 +297,13 @@ namespace Server.Engines.Doom
 				{
 					for(int i=0; i<16; i++)  /* Count matching SET bits, ie correct codes */
 					{
-						if( (((MyKey>>i)&1)==1)&&(((TheirKey>>i)&1)==1) )
+						if( ((MyKey>>i)&1)==1&&((TheirKey>>i)&1)==1 )
 						{
 							Correct++;
 						}
 					}
 
-					PuzzleStatus( Statue_Msg[Correct], (Correct>0) ? Correct.ToString() : null );
+					PuzzleStatus( Statue_Msg[Correct], Correct>0 ? Correct.ToString() : null );
 
 					for (int i=0; i<5; i++)
 					{
@@ -324,12 +323,12 @@ namespace Server.Engines.Doom
 			UInt16 tmp; int n, i; ushort[] CA = { 1,2,4,8 };
 			for (i=0; i<4; i++)
 			{
-				n=(((n = Utility.Random(0,3))==i) ? n&~i : n ); /* if(i==n) { return pointless; } */
+				n=(n = Utility.Random(0,3))==i ? n&~i : n; /* if(i==n) { return pointless; } */
 				tmp = CA[i];
 				CA[i]=CA[n];
 				CA[n]=tmp;
 			}
-			for(i=0; i<4; MyKey=(ushort)(CA[(i++)]|(MyKey<<=4))) {}
+			for(i=0; i<4; MyKey=(ushort)(CA[i++]|(MyKey<<=4))) {}
 		}
 
 		public class RockTimer : Timer
@@ -366,7 +365,7 @@ namespace Server.Engines.Doom
 						Effects.SendTargetEffect( m_Player, 0x11B7, 20, 10 );
 						PlayerSendASCII( m_Player, 0 );  // You are pinned down ...
 
-						PlaySounds( m_Player.Location, ( !m_Player.Female ) ? fs : ms );
+						PlaySounds( m_Player.Location, !m_Player.Female ? fs : ms );
 						PlayEffect( ZAdjustedIEFromMobile( m_Player, 50 ), m_Player, 0x11B7, 20, false );
 					}
 					else if ( Count == 2 )
@@ -387,7 +386,7 @@ namespace Server.Engines.Doom
 
 						Effects.SendTargetEffect( m_Player, 0x36B0, 20, 10 );
 						PlayerSendASCII( m_Player, 1 ); // A speeding rock  ...
-						PlaySounds( m_Player.Location, ( !m_Player.Female ) ? fs2 : ms2 );
+						PlaySounds( m_Player.Location, !m_Player.Female ? fs2 : ms2 );
 
 						int j = Utility.Random(6,10);
 						for(int i=0; i<j; i++)
@@ -545,7 +544,7 @@ namespace Server.Engines.Doom
 
 		public static bool AniSafe( Mobile m )
 		{
-			return ( m != null && !TransformationSpellHelper.UnderTransformation( m ) && m.BodyMod == 0 && m.Alive );
+			return m != null && !TransformationSpellHelper.UnderTransformation( m ) && m.BodyMod == 0 && m.Alive;
 		}
 
 		public static IEntity ZAdjustedIEFromMobile( Mobile m, int ZDelta )
@@ -558,7 +557,7 @@ namespace Server.Engines.Doom
 			if ( m != null && !m.Deleted && m.Alive )
 			{
 				int damage = Utility.Random(min,max);
-				AOS.Damage( m, damage,(poison) ? 0 : 100 , 0, 0,(poison) ? 100 : 0, 0 );
+				AOS.Damage( m, damage,poison ? 0 : 100 , 0, 0,poison ? 100 : 0, 0 );
 			}
 		}
 

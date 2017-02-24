@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Spells
 {
-	public enum SpellState
+    public enum SpellState
 	{
 		None = 0,
 		Casting = 1,	// We are in the process of casting (that is, waiting GetCastTime() and doing animations). Spell casting may be interupted in this state.

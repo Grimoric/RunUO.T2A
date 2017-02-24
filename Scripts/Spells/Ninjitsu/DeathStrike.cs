@@ -1,14 +1,11 @@
 using System;
 using System.Collections;
-using Server.Network;
 using Server.Items;
-using Server.Mobiles;
-using Server.Targeting;
 using Server.SkillHandlers;
 
 namespace Server.Spells.Ninjitsu
 {
-	public class DeathStrike : NinjaMove
+    public class DeathStrike : NinjaMove
 	{
 		public DeathStrike()
 		{
@@ -44,7 +41,7 @@ namespace Server.Spells.Ninjitsu
 			else
 				chance = 63 + (ninjitsu - 100) * 1.1;
 
-			if( (chance / 100) < Utility.RandomDouble() )
+			if( chance / 100 < Utility.RandomDouble() )
 			{
 				attacker.SendLocalizedMessage( 1070779 ); // You missed your opponent with a Death Strike.
 				return;
@@ -133,10 +130,10 @@ namespace Server.Spells.Ninjitsu
 			double ninjitsu = info.m_Attacker.Skills[SkillName.Ninjitsu].Value;
 			double stalkingBonus = Tracking.GetStalkingBonus( info.m_Attacker, info.m_Target );
 
-			int divisor = (info.m_Steps >= 5) ? 30 : 80;
+			int divisor = info.m_Steps >= 5 ? 30 : 80;
             double baseDamage = ninjitsu / divisor * 10;
 
-			maxDamage = (info.m_Steps >= 5) ? 62 : 22; // DamageBonus is 8 at most. That brings the cap up to 70/30.
+			maxDamage = info.m_Steps >= 5 ? 62 : 22; // DamageBonus is 8 at most. That brings the cap up to 70/30.
 			damage = Math.Max( 0, Math.Min( maxDamage, (int)( baseDamage + stalkingBonus ) ) ) + info.m_DamageBonus;
 
 			AOS.Damage( info.m_Target, info.m_Attacker, damage, true, 100, 0, 0, 0, 0, 0, 0, false, false, true ); // Damage is physical.

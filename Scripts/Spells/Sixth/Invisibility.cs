@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Targeting;
 using Server.Items;
 
 namespace Server.Spells.Sixth
 {
-	public class InvisibilitySpell : MagerySpell
+    public class InvisibilitySpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Invisibility", "An Lor Xen",
@@ -61,7 +60,7 @@ namespace Server.Spells.Sixth
 
 				RemoveTimer( m );
 
-				TimeSpan duration = TimeSpan.FromSeconds( (( 1.2 * Caster.Skills.Magery.Fixed) / 10 ));
+				TimeSpan duration = TimeSpan.FromSeconds( 1.2 * Caster.Skills.Magery.Fixed / 10);
 
 				Timer t = new InternalTimer( m, duration );
 

@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Ethics
 {
-	public class EthicsPersistance : Item
+    public class EthicsPersistance : Item
 	{
 		private static EthicsPersistance m_Instance;
 

@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Mobiles;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Haven
 {
-	public class QuestFertileDirt : QuestItem
+    public class QuestFertileDirt : QuestItem
 	{
 		[Constructable]
 		public QuestFertileDirt() : base( 0xF81 )

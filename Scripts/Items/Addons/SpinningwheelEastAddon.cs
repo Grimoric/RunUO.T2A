@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public delegate void SpinCallback( ISpinningWheel sender, Mobile from, int hue );
+    public delegate void SpinCallback( ISpinningWheel sender, Mobile from, int hue );
 
 	public interface ISpinningWheel
 	{

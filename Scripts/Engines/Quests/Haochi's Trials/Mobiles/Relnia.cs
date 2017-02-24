@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
-using Server.Gumps;
 using Server.Items;
 
 namespace Server.Engines.Quests.Samurai
 {
-	public class Relnia : BaseQuester
+    public class Relnia : BaseQuester
 	{
 		[Constructable]
 		public Relnia() : base( "the Gypsy" )

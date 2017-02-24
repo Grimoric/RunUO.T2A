@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a patchwork skeletal corpse" )]
+    [CorpseName( "a patchwork skeletal corpse" )]
 	public class PatchworkSkeleton : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()

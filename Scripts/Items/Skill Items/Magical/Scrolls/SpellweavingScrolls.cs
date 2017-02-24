@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class ArcaneCircleScroll : SpellScroll
+    public class ArcaneCircleScroll : SpellScroll
 	{
 		[Constructable]
 		public ArcaneCircleScroll()

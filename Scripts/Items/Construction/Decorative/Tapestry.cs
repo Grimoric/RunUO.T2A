@@ -1,9 +1,6 @@
-using System;
-using Server.Network;
-
 namespace Server.Items
 {
-	public class Tapestry1N : Item
+    public class Tapestry1N : Item
 	{
 		private InternalItem m_Item;
 

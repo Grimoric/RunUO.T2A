@@ -1,10 +1,8 @@
-using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Seventh
 {
-	public class FlameStrikeSpell : MagerySpell
+    public class FlameStrikeSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Flame Strike", "Kal Vas Flam",

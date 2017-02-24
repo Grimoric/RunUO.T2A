@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class DupreSuit : BaseSuit
+    public class DupreSuit : BaseSuit
 	{
 		[Constructable]
 		public DupreSuit() : base( AccessLevel.GameMaster, 0x0, 0x2050 )

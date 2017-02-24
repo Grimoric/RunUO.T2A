@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class BraceletOfHealth : GoldBracelet
+    public class BraceletOfHealth : GoldBracelet
 	{
 		public override int LabelNumber{ get{ return 1061103; } } // Bracelet of Health
 		public override int ArtifactRarity{ get{ return 11; } }

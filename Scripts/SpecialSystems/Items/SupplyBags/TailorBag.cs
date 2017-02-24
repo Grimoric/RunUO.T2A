@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class TailorBag : Bag
+    public class TailorBag : Bag
 	{
 		public override string DefaultName
 		{

@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "an enslaved satyr corpse" )]
+    [CorpseName( "an enslaved satyr corpse" )]
 	public class EnslavedSatyr : Satyr
 	{
 		[Constructable]

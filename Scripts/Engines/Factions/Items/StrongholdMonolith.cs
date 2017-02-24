@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Factions
 {
-	public class StrongholdMonolith : BaseMonolith
+    public class StrongholdMonolith : BaseMonolith
 	{
 		public override int DefaultLabelNumber{ get{ return 1041042; } } // A Faction Sigil Monolith
 

@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public enum HeadType
+    public enum HeadType
 	{
 		Regular,
 		Duel,

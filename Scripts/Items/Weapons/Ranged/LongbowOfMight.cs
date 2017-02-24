@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class LongbowOfMight : ElvenCompositeLongbow
+    public class LongbowOfMight : ElvenCompositeLongbow
 	{
 		public override int LabelNumber{ get{ return 1073508; } } // longbow of might
 

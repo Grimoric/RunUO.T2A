@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Gumps
 {
-	public delegate void NoticeGumpCallback( Mobile from, object state );
+    public delegate void NoticeGumpCallback( Mobile from, object state );
 
 	public class NoticeGump : Gump
 	{

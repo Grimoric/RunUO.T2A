@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ShipModelOfTheHMSCape : Item
+    public class ShipModelOfTheHMSCape : Item
 	{
 		public override int LabelNumber{ get{ return 1063476; } }
 		

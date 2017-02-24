@@ -1,9 +1,8 @@
-using System;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	public class LysanderGathenwale : BaseCreature
+    public class LysanderGathenwale : BaseCreature
 	{
 		public override bool ClickTitle{ get{ return false; } }
 		public override bool ShowFameTitle{ get{ return false; } }

@@ -1,11 +1,8 @@
-using System;
-using Server;
-using Server.Misc;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName("a chaos dragoon elite corpse")]
+    [CorpseName("a chaos dragoon elite corpse")]
 	public class ChaosDragoonElite : BaseCreature
 	{
 		[Constructable]

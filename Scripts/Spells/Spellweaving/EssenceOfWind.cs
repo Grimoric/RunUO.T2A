@@ -1,10 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Server.Spells.Spellweaving
 {
-	public class EssenceOfWindSpell : ArcanistSpell
+    public class EssenceOfWindSpell : ArcanistSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo( "Essence of Wind", "Anathrae", -1 );
 

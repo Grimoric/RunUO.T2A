@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Gumps
 {
-	public class PropsConfig
+    public class PropsConfig
 	{
 		public static readonly bool OldStyle = false;
 

@@ -1,13 +1,9 @@
 using System;
-using Server.Misc;
-using Server.Items;
 using Server.Mobiles;
-using Server.Network;
-using Server.Targeting;
 
 namespace Server.Spells.Eighth
 {
-	public class SummonDaemonSpell : MagerySpell
+    public class SummonDaemonSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Summon Daemon", "Kal Vas Xen Corp",
@@ -31,7 +27,7 @@ namespace Server.Spells.Eighth
 			if ( !base.CheckCast() )
 				return false;
 
-			if ( (Caster.Followers + 5) > Caster.FollowersMax )
+			if ( Caster.Followers + 5 > Caster.FollowersMax )
 			{
 				Caster.SendLocalizedMessage( 1049645 ); // You have too many followers to summon that creature.
 				return false;
@@ -44,7 +40,7 @@ namespace Server.Spells.Eighth
 		{
 			if ( CheckSequence() )
 			{	
-				TimeSpan duration = TimeSpan.FromSeconds( (2 * Caster.Skills.Magery.Fixed) / 5 );
+				TimeSpan duration = TimeSpan.FromSeconds( 2 * Caster.Skills.Magery.Fixed / 5 );
 
 				SpellHelper.Summon( new Daemon(), Caster, 0x216, duration, false, false );
 			}

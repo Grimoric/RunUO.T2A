@@ -1,13 +1,9 @@
 using System;
-using System.Diagnostics;
-using System.IO;
-using System.Text;
-using Server;
 using Server.Commands;
 
 namespace Server.Misc
 {
-	public class AutoRestart : Timer
+    public class AutoRestart : Timer
 	{
 		public static bool Enabled = false; // is the script enabled?
 

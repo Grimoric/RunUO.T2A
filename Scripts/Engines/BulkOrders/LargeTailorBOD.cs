@@ -1,13 +1,8 @@
-using System;
-using System.Collections;
-using Server;
-using Server.Items;
-using Mat = Server.Engines.BulkOrders.BulkMaterialType;
 using System.Collections.Generic;
 
 namespace Server.Engines.BulkOrders
 {
-	public class LargeTailorBOD : LargeBOD
+    public class LargeTailorBOD : LargeBOD
 	{
 		public static double[] m_TailoringMaterialChances = new double[]
 			{
@@ -54,7 +49,7 @@ namespace Server.Engines.BulkOrders
 
 			int hue = 0x483;
 			int amountMax = Utility.RandomList( 10, 15, 20, 20 );
-			bool reqExceptional = ( 0.825 > Utility.RandomDouble() );
+			bool reqExceptional = 0.825 > Utility.RandomDouble();
 
 			BulkMaterialType material;
 

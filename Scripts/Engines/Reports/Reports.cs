@@ -2,8 +2,6 @@ using System;
 using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
-using Server.Items;
 using Server.Mobiles;
 using Server.Network;
 using Server.Factions;
@@ -12,7 +10,7 @@ using Server.Engines.ConPVP;
 
 namespace Server.Engines.Reports
 {
-	public class Reports
+    public class Reports
 	{
 		public static bool Enabled = false;
 
@@ -286,7 +284,7 @@ namespace Server.Engines.Reports
 
 			public int CompareTo( object obj )
 			{
-				return ( ((SkillDistribution)obj).m_NumberOfGMs - m_NumberOfGMs );
+				return ((SkillDistribution)obj).m_NumberOfGMs - m_NumberOfGMs;
 			}
 		}
 

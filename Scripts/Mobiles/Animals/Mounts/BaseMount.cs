@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Items;
 using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	public abstract class BaseMount : BaseCreature, IMount
+    public abstract class BaseMount : BaseCreature, IMount
 	{
 		private Mobile m_Rider;
 		private Item m_InternalItem;
@@ -160,9 +158,9 @@ namespace Server.Mobiles
 
 			if ( from.InRange( this, 1 ) )
 			{
-				bool canAccess = ( from.AccessLevel >= AccessLevel.GameMaster )
-					|| ( Controlled && ControlMaster == from )
-					|| ( Summoned && SummonMaster == from );
+				bool canAccess = @from.AccessLevel >= AccessLevel.GameMaster
+					|| Controlled && ControlMaster == @from
+					|| Summoned && SummonMaster == @from;
 
 				if ( canAccess )
 				{
@@ -277,7 +275,7 @@ namespace Server.Mobiles
 		{
 			bool result = true;
 
-			if ((mob is PlayerMobile) && (mob as PlayerMobile).MountBlockReason != BlockMountType.None)
+			if (mob is PlayerMobile && (mob as PlayerMobile).MountBlockReason != BlockMountType.None)
 			{
 				mob.SendLocalizedMessage((int)(mob as PlayerMobile).MountBlockReason);
 

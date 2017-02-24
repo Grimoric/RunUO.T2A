@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	public enum DawnsMusicRarity
+    public enum DawnsMusicRarity
 	{
 		Common,
 		Uncommon,

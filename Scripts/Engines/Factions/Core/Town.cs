@@ -1,14 +1,12 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Targeting;
-using Server.Mobiles;
 using Server.Commands;
 using System.Collections.Generic;
 
 namespace Server.Factions
 {
-	[CustomEnum( new string[]{ "Britain", "Magincia", "Minoc", "Moonglow", "Skara Brae", "Trinsic", "Vesper", "Yew" } )]
+    [CustomEnum( new string[]{ "Britain", "Magincia", "Minoc", "Moonglow", "Skara Brae", "Trinsic", "Vesper", "Yew" } )]
 	public abstract class Town : IComparable
 	{
 		private TownDefinition m_Definition;
@@ -67,7 +65,7 @@ namespace Server.Factions
 
 		public bool TaxChangeReady
 		{
-			get{ return ( m_State.LastTaxChange + TaxChangePeriod ) < DateTime.Now; }
+			get{ return m_State.LastTaxChange + TaxChangePeriod < DateTime.Now; }
 		}
 
 		public static Town FromRegion( Region reg )
@@ -118,7 +116,7 @@ namespace Server.Factions
 
 		public int DailyIncome
 		{
-			get{ return (10000 * (100 + m_State.Tax)) / 100; }
+			get{ return 10000 * (100 + m_State.Tax) / 100; }
 		}
 
 		public int NetCashFlow
@@ -224,7 +222,7 @@ namespace Server.Factions
 
 		public void CheckIncome()
 		{
-			if ( (LastIncome + IncomePeriod) > DateTime.Now || Owner == null )
+			if ( LastIncome + IncomePeriod > DateTime.Now || Owner == null )
 				return;
 
 			ProcessIncome();
@@ -236,11 +234,11 @@ namespace Server.Factions
 
 			int flow = NetCashFlow;
 
-			if ( (Silver + flow) < 0 )
+			if ( Silver + flow < 0 )
 			{
 				ArrayList toDelete = BuildFinanceList();
 
-				while ( (Silver + flow) < 0 && toDelete.Count > 0 )
+				while ( Silver + flow < 0 && toDelete.Count > 0 )
 				{
 					int index = Utility.Random( toDelete.Count );
 					Mobile mob = (Mobile)toDelete[index];
@@ -289,7 +287,7 @@ namespace Server.Factions
 
 		public void ConstructGuardLists()
 		{
-			GuardDefinition[] defs = ( Owner == null ? new GuardDefinition[0] : Owner.Definition.Guards );
+			GuardDefinition[] defs = Owner == null ? new GuardDefinition[0] : Owner.Definition.Guards;
 
 			m_GuardLists = new List<GuardList>();
 
@@ -425,7 +423,7 @@ namespace Server.Factions
 			if ( mob == null || mob.Deleted )
 				return false;
 
-			return ( mob.AccessLevel >= AccessLevel.GameMaster || mob == Sheriff );
+			return mob.AccessLevel >= AccessLevel.GameMaster || mob == Sheriff;
 		}
 
 		public bool IsFinance( Mobile mob )
@@ -433,7 +431,7 @@ namespace Server.Factions
 			if ( mob == null || mob.Deleted )
 				return false;
 
-			return ( mob.AccessLevel >= AccessLevel.GameMaster || mob == Finance );
+			return mob.AccessLevel >= AccessLevel.GameMaster || mob == Finance;
 		}
 
 		public static List<Town> Towns { get { return Reflector.Towns; } }

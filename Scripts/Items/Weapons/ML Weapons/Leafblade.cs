@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x2D22, 0x2D2E )]
+    [FlipableAttribute( 0x2D22, 0x2D2E )]
 	public class Leafblade : BaseKnife
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Feint; } }

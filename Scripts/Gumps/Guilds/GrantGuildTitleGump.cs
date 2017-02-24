@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Guilds;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	public class GrantGuildTitleGump : GuildMobileListGump
+    public class GrantGuildTitleGump : GuildMobileListGump
 	{
 		public GrantGuildTitleGump( Mobile from, Guild guild ) : base( from, guild, true, guild.Members )
 		{

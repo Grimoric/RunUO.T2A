@@ -1,11 +1,10 @@
-using System;
 using Server.Targeting;
 using Server.Network;
 using Server.Items;
 
 namespace Server.Spells.Third
 {
-	public class MagicLockSpell : MagerySpell
+    public class MagicLockSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Magic Lock", "An Por",

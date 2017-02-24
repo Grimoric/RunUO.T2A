@@ -1,12 +1,10 @@
 using System;
-using Server.Items;
 using Server.Network;
-using Server.Spells;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	public abstract class BaseRanged : BaseMeleeWeapon
+    public abstract class BaseRanged : BaseMeleeWeapon
 	{
 		public abstract int EffectID{ get; }
 		public abstract Type AmmoType{ get; }

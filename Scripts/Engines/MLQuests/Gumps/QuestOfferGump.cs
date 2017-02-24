@@ -1,13 +1,10 @@
-using System;
-using Server;
-using Server.Engines.MLQuests;
 using Server.Gumps;
 using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Engines.MLQuests.Gumps
 {
-	public class QuestOfferGump : BaseQuestGump
+    public class QuestOfferGump : BaseQuestGump
 	{
 		private MLQuest m_Quest;
 		private IQuestGiver m_Quester;

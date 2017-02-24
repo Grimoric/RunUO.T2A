@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Spells.Second;
-using Server.Targeting;
 
 namespace Server.Items
 {
-	public class HarmWand : BaseWand
+    public class HarmWand : BaseWand
 	{
 		[Constructable]
 		public HarmWand() : base( WandEffect.Harming, 5, 30 )

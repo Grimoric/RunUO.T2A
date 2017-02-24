@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class GoldenBroadtail : BaseFish
+    public class GoldenBroadtail : BaseFish
 	{		
 		public override int LabelNumber{ get{ return 1073828; } } // A Golden Broadtail
 		

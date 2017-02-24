@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Guilds;
 using Server.Targeting;
 using Server.Factions;
 
 namespace Server.Gumps
 {
-	public class GuildRecruitTarget : Target
+    public class GuildRecruitTarget : Target
 	{
 		private Mobile m_Mobile;
 		private Guild m_Guild;
@@ -29,8 +27,8 @@ namespace Server.Gumps
 				PlayerState guildState = PlayerState.Find( m_Guild.Leader );
 				PlayerState targetState = PlayerState.Find( m );
 
-				Faction guildFaction = ( guildState == null ? null : guildState.Faction );
-				Faction targetFaction = ( targetState == null ? null : targetState.Faction );
+				Faction guildFaction = guildState == null ? null : guildState.Faction;
+				Faction targetFaction = targetState == null ? null : targetState.Faction;
 
 				if ( !m.Player )
 				{

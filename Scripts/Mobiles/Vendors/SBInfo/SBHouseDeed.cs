@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using Server.Multis.Deeds;
 
 namespace Server.Mobiles
 {
-	public class SBHouseDeed: SBInfo
+    public class SBHouseDeed: SBInfo
 	{
 		private List<GenericBuyInfo> m_BuyInfo = new InternalBuyInfo();
 		private IShopSellInfo m_SellInfo = new InternalSellInfo();

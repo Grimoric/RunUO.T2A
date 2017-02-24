@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class Bleach : PigmentsOfTokuno
+    public class Bleach : PigmentsOfTokuno
 	{
 		public override int LabelNumber { get { return 1075375; } } // Bleach
 

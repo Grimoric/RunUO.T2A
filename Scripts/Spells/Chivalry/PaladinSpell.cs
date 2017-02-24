@@ -1,11 +1,9 @@
 using System;
-using Server;
-using Server.Spells;
 using Server.Network;
 
 namespace Server.Spells.Chivalry
 {
-	public abstract class PaladinSpell : Spell
+    public abstract class PaladinSpell : Spell
 	{
 		public abstract double RequiredSkill{ get; }
 		public abstract int RequiredMana{ get; }
@@ -133,7 +131,7 @@ namespace Server.Spells.Chivalry
 			if ( from == null )
 				return 0;
 
-			int v = (int) Math.Sqrt( from.Karma + 20000 + (from.Skills.Chivalry.Fixed * 10) );
+			int v = (int) Math.Sqrt( from.Karma + 20000 + @from.Skills.Chivalry.Fixed * 10 );
 
 			return v / div;
 		}

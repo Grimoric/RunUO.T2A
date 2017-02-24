@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class TheTaskmaster : WarFork
+    public class TheTaskmaster : WarFork
 	{
 		public override int LabelNumber{ get{ return 1061110; } } // The Taskmaster
 		public override int ArtifactRarity{ get{ return 10; } }

@@ -1,14 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Gumps;
 using Server.Multis;
 using Server.ContextMenus;
 
 namespace Server.Engines.Mahjong
 {
-	public class MahjongGame : Item, ISecurable
+    public class MahjongGame : Item, ISecurable
 	{
 		public const int MaxPlayers = 4;
 		public const int BaseScore = 30000;

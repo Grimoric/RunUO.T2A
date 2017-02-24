@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Mobiles;
 using Server.Factions;
 
 namespace Server
 {
-	public class SpeedInfo
+    public class SpeedInfo
 	{
 		// Should we use the new method of speeds?
 		private static bool Enabled = true;
@@ -50,7 +49,7 @@ namespace Server
 
 			SpeedInfo sp = (SpeedInfo)m_Table[obj.GetType()];
 
-			return ( sp != null );
+			return sp != null;
 		}
 
 		public static bool GetSpeeds( object obj, ref double activeSpeed, ref double passiveSpeed )

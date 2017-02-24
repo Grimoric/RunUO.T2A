@@ -1,10 +1,9 @@
 using System;
-using Server;
 using System.Collections.Generic;
 
 namespace Server.Factions
 {
-	public class GuardList
+    public class GuardList
 	{
 		private GuardDefinition m_Definition;
 		private List<BaseFactionGuard> m_Guards;

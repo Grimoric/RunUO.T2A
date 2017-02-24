@@ -1,13 +1,9 @@
-using System;
 using System.Collections.Generic;
-using Server;
 using Server.Network;
-using Server.Multis;
-using Server.Mobiles;
 
 namespace Server.Misc
 {
-	public class Paperdoll
+    public class Paperdoll
 	{
 		public static void Initialize()
 		{

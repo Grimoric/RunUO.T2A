@@ -1,11 +1,8 @@
-using System;
-using Server;
-using Server.Misc;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a pixie corpse" )]
+    [CorpseName( "a pixie corpse" )]
 	public class Pixie : BaseCreature
 	{
 		public override bool InitialInnocent{ get{ return true; } }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Mobiles;
 using Server.Targeting;
 using Server.Items;
@@ -8,13 +7,12 @@ using Server.Network;
 using Server.Factions;
 using Server.Spells.Seventh;
 using Server.Spells.Fifth;
-using Server.Spells.Necromancy;
 using Server.Spells;
 using Server.Spells.Ninjitsu;
 
 namespace Server.SkillHandlers
 {
-	public class Stealing
+    public class Stealing
 	{
 		public static void Initialize()
 		{
@@ -26,12 +24,12 @@ namespace Server.SkillHandlers
 
 		public static bool IsInGuild( Mobile m )
 		{
-			return ( m is PlayerMobile && ((PlayerMobile)m).NpcGuild == NpcGuild.ThievesGuild );
+			return m is PlayerMobile && ((PlayerMobile)m).NpcGuild == NpcGuild.ThievesGuild;
 		}
 
 		public static bool IsInnocentTo( Mobile from, Mobile to )
 		{
-			return ( Notoriety.Compute( from, (Mobile)to ) == Notoriety.Innocent );
+			return Notoriety.Compute( @from, (Mobile)to ) == Notoriety.Innocent;
 		}
 
 		private class StealingTarget : Target
@@ -87,7 +85,7 @@ namespace Server.SkillHandlers
 				else if ( toSteal is Sigil )
 				{						
 					PlayerState pl = PlayerState.Find( m_Thief );
-					Faction faction = ( pl == null ? null : pl.Faction );
+					Faction faction = pl == null ? null : pl.Faction;
 
 					Sigil sig = (Sigil) toSteal;
 
@@ -216,7 +214,7 @@ namespace Server.SkillHandlers
 					{
 						if ( toSteal.Stackable && toSteal.Amount > 1 )
 						{
-							int maxAmount = (int)((m_Thief.Skills[SkillName.Stealing].Value / 10.0) / toSteal.Weight);
+							int maxAmount = (int)(m_Thief.Skills[SkillName.Stealing].Value / 10.0 / toSteal.Weight);
 
 							if ( maxAmount < 1 )
 								maxAmount = 1;
@@ -271,7 +269,7 @@ namespace Server.SkillHandlers
 							m_Thief.SendLocalizedMessage( 502723 ); // You fail to steal the item.
 						}
 
-						caught = ( m_Thief.Skills[SkillName.Stealing].Value < Utility.Random( 150 ) );
+						caught = m_Thief.Skills[SkillName.Stealing].Value < Utility.Random( 150 );
 					}
 				}
 
@@ -399,7 +397,7 @@ namespace Server.SkillHandlers
 		public Mobile Victim{ get{ return m_Victim; } }
 		public DateTime Expires{ get{ return m_Expires; } }
 
-		public bool IsExpired{ get{ return ( DateTime.Now >= m_Expires ); } }
+		public bool IsExpired{ get{ return DateTime.Now >= m_Expires; } }
 
 		public StolenItem( Item stolen, Mobile thief, Mobile victim )
 		{

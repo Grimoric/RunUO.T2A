@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class MeteorSwarmScroll : SpellScroll
+    public class MeteorSwarmScroll : SpellScroll
 	{
 		[Constructable]
 		public MeteorSwarmScroll() : this( 1 )

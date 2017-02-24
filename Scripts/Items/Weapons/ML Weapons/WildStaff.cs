@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x2D25, 0x2D31 )]
+    [FlipableAttribute( 0x2D25, 0x2D31 )]
 	public class WildStaff : BaseStaff
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Block; } }

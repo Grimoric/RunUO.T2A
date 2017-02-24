@@ -2,11 +2,10 @@ using System;
 using Server.Gumps;
 using Server.Misc;
 using Server.Network;
-using Server.Prompts;
 
 namespace Server.Items
 {
-	public class NameChangeDeed : Item
+    public class NameChangeDeed : Item
 	{
 		public override string DefaultName
 		{
@@ -109,7 +108,7 @@ namespace Server.Items
 			Mobile m = sender.Mobile;
 			TextRelay nameEntry = info.GetTextEntry( 0 );
 
-			string newName = ( nameEntry == null ? null : nameEntry.Text.Trim() );
+			string newName = nameEntry == null ? null : nameEntry.Text.Trim();
 			
 
 			if ( !NameVerification.Validate( newName, 2, 16, true, false, true, 1, NameVerification.SpaceDashPeriodQuote ) )

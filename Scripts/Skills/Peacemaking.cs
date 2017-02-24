@@ -1,12 +1,11 @@
 using System;
 using Server.Targeting;
-using Server.Network;
 using Server.Mobiles;
 using Server.Items;
 
 namespace Server.SkillHandlers
 {
-	public class Peacemaking
+    public class Peacemaking
 	{
 		public static void Initialize()
 		{
@@ -103,7 +102,7 @@ namespace Server.SkillHandlers
 
 								foreach ( Mobile m in from.GetMobilesInRange( range ) )
 								{
-									if ((m is BaseCreature && ((BaseCreature)m).Uncalmable) || (m is BaseCreature && ((BaseCreature)m).AreaPeaceImmune) || m == from || !from.CanBeHarmful ( m, false ))
+									if (m is BaseCreature && ((BaseCreature)m).Uncalmable || m is BaseCreature && ((BaseCreature)m).AreaPeaceImmune || m == from || !from.CanBeHarmful ( m, false ))
 										continue;
 
 									calmed = true;
@@ -180,7 +179,7 @@ namespace Server.SkillHandlers
 									targ.Combatant = null;
 									targ.Warmode = false;
 
-									double seconds = 100 - (diff / 1.5);
+									double seconds = 100 - diff / 1.5;
 
 									if ( seconds > 120 )
 										seconds = 120;

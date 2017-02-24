@@ -1,20 +1,15 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Guilds;
 using Server.Multis;
 using Server.Mobiles;
 using Server.Engines.PartySystem;
 using Server.Factions;
-using Server.Spells.Necromancy;
-using Server.Spells.Ninjitsu;
-using Server.Spells;
 
 namespace Server.Misc
 {
-	public class NotorietyHandlers
+    public class NotorietyHandlers
 	{
 		public static void Initialize()
 		{
@@ -87,10 +82,10 @@ namespace Server.Misc
 
 			if( pmFrom!= null && pmTarg != null )
 			{
-				if( pmFrom.DuelContext != pmTarg.DuelContext && ((pmFrom.DuelContext != null && pmFrom.DuelContext.Started) || (pmTarg.DuelContext != null && pmTarg.DuelContext.Started)) )
+				if( pmFrom.DuelContext != pmTarg.DuelContext && (pmFrom.DuelContext != null && pmFrom.DuelContext.Started || pmTarg.DuelContext != null && pmTarg.DuelContext.Started) )
 					return false;
 
-				if( pmFrom.DuelContext != null && pmFrom.DuelContext == pmTarg.DuelContext && ((pmFrom.DuelContext.StartedReadyCountdown && !pmFrom.DuelContext.Started) || pmFrom.DuelContext.Tied || pmFrom.DuelPlayer.Eliminated || pmTarg.DuelPlayer.Eliminated) )
+				if( pmFrom.DuelContext != null && pmFrom.DuelContext == pmTarg.DuelContext && (pmFrom.DuelContext.StartedReadyCountdown && !pmFrom.DuelContext.Started || pmFrom.DuelContext.Tied || pmFrom.DuelPlayer.Eliminated || pmTarg.DuelPlayer.Eliminated) )
 					return false;
 
 				if( pmFrom.DuelPlayer != null && !pmFrom.DuelPlayer.Eliminated && pmFrom.DuelContext != null && pmFrom.DuelContext.IsSuddenDeath )
@@ -103,7 +98,7 @@ namespace Server.Misc
 					return true;
 			}
 
-			if( (pmFrom != null && pmFrom.DuelContext != null && pmFrom.DuelContext.Started) || (pmTarg != null && pmTarg.DuelContext != null && pmTarg.DuelContext.Started) )
+			if( pmFrom != null && pmFrom.DuelContext != null && pmFrom.DuelContext.Started || pmTarg != null && pmTarg.DuelContext != null && pmTarg.DuelContext.Started )
 				return false;
 
 			Engines.ConPVP.SafeZone sz = from.Region.GetRegion( typeof( Engines.ConPVP.SafeZone ) ) as Engines.ConPVP.SafeZone;
@@ -178,10 +173,10 @@ namespace Server.Misc
 
 			if( pmFrom!= null && pmTarg != null )
 			{
-				if( pmFrom.DuelContext != pmTarg.DuelContext && ((pmFrom.DuelContext != null && pmFrom.DuelContext.Started) || (pmTarg.DuelContext != null && pmTarg.DuelContext.Started)) )
+				if( pmFrom.DuelContext != pmTarg.DuelContext && (pmFrom.DuelContext != null && pmFrom.DuelContext.Started || pmTarg.DuelContext != null && pmTarg.DuelContext.Started) )
 					return false;
 
-				if( pmFrom.DuelContext != null && pmFrom.DuelContext == pmTarg.DuelContext && ((pmFrom.DuelContext.StartedReadyCountdown && !pmFrom.DuelContext.Started) || pmFrom.DuelContext.Tied || pmFrom.DuelPlayer.Eliminated || pmTarg.DuelPlayer.Eliminated) )
+				if( pmFrom.DuelContext != null && pmFrom.DuelContext == pmTarg.DuelContext && (pmFrom.DuelContext.StartedReadyCountdown && !pmFrom.DuelContext.Started || pmFrom.DuelContext.Tied || pmFrom.DuelPlayer.Eliminated || pmTarg.DuelPlayer.Eliminated) )
 					return false;
 
 				if( pmFrom.DuelContext != null && pmFrom.DuelContext == pmTarg.DuelContext && pmFrom.DuelContext.m_Tournament != null && pmFrom.DuelContext.m_Tournament.IsNotoRestricted && pmFrom.DuelPlayer != null && pmTarg.DuelPlayer != null && pmFrom.DuelPlayer.Participant == pmTarg.DuelPlayer.Participant )
@@ -191,7 +186,7 @@ namespace Server.Misc
 					return true;
 			}
 
-			if( (pmFrom != null && pmFrom.DuelContext != null && pmFrom.DuelContext.Started) || (pmTarg != null && pmTarg.DuelContext != null && pmTarg.DuelContext.Started) )
+			if( pmFrom != null && pmFrom.DuelContext != null && pmFrom.DuelContext.Started || pmTarg != null && pmTarg.DuelContext != null && pmTarg.DuelContext.Started )
 				return false;
 
 			Engines.ConPVP.SafeZone sz = from.Region.GetRegion( typeof( Engines.ConPVP.SafeZone ) ) as Engines.ConPVP.SafeZone;
@@ -226,7 +221,7 @@ namespace Server.Misc
 			if( fromGuild != null && targetGuild != null && (fromGuild == targetGuild || fromGuild.IsAlly( targetGuild ) || fromGuild.IsEnemy( targetGuild )) )
 				return true; // Guild allies or enemies can be harmful
 
-			if( target is BaseCreature && (((BaseCreature)target).Controlled || (((BaseCreature)target).Summoned && from != ((BaseCreature)target).SummonMaster)) )
+			if( target is BaseCreature && (((BaseCreature)target).Controlled || ((BaseCreature)target).Summoned && @from != ((BaseCreature)target).SummonMaster) )
 				return false; // Cannot harm other controlled mobiles
 
 			if( target.Player )
@@ -293,10 +288,10 @@ namespace Server.Misc
 
 				int actual = Notoriety.CanBeAttacked;
 
-				if( target.Kills >= 5 || (body.IsMonster && IsSummoned( target.Owner as BaseCreature )) || (target.Owner is BaseCreature && (((BaseCreature)target.Owner).AlwaysMurderer || ((BaseCreature)target.Owner).IsAnimatedDead)) )
+				if( target.Kills >= 5 || body.IsMonster && IsSummoned( target.Owner as BaseCreature ) || target.Owner is BaseCreature && (((BaseCreature)target.Owner).AlwaysMurderer || ((BaseCreature)target.Owner).IsAnimatedDead) )
 					actual = Notoriety.Murderer;
 
-				if( DateTime.Now >= (target.TimeOfDeath + Corpse.MonsterLootRightSacrifice) )
+				if( DateTime.Now >= target.TimeOfDeath + Corpse.MonsterLootRightSacrifice )
 					return actual;
 
 				Party sourceParty = Party.Get( source );
@@ -305,7 +300,7 @@ namespace Server.Misc
 
 				for( int i = 0; i < list.Count; ++i )
 				{
-					if( list[i] == source || (sourceParty != null && Party.Get( list[i] ) == sourceParty) )
+					if( list[i] == source || sourceParty != null && Party.Get( list[i] ) == sourceParty )
 						return actual;
 				}
 
@@ -313,10 +308,10 @@ namespace Server.Misc
 			}
 			else
 			{
-				if( target.Kills >= 5 || (body.IsMonster && IsSummoned( target.Owner as BaseCreature )) || (target.Owner is BaseCreature && (((BaseCreature)target.Owner).AlwaysMurderer || ((BaseCreature)target.Owner).IsAnimatedDead)) )
+				if( target.Kills >= 5 || body.IsMonster && IsSummoned( target.Owner as BaseCreature ) || target.Owner is BaseCreature && (((BaseCreature)target.Owner).AlwaysMurderer || ((BaseCreature)target.Owner).IsAnimatedDead) )
 					return Notoriety.Murderer;
 
-				if (target.Criminal && target.Map != null && ((target.Map.Rules & MapRules.HarmfulRestrictions) == 0))
+				if (target.Criminal && target.Map != null && (target.Map.Rules & MapRules.HarmfulRestrictions) == 0)
 					return Notoriety.Criminal;
 
 				Guild sourceGuild = GetGuildFor( source.Guild as Guild, source );
@@ -396,7 +391,7 @@ namespace Server.Misc
 					return Notoriety.Enemy;
 			}
 
-			if ( target.Kills >= 5 || ( target.Body.IsMonster && IsSummoned( target as BaseCreature ) && !( target is BaseFamiliar ) && !( target is ArcaneFey ) && !( target is Golem ) ) || ( target is BaseCreature && ( ( (BaseCreature)target ).AlwaysMurderer || ( (BaseCreature)target ).IsAnimatedDead ) ) )
+			if ( target.Kills >= 5 || target.Body.IsMonster && IsSummoned( target as BaseCreature ) && !( target is BaseFamiliar ) && !( target is ArcaneFey ) && !( target is Golem ) || target is BaseCreature && ( ( (BaseCreature)target ).AlwaysMurderer || ( (BaseCreature)target ).IsAnimatedDead ) )
 				return Notoriety.Murderer;
 
 			if( target.Criminal )
@@ -481,12 +476,12 @@ namespace Server.Misc
 
 		public static bool IsPet( BaseCreature c )
 		{
-			return (c != null && c.Controlled);
+			return c != null && c.Controlled;
 		}
 
 		public static bool IsSummoned( BaseCreature c )
 		{
-			return (c != null && /*c.Controlled &&*/ c.Summoned);
+			return c != null && /*c.Controlled &&*/ c.Summoned;
 		}
 
 		public static bool CheckAggressor( List<AggressorInfo> list, Mobile target )

@@ -1,10 +1,8 @@
-using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Third
 {
-	public class FireballSpell : MagerySpell
+    public class FireballSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Fireball", "Vas Flam",

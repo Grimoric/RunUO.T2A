@@ -21,11 +21,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices;
 
 namespace Server
 {
-	public class TileMatrix
+    public class TileMatrix
 	{
 		private StaticTile[][][][][] m_StaticTiles;
 		private LandTile[][][] m_LandTiles;
@@ -107,7 +106,7 @@ namespace Server
 
 		public bool MapUOPPacked
 		{
-			get{ return ( m_MapIndex != null ); }
+			get{ return m_MapIndex != null; }
 		}
 
 		public FileStream IndexStream
@@ -130,7 +129,7 @@ namespace Server
 
 		public bool Exists
 		{
-			get{ return ( m_Map != null && m_Index != null && m_Statics != null ); }
+			get{ return m_Map != null && m_Index != null && m_Statics != null; }
 		}
 
 		private static List<TileMatrix> m_Instances = new List<TileMatrix>();
@@ -395,7 +394,7 @@ namespace Server
 		{
 			try
 			{
-				m_IndexReader.BaseStream.Seek( ((x * m_BlockHeight) + y) * 12, SeekOrigin.Begin );
+				m_IndexReader.BaseStream.Seek( (x * m_BlockHeight + y) * 12, SeekOrigin.Begin );
 
 				int lookup = m_IndexReader.ReadInt32();
 				int length = m_IndexReader.ReadInt32();
@@ -484,7 +483,7 @@ namespace Server
 		{
 			try
 			{
-				int offset = ((x * m_BlockHeight) + y) * 196 + 4;
+				int offset = (x * m_BlockHeight + y) * 196 + 4;
 
 				if ( m_MapIndex != null )
 					offset = m_MapIndex.Lookup( offset );
@@ -556,7 +555,7 @@ namespace Server
 
 		public bool Ignored
 		{
-			get { return ( m_ID == 2 || m_ID == 0x1DB || ( m_ID >= 0x1AE && m_ID <= 0x1B5 ) ); }
+			get { return m_ID == 2 || m_ID == 0x1DB || m_ID >= 0x1AE && m_ID <= 0x1B5; }
 		}
 
 		public LandTile( short id, sbyte z )

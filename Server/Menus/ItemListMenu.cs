@@ -18,12 +18,11 @@
  *
  ***************************************************************************/
 
-using System;
 using Server.Network;
 
 namespace Server.Menus.ItemLists
 {
-	public class ItemListEntry
+    public class ItemListEntry
 	{
 		private string m_Name;
 		private int m_ItemID;

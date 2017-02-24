@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Server;
 
 namespace Server.Engines.MLQuests
 {
-	public interface IQuestGiver
+    public interface IQuestGiver
 	{
 		List<MLQuest> MLQuests { get; }
 

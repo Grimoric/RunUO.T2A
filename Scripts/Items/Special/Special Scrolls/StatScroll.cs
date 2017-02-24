@@ -1,12 +1,9 @@
 using System;
-using Server;
 using Server.Mobiles;
-using Server.Gumps;
-using Server.Network;
 
 namespace Server.Items
 {
-	public class StatCapScroll : SpecialScroll
+    public class StatCapScroll : SpecialScroll
 	{
 		public override int Message { get { return 1049469; } } /* Using a scroll increases the maximum amount of a specific skill or your maximum statistics.
 																* When used, the effect is not immediately seen without a gain of points with that skill or statistics.
@@ -29,7 +26,7 @@ namespace Server.Items
 			}
 		}
 		
-		public override string DefaultTitle { get { return String.Format( "<basefont color=#FFFFFF>Power Scroll ({0}{1} Maximum Stats):</basefont>", ( (int)Value - 225 ) >= 0 ? "+" : "", (int)Value - 225 ); } }
+		public override string DefaultTitle { get { return String.Format( "<basefont color=#FFFFFF>Power Scroll ({0}{1} Maximum Stats):</basefont>", (int)Value - 225 >= 0 ? "+" : "", (int)Value - 225 ); } }
 
 		public StatCapScroll() : this( 105 )
 		{
@@ -56,7 +53,7 @@ namespace Server.Items
 															* a legendary scroll of ~1_type~ (+20 Maximum Stats) OR
 															* an ultimate scroll of ~1_type~ (+25 Maximum Stats) */
 			else
-				list.Add( "a scroll of power ({0}{1} Maximum Stats)", (Value - 225) >= 0 ? "+" : "", Value - 225 );
+				list.Add( "a scroll of power ({0}{1} Maximum Stats)", Value - 225 >= 0 ? "+" : "", Value - 225 );
 		}
 
 		public override void OnSingleClick( Mobile from )
@@ -66,7 +63,7 @@ namespace Server.Items
 			if ( level >= 0 && level <= 4 && (int)Value % 5 == 0 )
 				base.LabelTo( from, 1049463 + level, "#1049476" );
 			else
-				base.LabelTo( from, "a scroll of power ({0}{1} Maximum Stats)", (Value - 225) >= 0 ? "+" : "", Value - 225 );
+				base.LabelTo( from, "a scroll of power ({0}{1} Maximum Stats)", Value - 225 >= 0 ? "+" : "", Value - 225 );
 		}
 		
 		public override bool CanUse( Mobile from )
@@ -123,7 +120,7 @@ namespace Server.Items
 		{
 			base.Deserialize( reader );
 
-			int version = ( InheritsItem ? 0 : reader.ReadInt() ); //Required for SpecialScroll insertion
+			int version = InheritsItem ? 0 : reader.ReadInt(); //Required for SpecialScroll insertion
 
 			LootType = LootType.Cursed;
 			Insured = false;

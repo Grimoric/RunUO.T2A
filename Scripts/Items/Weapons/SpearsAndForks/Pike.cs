@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x26BE, 0x26C8 )]
+    [FlipableAttribute( 0x26BE, 0x26C8 )]
 	public class Pike : BaseSpear
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ParalyzingBlow; } }

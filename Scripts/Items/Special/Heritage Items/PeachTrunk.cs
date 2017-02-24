@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class PeachTrunkAddon : BaseAddon
+    public class PeachTrunkAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed { get { return new PeachTrunkDeed(); } }
 

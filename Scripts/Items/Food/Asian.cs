@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class Wasabi : Item
+    public class Wasabi : Item
 	{
 		[Constructable]
 		public Wasabi() : base( 0x24E8 )

@@ -25,15 +25,12 @@ using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Reflection;
 using System.Text;
 using System.Xml;
-using Microsoft.Win32;
-using Server.Network;
 
 namespace Server
 {
-	public static class Utility
+    public static class Utility
 	{
 		private static Random m_Random = new Random();
 		private static Encoding m_UTF8, m_UTF8WithEncoding;
@@ -125,9 +122,9 @@ namespace Server
 			if( str == null )
 				return "";
 
-			bool hasOpen  = ( str.IndexOf( '<' ) >= 0 );
-			bool hasClose = ( str.IndexOf( '>' ) >= 0 );
-			bool hasPound = ( str.IndexOf( '#' ) >= 0 );
+			bool hasOpen  = str.IndexOf( '<' ) >= 0;
+			bool hasClose = str.IndexOf( '>' ) >= 0;
+			bool hasPound = str.IndexOf( '#' ) >= 0;
 
 			if ( !hasOpen && !hasClose && !hasPound )
 				return str;
@@ -304,7 +301,7 @@ namespace Server
 
 			uint mask = uint.MaxValue << 32-cidrLength;
 
-			return ( ( cidrPrefixValue & mask ) == ( ipValue & mask ) );
+			return ( cidrPrefixValue & mask ) == ( ipValue & mask );
 		}
 
 		private static uint OrderedAddressValue( byte[] bytes )
@@ -312,15 +309,15 @@ namespace Server
 			if ( bytes.Length != 4 )
 				return 0;
 
-			return (uint)(((( bytes[0] << 0x18 ) | (bytes[1] << 0x10)) | (bytes[2] << 8)) | bytes[3]) & ((uint)0xffffffff);
+			return (uint)(( bytes[0] << 0x18 ) | (bytes[1] << 0x10) | (bytes[2] << 8) | bytes[3]) & (uint)0xffffffff;
 		}
 
 		private static uint SwapUnsignedInt( uint source )
 		{
-			return (uint)( ( ( ( source & 0x000000FF ) << 0x18 )
-			| ( ( source & 0x0000FF00 ) << 8 )
-			| ( ( source & 0x00FF0000 ) >> 8 )
-			| ( ( source & 0xFF000000 ) >> 0x18 ) ) );
+			return (uint)( ( ( source & 0x000000FF ) << 0x18 )
+			               | ( ( source & 0x0000FF00 ) << 8 )
+			               | ( ( source & 0x00FF0000 ) >> 8 )
+			               | ( ( source & 0xFF000000 ) >> 0x18 ) );
 		} 
 
 		public static bool TryConvertIPv6toIPv4( ref IPAddress address )
@@ -470,7 +467,7 @@ namespace Server
 
 		public static bool IPMatchClassC( IPAddress ip1, IPAddress ip2 )
 		{
-			return ( (Utility.GetAddressValue( ip1 ) & 0xFFFFFF) == (Utility.GetAddressValue( ip2 ) & 0xFFFFFF) );
+			return (Utility.GetAddressValue( ip1 ) & 0xFFFFFF) == (Utility.GetAddressValue( ip2 ) & 0xFFFFFF);
 		}
 
 		public static int InsensitiveCompare( string first, string second )
@@ -632,34 +629,34 @@ namespace Server
 		#region In[...]Range
 		public static bool InRange( Point3D p1, Point3D p2, int range )
 		{
-			return ( p1.m_X >= (p2.m_X - range) )
-				&& ( p1.m_X <= (p2.m_X + range) )
-				&& ( p1.m_Y >= (p2.m_Y - range) )
-				&& ( p1.m_Y <= (p2.m_Y + range) );
+			return p1.m_X >= p2.m_X - range
+				&& p1.m_X <= p2.m_X + range
+				&& p1.m_Y >= p2.m_Y - range
+				&& p1.m_Y <= p2.m_Y + range;
 		}
 
 		public static bool InUpdateRange( Point3D p1, Point3D p2 )
 		{
-			return ( p1.m_X >= (p2.m_X - 18) )
-				&& ( p1.m_X <= (p2.m_X + 18) )
-				&& ( p1.m_Y >= (p2.m_Y - 18) )
-				&& ( p1.m_Y <= (p2.m_Y + 18) );
+			return p1.m_X >= p2.m_X - 18
+				&& p1.m_X <= p2.m_X + 18
+				&& p1.m_Y >= p2.m_Y - 18
+				&& p1.m_Y <= p2.m_Y + 18;
 		}
 
 		public static bool InUpdateRange( Point2D p1, Point2D p2 )
 		{
-			return ( p1.m_X >= (p2.m_X - 18) )
-				&& ( p1.m_X <= (p2.m_X + 18) )
-				&& ( p1.m_Y >= (p2.m_Y - 18) )
-				&& ( p1.m_Y <= (p2.m_Y + 18) );
+			return p1.m_X >= p2.m_X - 18
+				&& p1.m_X <= p2.m_X + 18
+				&& p1.m_Y >= p2.m_Y - 18
+				&& p1.m_Y <= p2.m_Y + 18;
 		}
 
 		public static bool InUpdateRange( IPoint2D p1, IPoint2D p2 )
 		{
-			return ( p1.X >= (p2.X - 18) )
-				&& ( p1.X <= (p2.X + 18) )
-				&& ( p1.Y >= (p2.Y - 18) )
-				&& ( p1.Y <= (p2.Y + 18) );
+			return p1.X >= p2.X - 18
+				&& p1.X <= p2.X + 18
+				&& p1.Y >= p2.Y - 18
+				&& p1.Y <= p2.Y + 18;
 		}
 
 		#endregion
@@ -791,7 +788,7 @@ namespace Server
 
 		public static bool RandomBool()
 		{
-			return ( m_Random.Next( 2 ) == 0 );
+			return m_Random.Next( 2 ) == 0;
 		}
 
 		public static int RandomMinMax( int min, int max )
@@ -807,7 +804,7 @@ namespace Server
 				return min;
 			}
 
-			return min + m_Random.Next( (max - min) + 1 );
+			return min + m_Random.Next( max - min + 1 );
 		}
 
 		public static int Random( int from, int count )
@@ -1153,10 +1150,10 @@ namespace Server
 
 		public static bool RangeCheck( IPoint2D p1, IPoint2D p2, int range )
 		{
-			return ( p1.X >= (p2.X - range) )
-				&& ( p1.X <= (p2.X + range) )
-				&& ( p1.Y >= (p2.Y - range) )
-				&& ( p2.Y <= (p2.Y + range) );
+			return p1.X >= p2.X - range
+				&& p1.X <= p2.X + range
+				&& p1.Y >= p2.Y - range
+				&& p2.Y <= p2.Y + range;
 		}
 
 		public static void FormatBuffer( TextWriter output, Stream input, int length )
@@ -1285,7 +1282,7 @@ namespace Server
 				bound2 = i;
 			}
 
-			return ( num<bound2+allowance && num>bound1-allowance );
+			return num<bound2+allowance && num>bound1-allowance;
 		}
 
 		public static void AssignRandomHair( Mobile m )

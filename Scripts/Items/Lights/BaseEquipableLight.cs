@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public abstract class BaseEquipableLight : BaseLight
+    public abstract class BaseEquipableLight : BaseLight
 	{
 		[Constructable]
 		public BaseEquipableLight( int itemID ) : base( itemID )

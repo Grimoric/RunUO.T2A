@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ElvenGlasses : BaseArmor
+    public class ElvenGlasses : BaseArmor
 	{
 		public override int LabelNumber{ get{ return 1032216; } } // elven glasses
 
@@ -105,7 +102,7 @@ namespace Server.Items
 
 		private static bool GetSaveFlag( SaveFlag flags, SaveFlag toGet )
 		{
-			return ( (flags & toGet) != 0 );
+			return (flags & toGet) != 0;
 		}
 
 		private enum SaveFlag

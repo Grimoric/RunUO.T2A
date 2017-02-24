@@ -1,16 +1,14 @@
 using System;
 using System.IO;
 using System.Collections;
-using Server;
 using Server.Gumps;
 using Server.Items;
 using Server.Commands;
-using Server.Targeting;
 using System.Collections.Generic;
 
 namespace Server
 {
-	public class Statics
+    public class Statics
 	{
 		public static void Initialize()
 		{
@@ -204,8 +202,8 @@ namespace Server
 							{
 								Item item = state.m_List[i];
 
-								int xOffset = item.X - (state.m_X * 8);
-								int yOffset = item.Y - (state.m_Y * 8);
+								int xOffset = item.X - state.m_X * 8;
+								int yOffset = item.Y - state.m_Y * 8;
 
 								if ( xOffset < 0 || xOffset >= 8 || yOffset < 0 || yOffset >= 8 )
 									continue;
@@ -223,7 +221,7 @@ namespace Server
 							int length = -1;
 							int extra = 0;
 
-							if ( (oldTileCount + newTileCount) > 0 )
+							if ( oldTileCount + newTileCount > 0 )
 							{
 								mulWriter.Seek( 0, SeekOrigin.End );
 
@@ -256,7 +254,7 @@ namespace Server
 								mulWriter.Flush();
 							}
 
-							int idxPos = ((state.m_X * matrix.BlockHeight) + state.m_Y) * 12;
+							int idxPos = (state.m_X * matrix.BlockHeight + state.m_Y) * 12;
 
 							idxWriter.Seek( idxPos, SeekOrigin.Begin );
 							idxWriter.Write( mulPos );
@@ -420,7 +418,7 @@ namespace Server
 								mulWriter.Flush();
 							}
 
-							int idxPos = ((x * matrix.BlockHeight) + y) * 12;
+							int idxPos = (x * matrix.BlockHeight + y) * 12;
 
 							idxWriter.Seek( idxPos, SeekOrigin.Begin );
 							idxWriter.Write( mulPos );
@@ -498,7 +496,7 @@ namespace Server
 					return m_TileBuffer;
 				}
 
-				idxReader.BaseStream.Seek( ((x * height) + y) * 12, SeekOrigin.Begin );
+				idxReader.BaseStream.Seek( (x * height + y) * 12, SeekOrigin.Begin );
 
 				int lookup = idxReader.ReadInt32();
 				int length = idxReader.ReadInt32();

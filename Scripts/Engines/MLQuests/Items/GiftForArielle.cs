@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class GiftForArielle : BaseContainer
+    public class GiftForArielle : BaseContainer
 	{
 		public override int LabelNumber{ get{ return 1074356; } } // gift for arielle
 		public override int DefaultGumpID { get { return 0x41; } }

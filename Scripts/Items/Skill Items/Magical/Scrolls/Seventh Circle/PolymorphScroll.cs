@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class PolymorphScroll : SpellScroll
+    public class PolymorphScroll : SpellScroll
 	{
 		[Constructable]
 		public PolymorphScroll() : this( 1 )

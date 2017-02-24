@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
-using Server;
-using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a rai-ju corpse" )]
+    [CorpseName( "a rai-ju corpse" )]
 	public class RaiJu : BaseCreature
 	{
 		[Constructable]

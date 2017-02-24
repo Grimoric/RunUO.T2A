@@ -1,12 +1,11 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Targeting;
 using Server.Items;
 
 namespace Server.Engines.Craft
 {
-	public class Repair
+    public class Repair
 	{
 		public Repair()
 		{
@@ -50,17 +49,17 @@ namespace Server.Engines.Craft
 			private int GetWeakenChance( Mobile mob, SkillName skill, int curHits, int maxHits )
 			{
 				// 40% - (1% per hp lost) - (1% per 10 craft skill)
-				return (40 + (maxHits - curHits)) - (int)(((m_Deed != null)? m_Deed.SkillLevel : mob.Skills[skill].Value) / 10);
+				return 40 + (maxHits - curHits) - (int)((m_Deed != null? m_Deed.SkillLevel : mob.Skills[skill].Value) / 10);
 			}
 
 			private bool CheckWeaken( Mobile mob, SkillName skill, int curHits, int maxHits )
 			{
-				return ( GetWeakenChance( mob, skill, curHits, maxHits ) > Utility.Random( 100 ) );
+				return GetWeakenChance( mob, skill, curHits, maxHits ) > Utility.Random( 100 );
 			}
 
 			private int GetRepairDifficulty( int curHits, int maxHits )
 			{
-				return (((maxHits - curHits) * 1250) / Math.Max( maxHits, 1 )) - 250;
+				return (maxHits - curHits) * 1250 / Math.Max( maxHits, 1 ) - 250;
 			}
 
 			private bool CheckRepairDifficulty( Mobile mob, SkillName skill, int curHits, int maxHits )
@@ -81,7 +80,7 @@ namespace Server.Engines.Craft
 
 					double chance = (value - minSkill) / (maxSkill - minSkill);
 
-					return (chance >= Utility.RandomDouble());
+					return chance >= Utility.RandomDouble();
 				}
 				else
 				{
@@ -105,11 +104,11 @@ namespace Server.Engines.Craft
 
 				if ( m_CraftSystem is DefTailoring )
 				{
-					return ( clothing is BearMask )
-						|| ( clothing is DeerMask )
-						|| ( clothing is TheMostKnowledgePerson )
-						|| ( clothing is TheRobeOfBritanniaAri )
-						|| ( clothing is EmbroideredOakLeafCloak );
+					return clothing is BearMask
+						|| clothing is DeerMask
+						|| clothing is TheMostKnowledgePerson
+						|| clothing is TheRobeOfBritanniaAri
+						|| clothing is EmbroideredOakLeafCloak;
 				}
 
 				return false;
@@ -121,44 +120,44 @@ namespace Server.Engines.Craft
 
 				if ( m_CraftSystem is DefTinkering )
 				{
-					return ( weapon is Cleaver )
-						|| ( weapon is Hatchet )
-						|| ( weapon is Pickaxe )
-						|| ( weapon is ButcherKnife )
-						|| ( weapon is SkinningKnife );
+					return weapon is Cleaver
+						|| weapon is Hatchet
+						|| weapon is Pickaxe
+						|| weapon is ButcherKnife
+						|| weapon is SkinningKnife;
 				}
 				else if ( m_CraftSystem is DefCarpentry )
 				{
-					return ( weapon is Club )
-						|| ( weapon is BlackStaff )
-						|| ( weapon is MagicWand )
+					return weapon is Club
+						|| weapon is BlackStaff
+						|| weapon is MagicWand
 					#region Temporary
 					// TODO: Make these items craftable
-						|| ( weapon is WildStaff );
+						|| weapon is WildStaff;
 					#endregion
 				}
 				else if ( m_CraftSystem is DefBlacksmithy )
 				{
-					return ( weapon is Pitchfork )
+					return weapon is Pitchfork
 					#region Temporary
 					// TODO: Make these items craftable
-						|| ( weapon is RadiantScimitar )
-						|| ( weapon is WarCleaver )
-						|| ( weapon is ElvenSpellblade )
-						|| ( weapon is AssassinSpike )
-						|| ( weapon is Leafblade )
-						|| ( weapon is RuneBlade )
-						|| ( weapon is ElvenMachete )
-						|| ( weapon is OrnateAxe )
-						|| ( weapon is DiamondMace );
+						|| weapon is RadiantScimitar
+						|| weapon is WarCleaver
+						|| weapon is ElvenSpellblade
+						|| weapon is AssassinSpike
+						|| weapon is Leafblade
+						|| weapon is RuneBlade
+						|| weapon is ElvenMachete
+						|| weapon is OrnateAxe
+						|| weapon is DiamondMace;
 					#endregion
 				}
 				#region Temporary
 				// TODO: Make these items craftable
 				else if ( m_CraftSystem is DefBowFletching )
 				{
-					return ( weapon is ElvenCompositeLongbow )
-						|| ( weapon is MagicalShortbow );
+					return weapon is ElvenCompositeLongbow
+						|| weapon is MagicalShortbow;
 				}
 				#endregion
 
@@ -173,34 +172,34 @@ namespace Server.Engines.Craft
 				// TODO: Make these items craftable
 				if ( m_CraftSystem is DefTailoring )
 				{
-					return ( armor is LeafTonlet )
-						|| ( armor is LeafArms )
-						|| ( armor is LeafChest )
-						|| ( armor is LeafGloves )
-						|| ( armor is LeafGorget )
-						|| ( armor is LeafLegs )
-						|| ( armor is HideChest )
-						|| ( armor is HideGloves )
-						|| ( armor is HideGorget )
-						|| ( armor is HidePants )
-						|| ( armor is HidePauldrons );
+					return armor is LeafTonlet
+						|| armor is LeafArms
+						|| armor is LeafChest
+						|| armor is LeafGloves
+						|| armor is LeafGorget
+						|| armor is LeafLegs
+						|| armor is HideChest
+						|| armor is HideGloves
+						|| armor is HideGorget
+						|| armor is HidePants
+						|| armor is HidePauldrons;
 				}
 				else if ( m_CraftSystem is DefCarpentry )
 				{
-					return ( armor is WingedHelm )
-						|| ( armor is RavenHelm )
-						|| ( armor is VultureHelm )
-						|| ( armor is WoodlandArms )
-						|| ( armor is WoodlandChest )
-						|| ( armor is WoodlandGloves )
-						|| ( armor is WoodlandGorget )
-						|| ( armor is WoodlandLegs );
+					return armor is WingedHelm
+						|| armor is RavenHelm
+						|| armor is VultureHelm
+						|| armor is WoodlandArms
+						|| armor is WoodlandChest
+						|| armor is WoodlandGloves
+						|| armor is WoodlandGorget
+						|| armor is WoodlandLegs;
 				}
 				else if ( m_CraftSystem is DefBlacksmithy )
 				{
-					return ( armor is Circlet )
-						|| ( armor is RoyalCirclet )
-						|| ( armor is GemmedCirclet );
+					return armor is Circlet
+						|| armor is RoyalCirclet
+						|| armor is GemmedCirclet;
 				}
 				#endregion
 
@@ -214,7 +213,7 @@ namespace Server.Engines.Craft
 				if( !CheckDeed( from ) )
 					return;
 
-				bool usingDeed = (m_Deed != null);
+				bool usingDeed = m_Deed != null;
 				bool toDelete = false;
 
 				// TODO: Make an IRepairable
@@ -238,7 +237,7 @@ namespace Server.Engines.Craft
 					}
 					else
 					{
-						double skillValue = (usingDeed)? m_Deed.SkillLevel : from.Skills[SkillName.Tinkering].Value;
+						double skillValue = usingDeed? m_Deed.SkillLevel : from.Skills[SkillName.Tinkering].Value;
 
 						if ( skillValue < 60.0 )
 						{
@@ -294,7 +293,7 @@ namespace Server.Engines.Craft
 
 					if ( skill != SkillName.Tailoring )
 					{
-						double skillLevel = (usingDeed)? m_Deed.SkillLevel : from.Skills[skill].Base;
+						double skillLevel = usingDeed? m_Deed.SkillLevel : from.Skills[skill].Base;
 
 						if ( skillLevel >= 90.0 )
 							toWeaken = 1;
@@ -306,7 +305,7 @@ namespace Server.Engines.Craft
 
 					if ( m_CraftSystem.CraftItems.SearchForSubclass( weapon.GetType() ) == null && !IsSpecialWeapon( weapon ) )
 					{
-						number = (usingDeed)? 1061136 : 1044277; // That item cannot be repaired. // You cannot repair that item with this type of repair contract.
+						number = usingDeed? 1061136 : 1044277; // That item cannot be repaired. // You cannot repair that item with this type of repair contract.
 					}
 					else if ( !weapon.IsChildOf( from.Backpack ) )
 					{
@@ -340,7 +339,7 @@ namespace Server.Engines.Craft
 						}
 						else
 						{
-							number = (usingDeed)? 1061137 : 1044280; // You fail to repair the item. [And the contract is destroyed]
+							number = usingDeed? 1061137 : 1044280; // You fail to repair the item. [And the contract is destroyed]
 							m_CraftSystem.PlayCraftEffect( from );
 						}
 
@@ -355,7 +354,7 @@ namespace Server.Engines.Craft
 
 					if ( skill != SkillName.Tailoring )
 					{
-						double skillLevel = (usingDeed)? m_Deed.SkillLevel : from.Skills[skill].Base;
+						double skillLevel = usingDeed? m_Deed.SkillLevel : from.Skills[skill].Base;
 
 						if ( skillLevel >= 90.0 )
 							toWeaken = 1;
@@ -367,7 +366,7 @@ namespace Server.Engines.Craft
 
 					if ( m_CraftSystem.CraftItems.SearchForSubclass( armor.GetType() ) == null && !IsSpecialArmor( armor ) )
 					{
-						number = (usingDeed)? 1061136 : 1044277; // That item cannot be repaired. // You cannot repair that item with this type of repair contract.
+						number = usingDeed? 1061136 : 1044277; // That item cannot be repaired. // You cannot repair that item with this type of repair contract.
 					}
 					else if ( !armor.IsChildOf( from.Backpack ) )
 					{
@@ -397,7 +396,7 @@ namespace Server.Engines.Craft
 						}
 						else
 						{
-							number = (usingDeed)? 1061137 : 1044280; // You fail to repair the item. [And the contract is destroyed]
+							number = usingDeed? 1061137 : 1044280; // You fail to repair the item. [And the contract is destroyed]
 							m_CraftSystem.PlayCraftEffect( from );
 						}
 
@@ -412,7 +411,7 @@ namespace Server.Engines.Craft
 
 					if ( skill != SkillName.Tailoring )
 					{
-						double skillLevel = (usingDeed) ? m_Deed.SkillLevel : from.Skills[skill].Base;
+						double skillLevel = usingDeed ? m_Deed.SkillLevel : from.Skills[skill].Base;
 
 						if ( skillLevel >= 90.0 )
 							toWeaken = 1;
@@ -422,9 +421,9 @@ namespace Server.Engines.Craft
 							toWeaken = 3;
 					}
 
- 					if (m_CraftSystem.CraftItems.SearchForSubclass(clothing.GetType()) == null && !IsSpecialClothing(clothing) && !((targeted is TribalMask) || (targeted is HornedTribalMask)) )
+ 					if (m_CraftSystem.CraftItems.SearchForSubclass(clothing.GetType()) == null && !IsSpecialClothing(clothing) && !(targeted is TribalMask || targeted is HornedTribalMask) )
  					{
-						number = (usingDeed) ? 1061136 : 1044277; // That item cannot be repaired. // You cannot repair that item with this type of repair contract.
+						number = usingDeed ? 1061136 : 1044277; // That item cannot be repaired. // You cannot repair that item with this type of repair contract.
 					}
 					else if ( !clothing.IsChildOf( from.Backpack ) )
 					{
@@ -454,7 +453,7 @@ namespace Server.Engines.Craft
 						}
 						else
 						{
-							number = (usingDeed) ? 1061137 : 1044280; // You fail to repair the item. [And the contract is destroyed]
+							number = usingDeed ? 1061137 : 1044280; // You fail to repair the item. [And the contract is destroyed]
 							m_CraftSystem.PlayCraftEffect( from );
 						}
 
@@ -478,7 +477,7 @@ namespace Server.Engines.Craft
 				}
 				else if ( targeted is Item )
 				{
-					number = (usingDeed)? 1061136 : 1044277; // That item cannot be repaired. // You cannot repair that item with this type of repair contract.
+					number = usingDeed? 1061136 : 1044277; // That item cannot be repaired. // You cannot repair that item with this type of repair contract.
 				}
 				else
 				{

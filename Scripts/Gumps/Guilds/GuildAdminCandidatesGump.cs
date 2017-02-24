@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Guilds;
 using Server.Network;
 using Server.Factions;
 
 namespace Server.Gumps
 {
-	public class GuildAdminCandidatesGump : GuildMobileListGump
+    public class GuildAdminCandidatesGump : GuildMobileListGump
 	{
 		public GuildAdminCandidatesGump( Mobile from, Guild guild ) : base( from, guild, true, guild.Candidates )
 		{
@@ -55,8 +53,8 @@ namespace Server.Gumps
 								PlayerState guildState = PlayerState.Find( m_Guild.Leader );
 								PlayerState targetState = PlayerState.Find( m );
 
-								Faction guildFaction = ( guildState == null ? null : guildState.Faction );
-								Faction targetFaction = ( targetState == null ? null : targetState.Faction );
+								Faction guildFaction = guildState == null ? null : guildState.Faction;
+								Faction targetFaction = targetState == null ? null : targetState.Faction;
 
 								if ( guildFaction != targetFaction )
 								{

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class Web : Item
+    public class Web : Item
 	{
 		private static int[] m_itemids = new int[]
 		{

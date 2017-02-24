@@ -1,9 +1,6 @@
-﻿using System;
-using Server;
-
-namespace Server.Items.Holiday
+﻿namespace Server.Items.Holiday
 {
-	public class PaintedEvilJesterMask : BasePaintedMask
+    public class PaintedEvilJesterMask : BasePaintedMask
 	{
 		public override string MaskName { get { return "Evil Jester Mask"; } }
 

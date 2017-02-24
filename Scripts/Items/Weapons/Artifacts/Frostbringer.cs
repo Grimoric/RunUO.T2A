@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class Frostbringer : Bow
+    public class Frostbringer : Bow
 	{
 		public override int LabelNumber{ get{ return 1061111; } } // Frostbringer
 		public override int ArtifactRarity{ get{ return 11; } }

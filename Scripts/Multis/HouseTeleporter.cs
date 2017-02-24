@@ -1,15 +1,12 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Gumps;
 using Server.Multis;
-using Server.Targeting;
 using System.Collections.Generic;
 using Server.ContextMenus;
 
 namespace Server.Items
 {
-	public class HouseTeleporter : Item, ISecurable
+    public class HouseTeleporter : Item, ISecurable
 	{
 		private Item m_Target;
 		private SecureLevel m_Level;
@@ -49,7 +46,7 @@ namespace Server.Items
 			if ( house != null && (house.Public ? house.IsBanned( m ) : !house.HasAccess( m )) )
 				return false;
 
-			return ( house != null && house.HasSecureAccess( m, m_Level ) );
+			return house != null && house.HasSecureAccess( m, m_Level );
 		}
 
 		public override bool OnMoveOver( Mobile m )

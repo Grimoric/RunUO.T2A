@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Factions
 {
-	public class TownDefinition
+    public class TownDefinition
 	{
 		private int m_Sort;
 		private int m_SigilID;

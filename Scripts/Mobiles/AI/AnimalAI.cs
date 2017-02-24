@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using Server.Targeting;
-using Server.Network;
-
 // Ideas
 // When you run on animals the panic
 // When if ( distance < 8 && Utility.RandomDouble() * Math.Sqrt( (8 - distance) / 6 ) >= incoming.Skills[SkillName.AnimalTaming].Value )
@@ -10,11 +5,11 @@ using Server.Network;
 /*
  * AnimalHunterAI, AnimalHidingAI, AnimalDomesticAI...
  * 
- */ 
+ */
 
 namespace Server.Mobiles
 {
-	public class AnimalAI : BaseAI
+    public class AnimalAI : BaseAI
 	{
 		public AnimalAI(BaseCreature m) : base (m)
 		{

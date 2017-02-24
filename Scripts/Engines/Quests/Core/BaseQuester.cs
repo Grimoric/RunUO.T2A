@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.ContextMenus;
 
 namespace Server.Engines.Quests
 {
-	public class TalkEntry : ContextMenuEntry
+    public class TalkEntry : ContextMenuEntry
 	{
 		private BaseQuester m_Quester;
 

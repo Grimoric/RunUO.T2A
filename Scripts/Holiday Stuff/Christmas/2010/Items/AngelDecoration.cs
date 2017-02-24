@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Server.Items.Holiday
+﻿namespace Server.Items.Holiday
 {
-	[TypeAlias( "Server.Items.AngelDecoration" )]
+    [TypeAlias( "Server.Items.AngelDecoration" )]
 	[Flipable( 0x46FA, 0x46FB )]
 	public class AngelDecoration : Item
 	{

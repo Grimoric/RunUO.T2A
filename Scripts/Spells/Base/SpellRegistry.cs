@@ -1,15 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using Server.Spells.Bushido;
-using Server.Spells.Chivalry;
-using Server.Items;
-using Server.Spells.Necromancy;
-using Server.Spells.Ninjitsu;
 
 namespace Server.Spells
 {
-	public class SpellRegistry
+    public class SpellRegistry
 	{
 		private static Type[] m_Types = new Type[700];
 		private static int m_Count;

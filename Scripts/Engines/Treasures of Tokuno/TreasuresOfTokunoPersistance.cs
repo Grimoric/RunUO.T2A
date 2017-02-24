@@ -1,9 +1,6 @@
-using System;
-using System.Collections.Generic;
-
 namespace Server.Misc
 {
-	public class TreasuresOfTokunoPersistance : Item
+    public class TreasuresOfTokunoPersistance : Item
 	{
 		private static TreasuresOfTokunoPersistance m_Instance;
 

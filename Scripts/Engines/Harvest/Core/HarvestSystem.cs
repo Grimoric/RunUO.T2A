@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Targeting;
 
 namespace Server.Engines.Harvest
 {
-	public abstract class HarvestSystem
+    public abstract class HarvestSystem
 	{
 		private List<HarvestDefinition> m_Definitions;
 
@@ -20,7 +18,7 @@ namespace Server.Engines.Harvest
 
 		public virtual bool CheckTool( Mobile from, Item tool )
 		{
-			bool wornOut = ( tool == null || tool.Deleted || (tool is IUsesRemaining && ((IUsesRemaining)tool).UsesRemaining <= 0) );
+			bool wornOut = tool == null || tool.Deleted || tool is IUsesRemaining && ((IUsesRemaining)tool).UsesRemaining <= 0;
 
 			if ( wornOut )
 				from.SendLocalizedMessage( 1044038 ); // You have worn out your tool!
@@ -40,7 +38,7 @@ namespace Server.Engines.Harvest
 
 		public virtual bool CheckRange( Mobile from, Item tool, HarvestDefinition def, Map map, Point3D loc, bool timed )
 		{
-			bool inRange = ( from.Map == map && from.InRange( loc, def.MaxRange ) );
+			bool inRange = @from.Map == map && @from.InRange( loc, def.MaxRange );
 
 			if ( !inRange )
 				def.SendMessageTo( from, timed ? def.TimedOutOfRangeMessage : def.OutOfRangeMessage );
@@ -51,7 +49,7 @@ namespace Server.Engines.Harvest
 		public virtual bool CheckResources( Mobile from, Item tool, HarvestDefinition def, Map map, Point3D loc, bool timed )
 		{
 			HarvestBank bank = def.GetBank( map, loc.X, loc.Y );
-			bool available = ( bank != null && bank.Current >= def.ConsumedPerHarvest );
+			bool available = bank != null && bank.Current >= def.ConsumedPerHarvest;
 
 			if ( !available )
 				def.SendMessageTo( from, timed ? def.DoubleHarvestMessage : def.NoResourcesMessage );
@@ -173,8 +171,8 @@ namespace Server.Engines.Harvest
 							int racialAmount = (int)Math.Ceiling( amount * 1.1 );
 							int feluccaRacialAmount = (int)Math.Ceiling( feluccaAmount * 1.1 );
 
-							bool eligableForRacialBonus = ( def.RaceBonus && from.Race == Race.Human );
-							bool inFelucca = (map == Map.Felucca);
+							bool eligableForRacialBonus = def.RaceBonus && @from.Race == Race.Human;
+							bool inFelucca = map == Map.Felucca;
 
 							if( eligableForRacialBonus && inFelucca && bank.Current >= feluccaRacialAmount && 0.1 > Utility.RandomDouble() )
 								item.Amount = feluccaRacialAmount;
@@ -314,9 +312,9 @@ namespace Server.Engines.Harvest
 
 		public virtual HarvestResource MutateResource( Mobile from, Item tool, HarvestDefinition def, Map map, Point3D loc, HarvestVein vein, HarvestResource primary, HarvestResource fallback )
 		{
-			bool racialBonus = (def.RaceBonus && from.Race == Race.Elf );
+			bool racialBonus = def.RaceBonus && @from.Race == Race.Elf;
 
-			if( vein.ChanceToFallback > (Utility.RandomDouble() + (racialBonus ? .20 : 0)) )
+			if( vein.ChanceToFallback > Utility.RandomDouble() + (racialBonus ? .20 : 0) )
 				return fallback;
 
 			double skillValue = from.Skills[def.Skill].Value;
@@ -479,14 +477,14 @@ namespace Server.Engines.Harvest
 				return false;
 			}
 
-			return ( map != null && map != Map.Internal );
+			return map != null && map != Map.Internal;
 		}
 	}
 }
 
 namespace Server
 {
-	public interface IChopable
+    public interface IChopable
 	{
 		void OnChop( Mobile from );
 	}
@@ -496,7 +494,7 @@ namespace Server
 	{
 		public static bool Check( Item item )
 		{
-			return ( item != null && item.GetType().IsDefined( typeof( FurnitureAttribute ), false ) );
+			return item != null && item.GetType().IsDefined( typeof( FurnitureAttribute ), false );
 		}
 
 		public FurnitureAttribute()

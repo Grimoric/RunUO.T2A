@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ChairInAGhostCostume : Item
+    public class ChairInAGhostCostume : Item
 	{
 		public override double DefaultWeight { get { return 5; } }
 

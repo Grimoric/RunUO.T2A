@@ -1,14 +1,13 @@
 using System;
-using Server;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	/*
+    /*
 	 * A generic version of the EA Clean Up Britannia reward gump.
 	 */
 
-	public interface IRewardEntry
+    public interface IRewardEntry
 	{
 		int Price { get; }
 		int ItemID { get; }
@@ -85,13 +84,13 @@ namespace Server.Gumps
 					offset = 110;
 				}
 
-				bool available = ( entry.Price <= m_Points );
-				int half = offset + ( height / 2 );
+				bool available = entry.Price <= m_Points;
+				int half = offset + height / 2;
 
 				if ( available )
 					AddButton( 35, half - 6, 0x837, 0x838, 100 + i, GumpButtonType.Reply, 0 );
 
-				AddItem( 83 - ( bounds.Width / 2 ) - bounds.X, half - ( bounds.Height / 2 ) - bounds.Y, entry.ItemID, available ? entry.Hue : 995 );
+				AddItem( 83 - bounds.Width / 2 - bounds.X, half - bounds.Height / 2 - bounds.Y, entry.ItemID, available ? entry.Hue : 995 );
 
 				if ( entry.Tooltip != 0 )
 					AddTooltip( entry.Tooltip );

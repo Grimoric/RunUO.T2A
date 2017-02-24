@@ -1,13 +1,9 @@
-using System;
 using System.Collections.Generic;
-
-using Server;
-using Server.Gumps;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	public interface IRewardOption
+    public interface IRewardOption
 	{
 		void GetOptions( RewardOptionList list );
 		void OnOptionSelected( Mobile from, int choice );

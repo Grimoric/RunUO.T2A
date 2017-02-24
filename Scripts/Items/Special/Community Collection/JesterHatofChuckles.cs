@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	public class JesterHatofChuckles : BaseHat, ITokunoDyable
+    public class JesterHatofChuckles : BaseHat, ITokunoDyable
 	{
 		public override int LabelNumber { get { return 1073256; } }  //Jester Hat of Chuckles - Museum of Vesper Replica	1073256
 

@@ -1,9 +1,6 @@
-﻿using System;
-using Server;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	public class MrPlainsCookies : Food
+    public class MrPlainsCookies : Food
 	{
 		public override string DefaultName{ get { return "Mr Plain's Cookies"; } }
 

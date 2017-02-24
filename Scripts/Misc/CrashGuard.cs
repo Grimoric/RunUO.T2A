@@ -1,16 +1,14 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Mail;
-using Server;
 using Server.Accounting;
 using Server.Network;
 
 namespace Server.Misc
 {
-	public class CrashGuard
+    public class CrashGuard
 	{
 		private static bool Enabled = true;
 		private static bool SaveBackup = true;

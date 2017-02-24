@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
-using Server.Items;
-using Server.Targeting;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a headless corpse" )]
+    [CorpseName( "a headless corpse" )]
 	public class HeadlessOne : BaseCreature
 	{
 		[Constructable]

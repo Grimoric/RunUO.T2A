@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class HolyKnightsBreastplate : PlateChest
+    public class HolyKnightsBreastplate : PlateChest
 	{
 		public override int LabelNumber{ get{ return 1061097; } } // Holy Knight's Breastplate
 		public override int ArtifactRarity{ get{ return 11; } }

@@ -1,13 +1,10 @@
 using System;
 using System.Collections;
-using Server.Network;
 using Server.Items;
-using Server.Mobiles;
-using Server.Targeting;
 
 namespace Server.Spells.Bushido
 {
-	public class CounterAttack : SamuraiSpell
+    public class CounterAttack : SamuraiSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"CounterAttack", null,

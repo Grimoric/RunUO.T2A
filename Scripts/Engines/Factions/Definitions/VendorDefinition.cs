@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Factions
 {
-	public class VendorDefinition
+    public class VendorDefinition
 	{
 		private Type m_Type;
 

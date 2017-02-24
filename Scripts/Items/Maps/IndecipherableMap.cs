@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class IndecipherableMap : MapItem
+    public class IndecipherableMap : MapItem
 	{
 		public override int LabelNumber{ get{ return 1070799; } } // indecipherable map
 

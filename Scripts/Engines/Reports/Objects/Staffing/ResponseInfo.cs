@@ -1,12 +1,8 @@
 using System;
-using System.Collections;
-using Server;
-using Server.Engines;
-using Server.Engines.Help;
 
 namespace Server.Engines.Reports
 {
-	public class ResponseInfo : PersistableObject
+    public class ResponseInfo : PersistableObject
 	{
 		#region Type Identification
 		public static readonly PersistableType ThisTypeID = new PersistableType( "rs", new ConstructCallback( Construct ) );

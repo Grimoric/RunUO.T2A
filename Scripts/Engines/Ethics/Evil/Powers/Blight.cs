@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Server.Spells;
 
 namespace Server.Ethics.Evil
 {
-	public sealed class Blight : Power
+    public sealed class Blight : Power
 	{
 		public Blight()
 		{

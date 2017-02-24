@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class CreateFoodScroll : SpellScroll
+    public class CreateFoodScroll : SpellScroll
 	{
 		[Constructable]
 		public CreateFoodScroll() : this( 1 )

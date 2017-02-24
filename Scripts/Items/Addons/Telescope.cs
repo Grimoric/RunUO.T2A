@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class Telescope : BaseAddon
+    public class Telescope : BaseAddon
 	{
 		[Constructable]
 		public Telescope()

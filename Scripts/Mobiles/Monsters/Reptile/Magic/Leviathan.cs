@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a leviathan corpse" )]
+    [CorpseName( "a leviathan corpse" )]
 	public class Leviathan : BaseCreature
 	{
 		private Mobile m_Fisher;

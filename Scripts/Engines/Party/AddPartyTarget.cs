@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Targeting;
 
 namespace Server.Engines.PartySystem
 {
-	public class AddPartyTarget : Target
+    public class AddPartyTarget : Target
 	{
 		public AddPartyTarget( Mobile from ) : base( 8, false, TargetFlags.None )
 		{
@@ -25,7 +23,7 @@ namespace Server.Engines.PartySystem
 					from.SendLocalizedMessage( 1005453 ); // You may only add members to the party if you are the leader.
 				else if ( m.Party is Mobile )
 					return;
-				else if ( p != null && (p.Members.Count + p.Candidates.Count) >= Party.Capacity )
+				else if ( p != null && p.Members.Count + p.Candidates.Count >= Party.Capacity )
 					from.SendLocalizedMessage( 1008095 ); // You may only have 10 in your party (this includes candidates).
 				else if ( !m.Player && m.Body.IsHuman )
 					m.SayTo( from, 1005443 ); // Nay, I would rather stay here and watch a nail rust.

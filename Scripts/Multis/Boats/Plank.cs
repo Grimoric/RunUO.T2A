@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Factions;
 using Server.Multis;
 
 namespace Server.Items
 {
-	public enum PlankSide{ Port, Starboard }
+    public enum PlankSide{ Port, Starboard }
 
 	public class Plank : Item, ILockable
 	{
@@ -85,10 +83,10 @@ namespace Server.Items
 		public uint KeyValue{ get{ return m_KeyValue; } set{ m_KeyValue = value; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public bool IsOpen{ get{ return ( ItemID == 0x3ED5 || ItemID == 0x3ED4 || ItemID == 0x3E84 || ItemID == 0x3E89 ); } }
+		public bool IsOpen{ get{ return ItemID == 0x3ED5 || ItemID == 0x3ED4 || ItemID == 0x3E84 || ItemID == 0x3E89; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public bool Starboard{ get{ return ( m_Side == PlankSide.Starboard ); } }
+		public bool Starboard{ get{ return m_Side == PlankSide.Starboard; } }
 
 		public void SetFacing( Direction dir )
 		{
@@ -144,7 +142,7 @@ namespace Server.Items
 				if ( from is BaseFactionGuard )
 					return false;
 
-				if ( (from.Direction & Direction.Running) != 0 || (m_Boat != null && !m_Boat.Contains( from )) )
+				if ( (from.Direction & Direction.Running) != 0 || m_Boat != null && !m_Boat.Contains( @from ) )
 					return true;
 
 				Map map = Map;
@@ -165,8 +163,8 @@ namespace Server.Items
 
 				for ( int i = 1; i <= 6; ++i )
 				{
-					int x = X + (i*rx);
-					int y = Y + (i*ry);
+					int x = X + i*rx;
+					int y = Y + i*ry;
 					int z;
 
 					for ( int j = -8; j <= 8; ++j )

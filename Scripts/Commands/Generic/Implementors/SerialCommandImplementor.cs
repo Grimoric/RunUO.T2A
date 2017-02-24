@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
-using Server;
-using Server.Targeting;
-
 namespace Server.Commands.Generic
 {
-	public class SerialCommandImplementor : BaseCommandImplementor
+    public class SerialCommandImplementor : BaseCommandImplementor
 	{
 		public SerialCommandImplementor()
 		{

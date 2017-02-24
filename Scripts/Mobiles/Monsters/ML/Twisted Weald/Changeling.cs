@@ -1,17 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Server;
-using Server.Misc;
 using Server.Spells;
-using Server.Spells.Third;
-using Server.Spells.Sixth;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a changeling corpse" )]
+    [CorpseName( "a changeling corpse" )]
 	public class Changeling : BaseCreature
 	{
 		public virtual string DefaultName{ get{ return "a changeling"; } }
@@ -62,7 +55,7 @@ namespace Server.Mobiles
 		}
 
 		public override bool ShowFameTitle{ get{ return false; } }
-		public override bool InitialInnocent{ get{ return ( m_MorphedInto != null ); } }
+		public override bool InitialInnocent{ get{ return m_MorphedInto != null; } }
 
 		public override void GenerateLoot()
 		{
@@ -194,7 +187,7 @@ namespace Server.Mobiles
 		protected virtual void Revert()
 		{
 			Body = 264;
-			Hue = ( IsParagon && DefaultHue == 0 ) ? Paragon.Hue : DefaultHue;
+			Hue = IsParagon && DefaultHue == 0 ? Paragon.Hue : DefaultHue;
 			Female = false;
 			Name = DefaultName;
 			NameHue = -1;
@@ -254,7 +247,7 @@ namespace Server.Mobiles
 			base.Serialize( writer );
 
 			writer.Write( (int) 0 ); // version
-			writer.Write( ( m_MorphedInto != null ) );
+			writer.Write( m_MorphedInto != null );
 		}
 
 		public override void Deserialize( GenericReader reader )

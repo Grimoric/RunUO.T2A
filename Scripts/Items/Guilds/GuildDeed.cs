@@ -1,13 +1,10 @@
-using System;
-using Server.Network;
 using Server.Prompts;
 using Server.Guilds;
 using Server.Multis;
-using Server.Regions;
 
 namespace Server.Items
 {
-	public class GuildDeed : Item
+    public class GuildDeed : Item
 	{
 		public override int LabelNumber{ get{ return 1041055; } } // a guild deed
 

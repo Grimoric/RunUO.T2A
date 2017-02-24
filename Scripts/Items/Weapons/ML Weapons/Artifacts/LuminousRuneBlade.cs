@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class LuminousRuneBlade : RuneBlade
+    public class LuminousRuneBlade : RuneBlade
 	{
 		public override int LabelNumber{ get{ return 1072922; } } // Luminous Rune Blade
 

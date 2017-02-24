@@ -18,12 +18,11 @@
  *
  ***************************************************************************/
 
-using System;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class SecureTradeContainer : Container
+    public class SecureTradeContainer : Container
 	{
 		private SecureTrade m_Trade;
 

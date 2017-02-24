@@ -1,12 +1,11 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Factions;
 using Server.Targeting;
 
 namespace Server.Engines.Craft
 {
-	public class DefTinkering : CraftSystem
+    public class DefTinkering : CraftSystem
 	{
 		public override SkillName MainSkill
 		{
@@ -79,7 +78,7 @@ namespace Server.Engines.Craft
 			bool contains = false;
 
 			for ( int i = 0; !contains && i < m_TinkerColorables.Length; ++i )
-				contains = ( m_TinkerColorables[i] == type );
+				contains = m_TinkerColorables[i] == type;
 
 			return contains;
 		}

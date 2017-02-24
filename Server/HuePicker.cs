@@ -18,12 +18,11 @@
  *
  ***************************************************************************/
 
-using System;
 using Server.Network;
 
 namespace Server.HuePickers
 {
-	public class HuePicker
+    public class HuePicker
 	{
 		private static int m_NextSerial = 1;
 

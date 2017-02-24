@@ -21,14 +21,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using Server.Diagnostics;
 
 namespace Server
 {
-	public enum TimerPriority
+    public enum TimerPriority
 	{
 		EveryTick,
 		TenMS,
@@ -337,7 +336,7 @@ namespace Server
 
 								loaded = true;
 									
-								if ( t.m_Count != 0 && (++t.m_Index >= t.m_Count) )
+								if ( t.m_Count != 0 && ++t.m_Index >= t.m_Count )
 								{
 									t.Stop();
 								}

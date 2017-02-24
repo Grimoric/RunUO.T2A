@@ -238,7 +238,7 @@ namespace Server.Network
 	{
 		public MapPatches() : base( 0xBF )
 		{
-			EnsureCapacity( 9 + (3 * 8) );
+			EnsureCapacity( 9 + 3 * 8 );
 
 			m_Stream.Write( (short) 0x0018 );
 
@@ -262,7 +262,7 @@ namespace Server.Network
 	{
 		public ObjectHelpResponse( IEntity e, string text ) : base( 0xB7 )
 		{
-			this.EnsureCapacity( 9 + (text.Length * 2) );
+			this.EnsureCapacity( 9 + text.Length * 2 );
 
 			m_Stream.Write( (int) e.Serial );
 			m_Stream.WriteBigUniNull( text );
@@ -401,8 +401,8 @@ namespace Server.Network
 				if ( name == null )
 					name = "";
 
-				m_Stream.Write( (ushort) (name.Length) );
-				m_Stream.WriteAsciiFixed( name, (ushort) (name.Length) );
+				m_Stream.Write( (ushort) name.Length );
+				m_Stream.WriteAsciiFixed( name, (ushort) name.Length );
 			}
 		}
 	}
@@ -433,7 +433,7 @@ namespace Server.Network
 		{
 			m_Stream.Write( (int) killed.Serial );
 			m_Stream.Write( (int) (corpse == null ? Serial.Zero : corpse.Serial) );
-			m_Stream.Write( (int) 0 ) ;
+			m_Stream.Write( (int) 0 );
 		}
 	}
 
@@ -544,7 +544,7 @@ namespace Server.Network
 		{
 			EquipInfoAttribute[] attrs = info.Attributes;
 
-			this.EnsureCapacity( 17 + (info.Crafter == null ? 0 : 6 + info.Crafter.Name == null ? 0 : info.Crafter.Name.Length) + (info.Unidentified ? 4 : 0) + (attrs.Length * 6) );
+			this.EnsureCapacity( 17 + (info.Crafter == null ? 0 : 6 + info.Crafter.Name == null ? 0 : info.Crafter.Name.Length) + (info.Unidentified ? 4 : 0) + attrs.Length * 6 );
 
 			m_Stream.Write( (short) 0x10 );
 			m_Stream.Write( (int) item.Serial );
@@ -702,7 +702,7 @@ namespace Server.Network
 
 		public static Packet Instantiate( bool dead )
 		{
-			return ( dead ? Dead : Alive );
+			return dead ? Dead : Alive;
 		}
 
 		public DeathStatus( bool dead ) : base( 0x2C, 2 )
@@ -915,7 +915,7 @@ namespace Server.Network
 
 			int length = (byte) entries.Length;
 
-			this.EnsureCapacity( 12 + (length * 8) );
+			this.EnsureCapacity( 12 + length * 8 );
 
 			m_Stream.Write( (short) 0x14 );
 			m_Stream.Write( (short) 0x02 );
@@ -947,7 +947,7 @@ namespace Server.Network
 				if ( range == -1 )
 					range = 18;
 
-				CMEFlags flags = (e.Enabled && menu.From.InRange( p, range )) ? CMEFlags.None : CMEFlags.Disabled;
+				CMEFlags flags = e.Enabled && menu.From.InRange( p, range ) ? CMEFlags.None : CMEFlags.Disabled;
 
 				flags |= e.Flags;
 
@@ -964,7 +964,7 @@ namespace Server.Network
 
 			int length = (byte) entries.Length;
 
-			this.EnsureCapacity( 12 + (length * 8) );
+			this.EnsureCapacity( 12 + length * 8 );
 
 			m_Stream.Write( (short) 0x14 );
 			m_Stream.Write( (short) 0x01 );
@@ -996,7 +996,7 @@ namespace Server.Network
 				if ( range == -1 )
 					range = 18;
 
-				CMEFlags flags = (e.Enabled && menu.From.InRange( p, range )) ? CMEFlags.None : CMEFlags.Disabled;
+				CMEFlags flags = e.Enabled && menu.From.InRange( p, range ) ? CMEFlags.None : CMEFlags.Disabled;
 
 				int color = e.Color & 0xFFFF;
 
@@ -1026,7 +1026,7 @@ namespace Server.Network
 			if ( footer == null )
 				footer = "";
 
-			EnsureCapacity( 12 + header.Length + (footer.Length * 2) + (body.Length * 2) );
+			EnsureCapacity( 12 + header.Length + footer.Length * 2 + body.Length * 2 );
 
 			m_Stream.Write( (int) (realSerial ? m.Serial : Serial.Zero) );
 			m_Stream.WriteAsciiNull( header );
@@ -1781,7 +1781,7 @@ namespace Server.Network
 	{
 		public SpellbookContent( int count, int offset, ulong content, Item item ) : base( 0x3C )
 		{
-			this.EnsureCapacity( 5 + (count * 19) );
+			this.EnsureCapacity( 5 + count * 19 );
 
 			int written = 0;
 
@@ -1815,7 +1815,7 @@ namespace Server.Network
 	{
 		public SpellbookContent6017( int count, int offset, ulong content, Item item ) : base( 0x3C )
 		{
-			this.EnsureCapacity( 5 + (count * 20) );
+			this.EnsureCapacity( 5 + count * 20 );
 
 			int written = 0;
 
@@ -1927,7 +1927,7 @@ namespace Server.Network
 			List<Item> items = beheld.Items;
 			int count = items.Count;
 
-			this.EnsureCapacity( 5 + (count * 19) );
+			this.EnsureCapacity( 5 + count * 19 );
 
 			long pos = m_Stream.Position;
 
@@ -1968,7 +1968,7 @@ namespace Server.Network
 			List<Item> items = beheld.Items;
 			int count = items.Count;
 
-			this.EnsureCapacity( 5 + (count * 20) );
+			this.EnsureCapacity( 5 + count * 20 );
 
 			long pos = m_Stream.Position;
 
@@ -2010,7 +2010,7 @@ namespace Server.Network
 
 		public static Packet Instantiate( bool mode )
 		{
-			return ( mode ? InWarMode : InPeaceMode );
+			return mode ? InWarMode : InPeaceMode;
 		}
 
 		public SetWarMode( bool mode ) : base( 0x72, 5 )
@@ -2083,7 +2083,7 @@ namespace Server.Network
 	{
 		public SkillUpdate( Skills skills ) : base( 0x3A )
 		{
-			this.EnsureCapacity( 6 + (skills.Length * 9) );
+			this.EnsureCapacity( 6 + skills.Length * 9 );
 
 			m_Stream.Write( (byte) 0x02 ); // type: absolute, capped
 
@@ -2214,7 +2214,7 @@ namespace Server.Network
 			if ( hue == 0 )
 				hue = 0x3B2;
 
-			this.EnsureCapacity( 50 + (args.Length * 2) );
+			this.EnsureCapacity( 50 + args.Length * 2 );
 
 			m_Stream.Write( (int) serial );
 			m_Stream.Write( (short) graphic );
@@ -2488,7 +2488,7 @@ namespace Server.Network
 				return;
 			}
 
-			int wantLength = 1 + ( ( buffer.Length * 1024 ) / 1000 );
+			int wantLength = 1 + buffer.Length * 1024 / 1000;
 
 			wantLength +=  4095;
 			wantLength &= ~4095;
@@ -2859,7 +2859,7 @@ namespace Server.Network
 			if ( m_Enabled && max != 0 )
 			{
 				stream.Write( (short) m_Maximum );
-				stream.Write( (short) ((cur * m_Maximum) / max) );
+				stream.Write( (short) (cur * m_Maximum / max) );
 			}
 			else
 			{
@@ -2872,7 +2872,7 @@ namespace Server.Network
 		{
 			if ( m_Enabled && max != 0 )
 			{
-				stream.Write( (short) ((cur * m_Maximum) / max) );
+				stream.Write( (short) (cur * m_Maximum / max) );
 				stream.Write( (short) m_Maximum );
 			}
 			else
@@ -3329,7 +3329,7 @@ namespace Server.Network
 			if( beheld.FacialHairItemID > 0 )
 				count++;
 
-			this.EnsureCapacity( 23 + (count * 9) );
+			this.EnsureCapacity( 23 + count * 9 );
 
 			int hue = beheld.Hue;
 
@@ -3347,7 +3347,7 @@ namespace Server.Network
 			m_Stream.Write( (byte) Notoriety.Compute( beholder, beheld ) );
 
 			NetState ns = beholder.RawNetState;
-			bool useHueFlag = ( ns == null || !ns.NewMobileIncoming );
+			bool useHueFlag = ns == null || !ns.NewMobileIncoming;
 
 			for ( int i = 0; i < eq.Count; ++i )
 			{
@@ -3466,7 +3466,7 @@ namespace Server.Network
 			if( beheld.FacialHairItemID > 0 )
 				count++;
 
-			this.EnsureCapacity( 23 + (count * 9) );
+			this.EnsureCapacity( 23 + count * 9 );
 
 			int hue = beheld.Hue;
 
@@ -3499,7 +3499,7 @@ namespace Server.Network
 						hue = beheld.SolidHueOverride;
 
 					int itemID = item.ItemID & 0x7FFF;
-					bool writeHue = ( hue != 0 );
+					bool writeHue = hue != 0;
 
 					if ( writeHue )
 						itemID |= 0x8000;
@@ -3525,7 +3525,7 @@ namespace Server.Network
 
 					int itemID = beheld.HairItemID & 0x7FFF;
 
-					bool writeHue = (hue != 0);
+					bool writeHue = hue != 0;
 
 					if( writeHue )
 						itemID |= 0x8000;
@@ -3551,7 +3551,7 @@ namespace Server.Network
 
 					int itemID = beheld.FacialHairItemID & 0x7FFF;
 
-					bool writeHue = (hue != 0);
+					bool writeHue = hue != 0;
 
 					if( writeHue )
 						itemID |= 0x8000;
@@ -3605,7 +3605,7 @@ namespace Server.Network
 			if ( hue == 0 )
 				hue = 0x3B2;
 
-			this.EnsureCapacity( 50 + (text.Length * 2) );
+			this.EnsureCapacity( 50 + text.Length * 2 );
 
 			m_Stream.Write( (int) serial );
 			m_Stream.Write( (short) graphic );
@@ -3850,7 +3850,7 @@ namespace Server.Network
 	{
 		public CharacterListUpdate( IAccount a ) : base( 0x86 )
 		{
-			this.EnsureCapacity( 4 + (a.Length * 60) );
+			this.EnsureCapacity( 4 + a.Length * 60 );
 
 			int highSlot = -1;
 
@@ -3956,7 +3956,7 @@ namespace Server.Network
 	{
 		public CharacterList( IAccount a, CityInfo[] info ) : base( 0xA9 )
 		{
-			this.EnsureCapacity( 11 + (a.Length * 60) + (info.Length * 89) );
+			this.EnsureCapacity( 11 + a.Length * 60 + info.Length * 89 );
 
 			int highSlot = -1;
 
@@ -4003,11 +4003,11 @@ namespace Server.Network
 			CharacterListFlags flags = ExpansionInfo.CurrentExpansion.CharacterListFlags;
 
 			if ( count > 6 )
-				flags |= (CharacterListFlags.SeventhCharacterSlot | CharacterListFlags.SixthCharacterSlot); // 7th Character Slot - TODO: Is SixthCharacterSlot Required?
+				flags |= CharacterListFlags.SeventhCharacterSlot | CharacterListFlags.SixthCharacterSlot; // 7th Character Slot - TODO: Is SixthCharacterSlot Required?
 			else if ( count == 6 )
 				flags |= CharacterListFlags.SixthCharacterSlot; // 6th Character Slot
 			else if ( a.Limit == 1 )
-				flags |= (CharacterListFlags.SlotLimit & CharacterListFlags.OneCharacterSlot); // Limit Characters & One Character
+				flags |= CharacterListFlags.SlotLimit & CharacterListFlags.OneCharacterSlot; // Limit Characters & One Character
 
 			m_Stream.Write( (int)(flags | m_AdditionalFlags) ); // Additional Flags
 
@@ -4029,7 +4029,7 @@ namespace Server.Network
 				{
 					Utility.RandomBytes( buffer );
 
-					m_Stream.Seek( 35 + ( i * 60 ), SeekOrigin.Begin );
+					m_Stream.Seek( 35 + i * 60, SeekOrigin.Begin );
 					m_Stream.Write( buffer, 0, buffer.Length );
 				}
 
@@ -4057,7 +4057,7 @@ namespace Server.Network
 	{
 		public CharacterListOld( IAccount a, CityInfo[] info ) : base( 0xA9 )
 		{
-			this.EnsureCapacity( 9 + (a.Length * 60) + (info.Length * 63) );
+			this.EnsureCapacity( 9 + a.Length * 60 + info.Length * 63 );
 
 			int highSlot = -1;
 
@@ -4098,11 +4098,11 @@ namespace Server.Network
 			CharacterListFlags flags = ExpansionInfo.CurrentExpansion.CharacterListFlags;
 
 			if ( count > 6 )
-				flags |= (CharacterListFlags.SeventhCharacterSlot | CharacterListFlags.SixthCharacterSlot); // 7th Character Slot - TODO: Is SixthCharacterSlot Required?
+				flags |= CharacterListFlags.SeventhCharacterSlot | CharacterListFlags.SixthCharacterSlot; // 7th Character Slot - TODO: Is SixthCharacterSlot Required?
 			else if ( count == 6 )
 				flags |= CharacterListFlags.SixthCharacterSlot; // 6th Character Slot
 			else if ( a.Limit == 1 )
-				flags |= (CharacterListFlags.SlotLimit & CharacterListFlags.OneCharacterSlot); // Limit Characters & One Character
+				flags |= CharacterListFlags.SlotLimit & CharacterListFlags.OneCharacterSlot; // Limit Characters & One Character
 
 			m_Stream.Write( (int)(flags | CharacterList.AdditionalFlags) ); // Additional Flags
 
@@ -4122,7 +4122,7 @@ namespace Server.Network
 				{
 					Utility.RandomBytes( buffer );
 
-					m_Stream.Seek( 35 + ( i * 60 ), SeekOrigin.Begin );
+					m_Stream.Seek( 35 + i * 60, SeekOrigin.Begin );
 					m_Stream.Write( buffer, 0, buffer.Length );
 				}
 
@@ -4186,7 +4186,7 @@ namespace Server.Network
 			if ( hue == 0 )
 				hue = 0x3B2;
 
-			this.EnsureCapacity( 52 + affix.Length + (args.Length * 2) );
+			this.EnsureCapacity( 52 + affix.Length + args.Length * 2 );
 
 			m_Stream.Write( (int) serial );
 			m_Stream.Write( (short) graphic );
@@ -4278,7 +4278,7 @@ namespace Server.Network
 	{
 		public AccountLoginAck( ServerInfo[] info ) : base( 0xA8 )
 		{
-			this.EnsureCapacity( 6 + (info.Length * 40) );
+			this.EnsureCapacity( 6 + info.Length * 40 );
 
 			m_Stream.Write( (byte) 0x5D ); // Unknown
 
@@ -4308,7 +4308,7 @@ namespace Server.Network
 
 			m_Stream.Write( (int) serial );
 			m_Stream.Write( (short) gumpID );
-			m_Stream.Write( (short) (unknown.Length) );
+			m_Stream.Write( (short) unknown.Length );
 			m_Stream.WriteAsciiFixed( unknown, unknown.Length );
 			m_Stream.Write( (short) (caption.Length + 1) );
 			m_Stream.WriteAsciiFixed( caption, caption.Length + 1 );

@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[Furniture]
+    [Furniture]
 	[Flipable( 0xB2D, 0xB2C )]
 	public class WoodenBench : Item
 	{

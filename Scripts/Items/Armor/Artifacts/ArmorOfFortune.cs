@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ArmorOfFortune : StuddedChest
+    public class ArmorOfFortune : StuddedChest
 	{
 		public override int LabelNumber{ get{ return 1061098; } } // Armor of Fortune
 		public override int ArtifactRarity{ get{ return 11; } }

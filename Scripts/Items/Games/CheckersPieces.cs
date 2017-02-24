@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class PieceWhiteChecker : BasePiece
+    public class PieceWhiteChecker : BasePiece
 	{
 		public override string DefaultName
 		{

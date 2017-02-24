@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x27A8, 0x27F3 )]
+    [FlipableAttribute( 0x27A8, 0x27F3 )]
 	public class Bokuto : BaseSword
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Feint; } }

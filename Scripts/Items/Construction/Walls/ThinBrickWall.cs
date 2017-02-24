@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public enum ThinBrickWallTypes
+    public enum ThinBrickWallTypes
 	{
 		Corner,
 		SouthWall,

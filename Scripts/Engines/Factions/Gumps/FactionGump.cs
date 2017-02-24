@@ -1,17 +1,14 @@
-using System;
-using Server;
 using Server.Gumps;
-using Server.Network;
 
 namespace Server.Factions
 {
-	public abstract class FactionGump : Gump
+    public abstract class FactionGump : Gump
 	{
 		public virtual int ButtonTypes{ get{ return 10; } }
 
 		public int ToButtonID( int type, int index )
 		{
-			return 1 + (index * ButtonTypes) + type;
+			return 1 + index * ButtonTypes + type;
 		}
 
 		public bool FromButtonID( int buttonID, out int type, out int index )
@@ -33,7 +30,7 @@ namespace Server.Factions
 
 		public static bool Exists( Mobile mob )
 		{
-			return ( mob.FindGump( typeof( FactionGump ) ) != null );
+			return mob.FindGump( typeof( FactionGump ) ) != null;
 		}
 
 		public void AddHtmlText( int x, int y, int width, int height, TextDefinition text, bool back, bool scroll )

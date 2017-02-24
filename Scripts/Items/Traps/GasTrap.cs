@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Network;
 
 namespace Server.Items
 {
-	public enum GasTrapType
+    public enum GasTrapType
 	{
 		NorthWall,
 		WestWall,

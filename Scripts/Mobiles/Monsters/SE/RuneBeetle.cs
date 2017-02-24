@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a rune beetle corpse" )]
+    [CorpseName( "a rune beetle corpse" )]
 	public class RuneBeetle : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()
@@ -133,19 +132,19 @@ namespace Server.Mobiles
 				List<ResistanceMod> mods = new List<ResistanceMod>();
 
 				if ( defender.PhysicalResistance > 0 )
-					mods.Add( new ResistanceMod( ResistanceType.Physical, (defender.PhysicalResistance > 70) ? -70 : -defender.PhysicalResistance ) );
+					mods.Add( new ResistanceMod( ResistanceType.Physical, defender.PhysicalResistance > 70 ? -70 : -defender.PhysicalResistance ) );
 
 				if ( defender.FireResistance > 0 )
-					mods.Add( new ResistanceMod( ResistanceType.Fire, (defender.FireResistance > 70) ? -70 : -defender.FireResistance ) );
+					mods.Add( new ResistanceMod( ResistanceType.Fire, defender.FireResistance > 70 ? -70 : -defender.FireResistance ) );
 
 				if ( defender.ColdResistance > 0 )
-					mods.Add( new ResistanceMod( ResistanceType.Cold, (defender.ColdResistance > 70) ? -70 : -defender.ColdResistance ) );
+					mods.Add( new ResistanceMod( ResistanceType.Cold, defender.ColdResistance > 70 ? -70 : -defender.ColdResistance ) );
 
 				if ( defender.PoisonResistance > 0 )
-					mods.Add( new ResistanceMod( ResistanceType.Poison, (defender.PoisonResistance > 70) ? -70 : -defender.PoisonResistance ) );
+					mods.Add( new ResistanceMod( ResistanceType.Poison, defender.PoisonResistance > 70 ? -70 : -defender.PoisonResistance ) );
 
 				if ( defender.EnergyResistance > 0 )
-					mods.Add( new ResistanceMod( ResistanceType.Energy, (defender.EnergyResistance > 70) ? -70 : -defender.EnergyResistance ) );
+					mods.Add( new ResistanceMod( ResistanceType.Energy, defender.EnergyResistance > 70 ? -70 : -defender.EnergyResistance ) );
 
 				for ( int i = 0; i < mods.Count; ++i )
 					defender.AddResistanceMod( mods[i] );

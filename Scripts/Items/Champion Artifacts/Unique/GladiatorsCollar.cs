@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class GladiatorsCollar : PlateGorget
+    public class GladiatorsCollar : PlateGorget
 	{
 		public override int LabelNumber{ get{ return 1094917; } } // Gladiator's Collar [Replica]
 

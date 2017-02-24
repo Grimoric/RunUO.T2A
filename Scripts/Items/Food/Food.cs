@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using Server.Network;
 using System.Collections.Generic;
 using Server.ContextMenus;
 
 namespace Server.Items
 {
-	public abstract class Food : Item
+    public abstract class Food : Item
 	{
 		private Mobile m_Poisoner;
 		private Poison m_Poison;

@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a darknight creeper corpse" )]
+    [CorpseName( "a darknight creeper corpse" )]
 	public class DarknightCreeper : BaseCreature
 	{
 		public override bool IgnoreYoungProtection { get { return false; } }

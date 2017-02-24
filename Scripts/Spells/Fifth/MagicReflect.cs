@@ -1,12 +1,8 @@
-using System;
 using System.Collections;
-using Server;
-using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Fifth
 {
-	public class MagicReflectSpell : MagerySpell
+    public class MagicReflectSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Magic Reflection", "In Jux Sanct",
@@ -56,7 +52,7 @@ namespace Server.Spells.Fifth
 				if ( Caster.BeginAction( typeof( DefensiveSpell ) ) )
 				{
 					int value = (int)(Caster.Skills[SkillName.Magery].Value + Caster.Skills[SkillName.Inscribe].Value);
-					value = (int)(8 + (value/200)*7.0);//absorb from 8 to 15 "circles"
+					value = (int)(8 + value/200*7.0);//absorb from 8 to 15 "circles"
 
 					Caster.MagicDamageAbsorb = value;
 

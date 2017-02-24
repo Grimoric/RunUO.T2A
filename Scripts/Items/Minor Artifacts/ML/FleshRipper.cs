@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class FleshRipper : AssassinSpike
+    public class FleshRipper : AssassinSpike
 	{
 		public override int LabelNumber{ get{ return 1075045; } } // Flesh Ripper
 

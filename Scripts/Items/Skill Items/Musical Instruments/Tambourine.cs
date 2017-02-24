@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class Tambourine : BaseInstrument
+    public class Tambourine : BaseInstrument
 	{
 		[Constructable]
 		public Tambourine() : base( 0xE9D, 0x52, 0x53 )

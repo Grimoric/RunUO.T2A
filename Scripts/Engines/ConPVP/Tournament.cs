@@ -1,7 +1,6 @@
 using System;
 using System.Text;
 using System.Collections;
-using Server;
 using Server.Items;
 using Server.Gumps;
 using Server.Network;
@@ -12,7 +11,7 @@ using System.Collections.Generic;
 
 namespace Server.Engines.ConPVP
 {
-	public enum TournamentStage
+    public enum TournamentStage
 	{
 		Inactive,
 		Signup,
@@ -368,12 +367,12 @@ namespace Server.Engines.ConPVP
 					++changes;
 			}
 
-			height += (changes * 22);
+			height += changes * 22;
 
 			height += 10 + 22 + 25 + 25;
 
 			if ( tourny.PlayersPerParticipant > 1 )
-				height += 36 + (tourny.PlayersPerParticipant * 20);
+				height += 36 + tourny.PlayersPerParticipant * 20;
 			#endregion
 
 			Closable = false;
@@ -448,8 +447,8 @@ namespace Server.Engines.ConPVP
 				case TieType.Random: tieText = "Random"; break;
 				case TieType.Highest: tieText = "Highest advances"; break;
 				case TieType.Lowest: tieText = "Lowest advances"; break;
-				case TieType.FullAdvancement: tieText = ( tourny.ParticipantsPerMatch == 2 ? "Both advance" : "Everyone advances" ); break;
-				case TieType.FullElimination: tieText = ( tourny.ParticipantsPerMatch == 2 ? "Both eliminated" : "Everyone eliminated" ); break;
+				case TieType.FullAdvancement: tieText = tourny.ParticipantsPerMatch == 2 ? "Both advance" : "Everyone advances"; break;
+				case TieType.FullElimination: tieText = tourny.ParticipantsPerMatch == 2 ? "Both eliminated" : "Everyone eliminated"; break;
 			}
 
 			AddBorderedText( 35, y, 190, 20, String.Format( "Tiebreaker: {0}", tieText ), LabelColor32, BlackColor32 );
@@ -616,7 +615,7 @@ namespace Server.Engines.ConPVP
 						{
 							Mobile mob = (Mobile)m_Players[i];
 
-							LadderEntry entry = ( ladder == null ? null : ladder.Find( mob ) );
+							LadderEntry entry = ladder == null ? null : ladder.Find( mob );
 
 							if ( entry != null && Ladder.GetLevel( entry.Experience ) < tourny.LevelRequirement )
 							{
@@ -689,7 +688,7 @@ namespace Server.Engines.ConPVP
 								fmt = "As you wish m'{0}. The tournament will begin {1}, but first you must name your team.";
 
 							string timeUntil;
-							int minutesUntil = (int)Math.Round( ( (tourny.SignupStart + tourny.SignupPeriod) - DateTime.Now ).TotalMinutes );
+							int minutesUntil = (int)Math.Round( ( tourny.SignupStart + tourny.SignupPeriod - DateTime.Now ).TotalMinutes );
 
 							if ( minutesUntil == 0 )
 								timeUntil = "momentarily";
@@ -906,7 +905,7 @@ namespace Server.Engines.ConPVP
 					++changes;
 			}
 
-			height += (changes * 22);
+			height += changes * 22;
 
 			height += 10 + 22 + 25 + 25;
 			#endregion
@@ -984,8 +983,8 @@ namespace Server.Engines.ConPVP
 				case TieType.Random: tieText = "Random"; break;
 				case TieType.Highest: tieText = "Highest advances"; break;
 				case TieType.Lowest: tieText = "Lowest advances"; break;
-				case TieType.FullAdvancement: tieText = ( tourny.ParticipantsPerMatch == 2 ? "Both advance" : "Everyone advances" ); break;
-				case TieType.FullElimination: tieText = ( tourny.ParticipantsPerMatch == 2 ? "Both eliminated" : "Everyone eliminated" ); break;
+				case TieType.FullAdvancement: tieText = tourny.ParticipantsPerMatch == 2 ? "Both advance" : "Everyone advances"; break;
+				case TieType.FullElimination: tieText = tourny.ParticipantsPerMatch == 2 ? "Both eliminated" : "Everyone eliminated"; break;
 			}
 
 			AddBorderedText( 35, y, 190, 20, String.Format( "Tiebreaker: {0}", tieText ), LabelColor32, BlackColor32 );
@@ -1357,7 +1356,7 @@ namespace Server.Engines.ConPVP
 
 		private EventController m_EventController;
 
-		public bool IsNotoRestricted { get { return ( m_TournyType != TournyType.Standard ); } }
+		public bool IsNotoRestricted { get { return m_TournyType != TournyType.Standard; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public EventController EventController
@@ -1626,7 +1625,7 @@ namespace Server.Engines.ConPVP
 
 			sb.Append( ". " );
 
-			string whole = ( remaining.Count == 2 ? "both" : "all" );
+			string whole = remaining.Count == 2 ? "both" : "all";
 
 			TieType tieType = m_TieType;
 
@@ -1868,7 +1867,7 @@ namespace Server.Engines.ConPVP
 				return;
 
 			if ( players.Count > 1 )
-				cash /= ( players.Count - 1 );
+				cash /= players.Count - 1;
 
 			cash +=  500;
 			cash /= 1000;
@@ -1940,7 +1939,7 @@ namespace Server.Engines.ConPVP
 		{
 			if ( m_Stage == TournamentStage.Signup )
 			{
-				TimeSpan until = ( m_SignupStart + m_SignupPeriod ) - DateTime.Now;
+				TimeSpan until = m_SignupStart + m_SignupPeriod - DateTime.Now;
 
 				if ( until <= TimeSpan.Zero )
 				{
@@ -1998,11 +1997,11 @@ namespace Server.Engines.ConPVP
 						m_SignupStart = DateTime.Now;
 					}
 				}
-				else if ( Math.Abs( until.TotalSeconds - TimeSpan.FromMinutes( 1.0 ).TotalSeconds ) < (SliceInterval.TotalSeconds/2) )
+				else if ( Math.Abs( until.TotalSeconds - TimeSpan.FromMinutes( 1.0 ).TotalSeconds ) < SliceInterval.TotalSeconds/2 )
 				{
 					Alert( "Last call!", "If you wish to enter the tournament, sign up with the registrar now." );
 				}
-				else if ( Math.Abs( until.TotalSeconds - TimeSpan.FromMinutes( 5.0 ).TotalSeconds ) < (SliceInterval.TotalSeconds/2) )
+				else if ( Math.Abs( until.TotalSeconds - TimeSpan.FromMinutes( 5.0 ).TotalSeconds ) < SliceInterval.TotalSeconds/2 )
 				{
 					Alert( "The tournament will begin in 5 minutes.", "Sign up now before it's too late." );
 				}
@@ -2260,7 +2259,7 @@ namespace Server.Engines.ConPVP
 
 							switch ( groupType )
 							{
-								case GroupingType.HighVsLow: idx = (i * (copy.Count - 1)) / (partsPerMatch - 1); break;
+								case GroupingType.HighVsLow: idx = i * (copy.Count - 1) / (partsPerMatch - 1); break;
 								case GroupingType.Nearest: idx = 0; break;
 								case GroupingType.Random: idx = Utility.Random( copy.Count ); break;
 							}
@@ -2332,7 +2331,7 @@ namespace Server.Engines.ConPVP
 
 		public bool InProgress
 		{
-			get{ return ( m_Context != null && m_Context.Registered ); }
+			get{ return m_Context != null && m_Context.Registered; }
 		}
 
 		public void Start( Arena arena, Tournament tourny )
@@ -2505,7 +2504,7 @@ namespace Server.Engines.ConPVP
 					{
 						if ( m_Players.Count == 2 )
 							sb.Append( " and " );
-						else if ( (i+1) < m_Players.Count )
+						else if ( i+1 < m_Players.Count )
 							sb.Append( ", " );
 						else
 							sb.Append( ", and " );
@@ -2642,14 +2641,14 @@ namespace Server.Engines.ConPVP
 
 		public int ToButtonID( int type, int index )
 		{
-			return 1 + (index * 7) + type;
+			return 1 + index * 7 + type;
 		}
 
 		public bool FromButtonID( int bid, out int type, out int index )
 		{
 			type = ( bid - 1 ) % 7;
 			index = ( bid - 1 ) / 7;
-			return ( bid >= 1 );
+			return bid >= 1;
 		}
 
 		public void StartPage( out int index, out int count, out int y, int perPage )
@@ -2659,7 +2658,7 @@ namespace Server.Engines.ConPVP
 			index = Math.Max( m_Page * perPage, 0 );
 			count = Math.Max( Math.Min( m_List.Count - index, perPage ), 0 );
 
-			y = 53 + ((12 - perPage) * 18);
+			y = 53 + (12 - perPage) * 18;
 
 			if ( m_Page > 0 )
 				AddLeftArrow( 242, 35, ToButtonID( 1, 0 ) );
@@ -2722,7 +2721,7 @@ namespace Server.Engines.ConPVP
 
 					if ( m_Tournament.Stage == TournamentStage.Signup )
 					{
-						TimeSpan until = ( m_Tournament.SignupStart + m_Tournament.SignupPeriod ) - DateTime.Now;
+						TimeSpan until = m_Tournament.SignupStart + m_Tournament.SignupPeriod - DateTime.Now;
 						string text;
 						int secs = (int) until.TotalSeconds;
 
@@ -2784,7 +2783,7 @@ namespace Server.Engines.ConPVP
 					}
 
 					AddPage( 0 );
-					AddBackground( 0, 0, 300, 60 + 18 + 20 + 20 + 20 + 8 + 20 + (ruleset.Flavors.Count * 18) + 4 + 20 + (changes * 22) + 6, 9380 );
+					AddBackground( 0, 0, 300, 60 + 18 + 20 + 20 + 20 + 8 + 20 + ruleset.Flavors.Count * 18 + 4 + 20 + changes * 22 + 6, 9380 );
 
 					AddLeftArrow( 25, 11, ToButtonID( 0, 0 ) );
 					AddHtml( 25, 35, 250, 20, Center( "Rules" ), false, false );
@@ -2810,8 +2809,8 @@ namespace Server.Engines.ConPVP
 						case TieType.Random: tieText = "Random"; break;
 						case TieType.Highest: tieText = "Highest advances"; break;
 						case TieType.Lowest: tieText = "Lowest advances"; break;
-						case TieType.FullAdvancement: tieText = ( tourny.ParticipantsPerMatch == 2 ? "Both advance" : "Everyone advances" ); break;
-						case TieType.FullElimination: tieText = ( tourny.ParticipantsPerMatch == 2 ? "Both eliminated" : "Everyone eliminated" ); break;
+						case TieType.FullAdvancement: tieText = tourny.ParticipantsPerMatch == 2 ? "Both advance" : "Everyone advances"; break;
+						case TieType.FullElimination: tieText = tourny.ParticipantsPerMatch == 2 ? "Both eliminated" : "Everyone eliminated"; break;
 					}
 
 					AddHtml( 35, y, 190, 20, String.Format( "Tiebreaker: {0}", tieText ), false, false );
@@ -2911,7 +2910,7 @@ namespace Server.Engines.ConPVP
 						break;
 
 					AddPage( 0 );
-					AddBackground( 0, 0, 300, 60 + 18 + 20 + (part.Players.Count * 18) + 20 + 20 + 160, 9380 );
+					AddBackground( 0, 0, 300, 60 + 18 + 20 + part.Players.Count * 18 + 20 + 20 + 160, 9380 );
 
 					AddLeftArrow( 25, 11, ToButtonID( 0, 1 ) );
 					AddHtml( 25, 35, 250, 20, Center( "Participants" ), false, false );
@@ -2975,7 +2974,7 @@ namespace Server.Engines.ConPVP
 						break;
 
 					Ladder ladder = Ladder.Instance;
-					LadderEntry entry = ( ladder == null ? null : ladder.Find( mob ) );
+					LadderEntry entry = ladder == null ? null : ladder.Find( mob );
 
 					AddHtml( 25, 53, 250, 20, String.Format( "Name: {0}", mob.Name ), false, false );
 					AddHtml( 25, 73, 250, 20, String.Format( "Guild: {0}", mob.Guild == null ? "None" : mob.Guild.Name + " [" + mob.Guild.Abbreviation + "]" ), false, false );
@@ -3110,10 +3109,10 @@ namespace Server.Engines.ConPVP
 					if ( match == null )
 						break;
 
-					int ct = ( m_Tournament.TournyType == TournyType.FreeForAll ? 2 : match.Participants.Count );
+					int ct = m_Tournament.TournyType == TournyType.FreeForAll ? 2 : match.Participants.Count;
 
 					AddPage( 0 );
-					AddBackground( 0, 0, 300, 60 + 18 + 20 + 20 + 20 + (ct*18) + 6, 9380 );
+					AddBackground( 0, 0, 300, 60 + 18 + 20 + 20 + 20 + ct*18 + 6, 9380 );
 
 					AddLeftArrow( 25, 11, ToButtonID( 0, 5 ) );
 					AddHtml( 25, 35, 250, 20, Center( "Rounds" ), false, false );
@@ -3128,7 +3127,7 @@ namespace Server.Engines.ConPVP
 						{
 							TournyParticipant part = (TournyParticipant)match.Participants[i];
 
-							AddRightArrow( 25, 113 + (i * 18), ToButtonID( 6, i ), part.NameList );
+							AddRightArrow( 25, 113 + i * 18, ToButtonID( 6, i ), part.NameList );
 						}
 					}
 					else if ( m_Tournament.EventController != null || m_Tournament.TournyType == TournyType.RandomTeam || m_Tournament.TournyType == TournyType.RedVsBlue )
@@ -3138,11 +3137,11 @@ namespace Server.Engines.ConPVP
 							TournyParticipant part = (TournyParticipant)match.Participants[i];
 
 							if ( m_Tournament.EventController != null )
-								AddRightArrow( 25, 113 + (i * 18), ToButtonID( 6, i ), String.Format( "Team {0} ({1})", m_Tournament.EventController.GetTeamName( i ), part.Players.Count ) );
+								AddRightArrow( 25, 113 + i * 18, ToButtonID( 6, i ), String.Format( "Team {0} ({1})", m_Tournament.EventController.GetTeamName( i ), part.Players.Count ) );
 							else if ( m_Tournament.TournyType == TournyType.RandomTeam )
-								AddRightArrow( 25, 113 + (i * 18), ToButtonID( 6, i ), String.Format( "Team {0} ({1})", i+1, part.Players.Count ) );
+								AddRightArrow( 25, 113 + i * 18, ToButtonID( 6, i ), String.Format( "Team {0} ({1})", i+1, part.Players.Count ) );
 							else
-								AddRightArrow( 25, 113 + (i * 18), ToButtonID( 6, i ), String.Format( "Team {0} ({1})", i==0?"Red":"Blue", part.Players.Count ) );
+								AddRightArrow( 25, 113 + i * 18, ToButtonID( 6, i ), String.Format( "Team {0} ({1})", i==0?"Red":"Blue", part.Players.Count ) );
 						}
 					}
 					else if ( m_Tournament.TournyType == TournyType.FreeForAll )
@@ -3223,7 +3222,7 @@ namespace Server.Engines.ConPVP
 						}
 						case 1:
 						{
-							if ( m_List != null && ((m_Page + 1) * m_PerPage) < m_List.Count )
+							if ( m_List != null && (m_Page + 1) * m_PerPage < m_List.Count )
 								m_From.SendGump( new TournamentBracketGump( m_From, m_Tournament, m_Type, m_List, m_Page + 1, m_Object ) );
 
 							break;

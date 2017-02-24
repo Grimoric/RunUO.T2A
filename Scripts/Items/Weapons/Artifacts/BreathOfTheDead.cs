@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class BreathOfTheDead : BoneHarvester
+    public class BreathOfTheDead : BoneHarvester
 	{
 		public override int LabelNumber{ get{ return 1061109; } } // Breath of the Dead
 		public override int ArtifactRarity{ get{ return 11; } }

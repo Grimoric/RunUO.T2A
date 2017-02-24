@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Network;
 using System.Collections;
 
 namespace Server.Gumps
 {
-	public class ImageTileButtonInfo
+    public class ImageTileButtonInfo
 	{
 		private int m_ItemID;
 		private int m_Hue;
@@ -85,8 +83,8 @@ namespace Server.Gumps
 			{
 				int position = i % itemsPerPage;
 
-				int innerX = (position % XItems) * 250 + 14;
-				int innerY = (position / XItems) * 64 + 44;
+				int innerX = position % XItems * 250 + 14;
+				int innerY = position / XItems * 64 + 44;
 
 				int pageNum = i / itemsPerPage + 1;
 

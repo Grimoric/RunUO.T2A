@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class AxeOfTheHeavens : DoubleAxe
+    public class AxeOfTheHeavens : DoubleAxe
 	{
 		public override int LabelNumber{ get{ return 1061106; } } // Axe of the Heavens
 		public override int ArtifactRarity{ get{ return 11; } }

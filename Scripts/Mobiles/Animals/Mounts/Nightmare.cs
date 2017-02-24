@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Items;
-using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a nightmare corpse" )]
+    [CorpseName( "a nightmare corpse" )]
 	public class Nightmare : BaseMount
 	{
 		[Constructable]

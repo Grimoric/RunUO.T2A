@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	public class DecoFullJar : Item
+    public class DecoFullJar : Item
 	{
 		[Constructable]
 		public DecoFullJar()

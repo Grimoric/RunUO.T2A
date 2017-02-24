@@ -1,6 +1,4 @@
 using System;
-using Server;
-using Server.Mobiles;
 using Server.Targeting;
 using Server.PathAlgorithms;
 using Server.PathAlgorithms.SlowAStar;
@@ -9,7 +7,7 @@ using Server.Commands;
 
 namespace Server
 {
-	public sealed class MovementPath
+    public sealed class MovementPath
 	{
 		private Map m_Map;
 		private Point3D m_Start;
@@ -20,7 +18,7 @@ namespace Server
 		public Point3D Start{ get{ return m_Start; } }
 		public Point3D Goal{ get{ return m_Goal; } }
 		public Direction[] Directions{ get{ return m_Directions; } }
-		public bool Success{ get{ return ( m_Directions != null && m_Directions.Length > 0 ); } }
+		public bool Success{ get{ return m_Directions != null && m_Directions.Length > 0; } }
 
 		public static void Initialize()
 		{

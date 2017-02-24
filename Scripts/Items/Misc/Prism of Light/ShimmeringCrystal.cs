@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ShimmeringCrystals : Item
+    public class ShimmeringCrystals : Item
 	{
 		public override int LabelNumber{ get{ return 1075095; } } // Shimmering Crystals
 		public override bool ForceShowProperties{ get{ return true; } }

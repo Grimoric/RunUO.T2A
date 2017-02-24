@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a hell hound corpse" )]
+    [CorpseName( "a hell hound corpse" )]
 	public class HellHound : BaseCreature
 	{
 		[Constructable]

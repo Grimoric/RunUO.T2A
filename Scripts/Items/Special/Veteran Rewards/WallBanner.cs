@@ -1,14 +1,10 @@
-using System;
-using Server;
 using Server.Gumps;
-using Server.Multis;
 using Server.Network;
-using Server.Targeting;
 using Server.Engines.VeteranRewards;
 
 namespace Server.Items
-{	
-	public class WallBannerComponent : AddonComponent, IDyable
+{
+    public class WallBannerComponent : AddonComponent, IDyable
 	{
 		public override bool NeedsWall{ get{ return true; } }
 		public override Point3D WallPosition{ get{ return this.East ? new Point3D( -1, 0, 0 ) : new Point3D( 0, -1, 0 ); } }
@@ -83,7 +79,7 @@ namespace Server.Items
 		[Constructable]
 		public WallBanner( int bannerID ) : base()
 		{
-			m_East = ((bannerID % 2) == 1 );
+			m_East = bannerID % 2 == 1;
 
 			switch ( bannerID )
 			{

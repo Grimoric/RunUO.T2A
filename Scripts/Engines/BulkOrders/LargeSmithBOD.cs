@@ -1,13 +1,8 @@
-using System;
-using System.Collections;
-using Server;
-using Server.Items;
-using Mat = Server.Engines.BulkOrders.BulkMaterialType;
 using System.Collections.Generic;
 
 namespace Server.Engines.BulkOrders
 {
-	[TypeAlias( "Scripts.Engines.BulkOrders.LargeSmithBOD" )]
+    [TypeAlias( "Scripts.Engines.BulkOrders.LargeSmithBOD" )]
 	public class LargeSmithBOD : LargeBOD
 	{
 		public static double[] m_BlacksmithMaterialChances = new double[]
@@ -59,7 +54,7 @@ namespace Server.Engines.BulkOrders
 
 			int hue = 0x44E;
 			int amountMax = Utility.RandomList( 10, 15, 20, 20 );
-			bool reqExceptional = ( 0.825 > Utility.RandomDouble() );
+			bool reqExceptional = 0.825 > Utility.RandomDouble();
 
 			BulkMaterialType material;
 

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class WaterTroughEastAddon : BaseAddon, IWaterSource
+    public class WaterTroughEastAddon : BaseAddon, IWaterSource
 	{
 		public override BaseAddonDeed Deed{ get{ return new WaterTroughEastDeed(); } }
 

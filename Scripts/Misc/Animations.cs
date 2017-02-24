@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Misc
 {
-	public class Animations
+    public class Animations
 	{
 		public static void Initialize()
 		{

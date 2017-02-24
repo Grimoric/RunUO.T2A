@@ -1,12 +1,6 @@
-using Server;
-using Server.Items;
-using Server.Multis;
-using Server.Network;
-using System;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0xe43, 0xe42 )] 
+    [FlipableAttribute( 0xe43, 0xe42 )] 
 	public class WoodenTreasureChest : BaseTreasureChest 
 	{ 
 		[Constructable] 

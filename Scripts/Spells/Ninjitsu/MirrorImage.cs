@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Spells;
@@ -9,7 +8,7 @@ using Server.Spells.Ninjitsu;
 
 namespace Server.Spells.Ninjitsu
 {
-	public class MirrorImage : NinjaSpell
+    public class MirrorImage : NinjaSpell
 	{
 		private static Dictionary<Mobile, int> m_CloneCount = new Dictionary<Mobile, int>();
 
@@ -67,7 +66,7 @@ namespace Server.Spells.Ninjitsu
 				Caster.SendLocalizedMessage( 1063132 ); // You cannot use this ability while mounted.
 				return false;
 			}
-			else if ( (Caster.Followers + 1) > Caster.FollowersMax )
+			else if ( Caster.Followers + 1 > Caster.FollowersMax )
 			{
 				Caster.SendLocalizedMessage( 1063133 ); // You cannot summon a mirror image because you have too many followers.
 				return false;
@@ -99,7 +98,7 @@ namespace Server.Spells.Ninjitsu
 			{
 				Caster.SendLocalizedMessage( 1063132 ); // You cannot use this ability while mounted.
 			}
-			else if ( (Caster.Followers + 1) > Caster.FollowersMax )
+			else if ( Caster.Followers + 1 > Caster.FollowersMax )
 			{
 				Caster.SendLocalizedMessage( 1063133 ); // You cannot summon a mirror image because you have too many followers.
 			}
@@ -122,7 +121,7 @@ namespace Server.Spells.Ninjitsu
 
 namespace Server.Mobiles
 {
-	public class Clone : BaseCreature
+    public class Clone : BaseCreature
 	{
 		private Mobile m_Caster;
 
@@ -239,7 +238,7 @@ namespace Server.Mobiles
 
 namespace Server.Mobiles
 {
-	public class CloneAI : BaseAI
+    public class CloneAI : BaseAI
 	{
 		public CloneAI( Clone m ) : base ( m )
 		{
@@ -254,7 +253,7 @@ namespace Server.Mobiles
 			if ( master != null && master.Map == m_Mobile.Map && master.InRange( m_Mobile, m_Mobile.RangePerception ) )
 			{
 				int iCurrDist = (int)m_Mobile.GetDistanceToSqrt( master );
-				bool bRun = (iCurrDist > 5);
+				bool bRun = iCurrDist > 5;
 
 				WalkMobileRange( master, 2, bRun, 0, 1 );
 			}

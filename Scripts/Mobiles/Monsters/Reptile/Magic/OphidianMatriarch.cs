@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "an ophidian corpse" )]
+    [CorpseName( "an ophidian corpse" )]
 	public class OphidianMatriarch : BaseCreature
 	{
 		[Constructable]

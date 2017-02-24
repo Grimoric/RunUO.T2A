@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[Flipable( 0x2A7B, 0x2A7D )]
+    [Flipable( 0x2A7B, 0x2A7D )]
 	public class HaunterMirrorComponent : AddonComponent
 	{
 		public override int LabelNumber { get { return 1074800; } } // Haunted Mirror

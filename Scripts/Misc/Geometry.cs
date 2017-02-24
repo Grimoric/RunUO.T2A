@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Misc
 {
-	public delegate void DoEffect_Callback( Point3D p, Map map );
+    public delegate void DoEffect_Callback( Point3D p, Map map );
 	
 	public static class Geometry
 	{
@@ -100,7 +99,7 @@ namespace Server.Misc
 				plot4points( loc, map, x, y, startPoint, endPoint, effect, opposite );
 				plot4points( loc, map, y, x, startPoint, endPoint, effect, opposite );
  
-				error += ( y * 2 ) + 1;
+				error += y * 2 + 1;
 				++y;
 				
 				if (error >= 0)

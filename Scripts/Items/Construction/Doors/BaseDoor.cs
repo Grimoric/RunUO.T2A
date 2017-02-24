@@ -164,7 +164,7 @@ namespace Server.Items
 
 				foreach ( Item item in sector.Items )
 				{
-					if ( item.Location.X == x && item.Location.Y == y && (item.Z + item.ItemData.Height) > m.Z && (m.Z + 16) > item.Z && item is BaseDoor && m.CanSee( item ) && m.InLOS( item ) )
+					if ( item.Location.X == x && item.Location.Y == y && item.Z + item.ItemData.Height > m.Z && m.Z + 16 > item.Z && item is BaseDoor && m.CanSee( item ) && m.InLOS( item ) )
 					{
 						if ( m.CheckAlive() )
 						{
@@ -294,7 +294,7 @@ namespace Server.Items
 					bool surface = id.Surface;
 					bool impassable = id.Impassable;
 
-					if ( (surface || impassable) && (item.Z + id.CalcHeight) > z && (z + height) > item.Z )
+					if ( (surface || impassable) && item.Z + id.CalcHeight > z && z + height > item.Z )
 						return false;
 				}
 			}
@@ -311,7 +311,7 @@ namespace Server.Items
 					if ( !m.Alive )
 						continue;
 
-					if ( (m.Z + 16) > z && (z + height) > m.Z )
+					if ( m.Z + 16 > z && z + height > m.Z )
 						return false;
 				}
 			}
@@ -515,7 +515,7 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			if ( from.AccessLevel == AccessLevel.Player && (/*!from.InLOS( this ) || */!from.InRange( GetWorldLocation(), 2 )) )
+			if ( from.AccessLevel == AccessLevel.Player && !@from.InRange( GetWorldLocation(), 2 ) )
 				from.LocalOverheadMessage( MessageType.Regular, 0x3B2, 1019045 ); // I can't reach that.
 			else
 				Use( from );

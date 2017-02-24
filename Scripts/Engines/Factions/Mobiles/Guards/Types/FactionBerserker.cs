@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Factions
 {
-	public class FactionBerserker : BaseFactionGuard
+    public class FactionBerserker : BaseFactionGuard
 	{
 		public override GuardAI GuardAI{ get{ return GuardAI.Melee | GuardAI.Curse | GuardAI.Bless; } }
 

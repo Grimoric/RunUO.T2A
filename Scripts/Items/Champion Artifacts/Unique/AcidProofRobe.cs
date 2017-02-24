@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class AcidProofRobe : Robe
+    public class AcidProofRobe : Robe
 	{
 		public override int LabelNumber{ get{ return 1095236; } } // Acid-Proof Robe [Replica]
 

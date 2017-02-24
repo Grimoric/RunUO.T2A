@@ -1,15 +1,8 @@
-using System;
-using System.Collections;
-using Server;
-using Server.Gumps;
 using Server.Items;
-using Server.Network;
-using Server.Targeting;
-using Server.ContextMenus;
 
 namespace Server.Mobiles
 {
-	public class GypsyBanker : Banker
+    public class GypsyBanker : Banker
 	{
 		public override bool IsActiveVendor{ get{ return false; } }
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.None; } }

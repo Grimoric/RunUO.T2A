@@ -1,9 +1,8 @@
 using System;
-using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a cow corpse" )]
+    [CorpseName( "a cow corpse" )]
 	public class Cow : BaseCreature
 	{
 		private DateTime m_MilkedOn;

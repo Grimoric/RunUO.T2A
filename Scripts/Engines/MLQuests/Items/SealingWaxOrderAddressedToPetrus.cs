@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class SealingWaxOrderAddressedToPetrus : Item
+    public class SealingWaxOrderAddressedToPetrus : Item
 	{
 		public override int LabelNumber{ get{ return 1073132; } } // Sealing Wax Order addressed to Petrus
 

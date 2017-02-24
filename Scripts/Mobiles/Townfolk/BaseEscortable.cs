@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
-using Server.Network;
 using Server.ContextMenus;
 using EDI = Server.Mobiles.EscortDestinationInfo;
 using Server.Engines.MLQuests;
@@ -12,7 +10,7 @@ using Server.Engines.MLQuests.Objectives;
 
 namespace Server.Mobiles
 {
-	public class BaseEscortable : BaseCreature
+    public class BaseEscortable : BaseCreature
 	{
 		public static readonly TimeSpan EscortDelay = TimeSpan.FromMinutes( 5.0 );
 		public static readonly TimeSpan AbandonDelay = MLQuestSystem.Enabled ? TimeSpan.FromMinutes( 1.0 ) : TimeSpan.FromMinutes( 2.0 );
@@ -79,7 +77,7 @@ namespace Server.Mobiles
 			return result;
 		}
 
-		public override bool CanShout { get { return ( !Controlled && !IsBeingDeleted ); } }
+		public override bool CanShout { get { return !Controlled && !IsBeingDeleted; } }
 
 		public override void Shout( PlayerMobile pm )
 		{
@@ -101,7 +99,7 @@ namespace Server.Mobiles
 
 		public bool IsBeingDeleted
 		{
-			get { return ( m_DeleteTimer != null ); }
+			get { return m_DeleteTimer != null; }
 		}
 
 		public override bool Commandable { get { return false; } } // Our master cannot boss us around!
@@ -224,12 +222,12 @@ namespace Server.Mobiles
 
 			if (escorter == null)
 			{
-				Say("I am looking to go to {0}, will you take me?", (dest.Name == "Ocllo" && m.Map == Map.Trammel) ? "Haven" : dest.Name);
+				Say("I am looking to go to {0}, will you take me?", dest.Name == "Ocllo" && m.Map == Map.Trammel ? "Haven" : dest.Name);
 				return true;
 			}
 			else if (escorter == m)
 			{
-				Say("Lead on! Payment will be made when we arrive in {0}.", (dest.Name == "Ocllo" && m.Map == Map.Trammel) ? "Haven" : dest.Name);
+				Say("Lead on! Payment will be made when we arrive in {0}.", dest.Name == "Ocllo" && m.Map == Map.Trammel ? "Haven" : dest.Name);
 				return true;
 			}
 
@@ -262,9 +260,9 @@ namespace Server.Mobiles
 				Say("I see you already have an escort.");
 				return false;
 			}
-			else if (m is PlayerMobile && (((PlayerMobile)m).LastEscortTime + EscortDelay) >= DateTime.Now)
+			else if (m is PlayerMobile && ((PlayerMobile)m).LastEscortTime + EscortDelay >= DateTime.Now)
 			{
-				int minutes = (int)Math.Ceiling(((((PlayerMobile)m).LastEscortTime + EscortDelay) - DateTime.Now).TotalMinutes);
+				int minutes = (int)Math.Ceiling((((PlayerMobile)m).LastEscortTime + EscortDelay - DateTime.Now).TotalMinutes);
 
 				Say("You must rest {0} minute{1} before we set out on this journey.", minutes, minutes == 1 ? "" : "s");
 				return false;
@@ -276,7 +274,7 @@ namespace Server.Mobiles
 				if (m is PlayerMobile)
 					((PlayerMobile)m).LastEscortTime = DateTime.Now;
 
-				Say("Lead on! Payment will be made when we arrive in {0}.", (dest.Name == "Ocllo" && m.Map == Map.Trammel) ? "Haven" : dest.Name);
+				Say("Lead on! Payment will be made when we arrive in {0}.", dest.Name == "Ocllo" && m.Map == Map.Trammel ? "Haven" : dest.Name);
 				m_EscortTable[m] = this;
 				StartFollow();
 				return true;
@@ -355,7 +353,7 @@ namespace Server.Mobiles
 			ControlOrder = OrderType.Follow;
 			ControlTarget = escorter;
 
-			if ((IsPrisoner == true) && (CantWalk == true))
+			if (IsPrisoner == true && CantWalk == true)
 			{
 				CantWalk = false;
 			}
@@ -510,7 +508,7 @@ namespace Server.Mobiles
 
 		public override bool OnBeforeDeath()
 		{
-			m_DeleteCorpse = ( Controlled || IsBeingDeleted );
+			m_DeleteCorpse = Controlled || IsBeingDeleted;
 
 			return base.OnBeforeDeath();
 		}
@@ -568,7 +566,7 @@ namespace Server.Mobiles
 
 		public override bool CanBeRenamedBy(Mobile from)
 		{
-			return (from.AccessLevel >= AccessLevel.GameMaster);
+			return @from.AccessLevel >= AccessLevel.GameMaster;
 		}
 
 		public override void AddCustomContextEntries( Mobile from, List<ContextMenuEntry> list )
@@ -630,9 +628,9 @@ namespace Server.Mobiles
 				return m_Destination;
 
 			if (Map.Felucca.Regions.Count > 0)
-				return (m_Destination = EDI.Find(m_DestinationString));
+				return m_Destination = EDI.Find(m_DestinationString);
 
-			return (m_Destination = null);
+			return m_Destination = null;
 		}
 
 		private class DeleteTimer : Timer

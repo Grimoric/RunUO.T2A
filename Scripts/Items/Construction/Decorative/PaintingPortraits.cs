@@ -1,9 +1,6 @@
-using System;
-using Server.Network;
-
 namespace Server.Items
 {
-	public class LargePainting : Item
+    public class LargePainting : Item
 	{
 		[Constructable]
 		public LargePainting() : base( 0x0EA0 )

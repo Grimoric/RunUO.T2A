@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a yomotsu corpse" )]
+    [CorpseName( "a yomotsu corpse" )]
 	public class YomotsuWarrior : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()

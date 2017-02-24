@@ -1,12 +1,10 @@
-using System;
 using System.Collections.Generic;
-using Server;
 using Server.Mobiles;
 using Server.Targeting;
 
 namespace Server.Targets
 {
-	public class AIControlMobileTarget : Target
+    public class AIControlMobileTarget : Target
 	{
 		private List<BaseAI> m_List;
 		private OrderType m_Order;
@@ -17,7 +15,7 @@ namespace Server.Targets
 			}
 		}
 
-		public AIControlMobileTarget( BaseAI ai, OrderType order ) : base( -1, false, ( order == OrderType.Attack ? TargetFlags.Harmful : TargetFlags.None ) )
+		public AIControlMobileTarget( BaseAI ai, OrderType order ) : base( -1, false, order == OrderType.Attack ? TargetFlags.Harmful : TargetFlags.None )
 		{
 			m_List = new List<BaseAI>();
 			m_Order = order;

@@ -1,10 +1,9 @@
 using System;
 using Server.Items;
-using Server.Spells;
 
 namespace Server.Engines.Craft
 {
-	public class DefInscription : CraftSystem
+    public class DefInscription : CraftSystem
 	{
 		public override SkillName MainSkill
 		{
@@ -55,11 +54,11 @@ namespace Server.Engines.Craft
 					SpellScroll scroll = (SpellScroll)o;
 					Spellbook book = Spellbook.Find(from, scroll.SpellID);
 
-					bool hasSpell = (book != null && book.HasSpell(scroll.SpellID));
+					bool hasSpell = book != null && book.HasSpell(scroll.SpellID);
 
 					scroll.Delete();
 
-					return (hasSpell ? 0 : 1042404); // null : You don't have that spell!
+					return hasSpell ? 0 : 1042404; // null : You don't have that spell!
 				}
 				else if (o is Item)
 				{

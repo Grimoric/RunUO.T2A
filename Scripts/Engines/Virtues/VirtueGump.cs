@@ -1,13 +1,11 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Gumps;
-using Server.Mobiles;
 using Server.Network;
 
 namespace Server
 {
-	public delegate void OnVirtueUsed( Mobile from );
+    public delegate void OnVirtueUsed( Mobile from );
 
 	public class VirtueGump : Gump
 	{
@@ -151,7 +149,7 @@ namespace Server
 				vl = 1;
 			
 
-			return m_Table[(index * 3) + (int) vl];
+			return m_Table[index * 3 + (int) vl];
 		}
 
 		private class InternalEntry : GumpImage

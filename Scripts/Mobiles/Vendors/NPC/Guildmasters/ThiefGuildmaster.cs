@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	public class ThiefGuildmaster : BaseGuildmaster
+    public class ThiefGuildmaster : BaseGuildmaster
 	{
 		public override NpcGuild NpcGuild{ get{ return NpcGuild.ThievesGuild; } }
 

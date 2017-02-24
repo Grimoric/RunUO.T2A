@@ -1,13 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Multis;
-using Server.Regions;
 
 namespace Server.Items
 {
-	public abstract class BaseAddonContainer : BaseContainer, IChopable, IAddon
+    public abstract class BaseAddonContainer : BaseContainer, IChopable, IAddon
 	{
 		public override bool DisplayWeight { get { return false; } }
 
@@ -179,7 +176,7 @@ namespace Server.Items
 			{
 				Point3D p3D = new Point3D( p.X + c.Offset.X, p.Y + c.Offset.Y, p.Z + c.Offset.Z );
 
-				if ( !map.CanFit( p3D.X, p3D.Y, p3D.Z, c.ItemData.Height, false, true, ( c.Z == 0 ) ) )
+				if ( !map.CanFit( p3D.X, p3D.Y, p3D.Z, c.ItemData.Height, false, true, c.Z == 0 ) )
 					return AddonFitResult.Blocked;
 				else if ( !BaseAddon.CheckHouse( from, p3D, map, c.ItemData.Height, ref house ) )
 					return AddonFitResult.NotInHouse;
@@ -195,7 +192,7 @@ namespace Server.Items
 
 			Point3D p3 = new Point3D( p.X, p.Y, p.Z );
 
-			if ( !map.CanFit( p3.X, p3.Y, p3.Z, ItemData.Height, false, true, ( Z == 0 ) ) )
+			if ( !map.CanFit( p3.X, p3.Y, p3.Z, ItemData.Height, false, true, Z == 0 ) )
 				return AddonFitResult.Blocked;
 			else if ( !BaseAddon.CheckHouse( from, p3, map, ItemData.Height, ref house ) )
 				return AddonFitResult.NotInHouse;
@@ -227,14 +224,14 @@ namespace Server.Items
 						Point3D addonLoc = new Point3D( p.X + c.Offset.X, p.Y + c.Offset.Y, p.Z + c.Offset.Z );
 						int addonHeight = c.ItemData.CalcHeight;
 
-						if ( Utility.InRange( doorLoc, addonLoc, 1 ) && ( addonLoc.Z == doorLoc.Z || ( ( addonLoc.Z + addonHeight ) > doorLoc.Z && ( doorLoc.Z + doorHeight ) > addonLoc.Z ) ) )
+						if ( Utility.InRange( doorLoc, addonLoc, 1 ) && ( addonLoc.Z == doorLoc.Z || addonLoc.Z + addonHeight > doorLoc.Z && doorLoc.Z + doorHeight > addonLoc.Z ) )
 							return AddonFitResult.DoorTooClose;
 					}
 
 					Point3D addonLo = new Point3D( p.X, p.Y, p.Z );
 					int addonHeigh = ItemData.CalcHeight;
 
-					if ( Utility.InRange( doorLoc, addonLo, 1 ) && ( addonLo.Z == doorLoc.Z || ( ( addonLo.Z + addonHeigh ) > doorLoc.Z && ( doorLoc.Z + doorHeight ) > addonLo.Z ) ) )
+					if ( Utility.InRange( doorLoc, addonLo, 1 ) && ( addonLo.Z == doorLoc.Z || addonLo.Z + addonHeigh > doorLoc.Z && doorLoc.Z + doorHeight > addonLo.Z ) )
 						return AddonFitResult.DoorTooClose;
 				}
 			}
@@ -246,7 +243,7 @@ namespace Server.Items
 		{
 			BaseHouse house = null;
 
-			return ( CouldFit( p, map, null, ref house ) == AddonFitResult.Valid );
+			return CouldFit( p, map, null, ref house ) == AddonFitResult.Valid;
 		}
 
 		public virtual void OnChop( Mobile from )

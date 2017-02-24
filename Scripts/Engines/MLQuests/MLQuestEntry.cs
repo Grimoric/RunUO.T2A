@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Engines.MLQuests.Objectives;
 using Server.Mobiles;
-using Server.Network;
 using Server.Engines.MLQuests.Gumps;
 using Server.Engines.MLQuests.Rewards;
 
 namespace Server.Engines.MLQuests
 {
-	[Flags]
+    [Flags]
 	public enum MLQuestInstanceFlags : byte
 	{
 		None		= 0x00,
@@ -38,7 +36,7 @@ namespace Server.Engines.MLQuests
 			m_Quest = quest;
 
 			m_Quester = quester;
-			m_QuesterType = ( quester == null ) ? null : quester.GetType();
+			m_QuesterType = quester == null ? null : quester.GetType();
 			m_Player = player;
 
 			m_Accepted = DateTime.Now;
@@ -95,7 +93,7 @@ namespace Server.Engines.MLQuests
 			set
 			{
 				m_Quester = value;
-				m_QuesterType = ( value == null ) ? null : value.GetType();
+				m_QuesterType = value == null ? null : value.GetType();
 			}
 		}
 
@@ -158,7 +156,7 @@ namespace Server.Engines.MLQuests
 
 		public bool IsCompleted()
 		{
-			bool requiresAll = ( m_Quest.ObjectiveType == ObjectiveType.All );
+			bool requiresAll = m_Quest.ObjectiveType == ObjectiveType.All;
 
 			foreach ( BaseObjectiveInstance obj in m_ObjectiveInstances )
 			{
@@ -233,7 +231,7 @@ namespace Server.Engines.MLQuests
 				}
 			}
 
-			if ( ( m_Quest.ObjectiveType == ObjectiveType.All && hasAnyFails ) || !hasAnyLeft )
+			if ( m_Quest.ObjectiveType == ObjectiveType.All && hasAnyFails || !hasAnyLeft )
 				Fail();
 
 			if ( !hasAnyLeft )
@@ -383,7 +381,7 @@ namespace Server.Engines.MLQuests
 
 				foreach ( Item rewardItem in rewards )
 				{
-					string rewardName = ( rewardItem.Name != null ) ? rewardItem.Name : String.Concat( "#", rewardItem.LabelNumber );
+					string rewardName = rewardItem.Name != null ? rewardItem.Name : String.Concat( "#", rewardItem.LabelNumber );
 
 					if ( rewardItem.Stackable )
 						m_Player.SendLocalizedMessage( 1115917, String.Concat( rewardItem.Amount, "\t", rewardName ) ); // You receive a reward: ~1_QUANTITY~ ~2_ITEM~
@@ -471,7 +469,7 @@ namespace Server.Engines.MLQuests
 
 		private bool GetFlag( MLQuestInstanceFlags flag )
 		{
-			return ( ( m_Flags & flag ) != 0 );
+			return ( m_Flags & flag ) != 0;
 		}
 
 		private void SetFlag( MLQuestInstanceFlags flag, bool value )
@@ -523,7 +521,7 @@ namespace Server.Engines.MLQuests
 			}
 
 			for ( int i = 0; i < objectives; ++i )
-				BaseObjectiveInstance.Deserialize( reader, version, ( instance != null && i < instance.Objectives.Length ) ? instance.Objectives[i] : null );
+				BaseObjectiveInstance.Deserialize( reader, version, instance != null && i < instance.Objectives.Length ? instance.Objectives[i] : null );
 
 			if ( instance != null )
 				instance.Slice();

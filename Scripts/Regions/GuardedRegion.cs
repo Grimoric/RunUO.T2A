@@ -1,15 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
-using Server;
 using Server.Commands;
 using Server.Mobiles;
-using Server.Spells;
 
 namespace Server.Regions
 {
-	public class GuardedRegion : BaseRegion
+    public class GuardedRegion : BaseRegion
 	{
 		private static object[] m_GuardParams = new object[1];
 		private Type m_GuardType;
@@ -109,7 +106,7 @@ namespace Server.Regions
 			if ( from.AccessLevel >= AccessLevel.GameMaster || IsDisabled() )
 				return true;
 
-			return ( from.Kills < 5 );
+			return @from.Kills < 5;
 		}
 
 		public virtual Type DefaultGuardType
@@ -284,7 +281,7 @@ namespace Server.Regions
 
 						foreach ( Mobile v in m.GetMobilesInRange( 8 ) )
 						{
-							if( !v.Player && v != m  && !IsGuardCandidate( v ) && ((v is BaseCreature)? ((BaseCreature)v).IsHumanInTown() : (v.Body.IsHuman && v.Region.IsPartOf( this ))) )
+							if( !v.Player && v != m  && !IsGuardCandidate( v ) && (v is BaseCreature? ((BaseCreature)v).IsHumanInTown() : v.Body.IsHuman && v.Region.IsPartOf( this )) )
 							{
 								double dist = m.GetDistanceToSqrt( v );
 
@@ -323,7 +320,7 @@ namespace Server.Regions
 
 			foreach ( Mobile m in eable )
 			{
-				if ( IsGuardCandidate( m ) && ( ( !AllowReds && m.Kills >= 5 && m.Region.IsPartOf( this ) ) || m_GuardCandidates.ContainsKey( m ) ) )
+				if ( IsGuardCandidate( m ) && ( !AllowReds && m.Kills >= 5 && m.Region.IsPartOf( this ) || m_GuardCandidates.ContainsKey( m ) ) )
 				{
 					GuardTimer timer = null;
 					m_GuardCandidates.TryGetValue( m, out timer );
@@ -345,10 +342,10 @@ namespace Server.Regions
 
 		public bool IsGuardCandidate( Mobile m )
 		{
-			if ( m is BaseGuard || !m.Alive || m.AccessLevel > AccessLevel.Player || m.Blessed || ( m is BaseCreature && ((BaseCreature)m).IsInvulnerable ) || IsDisabled() )
+			if ( m is BaseGuard || !m.Alive || m.AccessLevel > AccessLevel.Player || m.Blessed || m is BaseCreature && ((BaseCreature)m).IsInvulnerable || IsDisabled() )
 				return false;
 
-			return (!AllowReds && m.Kills >= 5) || m.Criminal;
+			return !AllowReds && m.Kills >= 5 || m.Criminal;
 		}
 
 		private class GuardTimer : Timer

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class FragmentOfAMap : Item
+    public class FragmentOfAMap : Item
 	{
 		public override int LabelNumber{ get{ return 1074533; } } // Fragment of a Map
 

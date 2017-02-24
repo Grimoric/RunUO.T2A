@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ElvenStoveSouthAddon : BaseAddon
+    public class ElvenStoveSouthAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed{ get{ return new ElvenStoveSouthDeed(); } }
 

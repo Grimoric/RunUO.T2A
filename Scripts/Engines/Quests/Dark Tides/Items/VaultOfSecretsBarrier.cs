@@ -1,13 +1,8 @@
-using System;
-using Server;
-using Server.Items;
 using Server.Mobiles;
-using Server.Engines.Quests;
-using Server.Engines.Quests.Necro;
 
 namespace Server.Engines.Quests.Necro
 {
-	public class VaultOfSecretsBarrier : Item
+    public class VaultOfSecretsBarrier : Item
 	{
 		[Constructable]
 		public VaultOfSecretsBarrier() : base( 0x49E )

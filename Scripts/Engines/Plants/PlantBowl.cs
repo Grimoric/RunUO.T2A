@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Targeting;
 using Server.Network;
 
 namespace Server.Engines.Plants
 {
-	public class PlantBowl : Item
+    public class PlantBowl : Item
 	{
 		public override int LabelNumber { get { return 1060834; } } // a plant bowl
 
@@ -144,7 +142,7 @@ namespace Server.Engines.Plants
 			bool contains = false;
 
 			for ( int i = 0; !contains && i < m_DirtPatchTiles.Length; i += 2 )
-				contains = ( tileID >= m_DirtPatchTiles[i] && tileID <= m_DirtPatchTiles[i + 1] );
+				contains = tileID >= m_DirtPatchTiles[i] && tileID <= m_DirtPatchTiles[i + 1];
 
 			return contains;
 		}

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class Ruby : Item
+    public class Ruby : Item
 	{
 		public override double DefaultWeight
 		{

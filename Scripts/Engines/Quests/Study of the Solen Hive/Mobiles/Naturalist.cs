@@ -1,13 +1,10 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 using Server.Engines.Plants;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Naturalist
 {
-	public class Naturalist : BaseQuester
+    public class Naturalist : BaseQuester
 	{
 		[Constructable]
 		public Naturalist() : base( "the Naturalist" )

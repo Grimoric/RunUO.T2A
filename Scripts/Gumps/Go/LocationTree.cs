@@ -1,12 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-using Server;
 
 namespace Server.Gumps
 {
-	public class LocationTree
+    public class LocationTree
 	{
 		private Map m_Map;
 		private ParentNode m_Root;

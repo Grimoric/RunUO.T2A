@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class BoneCouchComponent : AddonComponent
+    public class BoneCouchComponent : AddonComponent
 	{
 		public override int LabelNumber { get { return 1074477; } } // Bone couch
 

@@ -1,11 +1,8 @@
-using System;
-using Server;
-using Server.Spells;
 using Server.Network;
 
 namespace Server.Items
 {
-	[Flipable( 0x3D98, 0x3D94 )]
+    [Flipable( 0x3D98, 0x3D94 )]
 	public class WallTorchComponent : AddonComponent
 	{
 		public override int LabelNumber { get { return 1076282; } } // Wall Torch

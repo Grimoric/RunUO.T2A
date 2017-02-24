@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Guilds;
 using Server.Prompts;
 
 namespace Server.Gumps
 {
-	public class GuildTitlePrompt : Prompt
+    public class GuildTitlePrompt : Prompt
 	{
 		private Mobile m_Leader, m_Target;
 		private Guild m_Guild;

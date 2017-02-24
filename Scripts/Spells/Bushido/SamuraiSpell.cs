@@ -1,13 +1,10 @@
 using System;
-using Server;
-using Server.Spells;
 using Server.Network;
-using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Spells.Bushido
 {
-	public abstract class SamuraiSpell : Spell
+    public abstract class SamuraiSpell : Spell
 	{
 		public abstract double RequiredSkill{ get; }
 		public abstract int RequiredMana{ get; }

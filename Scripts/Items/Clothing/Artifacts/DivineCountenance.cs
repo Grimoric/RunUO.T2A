@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class DivineCountenance : HornedTribalMask
+    public class DivineCountenance : HornedTribalMask
 	{
 		public override int LabelNumber{ get{ return 1061289; } } // Divine Countenance
 

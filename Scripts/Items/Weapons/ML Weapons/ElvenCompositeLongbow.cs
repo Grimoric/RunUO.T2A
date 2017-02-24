@@ -1,10 +1,8 @@
 using System;
-using Server.Network;
-using Server.Items;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x2D1E, 0x2D2A )]
+    [FlipableAttribute( 0x2D1E, 0x2D2A )]
 	public class ElvenCompositeLongbow : BaseRanged
 	{
 		public override int EffectID{ get{ return 0xF42; } }

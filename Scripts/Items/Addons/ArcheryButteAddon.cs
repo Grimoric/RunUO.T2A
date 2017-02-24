@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Network;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0x100A/*East*/, 0x100B/*South*/ )]
+    [FlipableAttribute( 0x100A/*East*/, 0x100B/*South*/ )]
 	public class ArcheryButte : AddonComponent
 	{
 		private double m_MinSkill;
@@ -39,7 +38,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool FacingEast
 		{
-			get{ return ( ItemID == 0x100A ); }
+			get{ return ItemID == 0x100A; }
 			set{ ItemID = value ? 0x100A : 0x100B; }
 		}
 
@@ -142,7 +141,7 @@ namespace Server.Items
 				return;
 			}
 
-			if ( DateTime.Now < (m_LastUse + UseDelay) )
+			if ( DateTime.Now < m_LastUse + UseDelay )
 				return;
 
 			Point3D worldLoc = GetWorldLocation();
@@ -173,9 +172,9 @@ namespace Server.Items
 			Container pack = from.Backpack;
 			Type ammoType = bow.AmmoType;
 
-			bool isArrow = ( ammoType == typeof( Arrow ) );
-			bool isBolt = ( ammoType == typeof( Bolt ) );
-			bool isKnown = ( isArrow || isBolt );
+			bool isArrow = ammoType == typeof( Arrow );
+			bool isBolt = ammoType == typeof( Bolt );
+			bool isKnown = isArrow || isBolt;
 
 			if ( pack == null || !pack.ConsumeTotal( ammoType, 1 ) )
 			{
@@ -244,7 +243,7 @@ namespace Server.Items
 				splitScore = 5;
 			}
 
-			bool split = ( isKnown && ((m_Arrows + m_Bolts) * 0.02) > Utility.RandomDouble() );
+			bool split = isKnown && (m_Arrows + m_Bolts) * 0.02 > Utility.RandomDouble();
 
 			if ( split )
 			{

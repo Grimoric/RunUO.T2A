@@ -1,13 +1,10 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 using Server.Gumps;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Ninja
 {
-	public class Zoel : BaseQuester
+    public class Zoel : BaseQuester
 	{
 		[Constructable]
 		public Zoel() : base( "the Masterful Tactician" )

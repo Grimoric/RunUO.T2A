@@ -25,11 +25,10 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Threading;
-using Server;
 
 namespace Server.Network
 {
-	public class Listener : IDisposable
+    public class Listener : IDisposable
 	{
 		private Socket m_Listener;
 

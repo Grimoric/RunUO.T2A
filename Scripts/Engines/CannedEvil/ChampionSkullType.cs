@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Engines.CannedEvil
 {
-	public enum ChampionSkullType
+    public enum ChampionSkullType
 	{
 		Power,
 		Enlightenment,

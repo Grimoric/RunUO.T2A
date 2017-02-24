@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class RecarosRiposte : WarFork
+    public class RecarosRiposte : WarFork
 	{
 		public override int LabelNumber{ get{ return 1078195; } } // Recaro's Riposte
 

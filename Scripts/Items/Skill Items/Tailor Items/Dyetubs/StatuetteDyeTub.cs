@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class StatuetteDyeTub : DyeTub, Engines.VeteranRewards.IRewardItem
+    public class StatuetteDyeTub : DyeTub, Engines.VeteranRewards.IRewardItem
 	{
 		public override bool AllowDyables{ get{ return false; } }
 		public override bool AllowStatuettes{ get{ return true; } }

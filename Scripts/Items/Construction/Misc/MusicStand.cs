@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[Furniture]
+    [Furniture]
 	[Flipable(0xEBB, 0xEBC)]
 	public class TallMusicStand : Item
 	{

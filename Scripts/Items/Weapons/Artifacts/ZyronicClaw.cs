@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ZyronicClaw : ExecutionersAxe
+    public class ZyronicClaw : ExecutionersAxe
 	{
 		public override int LabelNumber{ get{ return 1061593; } } // Zyronic Claw
 		public override int ArtifactRarity{ get{ return 10; } }

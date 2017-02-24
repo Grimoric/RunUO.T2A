@@ -1,7 +1,4 @@
 using System;
-using System.Globalization;
-using Server;
-using Server.Items;
 using Server.Mobiles;
 using Server.Network;
 using Server.Engines.Quests;
@@ -10,7 +7,7 @@ using Haven = Server.Engines.Quests.Haven;
 
 namespace Server.Items
 {
-	public class BankCheck : Item
+    public class BankCheck : Item
 	{
 		private int m_Worth;
 

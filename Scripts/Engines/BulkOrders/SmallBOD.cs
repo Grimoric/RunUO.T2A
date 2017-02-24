@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Items;
 using System.Collections.Generic;
 using Server.Mobiles;
 
 namespace Server.Engines.BulkOrders
 {
-	[TypeAlias( "Scripts.Engines.BulkOrders.SmallBOD" )]
+    [TypeAlias( "Scripts.Engines.BulkOrders.SmallBOD" )]
 	public abstract class SmallBOD : Item
 	{
 		private int m_AmountCur, m_AmountMax;
@@ -39,7 +37,7 @@ namespace Server.Engines.BulkOrders
 		public BulkMaterialType Material{ get{ return m_Material; } set{ m_Material = value; InvalidateProperties(); } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public bool Complete{ get{ return ( m_AmountCur == m_AmountMax ); } }
+		public bool Complete{ get{ return m_AmountCur == m_AmountMax; } }
 
 		public override int LabelNumber{ get{ return 1045151; } } // a bulk order deed
 
@@ -71,7 +69,7 @@ namespace Server.Engines.BulkOrders
 			for ( int i = 0; i < chances.Length; ++i )
 			{
 				if ( random < chances[i] )
-					return ( i == 0 ? BulkMaterialType.None : start + (i - 1) );
+					return i == 0 ? BulkMaterialType.None : start + (i - 1);
 
 				random -= chances[i];
 			}
@@ -175,7 +173,7 @@ namespace Server.Engines.BulkOrders
 				{
 					from.SendLocalizedMessage( 1045166 ); // The maximum amount of requested items have already been combined to this deed.
 				}
-				else if ( m_Type == null || (objectType != m_Type && !objectType.IsSubclassOf( m_Type )) || (!(o is BaseWeapon) && !(o is BaseArmor) && !(o is BaseClothing)) )
+				else if ( m_Type == null || objectType != m_Type && !objectType.IsSubclassOf( m_Type ) || !(o is BaseWeapon) && !(o is BaseArmor) && !(o is BaseClothing) )
 				{
 					from.SendLocalizedMessage( 1045169 ); // The item is not in the request.
 				}
@@ -201,11 +199,11 @@ namespace Server.Engines.BulkOrders
 						bool isExceptional = false;
 
 						if ( o is BaseWeapon )
-							isExceptional = ( ((BaseWeapon)o).Quality == WeaponQuality.Exceptional );
+							isExceptional = ((BaseWeapon)o).Quality == WeaponQuality.Exceptional;
 						else if ( o is BaseArmor )
-							isExceptional = ( ((BaseArmor)o).Quality == ArmorQuality.Exceptional );
+							isExceptional = ((BaseArmor)o).Quality == ArmorQuality.Exceptional;
 						else if ( o is BaseClothing )
-							isExceptional = ( ((BaseClothing)o).Quality == ClothingQuality.Exceptional );
+							isExceptional = ((BaseClothing)o).Quality == ClothingQuality.Exceptional;
 
 						if ( m_RequireExceptional && !isExceptional )
 						{

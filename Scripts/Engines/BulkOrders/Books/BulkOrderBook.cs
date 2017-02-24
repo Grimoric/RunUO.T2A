@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Gumps;
 using Server.Multis;
 using Server.Prompts;
@@ -11,7 +9,7 @@ using Server.Items;
 
 namespace Server.Engines.BulkOrders
 {
-	public class BulkOrderBook : Item, ISecurable
+    public class BulkOrderBook : Item, ISecurable
 	{
 		private ArrayList m_Entries;
 		private BOBFilter m_Filter;
@@ -92,9 +90,9 @@ namespace Server.Engines.BulkOrders
 					SecureTrade trade = cont.Trade;
 
 					if ( trade != null && trade.From.Mobile == from )
-						trade.To.Mobile.SendGump( new BOBGump( (PlayerMobile)(trade.To.Mobile), this ) );
+						trade.To.Mobile.SendGump( new BOBGump( (PlayerMobile)trade.To.Mobile, this ) );
 					else if ( trade != null && trade.To.Mobile == from )
-						trade.From.Mobile.SendGump( new BOBGump( (PlayerMobile)(trade.From.Mobile), this ) );
+						trade.From.Mobile.SendGump( new BOBGump( (PlayerMobile)trade.From.Mobile, this ) );
 				}
 			}
 		}

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class TheBeserkersMaul : Maul
+    public class TheBeserkersMaul : Maul
 	{
 		public override int LabelNumber{ get{ return 1061108; } } // The Berserker's Maul
 		public override int ArtifactRarity{ get{ return 11; } }

@@ -1,11 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
-using Server.Misc;
 using Server.Mobiles;
-using Server.Network;
 using Server.Spells;
 using Server.Spells.Fifth;
 using Server.Spells.Seventh;
@@ -13,7 +9,7 @@ using Server.Spells.Ninjitsu;
 
 namespace Server
 {
-	public class AOS
+    public class AOS
 	{
 		public static void DisableStatInfluences()
 		{
@@ -78,7 +74,7 @@ namespace Server
 
 		public static int Scale( int input, int percent )
 		{
-			return (input * percent) / 100;
+			return input * percent / 100;
 		}
 
 		public static int GetStatus( Mobile from, int index )
@@ -557,18 +553,18 @@ namespace Server
 			for( int i = 0; i < 16; ++i )
 			{
 				vSkill <<= 1;
-				vSkill |= (v & 1);
+				vSkill |= v & 1;
 				v >>= 1;
 
 				vBonus <<= 1;
-				vBonus |= (v & 1);
+				vBonus |= v & 1;
 				v >>= 1;
 			}
 
 			skill = (SkillName)vSkill;
 			bonus = (double)vBonus / 10;
 
-			return (bonus != 0);
+			return bonus != 0;
 		}
 
 		public void SetValues( int index, SkillName skill, double bonus )
@@ -580,11 +576,11 @@ namespace Server
 			for( int i = 0; i < 16; ++i )
 			{
 				v <<= 1;
-				v |= (vBonus & 1);
+				v |= vBonus & 1;
 				vBonus >>= 1;
 
 				v <<= 1;
-				v |= (vSkill & 1);
+				v |= vSkill & 1;
 				vSkill >>= 1;
 			}
 
@@ -775,7 +771,7 @@ namespace Server
 
 		private static int[] m_Empty = new int[0];
 
-		public bool IsEmpty { get { return (m_Names == 0); } }
+		public bool IsEmpty { get { return m_Names == 0; } }
 		public Item Owner { get { return m_Owner; } }
 
 		public BaseAttributes( Item owner )
@@ -841,12 +837,12 @@ namespace Server
 
 		public void SetValue( int bitmask, int value )
 		{
-			if( (bitmask == (int)AosWeaponAttribute.DurabilityBonus) && (this is AosWeaponAttributes) )
+			if( bitmask == (int)AosWeaponAttribute.DurabilityBonus && this is AosWeaponAttributes )
 			{
 				if( m_Owner is BaseWeapon )
 					((BaseWeapon)m_Owner).UnscaleDurability();
 			}
-			else if( (bitmask == (int)AosArmorAttribute.DurabilityBonus) && (this is AosArmorAttributes) )
+			else if( bitmask == (int)AosArmorAttribute.DurabilityBonus && this is AosArmorAttributes )
 			{
 				if( m_Owner is BaseArmor )
 					((BaseArmor)m_Owner).UnscaleDurability();
@@ -912,12 +908,12 @@ namespace Server
 				}
 			}
 
-			if( (bitmask == (int)AosWeaponAttribute.DurabilityBonus) && (this is AosWeaponAttributes) )
+			if( bitmask == (int)AosWeaponAttribute.DurabilityBonus && this is AosWeaponAttributes )
 			{
 				if( m_Owner is BaseWeapon )
 					((BaseWeapon)m_Owner).ScaleDurability();
 			}
-			else if( (bitmask == (int)AosArmorAttribute.DurabilityBonus) && (this is AosArmorAttributes) )
+			else if( bitmask == (int)AosArmorAttribute.DurabilityBonus && this is AosArmorAttributes )
 			{
 				if( m_Owner is BaseArmor )
 					((BaseArmor)m_Owner).ScaleDurability();

@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Gumps
 {
-	public class ConfirmReleaseGump : Gump
+    public class ConfirmReleaseGump : Gump
 	{
 		private Mobile m_From;
 		private BaseCreature m_Pet;

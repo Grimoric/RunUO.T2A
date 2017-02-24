@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class LunaLance : Lance
+    public class LunaLance : Lance
 	{
 		public override int LabelNumber{ get{ return 1063469; } }
 

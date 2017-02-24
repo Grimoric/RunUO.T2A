@@ -1,13 +1,8 @@
-using System; 
-using System.Collections; 
-using Server.Items; 
-using Server.ContextMenus; 
-using Server.Misc; 
-using Server.Network; 
+using Server.Items;
 
-namespace Server.Mobiles 
-{ 
-	public class Executioner : BaseCreature 
+namespace Server.Mobiles
+{
+    public class Executioner : BaseCreature 
 	{ 
 		[Constructable] 
 		public Executioner() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 ) 

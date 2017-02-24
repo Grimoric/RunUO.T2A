@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Targeting;
 using Server.Gumps;
 
 namespace Server.Commands
 {
-	public class Skills
+    public class Skills
 	{
 		public static void Initialize()
 		{

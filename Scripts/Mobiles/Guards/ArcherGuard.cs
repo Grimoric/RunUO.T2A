@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
-using Server.Misc;
 using Server.Items;
-using Server.Mobiles;
 
 namespace Server.Mobiles
 {
-	public class ArcherGuard : BaseGuard
+    public class ArcherGuard : BaseGuard
 	{
 		private Timer m_AttackTimer, m_IdleTimer;
 
@@ -336,7 +333,7 @@ namespace Server.Mobiles
 
 			private bool TimeToSpare()
 			{
-				return (m_Owner.NextCombatTime - DateTime.Now) > TimeSpan.FromSeconds( 1.0 );
+				return m_Owner.NextCombatTime - DateTime.Now > TimeSpan.FromSeconds( 1.0 );
 			}
 
 			private bool OutOfMaxDistance( Mobile target )
@@ -381,7 +378,7 @@ namespace Server.Mobiles
 					return;
 				}
 
-				if ( (m_Stage++ % 4) == 0 || !m_Owner.Move( m_Owner.Direction ) )
+				if ( m_Stage++ % 4 == 0 || !m_Owner.Move( m_Owner.Direction ) )
 					m_Owner.Direction = (Direction)Utility.Random( 8 );
 
 				if ( m_Stage > 16 )

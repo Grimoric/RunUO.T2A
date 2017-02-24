@@ -1,13 +1,10 @@
-using System;
-using Server;
 using Server.Network;
-using Server.Targets;
 using Server.Spells;
 using Server.Spells.Seventh;
 
 namespace Server.Gumps
 {
-	public class PolymorphEntry
+    public class PolymorphEntry
 	{
 		public static readonly PolymorphEntry Chicken =		new PolymorphEntry( 8401, 0xD0, 1015236, 15, 10 );
 		public static readonly PolymorphEntry Dog =			new PolymorphEntry( 8405, 0xD9, 1015237, 17, 10 );
@@ -126,8 +123,8 @@ namespace Server.Gumps
 				for ( int c=0;c<cat.Entries.Length;c++ )
 				{
 					PolymorphEntry entry = (PolymorphEntry)cat.Entries[c];
-					x = 198 + (c%3)*129;
-					y = 38 + (c/3)*67;
+					x = 198 + c%3*129;
+					y = 38 + c/3*67;
 
 					AddHtmlLocalized( x, y, 100, 18, entry.LocNumber, false, false );
 					AddItem( x+20, y+25, entry.ArtID );
@@ -225,8 +222,8 @@ namespace Server.Gumps
 					}
 				}
 
-				int x = ( pos % 2 == 0 ) ? 14 : 264;
-				int y = ( pos / 2 ) * 64 + 44;
+				int x = pos % 2 == 0 ? 14 : 264;
+				int y = pos / 2 * 64 + 44;
 
 				AddImageTiledButton( x, y, 0x918, 0x919, i + 1, GumpButtonType.Reply, 0, entry.ArtID, 0x0, entry.X, entry.Y );
 				AddHtmlLocalized( x + 84, y, 250, 60, entry.LocNumber, 0x7FFF, false, false );

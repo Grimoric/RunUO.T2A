@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class DecoGarlicBulb : Item
+    public class DecoGarlicBulb : Item
 	{
 
 		[Constructable]

@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	public class Skillet : BaseTool
+    public class Skillet : BaseTool
 	{
 		public override int LabelNumber{ get{ return 1044567; } } // skillet
 

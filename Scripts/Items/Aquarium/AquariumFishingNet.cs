@@ -1,12 +1,6 @@
-using System;
-using Server;
-using Server.Mobiles;
-using Server.Items;
-using Server.Targeting;
-
 namespace Server.Items
 {
-	public class AquariumFishNet : SpecialFishingNet
+    public class AquariumFishNet : SpecialFishingNet
 	{
 		public override int LabelNumber{ get{ return 1074463; } } // An aquarium fishing net
 
@@ -80,7 +74,7 @@ namespace Server.Items
 		{
 			double skill = from.Skills.Fishing.Value;
 
-			if ( ( skill / 100.0 ) >= Utility.RandomDouble() )
+			if ( skill / 100.0 >= Utility.RandomDouble() )
 			{
 				int max = (int) skill / 5;
 

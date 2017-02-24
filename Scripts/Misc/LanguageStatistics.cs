@@ -1,15 +1,12 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using Server;
 using Server.Accounting;
 using Server.Commands;
-using Server.Mobiles;
 
 namespace Server.Misc
 {
-	/**
+    /**
 	 * This file requires to be saved in a Unicode
 	 * compatible format.
 	 * 
@@ -25,7 +22,7 @@ namespace Server.Misc
 	 * enable showing of unicode control chars
 	 **/
 
-	public class LanguageStatistics
+    public class LanguageStatistics
 	{
 		struct InternationalCode
 		{

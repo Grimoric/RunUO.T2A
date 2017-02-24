@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Items;
 
 namespace Server.Engines.Plants
 {
-	public class PlantResourceInfo
+    public class PlantResourceInfo
 	{
 		private static PlantResourceInfo[] m_ResourceList = new PlantResourceInfo[]
 			{

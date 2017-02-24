@@ -1,10 +1,9 @@
-using System; 
-using System.Collections.Generic; 
-using Server.Items; 
+using System.Collections.Generic;
+using Server.Items;
 
-namespace Server.Mobiles 
-{ 
-	public class SBWeaver: SBInfo 
+namespace Server.Mobiles
+{
+    public class SBWeaver: SBInfo 
 	{ 
 		private List<GenericBuyInfo> m_BuyInfo = new InternalBuyInfo(); 
 		private IShopSellInfo m_SellInfo = new InternalSellInfo(); 

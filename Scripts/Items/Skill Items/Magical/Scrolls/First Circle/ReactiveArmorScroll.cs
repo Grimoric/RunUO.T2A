@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class ReactiveArmorScroll : SpellScroll
+    public class ReactiveArmorScroll : SpellScroll
 	{
 		[Constructable]
 		public ReactiveArmorScroll() : this( 1 )

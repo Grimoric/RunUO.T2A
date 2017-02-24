@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an ore elemental corpse" )]
+    [CorpseName( "an ore elemental corpse" )]
 	public class AgapiteElemental : BaseCreature
 	{
 		[Constructable]

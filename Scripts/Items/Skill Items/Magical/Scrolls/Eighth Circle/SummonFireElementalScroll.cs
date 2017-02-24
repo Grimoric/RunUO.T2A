@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class SummonFireElementalScroll : SpellScroll
+    public class SummonFireElementalScroll : SpellScroll
 	{
 		[Constructable]
 		public SummonFireElementalScroll() : this( 1 )

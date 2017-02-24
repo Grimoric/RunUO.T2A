@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a scorpion corpse" )]
+    [CorpseName( "a scorpion corpse" )]
 	public class Scorpion : BaseCreature
 	{
 		[Constructable]
@@ -59,7 +56,7 @@ namespace Server.Mobiles
 		public override FoodType FavoriteFood{ get{ return FoodType.Meat; } }
 		public override PackInstinct PackInstinct{ get{ return PackInstinct.Arachnid; } }
 		public override Poison PoisonImmune{ get{ return Poison.Greater; } }
-		public override Poison HitPoison{ get{ return (0.8 >= Utility.RandomDouble() ? Poison.Greater : Poison.Deadly); } }
+		public override Poison HitPoison{ get{ return 0.8 >= Utility.RandomDouble() ? Poison.Greater : Poison.Deadly; } }
 
 		public Scorpion( Serial serial ) : base( serial )
 		{

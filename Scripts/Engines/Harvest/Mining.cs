@@ -1,12 +1,11 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Targeting;
 
 namespace Server.Engines.Harvest
 {
-	public class Mining : HarvestSystem
+    public class Mining : HarvestSystem
 	{
 		private static Mining m_System;
 
@@ -247,7 +246,7 @@ namespace Server.Engines.Harvest
 			{
 				int veinIndex = Array.IndexOf( def.Veins, vein );
 
-				if ( veinIndex >= 0 && veinIndex < (def.Veins.Length - 1) )
+				if ( veinIndex >= 0 && veinIndex < def.Veins.Length - 1 )
 					return def.Veins[veinIndex + 1];
 			}
 

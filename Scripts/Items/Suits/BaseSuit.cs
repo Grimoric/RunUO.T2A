@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public abstract class BaseSuit : Item
+    public abstract class BaseSuit : Item
 	{
 		private AccessLevel m_AccessLevel;
 
@@ -77,7 +74,7 @@ namespace Server.Items
 
 		public override bool VerifyMove( Mobile from )
 		{
-			return ( from.AccessLevel >= m_AccessLevel );
+			return @from.AccessLevel >= m_AccessLevel;
 		}
 
 		public override bool OnEquip( Mobile from )
@@ -85,7 +82,7 @@ namespace Server.Items
 			if ( from.AccessLevel < m_AccessLevel )
 				from.SendMessage( "You may not wear this." );
 
-			return ( from.AccessLevel >= m_AccessLevel );
+			return @from.AccessLevel >= m_AccessLevel;
 		}
 	}
 }

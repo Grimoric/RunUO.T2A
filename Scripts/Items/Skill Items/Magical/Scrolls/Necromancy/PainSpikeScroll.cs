@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class PainSpikeScroll : SpellScroll
+    public class PainSpikeScroll : SpellScroll
 	{
 		[Constructable]
 		public PainSpikeScroll() : this( 1 )

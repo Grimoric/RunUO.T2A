@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x27A9, 0x27F4 )]
+    [FlipableAttribute( 0x27A9, 0x27F4 )]
 	public class Daisho : BaseSword
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Feint; } }

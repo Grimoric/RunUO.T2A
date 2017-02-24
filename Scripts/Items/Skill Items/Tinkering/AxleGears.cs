@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[Flipable( 0x1051, 0x1052 )]
+    [Flipable( 0x1051, 0x1052 )]
 	public class AxleGears : Item
 	{
 		[Constructable]

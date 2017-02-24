@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
@@ -8,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Server.Factions
 {
-	public class FactionHorseVendor : BaseFactionVendor
+    public class FactionHorseVendor : BaseFactionVendor
 	{
 		public FactionHorseVendor( Town town, Faction faction ) : base( town, faction, "the Horse Breeder" )
 		{

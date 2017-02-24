@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class SubtextSign : Sign
+    public class SubtextSign : Sign
 	{
 		private string m_Subtext;
 

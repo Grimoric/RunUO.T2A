@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	[Flipable( 0x1EC0, 0x1EC3 )]
+    [Flipable( 0x1EC0, 0x1EC3 )]
 	public class PickpocketDip : AddonComponent
 	{
 		private double m_MinSkill;
@@ -28,7 +27,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool Swinging
 		{
-			get{ return ( m_Timer != null ); } 
+			get{ return m_Timer != null; } 
 		}
 
 		public PickpocketDip( int itemID ) : base( itemID )
@@ -39,7 +38,7 @@ namespace Server.Items
 
 		public void UpdateItemID()
 		{
-			int baseItemID = 0x1EC0 + (((ItemID - 0x1EC0) / 3) * 3);
+			int baseItemID = 0x1EC0 + (ItemID - 0x1EC0) / 3 * 3;
 
 			ItemID = baseItemID + (Swinging ? 1 : 0);
 		}

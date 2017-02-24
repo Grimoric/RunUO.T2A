@@ -1,10 +1,9 @@
 using System;
 using System.Collections;
-using Server;
 
 namespace Server.Engines.ConPVP
 {
-	public class RulesetLayout
+    public class RulesetLayout
 	{
 		private static RulesetLayout m_Root;
 
@@ -402,7 +401,7 @@ namespace Server.Engines.ConPVP
 
 		public string FindByIndex( int index )
 		{
-			if ( index >= m_Offset && index < (m_Offset + m_Options.Length) )
+			if ( index >= m_Offset && index < m_Offset + m_Options.Length )
 				return m_Description + ": " + m_Options[index - m_Offset];
 
 			for ( int i = 0; i < m_Children.Length; ++i )

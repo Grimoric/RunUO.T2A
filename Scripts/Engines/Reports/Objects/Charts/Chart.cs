@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Engines.Reports
 {
-	public abstract class Chart : PersistableObject
+    public abstract class Chart : PersistableObject
 	{
 		protected string m_Name;
 		protected string m_FileName;

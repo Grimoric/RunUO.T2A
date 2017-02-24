@@ -1,10 +1,6 @@
-using System;
-using Server.Items;
-using Server.Network;
-
 namespace Server.Items
 {
-	[Flipable( 0x232A, 0x232B )]
+    [Flipable( 0x232A, 0x232B )]
 	public class WinterGiftPackage2003 : GiftBox
 	{
 		[Constructable]

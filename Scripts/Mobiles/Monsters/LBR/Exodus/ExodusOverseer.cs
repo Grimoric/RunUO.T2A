@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an overseer's corpse" )]
+    [CorpseName( "an overseer's corpse" )]
 	public class ExodusOverseer : BaseCreature
 	{
 		private bool m_FieldActive;

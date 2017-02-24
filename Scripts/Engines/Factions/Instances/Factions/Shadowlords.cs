@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Factions
 {
-	public class Shadowlords : Faction
+    public class Shadowlords : Faction
 	{
 		private static Faction m_Instance;
 

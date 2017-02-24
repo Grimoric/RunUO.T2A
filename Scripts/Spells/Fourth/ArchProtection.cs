@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Server.Network;
-using Server.Items;
 using Server.Targeting;
-using Server.Engines.PartySystem;
 
 namespace Server.Spells.Fourth
 {
-	public class ArchProtectionSpell : MagerySpell
+    public class ArchProtectionSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Arch Protection", "Vas Uus Sanct",

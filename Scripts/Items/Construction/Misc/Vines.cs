@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class Vines : Item
+    public class Vines : Item
 	{
 		[Constructable]
 		public Vines() : this( Utility.Random( 8 ) )

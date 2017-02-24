@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class FountainAddon : StoneFountainAddon
+    public class FountainAddon : StoneFountainAddon
 	{
 		public override BaseAddonDeed Deed { get { return new FountainDeed(); } }
 

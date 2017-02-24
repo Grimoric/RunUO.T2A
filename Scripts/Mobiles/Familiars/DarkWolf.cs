@@ -1,13 +1,8 @@
 using System;
-using System.Collections;
-using Server;
-using Server.Items;
-using Server.Gumps;
-using Server.Network;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a dark wolf corpse" )]
+    [CorpseName( "a dark wolf corpse" )]
 	public class DarkWolfFamiliar : BaseFamiliar
 	{
 		public DarkWolfFamiliar()

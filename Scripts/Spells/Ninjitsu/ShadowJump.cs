@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using Server.Network;
 using Server.Items;
 using Server.Mobiles;
 using Server.Regions;
@@ -8,7 +6,7 @@ using Server.Targeting;
 
 namespace Server.Spells.Ninjitsu
 {
-	public class Shadowjump : NinjaSpell
+    public class Shadowjump : NinjaSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 			"Shadowjump", null,

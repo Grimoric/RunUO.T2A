@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Targeting;
 
 namespace Server.Engines.Plants
 {
-	public class PollinateTarget : Target
+    public class PollinateTarget : Target
 	{
 		private PlantItem m_Plant;
 

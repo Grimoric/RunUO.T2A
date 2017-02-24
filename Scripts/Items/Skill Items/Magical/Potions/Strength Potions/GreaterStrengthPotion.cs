@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class GreaterStrengthPotion : BaseStrengthPotion
+    public class GreaterStrengthPotion : BaseStrengthPotion
 	{
 		public override int StrOffset{ get{ return 20; } }
 		public override TimeSpan Duration{ get{ return TimeSpan.FromMinutes( 2.0 ); } }

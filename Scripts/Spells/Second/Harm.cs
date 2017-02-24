@@ -1,10 +1,8 @@
-using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Second
 {
-	public class HarmSpell : MagerySpell
+    public class HarmSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Harm", "An Mani",

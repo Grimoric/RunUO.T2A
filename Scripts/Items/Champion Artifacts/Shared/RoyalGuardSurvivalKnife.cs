@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class RoyalGuardSurvivalKnife : SkinningKnife
+    public class RoyalGuardSurvivalKnife : SkinningKnife
 	{
 		public override int LabelNumber{ get{ return 1094918; } } // Royal Guard Survival Knife [Replica]
 

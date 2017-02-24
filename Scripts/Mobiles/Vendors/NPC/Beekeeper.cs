@@ -1,10 +1,8 @@
-using System; 
-using System.Collections.Generic; 
-using Server; 
+using System.Collections.Generic;
 
-namespace Server.Mobiles 
-{ 
-	public class Beekeeper : BaseVendor 
+namespace Server.Mobiles
+{
+    public class Beekeeper : BaseVendor 
 	{ 
 		private List<SBInfo> m_SBInfos = new List<SBInfo>(); 
 		protected override List<SBInfo> SBInfos{ get { return m_SBInfos; } } 

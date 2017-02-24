@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Items;
-using Server.Spells;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a deathwatchbeetle corpse" )]
+    [CorpseName( "a deathwatchbeetle corpse" )]
 	[TypeAlias( "Server.Mobiles.DeathWatchBeetle" )]
 	public class DeathwatchBeetle : BaseCreature
 	{
@@ -95,9 +92,9 @@ namespace Server.Mobiles
 
 		public override void AlterMeleeDamageTo( Mobile to, ref int damage )
 		{
-			if ( Utility.RandomBool() && (this.Mana > 14) && to != null )
+			if ( Utility.RandomBool() && this.Mana > 14 && to != null )
 			{
-				damage = (damage + (damage / 2));
+				damage = damage + damage / 2;
 				to.SendLocalizedMessage( 1060091 ); // You take extra damage from the crushing attack!
 				to.PlaySound( 0x1E1 );
 				to.FixedParticles( 0x377A, 1, 32, 0x26da, 0, 0, 0 );

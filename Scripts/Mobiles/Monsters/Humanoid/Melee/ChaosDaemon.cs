@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a chaos daemon corpse" )]
+    [CorpseName( "a chaos daemon corpse" )]
 	public class ChaosDaemon : BaseCreature
 	{
 		public override WeaponAbility GetWeaponAbility()

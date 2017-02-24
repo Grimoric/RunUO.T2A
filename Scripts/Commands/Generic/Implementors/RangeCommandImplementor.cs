@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Commands.Generic
 {
-	public class RangeCommandImplementor : BaseCommandImplementor
+    public class RangeCommandImplementor : BaseCommandImplementor
 	{
 		private static RangeCommandImplementor m_Instance;
 

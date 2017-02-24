@@ -1,13 +1,9 @@
-using System;
-using Server.Network;
-using Server.Prompts;
 using Server.Guilds;
 using Server.Multis;
-using Server.Regions;
 
 namespace Server.Items
 {
-	public class GuildTeleporter : Item
+    public class GuildTeleporter : Item
 	{
 		private Item m_Stone;
 

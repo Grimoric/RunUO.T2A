@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
-using Server.Items;
-using Server.Targeting;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a cyclopean corpse" )]
+    [CorpseName( "a cyclopean corpse" )]
 	public class Cyclops : BaseCreature
 	{
 		[Constructable]

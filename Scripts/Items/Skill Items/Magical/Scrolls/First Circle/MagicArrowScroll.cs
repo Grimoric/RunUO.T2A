@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class MagicArrowScroll : SpellScroll
+    public class MagicArrowScroll : SpellScroll
 	{
 		[Constructable]
 		public MagicArrowScroll() : this( 1 )

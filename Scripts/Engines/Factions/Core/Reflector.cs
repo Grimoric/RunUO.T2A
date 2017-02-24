@@ -1,12 +1,10 @@
 using System;
 using System.Reflection;
-using System.Collections;
-using Server;
 using System.Collections.Generic;
 
 namespace Server.Factions
 {
-	public class Reflector
+    public class Reflector
 	{
 		private static List<Town> m_Towns;
 

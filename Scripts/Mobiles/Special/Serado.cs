@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Items;
 using Server.Engines.CannedEvil;
 
 namespace Server.Mobiles
 {
-	public class Serado : BaseChampion
+    public class Serado : BaseChampion
 	{
 		public override ChampionSkullType SkullType{ get{ return ChampionSkullType.Power; } }
 
@@ -112,7 +111,7 @@ namespace Server.Mobiles
 
 		private void DoCounter( Mobile attacker )
 		{
-			if ( this.Map == null || ( attacker is BaseCreature && ((BaseCreature)attacker).BardProvoked ) )
+			if ( this.Map == null || attacker is BaseCreature && ((BaseCreature)attacker).BardProvoked )
 				return;
 
 			if ( 0.2 > Utility.RandomDouble() )

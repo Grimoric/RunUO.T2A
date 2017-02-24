@@ -1,22 +1,21 @@
 using System;
 using System.Collections;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 
 namespace Server.Engines.Reports
 {
-	// Modified from MS sample
+    // Modified from MS sample
 
-	//*********************************************************************
-	//
-	// PieChart Class
-	//
-	// This class uses GDI+ to render Pie Chart.
-	//
-	//*********************************************************************
+    //*********************************************************************
+    //
+    // PieChart Class
+    //
+    // This class uses GDI+ to render Pie Chart.
+    //
+    //*********************************************************************
 
-	public class PieChartRenderer : ChartRenderer
+    public class PieChartRenderer : ChartRenderer
 	{
 		private const int	_bufferSpace = 125;
 		private ArrayList	_chartItems;
@@ -139,14 +138,14 @@ namespace Server.Engines.Reports
 								sfp.LineAlignment = StringAlignment.Center;
 							}
 
-							float perc = (item.SweepSize * 100.0f) / 360.0f;
+							float perc = item.SweepSize * 100.0f / 360.0f;
 							string percString = String.Format( "{0:F0}%", perc );
 
-							float px = pieRect.X+(pieRect.Width/2);
-							float py = pieRect.Y+(pieRect.Height/2);
+							float px = pieRect.X+pieRect.Width/2;
+							float py = pieRect.Y+pieRect.Height/2;
 
-							double angle = item.StartPos + (item.SweepSize/2);
-							double rads = (angle/180.0)*Math.PI;
+							double angle = item.StartPos + item.SweepSize/2;
+							double rads = angle/180.0*Math.PI;
 
 							px += (float)(Math.Cos( rads ) * perimeter / 3);
 							py += (float)(Math.Sin( rads ) * perimeter / 3);

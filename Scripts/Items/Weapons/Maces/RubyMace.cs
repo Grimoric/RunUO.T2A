@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class RubyMace : DiamondMace
+    public class RubyMace : DiamondMace
 	{
 		public override int LabelNumber{ get{ return 1073529; } } // ruby mace
 

@@ -1,11 +1,9 @@
 using System;
-using Server;
-using Server.Movement;
 using CalcMoves = Server.Movement.Movement;
 
 namespace Server
 {
-	public class PathFollower
+    public class PathFollower
 	{
 		// Should we use pathfinding? 'false' for not
 		private static bool Enabled = true;
@@ -38,7 +36,7 @@ namespace Server
 		public MoveResult Move( Direction d )
 		{
 			if ( m_Mover == null )
-				return ( m_From.Move( d ) ? MoveResult.Success : MoveResult.Blocked );
+				return m_From.Move( d ) ? MoveResult.Success : MoveResult.Blocked;
 
 			return m_Mover( d );
 		}
@@ -87,7 +85,7 @@ namespace Server
 
 			if ( m_Path == null )
 				repath = true;
-			else if ( (!m_Path.Success || goal != m_LastGoalLoc) && (m_LastPathTime + RepathDelay) <= DateTime.Now )
+			else if ( (!m_Path.Success || goal != m_LastGoalLoc) && m_LastPathTime + RepathDelay <= DateTime.Now )
 				repath = true;
 			else if ( m_Path.Success && Check( m_From.Location, m_LastGoalLoc, 0 ) )
 				repath = true;

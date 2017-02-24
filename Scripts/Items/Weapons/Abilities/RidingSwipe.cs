@@ -1,16 +1,15 @@
 
 using System;
-using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	/// <summary>
-	/// If you are on foot, dismounts your opponent and damage the ethereal's rider or the
-	/// living mount(which must be healed before ridden again). If you are mounted, damages
-	/// and stuns the mounted opponent.
-	/// </summary>
-	public class RidingSwipe : WeaponAbility
+    /// <summary>
+    /// If you are on foot, dismounts your opponent and damage the ethereal's rider or the
+    /// living mount(which must be healed before ridden again). If you are mounted, damages
+    /// and stuns the mounted opponent.
+    /// </summary>
+    public class RidingSwipe : WeaponAbility
 	{
 		public RidingSwipe()
 		{

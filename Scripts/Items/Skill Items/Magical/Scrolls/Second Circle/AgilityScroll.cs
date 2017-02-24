@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class AgilityScroll : SpellScroll
+    public class AgilityScroll : SpellScroll
 	{
 		[Constructable]
 		public AgilityScroll() : this( 1 )

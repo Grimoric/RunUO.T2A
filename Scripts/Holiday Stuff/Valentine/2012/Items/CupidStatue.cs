@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x4F7C, 0x4F7D )]
+    [FlipableAttribute( 0x4F7C, 0x4F7D )]
 	public class CupidStatue : Item
 	{
 		public override int LabelNumber { get { return 1099220; } } // cupid statue

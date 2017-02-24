@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class CandleSkull : BaseLight
+    public class CandleSkull : BaseLight
 	{
 		public override int LitItemID
 		{

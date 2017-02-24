@@ -1,15 +1,9 @@
-using System;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
-using Server.Gumps;
-using Server.Prompts;
-using Server.Network;
-using Server.ContextMenus;
 
 namespace Server.Mobiles
 {
-	public class Barkeeper : BaseVendor
+    public class Barkeeper : BaseVendor
 	{
 		private List<SBInfo> m_SBInfos = new List<SBInfo>(); 
 		protected override List<SBInfo> SBInfos{ get { return m_SBInfos; } } 

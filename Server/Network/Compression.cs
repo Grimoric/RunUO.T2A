@@ -19,14 +19,14 @@
  ***************************************************************************/
 
 using System;
-using System.IO;
 using System.Runtime.InteropServices;
 
-namespace Server.Network {
-	/// <summary>
-	/// Handles outgoing packet compression for the network.
-	/// </summary>
-	public static class Compression {
+namespace Server.Network
+{
+    /// <summary>
+    /// Handles outgoing packet compression for the network.
+    /// </summary>
+    public static class Compression {
 		private static int[] _huffmanTable = new int[514]
 		{
 			0x2, 0x000,	0x5, 0x01F,	0x6, 0x022,	0x7, 0x034,	0x7, 0x075,	0x6, 0x028,	0x6, 0x03B,	0x7, 0x032,
@@ -78,10 +78,10 @@ namespace Server.Network {
 		private const int TerminalCodeLength = 4;
 
 		// If our input exceeds this length, we cannot possibly compress it within the buffer
-		private const int DefiniteOverflow = ( ( BufferSize * 8 ) - TerminalCodeLength ) / MinimalCodeLength;
+		private const int DefiniteOverflow = ( BufferSize * 8 - TerminalCodeLength ) / MinimalCodeLength;
 
 		// If our input exceeds this length, we may potentially overflow the buffer
-		private const int PossibleOverflow = ( ( BufferSize * 8 ) - TerminalCodeLength ) / MaximalCodeLength;
+		private const int PossibleOverflow = ( BufferSize * 8 - TerminalCodeLength ) / MaximalCodeLength;
 
 		private static object _syncRoot = new object();
 
@@ -100,7 +100,7 @@ namespace Server.Network {
 				throw new ArgumentOutOfRangeException( "offset" );
 			} else if ( count < 0 || count > input.Length ) {
 				throw new ArgumentOutOfRangeException( "count" );
-			} else if ( ( input.Length - offset ) < count ) {
+			} else if ( input.Length - offset < count ) {
 				throw new ArgumentException();
 			}
 
@@ -152,8 +152,8 @@ namespace Server.Network {
 
 							// align on byte boundary
 							if ( ( bitCount & 7 ) != 0 ) {
-								bitValue <<= ( 8 - ( bitCount & 7 ) );
-								bitCount += ( 8 - ( bitCount & 7 ) );
+								bitValue <<= 8 - ( bitCount & 7 );
+								bitCount += 8 - ( bitCount & 7 );
 							}
 
 							while ( bitCount >= 8 ) {

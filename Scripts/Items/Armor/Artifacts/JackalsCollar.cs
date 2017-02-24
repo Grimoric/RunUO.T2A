@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class JackalsCollar : PlateGorget
+    public class JackalsCollar : PlateGorget
 	{
 		public override int LabelNumber{ get{ return 1061594; } } // Jackal's Collar
 		public override int ArtifactRarity{ get{ return 11; } }

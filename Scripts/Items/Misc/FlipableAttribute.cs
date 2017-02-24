@@ -1,12 +1,11 @@
 using System;
-using Server;
 using System.Reflection;
 using Server.Targeting;
 using Server.Commands;
 
 namespace Server.Items
 {
-	public class FlipCommandHandlers
+    public class FlipCommandHandlers
 	{
 		public static void Initialize()
 		{

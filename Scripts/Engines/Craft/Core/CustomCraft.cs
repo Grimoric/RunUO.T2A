@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Items;
 
 namespace Server.Engines.Craft
 {
-	public abstract class CustomCraft
+    public abstract class CustomCraft
 	{
 		private Mobile m_From;
 		private CraftItem m_CraftItem;

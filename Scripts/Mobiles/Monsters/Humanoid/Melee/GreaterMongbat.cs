@@ -1,11 +1,6 @@
-using System;
-using System.Collections;
-using Server.Items;
-using Server.Targeting;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a mongbat corpse" )]
+    [CorpseName( "a mongbat corpse" )]
 	public class GreaterMongbat : BaseCreature
 	{
 		[Constructable]

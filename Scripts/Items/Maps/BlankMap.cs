@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class BlankMap : MapItem
+    public class BlankMap : MapItem
 	{
 		[Constructable]
 		public BlankMap()

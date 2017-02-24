@@ -17,7 +17,7 @@
 
 		[Constructable]
 		public Bucket( bool filled )
-			: base( ( filled ) ? Bucket.fItemID : Bucket.vItemID, filled )
+			: base( filled ? Bucket.fItemID : Bucket.vItemID, filled )
 		{
 		}
 

@@ -1,10 +1,8 @@
-using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Third
 {
-	public class PoisonSpell : MagerySpell
+    public class PoisonSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Poison", "In Nox",

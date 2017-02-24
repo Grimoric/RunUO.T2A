@@ -1,13 +1,12 @@
 using System;
 using Server.Network;
-using Server.Items;
 using Server.Targeting;
 using Server.Mobiles;
 using Server.Engines.CannedEvil;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0xE81, 0xE82 )]
+    [FlipableAttribute( 0xE81, 0xE82 )]
 	public class ShepherdsCrook : BaseStaff
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.CrushingBlow; } }

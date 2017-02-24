@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class DecoDragonsBlood : Item
+    public class DecoDragonsBlood : Item
 	{
 
 		[Constructable]

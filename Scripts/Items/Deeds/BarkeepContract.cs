@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Network;
 using Server.Multis;
 
 namespace Server.Items
 {
-	public class BarkeepContract : Item
+    public class BarkeepContract : Item
 	{
 		public override string DefaultName
 		{

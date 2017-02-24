@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Network;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a fan dancer corpse" )]
+    [CorpseName( "a fan dancer corpse" )]
 	public class FanDancer : BaseCreature
 	{
 		[Constructable]

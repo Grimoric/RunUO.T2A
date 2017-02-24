@@ -1,14 +1,11 @@
-using Server;
-using Server.Engines.VeteranRewards;
 using Server.Gumps;
 using Server.Multis;
 using Server.Network;
 using Server.Targeting;
-using System;
 
 namespace Server.Items
 {
-	public class Fireflies : Item, IAddon
+    public class Fireflies : Item, IAddon
 	{
 		public override int LabelNumber { get { return 1150061; }} 
 
@@ -250,7 +247,7 @@ namespace Server.Items
 									}
 								}
 
-								if( ( ( m_ItemID == 0x2336 && north ) || ( m_ItemID == 0x2332 && west ) ) && isclear )
+								if( ( m_ItemID == 0x2336 && north || m_ItemID == 0x2332 && west ) && isclear )
 								{
 									Fireflies flies = new Fireflies( m_ItemID );
 

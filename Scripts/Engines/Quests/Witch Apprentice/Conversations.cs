@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Engines.Quests.Hag
 {
-	public class DontOfferConversation : QuestConversation
+    public class DontOfferConversation : QuestConversation
 	{
 		public override object Message
 		{

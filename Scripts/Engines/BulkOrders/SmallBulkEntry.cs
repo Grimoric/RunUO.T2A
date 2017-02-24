@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using Server;
 
 namespace Server.Engines.BulkOrders
 {
-	public class SmallBulkEntry
+    public class SmallBulkEntry
 	{
 		private Type m_Type;
 		private int m_Number;

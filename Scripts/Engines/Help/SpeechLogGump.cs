@@ -1,15 +1,13 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using Server;
 using Server.Gumps;
 using Server.Accounting;
 using Server.Network;
 
 namespace Server.Engines.Help
 {
-	public class SpeechLogGump : Gump
+    public class SpeechLogGump : Gump
 	{
 		public static readonly int MaxEntriesPerPage = 30;
 

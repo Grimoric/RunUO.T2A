@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Gumps;
 
 namespace Server.Items
 {
-	public abstract class BaseImprisonedMobile : Item
+    public abstract class BaseImprisonedMobile : Item
 	{
 		public abstract BaseCreature Summon{ get; }
 		

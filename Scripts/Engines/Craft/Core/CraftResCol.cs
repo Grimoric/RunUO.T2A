@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Engines.Craft
 {
-	public class CraftResCol : System.Collections.CollectionBase
+    public class CraftResCol : System.Collections.CollectionBase
 	{
 		public CraftResCol()
 		{

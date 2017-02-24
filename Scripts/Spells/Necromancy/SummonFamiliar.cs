@@ -1,14 +1,12 @@
 using System;
 using System.Collections;
 using Server.Network;
-using Server.Items;
-using Server.Targeting;
 using Server.Gumps;
 using Server.Mobiles;
 
 namespace Server.Spells.Necromancy
 {
-	public class SummonFamiliarSpell : NecromancerSpell
+    public class SummonFamiliarSpell : NecromancerSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Summon Familiar", "Kal Xen Bal",
@@ -131,14 +129,14 @@ namespace Server.Spells.Necromancy
 			{
 				object name = entries[i].Name;
 
-				bool enabled = ( necro >= entries[i].ReqNecromancy && spirit >= entries[i].ReqSpiritSpeak );
+				bool enabled = necro >= entries[i].ReqNecromancy && spirit >= entries[i].ReqSpiritSpeak;
 
-				AddButton( 27, 53 + (i * 21), 9702, 9703, i + 1, GumpButtonType.Reply, 0 );
+				AddButton( 27, 53 + i * 21, 9702, 9703, i + 1, GumpButtonType.Reply, 0 );
 
 				if ( name is int )
-					AddHtmlLocalized( 50, 51 + (i * 21), 150, 20, (int)name, enabled ? EnabledColor16 : DisabledColor16, false, false );
+					AddHtmlLocalized( 50, 51 + i * 21, 150, 20, (int)name, enabled ? EnabledColor16 : DisabledColor16, false, false );
 				else if ( name is string )
-					AddHtml( 50, 51 + (i * 21), 150, 20, String.Format( "<BASEFONT COLOR=#{0:X6}>{1}</BASEFONT>", enabled ? EnabledColor32 : DisabledColor32, name ), false, false );
+					AddHtml( 50, 51 + i * 21, 150, 20, String.Format( "<BASEFONT COLOR=#{0:X6}>{1}</BASEFONT>", enabled ? EnabledColor32 : DisabledColor32, name ), false, false );
 			}
 		}
 

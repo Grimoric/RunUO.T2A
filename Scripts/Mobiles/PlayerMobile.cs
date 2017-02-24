@@ -23,13 +23,12 @@ using Server.Accounting;
 using Server.Engines.CannedEvil;
 using Server.Engines.Craft;
 using Server.Spells.Spellweaving;
-using Server.Engines.PartySystem;
 using Server.Engines.MLQuests;
 
 namespace Server.Mobiles
 {
-	#region Enums
-	[Flags]
+    #region Enums
+    [Flags]
 	public enum PlayerFlag // First 16 bits are reserved for default-distro use, start custom flags at 0x00010000
 	{
 		None					= 0x00000000,
@@ -566,7 +565,7 @@ namespace Server.Mobiles
 
 		public bool GetFlag( PlayerFlag flag )
 		{
-			return ( (m_Flags & flag) != 0 );
+			return (m_Flags & flag) != 0;
 		}
 
 		public void SetFlag( PlayerFlag flag, bool value )
@@ -602,8 +601,8 @@ namespace Server.Mobiles
 				{
 					PlayerMobile pm = (PlayerMobile)m;
 
-					if((( !pm.Mounted || ( pm.Mount != null && pm.Mount is EtherealMount )) && ( pm.AllFollowers.Count > pm.AutoStabled.Count )) ||
-						( pm.Mounted && ( pm.AllFollowers.Count  > ( pm.AutoStabled.Count +1 ))))
+					if(( !pm.Mounted || pm.Mount != null && pm.Mount is EtherealMount) && pm.AllFollowers.Count > pm.AutoStabled.Count ||
+						pm.Mounted && pm.AllFollowers.Count  > pm.AutoStabled.Count +1)
 					{
 						pm.AutoStablePets(); /* autostable checks summons, et al: no need here */
 					}
@@ -617,13 +616,13 @@ namespace Server.Mobiles
 		{
 			get
 			{
-				return ( CheckBlock( m_MountBlock ) ) ? m_MountBlock.m_Type : BlockMountType.None;
+				return CheckBlock( m_MountBlock ) ? m_MountBlock.m_Type : BlockMountType.None;
 			}
 		}
 
 		private static bool CheckBlock( MountBlock block )
 		{
-			return ( ( block is MountBlock ) && block.m_Timer.Running );
+			return block is MountBlock && block.m_Timer.Running;
 		}
 
 		private class MountBlock
@@ -658,7 +657,7 @@ namespace Server.Mobiles
 				}
 			}
 
-			if( ( m_MountBlock == null ) || !m_MountBlock.m_Timer.Running || ( m_MountBlock.m_Timer.Next < ( DateTime.UtcNow + duration ) ) )
+			if( m_MountBlock == null || !m_MountBlock.m_Timer.Running || m_MountBlock.m_Timer.Next < DateTime.UtcNow + duration )
 			{
 				m_MountBlock = new MountBlock( duration, type, this );
 			}
@@ -717,7 +716,7 @@ namespace Server.Mobiles
 			ComputeLightLevels( out global, out personal );
 
 			if ( !forceResend )
-				forceResend = ( global != m_LastGlobalLight || personal != m_LastPersonalLight );
+				forceResend = global != m_LastGlobalLight || personal != m_LastPersonalLight;
 
 			if ( !forceResend )
 				return;
@@ -735,7 +734,7 @@ namespace Server.Mobiles
 			int min = int.MinValue;
 
 			if ( magicResist >= 1000 )
-				min = 40 + ((magicResist - 1000) / 50);
+				min = 40 + (magicResist - 1000) / 50;
 			else if ( magicResist >= 400 )
 				min = (magicResist - 400) / 15;
 
@@ -929,11 +928,11 @@ namespace Server.Mobiles
 							int dexBonus = armor.ComputeStatBonus( StatType.Dex ), dexReq = armor.ComputeStatReq( StatType.Dex );
 							int intBonus = armor.ComputeStatBonus( StatType.Int ), intReq = armor.ComputeStatReq( StatType.Int );
 
-							if( dex < dexReq || (dex + dexBonus) < 1 )
+							if( dex < dexReq || dex + dexBonus < 1 )
 								drop = true;
-							else if( str < strReq || (str + strBonus) < 1 )
+							else if( str < strReq || str + strBonus < 1 )
 								drop = true;
-							else if( intel < intReq || (intel + intBonus) < 1 )
+							else if( intel < intReq || intel + intBonus < 1 )
 								drop = true;
 						}
 
@@ -976,7 +975,7 @@ namespace Server.Mobiles
 							int strBonus = clothing.ComputeStatBonus( StatType.Str );
 							int strReq = clothing.ComputeStatReq( StatType.Str );
 
-							if( str < strReq || (str + strBonus) < 1 )
+							if( str < strReq || str + strBonus < 1 )
 								drop = true;
 						}
 
@@ -1113,7 +1112,7 @@ namespace Server.Mobiles
 
 			if ( pm != null )
 			{
-				pm.m_GameTime += (DateTime.Now - pm.m_SessionStart);
+				pm.m_GameTime += DateTime.Now - pm.m_SessionStart;
 
 				if ( pm.m_Quest != null )
 					pm.m_Quest.StopTimer();
@@ -1175,10 +1174,10 @@ namespace Server.Mobiles
 
 		public override bool CanBeHarmful( Mobile target, bool message, bool ignoreOurBlessedness )
 		{
-			if ( m_DesignContext != null || (target is PlayerMobile && ((PlayerMobile)target).m_DesignContext != null) )
+			if ( m_DesignContext != null || target is PlayerMobile && ((PlayerMobile)target).m_DesignContext != null )
 				return false;
 
-			if ( (target is BaseCreature && ((BaseCreature)target).IsInvulnerable) || target is PlayerVendor || target is TownCrier )
+			if ( target is BaseCreature && ((BaseCreature)target).IsInvulnerable || target is PlayerVendor || target is TownCrier )
 			{
 				if ( message )
 				{
@@ -1196,7 +1195,7 @@ namespace Server.Mobiles
 
 		public override bool CanBeBeneficial( Mobile target, bool message, bool allowDead )
 		{
-			if ( m_DesignContext != null || (target is PlayerMobile && ((PlayerMobile)target).m_DesignContext != null) )
+			if ( m_DesignContext != null || target is PlayerMobile && ((PlayerMobile)target).m_DesignContext != null )
 				return false;
 
 			return base.CanBeBeneficial( target, message, allowDead );
@@ -1204,7 +1203,7 @@ namespace Server.Mobiles
 
 		public override bool CheckContextMenuDisplay( IEntity target )
 		{
-			return ( m_DesignContext == null );
+			return m_DesignContext == null;
 		}
 
 		public override void OnItemAdded( Item item )
@@ -1273,7 +1272,7 @@ namespace Server.Mobiles
 				int strBase = this.RawStr;
                 int strOffs = GetStatOffset( StatType.Str );
 
-				return (strBase / 2) + 50 + strOffs;
+				return strBase / 2 + 50 + strOffs;
 			}
 		}
 
@@ -1387,7 +1386,7 @@ namespace Server.Mobiles
 			int endX = startX + foundation.Components.Width - 1;
 			int endY = startY + foundation.Components.Height - 2;
 
-			return ( newX >= startX && newY >= startY && newX < endX && newY < endY && Map == foundation.Map );
+			return newX >= startX && newY >= startY && newX < endX && newY < endY && Map == foundation.Map;
 		}
 
 		public override bool AllowItemUse( Item item )
@@ -1440,7 +1439,7 @@ namespace Server.Mobiles
 			m_NextProtectionCheck = 10;
 
 			Regions.GuardedRegion reg = (Regions.GuardedRegion) this.Region.GetRegion( typeof( Regions.GuardedRegion ) );
-			bool isProtected = ( reg != null && !reg.IsDisabled() );
+			bool isProtected = reg != null && !reg.IsDisabled();
 
 			if ( isProtected != m_LastProtectedMessage )
 			{
@@ -1465,10 +1464,10 @@ namespace Server.Mobiles
 			if ( !isTeleport && AccessLevel == AccessLevel.Player )
 			{
 				// moving, not teleporting
-				int zDrop = ( this.Location.Z - loc.Z );
+				int zDrop = this.Location.Z - loc.Z;
 
 				if ( zDrop > 20 ) // we fell more than one story
-					Hits -= ((zDrop / 20) * 10) - 5; // deal some damage; does not kill, disrupt, etc
+					Hits -= zDrop / 20 * 10 - 5; // deal some damage; does not kill, disrupt, etc
 			}
 
 			base.SetLocation( loc, isTeleport );
@@ -1554,7 +1553,7 @@ namespace Server.Mobiles
 
 		private bool CanInsure( Item item )
 		{
-			if ( ( item is Container && !( item is BaseQuiver ) ) || item is BagOfSending || item is KeyRing || item is PotionKeg || item is Sigil )
+			if ( item is Container && !( item is BaseQuiver ) || item is BagOfSending || item is KeyRing || item is PotionKeg || item is Sigil )
 				return false;
 
 			if ( item.Stackable )
@@ -1736,7 +1735,7 @@ namespace Server.Mobiles
 
 		private bool DisplayInItemInsuranceGump( Item item )
 		{
-			return ( ( item.Visible || AccessLevel >= AccessLevel.GameMaster ) && ( item.Insured || CanInsure( item ) ) );
+			return ( item.Visible || AccessLevel >= AccessLevel.GameMaster ) && ( item.Insured || CanInsure( item ) );
 		}
 
 		private class ItemInsuranceMenuGump : Gump
@@ -2313,7 +2312,7 @@ namespace Server.Mobiles
 		public override bool OnMoveOver( Mobile m )
 		{
 			if ( m is BaseCreature && !((BaseCreature)m).Controlled )
-				return ( !Alive || !m.Alive || IsDeadBondedPet || m.IsDeadBondedPet ) || ( Hidden && AccessLevel > AccessLevel.Player );
+				return !Alive || !m.Alive || IsDeadBondedPet || m.IsDeadBondedPet || Hidden && AccessLevel > AccessLevel.Player;
 
 			#region Dueling
 			if ( Region.IsPartOf( typeof( Engines.ConPVP.SafeZone ) ) && m is PlayerMobile )
@@ -2338,7 +2337,7 @@ namespace Server.Mobiles
 
 		protected override void OnMapChange( Map oldMap )
 		{
-			if ( (Map != Faction.Facet && oldMap == Faction.Facet) || (Map == Faction.Facet && oldMap != Faction.Facet) )
+			if ( Map != Faction.Facet && oldMap == Faction.Facet || Map == Faction.Facet && oldMap != Faction.Facet )
 				InvalidateProperties();
 
 			#region Dueling
@@ -3209,7 +3208,7 @@ namespace Server.Mobiles
 
 					if ( SavagePaintExpiration > TimeSpan.Zero )
 					{
-						BodyMod = ( Female ? 184 : 183 );
+						BodyMod = Female ? 184 : 183;
 						HueMod = 0;
 					}
 
@@ -3406,7 +3405,7 @@ namespace Server.Mobiles
 
 			m_BOBFilter.Serialize( writer );
 
-			bool useMods = ( m_HairModID != -1 || m_BeardModID != -1 );
+			bool useMods = m_HairModID != -1 || m_BeardModID != -1;
 
 			writer.Write( useMods );
 
@@ -3619,7 +3618,7 @@ namespace Server.Mobiles
 							text = String.Concat( "(", pl.Rank.Title.String, ", ", faction.Definition.FriendlyName, ")" );
 					}
 
-					int hue = ( Faction.Find( from ) == faction ? 98 : 38 );
+					int hue = Faction.Find( @from ) == faction ? 98 : 38;
 
 					PrivateOverheadMessage( MessageType.Label, hue, ascii, text, from.NetState );
 				}
@@ -3689,7 +3688,7 @@ namespace Server.Mobiles
 			get{ return m_DuelPlayer; }
 			set
 			{
-				bool wasInTourny = ( m_DuelContext != null && !m_DuelContext.Finished && m_DuelContext.m_Tournament != null );
+				bool wasInTourny = m_DuelContext != null && !m_DuelContext.Finished && m_DuelContext.m_Tournament != null;
 
 				m_DuelPlayer = value;
 
@@ -3698,7 +3697,7 @@ namespace Server.Mobiles
 				else
 					m_DuelContext = m_DuelPlayer.Participant.Context;
 
-				bool isInTourny = ( m_DuelContext != null && !m_DuelContext.Finished && m_DuelContext.m_Tournament != null );
+				bool isInTourny = m_DuelContext != null && !m_DuelContext.Finished && m_DuelContext.m_Tournament != null;
 
 				if ( wasInTourny != isInTourny )
 					SendEverything();
@@ -3836,7 +3835,7 @@ namespace Server.Mobiles
 
 		private DateTime m_NextMovementTime;
 
-		public virtual bool UsesFastwalkPrevention{ get{ return ( AccessLevel < AccessLevel.Counselor ); } }
+		public virtual bool UsesFastwalkPrevention{ get{ return AccessLevel < AccessLevel.Counselor; } }
 
 		public override TimeSpan ComputeMovementSpeed( Direction dir, bool checkTurning )
 		{
@@ -3848,16 +3847,16 @@ namespace Server.Mobiles
 			if ( context != null && context.Type == typeof( ReaperFormSpell ) )
 				return Mobile.WalkFoot;
 
-			bool running = ( (dir & Direction.Running) != 0 );
+			bool running = (dir & Direction.Running) != 0;
 
-			bool onHorse = ( this.Mount != null );
+			bool onHorse = this.Mount != null;
 
 			AnimalFormContext animalContext = AnimalForm.GetContext( this );
 
-			if( onHorse || (animalContext != null && animalContext.SpeedBoost) )
-				return ( running ? Mobile.RunMount : Mobile.WalkMount );
+			if( onHorse || animalContext != null && animalContext.SpeedBoost )
+				return running ? Mobile.RunMount : Mobile.WalkMount;
 
-			return ( running ? Mobile.RunFoot : Mobile.WalkFoot );
+			return running ? Mobile.RunFoot : Mobile.WalkFoot;
 		}
 
 		public static bool MovementThrottle_Callback( NetState ns )
@@ -3883,7 +3882,7 @@ namespace Server.Mobiles
 				return true;
 			}
 
-			return ( ts < FastwalkThreshold );
+			return ts < FastwalkThreshold;
 		}
 
 		#endregion
@@ -4402,7 +4401,7 @@ namespace Server.Mobiles
 
 				int before = m_Values[index].Value;
 
-				if( (m_Values[index].Value - value) < 0 )
+				if( m_Values[index].Value - value < 0 )
 					m_Values[index].Value = 0;
 				else
 					m_Values[index].Value -= value;
@@ -4509,7 +4508,7 @@ namespace Server.Mobiles
 
 				for( int i = 0; i < t.m_Values.Length; i++ )
 				{
-					if( (t.GetLastDecay( i ) + LossDelay) < DateTime.Now )
+					if( t.GetLastDecay( i ) + LossDelay < DateTime.Now )
 					{
 						t.Atrophy( i, LossAmount );
 					}

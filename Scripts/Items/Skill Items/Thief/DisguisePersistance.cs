@@ -1,12 +1,9 @@
 using System;
 using System.Collections;
-using Server;
-using Server.Mobiles;
-using Server.Network;
 
 namespace Server.Items
 {
-	public class DisguisePersistance : Item
+    public class DisguisePersistance : Item
 	{
 		private static DisguisePersistance m_Instance;
 

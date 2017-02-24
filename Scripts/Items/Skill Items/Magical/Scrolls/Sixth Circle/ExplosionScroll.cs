@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class ExplosionScroll : SpellScroll
+    public class ExplosionScroll : SpellScroll
 	{
 		[Constructable]
 		public ExplosionScroll() : this( 1 )

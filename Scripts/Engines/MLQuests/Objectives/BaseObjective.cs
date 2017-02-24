@@ -1,13 +1,10 @@
 using System;
-using Server;
-using Server.Engines.MLQuests;
 using Server.Mobiles;
 using Server.Gumps;
-using System.Collections.Generic;
 
 namespace Server.Engines.MLQuests.Objectives
 {
-	public abstract class BaseObjective
+    public abstract class BaseObjective
 	{
 		public virtual bool IsTimed { get { return false; } }
 		public virtual TimeSpan Duration { get { return TimeSpan.Zero; } }
@@ -42,7 +39,7 @@ namespace Server.Engines.MLQuests.Objectives
 
 		public bool IsTimed
 		{
-			get { return ( m_EndTime != DateTime.MinValue ); }
+			get { return m_EndTime != DateTime.MinValue; }
 		}
 
 		public DateTime EndTime
@@ -68,7 +65,7 @@ namespace Server.Engines.MLQuests.Objectives
 		public virtual void WriteToGump( Gump g, ref int y )
 		{
 			if ( IsTimed )
-				WriteTimeRemaining( g, ref y, ( m_EndTime > DateTime.Now ) ? ( m_EndTime - DateTime.Now ) : TimeSpan.Zero );
+				WriteTimeRemaining( g, ref y, m_EndTime > DateTime.Now ? m_EndTime - DateTime.Now : TimeSpan.Zero );
 		}
 
 		public static void WriteTimeRemaining( Gump g, ref int y, TimeSpan timeRemaining )

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class SilverSerpentBlade : Kryss
+    public class SilverSerpentBlade : Kryss
 	{
 		public override int LabelNumber{ get{ return 1078163; } } // Silver Serpent Blade
 

@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Network;
 
 namespace Server.Commands.Generic
 {
-	public class IPAddressCommandImplementor : BaseCommandImplementor
+    public class IPAddressCommandImplementor : BaseCommandImplementor
 	{
 		public IPAddressCommandImplementor()
 		{

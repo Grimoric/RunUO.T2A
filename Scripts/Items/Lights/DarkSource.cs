@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class DarkSource : Item
+    public class DarkSource : Item
 	{
 		[Constructable]
 		public DarkSource() : base( 0x1646 )

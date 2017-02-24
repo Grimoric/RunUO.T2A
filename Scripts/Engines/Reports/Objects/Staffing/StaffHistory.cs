@@ -1,11 +1,10 @@
 using System;
 using System.IO;
-using System.Xml;
 using System.Collections;
 
 namespace Server.Engines.Reports
 {
-	public class StaffHistory : PersistableObject
+    public class StaffHistory : PersistableObject
 	{
 		#region Type Identification
 		public static readonly PersistableType ThisTypeID = new PersistableType( "stfhst", new ConstructCallback( Construct ) );
@@ -259,7 +258,7 @@ namespace Server.Engines.Reports
 				if ( counts[i%totals.Length] == 0 )
 					val = 0;
 				else
-					val = (totals[i%totals.Length] + (counts[i%totals.Length] / 2)) / counts[i%totals.Length];
+					val = (totals[i%totals.Length] + counts[i%totals.Length] / 2) / counts[i%totals.Length];
 
 				int realHours = i%totals.Length;
 				int hours;
@@ -292,14 +291,14 @@ namespace Server.Engines.Reports
 			DateTime max = DateTime.Now;
 			DateTime min = max - TimeSpan.FromDays( 7.0 );
 
-			bool sentStamp = ( res == PageResolution.None );
+			bool sentStamp = res == PageResolution.None;
 
 			for ( int i = 0; i < pages.Count; ++i )
 			{
 				if ( res != PageResolution.None && pages[i].Resolution != res )
 					continue;
 
-				DateTime ts = ( sentStamp ? pages[i].TimeSent : pages[i].TimeResolved );
+				DateTime ts = sentStamp ? pages[i].TimeSent : pages[i].TimeResolved;
 
 				if ( ts >= min && ts < max )
 				{
@@ -329,7 +328,7 @@ namespace Server.Engines.Reports
 				if ( counts[i%totals.Length] == 0 )
 					val = 0;
 				else
-					val = (totals[i%totals.Length] + (counts[i%totals.Length] / 2)) / counts[i%totals.Length];
+					val = (totals[i%totals.Length] + counts[i%totals.Length] / 2) / counts[i%totals.Length];
 
 				int realHours = i%totals.Length;
 				int hours;

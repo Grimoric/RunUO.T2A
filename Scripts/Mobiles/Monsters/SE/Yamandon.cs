@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[TypeAlias( "Server.Mobiles.Yamadon" )]
+    [TypeAlias( "Server.Mobiles.Yamadon" )]
 	[CorpseName( "a yamandon corpse" )]
 	public class Yamandon : BaseCreature
 	{

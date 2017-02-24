@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a solen worker corpse" )]
+    [CorpseName( "a solen worker corpse" )]
 	public class BlackSolenWorker : BaseCreature
 	{
 		[Constructable]

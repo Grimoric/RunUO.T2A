@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class PoisonStrikeScroll : SpellScroll
+    public class PoisonStrikeScroll : SpellScroll
 	{
 		[Constructable]
 		public PoisonStrikeScroll() : this( 1 )

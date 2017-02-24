@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Spells;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class IronMaidenAddon : BaseAddon
+    public class IronMaidenAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed { get { return new IronMaidenDeed(); } }
 

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[Flipable( 0x104D, 0x104E )]
+    [Flipable( 0x104D, 0x104E )]
 	public class ClockFrame : Item
 	{
 		[Constructable]

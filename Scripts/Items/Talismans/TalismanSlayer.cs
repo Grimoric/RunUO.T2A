@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	public enum TalismanSlayerName
+    public enum TalismanSlayerName
 	{
 		None,
 		Bear,

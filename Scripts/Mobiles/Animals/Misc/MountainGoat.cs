@@ -1,9 +1,6 @@
-using System;
-using Server.Mobiles;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a mountain goat corpse" )]
+    [CorpseName( "a mountain goat corpse" )]
 	public class MountainGoat : BaseCreature
 	{
 		[Constructable]

@@ -1,9 +1,6 @@
-﻿using System;
-using Server;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	public class GervisSatchel : Backpack
+    public class GervisSatchel : Backpack
 	{
 		[Constructable]
 		public GervisSatchel()

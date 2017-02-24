@@ -1,10 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace Server.Engines.Craft
 {
-	public enum CraftMarkOption
+    public enum CraftMarkOption
 	{
 		MarkItem,
 		DoNotMark,

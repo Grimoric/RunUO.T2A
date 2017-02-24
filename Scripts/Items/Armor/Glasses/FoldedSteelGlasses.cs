@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class FoldedSteelGlasses : ElvenGlasses
+    public class FoldedSteelGlasses : ElvenGlasses
 	{
 		public override int LabelNumber{ get{ return 1073380; } } //Folded Steel Reading Glasses
 

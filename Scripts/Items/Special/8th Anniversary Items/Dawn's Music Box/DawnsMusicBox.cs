@@ -124,7 +124,7 @@ namespace Server.Items
 
 			BaseHouse house = BaseHouse.FindHouseAt( this );
 
-			return ( house != null && house.HasAccess( m ) );
+			return house != null && house.HasAccess( m );
 		}
 
 		private Timer m_Timer;

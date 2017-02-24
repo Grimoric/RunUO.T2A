@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class Windsong : MagicalShortbow
+    public class Windsong : MagicalShortbow
 	{
 		public override int LabelNumber{ get{ return 1075031; } } // Windsong
 

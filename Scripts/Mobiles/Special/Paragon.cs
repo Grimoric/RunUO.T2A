@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	public class Paragon
+    public class Paragon
 	{
 		public static double ChestChance = .10;                // Chance that a paragon will carry a paragon chest
 		public static double ChocolateIngredientChance = .20;  // Chance that a paragon will drop a chocolatiering ingredient
@@ -34,7 +33,7 @@ namespace Server.Mobiles
 				{
 					m_Owner.Stam++;
 
-					Delay = Interval = ( m_Owner.Stam < ( m_Owner.StamMax * .75 ) ) ? FastRegenRate : CPUSaverRate;
+					Delay = Interval = m_Owner.Stam < m_Owner.StamMax * .75 ? FastRegenRate : CPUSaverRate;
 				}
 				else
 				{

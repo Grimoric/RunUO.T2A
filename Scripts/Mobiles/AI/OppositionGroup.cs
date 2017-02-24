@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Mobiles;
 
 namespace Server
 {
-	public class OppositionGroup
+    public class OppositionGroup
 	{
 		private Type[][] m_Types;
 
@@ -18,7 +17,7 @@ namespace Server
 			int fromGroup = IndexOf( from );
 			int targGroup = IndexOf( target );
 
-			return ( fromGroup != -1 && targGroup != -1 && fromGroup != targGroup );
+			return fromGroup != -1 && targGroup != -1 && fromGroup != targGroup;
 		}
 
 		public int IndexOf( object obj )

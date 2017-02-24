@@ -1,10 +1,6 @@
-﻿using System;
-using Server;
-using Server.Misc;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	public class RuinedTapestry : Item
+    public class RuinedTapestry : Item
 	{
 		public override string DefaultName{ get { return "Ruined Tapestry "; } }
 

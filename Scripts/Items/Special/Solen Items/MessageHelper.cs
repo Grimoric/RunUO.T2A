@@ -1,9 +1,8 @@
-using System;
 using Server.Network;
 
 namespace Server
 {
-	public class MessageHelper
+    public class MessageHelper
 	{
 		public static void SendLocalizedMessageTo( Item from, Mobile to, int number, int hue )
 		{

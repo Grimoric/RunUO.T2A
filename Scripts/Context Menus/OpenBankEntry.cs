@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.ContextMenus
 {
-	public class OpenBankEntry : ContextMenuEntry
+    public class OpenBankEntry : ContextMenuEntry
 	{
 		private Mobile m_Banker;
 

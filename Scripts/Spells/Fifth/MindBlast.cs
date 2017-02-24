@@ -1,10 +1,8 @@
-using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Fifth
 {
-	public class MindBlastSpell : MagerySpell
+    public class MindBlastSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Mind Blast", "Por Corp Wis",

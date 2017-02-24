@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
 
 namespace Server.Engines.MyRunUO
 {
-	public class LayerComparer : IComparer
+    public class LayerComparer : IComparer
 	{
 		private static Layer PlateArms = (Layer)255;
 		private static Layer ChainTunic = (Layer)254;
@@ -54,7 +53,7 @@ namespace Server.Engines.MyRunUO
 
 		public static bool IsValid( Item item )
 		{
-			return ( m_TranslationTable[(int)item.Layer] > 0 );
+			return m_TranslationTable[(int)item.Layer] > 0;
 		}
 
 		public static readonly IComparer Instance = new LayerComparer();

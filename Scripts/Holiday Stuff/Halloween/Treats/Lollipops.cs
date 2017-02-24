@@ -1,9 +1,6 @@
-﻿using System;
-using Server;
-
-namespace Server.Items
+﻿namespace Server.Items
 {
-	[TypeAlias( "Server.Items.Lollipop" )]
+    [TypeAlias( "Server.Items.Lollipop" )]
 	public class Lollipops : CandyCane
 	{
 		[Constructable]

@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class LeafGorget : BaseArmor
+    public class LeafGorget : BaseArmor
 	{
 		public override Race RequiredRace { get { return Race.Elf; } }
 		public override int BasePhysicalResistance{ get{ return 2; } }

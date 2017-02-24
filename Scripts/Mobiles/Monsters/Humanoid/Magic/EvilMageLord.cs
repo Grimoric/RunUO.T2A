@@ -1,10 +1,8 @@
-using System; 
-using Server;
 using Server.Items;
 
-namespace Server.Mobiles 
-{ 
-	[CorpseName( "an evil mage lord corpse" )] 
+namespace Server.Mobiles
+{
+    [CorpseName( "an evil mage lord corpse" )] 
 	public class EvilMageLord : BaseCreature 
 	{ 
 		[Constructable] 

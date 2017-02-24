@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class BasinOfCrystalClearWater : Item
+    public class BasinOfCrystalClearWater : Item
 	{
 		public override int LabelNumber{ get{ return 1075303; } } // Basin of Crystal-Clear Water
 

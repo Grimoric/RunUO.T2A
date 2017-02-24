@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
-using Server.Multis;
 using Server.Multis.Deeds;
 using Server.Targeting;
 using Server.Network;
 
 namespace Server.Mobiles
 {
-	public class RealEstateBroker : BaseVendor
+    public class RealEstateBroker : BaseVendor
 	{
 		private List<SBInfo> m_SBInfos = new List<SBInfo>();
 		protected override List<SBInfo> SBInfos{ get { return m_SBInfos; } }

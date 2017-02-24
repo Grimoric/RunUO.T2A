@@ -1,9 +1,6 @@
-using System;
-using Server.Network;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x182E, 0x182F, 0x1830, 0x1831 )]
+    [FlipableAttribute( 0x182E, 0x182F, 0x1830, 0x1831 )]
 	public class SmallFlask : Item
 	{
 		[Constructable]

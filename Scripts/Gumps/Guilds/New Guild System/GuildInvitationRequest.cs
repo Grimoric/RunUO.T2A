@@ -1,12 +1,11 @@
 using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 using Server.Mobiles;
 
 namespace Server.Guilds
 {
-	public class GuildInvitationRequest : BaseGuildGump
+    public class GuildInvitationRequest : BaseGuildGump
 	{
 		PlayerMobile m_Inviter;
 		public GuildInvitationRequest( PlayerMobile pm, Guild g, PlayerMobile inviter ) : base( pm, g )

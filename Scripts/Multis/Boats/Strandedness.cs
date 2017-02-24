@@ -1,10 +1,6 @@
-using System;
-using System.IO;
-using Server;
-
 namespace Server.Misc
 {
-	public class Strandedness
+    public class Strandedness
 	{
 		private static Point2D[] m_Felucca = new Point2D[]
 			{
@@ -106,12 +102,12 @@ namespace Server.Misc
 			if ( surface is LandTile ) {
 				int id = ((LandTile)surface).ID;
 
-				return (id >= 168 && id <= 171)
-					|| (id >= 310 && id <= 311);
+				return id >= 168 && id <= 171
+					|| id >= 310 && id <= 311;
 			} else if ( surface is StaticTile ) {
 				int id = ((StaticTile)surface).ID;
 
-				return (id >= 0x1796 && id <= 0x17B2);
+				return id >= 0x1796 && id <= 0x17B2;
 			}
 
 			return false;
@@ -169,8 +165,8 @@ namespace Server.Misc
 						if ( xo == 0 && yo == 0 )
 							continue;
 
-						x = p.X + (xo * i);
-						y = p.Y + (yo * i);
+						x = p.X + xo * i;
+						y = p.Y + yo * i;
 						z = map.GetAverageZ( x, y );
 						canFit = map.CanSpawnMobile( x, y, z );
 					}

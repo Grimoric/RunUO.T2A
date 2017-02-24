@@ -1,14 +1,11 @@
-using System;
 using System.Collections;
-using Server;
 using Server.Mobiles;
-using Server.PathAlgorithms;
 using CalcMoves = Server.Movement.Movement;
 using MoveImpl = Server.Movement.MovementImpl;
 
 namespace Server.PathAlgorithms.FastAStar
 {
-	public struct PathNode
+    public struct PathNode
 	{
 		public int cost, total;
 		public int parent, next, prev;
@@ -48,7 +45,7 @@ namespace Server.PathAlgorithms.FastAStar
 			x *= 11;
 			y *= 11;
 
-			return (x*x)+(y*y)+(z*z);
+			return x*x+y*y+z*z;
 		}
 
 		public override bool CheckCondition( Mobile m, Map map, Point3D start, Point3D goal )
@@ -167,7 +164,7 @@ namespace Server.PathAlgorithms.FastAStar
 					if ( !wasTouched )
 					{
 						int newCost = m_Nodes[bestNode].cost + 1;
-						int newTotal = newCost + Heuristic( newNode % AreaSize, (newNode / AreaSize) % AreaSize, m_Nodes[newNode].z );
+						int newTotal = newCost + Heuristic( newNode % AreaSize, newNode / AreaSize % AreaSize, m_Nodes[newNode].z );
 
 						if ( !wasTouched || m_Nodes[newNode].total > newTotal )
 						{
@@ -186,7 +183,7 @@ namespace Server.PathAlgorithms.FastAStar
 
 									while ( parent != -1 )
 									{
-										path[pathCount++] = GetDirection( parent % AreaSize, (parent / AreaSize) % AreaSize, newNode % AreaSize, (newNode / AreaSize) % AreaSize );
+										path[pathCount++] = GetDirection( parent % AreaSize, parent / AreaSize % AreaSize, newNode % AreaSize, newNode / AreaSize % AreaSize );
 										newNode = parent;
 										parent = m_Nodes[newNode].parent;
 
@@ -217,7 +214,7 @@ namespace Server.PathAlgorithms.FastAStar
 			z += PlaneOffset;
 			z /= PlaneHeight;
 
-			return x + (y * AreaSize) + (z * AreaSize * AreaSize);
+			return x + y * AreaSize + z * AreaSize * AreaSize;
 		}
 
 		private int FindBest( int node )
@@ -247,7 +244,7 @@ namespace Server.PathAlgorithms.FastAStar
 		public int GetSuccessors( int p, Mobile m, Map map )
 		{
 			int px = p % AreaSize;
-			int py = (p / AreaSize) % AreaSize;
+			int py = p / AreaSize % AreaSize;
 			int pz = m_Nodes[p].z;
 			int x, y, z;
 

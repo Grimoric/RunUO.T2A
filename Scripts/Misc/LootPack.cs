@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server
 {
-	public class LootPack
+    public class LootPack
 	{
 		public static int GetLuckChance( Mobile killer, Mobile victim )
 		{
@@ -36,7 +34,7 @@ namespace Server
 
 		public static bool CheckLuck( int chance )
 		{
-			return ( chance > Utility.Random( 10000 ) );
+			return chance > Utility.Random( 10000 );
 		}
 
 		private LootPackEntry[] m_Entries;
@@ -57,14 +55,14 @@ namespace Server
 			{
 				LootPackEntry entry = m_Entries[i];
 
-				bool shouldAdd = ( entry.Chance > Utility.Random( 10000 ) );
+				bool shouldAdd = entry.Chance > Utility.Random( 10000 );
 
 				if ( !shouldAdd && checkLuck )
 				{
 					checkLuck = false;
 
 					if( LootPack.CheckLuck( luckChance ) )
-						shouldAdd = ( entry.Chance > Utility.Random( 10000 ) );
+						shouldAdd = entry.Chance > Utility.Random( 10000 );
 				}
 
 				if ( !shouldAdd )
@@ -558,7 +556,7 @@ namespace Server
 			if ( m.Region.IsPartOf( "Yomotsu Mines" ) )
 				return true;
 
-			return ( m.Map == Map.Tokuno );
+			return m.Map == Map.Tokuno;
 		}
 
 		#region Mondain's Legacy
@@ -797,7 +795,7 @@ namespace Server
 			--minCircle;
 			--maxCircle;
 
-			int scrollCount = ((maxCircle - minCircle) + 1) * 8;
+			int scrollCount = (maxCircle - minCircle + 1) * 8;
 
 			if ( index == 0 )
 				scrollCount += m_BlankTypes.Length;
@@ -809,7 +807,7 @@ namespace Server
 			else if ( index == 0 )
 				rnd -= m_BlankTypes.Length;
 
-			return Loot.RandomScroll( minCircle * 8, (maxCircle * 8) + 7, SpellbookType.Regular );
+			return Loot.RandomScroll( minCircle * 8, maxCircle * 8 + 7, SpellbookType.Regular );
 		}
 
 		public Item Construct( bool inTokuno, bool isMondain )
@@ -904,7 +902,7 @@ namespace Server
 			start = index + 1;
 			index = str.IndexOf( '+', start );
 
-			if ( negative = (index < start) )
+			if ( negative = index < start )
 				index = str.IndexOf( '-', start );
 
 			if ( index < start )

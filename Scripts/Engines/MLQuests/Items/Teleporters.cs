@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.MLQuests.Items
 {
-	public class MLQuestTeleporter : Teleporter
+    public class MLQuestTeleporter : Teleporter
 	{
 		private Type m_QuestType;
 		private TextDefinition m_Message;
@@ -60,7 +57,7 @@ namespace Server.Engines.MLQuests.Items
 
 				MLQuestContext context = MLQuestSystem.GetContext(pm);
 
-				if (context == null || (!context.IsDoingQuest(m_QuestType) && !context.HasDoneQuest(m_QuestType)))
+				if (context == null || !context.IsDoingQuest(m_QuestType) && !context.HasDoneQuest(m_QuestType))
 				{
 					TextDefinition.SendMessageTo(m, m_Message);
 					return false;
@@ -89,7 +86,7 @@ namespace Server.Engines.MLQuests.Items
 
 			writer.Write((int)0); // version
 
-			writer.Write((m_QuestType != null) ? m_QuestType.FullName : null);
+			writer.Write(m_QuestType != null ? m_QuestType.FullName : null);
 			TextDefinition.Serialize(writer, m_Message);
 		}
 
@@ -209,7 +206,7 @@ namespace Server.Engines.MLQuests.Items
 
 			writer.Write((int)0); // version
 
-			writer.Write((m_TicketType != null) ? m_TicketType.FullName : null);
+			writer.Write(m_TicketType != null ? m_TicketType.FullName : null);
 			TextDefinition.Serialize(writer, m_Message);
 		}
 

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class GreaterExplosionPotion : BaseExplosionPotion
+    public class GreaterExplosionPotion : BaseExplosionPotion
 	{
 		public override int MinDamage { get { return 15; } }
 		public override int MaxDamage { get { return 30; } }

@@ -1,11 +1,9 @@
 using System;
-using System.Collections;
-using Server;
 using System.Collections.Generic;
 
 namespace Server.Items
 {
-	public class EffectItem : Item
+    public class EffectItem : Item
 	{
 		private static List<EffectItem> m_Free = new List<EffectItem>(); // List of available EffectItems
 

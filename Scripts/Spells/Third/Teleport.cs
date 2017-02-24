@@ -1,12 +1,10 @@
-using System;
 using Server.Targeting;
-using Server.Network;
 using Server.Regions;
 using Server.Items;
 
 namespace Server.Spells.Third
 {
-	public class TeleportSpell : MagerySpell
+    public class TeleportSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Teleport", "Rel Por",

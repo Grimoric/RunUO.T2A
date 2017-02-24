@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class LargeStoneTableSouthAddon : BaseAddon
+    public class LargeStoneTableSouthAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed{ get{ return new LargeStoneTableSouthDeed(); } }
 

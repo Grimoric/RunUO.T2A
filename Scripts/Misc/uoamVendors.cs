@@ -2,14 +2,13 @@ using System;
 using System.Collections;
 using System.IO;
 using Server.Mobiles;
-using Server.Items;
 using Server.Commands;
 
 // Version 0.8
 
 namespace Server
 {
-	public class UOAMVendorGenerator
+    public class UOAMVendorGenerator
 	{
 		private static int m_Count;
 
@@ -324,7 +323,7 @@ namespace Server
 
 			for ( int i = 0; i < types.Length; ++i )
 			{
-				bool isGuildmaster = ( types[i].EndsWith( "Guildmaster" ) );
+				bool isGuildmaster = types[i].EndsWith( "Guildmaster" );
 
 				Spawner sp = new Spawner( types[i] );
 

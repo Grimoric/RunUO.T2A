@@ -1,11 +1,9 @@
 using System;
-using Server;
 using Server.Network;
-using Server.Regions;
 
 namespace Server.Items
 {
-	public abstract class FarmableCrop : Item
+    public abstract class FarmableCrop : Item
 	{
 		private bool m_Picked;
 

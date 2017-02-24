@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Engines.Harvest
 {
-	public class HarvestSoundTimer : Timer
+    public class HarvestSoundTimer : Timer
 	{
 		private Mobile m_From;
 		private Item m_Tool;

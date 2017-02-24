@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Engines.Craft;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0xfbb, 0xfbc )]
+    [FlipableAttribute( 0xfbb, 0xfbc )]
 	public class Tongs : BaseTool
 	{
 		public override CraftSystem CraftSystem{ get{ return DefBlacksmithy.CraftSystem; } }

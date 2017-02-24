@@ -1,14 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Net;
-using System.Net.Sockets;
-using Server;
 using Server.Network;
 
 namespace Server.Misc
 {
-	public class IPLimiter
+    public class IPLimiter
 	{
 		public static bool Enabled = true;
 		public static bool SocketBlock = true; // true to block at connection, false to block at login request

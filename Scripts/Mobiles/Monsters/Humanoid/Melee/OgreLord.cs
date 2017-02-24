@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 using Server.Factions;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an ogre lords corpse" )]
+    [CorpseName( "an ogre lords corpse" )]
 	public class OgreLord : BaseCreature
 	{
 		public override Faction FactionAllegiance { get { return Minax.Instance; } }

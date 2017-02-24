@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class BoneCrusher : WarMace
+    public class BoneCrusher : WarMace
 	{
 		public override int LabelNumber{ get{ return 1061596; } } // Bone Crusher
 		public override int ArtifactRarity{ get{ return 11; } }

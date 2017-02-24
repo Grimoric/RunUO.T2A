@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Factions
 {
-	public class GuardDefinition
+    public class GuardDefinition
 	{
 		private Type m_Type;
 

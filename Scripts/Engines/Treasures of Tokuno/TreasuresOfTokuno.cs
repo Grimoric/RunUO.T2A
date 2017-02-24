@@ -1,5 +1,4 @@
 using System;
-using Server;
 using Server.Network;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using Server.Mobiles;
 
 namespace Server.Misc
 {
-	public enum TreasuresOfTokunoEra
+    public enum TreasuresOfTokunoEra
 	{
 		None,
 		ToTOne,
@@ -119,7 +118,7 @@ namespace Server.Misc
 			if( r.IsPartOf( "Yomotsu Mines" ) || r.IsPartOf( "Fan Dancer's Dojo" ) )
 				return true;
 
-			return (m.Map == Map.Tokuno);
+			return m.Map == Map.Tokuno;
 		}
 
 		public static void HandleKill( Mobile victim, Mobile killer )
@@ -185,7 +184,7 @@ namespace Server.Misc
 
 namespace Server.Mobiles
 {
-	public class IharaSoko : BaseVendor
+    public class IharaSoko : BaseVendor
 	{
 		public override bool IsActiveVendor { get { return false; } }
 		public override bool IsInvulnerable { get { return true; } }
@@ -294,7 +293,7 @@ namespace Server.Mobiles
 
 namespace Server.Gumps
 {
-	public class ItemTileButtonInfo : ImageTileButtonInfo
+    public class ItemTileButtonInfo : ImageTileButtonInfo
 	{
 		private Item m_Item;
 
@@ -304,7 +303,7 @@ namespace Server.Gumps
 			set { m_Item = value; }
 		}
 
-		public ItemTileButtonInfo( Item i ) : base( i.ItemID, i.Hue, ((i.Name == null || i.Name.Length <= 0)? (TextDefinition)i.LabelNumber : (TextDefinition)i.Name ) )
+		public ItemTileButtonInfo( Item i ) : base( i.ItemID, i.Hue, i.Name == null || i.Name.Length <= 0? (TextDefinition)i.LabelNumber : (TextDefinition)i.Name )
 		{
 			m_Item = i;
 		}
@@ -404,7 +403,7 @@ namespace Server.Gumps
 
 namespace Server.Gumps
 {
-	public class ToTRedeemGump : BaseImageTileButtonsGump
+    public class ToTRedeemGump : BaseImageTileButtonsGump
 	{
 		public class TypeTileButtonInfo : ImageTileButtonInfo
 		{
@@ -561,7 +560,7 @@ namespace Server.Gumps
 			if( pm == null || !pm.InRange( m_Collector.Location, 7 ) || !(pm.ToTItemsTurnedIn >= TreasuresOfTokuno.ItemsPerReward) )
 				return;
 
-			bool pigments = (buttonInfo is PigmentsTileButtonInfo);
+			bool pigments = buttonInfo is PigmentsTileButtonInfo;
 
 			Item item = null;
 
@@ -598,7 +597,7 @@ namespace Server.Gumps
 			if( pm.AddToBackpack( item ) )
 			{
 				pm.ToTItemsTurnedIn -= TreasuresOfTokuno.ItemsPerReward;
-				m_Collector.SayTo( pm, 1070984, (item.Name == null || item.Name.Length <= 0)? String.Format( "#{0}", item.LabelNumber ) : item.Name ); // You have earned the gratitude of the Empire. I have placed the ~1_OBJTYPE~ in your backpack.
+				m_Collector.SayTo( pm, 1070984, item.Name == null || item.Name.Length <= 0? String.Format( "#{0}", item.LabelNumber ) : item.Name ); // You have earned the gratitude of the Empire. I have placed the ~1_OBJTYPE~ in your backpack.
 			}
 			else
 			{

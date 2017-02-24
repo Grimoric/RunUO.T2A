@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Mobiles;
-using Server.Items;
 
 namespace Server.Engines.Quests.Necro
 {
-	public class Maabus : BaseQuester
+    public class Maabus : BaseQuester
 	{
 		public Maabus()
 		{

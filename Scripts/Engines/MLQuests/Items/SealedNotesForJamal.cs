@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class SealedNotesForJamal : Item
+    public class SealedNotesForJamal : Item
 	{
 		public override int LabelNumber{ get{ return 1074998; } } // Sealed Notes For Jamal
 		public override double DefaultWeight{ get{ return 1.0; } }

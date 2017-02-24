@@ -21,14 +21,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using Server.Items;
 using Server.Network;
 using Server.Targeting;
 
 namespace Server
 {
-	[Flags]
+    [Flags]
 	public enum MapRules
 	{
 		None					= 0x0000,
@@ -195,7 +194,7 @@ namespace Server
 			if ( v < 0 )
 				--v;
 
-			return ( v / 2 );
+			return v / 2;
 		}
 
 		#region Get*InRange/Bounds
@@ -366,7 +365,7 @@ namespace Server
 			GetAverageZ( x, y, ref lowZ, ref avgZ, ref topZ );
 			TileFlag landFlags = TileData.LandTable[lt.ID & TileData.MaxLandValue].Flags;
 
-			if ( ( landFlags & TileFlag.Impassable ) != 0 && avgZ > z && ( z + height ) > lowZ )
+			if ( ( landFlags & TileFlag.Impassable ) != 0 && avgZ > z && z + height > lowZ )
 				return false;
 			else if ( ( landFlags & TileFlag.Impassable ) == 0 && z == avgZ && !lt.Ignored )
 				hasSurface = true;
@@ -381,9 +380,9 @@ namespace Server
 				surface = id.Surface;
 				impassable = id.Impassable;
 
-				if ( ( surface || impassable ) && ( staticTiles[i].Z + id.CalcHeight ) > z && ( z + height ) > staticTiles[i].Z )
+				if ( ( surface || impassable ) && staticTiles[i].Z + id.CalcHeight > z && z + height > staticTiles[i].Z )
 					return false;
-				else if ( surface && !impassable && z == ( staticTiles[i].Z + id.CalcHeight ) )
+				else if ( surface && !impassable && z == staticTiles[i].Z + id.CalcHeight )
 					hasSurface = true;
 			}
 
@@ -401,9 +400,9 @@ namespace Server
 					surface = id.Surface;
 					impassable = id.Impassable;
 
-					if ( ( surface || impassable || ( checkBlocksFit && item.BlocksFit ) ) && ( item.Z + id.CalcHeight ) > z && ( z + height ) > item.Z )
+					if ( ( surface || impassable || checkBlocksFit && item.BlocksFit ) && item.Z + id.CalcHeight > z && z + height > item.Z )
 						return false;
-					else if ( surface && !impassable && !item.Movable && z == ( item.Z + id.CalcHeight ) )
+					else if ( surface && !impassable && !item.Movable && z == item.Z + id.CalcHeight )
 						hasSurface = true;
 				}
 			}
@@ -415,7 +414,7 @@ namespace Server
 					Mobile m = mobs[i];
 
 					if ( m.Location.m_X == x && m.Location.m_Y == y && ( m.AccessLevel == AccessLevel.Player || !m.Hidden ) )
-						if ( ( m.Z + 16 ) > z && ( z + height ) > m.Z )
+						if ( m.Z + 16 > z && z + height > m.Z )
 							return false;
 				}
 			}
@@ -1763,7 +1762,7 @@ namespace Server
 			else if( o is Item )
 			{
 				p = ((Item)o).GetWorldLocation();
-				p.Z += (((Item)o).ItemData.Height / 2) + 1;
+				p.Z += ((Item)o).ItemData.Height / 2 + 1;
 			}
 			else if( o is Point3D )
 			{
@@ -1783,7 +1782,7 @@ namespace Server
 				StaticTarget st = (StaticTarget)o;
 				ItemData id = TileData.ItemTable[st.ItemID & TileData.MaxItemValue];
 
-				p = new Point3D( st.X, st.Y, st.Z - id.CalcHeight + (id.Height / 2) + 1 );
+				p = new Point3D( st.X, st.Y, st.Z - id.CalcHeight + id.Height / 2 + 1 );
 			}
 			else if( o is IPoint3D )
 			{
@@ -1818,7 +1817,7 @@ namespace Server
 			Point3D start = org;
 			Point3D end = dest;
 
-			if( org.X > dest.X || (org.X == dest.X && org.Y > dest.Y) || (org.X == dest.X && org.Y == dest.Y && org.Z > dest.Z) )
+			if( org.X > dest.X || org.X == dest.X && org.Y > dest.Y || org.X == dest.X && org.Y == dest.Y && org.Z > dest.Z )
 			{
 				Point3D swap = org;
 				org = dest;
@@ -1851,9 +1850,9 @@ namespace Server
 			else
 				sq3d = zslp;
 
-			rise = ((float)yd) / sq3d;
-			run = ((float)xd) / sq3d;
-			zslp = ((float)zd) / sq3d;
+			rise = (float)yd / sq3d;
+			run = (float)xd / sq3d;
+			zslp = (float)zd / sq3d;
 
 			y = org.m_Y;
 			z = org.m_Z;
@@ -1917,7 +1916,7 @@ namespace Server
 				int ltID = landTile.ID;
 
 				for( int j = 0; !contains && j < m_InvalidLandTiles.Length; ++j )
-					contains = (ltID == m_InvalidLandTiles[j]);
+					contains = ltID == m_InvalidLandTiles[j];
 
 				if( contains && statics.Length == 0 )
 				{
@@ -1959,13 +1958,13 @@ namespace Server
 						&& ( (flags&TileFlag.Wall)!=0 || (flags&TileFlag.Roof)!=0 || (((flags&TileFlag.Surface)!=0 && zd != 0)) ) )*/
 					/*{
 						//Console.WriteLine( "LoS: Blocked by Static \"{0}\" Z:{1} T:{3} P:{2} F:x{4:X}", TileData.ItemTable[t.ID&TileData.MaxItemValue].Name, t.Z, point, t.Z+height, flags );
-						//Console.WriteLine( "if ( {0} && {1} && {2} && ( {3} || {4} || {5} || ({6} && {7} && {8}) ) )", t.Z <= point.Z, t.Z+height >= point.Z, (flags&TileFlag.Window)==0, (flags&TileFlag.Impassable)!=0, (flags&TileFlag.Wall)!=0, (flags&TileFlag.Roof)!=0, (flags&TileFlag.Surface)!=0, t.Z != dest.Z, zd != 0 ) ;
+						//Console.WriteLine( "if ( {0} && {1} && {2} && ( {3} || {4} || {5} || ({6} && {7} && {8}) ) )", t.Z <= point.Z, t.Z+height >= point.Z, (flags&TileFlag.Window)==0, (flags&TileFlag.Impassable)!=0, (flags&TileFlag.Wall)!=0, (flags&TileFlag.Roof)!=0, (flags&TileFlag.Surface)!=0, t.Z != dest.Z, zd != 0 );
 						return false;
 					}*/
 				}
 			}
 
-			Rectangle2D rect = new Rectangle2D( pTop.m_X, pTop.m_Y, (pBottom.m_X - pTop.m_X) + 1, (pBottom.m_Y - pTop.m_Y) + 1 );
+			Rectangle2D rect = new Rectangle2D( pTop.m_X, pTop.m_Y, pBottom.m_X - pTop.m_X + 1, pBottom.m_Y - pTop.m_Y + 1 );
 
 			IPooledEnumerable area = GetItemsInBounds( rect );
 
@@ -2032,7 +2031,7 @@ namespace Server
 
 		public bool LineOfSight( object from, object dest )
 		{
-			if ( from == dest || ( from is Mobile && ( (Mobile) from ).AccessLevel > AccessLevel.Player ) )
+			if ( from == dest || @from is Mobile && ( (Mobile) @from ).AccessLevel > AccessLevel.Player )
 				return true;
 			else if ( dest is Item && from is Mobile && ( (Item) dest ).RootParent == from )
 				return true;

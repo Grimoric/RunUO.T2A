@@ -18,13 +18,11 @@
  *
  ***************************************************************************/
 
-using System;
 using System.IO;
-using System.Runtime.InteropServices;
 
 namespace Server
 {
-	public class TileMatrixPatch
+    public class TileMatrixPatch
 	{
 		private int m_LandBlocks, m_StaticBlocks;
 

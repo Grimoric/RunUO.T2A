@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Misc
 {
-	public class Broadcasts
+    public class Broadcasts
 	{
 		public static void Initialize()
 		{

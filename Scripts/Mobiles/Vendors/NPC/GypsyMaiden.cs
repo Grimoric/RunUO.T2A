@@ -1,15 +1,9 @@
-using System;
 using System.Collections.Generic;
-using Server;
-using Server.Gumps;
 using Server.Items;
-using Server.Network;
-using Server.Targeting;
-using Server.ContextMenus;
 
 namespace Server.Mobiles
 {
-	public class GypsyMaiden : BaseVendor
+    public class GypsyMaiden : BaseVendor
 	{
 		private List<SBInfo> m_SBInfos = new List<SBInfo>();
 		protected override List<SBInfo> SBInfos{ get { return m_SBInfos; } }

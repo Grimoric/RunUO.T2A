@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Necro
 {
-	public class KronusScrollBox : MetalBox
+    public class KronusScrollBox : MetalBox
 	{
 		[Constructable]
 		public KronusScrollBox()
@@ -37,7 +35,7 @@ namespace Server.Engines.Quests.Necro
 				{
 					QuestObjective obj = qs.FindObjective( typeof( FindCallingScrollObjective ) );
 
-					if ( (obj != null && !obj.Completed) || DarkTidesQuest.HasLostCallingScroll( from ) )
+					if ( obj != null && !obj.Completed || DarkTidesQuest.HasLostCallingScroll( from ) )
 					{
 						Item scroll = new KronusScroll();
 

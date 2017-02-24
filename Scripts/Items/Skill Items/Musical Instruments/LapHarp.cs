@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class LapHarp : BaseInstrument
+    public class LapHarp : BaseInstrument
 	{
 		[Constructable]
 		public LapHarp() : base( 0xEB2, 0x45, 0x46 )

@@ -1,12 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
-using Server.Gumps;
 using System.Collections.Generic;
 
 namespace Server.Engines.MLQuests.Rewards
 {
-	public class DummyReward : BaseReward
+    public class DummyReward : BaseReward
 	{
 		public DummyReward( TextDefinition name )
 			: base( name )

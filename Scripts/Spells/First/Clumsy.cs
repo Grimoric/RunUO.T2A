@@ -1,10 +1,9 @@
 using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.First
 {
-	public class ClumsySpell : MagerySpell
+    public class ClumsySpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Clumsy", "Uus Jux",

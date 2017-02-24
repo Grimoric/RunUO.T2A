@@ -1,10 +1,9 @@
 using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Items
 {
-	public interface ICommodity /* added IsDeedable prop so expansion-based deedables can determine true/false */
+    public interface ICommodity /* added IsDeedable prop so expansion-based deedables can determine true/false */
 	{
 		int DescriptionNumber{ get; }
 		bool IsDeedable { get; }
@@ -109,7 +108,7 @@ namespace Server.Items
 				string args;
 
 				if ( m_Commodity.Name == null )
-					args = String.Format( "#{0}\t{1}", ( m_Commodity is ICommodity ) ? ((ICommodity)m_Commodity).DescriptionNumber : m_Commodity.LabelNumber, m_Commodity.Amount );
+					args = String.Format( "#{0}\t{1}", m_Commodity is ICommodity ? ((ICommodity)m_Commodity).DescriptionNumber : m_Commodity.LabelNumber, m_Commodity.Amount );
 				else
 					args = String.Format( "{0}\t{1}", m_Commodity.Name, m_Commodity.Amount );
 
@@ -130,7 +129,7 @@ namespace Server.Items
 				string args;
 
 				if ( m_Commodity.Name == null )
-					args = String.Format( "#{0}\t{1}", ( m_Commodity is ICommodity ) ? ((ICommodity)m_Commodity).DescriptionNumber : m_Commodity.LabelNumber, m_Commodity.Amount );
+					args = String.Format( "#{0}\t{1}", m_Commodity is ICommodity ? ((ICommodity)m_Commodity).DescriptionNumber : m_Commodity.LabelNumber, m_Commodity.Amount );
 				else
 					args = String.Format( "{0}\t{1}", m_Commodity.Name, m_Commodity.Amount );
 

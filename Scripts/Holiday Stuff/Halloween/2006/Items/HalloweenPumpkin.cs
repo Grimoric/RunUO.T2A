@@ -1,10 +1,9 @@
 ﻿using System;
-using Server;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	public class HalloweenPumpkin : Item
+    public class HalloweenPumpkin : Item
 	{
 		private static readonly string[] m_Staff =
 		{
@@ -16,7 +15,7 @@ namespace Server.Items
 			: base()
 		{
 			Weight = Utility.RandomMinMax( 3, 20 );
-			ItemID = ( Utility.RandomDouble() <= .02 ) ? Utility.RandomList( 0x4694, 0x4698 ) : Utility.RandomList( 0xc6a, 0xc6b, 0xc6c );
+			ItemID = Utility.RandomDouble() <= .02 ? Utility.RandomList( 0x4694, 0x4698 ) : Utility.RandomList( 0xc6a, 0xc6b, 0xc6c );
 		}
 
 		public override void OnDoubleClick( Mobile from )

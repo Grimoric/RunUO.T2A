@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Reflection;
-using System.Collections.Generic;
 using Server.Multis;
 
 namespace Server.Items
 {
-	[AttributeUsage( AttributeTargets.Class )]
+    [AttributeUsage( AttributeTargets.Class )]
 	public class FlipableAddonAttribute : Attribute
 	{
 		private static string m_MethodName = "Flip";

@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x49CC, 0x49D0 )]
+    [FlipableAttribute( 0x49CC, 0x49D0 )]
 	public class AnimatedHeartShapedBox : HeartShapedBox
 	{
 		[Constructable]

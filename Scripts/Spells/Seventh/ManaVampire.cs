@@ -1,10 +1,8 @@
-using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Seventh
 {
-	public class ManaVampireSpell : MagerySpell
+    public class ManaVampireSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Mana Vampire", "Ort Sanct",
@@ -51,7 +49,7 @@ namespace Server.Spells.Seventh
 				else
 					toDrain = m.Mana;
 
-				if ( toDrain > (Caster.ManaMax - Caster.Mana) )
+				if ( toDrain > Caster.ManaMax - Caster.Mana )
 					toDrain = Caster.ManaMax - Caster.Mana;
 
 				m.Mana -= toDrain;

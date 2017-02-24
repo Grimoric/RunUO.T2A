@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 
 namespace Server.Engines.Quests.Necro
 {
-	public class DarkTidesQuest : QuestSystem
+    public class DarkTidesQuest : QuestSystem
 	{
 		private static Type[] m_TypeReferenceTable = new Type[]
 			{
@@ -143,7 +142,7 @@ namespace Server.Engines.Quests.Necro
 				{
 					Container pack = from.Backpack;
 
-					return ( pack == null || pack.FindItemByType( typeof( KronusScroll ) ) == null );
+					return pack == null || pack.FindItemByType( typeof( KronusScroll ) ) == null;
 				}
 			}
 

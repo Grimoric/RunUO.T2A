@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Spells.Fourth;
-using Server.Targeting;
 
 namespace Server.Items
 {
-	public class ManaDrainWand : BaseWand
+    public class ManaDrainWand : BaseWand
 	{
 		[Constructable]
 		public ManaDrainWand() : base( WandEffect.ManaDraining, 5, 30 )

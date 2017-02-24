@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
-using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName("a pestilent bandage corpse")]
+    [CorpseName("a pestilent bandage corpse")]
 	public class PestilentBandage : BaseCreature
 	{
 		// Neither Stratics nor UOGuide have much description 

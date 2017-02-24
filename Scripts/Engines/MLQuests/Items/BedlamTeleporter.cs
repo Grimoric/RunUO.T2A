@@ -1,12 +1,9 @@
-﻿using System;
-using Server;
-using Server.Engines.MLQuests;
-using Server.Mobiles;
+﻿using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Engines.MLQuests.Items
 {
-	public class BedlamTeleporter : Item
+    public class BedlamTeleporter : Item
 	{
 		public override int LabelNumber { get { return 1074161; } } // Access to Bedlam by invitation only
 

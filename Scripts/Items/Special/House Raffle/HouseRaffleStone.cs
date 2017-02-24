@@ -2,17 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
-using Server;
 using Server.Accounting;
 using Server.ContextMenus;
 using Server.Gumps;
-using Server.Mobiles;
 using Server.Network;
 using Server.Regions;
 
 namespace Server.Items
 {
-	public class RaffleEntry
+    public class RaffleEntry
 	{
 		private Mobile m_From;
 		private IPAddress m_Address;
@@ -194,7 +192,7 @@ namespace Server.Items
 				if ( m_State != HouseRaffleState.Completed )
 					return false;
 
-				return ( m_Started + m_Duration + ExpirationTime <= DateTime.Now );
+				return m_Started + m_Duration + ExpirationTime <= DateTime.Now;
 			}
 		}
 
@@ -302,7 +300,7 @@ namespace Server.Items
 
 		public bool ValidLocation()
 		{
-			return ( m_Bounds.Start != Point2D.Zero && m_Bounds.End != Point2D.Zero && m_Facet != null && m_Facet != Map.Internal );
+			return m_Bounds.Start != Point2D.Zero && m_Bounds.End != Point2D.Zero && m_Facet != null && m_Facet != Map.Internal;
 		}
 
 		private void InvalidateRegion()
@@ -384,7 +382,7 @@ namespace Server.Items
 		{
 			int x = m_Bounds.X + m_Bounds.Width / 2;
 			int y = m_Bounds.Y + m_Bounds.Height / 2;
-			int z = ( m_Facet == null ) ? 0 : m_Facet.GetAverageZ( x, y );
+			int z = m_Facet == null ? 0 : m_Facet.GetAverageZ( x, y );
 
 			return new Point3D( x, y, z );
 		}
@@ -422,7 +420,7 @@ namespace Server.Items
 				}
 				case HouseRaffleState.Completed:
 				{
-					list.Add( 1060658, "winner\t{0}", ( m_Winner == null ) ? "unknown" : m_Winner.Name ); // ~1_val~: ~2_val~
+					list.Add( 1060658, "winner\t{0}", m_Winner == null ? "unknown" : m_Winner.Name ); // ~1_val~: ~2_val~
 					break;
 				}
 			}
@@ -441,7 +439,7 @@ namespace Server.Items
 				}
 				case HouseRaffleState.Completed:
 				{
-					LabelTo( from, 1060658, String.Format( "Winner\t{0}", ( m_Winner == null ) ? "Unknown" : m_Winner.Name ) ); // ~1_val~: ~2_val~
+					LabelTo( from, 1060658, String.Format( "Winner\t{0}", m_Winner == null ? "Unknown" : m_Winner.Name ) ); // ~1_val~: ~2_val~
 					break;
 				}
 			}
@@ -501,7 +499,7 @@ namespace Server.Items
 			{
 				Container bank = from.FindBankNoCreate();
 
-				if ( m_TicketPrice == 0 || ( from.Backpack != null && from.Backpack.ConsumeTotal( typeof( Gold ), m_TicketPrice ) ) || ( bank != null && bank.ConsumeTotal( typeof( Gold ), m_TicketPrice ) ) )
+				if ( m_TicketPrice == 0 || @from.Backpack != null && @from.Backpack.ConsumeTotal( typeof( Gold ), m_TicketPrice ) || bank != null && bank.ConsumeTotal( typeof( Gold ), m_TicketPrice ) )
 				{
 					m_Entries.Add( new RaffleEntry( from ) );
 
@@ -619,7 +617,7 @@ namespace Server.Items
 				}
 				case 0:
 				{
-					bool oldActive = ( version < 3 ) ? reader.ReadBool() : false;
+					bool oldActive = version < 3 ? reader.ReadBool() : false;
 
 					m_Bounds = reader.ReadRect2D();
 					m_Facet = reader.ReadMap();

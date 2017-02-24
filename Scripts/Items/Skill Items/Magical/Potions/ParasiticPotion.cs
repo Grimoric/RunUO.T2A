@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class ParasiticPotion : BasePoisonPotion
+    public class ParasiticPotion : BasePoisonPotion
 	{
 		public override Poison Poison{ get{ return Poison.Greater; } } 		/* public override Poison Poison{ get{ return Poison.Darkglow; } }  MUST be restored when prerequisites are done */
 

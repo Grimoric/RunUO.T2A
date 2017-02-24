@@ -1,11 +1,8 @@
 using System;
-using System.Collections;
-using Server;
-using Server.Items;
 
 namespace Server.Engines.CannedEvil
 {
-	public class SliceTimer : Timer
+    public class SliceTimer : Timer
 	{
 		private ChampionSpawn m_Spawn;
 

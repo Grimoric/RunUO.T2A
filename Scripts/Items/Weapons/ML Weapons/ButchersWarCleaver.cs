@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class ButchersWarCleaver : WarCleaver
+    public class ButchersWarCleaver : WarCleaver
 	{
 		public override int LabelNumber{ get{ return 1073526; } } // butcher's war cleaver
 

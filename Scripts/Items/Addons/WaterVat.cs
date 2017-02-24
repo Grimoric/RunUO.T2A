@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class WaterVatEast : BaseAddon
+    public class WaterVatEast : BaseAddon
 	{
 		[Constructable]
 		public WaterVatEast()

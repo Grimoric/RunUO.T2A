@@ -1,14 +1,12 @@
 using System;
-using Server;
 using Server.Items;
-using Server.Spells;
 using Server.Spells.Seventh;
 using Server.Spells.Fifth;
 using Server.Engines.CannedEvil;
 
 namespace Server.Mobiles
 {
-	public class Barracoon : BaseChampion
+    public class Barracoon : BaseChampion
 	{
 		public override ChampionSkullType SkullType{ get{ return ChampionSkullType.Greed; } }
 

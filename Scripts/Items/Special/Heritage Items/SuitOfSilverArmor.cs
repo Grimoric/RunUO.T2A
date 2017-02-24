@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[Flipable( 0x3D86, 0x3D87 )]
+    [Flipable( 0x3D86, 0x3D87 )]
 	public class SuitOfSilverArmorComponent : AddonComponent
 	{
 		public override int LabelNumber { get { return 1076266; } } // Suit of Silver Armor

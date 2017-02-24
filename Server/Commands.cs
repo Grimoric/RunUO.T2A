@@ -19,21 +19,12 @@
  ***************************************************************************/
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using Server.Guilds;
-using Server.Gumps;
-using Server.Menus;
-using Server.Menus.ItemLists;
-using Server.Menus.Questions;
 using Server.Network;
-using Server.Items;
-using Server.Targeting;
 
 namespace Server.Commands
 {
-	public delegate void CommandEventHandler( CommandEventArgs e );
+    public delegate void CommandEventHandler( CommandEventArgs e );
 
 	public class CommandEventArgs : EventArgs
 	{

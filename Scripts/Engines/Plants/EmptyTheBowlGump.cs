@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Engines.Plants
 {
-	public class EmptyTheBowlGump : Gump
+    public class EmptyTheBowlGump : Gump
 	{
 		private PlantItem m_Plant;
 

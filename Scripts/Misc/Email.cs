@@ -2,11 +2,10 @@ using System;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Threading;
-using Server;
 
 namespace Server.Misc
 {
-	public class Email
+    public class Email
 	{
 		/* In order to support emailing, fill in EmailServer and FromAddress:
 		 * Example:

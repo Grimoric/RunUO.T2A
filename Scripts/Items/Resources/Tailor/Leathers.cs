@@ -1,10 +1,6 @@
-using System;
-using Server.Items;
-using Server.Network;
-
 namespace Server.Items
 {
-	public abstract class BaseLeather : Item, ICommodity
+    public abstract class BaseLeather : Item, ICommodity
 	{
 		private CraftResource m_Resource;
 

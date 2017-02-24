@@ -1,14 +1,11 @@
-using System;
 using System.Collections.Generic;
-using Server;
-using Server.Accounting;
 using Server.Items;
 using Server.Spells.Sixth;
 using Server.Targeting;
 
 namespace Server.Regions
 {
-	public class HouseRaffleRegion : BaseRegion
+    public class HouseRaffleRegion : BaseRegion
 	{
 		private HouseRaffleStone m_Stone;
 

@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a frost troll corpse" )]
+    [CorpseName( "a frost troll corpse" )]
 	public class FrostTroll : BaseCreature
 	{
 		[Constructable]

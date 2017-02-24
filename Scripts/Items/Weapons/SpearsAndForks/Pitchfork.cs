@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0xE87, 0xE88 )]
+    [FlipableAttribute( 0xE87, 0xE88 )]
 	public class Pitchfork : BaseSpear
 	{
 		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }

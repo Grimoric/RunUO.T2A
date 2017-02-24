@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class SquirrelStatueSouthAddon : BaseAddon
+    public class SquirrelStatueSouthAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed{ get{ return new SquirrelStatueSouthDeed(); } }
 

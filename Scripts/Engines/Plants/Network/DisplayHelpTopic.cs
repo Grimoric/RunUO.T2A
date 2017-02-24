@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Network
 {
-	public class DisplayHelpTopic : Packet
+    public class DisplayHelpTopic : Packet
 	{
 		public DisplayHelpTopic( int topicID, bool display ) : base( 0xBF )
 		{

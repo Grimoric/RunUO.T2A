@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class MassDispelScroll : SpellScroll
+    public class MassDispelScroll : SpellScroll
 	{
 		[Constructable]
 		public MassDispelScroll() : this( 1 )

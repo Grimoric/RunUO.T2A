@@ -1,12 +1,10 @@
 using System;
-using Server.Misc;
 using Server.Network;
-using System.Collections.Generic;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-	public class DeceitBrazier : Item
+    public class DeceitBrazier : Item
 	{
 		private static Type[] m_Creatures = new Type[]
 			{
@@ -156,8 +154,8 @@ namespace Server.Items
 			// Try 10 times to find a Spawnable location.
 			for( int i = 0; i < 10; i++ )
 			{
-				int x = Location.X + (Utility.Random( (m_SpawnRange * 2) + 1 ) - m_SpawnRange);
-				int y = Location.Y + (Utility.Random( (m_SpawnRange * 2) + 1 ) - m_SpawnRange);
+				int x = Location.X + (Utility.Random( m_SpawnRange * 2 + 1 ) - m_SpawnRange);
+				int y = Location.Y + (Utility.Random( m_SpawnRange * 2 + 1 ) - m_SpawnRange);
 				int z = Map.GetAverageZ( x, y );
 
 				if( Map.CanSpawnMobile( new Point2D( x, y ), this.Z ) )

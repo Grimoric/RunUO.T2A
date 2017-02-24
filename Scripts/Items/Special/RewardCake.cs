@@ -1,10 +1,8 @@
-using System;
-using Server.Items;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class RewardCake : Item
+    public class RewardCake : Item
 	{
 		public override int LabelNumber{ get{ return 1049786; } } // Happy Birthday!  ...
 

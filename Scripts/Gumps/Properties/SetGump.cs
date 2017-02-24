@@ -1,14 +1,12 @@
-using System;
 using System.Reflection;
 using System.Collections;
-using Server;
 using Server.Network;
 using Server.HuePickers;
 using Server.Commands;
 
 namespace Server.Gumps
 {
-	public class SetGump : Gump
+    public class SetGump : Gump
 	{
 		private PropertyInfo m_Property;
 		private Mobile m_Mobile;
@@ -54,7 +52,7 @@ namespace Server.Gumps
 		private static readonly int EntryWidth = 212;
 
 		private static readonly int TotalWidth = OffsetSize + EntryWidth + OffsetSize + SetWidth + OffsetSize;
-		private static readonly int TotalHeight = OffsetSize + (2 * (EntryHeight + OffsetSize));
+		private static readonly int TotalHeight = OffsetSize + 2 * (EntryHeight + OffsetSize);
 
 		private static readonly int BackWidth = BorderSize + TotalWidth + BorderSize;
 		private static readonly int BackHeight = BorderSize + TotalHeight + BorderSize;
@@ -84,8 +82,8 @@ namespace Server.Gumps
 
 			AddPage( 0 );
 
-			AddBackground( 0, 0, BackWidth, BackHeight + (canNull ? (EntryHeight + OffsetSize) : 0) + (canDye ? (EntryHeight + OffsetSize) : 0) + (isBody ? (EntryHeight + OffsetSize) : 0), BackGumpID );
-			AddImageTiled( BorderSize, BorderSize, TotalWidth - (OldStyle ? SetWidth + OffsetSize : 0), TotalHeight + (canNull ? (EntryHeight + OffsetSize) : 0) + (canDye ? (EntryHeight + OffsetSize) : 0) + (isBody ? (EntryHeight + OffsetSize) : 0), OffsetGumpID );
+			AddBackground( 0, 0, BackWidth, BackHeight + (canNull ? EntryHeight + OffsetSize : 0) + (canDye ? EntryHeight + OffsetSize : 0) + (isBody ? EntryHeight + OffsetSize : 0), BackGumpID );
+			AddImageTiled( BorderSize, BorderSize, TotalWidth - (OldStyle ? SetWidth + OffsetSize : 0), TotalHeight + (canNull ? EntryHeight + OffsetSize : 0) + (canDye ? EntryHeight + OffsetSize : 0) + (isBody ? EntryHeight + OffsetSize : 0), OffsetGumpID );
 
 			int x = BorderSize + OffsetSize;
 			int y = BorderSize + OffsetSize;

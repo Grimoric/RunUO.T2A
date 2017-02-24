@@ -1,13 +1,11 @@
-using System;
-
 namespace Server.Items
 {
-	/// <summary>
-	/// This powerful ability requires secondary skills to activate.
-	/// Successful use of Shadowstrike deals extra damage to the target — and renders the attacker invisible!
-	/// Only those who are adept at the art of stealth will be able to use this ability.
-	/// </summary>
-	public class ShadowStrike : WeaponAbility
+    /// <summary>
+    /// This powerful ability requires secondary skills to activate.
+    /// Successful use of Shadowstrike deals extra damage to the target — and renders the attacker invisible!
+    /// Only those who are adept at the art of stealth will be able to use this ability.
+    /// </summary>
+    public class ShadowStrike : WeaponAbility
 	{
 		public ShadowStrike()
 		{

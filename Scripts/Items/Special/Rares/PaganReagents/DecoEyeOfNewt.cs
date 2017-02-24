@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class DecoEyeOfNewt : Item
+    public class DecoEyeOfNewt : Item
 	{
 
 		[Constructable]

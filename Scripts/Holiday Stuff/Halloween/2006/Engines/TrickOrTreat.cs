@@ -211,14 +211,14 @@ namespace Server.Engines.Events
 		{
 			Point3D loc = new Point3D( x + Utility.Random( -1, 3 ), y + Utility.Random( -1, 3 ), 0 );
 
-			loc.Z = ( map.CanFit( loc, 0 )) ? map.GetAverageZ( loc.X, loc.Y ) : z;
+			loc.Z = map.CanFit( loc, 0 ) ? map.GetAverageZ( loc.X, loc.Y ) : z;
 
 			return loc;
 		}
 
 		public static bool CheckMobile( Mobile mobile )
 		{
-			return ( mobile != null && mobile.Map != null && !mobile.Deleted && mobile.Alive && mobile.Map != Map.Internal );
+			return mobile != null && mobile.Map != null && !mobile.Deleted && mobile.Alive && mobile.Map != Map.Internal;
 		}
 	}
 

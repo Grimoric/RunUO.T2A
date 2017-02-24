@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Engines.Quests.Doom
 {
-	public class ChylothShroud : Item
+    public class ChylothShroud : Item
 	{
 		[Constructable]
 		public ChylothShroud() : base( 0x204E )

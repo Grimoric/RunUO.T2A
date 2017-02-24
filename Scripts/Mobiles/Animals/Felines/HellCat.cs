@@ -1,10 +1,6 @@
-using System;
-using Server.Items;
-using Server.Mobiles;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a hell cat corpse" )]
+    [CorpseName( "a hell cat corpse" )]
 	[TypeAlias( "Server.Mobiles.Hellcat" )]
 	public class HellCat : BaseCreature
 	{

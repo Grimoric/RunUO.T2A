@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Gumps;
 using Server.Multis;
 using Server.Prompts;
@@ -11,7 +9,7 @@ using Server.ContextMenus;
 
 namespace Server.Items
 {
-	public class PlayerBBSouth : BasePlayerBB
+    public class PlayerBBSouth : BasePlayerBB
 	{
 		public override int LabelNumber{ get{ return 1062421; } } // bulletin board (south)
 
@@ -609,7 +607,7 @@ namespace Server.Items
 				AddHtml( 255, 180, 150, 20, message.Time.ToString( "yyyy-MM-dd HH:mm:ss" ), false, false );
 
 				Mobile poster = message.Poster;
-				string name = ( poster == null ? null : poster.Name );
+				string name = poster == null ? null : poster.Name;
 
 				if ( name == null || (name = name.Trim()).Length == 0 )
 					name = "Someone";

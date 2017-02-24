@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[Flipable( 0xC14, 0xC15 )]
+    [Flipable( 0xC14, 0xC15 )]
 	public class BrokenBookcaseComponent : AddonComponent
 	{
 		public override int LabelNumber { get { return 1076258; } } // Broken Bookcase

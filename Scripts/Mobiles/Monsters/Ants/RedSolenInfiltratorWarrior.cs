@@ -1,11 +1,8 @@
-using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a solen infiltrator corpse" )]
+    [CorpseName( "a solen infiltrator corpse" )]
 	public class RedSolenInfiltratorWarrior : BaseCreature
 	{
 		[Constructable]
@@ -43,7 +40,7 @@ namespace Server.Mobiles
 
 			SolenHelper.PackPicnicBasket( this );
 
-			PackItem( new ZoogiFungus( ( 0.05 < Utility.RandomDouble() )? 3 : 13 ) );
+			PackItem( new ZoogiFungus( 0.05 < Utility.RandomDouble()? 3 : 13 ) );
 			
 		}
 

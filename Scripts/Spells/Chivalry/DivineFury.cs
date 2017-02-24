@@ -1,12 +1,9 @@
 using System;
 using System.Collections;
-using Server.Network;
-using Server.Items;
-using Server.Targeting;
 
 namespace Server.Spells.Chivalry
 {
-	public class DivineFurySpell : PaladinSpell
+    public class DivineFurySpell : PaladinSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Divine Fury", "Divinum Furis",

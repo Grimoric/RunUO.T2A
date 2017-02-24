@@ -1,9 +1,6 @@
-using System;
-using Server.Network;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0xC10, 0xC11 )] 
+    [FlipableAttribute( 0xC10, 0xC11 )] 
 	public class RuinedFallenChairA : Item
 	{
 		[Constructable]

@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Multis;
 using Server.Gumps;
 using Server.Network;
@@ -9,7 +7,7 @@ using System.Collections.Generic;
 
 namespace Server.Items
 {
-	public class BallotBox : AddonComponent
+    public class BallotBox : AddonComponent
 	{
 		public static readonly int MaxTopicLines = 6;
 
@@ -79,12 +77,12 @@ namespace Server.Items
 				return true;
 
 			BaseHouse house = BaseHouse.FindHouseAt( this );
-			return ( house != null && house.IsOwner( from ) );
+			return house != null && house.IsOwner( @from );
 		}
 
 		public bool HasVoted( Mobile from )
 		{
-			return ( Yes.Contains( from ) || No.Contains( from ) );
+			return Yes.Contains( @from ) || No.Contains( @from );
 		}
 
 		public override bool OnDragDrop( Mobile from, Item dropped )
@@ -152,8 +150,8 @@ namespace Server.Items
 
 				if ( totalVotes > 0 )
 				{
-					AddImageTiled( 130, 242, ( yesCount * 225 ) / totalVotes, 10, 0xD6 );
-					AddImageTiled( 130, 277, ( noCount * 225 ) / totalVotes, 10, 0xD6 );
+					AddImageTiled( 130, 242, yesCount * 225 / totalVotes, 10, 0xD6 );
+					AddImageTiled( 130, 277, noCount * 225 / totalVotes, 10, 0xD6 );
 				}
 
 				AddButton( 45, 305, 0xFA5, 0xFA7, 0, GumpButtonType.Reply, 0 );

@@ -62,7 +62,7 @@ namespace Server.Engines.Craft
 			AddButton( 15, 387, 4014, 4016, 0, GumpButtonType.Reply, 0 );
 			AddHtmlLocalized( 50, 390, 150, 18, 1044150, LabelColor, false, false ); // BACK
 
-			bool needsRecipe = ( craftItem.Recipe != null && from is PlayerMobile && !((PlayerMobile)from).HasRecipe( craftItem.Recipe ) );
+			bool needsRecipe = craftItem.Recipe != null && @from is PlayerMobile && !((PlayerMobile)@from).HasRecipe( craftItem.Recipe );
 
 			if( needsRecipe )
 			{
@@ -81,7 +81,7 @@ namespace Server.Engines.Craft
 				AddLabel( 330, 40, LabelHue, craftItem.NameString );
 
 			if ( craftItem.UseAllRes )
-				AddHtmlLocalized( 170, 302 + (m_OtherCount++ * 20), 310, 18, 1048176, LabelColor, false, false ); // Makes as many as possible at once
+				AddHtmlLocalized( 170, 302 + m_OtherCount++ * 20, 310, 18, 1048176, LabelColor, false, false ); // Makes as many as possible at once
 
 			DrawItem();
 			DrawSkill();
@@ -94,12 +94,12 @@ namespace Server.Engines.Craft
 
 			if( craftItem.RequiredExpansion != Expansion.None )
 			{
-				bool supportsEx = (from.NetState != null && from.NetState.SupportsExpansion( craftItem.RequiredExpansion ));
-				TextDefinition.AddHtmlText( this, 170, 302 + (m_OtherCount++ * 20), 310, 18, RequiredExpansionMessage( craftItem.RequiredExpansion ), false, false, supportsEx ? LabelColor : RedLabelColor, supportsEx ? LabelHue : RedLabelHue );
+				bool supportsEx = @from.NetState != null && @from.NetState.SupportsExpansion( craftItem.RequiredExpansion );
+				TextDefinition.AddHtmlText( this, 170, 302 + m_OtherCount++ * 20, 310, 18, RequiredExpansionMessage( craftItem.RequiredExpansion ), false, false, supportsEx ? LabelColor : RedLabelColor, supportsEx ? LabelHue : RedLabelHue );
 			}
 
 			if( needsRecipe )
-				AddHtmlLocalized( 170, 302 + (m_OtherCount++ * 20), 310, 18, 1073620, RedLabelColor, false, false ); // You have not learned this recipe.
+				AddHtmlLocalized( 170, 302 + m_OtherCount++ * 20, 310, 18, 1073620, RedLabelColor, false, false ); // You have not learned this recipe.
 
 		}
 
@@ -126,7 +126,7 @@ namespace Server.Engines.Craft
 
 			if ( m_CraftItem.IsMarkable( type ) )
 			{
-				AddHtmlLocalized( 170, 302 + (m_OtherCount++ * 20), 310, 18, 1044059, LabelColor, false, false ); // This item may hold its maker's mark
+				AddHtmlLocalized( 170, 302 + m_OtherCount++ * 20, 310, 18, 1044059, LabelColor, false, false ); // This item may hold its maker's mark
 				m_ShowExceptionalChance = true;
 			}
 		}
@@ -141,17 +141,17 @@ namespace Server.Engines.Craft
 				if ( minSkill < 0 )
 					minSkill = 0;
 
-				AddHtmlLocalized( 170, 132 + (i * 20), 200, 18, AosSkillBonuses.GetLabel( skill.SkillToMake ), LabelColor, false, false );
-				AddLabel( 430, 132 + (i * 20), LabelHue, String.Format( "{0:F1}", minSkill ) );
+				AddHtmlLocalized( 170, 132 + i * 20, 200, 18, AosSkillBonuses.GetLabel( skill.SkillToMake ), LabelColor, false, false );
+				AddLabel( 430, 132 + i * 20, LabelHue, String.Format( "{0:F1}", minSkill ) );
 			}
 
-			CraftSubResCol res = ( m_CraftItem.UseSubRes2 ? m_CraftSystem.CraftSubRes2 : m_CraftSystem.CraftSubRes );
+			CraftSubResCol res = m_CraftItem.UseSubRes2 ? m_CraftSystem.CraftSubRes2 : m_CraftSystem.CraftSubRes;
 			int resIndex = -1;
 
 			CraftContext context = m_CraftSystem.GetContext( m_From );
 
 			if ( context != null )
-				resIndex = ( m_CraftItem.UseSubRes2 ? context.LastResourceIndex2 : context.LastResourceIndex );
+				resIndex = m_CraftItem.UseSubRes2 ? context.LastResourceIndex2 : context.LastResourceIndex;
 
 			bool allRequiredSkills = true;
 			double chance = m_CraftItem.GetSuccessChance( m_From, resIndex > -1 ? res.GetAt( resIndex ).ItemType : null, m_CraftSystem, false, ref allRequiredSkills );
@@ -186,13 +186,13 @@ namespace Server.Engines.Craft
 
 			CraftContext context = m_CraftSystem.GetContext( m_From );
 
-			CraftSubResCol res = ( m_CraftItem.UseSubRes2 ? m_CraftSystem.CraftSubRes2 : m_CraftSystem.CraftSubRes );
+			CraftSubResCol res = m_CraftItem.UseSubRes2 ? m_CraftSystem.CraftSubRes2 : m_CraftSystem.CraftSubRes;
 			int resIndex = -1;
 
 			if ( context != null )
-				resIndex = ( m_CraftItem.UseSubRes2 ? context.LastResourceIndex2 : context.LastResourceIndex );
+				resIndex = m_CraftItem.UseSubRes2 ? context.LastResourceIndex2 : context.LastResourceIndex;
 
-			bool cropScroll = ( m_CraftItem.Resources.Count > 1 )
+			bool cropScroll = m_CraftItem.Resources.Count > 1
 				&& m_CraftItem.Resources.GetAt( m_CraftItem.Resources.Count - 1 ).ItemType == typeofBlankScroll
 				&& typeofSpellScroll.IsAssignableFrom( m_CraftItem.ItemType );
 
@@ -226,26 +226,26 @@ namespace Server.Engines.Craft
 				if ( !retainedColor && m_CraftItem.RetainsColorFrom( m_CraftSystem, type ) )
 				{
 					retainedColor = true;
-					AddHtmlLocalized( 170, 302 + (m_OtherCount++ * 20), 310, 18, 1044152, LabelColor, false, false ); // * The item retains the color of this material
-					AddLabel( 500, 219 + (i * 20), LabelHue, "*" );
+					AddHtmlLocalized( 170, 302 + m_OtherCount++ * 20, 310, 18, 1044152, LabelColor, false, false ); // * The item retains the color of this material
+					AddLabel( 500, 219 + i * 20, LabelHue, "*" );
 				}
 
 				if ( nameNumber > 0 )
-					AddHtmlLocalized( 170, 219 + (i * 20), 310, 18, nameNumber, LabelColor, false, false );
+					AddHtmlLocalized( 170, 219 + i * 20, 310, 18, nameNumber, LabelColor, false, false );
 				else
-					AddLabel( 170, 219 + (i * 20), LabelHue, nameString );
+					AddLabel( 170, 219 + i * 20, LabelHue, nameString );
 
-				AddLabel( 430, 219 + (i * 20), LabelHue, craftResource.Amount.ToString() );
+				AddLabel( 430, 219 + i * 20, LabelHue, craftResource.Amount.ToString() );
 			}
 
 			if ( m_CraftItem.NameNumber == 1041267 ) // runebook
 			{
-				AddHtmlLocalized( 170, 219 + (m_CraftItem.Resources.Count * 20), 310, 18, 1044447, LabelColor, false, false );
-				AddLabel( 430, 219 + (m_CraftItem.Resources.Count * 20), LabelHue, "1" );
+				AddHtmlLocalized( 170, 219 + m_CraftItem.Resources.Count * 20, 310, 18, 1044447, LabelColor, false, false );
+				AddLabel( 430, 219 + m_CraftItem.Resources.Count * 20, LabelHue, "1" );
 			}
 
 			if ( cropScroll )
-				AddHtmlLocalized( 170, 302 + (m_OtherCount++ * 20), 360, 18, 1044379, LabelColor, false, false ); // Inscribing scrolls also requires a blank scroll and mana.
+				AddHtmlLocalized( 170, 302 + m_OtherCount++ * 20, 360, 18, 1044379, LabelColor, false, false ); // Inscribing scrolls also requires a blank scroll and mana.
 		}
 
 		public override void OnResponse( NetState sender, RelayInfo info )
@@ -272,8 +272,8 @@ namespace Server.Engines.Craft
 
 					if ( context != null )
 					{
-						CraftSubResCol res = ( m_CraftItem.UseSubRes2 ? m_CraftSystem.CraftSubRes2 : m_CraftSystem.CraftSubRes );
-						int resIndex = ( m_CraftItem.UseSubRes2 ? context.LastResourceIndex2 : context.LastResourceIndex );
+						CraftSubResCol res = m_CraftItem.UseSubRes2 ? m_CraftSystem.CraftSubRes2 : m_CraftSystem.CraftSubRes;
+						int resIndex = m_CraftItem.UseSubRes2 ? context.LastResourceIndex2 : context.LastResourceIndex;
 
 						if ( resIndex > -1 )
 							type = res.GetAt( resIndex ).ItemType;

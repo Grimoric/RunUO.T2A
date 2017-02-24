@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class SeerRobe : BaseSuit
+    public class SeerRobe : BaseSuit
 	{
 		[Constructable]
 		public SeerRobe() : base( AccessLevel.Seer, 0x1D3, 0x204F )

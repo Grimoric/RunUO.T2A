@@ -1,11 +1,8 @@
-using Server;
-using System;
 using Server.Items;
-using Server.Gumps;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a cu sidhe corpse" )]
+    [CorpseName( "a cu sidhe corpse" )]
 	public class CuSidhe : BaseMount
 	{
 		[Constructable]

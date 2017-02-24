@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Mobiles
 {
-	[CorpseName( "a giant ice worm corpse" )]
+    [CorpseName( "a giant ice worm corpse" )]
 	public class GiantIceWorm : BaseCreature
 	{
 		public override bool SubdueBeforeTame { get { return true; } }

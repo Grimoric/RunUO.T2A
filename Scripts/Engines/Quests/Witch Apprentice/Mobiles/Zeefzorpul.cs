@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Mobiles;
-using Server.Items;
 
 namespace Server.Engines.Quests.Hag
 {
-	public class Zeefzorpul : BaseQuester
+    public class Zeefzorpul : BaseQuester
 	{
 		public Zeefzorpul()
 		{

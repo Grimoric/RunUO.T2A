@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Engines.Chat
 {
-	public class ChatActionHandlers
+    public class ChatActionHandlers
 	{
 		private static ChatActionHandler[] m_Handlers;
 

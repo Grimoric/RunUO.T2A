@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class CounselorRobe : BaseSuit
+    public class CounselorRobe : BaseSuit
 	{
 		[Constructable]
 		public CounselorRobe() : base( AccessLevel.Counselor, 0x3, 0x204F )

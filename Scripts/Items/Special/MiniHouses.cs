@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class MiniHouseAddon : BaseAddon
+    public class MiniHouseAddon : BaseAddon
 	{
 		private MiniHouseType m_Type;
 

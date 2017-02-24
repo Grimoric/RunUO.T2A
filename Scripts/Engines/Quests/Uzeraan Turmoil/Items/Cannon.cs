@@ -1,11 +1,8 @@
-using System;
-using Server;
-using Server.Mobiles;
 using Server.Items;
 
 namespace Server.Engines.Quests.Haven
 {
-	public enum CannonDirection
+    public enum CannonDirection
 	{
 		North,
 		East,

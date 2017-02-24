@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class DjinnisRing : SilverRing
+    public class DjinnisRing : SilverRing
 	{
 		public override int LabelNumber{ get{ return 1094927; } } // Djinni's Ring [Replica]
 

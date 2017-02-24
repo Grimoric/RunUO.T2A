@@ -1,12 +1,9 @@
-using System;
 using System.Collections.Generic;
-using Server.Network;
-using Server.Items;
 using Server.Targeting;
 
 namespace Server.Spells.Seventh
 {
-	public class MeteorSwarmSpell : MagerySpell
+    public class MeteorSwarmSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Meteor Swarm", "Flam Kal Des Ylem",

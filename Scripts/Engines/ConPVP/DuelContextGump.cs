@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Engines.ConPVP
 {
-	public class DuelContextGump : Gump
+    public class DuelContextGump : Gump
 	{
 		private Mobile m_From;
 		private DuelContext m_Context;
@@ -45,7 +43,7 @@ namespace Server.Engines.ConPVP
 			if ( count < 3 )
 				count = 3;
 
-			int height = 35 + 10 + 22 + 30 + 22 + 22 + 2 + (count * 22) + 2 + 30;
+			int height = 35 + 10 + 22 + 30 + 22 + 22 + 2 + count * 22 + 2 + 30;
 
 			AddPage( 0 );
 

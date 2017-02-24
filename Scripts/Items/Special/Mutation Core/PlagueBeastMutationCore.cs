@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class PlagueBeastMutationCore : Item, IScissorable
+    public class PlagueBeastMutationCore : Item, IScissorable
 	{
 		private bool m_Cut;
 

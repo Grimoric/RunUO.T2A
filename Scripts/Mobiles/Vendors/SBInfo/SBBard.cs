@@ -1,10 +1,9 @@
-using System; 
-using System.Collections.Generic; 
-using Server.Items; 
+using System.Collections.Generic;
+using Server.Items;
 
-namespace Server.Mobiles 
-{ 
-	public class SBBard: SBInfo 
+namespace Server.Mobiles
+{
+    public class SBBard: SBInfo 
 	{ 
 		private List<GenericBuyInfo> m_BuyInfo = new InternalBuyInfo(); 
 		private IShopSellInfo m_SellInfo = new InternalSellInfo(); 
@@ -20,10 +19,10 @@ namespace Server.Mobiles
 		{ 
 			public InternalBuyInfo() 
 			{ 
-				Add( new GenericBuyInfo( typeof( Drums ), 21, ( 10 ), 0x0E9C, 0 ) ); 
-				Add( new GenericBuyInfo( typeof( Tambourine ), 21, ( 10 ), 0x0E9E, 0 ) ); 
-				Add( new GenericBuyInfo( typeof( LapHarp ), 21, ( 10 ), 0x0EB2, 0 ) ); 
-				Add( new GenericBuyInfo( typeof( Lute ), 21, ( 10 ), 0x0EB3, 0 ) );
+				Add( new GenericBuyInfo( typeof( Drums ), 21, 10, 0x0E9C, 0 ) ); 
+				Add( new GenericBuyInfo( typeof( Tambourine ), 21, 10, 0x0E9E, 0 ) ); 
+				Add( new GenericBuyInfo( typeof( LapHarp ), 21, 10, 0x0EB2, 0 ) ); 
+				Add( new GenericBuyInfo( typeof( Lute ), 21, 10, 0x0EB3, 0 ) );
 			} 
 		} 
 

@@ -18,13 +18,11 @@
  *
  ***************************************************************************/
 
-using System;
-using System.Collections;
 using Server.Network;
 
 namespace Server
 {
-	public enum EffectLayer
+    public enum EffectLayer
 	{
 		Head = 0,
 		RightHand = 1,
@@ -54,7 +52,7 @@ namespace Server
 
 		public static bool SendParticlesTo( NetState state )
 		{
-			return ( m_ParticleSupportType == ParticleSupportType.Full || (m_ParticleSupportType == ParticleSupportType.Detect && state.IsUOTDClient) );
+			return m_ParticleSupportType == ParticleSupportType.Full || m_ParticleSupportType == ParticleSupportType.Detect && state.IsUOTDClient;
 		}
 
 		public static void PlaySound( IPoint3D p, Map map, int soundID )

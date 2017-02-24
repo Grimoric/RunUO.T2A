@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Factions
 {
-	public class FactionSawTrap : BaseFactionTrap
+    public class FactionSawTrap : BaseFactionTrap
 	{
 		public override int LabelNumber{ get{ return 1041047; } } // faction saw trap
 

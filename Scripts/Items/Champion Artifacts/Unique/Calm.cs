@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class Calm : Halberd
+    public class Calm : Halberd
 	{
 		public override int LabelNumber{ get{ return 1094915; } } // Calm [Replica]
 

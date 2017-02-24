@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[Flipable( 0x2A58, 0x2A59 )]
+    [Flipable( 0x2A58, 0x2A59 )]
 	public class BoneThroneComponent : AddonComponent
 	{
 		public override int LabelNumber { get { return 1074476; } } // Bone throne

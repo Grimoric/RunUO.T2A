@@ -1,16 +1,12 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Mobiles;
-using Server.Misc;
 using Server.Items;
-using Server.Gumps;
-using Server.Spells;
 using Server.Spells.Seventh;
 
 namespace Server.Spells.Fifth
 {
-	public class IncognitoSpell : MagerySpell
+    public class IncognitoSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Incognito", "Kal In Ex",
@@ -97,7 +93,7 @@ namespace Server.Spells.Fifth
 					StopTimer( Caster );
 
 
-					int timeVal = ((6 * Caster.Skills.Magery.Fixed) / 50) + 1;
+					int timeVal = 6 * Caster.Skills.Magery.Fixed / 50 + 1;
 
 					if( timeVal > 144 )
 						timeVal = 144;
@@ -136,7 +132,7 @@ namespace Server.Spells.Fifth
 				BuffInfo.RemoveBuff( m, BuffIcon.Incognito );
 			}
 
-			return ( t != null );
+			return t != null;
 		}
 
 		private static int[] m_HairIDs = new int[]

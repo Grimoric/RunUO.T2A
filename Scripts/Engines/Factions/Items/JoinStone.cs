@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Factions
 {
-	public class JoinStone : BaseSystemController
+    public class JoinStone : BaseSystemController
 	{
 		private Faction m_Faction;
 
@@ -17,7 +15,7 @@ namespace Server.Factions
 			{
 				m_Faction = value;
 
-				Hue = ( m_Faction == null ? 0 : m_Faction.Definition.HueJoin );
+				Hue = m_Faction == null ? 0 : m_Faction.Definition.HueJoin;
 				AssignName( m_Faction == null ? null : m_Faction.Definition.SignupName );
 			}
 		}

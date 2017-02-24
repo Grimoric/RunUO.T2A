@@ -1,13 +1,12 @@
 using System;
-using Server;
 using System.Collections;
 
 namespace Server.Items
 {
-	/// <summary>
-	/// Raises your defenses for a short time. Requires Bushido or Ninjitsu skill.
-	/// </summary>
-	public class Block : WeaponAbility
+    /// <summary>
+    /// Raises your defenses for a short time. Requires Bushido or Ninjitsu skill.
+    /// </summary>
+    public class Block : WeaponAbility
 	{
 		public Block()
 		{

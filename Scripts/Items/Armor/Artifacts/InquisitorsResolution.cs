@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class InquisitorsResolution : PlateGloves
+    public class InquisitorsResolution : PlateGloves
 	{
 		public override int LabelNumber{ get{ return 1060206; } } // The Inquisitor's Resolution
 		public override int ArtifactRarity{ get{ return 10; } }

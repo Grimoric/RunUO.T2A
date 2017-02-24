@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Engines.ConPVP
 {
-	public class PreferencesController : Item
+    public class PreferencesController : Item
 	{
 		private Preferences m_Preferences;
 
@@ -227,12 +226,12 @@ namespace Server.Engines.ConPVP
 
 			AddPage( 0 );
 
-			int height = 12 + 20 + (arenas.Count * 31) + 24 + 12;
+			int height = 12 + 20 + arenas.Count * 31 + 24 + 12;
 
 			AddBackground( 0, 0, 499+40-365, height, 0x2436 );
 
 			for ( int i = 1; i < arenas.Count; i += 2 )
-				AddImageTiled( 12, 32 + (i * 31), 475+40-365, 30, 0x2430 );
+				AddImageTiled( 12, 32 + i * 31, 475+40-365, 30, 0x2430 );
 
 			AddAlphaRegion( 10, 10, 479+40-365, height - 20 );
 
@@ -252,7 +251,7 @@ namespace Server.Engines.ConPVP
 					name = "(no name)";
 
 				int x = 12;
-				int y = 32 + (i * 31);
+				int y = 32 + i * 31;
 
 				int color = 0xCCFFCC;
 

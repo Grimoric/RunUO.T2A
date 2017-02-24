@@ -1,12 +1,10 @@
 using System;
 using System.Collections;
-using Server.Network;
-using Server.Mobiles;
 using Server.Targeting;
 
 namespace Server.Spells.Necromancy
 {
-	public class CorpseSkinSpell : NecromancerSpell
+    public class CorpseSkinSpell : NecromancerSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Corpse Skin", "In Agle Corp Ylem",
@@ -62,10 +60,10 @@ namespace Server.Spells.Necromancy
 				m.PlaySound( 0x1BB );
 
 				double ss = GetDamageSkill( Caster );
-				double mr = ( Caster == m ? 0.0 : GetResistSkill( m ) );
+				double mr = Caster == m ? 0.0 : GetResistSkill( m );
 				m.CheckSkill( SkillName.MagicResist, 0.0, 120.0 );	//Skill check for gain
 
-				TimeSpan duration = TimeSpan.FromSeconds( ((ss - mr) / 2.5) + 40.0 );
+				TimeSpan duration = TimeSpan.FromSeconds( (ss - mr) / 2.5 + 40.0 );
 
 				ResistanceMod[] mods = new ResistanceMod[4]
 					{

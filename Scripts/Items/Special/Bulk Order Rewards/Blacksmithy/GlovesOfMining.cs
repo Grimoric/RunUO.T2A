@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x13c6, 0x13ce )]
+    [FlipableAttribute( 0x13c6, 0x13ce )]
 	public class LeatherGlovesOfMining : BaseGlovesOfMining
 	{
 		public override int BasePhysicalResistance{ get{ return 2; } }

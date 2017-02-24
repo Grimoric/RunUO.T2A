@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Gumps;
 using Server.Mobiles;
 
 namespace Server.Engines.BulkOrders
 {
-	public class BODBuyGump : Gump
+    public class BODBuyGump : Gump
 	{
 		private PlayerMobile m_From;
 		private BulkOrderBook m_Book;
@@ -61,14 +59,14 @@ namespace Server.Engines.BulkOrders
 
 							Container pack = m_From.Backpack;
 
-							if ( (pack == null) || ((pack != null) && (!pack.CheckHold(m_From, item, true, true, 0, item.PileWeight + item.TotalWeight)) ) )
+							if ( pack == null || pack != null && !pack.CheckHold(m_From, item, true, true, 0, item.PileWeight + item.TotalWeight) )
 							{
 								pv.SayTo(m_From, 503204); // You do not have room in your backpack for this
 								m_From.SendGump(new BOBGump(m_From, m_Book, m_Page, null));
 							}
 							else
 							{
-								if ((pack != null && pack.ConsumeTotal( typeof( Gold ), price )) || Banker.Withdraw( m_From, price ) )
+								if (pack != null && pack.ConsumeTotal( typeof( Gold ), price ) || Banker.Withdraw( m_From, price ) )
 								{
 									m_Book.Entries.Remove( m_Object );
 									m_Book.InvalidateProperties();

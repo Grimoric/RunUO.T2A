@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class CrateForSledge : TransientItem
+    public class CrateForSledge : TransientItem
 	{
 		public override int LabelNumber{ get{ return 1074520; } } // Crate for Sledge
 

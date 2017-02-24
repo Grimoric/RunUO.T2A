@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Server.Commands.Generic
 {
-	public delegate BaseExtension ExtensionConstructor();
+    public delegate BaseExtension ExtensionConstructor();
 
 	public sealed class ExtensionInfo
 	{
@@ -45,7 +44,7 @@ namespace Server.Commands.Generic
 
 		public bool IsFixedSize
 		{
-			get { return ( m_Size >= 0 ); }
+			get { return m_Size >= 0; }
 		}
 
 		public ExtensionConstructor Constructor
@@ -102,7 +101,7 @@ namespace Server.Commands.Generic
 				if ( !ExtensionInfo.Table.TryGetValue( args[i], out extInfo ) )
 					continue;
 
-				if ( extInfo.IsFixedSize && i != ( size - extInfo.Size - 1 ) )
+				if ( extInfo.IsFixedSize && i != size - extInfo.Size - 1 )
 					throw new Exception( "Invalid extended argument count." );
 
 				BaseExtension ext = extInfo.Constructor();
@@ -119,7 +118,7 @@ namespace Server.Commands.Generic
 
 			parsed.Sort( delegate( BaseExtension a, BaseExtension b )
 			{
-				return ( a.Order - b.Order );
+				return a.Order - b.Order;
 			} );
 
 			AssemblyEmitter emitter = null;

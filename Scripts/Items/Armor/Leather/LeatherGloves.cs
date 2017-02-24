@@ -1,9 +1,8 @@
 using System;
-using Server.Items;
 
 namespace Server.Items
 {
-	[Flipable]
+    [Flipable]
 	public class LeatherGloves : BaseArmor, IArcaneEquip
 	{
 		public override int BasePhysicalResistance{ get{ return 2; } }
@@ -97,7 +96,7 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool IsArcane
 		{
-			get{ return ( m_MaxArcaneCharges > 0 && m_CurArcaneCharges >= 0 ); }
+			get{ return m_MaxArcaneCharges > 0 && m_CurArcaneCharges >= 0; }
 		}
 
 		public void Update()

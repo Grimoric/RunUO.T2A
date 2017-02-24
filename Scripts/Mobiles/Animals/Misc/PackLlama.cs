@@ -1,12 +1,10 @@
-using System;
 using System.Collections.Generic;
-using Server.Mobiles;
 using Server.Items;
 using Server.ContextMenus;
 
 namespace Server.Mobiles
 {
-	[CorpseName("a llama corpse")]
+    [CorpseName("a llama corpse")]
 	public class PackLlama : BaseCreature
 	{
 		[Constructable]

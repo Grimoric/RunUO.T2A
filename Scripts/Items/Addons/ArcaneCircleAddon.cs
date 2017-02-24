@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using Server;
-
 namespace Server.Items
 {
-	public class ArcaneCircleAddon : BaseAddon
+    public class ArcaneCircleAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed{ get{ return new ArcaneCircleDeed(); } }
 

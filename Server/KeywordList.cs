@@ -18,11 +18,10 @@
  *
  ***************************************************************************/
 
-using System;
 
 namespace Server
 {
-	public class KeywordList
+    public class KeywordList
 	{
 		private int[] m_Keywords;
 		private int m_Count;
@@ -46,14 +45,14 @@ namespace Server
 			bool contains = false;
 
 			for ( int i = 0; !contains && i < m_Count; ++i )
-				contains = ( keyword == m_Keywords[i] );
+				contains = keyword == m_Keywords[i];
 
 			return contains;
 		}
 
 		public void Add( int keyword )
 		{
-			if ( (m_Count + 1) > m_Keywords.Length )
+			if ( m_Count + 1 > m_Keywords.Length )
 			{
 				int[] old = m_Keywords;
 				m_Keywords = new int[old.Length * 2];

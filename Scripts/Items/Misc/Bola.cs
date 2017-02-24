@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Mobiles;
 using Server.Network;
 using Server.Targeting;
 
 namespace Server.Items
 {
-	public class Bola : Item
+    public class Bola : Item
 	{
 		[Constructable]
 		public Bola() : this( 1 )
@@ -101,7 +99,7 @@ namespace Server.Items
 			Item one = from.FindItemOnLayer( Layer.OneHanded );
 			Item two = from.FindItemOnLayer( Layer.TwoHanded );
 
-			return ( one == null && two == null );
+			return one == null && two == null;
 		}
 
 		public class BolaTarget : Target

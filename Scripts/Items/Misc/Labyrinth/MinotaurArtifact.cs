@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class MinotaurArtifact : Item
+    public class MinotaurArtifact : Item
 	{
 		public override int LabelNumber{ get{ return 1074826; } } // Minotaur Artifact
 		public override double DefaultWeight{ get{ return 5.0; } }

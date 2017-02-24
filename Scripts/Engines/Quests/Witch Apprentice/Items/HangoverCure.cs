@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Engines.Quests.Hag
 {
-	public class HangoverCure : Item
+    public class HangoverCure : Item
 	{
 		private int m_Uses;
 

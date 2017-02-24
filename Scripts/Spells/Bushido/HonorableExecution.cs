@@ -1,13 +1,9 @@
 using System;
 using System.Collections;
-using Server.Network;
-using Server.Items;
-using Server.Mobiles;
-using Server.Targeting;
 
 namespace Server.Spells.Bushido
 {
-	public class HonorableExecution : SamuraiMove
+    public class HonorableExecution : SamuraiMove
 	{
 		public HonorableExecution()
 		{
@@ -23,7 +19,7 @@ namespace Server.Spells.Bushido
 			double bushido = attacker.Skills[SkillName.Bushido].Value;
 
 			// TODO: 20 -> Perfection
-			return 1.0 + (bushido * 20) / 10000;
+			return 1.0 + bushido * 20 / 10000;
 		}
 
 		public override void OnHit( Mobile attacker, Mobile defender, int damage )
@@ -49,9 +45,9 @@ namespace Server.Spells.Bushido
 
 				double bushido = attacker.Skills[SkillName.Bushido].Value;
 
-				attacker.Hits += 20 + (int)((bushido * bushido) / 480.0);
+				attacker.Hits += 20 + (int)(bushido * bushido / 480.0);
 
-				int swingBonus = Math.Max( 1, (int)((bushido * bushido) / 720.0) );
+				int swingBonus = Math.Max( 1, (int)(bushido * bushido / 720.0) );
 
 				info = new HonorableExecutionInfo( attacker, swingBonus );
 				info.m_Timer = Timer.DelayCall( TimeSpan.FromSeconds( 20.0 ), new TimerStateCallback( EndEffect ), info );

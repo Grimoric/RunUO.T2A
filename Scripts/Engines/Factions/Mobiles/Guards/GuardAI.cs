@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using Server.Targeting;
@@ -17,7 +15,7 @@ using Server.Spells.Seventh;
 
 namespace Server.Factions
 {
-	public enum GuardAI
+    public enum GuardAI
 	{
 		Bless	= 0x01, // heal, cure, +stats
 		Curse	= 0x02, // poison, -stats
@@ -120,12 +118,12 @@ namespace Server.Factions
 
 		public bool IsAllowed( GuardAI flag )
 		{
-			return ( ( m_Guard.GuardAI & flag ) == flag );
+			return ( m_Guard.GuardAI & flag ) == flag;
 		}
 
 		public bool IsDamaged
 		{
-			get{ return ( m_Guard.Hits < m_Guard.HitsMax ); }
+			get{ return m_Guard.Hits < m_Guard.HitsMax; }
 		}
 
 		public bool IsPoisoned
@@ -143,7 +141,7 @@ namespace Server.Factions
 				if ( m_Bandage == null )
 					return TimeSpan.MaxValue;
 
-				TimeSpan ts = ( m_BandageStart + m_Bandage.Timer.Delay ) - DateTime.Now;
+				TimeSpan ts = m_BandageStart + m_Bandage.Timer.Delay - DateTime.Now;
 
 				if ( ts < TimeSpan.FromSeconds( -1.0 ) )
 				{
@@ -207,7 +205,7 @@ namespace Server.Factions
 
 			m_Bandage = BandageContext.BeginHeal( m_Guard, m_Guard );
 			m_BandageStart = DateTime.Now;
-			return ( m_Bandage != null );
+			return m_Bandage != null;
 		}
 
 		public bool UseItemByType( Type type )
@@ -375,7 +373,7 @@ namespace Server.Factions
 
 		public bool CanDispel( Mobile m )
 		{
-			return ( m is BaseCreature && ((BaseCreature)m).Summoned && m_Mobile.CanBeHarmful( m, false ) && !((BaseCreature)m).IsAnimatedDead );
+			return m is BaseCreature && ((BaseCreature)m).Summoned && m_Mobile.CanBeHarmful( m, false ) && !((BaseCreature)m).IsAnimatedDead;
 		}
 
 		public void RunTo( Mobile m )
@@ -433,7 +431,7 @@ namespace Server.Factions
 
 		public void Run( Direction d )
 		{
-			if ( (m_Mobile.Spell != null && m_Mobile.Spell.IsCasting) || m_Mobile.Paralyzed || m_Mobile.Frozen || m_Mobile.DisallowAllMoves )
+			if ( m_Mobile.Spell != null && m_Mobile.Spell.IsCasting || m_Mobile.Paralyzed || m_Mobile.Frozen || m_Mobile.DisallowAllMoves )
 				return;
 
 			m_Mobile.Direction = d | Direction.Running;
@@ -492,7 +490,7 @@ namespace Server.Factions
 			{
 				Target targ = m_Guard.Target;
 
-				Mobile toHarm = ( dispelTarget == null ? combatant : dispelTarget );
+				Mobile toHarm = dispelTarget == null ? combatant : dispelTarget;
 
 				if ( (targ.Flags & TargetFlags.Harmful) != 0 && toHarm != null )
 				{
@@ -596,7 +594,7 @@ namespace Server.Factions
 
 					TimeSpan ts = TimeUntilBandage;
 
-					if ( p != Poison.Lesser || ts == TimeSpan.MaxValue || TimeUntilBandage < TimeSpan.FromSeconds( 1.5 ) || (m_Guard.HitsMax - m_Guard.Hits) > Utility.Random( 250 ) )
+					if ( p != Poison.Lesser || ts == TimeSpan.MaxValue || TimeUntilBandage < TimeSpan.FromSeconds( 1.5 ) || m_Guard.HitsMax - m_Guard.Hits > Utility.Random( 250 ) )
 					{
 						if ( IsAllowed( GuardAI.Bless ) )
 							spell = new CureSpell( m_Guard, null );
@@ -604,17 +602,17 @@ namespace Server.Factions
 							UseItemByType( typeof( BaseCurePotion ) );
 					}
 				}
-				else if ( IsDamaged && (m_Guard.HitsMax - m_Guard.Hits) > Utility.Random( 200 ) )
+				else if ( IsDamaged && m_Guard.HitsMax - m_Guard.Hits > Utility.Random( 200 ) )
 				{
-					if( IsAllowed( GuardAI.Magic ) && ((m_Guard.Hits * 100) / Math.Max( m_Guard.HitsMax, 1 )) < 10 && m_Guard.Home != Point3D.Zero && !Utility.InRange( m_Guard.Location, m_Guard.Home, 15 ) && m_Guard.Mana >= 11 )
+					if( IsAllowed( GuardAI.Magic ) && m_Guard.Hits * 100 / Math.Max( m_Guard.HitsMax, 1 ) < 10 && m_Guard.Home != Point3D.Zero && !Utility.InRange( m_Guard.Location, m_Guard.Home, 15 ) && m_Guard.Mana >= 11 )
 					{
 						spell = new RecallSpell( m_Guard, null, new RunebookEntry( m_Guard.Home, m_Guard.Map, "Guard's Home", null ), null  );
 					}
 					else if ( IsAllowed( GuardAI.Bless ) )
 					{
-						if ( m_Guard.Mana >= 11 && (m_Guard.Hits + 30) < m_Guard.HitsMax )
+						if ( m_Guard.Mana >= 11 && m_Guard.Hits + 30 < m_Guard.HitsMax )
 							spell = new GreaterHealSpell( m_Guard, null );
-						else if ( (m_Guard.Hits + 10) < m_Guard.HitsMax && (m_Guard.Mana < 11 || (m_Guard.NextCombatTime - DateTime.Now) > TimeSpan.FromSeconds( 2.0 )) )
+						else if ( m_Guard.Hits + 10 < m_Guard.HitsMax && (m_Guard.Mana < 11 || m_Guard.NextCombatTime - DateTime.Now > TimeSpan.FromSeconds( 2.0 )) )
 							spell = new HealSpell( m_Guard, null );
 					}
 					else if ( m_Guard.CanBeginAction( typeof( BaseHealPotion ) ) )
@@ -624,7 +622,7 @@ namespace Server.Factions
 				}
 				else if ( dispelTarget != null && (IsAllowed( GuardAI.Magic ) || IsAllowed( GuardAI.Bless ) || IsAllowed( GuardAI.Curse )) )
 				{
-					if ( !dispelTarget.Paralyzed && m_Guard.Mana > (ManaReserve + 20) && 40 > Utility.Random( 100 ) )
+					if ( !dispelTarget.Paralyzed && m_Guard.Mana > ManaReserve + 20 && 40 > Utility.Random( 100 ) )
 						spell = new ParalyzeSpell( m_Guard, null );
 					else
 						spell = new DispelSpell( m_Guard, null );
@@ -648,26 +646,26 @@ namespace Server.Factions
 					{
 						if ( 80 > Utility.Random( 100 ) )
 						{
-							m_Combo = ( IsAllowed( GuardAI.Smart ) ? SpellCombo.Simple : SpellCombo.Strong );
+							m_Combo = IsAllowed( GuardAI.Smart ) ? SpellCombo.Simple : SpellCombo.Strong;
 							m_ComboIndex = -1;
 
-							if ( m_Guard.Mana >= (ManaReserve + m_Combo.Mana) )
+							if ( m_Guard.Mana >= ManaReserve + m_Combo.Mana )
 								spell = SpellCombo.Process( m_Guard, combatant, ref m_Combo, ref m_ComboIndex, ref toRelease );
 							else
 							{
 								m_Combo = null;
 
-								if ( m_Guard.Mana >= (ManaReserve + 40) )
+								if ( m_Guard.Mana >= ManaReserve + 40 )
 									spell = RandomOffenseSpell();
 							}
 						}
-						else if ( m_Guard.Mana >= (ManaReserve + 40) )
+						else if ( m_Guard.Mana >= ManaReserve + 40 )
 						{
 							spell = RandomOffenseSpell();
 						}
 					}
 
-					if ( spell == null && 2 > Utility.Random( 100 ) && m_Guard.Mana >= (ManaReserve + 10) )
+					if ( spell == null && 2 > Utility.Random( 100 ) && m_Guard.Mana >= ManaReserve + 10 )
 					{
 						int strMod = GetStatMod( m_Guard, StatType.Str );
 						int dexMod = GetStatMod( m_Guard, StatType.Dex );
@@ -700,7 +698,7 @@ namespace Server.Factions
 						}
 					}
 
-					if ( spell == null && 2 > Utility.Random( 100 ) && m_Guard.Mana >= (ManaReserve + 10) && IsAllowed( GuardAI.Curse ) )
+					if ( spell == null && 2 > Utility.Random( 100 ) && m_Guard.Mana >= ManaReserve + 10 && IsAllowed( GuardAI.Curse ) )
 					{
 						if ( !combatant.Poisoned && 40 > Utility.Random( 100 ) )
 						{
@@ -731,7 +729,7 @@ namespace Server.Factions
 					}
 				}
 
-				if ( spell != null && (m_Guard.HitsMax - m_Guard.Hits + 10) > Utility.Random( 100 ) )
+				if ( spell != null && m_Guard.HitsMax - m_Guard.Hits + 10 > Utility.Random( 100 ) )
 				{
 					Type type = null;
 
@@ -751,7 +749,7 @@ namespace Server.Factions
 					{
 						if ( spell is GreaterHealSpell )
 						{
-							if ( (m_Guard.Hits + 30) > m_Guard.HitsMax && (m_Guard.Hits + 10) < m_Guard.HitsMax )
+							if ( m_Guard.Hits + 30 > m_Guard.HitsMax && m_Guard.Hits + 10 < m_Guard.HitsMax )
 								spell = new HealSpell( m_Guard, null );
 						}
 						else
@@ -760,7 +758,7 @@ namespace Server.Factions
 						}
 					}
 				}
-				else if ( spell == null && m_Guard.Stam < (m_Guard.StamMax / 3) && IsAllowed( GuardAI.Melee ) )
+				else if ( spell == null && m_Guard.Stam < m_Guard.StamMax / 3 && IsAllowed( GuardAI.Melee ) )
 				{
 					UseItemByType( typeof( BaseRefreshPotion ) );
 				}

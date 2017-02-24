@@ -19,16 +19,13 @@
  ***************************************************************************/
 
 using System;
-using System.IO;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-
-using Server;
 using Server.Network;
 
-namespace Server {
-	public delegate void FileCommitCallback( FileQueue.Chunk chunk );
+namespace Server
+{
+    public delegate void FileCommitCallback( FileQueue.Chunk chunk );
 
 	public sealed class FileQueue : IDisposable {
 		public sealed class Chunk {
@@ -218,7 +215,7 @@ namespace Server {
 				throw new ArgumentOutOfRangeException( "offset" );
 			} else if ( size < 0 ) {
 				throw new ArgumentOutOfRangeException( "size" );
-			} else if ( ( buffer.Length - offset ) < size ) {
+			} else if ( buffer.Length - offset < size ) {
 				throw new ArgumentException();
 			}
 
@@ -231,7 +228,7 @@ namespace Server {
 
 				byte[] page = buffered.buffer; // buffer page
 				int pageSpace = page.Length - buffered.length; // available bytes in page
-				int byteCount = ( size > pageSpace ? pageSpace : size ); // how many bytes we can copy over
+				int byteCount = size > pageSpace ? pageSpace : size; // how many bytes we can copy over
 
 				Buffer.BlockCopy( buffer, offset, page, buffered.length, byteCount );
 

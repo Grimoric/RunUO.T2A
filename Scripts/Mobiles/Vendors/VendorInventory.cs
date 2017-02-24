@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Multis;
 
 namespace Server.Mobiles
 {
-	public class VendorInventory
+    public class VendorInventory
 	{
 		public static readonly TimeSpan GracePeriod = TimeSpan.FromDays( 7.0 );
 

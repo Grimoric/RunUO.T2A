@@ -1,10 +1,9 @@
 using System;
-using System.Collections;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	public class ShadowFiend : BaseCreature
+    public class ShadowFiend : BaseCreature
 	{
 		public override bool DeleteCorpseOnDeath{ get{ return true; } }
 

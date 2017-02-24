@@ -1,14 +1,11 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 using Server.Gumps;
 using Server.Network;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Collector
 {
-	public class Impresario : BaseQuester
+    public class Impresario : BaseQuester
 	{
 		[Constructable]
 		public Impresario() : base( "the impresario" )

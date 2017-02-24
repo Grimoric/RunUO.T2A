@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Accounting;
-using Server.Gumps;
 using Server.Items;
-using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	public class HouseRaffleManagementGump : Gump
+    public class HouseRaffleManagementGump : Gump
 	{
 		public enum SortMethod
 		{
@@ -196,10 +193,10 @@ namespace Server.Gumps
 				if ( entry == null )
 					continue;
 
-				AddButton( 13, 138 + (idx * 20), 4002, 4004, 6 + i, GumpButtonType.Reply, 0 );
+				AddButton( 13, 138 + idx * 20, 4002, 4004, 6 + i, GumpButtonType.Reply, 0 );
 
 				int x = 45;
-				int color = ( winner != null && entry.From == winner ) ? HighlightColor : LabelColor;
+				int color = winner != null && entry.From == winner ? HighlightColor : LabelColor;
 
 				string name = null;
 
@@ -214,19 +211,19 @@ namespace Server.Gumps
 				}
 
 				if ( name != null )
-					AddHtml( x + 2, 140 + (idx * 20), 250, 20, Color( name, color ), false, false );
+					AddHtml( x + 2, 140 + idx * 20, 250, 20, Color( name, color ), false, false );
 
 				x += 250;
 
 				if ( entry.Address != null )
-					AddHtml( x, 140 + (idx * 20), 100, 20, Color( Center( entry.Address.ToString() ), color ), false, false );
+					AddHtml( x, 140 + idx * 20, 100, 20, Color( Center( entry.Address.ToString() ), color ), false, false );
 
 				x += 100;
 
-				AddHtml( x, 140 + (idx * 20), 150, 20, Color( Center( entry.Date.ToString() ), color ), false, false );
+				AddHtml( x, 140 + idx * 20, 150, 20, Color( Center( entry.Date.ToString() ), color ), false, false );
 				x += 150;
 
-				AddHtml( x, 140 + (idx * 20), 60, 20, Color( Center( "1" ), color ), false, false );
+				AddHtml( x, 140 + idx * 20, 60, 20, Color( Center( "1" ), color ), false, false );
 				x += 60;
 			}
 		}
@@ -241,8 +238,8 @@ namespace Server.Gumps
 
 			public int Compare( RaffleEntry x, RaffleEntry y )
 			{
-				bool xIsNull = ( x == null || x.From == null );
-				bool yIsNull = ( y == null || y.From == null );
+				bool xIsNull = x == null || x.From == null;
+				bool yIsNull = y == null || y.From == null;
 
 				if ( xIsNull && yIsNull )
 					return 0;
@@ -270,8 +267,8 @@ namespace Server.Gumps
 
 			public int Compare( RaffleEntry x, RaffleEntry y )
 			{
-				bool xIsNull = ( x == null || x.From == null );
-				bool yIsNull = ( y == null || y.From == null );
+				bool xIsNull = x == null || x.From == null;
+				bool yIsNull = y == null || y.From == null;
 
 				if ( xIsNull && yIsNull )
 					return 0;
@@ -309,8 +306,8 @@ namespace Server.Gumps
 
 			public int Compare( RaffleEntry x, RaffleEntry y )
 			{
-				bool xIsNull = ( x == null || x.Address == null );
-				bool yIsNull = ( y == null || y.Address == null );
+				bool xIsNull = x == null || x.Address == null;
+				bool yIsNull = y == null || y.Address == null;
 
 				if ( xIsNull && yIsNull )
 					return 0;

@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Commands;
 using Server.Commands.Generic;
 
 namespace Server.Items
 {
-	public class ToggleItem : Item
+    public class ToggleItem : Item
 	{
 		public class ToggleCommand : BaseCommand
 		{
@@ -97,8 +95,8 @@ namespace Server.Items
 
 		public void Toggle()
 		{
-			ItemID = ( ItemID == m_ActiveItemID ) ? m_InactiveItemID : m_ActiveItemID;
-			Visible = ( ItemID != 0x1 );
+			ItemID = ItemID == m_ActiveItemID ? m_InactiveItemID : m_ActiveItemID;
+			Visible = ItemID != 0x1;
 		}
 
 		public ToggleItem( Serial serial )

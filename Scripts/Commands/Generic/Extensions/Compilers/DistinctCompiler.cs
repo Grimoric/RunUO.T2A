@@ -3,12 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Reflection.Emit;
-using System.Text;
-using Server;
 
 namespace Server.Commands.Generic
 {
-	public static class DistinctCompiler
+    public static class DistinctCompiler
 	{
 		public static IComparer Compile( AssemblyEmitter assembly, Type objectType, Property[] props )
 		{

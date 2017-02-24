@@ -1,11 +1,8 @@
-using System;
-using Server;
-using Server.Items;
 using Server.Factions;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a daemon corpse" )]
+    [CorpseName( "a daemon corpse" )]
 	public class Daemon : BaseCreature
 	{
 		public override double DispelDifficulty{ get{ return 125.0; } }

@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class Blocker : Item
+    public class Blocker : Item
 	{
 		public override int LabelNumber{ get{ return 503057; } } // Impassable!
 

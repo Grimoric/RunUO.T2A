@@ -1,11 +1,10 @@
 using System;
-using System.Collections;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Engines.ConPVP
 {
-	public class PickRulesetGump : Gump
+    public class PickRulesetGump : Gump
 	{
 		private Mobile m_From;
 		private DuelContext m_Context;
@@ -26,7 +25,7 @@ namespace Server.Engines.ConPVP
 			m_Defaults = ruleset.Layout.Defaults;
 			m_Flavors = ruleset.Layout.Flavors;
 
-			int height = 25 + 20 + ((m_Defaults.Length + 1) * 22) + 6 + 20 + (m_Flavors.Length * 22) + 25;
+			int height = 25 + 20 + (m_Defaults.Length + 1) * 22 + 6 + 20 + m_Flavors.Length * 22 + 25;
 
 			AddPage( 0 );
 

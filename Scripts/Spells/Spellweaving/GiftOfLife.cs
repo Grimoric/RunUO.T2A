@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Server.Mobiles;
 using Server.Gumps;
@@ -7,7 +6,7 @@ using Server.Targeting;
 
 namespace Server.Spells.Spellweaving
 {
-	public class GiftOfLifeSpell : ArcanistSpell
+    public class GiftOfLifeSpell : ArcanistSpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Gift of Life", "Illorae",
@@ -76,7 +75,7 @@ namespace Server.Spells.Spellweaving
 
 				double skill = Caster.Skills[SkillName.Spellweaving].Value;
 
-				TimeSpan duration = TimeSpan.FromMinutes( ((int)(skill / 24))* 2 + FocusLevel );
+				TimeSpan duration = TimeSpan.FromMinutes( (int)(skill / 24)* 2 + FocusLevel );
 
 				ExpireTimer t = new ExpireTimer( m, duration, this );
 				t.Start();
@@ -144,7 +143,7 @@ namespace Server.Spells.Spellweaving
 
 		}
 
-		public double HitsScalar { get { return ((Caster.Skills.Spellweaving.Value/2.4) + FocusLevel)/100; } }
+		public double HitsScalar { get { return (Caster.Skills.Spellweaving.Value/2.4 + FocusLevel)/100; } }
 
 		public static void OnLogin( LoginEventArgs e )
 		{

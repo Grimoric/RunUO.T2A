@@ -1,9 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Sockets;
-using Server;
 using Server.Accounting;
 using Server.Engines.Help;
 using Server.Items;
@@ -15,7 +12,7 @@ using Server.Spells;
 
 namespace Server.Commands.Generic
 {
-	public class TargetCommands
+    public class TargetCommands
 	{
 		public static void Initialize()
 		{
@@ -737,7 +734,7 @@ namespace Server.Commands.Generic
 		{
 			if ( e.Length >= 2 )
 			{
-				for ( int i = 0; (i+1) < e.Length; i += 2 )
+				for ( int i = 0; i+1 < e.Length; i += 2 )
 				{
 					string result = Properties.SetValue( e.Mobile, obj, e.GetString( i ), e.GetString( i+1 ) );
 
@@ -1020,7 +1017,7 @@ namespace Server.Commands.Generic
 		{
 			m_Ban = ban;
 
-			AccessLevel = ( ban ? AccessLevel.Administrator : AccessLevel.GameMaster );
+			AccessLevel = ban ? AccessLevel.Administrator : AccessLevel.GameMaster;
 			Supports = CommandSupport.AllMobiles;
 			Commands = new string[]{ ban ? "Ban" : "Kick" };
 			ObjectTypes = ObjectTypes.Mobiles;

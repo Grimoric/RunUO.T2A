@@ -1,12 +1,10 @@
 using System;
-using System.Collections;
 using Server.Items;
-using Server.Targeting;
 using Server.Misc;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "an orcish corpse" )]
+    [CorpseName( "an orcish corpse" )]
 	public class OrcBomber : BaseCreature
 	{
 		public override InhumanSpeech SpeechType{ get{ return InhumanSpeech.Orc; } }
@@ -108,10 +106,10 @@ namespace Server.Mobiles
 
 				m_Thrown++;
 
-				if ( 0.75 >= Utility.RandomDouble() && (m_Thrown % 2) == 1 ) // 75% chance to quickly throw another bomb
+				if ( 0.75 >= Utility.RandomDouble() && m_Thrown % 2 == 1 ) // 75% chance to quickly throw another bomb
 					m_NextBomb = DateTime.Now + TimeSpan.FromSeconds( 3.0 );
 				else
-					m_NextBomb = DateTime.Now + TimeSpan.FromSeconds( 5.0 + (10.0 * Utility.RandomDouble()) ); // 5-15 seconds
+					m_NextBomb = DateTime.Now + TimeSpan.FromSeconds( 5.0 + 10.0 * Utility.RandomDouble() ); // 5-15 seconds
 			}
 		}
 

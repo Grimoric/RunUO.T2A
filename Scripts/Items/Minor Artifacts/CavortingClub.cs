@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class CavortingClub : Club
+    public class CavortingClub : Club
 	{
 		public override int LabelNumber{ get{ return 1063472; } }
 

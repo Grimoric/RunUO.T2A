@@ -1,12 +1,9 @@
-using System;
 using System.Collections.Generic;
-using Server.Network;
-using Server.Items;
 using Server.Targeting;
 
 namespace Server.Spells.Seventh
 {
-	public class ChainLightningSpell : MagerySpell
+    public class ChainLightningSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Chain Lightning", "Vas Ort Grav",

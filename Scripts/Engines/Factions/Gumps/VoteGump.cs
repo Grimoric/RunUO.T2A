@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Gumps;
 using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Factions
 {
-	public class VoteGump : FactionGump
+    public class VoteGump : FactionGump
 	{
 		private PlayerMobile m_From;
 		private Election m_Election;
@@ -55,10 +53,10 @@ namespace Server.Factions
 				Candidate cd = election.Candidates[i];
 
 				if ( canVote )
-					AddButton( 20, 100 + (i * 20), 4005, 4007, i + 1, GumpButtonType.Reply, 0 );
+					AddButton( 20, 100 + i * 20, 4005, 4007, i + 1, GumpButtonType.Reply, 0 );
 
-				AddLabel( 55, 100 + (i * 20), 0, cd.Mobile.Name );
-				AddLabel( 300, 100 + (i * 20), 0, cd.Votes.ToString() );
+				AddLabel( 55, 100 + i * 20, 0, cd.Mobile.Name );
+				AddLabel( 300, 100 + i * 20, 0, cd.Votes.ToString() );
 			}
 
 			AddButton( 20, 310, 4005, 4007, 0, GumpButtonType.Reply, 0 );

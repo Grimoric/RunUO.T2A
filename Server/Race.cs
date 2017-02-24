@@ -20,12 +20,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
-using Server.Network;
 
 namespace Server
 {
-	[Parsable]
+    [Parsable]
 	public abstract class Race
 	{
 		public static Race DefaultRace { get { return m_Races[0];  } }
@@ -159,13 +157,13 @@ namespace Server
 		public virtual int AliveBody( Mobile m ) { return AliveBody( m.Female ); }
 		public virtual int AliveBody( bool female )
 		{
-			return (female ? m_FemaleBody : m_MaleBody);
+			return female ? m_FemaleBody : m_MaleBody;
 		}
 
 		public virtual int GhostBody( Mobile m ) { return GhostBody( m.Female ); }
 		public virtual int GhostBody( bool female )
 		{
-			return (female ? m_FemaleGhostBody : m_MaleGhostBody);
+			return female ? m_FemaleGhostBody : m_MaleGhostBody;
 		}
 
 		public int RaceID

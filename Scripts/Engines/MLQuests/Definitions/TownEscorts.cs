@@ -1,12 +1,10 @@
-﻿using System;
-using Server;
-using Server.Engines.MLQuests.Objectives;
+﻿using Server.Engines.MLQuests.Objectives;
 using Server.Engines.MLQuests.Rewards;
 using Server.Items;
 
 namespace Server.Engines.MLQuests.Definitions
 {
-	public class TownEscort : BaseEscort
+    public class TownEscort : BaseEscort
 	{
 		// Escort reward
 		private static readonly BaseReward m_Reward = new ItemReward( "Gold", typeof( Gold ), 500 );

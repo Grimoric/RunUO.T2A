@@ -23,7 +23,7 @@ namespace Server.Engines.MyRunUO
 		public static bool LoadDataInFile = true;
 
 		// This must be enabled if the database server is on a remote machine.
-		public static bool DatabaseNonLocal = ( DatabaseServer != "localhost" );
+		public static bool DatabaseNonLocal = DatabaseServer != "localhost";
 
 		// Text encoding used
 		public static Encoding EncodingIO = Encoding.ASCII;

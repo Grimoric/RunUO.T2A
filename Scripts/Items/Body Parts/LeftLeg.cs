@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class LeftLeg : Item
+    public class LeftLeg : Item
 	{
 		[Constructable]
 		public LeftLeg() : base( 0x1DA3 )

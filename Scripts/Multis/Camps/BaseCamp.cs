@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
-using Server;
 using Server.Items;
 using Server.Mobiles;
 using System.Collections.Generic;
 
 namespace Server.Multis
 {
-	public abstract class BaseCamp : BaseMulti
+    public abstract class BaseCamp : BaseMulti
 	{
 		private List<Item> m_Items;
 		private List<Mobile> m_Mobiles;

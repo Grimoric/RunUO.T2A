@@ -3,18 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
-using Server;
-using Server.Commands;
 using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
 using Server.Spells;
-using Server.Targeting;
 
 namespace Server.Multis
 {
-	public enum FoundationType
+    public enum FoundationType
 	{
 		Stone,
 		DarkWood,
@@ -56,7 +53,7 @@ namespace Server.Multis
 
 		public bool IsFixture( Item item )
 		{
-			return (m_Fixtures != null && m_Fixtures.Contains( item ));
+			return m_Fixtures != null && m_Fixtures.Contains( item );
 		}
 
 		public override MultiComponentList Components
@@ -79,7 +76,7 @@ namespace Server.Multis
 		{
 			int w = CurrentState.Components.Width;
 			int h = CurrentState.Components.Height-1;
-			int v = 18 + ((w > h ? w : h) / 2);
+			int v = 18 + (w > h ? w : h) / 2;
 
 			if( v > 24 )
 				v = 24;
@@ -225,7 +222,7 @@ namespace Server.Multis
 					if( itemID >= 0x675 && itemID < 0x6F5 )
 					{
 						int type = (itemID - 0x675) / 16;
-						DoorFacing facing = (DoorFacing)(((itemID - 0x675) / 2) % 8);
+						DoorFacing facing = (DoorFacing)((itemID - 0x675) / 2 % 8);
 
 						switch( type )
 						{
@@ -242,37 +239,37 @@ namespace Server.Multis
 					else if( itemID >= 0x314 && itemID < 0x364 )
 					{
 						int type = (itemID - 0x314) / 16;
-						DoorFacing facing = (DoorFacing)(((itemID - 0x314) / 2) % 8);
-						door = new GenericHouseDoor( facing, 0x314 + ( type * 16 ), 0xED, 0xF4 );
+						DoorFacing facing = (DoorFacing)((itemID - 0x314) / 2 % 8);
+						door = new GenericHouseDoor( facing, 0x314 + type * 16, 0xED, 0xF4 );
 					}
 					else if( itemID >= 0x824 && itemID < 0x834 )
 					{
-						DoorFacing facing = (DoorFacing)(((itemID - 0x824) / 2) % 8);
+						DoorFacing facing = (DoorFacing)((itemID - 0x824) / 2 % 8);
 						door = new GenericHouseDoor( facing, 0x824, 0xEC, 0xF3 );
 					}
 					else if( itemID >= 0x839 && itemID < 0x849 )
 					{
-						DoorFacing facing = (DoorFacing)(((itemID - 0x839) / 2) % 8);
+						DoorFacing facing = (DoorFacing)((itemID - 0x839) / 2 % 8);
 						door = new GenericHouseDoor( facing, 0x839, 0xEB, 0xF2 );
 					}
 					else if( itemID >= 0x84C && itemID < 0x85C )
 					{
-						DoorFacing facing = (DoorFacing)(((itemID - 0x84C) / 2) % 8);
+						DoorFacing facing = (DoorFacing)((itemID - 0x84C) / 2 % 8);
 						door = new GenericHouseDoor( facing, 0x84C, 0xEC, 0xF3 );
 					}
 					else if( itemID >= 0x866 && itemID < 0x876 )
 					{
-						DoorFacing facing = (DoorFacing)(((itemID - 0x866) / 2) % 8);
+						DoorFacing facing = (DoorFacing)((itemID - 0x866) / 2 % 8);
 						door = new GenericHouseDoor( facing, 0x866, 0xEB, 0xF2 );
 					}
 					else if( itemID >= 0xE8 && itemID < 0xF8 )
 					{
-						DoorFacing facing = (DoorFacing)(((itemID - 0xE8) / 2) % 8);
+						DoorFacing facing = (DoorFacing)((itemID - 0xE8) / 2 % 8);
 						door = new GenericHouseDoor( facing, 0xE8, 0xED, 0xF4 );
 					}
 					else if( itemID >= 0x1FED && itemID < 0x1FFD )
 					{
-						DoorFacing facing = (DoorFacing)(((itemID - 0x1FED) / 2) % 8);
+						DoorFacing facing = (DoorFacing)((itemID - 0x1FED) / 2 % 8);
 						door = new GenericHouseDoor( facing, 0x1FED, 0xEC, 0xF3 );
 					}
 					else if( itemID >= 0x241F && itemID < 0x2421 )
@@ -288,11 +285,11 @@ namespace Server.Multis
 					}
 					else if( itemID >= 0x2A05 && itemID < 0x2A1D )
 					{
-						DoorFacing facing = (DoorFacing)((((itemID - 0x2A05) / 2) % 4) + 8);
+						DoorFacing facing = (DoorFacing)((itemID - 0x2A05) / 2 % 4 + 8);
 
-						int sound = (itemID >= 0x2A0D && itemID < 0x2a15) ? 0x539 : -1;
+						int sound = itemID >= 0x2A0D && itemID < 0x2a15 ? 0x539 : -1;
 
-						door = new GenericHouseDoor( facing, 0x29F5 + (8 * ((itemID - 0x2A05) / 8)), sound, sound );
+						door = new GenericHouseDoor( facing, 0x29F5 + 8 * ((itemID - 0x2A05) / 8), sound, sound );
 					}
 					else if( itemID == 0x2D46 )
 					{
@@ -305,7 +302,7 @@ namespace Server.Multis
 					else if( itemID >= 0x2D63 && itemID < 0x2D70 )
 					{
 						int mod = (itemID - 0x2D63)/2%2;
-						DoorFacing facing = ( ( mod == 0 ) ? DoorFacing.SouthCCW : DoorFacing.WestCCW );
+						DoorFacing facing = mod == 0 ? DoorFacing.SouthCCW : DoorFacing.WestCCW;
 
 						int type = (itemID - 0x2D63) / 4;
 
@@ -321,14 +318,14 @@ namespace Server.Multis
 
 						int mod = (itemID - 0x319C) / 2 % 2;
 
-						bool specialCase = (itemID == 0x31AA || itemID == 0x31A8);
+						bool specialCase = itemID == 0x31AA || itemID == 0x31A8;
 
 						DoorFacing facing;
 
 						if ( itemID == 0x31AA || itemID == 0x31A8 )
-							facing = ((mod == 0) ? DoorFacing.NorthCW : DoorFacing.EastCW);
+							facing = mod == 0 ? DoorFacing.NorthCW : DoorFacing.EastCW;
 						else
-							facing = ((mod == 0) ? DoorFacing.EastCW : DoorFacing.NorthCW);
+							facing = mod == 0 ? DoorFacing.EastCW : DoorFacing.NorthCW;
 
 						int type = (itemID - 0x319C) / 4;
 
@@ -337,7 +334,7 @@ namespace Server.Multis
 					else if( itemID >= 0x367B && itemID < 0x369B )
 					{
 						int type = (itemID - 0x367B) / 16;
-						DoorFacing facing = (DoorFacing)(((itemID - 0x367B) / 2) % 8);
+						DoorFacing facing = (DoorFacing)((itemID - 0x367B) / 2 % 8);
 
 						switch( type )
 						{
@@ -456,7 +453,7 @@ namespace Server.Multis
 					{
 						BaseHouseDoor check = m_Fixtures[j] as BaseHouseDoor;
 
-						if( check != null && check.Link == null && check.Facing == linkFacing && (check.X - door.X) == xOffset && (check.Y - door.Y) == yOffset && (check.Z == door.Z) )
+						if( check != null && check.Link == null && check.Facing == linkFacing && check.X - door.X == xOffset && check.Y - door.Y == yOffset && check.Z == door.Z )
 						{
 							check.Link = door;
 							door.Link = check;
@@ -774,7 +771,7 @@ namespace Server.Multis
 
 		public bool IsHiddenToCustomizer( Item item )
 		{
-			return ( item == m_Signpost || item == m_SignHanger || item == Sign || IsFixture( item ) );
+			return item == m_Signpost || item == m_SignHanger || item == Sign || IsFixture( item );
 		}
 
 		public static void Initialize()
@@ -948,13 +945,13 @@ namespace Server.Multis
 		public void EndConfirmCommit( Mobile from )
 		{
 			int oldPrice = Price;
-			int newPrice = oldPrice + CustomizationCost + ((DesignState.Components.List.Length - ( CurrentState.Components.List.Length + CurrentState.Fixtures.Length )) * 500);
+			int newPrice = oldPrice + CustomizationCost + (DesignState.Components.List.Length - ( CurrentState.Components.List.Length + CurrentState.Fixtures.Length )) * 500;
 			int cost = newPrice - oldPrice;
 
 			if ( !this.Deleted ) { // Temporary Fix. We should be booting a client out of customization mode in the delete handler.
 				if ( from.AccessLevel >= AccessLevel.GameMaster && cost != 0 )
 				{
-					from.SendMessage( "{0} gold would have been {1} your bank if you were not a GM.", cost.ToString(), ((cost > 0 )? "withdrawn from" : "deposited into" ) );
+					from.SendMessage( "{0} gold would have been {1} your bank if you were not a GM.", cost.ToString(), cost > 0? "withdrawn from" : "deposited into" );
 				}
 				else
 				{
@@ -1049,7 +1046,7 @@ namespace Server.Multis
 			if( context != null )
 			{
 				int oldPrice = context.Foundation.Price;
-				int newPrice = oldPrice + context.Foundation.CustomizationCost + ((context.Foundation.DesignState.Components.List.Length - ( context.Foundation.CurrentState.Components.List.Length + context.Foundation.Fixtures.Count) ) * 500);
+				int newPrice = oldPrice + context.Foundation.CustomizationCost + (context.Foundation.DesignState.Components.List.Length - ( context.Foundation.CurrentState.Components.List.Length + context.Foundation.Fixtures.Count) ) * 500;
 				int bankBalance = Banker.GetBalance( from );
 
 				from.SendGump( new ConfirmCommitGump( from, context.Foundation, bankBalance, oldPrice, newPrice ) );
@@ -1173,9 +1170,9 @@ namespace Server.Multis
 			int delta = -1;
 
 			for( int i = 0; delta < 0 && i < m_BlockIDs.Length; ++i )
-				delta = (m_BlockIDs[i] - id);
+				delta = m_BlockIDs[i] - id;
 
-			return (delta == 0);
+			return delta == 0;
 		}
 
 		public static bool IsStair( int id, ref int dir )
@@ -1184,7 +1181,7 @@ namespace Server.Multis
 			int delta = -4;
 
 			for( int i = 0; delta < -3 && i < m_StairSeqs.Length; ++i )
-				delta = (m_StairSeqs[i] - id);
+				delta = m_StairSeqs[i] - id;
 
 			if( delta >= -3 && delta <= 0 )
 			{
@@ -1209,7 +1206,7 @@ namespace Server.Multis
 			int ax = x + mcl.Center.X;
 			int ay = y + mcl.Center.Y;
 
-			if( ax < 0 || ay < 0 || ax >= mcl.Width || ay >= (mcl.Height - 1) || z < 7 || ((z - 7) % 5) != 0 )
+			if( ax < 0 || ay < 0 || ax >= mcl.Width || ay >= mcl.Height - 1 || z < 7 || (z - 7) % 5 != 0 )
 				return false;
 
 			if( IsStairBlock( id ) )
@@ -1220,7 +1217,7 @@ namespace Server.Multis
 				{
 					StaticTile tile = tiles[i];
 
-					if( tile.Z == (z + 5) )
+					if( tile.Z == z + 5 )
 					{
 						id = tile.ID;
 						z = tile.Z;
@@ -1239,7 +1236,7 @@ namespace Server.Multis
 			if ( AllowStairSectioning )
 				return true; // skip deletion
 
-			int height = ((z - 7) % 20) / 5;
+			int height = (z - 7) % 20 / 5;
 
 			int xStart, yStart;
 			int xInc, yInc;
@@ -1281,15 +1278,15 @@ namespace Server.Multis
 				}
 			}
 
-			int zStart = z - (height * 5);
+			int zStart = z - height * 5;
 
 			for( int i = 0; i < 4; ++i )
 			{
-				x = xStart + (i * xInc);
-				y = yStart + (i * yInc);
+				x = xStart + i * xInc;
+				y = yStart + i * yInc;
 
 				for( int j = 0; j <= i; ++j )
-					mcl.RemoveXYZH( x, y, zStart + (j * 5), 5 );
+					mcl.RemoveXYZH( x, y, zStart + j * 5, 5 );
 
 				ax = x + mcl.Center.X;
 				ay = y + mcl.Center.Y;
@@ -1301,7 +1298,7 @@ namespace Server.Multis
 					bool hasBaseFloor = false;
 
 					for( int j = 0; !hasBaseFloor && j < tiles.Length; ++j )
-						hasBaseFloor = (tiles[j].Z == 7 && tiles[j].ID != 1);
+						hasBaseFloor = tiles[j].Z == 7 && tiles[j].ID != 1;
 
 					if( !hasBaseFloor )
 						mcl.Add( 0x31F4, x, y, 7 );
@@ -1339,7 +1336,7 @@ namespace Server.Multis
 				int ax = x + mcl.Center.X;
 				int ay = y + mcl.Center.Y;
 
-				if( z == 0 && ax >= 0 && ax < mcl.Width && ay >= 0 && ay < (mcl.Height - 1) )
+				if( z == 0 && ax >= 0 && ax < mcl.Width && ay >= 0 && ay < mcl.Height - 1 )
 				{
 					/* Component is not deletable
 					 *  - Resend design state
@@ -1374,7 +1371,7 @@ namespace Server.Multis
 					bool hasBaseFloor = false;
 
 					for( int i = 0; !hasBaseFloor && i < tiles.Length; ++i )
-						hasBaseFloor = (tiles[i].Z == 7 && tiles[i].ID != 1);
+						hasBaseFloor = tiles[i].Z == 7 && tiles[i].ID != 1;
 
 					if( !hasBaseFloor )
 					{
@@ -1494,7 +1491,7 @@ namespace Server.Multis
 
 				int z = GetLevelZ( context.Level, context.Foundation );
 
-				if( (y + mcl.Center.Y) == (mcl.Height - 1) )
+				if( y + mcl.Center.Y == mcl.Height - 1 )
 					z = 0; // Tiles placed on the far-south of the house are at 0 Z
 
 				mcl.Add( itemID, x, y, z );
@@ -1936,7 +1933,7 @@ namespace Server.Multis
 
 			AddHtmlLocalized( 10, 10, 300, 20, 1062060, 32736, false, false ); // <CENTER>COMMIT DESIGN</CENTER>
 
-			AddHtmlLocalized( 10, 40, 300, 140, (newPrice - oldPrice) <= bankBalance ? 1061898 : 1061903, 1023, false, true );
+			AddHtmlLocalized( 10, 40, 300, 140, newPrice - oldPrice <= bankBalance ? 1061898 : 1061903, 1023, false, true );
 
 			AddHtmlLocalized( 10, 190, 150, 20, 1061902, 32736, false, false ); // Bank Balance:
 			AddLabel( 170, 190, 55, bankBalance.ToString() );
@@ -2191,7 +2188,7 @@ namespace Server.Multis
 		public DesignStateDetailed( int serial, int revision, int xMin, int yMin, int xMax, int yMax, MultiTileEntry[] tiles )
 			: base( 0xD8 )
 		{
-			EnsureCapacity( 17 + (tiles.Length * 5) );
+			EnsureCapacity( 17 + tiles.Length * 5 );
 
 			Write( (byte)0x03 ); // Compression Type
 			Write( (byte)0x00 ); // Unknown
@@ -2203,8 +2200,8 @@ namespace Server.Multis
 
 			int totalLength = 1; // includes plane count
 
-			int width = (xMax - xMin) + 1;
-			int height = (yMax - yMin) + 1;
+			int width = xMax - xMin + 1;
+			int height = yMax - yMin + 1;
 
 			if( m_PlaneBuffers == null )
 			{
@@ -2241,7 +2238,7 @@ namespace Server.Multis
 				int x = mte.m_OffsetX - xMin;
 				int y = mte.m_OffsetY - yMin;
 				int z = mte.m_OffsetZ;
-				bool floor = (TileData.ItemTable[mte.m_ItemID & TileData.MaxItemValue].Height <= 0);
+				bool floor = TileData.ItemTable[mte.m_ItemID & TileData.MaxItemValue].Height <= 0;
 				int plane, size;
 
 				switch( z )
@@ -2253,10 +2250,10 @@ namespace Server.Multis
 					case 67: plane = 4; break;
 					default:
 					{
-						int stairBufferIndex = (totalStairsUsed / MaxItemsPerStairBuffer);
+						int stairBufferIndex = totalStairsUsed / MaxItemsPerStairBuffer;
 						byte[] stairBuffer = m_StairBuffers[stairBufferIndex];
 
-						int byteIndex = (totalStairsUsed % MaxItemsPerStairBuffer) * 5;
+						int byteIndex = totalStairsUsed % MaxItemsPerStairBuffer * 5;
 
 						stairBuffer[byteIndex++] = (byte)(mte.m_ItemID >> 8);
 						stairBuffer[byteIndex++] = (byte)mte.m_ItemID;
@@ -2287,14 +2284,14 @@ namespace Server.Multis
 					plane += 4;
 				}
 
-				int index = ((x * size) + y) * 2;
+				int index = (x * size + y) * 2;
 
-				if( x < 0 || y < 0 || y >= size || (index + 1) >= 0x400 )
+				if( x < 0 || y < 0 || y >= size || index + 1 >= 0x400 )
 				{
-					int stairBufferIndex = (totalStairsUsed / MaxItemsPerStairBuffer);
+					int stairBufferIndex = totalStairsUsed / MaxItemsPerStairBuffer;
 					byte[] stairBuffer = m_StairBuffers[stairBufferIndex];
 
-					int byteIndex = (totalStairsUsed % MaxItemsPerStairBuffer) * 5;
+					int byteIndex = totalStairsUsed % MaxItemsPerStairBuffer * 5;
 
 					stairBuffer[byteIndex++] = (byte)(mte.m_ItemID >> 8);
 					stairBuffer[byteIndex++] = (byte)mte.m_ItemID;
@@ -2358,7 +2355,7 @@ namespace Server.Multis
 			{
 				++planeCount;
 
-				int count = (totalStairsUsed - (i * MaxItemsPerStairBuffer));
+				int count = totalStairsUsed - i * MaxItemsPerStairBuffer;
 
 				if( count > MaxItemsPerStairBuffer )
 					count = MaxItemsPerStairBuffer;

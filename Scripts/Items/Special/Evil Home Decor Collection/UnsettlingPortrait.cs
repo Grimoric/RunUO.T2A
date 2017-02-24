@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Network;
 
 namespace Server.Items
 {
-	[Flipable( 0x2A65, 0x2A67 )]
+    [Flipable( 0x2A65, 0x2A67 )]
 	public class UnsettlingPortraitComponent : AddonComponent
 	{
 		public override int LabelNumber { get { return 1074480; } } // Unsettling portrait

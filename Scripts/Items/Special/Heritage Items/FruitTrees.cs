@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Network;
 
 namespace Server.Items
 {
-	public abstract class BaseFruitTreeAddon : BaseAddon
+    public abstract class BaseFruitTreeAddon : BaseAddon
 	{
 		public override abstract BaseAddonDeed Deed { get; }
 		public abstract Item Fruit { get; }

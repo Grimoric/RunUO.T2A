@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a water elemental corpse" )]
+    [CorpseName( "a water elemental corpse" )]
 	public class WaterElemental : BaseCreature
 	{
 		public override double DispelDifficulty{ get{ return 117.5; } }

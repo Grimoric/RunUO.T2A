@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.ContextMenus;
 
 namespace Server.Engines.Quests
 {
-	public class QuestCallbackEntry : ContextMenuEntry
+    public class QuestCallbackEntry : ContextMenuEntry
 	{
 		private QuestCallback m_Callback;
 

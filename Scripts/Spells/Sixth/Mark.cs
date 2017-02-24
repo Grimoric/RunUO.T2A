@@ -1,12 +1,10 @@
-using System;
 using Server.Items;
 using Server.Targeting;
 using Server.Network;
-using Server.Regions;
 
 namespace Server.Spells.Sixth
 {
-	public class MarkSpell : MagerySpell
+    public class MarkSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Mark", "Kal Por Ylem",

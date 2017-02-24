@@ -114,7 +114,7 @@ namespace Server.Spells
 		{
 			if( singleTarget != null )
 			{
-				return GetNewAosDamage( bonus, dice, sides, (Caster.Player && singleTarget.Player), GetDamageScalar( singleTarget ) );
+				return GetNewAosDamage( bonus, dice, sides, Caster.Player && singleTarget.Player, GetDamageScalar( singleTarget ) );
 			}
 			else
 			{
@@ -133,7 +133,7 @@ namespace Server.Spells
 			int damageBonus = 0;
 
 			int inscribeSkill = GetInscribeFixed( m_Caster );
-			int inscribeBonus = (inscribeSkill + (1000 * (inscribeSkill / 1000))) / 200;
+			int inscribeBonus = (inscribeSkill + 1000 * (inscribeSkill / 1000)) / 200;
 			damageBonus += inscribeBonus;
 
 			int intBonus = Caster.Int / 10;
@@ -154,7 +154,7 @@ namespace Server.Spells
 			damage = AOS.Scale( damage, 100 + damageBonus );
 
 			int evalSkill = GetDamageFixed( m_Caster );
-			int evalScale = 30 + ((9 * evalSkill) / 100);
+			int evalScale = 30 + 9 * evalSkill / 100;
 
 			damage = AOS.Scale( damage, evalScale );
 
@@ -178,7 +178,7 @@ namespace Server.Spells
 
 				if ( o != null && o is double )
 				{
-					if ( ((double)o) > Utility.RandomDouble()*100.0 )
+					if ( (double)o > Utility.RandomDouble()*100.0 )
 						disturb = false;
 				}
 
@@ -296,9 +296,9 @@ namespace Server.Spells
 			//m_Caster.CheckSkill( DamageSkill, 0.0, 120.0 );
 
 			if( casterEI > targetRS )
-				scalar = (1.0 + ((casterEI - targetRS) / 500.0));
+				scalar = 1.0 + (casterEI - targetRS) / 500.0;
 			else
-				scalar = (1.0 + ((casterEI - targetRS) / 200.0));
+				scalar = 1.0 + (casterEI - targetRS) / 200.0;
 
 			// magery damage bonus, -25% at 0 skill, +0% at 100 skill, +5% at 120 skill
 			scalar += (m_Caster.Skills[CastSkill].Value - 100.0) / 400.0;
@@ -476,7 +476,7 @@ namespace Server.Spells
 			{
 				m_Caster.SendLocalizedMessage( 502642 ); // You are already casting a spell.
 			}
-			else if ( BlockedByHorrificBeast && TransformationSpellHelper.UnderTransformation( m_Caster, typeof( HorrificBeastSpell ) ) || ( BlockedByAnimalForm && AnimalForm.UnderTransformation( m_Caster ) ))
+			else if ( BlockedByHorrificBeast && TransformationSpellHelper.UnderTransformation( m_Caster, typeof( HorrificBeastSpell ) ) || BlockedByAnimalForm && AnimalForm.UnderTransformation( m_Caster ))
 			{
 				m_Caster.SendLocalizedMessage( 1061091 ); // You cannot cast that spell in this form.
 			}
@@ -511,7 +511,7 @@ namespace Server.Spells
 
 					TimeSpan castDelay = this.GetCastDelay();
 
-					if ( ShowHandMovement && ( m_Caster.Body.IsHuman || ( m_Caster.Player && m_Caster.Body.IsMonster ) ) )
+					if ( ShowHandMovement && ( m_Caster.Body.IsHuman || m_Caster.Player && m_Caster.Body.IsMonster ) )
 					{
 						int count = (int)Math.Ceiling( castDelay.TotalSeconds / AnimateDelay.TotalSeconds );
 
@@ -644,7 +644,7 @@ namespace Server.Spells
 			// Paladins with magery of 70.0 or above are subject to a faster casting cap of 2 
 			int fcMax = 4;
 
-			if ( CastSkill == SkillName.Magery || CastSkill == SkillName.Necromancy || ( CastSkill == SkillName.Chivalry && m_Caster.Skills[SkillName.Magery].Value >= 70.0 ) )
+			if ( CastSkill == SkillName.Magery || CastSkill == SkillName.Necromancy || CastSkill == SkillName.Chivalry && m_Caster.Skills[SkillName.Magery].Value >= 70.0 )
 				fcMax = 2;
 
 			int fc = AosAttributes.GetValue( m_Caster, AosAttribute.CastSpeed );
@@ -693,7 +693,7 @@ namespace Server.Spells
 			{
 				DoFizzle();
 			}
-			else if ( m_Scroll != null && !(m_Scroll is Runebook) && (m_Scroll.Amount <= 0 || m_Scroll.Deleted || m_Scroll.RootParent != m_Caster || (m_Scroll is BaseWand && (((BaseWand)m_Scroll).Charges <= 0 || m_Scroll.Parent != m_Caster))) )
+			else if ( m_Scroll != null && !(m_Scroll is Runebook) && (m_Scroll.Amount <= 0 || m_Scroll.Deleted || m_Scroll.RootParent != m_Caster || m_Scroll is BaseWand && (((BaseWand)m_Scroll).Charges <= 0 || m_Scroll.Parent != m_Caster)) )
 			{
 				DoFizzle();
 			}
@@ -749,7 +749,7 @@ namespace Server.Spells
 					bool garlic = false;
 
 					for ( int i = 0; !garlic && i < m_Info.Reagents.Length; ++i )
-						garlic = ( m_Info.Reagents[i] == Reagent.Garlic );
+						garlic = m_Info.Reagents[i] == Reagent.Garlic;
 
 					if ( garlic )
 					{

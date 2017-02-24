@@ -1,10 +1,6 @@
-using System;
-using Server.Network;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class FeyLeggings : ChainLegs
+    public class FeyLeggings : ChainLegs
 	{
 		public override int LabelNumber{ get{ return 1075041; } } // Fey Leggings
 

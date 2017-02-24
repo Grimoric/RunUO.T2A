@@ -1,12 +1,10 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Gumps;
 using System.Collections.Generic;
 
 namespace Server.Engines.MLQuests.Rewards
 {
-	public abstract class BaseReward
+    public abstract class BaseReward
 	{
 		private TextDefinition m_Name;
 

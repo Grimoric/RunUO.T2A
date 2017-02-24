@@ -1,13 +1,10 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using Server;
 using Server.Network;
 
 namespace Server.Items
 {
-	[Flipable( 0x1E5E, 0x1E5F )]
+    [Flipable( 0x1E5E, 0x1E5F )]
 	public class BulletinBoard : BaseBulletinBoard
 	{
 		[Constructable]
@@ -62,7 +59,7 @@ namespace Server.Items
 
 		public static bool CheckTime( DateTime time, TimeSpan range )
 		{
-			return (time + range) < DateTime.Now;
+			return time + range < DateTime.Now;
 		}
 
 		public static string FormatTS( TimeSpan ts )
@@ -177,7 +174,7 @@ namespace Server.Items
 			if ( from.AccessLevel >= AccessLevel.GameMaster )
 				return true;
 
-			return ( from.Map == this.Map && from.InRange( GetWorldLocation(), 2 ) );
+			return @from.Map == this.Map && @from.InRange( GetWorldLocation(), 2 );
 		}
 
 		public void PostMessage( Mobile from, BulletinMessage thread, string subject, string[] lines )
@@ -275,9 +272,9 @@ namespace Server.Items
 
 			DateTime lastPostTime = DateTime.MinValue;
 
-			if ( board.GetLastPostTime( from, ( thread == null ), ref lastPostTime ) )
+			if ( board.GetLastPostTime( from, thread == null, ref lastPostTime ) )
 			{
-				if ( !CheckTime( lastPostTime, (thread == null ? ThreadCreateTime : ThreadReplyTime) ) )
+				if ( !CheckTime( lastPostTime, thread == null ? ThreadCreateTime : ThreadReplyTime ) )
 				{
 					if ( thread == null )
 						from.SendMessage( "You must wait {0} before creating a new thread.", FormatTS( ThreadCreateTime ) );

@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Factions
 {
-	public class Moonglow : Town
+    public class Moonglow : Town
 	{
 		public Moonglow()
 		{

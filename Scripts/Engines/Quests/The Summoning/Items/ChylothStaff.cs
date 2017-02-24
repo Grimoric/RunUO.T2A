@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Items;
 
 namespace Server.Engines.Quests.Doom
 {
-	public class ChylothStaff : BlackStaff
+    public class ChylothStaff : BlackStaff
 	{
 		public override int LabelNumber{ get{ return 1041111; } } // a magic staff
 

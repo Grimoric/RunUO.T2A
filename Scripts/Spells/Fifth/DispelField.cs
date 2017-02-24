@@ -1,12 +1,11 @@
 using System;
 using Server.Targeting;
-using Server.Network;
 using Server.Items;
 using Server.Misc;
 
 namespace Server.Spells.Fifth
 {
-	public class DispelFieldSpell : MagerySpell
+    public class DispelFieldSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Dispel Field", "An Grav",

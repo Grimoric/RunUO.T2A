@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Server;
 using Server.Engines.MLQuests.Gumps;
 using Server.Gumps;
 using Server.Items;
@@ -10,7 +7,7 @@ using Server.Network;
 
 namespace Server.Engines.MLQuests.Mobiles
 {
-	public class SirHelper : Mage
+    public class SirHelper : Mage
 	{
 		private static readonly Gump m_Gump = new InfoNPCGump( 1078029, 1078028 );
 		private static readonly TimeSpan m_ShoutDelay = TimeSpan.FromSeconds( 20 );

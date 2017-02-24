@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Network;
 
 namespace Server.Engines.PartySystem
 {
-	public sealed class PartyEmptyList : Packet
+    public sealed class PartyEmptyList : Packet
 	{
 		public PartyEmptyList( Mobile m ) : base( 0xBF )
 		{

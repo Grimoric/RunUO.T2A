@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class Checkers2 : Item
+    public class Checkers2 : Item
 	{
 
 		[Constructable]

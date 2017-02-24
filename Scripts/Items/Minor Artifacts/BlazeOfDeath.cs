@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class BlazeOfDeath : Halberd
+    public class BlazeOfDeath : Halberd
 	{
 		public override int LabelNumber{ get{ return 1063486; } }
 

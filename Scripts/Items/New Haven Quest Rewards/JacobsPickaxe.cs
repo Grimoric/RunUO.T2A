@@ -1,9 +1,6 @@
-using System;
-using Server.Mobiles;
-
 namespace Server.Items
 {
-	public class JacobsPickaxe : Pickaxe
+    public class JacobsPickaxe : Pickaxe
 	{
 		public override int LabelNumber{ get{ return 1077758; } } // Jacob's Pickaxe
 

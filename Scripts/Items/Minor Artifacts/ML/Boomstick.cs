@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class Boomstick : WildStaff
+    public class Boomstick : WildStaff
 	{
 		public override int LabelNumber{ get{ return 1075032; } } // Boomstick
 

@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class Blight : Item
+    public class Blight : Item
 	{
 		[Constructable]
 		public Blight()

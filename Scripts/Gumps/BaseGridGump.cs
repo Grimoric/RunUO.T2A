@@ -64,7 +64,7 @@ namespace Server.Gumps
 
 		public int GetButtonID( int typeCount, int type, int index )
 		{
-			return 1 + (index * typeCount) + type;
+			return 1 + index * typeCount + type;
 		}
 
 		public bool SplitButtonID( int buttonID, int typeCount, out int type, out int index )
@@ -153,7 +153,7 @@ namespace Server.Gumps
 
 		public void AddEntryHeader( int width, int spannedEntries )
 		{
-			AddImageTiled( m_CurrentX, m_CurrentY, width, (EntryHeight * spannedEntries) + (OffsetSize * (spannedEntries - 1)), HeaderGumpID );
+			AddImageTiled( m_CurrentX, m_CurrentY, width, EntryHeight * spannedEntries + OffsetSize * (spannedEntries - 1), HeaderGumpID );
 			IncreaseX( width );
 		}
 
@@ -172,8 +172,8 @@ namespace Server.Gumps
 
 		public void AddEntryButton( int width, int normalID, int pressedID, int buttonID, int buttonWidth, int buttonHeight, int spannedEntries )
 		{
-			AddImageTiled( m_CurrentX, m_CurrentY, width, (EntryHeight * spannedEntries) + (OffsetSize * (spannedEntries - 1)), HeaderGumpID );
-			AddButton( m_CurrentX + ((width - buttonWidth) / 2), m_CurrentY + (((EntryHeight * spannedEntries) + (OffsetSize * (spannedEntries - 1)) - buttonHeight) / 2), normalID, pressedID, buttonID, GumpButtonType.Reply, 0 );
+			AddImageTiled( m_CurrentX, m_CurrentY, width, EntryHeight * spannedEntries + OffsetSize * (spannedEntries - 1), HeaderGumpID );
+			AddButton( m_CurrentX + (width - buttonWidth) / 2, m_CurrentY + (EntryHeight * spannedEntries + OffsetSize * (spannedEntries - 1) - buttonHeight) / 2, normalID, pressedID, buttonID, GumpButtonType.Reply, 0 );
 
 			IncreaseX( width );
 		}
@@ -181,7 +181,7 @@ namespace Server.Gumps
 		public void AddEntryPageButton( int width, int normalID, int pressedID, int page, int buttonWidth, int buttonHeight )
 		{
 			AddImageTiled( m_CurrentX, m_CurrentY, width, EntryHeight, HeaderGumpID );
-			AddButton( m_CurrentX + ((width - buttonWidth) / 2), m_CurrentY + ((EntryHeight - buttonHeight) / 2), normalID, pressedID, 0, GumpButtonType.Page, page );
+			AddButton( m_CurrentX + (width - buttonWidth) / 2, m_CurrentY + (EntryHeight - buttonHeight) / 2, normalID, pressedID, 0, GumpButtonType.Page, page );
 
 			IncreaseX( width );
 		}

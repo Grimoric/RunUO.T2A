@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Network;
 using Server.Accounting;
 
 namespace Server.Misc
 {
-	public class Profile
+    public class Profile
 	{
 		public static void Initialize()
 		{

@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using Server;
 using Server.Mobiles;
 using Server.Regions;
 
 namespace Server.Engines.ConPVP
 {
-	public class SafeZone : GuardedRegion
+    public class SafeZone : GuardedRegion
 	{
 		public static readonly int SafeZonePriority = HouseRegion.HousePriority + 1;
 

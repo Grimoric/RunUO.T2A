@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
-using Server;
 using Server.Gumps;
 using Server.Mobiles;
-using Server.Network;
 using Server.Engines.MLQuests.Objectives;
 using Server.Engines.MLQuests.Rewards;
 
 namespace Server.Engines.MLQuests.Gumps
 {
-	public enum ButtonPosition : byte
+    public enum ButtonPosition : byte
 	{
 		Left,
 		Right
@@ -180,14 +178,14 @@ namespace Server.Engines.MLQuests.Gumps
 
 		public void AddDescription( MLQuest quest )
 		{
-			AddHtmlLocalized( 98, 140, 312, 16, ( quest.IsChainTriggered || quest.NextQuest != null ) ? 1075024 : 1072202, 0x2710, false, false ); // Description [(quest chain)]
+			AddHtmlLocalized( 98, 140, 312, 16, quest.IsChainTriggered || quest.NextQuest != null ? 1075024 : 1072202, 0x2710, false, false ); // Description [(quest chain)]
 			TextDefinition.AddHtmlText( this, 98, 156, 312, 240, quest.Description, false, true, 0x15F90, 0xBDE784 );
 		}
 
 		public void AddObjectives( MLQuest quest )
 		{
 			AddHtmlLocalized( 98, 140, 312, 16, 1049073, 0x2710, false, false ); // Objective:
-			AddHtmlLocalized( 98, 156, 312, 16, ( quest.ObjectiveType == ObjectiveType.All ) ? 1072208 : 1072209, 0x2710, false, false ); // All of the following / Only one of the following
+			AddHtmlLocalized( 98, 156, 312, 16, quest.ObjectiveType == ObjectiveType.All ? 1072208 : 1072209, 0x2710, false, false ); // All of the following / Only one of the following
 
 			int y = 172;
 
@@ -210,7 +208,7 @@ namespace Server.Engines.MLQuests.Gumps
 			MLQuest quest = instance.Quest;
 
 			AddHtmlLocalized( 98, 140, 312, 16, 1049073, 0x2710, false, false ); // Objective:
-			AddHtmlLocalized( 98, 156, 312, 16, ( quest.ObjectiveType == ObjectiveType.All ) ? 1072208 : 1072209, 0x2710, false, false ); // All of the following / Only one of the following
+			AddHtmlLocalized( 98, 156, 312, 16, quest.ObjectiveType == ObjectiveType.All ? 1072208 : 1072209, 0x2710, false, false ); // All of the following / Only one of the following
 
 			int y = 172;
 

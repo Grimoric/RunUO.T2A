@@ -19,11 +19,10 @@
  ***************************************************************************/
 
 using System;
-using System.IO;
 
 namespace Server.Network
 {
-	public class ByteQueue
+    public class ByteQueue
 	{
 		private int m_Head;
 		private int m_Tail;
@@ -97,7 +96,7 @@ namespace Server.Network
 			}
 			else
 			{
-				int rightLength = ( m_Buffer.Length - m_Head );
+				int rightLength = m_Buffer.Length - m_Head;
 
 				if ( rightLength >= size )
 				{
@@ -124,12 +123,12 @@ namespace Server.Network
 
 		public void Enqueue( byte[] buffer, int offset, int size )
 		{
-			if ( (m_Size + size) > m_Buffer.Length )
+			if ( m_Size + size > m_Buffer.Length )
 				SetCapacity( (m_Size + size + 2047) & ~2047 );
 
 			if ( m_Head < m_Tail )
 			{
-				int rightLength = ( m_Buffer.Length - m_Tail );
+				int rightLength = m_Buffer.Length - m_Tail;
 
 				if ( rightLength >= size )
 				{

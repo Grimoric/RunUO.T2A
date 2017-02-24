@@ -1,12 +1,9 @@
-using System;
-using Server;
-using Server.Items;
 using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Gumps
 {
-	public class CharacterStatueGump : Gump
+    public class CharacterStatueGump : Gump
 	{
 		private Item m_Maker;
 		private CharacterStatue m_Statue;

@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Engines.Harvest
 {
-	public class HarvestVein
+    public class HarvestVein
 	{
 		private double m_VeinChance;
 		private double m_ChanceToFallback;

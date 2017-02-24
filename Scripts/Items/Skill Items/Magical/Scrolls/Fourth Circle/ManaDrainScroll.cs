@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class ManaDrainScroll : SpellScroll
+    public class ManaDrainScroll : SpellScroll
 	{
 		[Constructable]
 		public ManaDrainScroll() : this( 1 )

@@ -1,9 +1,6 @@
-using System;
-using Server.Items;
-
 namespace Server.Items
 {
-	[FlipableAttribute( 0x11EA, 0x11EB )]
+    [FlipableAttribute( 0x11EA, 0x11EB )]
 	public class Sand : Item, ICommodity
 	{
 		int ICommodity.DescriptionNumber { get { return LabelNumber; } }

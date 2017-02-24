@@ -1,10 +1,8 @@
-using System;
-using Server;
 using Server.Network;
 
 namespace Server.Engines.Mahjong
 {
-	public sealed class MahjongJoinGame : Packet
+    public sealed class MahjongJoinGame : Packet
 	{
 		public MahjongJoinGame( MahjongGame game ) : base( 0xDA )
 		{
@@ -136,7 +134,7 @@ namespace Server.Engines.Mahjong
 				{
 					int hand = tile.Dimensions.GetHandArea();
 
-					if ( hand < 0 || players.IsPublic( hand ) || players.GetPlayer( hand ) == to || (game.SpectatorVision && players.IsSpectator( to )) )
+					if ( hand < 0 || players.IsPublic( hand ) || players.GetPlayer( hand ) == to || game.SpectatorVision && players.IsSpectator( to ) )
 						m_Stream.Write( (byte)tile.Value );
 					else
 						m_Stream.Write( (byte) 0 );
@@ -175,7 +173,7 @@ namespace Server.Engines.Mahjong
 			{
 				int hand = tile.Dimensions.GetHandArea();
 
-				if ( hand < 0 || players.IsPublic( hand ) || players.GetPlayer( hand ) == to || (game.SpectatorVision && players.IsSpectator( to )) )
+				if ( hand < 0 || players.IsPublic( hand ) || players.GetPlayer( hand ) == to || game.SpectatorVision && players.IsSpectator( to ) )
 					m_Stream.Write( (byte)tile.Value );
 				else
 					m_Stream.Write( (byte) 0 );

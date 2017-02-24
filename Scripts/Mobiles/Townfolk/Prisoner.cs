@@ -1,10 +1,9 @@
-﻿using System;
-using Server.Items;
+﻿using Server.Items;
 using Server.Engines.MLQuests;
 
 namespace Server.Mobiles.Townfolk
 {
-	public class Prisoner : BaseEscortable
+    public class Prisoner : BaseEscortable
 	{
 		[Constructable]
 		public Prisoner()

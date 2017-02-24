@@ -1,8 +1,6 @@
-using System; 
-
-namespace Server.Items 
-{ 
-	public class StatueSouth : Item 
+namespace Server.Items
+{
+    public class StatueSouth : Item 
 	{ 
 		[Constructable] 
 		public StatueSouth() : base(0x139A) 

@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class DecoPumice : Item
+    public class DecoPumice : Item
 	{
 
 		[Constructable]

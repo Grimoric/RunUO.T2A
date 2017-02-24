@@ -1,10 +1,9 @@
 using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Third
 {
-	public class BlessSpell : MagerySpell
+    public class BlessSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Bless", "Rel Sanct",

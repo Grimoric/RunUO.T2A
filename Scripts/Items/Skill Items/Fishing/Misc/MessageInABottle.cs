@@ -1,10 +1,8 @@
 using System;
-using Server.Network;
-using Server.Items;
 
 namespace Server.Items
 {
-	public class MessageInABottle : Item
+    public class MessageInABottle : Item
 	{
 		public static int GetRandomLevel()
 		{

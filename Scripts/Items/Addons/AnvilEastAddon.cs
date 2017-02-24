@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class AnvilEastAddon : BaseAddon
+    public class AnvilEastAddon : BaseAddon
 	{
 		public override BaseAddonDeed Deed{ get{ return new AnvilEastDeed(); } }
 

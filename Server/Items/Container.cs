@@ -85,21 +85,21 @@ namespace Server.Items
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int GumpID
 		{
-			get{ return ( m_GumpID == -1 ? DefaultGumpID : m_GumpID ); }
+			get{ return m_GumpID == -1 ? DefaultGumpID : m_GumpID; }
 			set{ m_GumpID = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int DropSound
 		{
-			get{ return ( m_DropSound == -1 ? DefaultDropSound : m_DropSound ); }
+			get{ return m_DropSound == -1 ? DefaultDropSound : m_DropSound; }
 			set{ m_DropSound = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int MaxItems
 		{
-			get{ return ( m_MaxItems == -1 ? DefaultMaxItems : m_MaxItems ); }
+			get{ return m_MaxItems == -1 ? DefaultMaxItems : m_MaxItems; }
 			set{ m_MaxItems = value; InvalidateProperties(); }
 		}
 
@@ -202,7 +202,7 @@ namespace Server.Items
 
 				int maxItems = this.MaxItems;
 
-				if ( checkItems && maxItems != 0 && (this.TotalItems + plusItems + item.TotalItems + (item.IsVirtualItem ? 0 : 1)) > maxItems )
+				if ( checkItems && maxItems != 0 && this.TotalItems + plusItems + item.TotalItems + (item.IsVirtualItem ? 0 : 1) > maxItems )
 				{
 					if ( message )
 						SendFullItemsMessage( m, item );
@@ -213,7 +213,7 @@ namespace Server.Items
 				{
 					int maxWeight = this.MaxWeight;
 
-					if ( maxWeight != 0 && (this.TotalWeight + plusWeight + item.TotalWeight + item.PileWeight) > maxWeight )
+					if ( maxWeight != 0 && this.TotalWeight + plusWeight + item.TotalWeight + item.PileWeight > maxWeight )
 					{
 						if ( message )
 							SendFullWeightMessage( m, item );
@@ -1275,7 +1275,7 @@ namespace Server.Items
 
 		private static bool GetSaveFlag( SaveFlag flags, SaveFlag toGet )
 		{
-			return ( (flags & toGet) != 0 );
+			return (flags & toGet) != 0;
 		}
 
 		[Flags]

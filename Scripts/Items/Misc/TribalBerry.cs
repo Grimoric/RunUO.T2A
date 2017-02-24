@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class TribalBerry : Item
+    public class TribalBerry : Item
 	{
 		public override int LabelNumber{ get{ return 1040001; } } // tribal berry
 

@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
-using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a Sir Patrick corpse" )]
+    [CorpseName( "a Sir Patrick corpse" )]
 	public class SirPatrick : SkeletalKnight
 	{
 		[Constructable]

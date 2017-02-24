@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Network;
 
 namespace Server.Factions
 {
-	public class FactionStone : BaseSystemController
+    public class FactionStone : BaseSystemController
 	{
 		private Faction m_Faction;
 

@@ -1,10 +1,9 @@
 using System;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Items
 {
-	[FlipableAttribute( 0xF52, 0xF51 )]
+    [FlipableAttribute( 0xF52, 0xF51 )]
 	public class ThrowingDagger : Item
 	{
 		public override string DefaultName
@@ -81,7 +80,7 @@ namespace Server.Items
 
 						from.Animate( from.Mounted ? 26 : 9, 7, 1, true, false, 0 );
 
-						if ( Utility.RandomDouble() >= (Math.Sqrt( m.Dex / 100.0 ) * 0.8) )
+						if ( Utility.RandomDouble() >= Math.Sqrt( m.Dex / 100.0 ) * 0.8 )
 						{
 							from.MovingEffect( m, 0x1BFE, 7, 1, false, false, 0x481, 0 );
 

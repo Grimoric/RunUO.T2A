@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace Server.Multis
 {
-	public class ComponentVerification
+    public class ComponentVerification
 	{
 		private int[] m_ItemTable;
 		private int[] m_MultiTable;
@@ -30,7 +29,7 @@ namespace Server.Multis
 			if ( val == -1 )
 				return false;
 
-			return ( val == 0 || (ExpansionInfo.CurrentExpansion.CustomHousingFlag & val) != 0 );
+			return val == 0 || (ExpansionInfo.CurrentExpansion.CustomHousingFlag & val) != 0;
 		}
 
 		public ComponentVerification()

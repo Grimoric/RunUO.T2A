@@ -1,16 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Server;
-using Server.Guilds;
-using Server.Items;
-using Server.Misc;
 using Server.Regions;
 using Server.Spells;
 
 namespace Server.Multis
 {
-	public enum HousePlacementResult
+    public enum HousePlacementResult
 	{
 		Valid,
 		BadRegion,
@@ -163,7 +158,7 @@ namespace Server.Multis
 
 						TileFlag addTileFlags = TileData.ItemTable[addTile.ID & TileData.MaxItemValue].Flags;
 
-						bool isFoundation = ( addTile.Z == 0 && (addTileFlags & TileFlag.Wall) != 0 );
+						bool isFoundation = addTile.Z == 0 && (addTileFlags & TileFlag.Wall) != 0;
 						bool hasSurface = false;
 
 						if ( isFoundation )
@@ -178,7 +173,7 @@ namespace Server.Multis
 						if ( addTileTop > landStartZ && landAvgZ > addTileZ )
 							return HousePlacementResult.BadLand; // Broke rule #2
 
-						if ( isFoundation && ((TileData.LandTable[landTile.ID & TileData.MaxLandValue].Flags & TileFlag.Impassable) == 0) && landAvgZ == center.Z )
+						if ( isFoundation && (TileData.LandTable[landTile.ID & TileData.MaxLandValue].Flags & TileFlag.Impassable) == 0 && landAvgZ == center.Z )
 							hasSurface = true;
 
 						for ( int j = 0; j < oldTiles.Length; ++j )
@@ -186,7 +181,7 @@ namespace Server.Multis
 							StaticTile oldTile = oldTiles[j];
 							ItemData id = TileData.ItemTable[oldTile.ID & TileData.MaxItemValue];
 
-							if ( (id.Impassable || (id.Surface && (id.Flags & TileFlag.Background) == 0)) && addTileTop > oldTile.Z && (oldTile.Z + id.CalcHeight) > addTileZ )
+							if ( (id.Impassable || id.Surface && (id.Flags & TileFlag.Background) == 0) && addTileTop > oldTile.Z && oldTile.Z + id.CalcHeight > addTileZ )
 								return HousePlacementResult.BadStatic; // Broke rule #2
 							/*else if ( isFoundation && !hasSurface && (id.Flags & TileFlag.Surface) != 0 && (oldTile.Z + id.CalcHeight) == center.Z )
 								hasSurface = true;*/
@@ -197,11 +192,11 @@ namespace Server.Multis
 							Item item = items[j];
 							ItemData id = item.ItemData;
 
-							if ( addTileTop > item.Z && (item.Z + id.CalcHeight) > addTileZ )
+							if ( addTileTop > item.Z && item.Z + id.CalcHeight > addTileZ )
 							{
 								if ( item.Movable )
 									toMove.Add( item );
-								else if ( (id.Impassable || (id.Surface && (id.Flags & TileFlag.Background) == 0)) )
+								else if ( id.Impassable || id.Surface && (id.Flags & TileFlag.Background) == 0 )
 									return HousePlacementResult.BadItem; // Broke rule #2
 							}
 							/*else if ( isFoundation && !hasSurface && (id.Flags & TileFlag.Surface) != 0 && (item.Z + id.CalcHeight) == center.Z )
@@ -217,7 +212,7 @@ namespace Server.Multis
 						{
 							Mobile m = mobiles[j];
 
-							if ( addTileTop > m.Z && (m.Z + 16) > addTileZ )
+							if ( addTileTop > m.Z && m.Z + 16 > addTileZ )
 								toMove.Add( m );
 						}
 					}
@@ -303,7 +298,7 @@ namespace Server.Multis
 					StaticTile tile = tiles[j];
 					ItemData id = TileData.ItemTable[tile.ID & TileData.MaxItemValue];
 
-					if ( id.Impassable || (id.Surface && (id.Flags & TileFlag.Background) == 0 && (tile.Z + id.CalcHeight) > (center.Z + 2)) )
+					if ( id.Impassable || id.Surface && (id.Flags & TileFlag.Background) == 0 && tile.Z + id.CalcHeight > center.Z + 2 )
 						return HousePlacementResult.BadStatic; // Broke rule #1
 				}
 
@@ -319,7 +314,7 @@ namespace Server.Multis
 
 					ItemData id = item.ItemData;
 
-					if ( id.Impassable || (id.Surface && (id.Flags & TileFlag.Background) == 0 && (item.Z + id.CalcHeight) > (center.Z + 2)) )
+					if ( id.Impassable || id.Surface && (id.Flags & TileFlag.Background) == 0 && item.Z + id.CalcHeight > center.Z + 2 )
 						return HousePlacementResult.BadItem; // Broke rule #1
 				}
 			}

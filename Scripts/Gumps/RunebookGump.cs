@@ -1,18 +1,14 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server;
 using Server.Items;
 using Server.Network;
-using Server.Spells;
 using Server.Spells.Fourth;
 using Server.Spells.Seventh;
-using Server.Spells.Chivalry;
 using Server.Prompts;
 
 namespace Server.Gumps
 {
-	public class RunebookGump : Gump
+    public class RunebookGump : Gump
 	{
 		private Runebook m_Book;
 
@@ -52,7 +48,7 @@ namespace Server.Gumps
 			// Two separators
 			for ( int i = 0; i < 2; ++i )
 			{
-				int xOffset = 125 + (i * 165);
+				int xOffset = 125 + i * 165;
 
 				AddImage( xOffset, 50, 57 );
 				xOffset += 20;
@@ -109,10 +105,10 @@ namespace Server.Gumps
 				}
 
 				// Use charge button
-				AddButton( 130 + ((i / 8) * 160), 65 + ((i % 8) * 15), 2103, 2104, 2 + (i * 6) + 0, GumpButtonType.Reply, 0 );
+				AddButton( 130 + i / 8 * 160, 65 + i % 8 * 15, 2103, 2104, 2 + i * 6 + 0, GumpButtonType.Reply, 0 );
 
 				// Description label
-				AddLabelCropped( 145 + ((i / 8) * 160), 60 + ((i % 8) * 15), 115, 17, hue, desc );
+				AddLabelCropped( 145 + i / 8 * 160, 60 + i % 8 * 15, 115, 17, hue, desc );
 			}
 
 			// Turn page button
@@ -122,7 +118,7 @@ namespace Server.Gumps
 		private void AddDetails( int index, int half )
 		{
 			// Use charge button
-			AddButton( 130 + (half * 160), 65, 2103, 2104, 2 + (index * 6) + 0, GumpButtonType.Reply, 0 );
+			AddButton( 130 + half * 160, 65, 2103, 2104, 2 + index * 6 + 0, GumpButtonType.Reply, 0 );
 
 			string desc;
 			int hue;
@@ -141,25 +137,25 @@ namespace Server.Gumps
 
 				if ( Sextant.Format( e.Location, e.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth ) )
 				{
-					AddLabel( 135 + (half * 160), 80, 0, String.Format( "{0}° {1}'{2}", yLat, yMins, ySouth ? "S" : "N" ) );
-					AddLabel( 135 + (half * 160), 95, 0, String.Format( "{0}° {1}'{2}", xLong, xMins, xEast ? "E" : "W" ) );
+					AddLabel( 135 + half * 160, 80, 0, String.Format( "{0}° {1}'{2}", yLat, yMins, ySouth ? "S" : "N" ) );
+					AddLabel( 135 + half * 160, 95, 0, String.Format( "{0}° {1}'{2}", xLong, xMins, xEast ? "E" : "W" ) );
 				}
 
 				// Drop rune button
-				AddButton( 135 + (half * 160), 115, 2437, 2438, 2 + (index * 6) + 1, GumpButtonType.Reply, 0 );
-				AddHtmlLocalized( 150 + (half * 160), 115, 100, 18, 1011298, false, false ); // Drop rune
+				AddButton( 135 + half * 160, 115, 2437, 2438, 2 + index * 6 + 1, GumpButtonType.Reply, 0 );
+				AddHtmlLocalized( 150 + half * 160, 115, 100, 18, 1011298, false, false ); // Drop rune
 
 				// Set as default button
 				int defButtonID = e != m_Book.Default ? 2361 : 2360;
 				
-				AddButton( 160 + (half * 140), 20, defButtonID, defButtonID, 2 + (index * 6) + 2, GumpButtonType.Reply, 0 );
-				AddHtmlLocalized( 175 + (half * 140), 15, 100, 18, 1011300, false, false ); // Set default
+				AddButton( 160 + half * 140, 20, defButtonID, defButtonID, 2 + index * 6 + 2, GumpButtonType.Reply, 0 );
+				AddHtmlLocalized( 175 + half * 140, 15, 100, 18, 1011300, false, false ); // Set default
 
 				// Recall button
-				AddButton( 135 + (half * 160), 140, 2271, 2271, 2 + (index * 6) + 3, GumpButtonType.Reply, 0 );
+				AddButton( 135 + half * 160, 140, 2271, 2271, 2 + index * 6 + 3, GumpButtonType.Reply, 0 );
 
 				// Gate button
-				AddButton( 205 + (half * 160), 140, 2291, 2291, 2 + (index * 6) + 4, GumpButtonType.Reply, 0 );
+				AddButton( 205 + half * 160, 140, 2291, 2291, 2 + index * 6 + 4, GumpButtonType.Reply, 0 );
 			}
 			else
 			{
@@ -168,7 +164,7 @@ namespace Server.Gumps
 			}
 
 			// Description label
-			AddLabelCropped( 145 + (half * 160), 60, 115, 17, hue, desc );
+			AddLabelCropped( 145 + half * 160, 60, 115, 17, hue, desc );
 		}
 
 		public RunebookGump( Mobile from, Runebook book ) : base( 150, 200 )
@@ -188,7 +184,7 @@ namespace Server.Gumps
 					AddButton( 393, 14, 2206, 2206, 0, GumpButtonType.Page, 3 + page );
 
 				for ( int half = 0; half < 2; ++half )
-					AddDetails( (page * 2) + half, half );
+					AddDetails( page * 2 + half, half );
 			}
 		}
 
@@ -196,7 +192,7 @@ namespace Server.Gumps
 		{
 			Spellbook book = Spellbook.Find( from, spellID );
 
-			return ( book != null && book.HasSpell( spellID ) );
+			return book != null && book.HasSpell( spellID );
 		}
 
 		private class InternalPrompt : Prompt

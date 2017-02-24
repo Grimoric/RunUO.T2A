@@ -1,13 +1,10 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 using Server.Gumps;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Haven
 {
-	public class Uzeraan : BaseQuester
+    public class Uzeraan : BaseQuester
 	{
 		[Constructable]
 		public Uzeraan() : base( "the Conjurer" )

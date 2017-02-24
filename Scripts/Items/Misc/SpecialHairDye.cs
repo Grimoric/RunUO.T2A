@@ -1,11 +1,9 @@
-using System;
-using System.Text;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server.Items
 {
-	public class SpecialHairDye : Item
+    public class SpecialHairDye : Item
 	{
 		public override string DefaultName
 		{
@@ -119,8 +117,8 @@ namespace Server.Items
 
 			for ( int i = 0; i < m_Entries.Length; ++i )
 			{
-				AddLabel( 180, 109 + (i * 22), m_Entries[i].HueStart - 1, m_Entries[i].Name );
-				AddButton( 257, 110 + (i * 22), 5224, 5224, 0, GumpButtonType.Page, i + 1 );
+				AddLabel( 180, 109 + i * 22, m_Entries[i].HueStart - 1, m_Entries[i].Name );
+				AddButton( 257, 110 + i * 22, 5224, 5224, 0, GumpButtonType.Page, i + 1 );
 			}
 
 			for ( int i = 0; i < m_Entries.Length; ++i )
@@ -131,8 +129,8 @@ namespace Server.Items
 
 				for ( int j = 0; j < e.HueCount; ++j )
 				{
-					AddLabel( 328 + ((j / 16) * 80), 102 + ((j % 16) * 17), e.HueStart + j - 1, "*****" );
-					AddRadio( 310 + ((j / 16) * 80), 102 + ((j % 16) * 17), 210, 211, false, (i * 100) + j );
+					AddLabel( 328 + j / 16 * 80, 102 + j % 16 * 17, e.HueStart + j - 1, "*****" );
+					AddRadio( 310 + j / 16 * 80, 102 + j % 16 * 17, 210, 211, false, i * 100 + j );
 				}
 			}
 		}

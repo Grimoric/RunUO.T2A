@@ -1,11 +1,10 @@
 using System;
-using Server;
 using Server.Network;
 using Server.Commands;
 
 namespace Server
 {
-	public class LightCycle
+    public class LightCycle
 	{
 		public const int DayLevel = 0;
 		public const int NightLevel = 12;
@@ -89,13 +88,13 @@ namespace Server
 				return NightLevel;
 
 			if ( hours < 6 )
-				return NightLevel + (((((hours - 4) * 60) + minutes) * (DayLevel - NightLevel)) / 120);
+				return NightLevel + ((hours - 4) * 60 + minutes) * (DayLevel - NightLevel) / 120;
 
 			if ( hours < 22 )
 				return DayLevel;
 
 			if ( hours < 24 )
-				return DayLevel + (((((hours - 22) * 60) + minutes) * (NightLevel - DayLevel)) / 120);
+				return DayLevel + ((hours - 22) * 60 + minutes) * (NightLevel - DayLevel) / 120;
 
 			return NightLevel; // should never be
 		}

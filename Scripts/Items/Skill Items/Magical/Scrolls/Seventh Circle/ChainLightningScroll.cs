@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class ChainLightningScroll : SpellScroll
+    public class ChainLightningScroll : SpellScroll
 	{
 		[Constructable]
 		public ChainLightningScroll() : this( 1 )

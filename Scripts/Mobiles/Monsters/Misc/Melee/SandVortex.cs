@@ -1,10 +1,9 @@
 using System;
-using Server;
 using Server.Items;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a sand vortex corpse" )]
+    [CorpseName( "a sand vortex corpse" )]
 	public class SandVortex : BaseCreature
 	{
 		[Constructable]
@@ -59,7 +58,7 @@ namespace Server.Mobiles
 			if ( DateTime.Now >= m_NextAttack )
 			{
 				SandAttack( combatant );
-				m_NextAttack = DateTime.Now + TimeSpan.FromSeconds( 10.0 + (10.0 * Utility.RandomDouble()) );
+				m_NextAttack = DateTime.Now + TimeSpan.FromSeconds( 10.0 + 10.0 * Utility.RandomDouble() );
 			}
 		}
 

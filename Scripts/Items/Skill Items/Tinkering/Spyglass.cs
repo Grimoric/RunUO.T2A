@@ -1,16 +1,11 @@
-using System;
-using System.Collections;
-using Server;
-using Server.Gumps;
 using Server.Network;
 using Server.Mobiles;
-using Server.Items;
 using Server.Engines.Quests;
 using Server.Engines.Quests.Hag;
 
 namespace Server.Items
 {
-	[Flipable( 0x14F5, 0x14F6 )]
+    [Flipable( 0x14F5, 0x14F6 )]
 	public class Spyglass : Item
 	{
 		[Constructable]

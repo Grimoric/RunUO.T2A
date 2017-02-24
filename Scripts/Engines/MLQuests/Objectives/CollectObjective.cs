@@ -1,13 +1,11 @@
 using System;
-using Server;
-using Server.Engines.MLQuests;
 using Server.Mobiles;
 using Server.Gumps;
 using Server.Items;
 
 namespace Server.Engines.MLQuests.Objectives
 {
-	public class CollectObjective : BaseObjective
+    public class CollectObjective : BaseObjective
 	{
 		private int m_DesiredAmount;
 		private Type m_AcceptedType;
@@ -58,7 +56,7 @@ namespace Server.Engines.MLQuests.Objectives
 
 		public bool CheckType( Type type )
 		{
-			return ( m_AcceptedType != null && m_AcceptedType.IsAssignableFrom( type ) );
+			return m_AcceptedType != null && m_AcceptedType.IsAssignableFrom( type );
 		}
 
 		public virtual bool CheckItem( Item item )
@@ -69,9 +67,9 @@ namespace Server.Engines.MLQuests.Objectives
 		public static int LabelToItemID( int label )
 		{
 			if ( label < 1078872 )
-				return ( label - 1020000 );
+				return label - 1020000;
 			else
-				return ( label - 1078872 );
+				return label - 1078872;
 		}
 
 		public override void WriteToGump( Gump g, ref int y )
@@ -165,12 +163,12 @@ namespace Server.Engines.MLQuests.Objectives
 
 		public override bool AllowsQuestItem( Item item, Type type )
 		{
-			return ( m_Objective.CheckType( type ) && m_Objective.CheckItem( item ) );
+			return m_Objective.CheckType( type ) && m_Objective.CheckItem( item );
 		}
 
 		public override bool IsCompleted()
 		{
-			return ( GetCurrentTotal() >= m_Objective.DesiredAmount );
+			return GetCurrentTotal() >= m_Objective.DesiredAmount;
 		}
 
 		public override void OnQuestCancelled()

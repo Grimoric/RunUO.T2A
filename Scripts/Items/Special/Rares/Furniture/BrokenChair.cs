@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Items
 {
-	public class BrokenChair : Item
+    public class BrokenChair : Item
 	{
 
 		[Constructable]

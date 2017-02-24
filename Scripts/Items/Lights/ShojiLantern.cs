@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	[Flipable]
+    [Flipable]
 	public class ShojiLantern : BaseLight
 	{
 		public override int LitItemID{ get { return 0x24BB; } }

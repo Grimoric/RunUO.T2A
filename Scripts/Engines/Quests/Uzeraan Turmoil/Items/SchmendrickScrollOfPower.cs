@@ -1,11 +1,8 @@
-using System;
-using Server;
 using Server.Mobiles;
-using Server.Engines.Quests;
 
 namespace Server.Engines.Quests.Haven
 {
-	public class SchmendrickScrollOfPower : QuestItem
+    public class SchmendrickScrollOfPower : QuestItem
 	{
 		public override int LabelNumber { get { return 1049118; } } // a scroll with ancient markings
 

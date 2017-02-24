@@ -1,9 +1,7 @@
-using System;
-
 namespace Server.Items
 {
 
-	public abstract class BaseWaist : BaseClothing
+    public abstract class BaseWaist : BaseClothing
 	{
 		public BaseWaist( int itemID ) : this( itemID, 0 )
 		{

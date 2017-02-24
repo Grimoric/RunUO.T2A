@@ -1,8 +1,6 @@
-using System;
-
 namespace Server.Factions
 {
-	public class StrongholdDefinition
+    public class StrongholdDefinition
 	{
 		private Rectangle2D[] m_Area;
 		private Point3D m_JoinStone;

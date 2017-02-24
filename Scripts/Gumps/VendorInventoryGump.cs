@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
-using Server;
 using Server.Network;
 using Server.Multis;
 using Server.Mobiles;
 
 namespace Server.Gumps
 {
-	public class VendorInventoryGump : Gump
+    public class VendorInventoryGump : Gump
 	{
 		private BaseHouse m_House;
 		private ArrayList m_Inventories;

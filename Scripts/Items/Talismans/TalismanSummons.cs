@@ -2,14 +2,13 @@ using System;
 using System.Collections.Generic;
 
 using Server.ContextMenus;
-using Server.Regions;
 using Server.Items;
 
 using BunnyHole = Server.Mobiles.VorpalBunny.BunnyHole;
 
 namespace Server.Mobiles
 {
-	public class BaseTalismanSummon : BaseCreature
+    public class BaseTalismanSummon : BaseCreature
 	{
 		public override bool Commandable{ get{ return false; } }
 		public override bool InitialInnocent{ get{ return true; } }

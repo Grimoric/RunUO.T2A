@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class VengefulSpiritScroll : SpellScroll
+    public class VengefulSpiritScroll : SpellScroll
 	{
 		[Constructable]
 		public VengefulSpiritScroll() : this( 1 )

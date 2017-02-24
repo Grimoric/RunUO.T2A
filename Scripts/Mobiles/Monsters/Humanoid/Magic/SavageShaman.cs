@@ -1,13 +1,11 @@
 using System;
 using System.Collections;
-using Server;
-using Server.Misc;
 using Server.Items;
 using Server.Spells;
 
 namespace Server.Mobiles
 {
-	[CorpseName( "a savage corpse" )]
+    [CorpseName( "a savage corpse" )]
 	public class SavageShaman : BaseCreature
 	{
 		[Constructable]
@@ -165,7 +163,7 @@ namespace Server.Mobiles
 					{
 						foreach ( Mobile m in list )
 						{
-							bool isFriendly = ( m is Savage || m is SavageRider || m is SavageShaman || m is SavageRidgeback );
+							bool isFriendly = m is Savage || m is SavageRider || m is SavageShaman || m is SavageRidgeback;
 
 							if ( !isFriendly )
 								continue;
@@ -192,7 +190,7 @@ namespace Server.Mobiles
 					{
 						foreach ( Mobile m in list )
 						{
-							bool isFriendly = ( m is Savage || m is SavageRider || m is SavageShaman || m is SavageRidgeback );
+							bool isFriendly = m is Savage || m is SavageRider || m is SavageShaman || m is SavageRidgeback;
 
 							if ( isFriendly )
 								continue;
@@ -215,7 +213,7 @@ namespace Server.Mobiles
 					{
 						foreach ( Mobile m in list )
 						{
-							bool isFriendly = ( m is Savage || m is SavageRider || m is SavageShaman || m is SavageRidgeback );
+							bool isFriendly = m is Savage || m is SavageRider || m is SavageShaman || m is SavageRidgeback;
 
 							if ( isFriendly )
 								continue;

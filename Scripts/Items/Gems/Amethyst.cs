@@ -1,9 +1,6 @@
-using System;
-using Server;
-
 namespace Server.Items
 {
-	public class Amethyst : Item
+    public class Amethyst : Item
 	{
 		public override double DefaultWeight
 		{

@@ -19,12 +19,11 @@
  ***************************************************************************/
 
 using System;
-using System.IO;
-using System.Collections;
 using System.Collections.Generic;
 
-namespace Server.Network {
-	public class SendQueue {
+namespace Server.Network
+{
+    public class SendQueue {
 		public class Gram {
 			private static Stack<Gram> _pool = new Stack<Gram>();
 
@@ -62,13 +61,13 @@ namespace Server.Network {
 
 			public int Available {
 				get {
-					return ( _buffer.Length - _length );
+					return _buffer.Length - _length;
 				}
 			}
 
 			public bool IsFull {
 				get {
-					return ( _length == _buffer.Length );
+					return _length == _buffer.Length;
 				}
 			}
 
@@ -128,13 +127,13 @@ namespace Server.Network {
 
 		public bool IsFlushReady {
 			get {
-				return ( _pending.Count == 0 && _buffered != null );
+				return _pending.Count == 0 && _buffered != null;
 			}
 		}
 
 		public bool IsEmpty {
 			get {
-				return ( _pending.Count == 0 && _buffered == null );
+				return _pending.Count == 0 && _buffered == null;
 			}
 		}
 
@@ -182,13 +181,13 @@ namespace Server.Network {
 				throw new ArgumentOutOfRangeException( "offset", offset, "Offset must be greater than or equal to zero and less than the size of the buffer." );
 			} else if ( length < 0 || length > buffer.Length ) {
 				throw new ArgumentOutOfRangeException( "length", length, "Length cannot be less than zero or greater than the size of the buffer." );
-			} else if ( ( buffer.Length - offset ) < length ) {
+			} else if ( buffer.Length - offset < length ) {
 				throw new ArgumentException( "Offset and length do not point to a valid segment within the buffer." );
 			}
 
-			int existingBytes = ( _pending.Count * m_CoalesceBufferSize ) + ( _buffered == null ? 0 : _buffered.Length );
+			int existingBytes = _pending.Count * m_CoalesceBufferSize + ( _buffered == null ? 0 : _buffered.Length );
 
-			if ( ( existingBytes + length ) > PendingCap ) {
+			if ( existingBytes + length > PendingCap ) {
 				throw new CapacityExceededException();
 			}
 

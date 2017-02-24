@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Server;
 
 namespace Server.Multis
 {
-	public class DynamicDecay
+    public class DynamicDecay
 	{
 		public static bool Enabled { get { return false; } }
 

@@ -1,9 +1,8 @@
 using System;
-using Server;
 
 namespace Server.Items
 {
-	public class SmokeBomb : Item
+    public class SmokeBomb : Item
 	{
 		[Constructable]
 		public SmokeBomb() : base( 0x2808 )

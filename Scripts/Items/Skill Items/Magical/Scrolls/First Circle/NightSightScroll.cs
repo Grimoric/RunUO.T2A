@@ -1,10 +1,6 @@
-using System;
-using Server;
-using Server.Items;
-
 namespace Server.Items
 {
-	public class NightSightScroll : SpellScroll
+    public class NightSightScroll : SpellScroll
 	{
 		[Constructable]
 		public NightSightScroll() : this( 1 )

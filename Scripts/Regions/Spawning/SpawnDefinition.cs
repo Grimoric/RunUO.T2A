@@ -2,14 +2,13 @@ using System;
 using System.Collections;
 using System.IO;
 using System.Xml;
-using Server;
 using Server.Mobiles;
 using Server.Items;
 using System.Collections.Generic;
 
 namespace Server.Regions
 {
-	public abstract class SpawnDefinition
+    public abstract class SpawnDefinition
 	{
 		protected SpawnDefinition()
 		{

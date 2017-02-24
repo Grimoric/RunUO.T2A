@@ -1,11 +1,9 @@
-using System;
-using Server;
 using Server.Mobiles;
 using Server.Regions;
 
 namespace Server.Engines.Doom
 {
-	public class LampRoomRegion : BaseRegion
+    public class LampRoomRegion : BaseRegion
 	{
 		private LeverPuzzleController Controller;
 
@@ -25,7 +23,7 @@ namespace Server.Engines.Doom
 		{
 			Mobile m = e.Mobile;
 			Rectangle2D rect = LeverPuzzleController.lr_Rect;
-			if ( m.X >= rect.X && m.X <= (rect.X+10) && m.Y >= rect.Y && m.Y <= (rect.Y+10) && m.Map == Map.Internal )
+			if ( m.X >= rect.X && m.X <= rect.X+10 && m.Y >= rect.Y && m.Y <= rect.Y+10 && m.Map == Map.Internal )
 			{
 				Timer kick = new LeverPuzzleController.LampRoomKickTimer( m );
 				kick.Start();
@@ -52,7 +50,7 @@ namespace Server.Engines.Doom
 				else if ( m is BaseCreature )
 				{
 					BaseCreature bc = (BaseCreature)m;
-					if(( bc.Controlled && bc.ControlMaster == Controller.Successful ) || bc.Summoned )
+					if(bc.Controlled && bc.ControlMaster == Controller.Successful || bc.Summoned )
 					{
 						return;
 					}
@@ -79,7 +77,7 @@ namespace Server.Engines.Doom
 
 		public override bool OnSkillUse( Mobile m, int Skill ) /* just in case */
 		{
-			if (( Controller.Successful == null ) || ( m.AccessLevel == AccessLevel.Player && m != Controller.Successful ))
+			if (Controller.Successful == null || m.AccessLevel == AccessLevel.Player && m != Controller.Successful)
 			{
 				return false;
 			}

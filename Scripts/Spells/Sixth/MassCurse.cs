@@ -1,13 +1,9 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Server.Misc;
 using Server.Targeting;
-using Server.Network;
 
 namespace Server.Spells.Sixth
 {
-	public class MassCurseSpell : MagerySpell
+    public class MassCurseSpell : MagerySpell
 	{
 		private static SpellInfo m_Info = new SpellInfo(
 				"Mass Curse", "Vas Des Sanct",

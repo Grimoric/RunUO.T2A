@@ -1,12 +1,11 @@
 using System;
 using System.Globalization;
-using Server;
 using Server.Gumps;
 using Server.Network;
 
 namespace Server
 {
-	[Parsable]
+    [Parsable]
 	public class TextDefinition
 	{
 		private int m_Number;
@@ -15,7 +14,7 @@ namespace Server
 		public int Number { get { return m_Number; } }
 		public string String { get { return m_String; } }
 
-		public bool IsEmpty { get { return ( m_Number <= 0 && m_String == null ); } }
+		public bool IsEmpty { get { return m_Number <= 0 && m_String == null; } }
 
 		public TextDefinition() : this( 0, null )
 		{
@@ -218,7 +217,7 @@ namespace Server
 
 		public static bool IsNullOrEmpty( TextDefinition def )
 		{
-			return ( def == null || def.IsEmpty );
+			return def == null || def.IsEmpty;
 		}
 	}
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Server.Engines.MLQuests.Objectives;
 using Server.Items;
 using Server.Engines.MLQuests.Rewards;
@@ -8,7 +6,7 @@ using Server.Mobiles;
 
 namespace Server.Engines.MLQuests.Definitions
 {
-	public static class Spellweaving
+    public static class Spellweaving
 	{
 		public static void AwardTo( PlayerMobile pm )
 		{
