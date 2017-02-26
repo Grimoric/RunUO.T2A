@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public ThunderingAxe()
 		{
-			WeaponAttributes.HitLightning = 10;
 		}
 
 		public ThunderingAxe( Serial serial ) : base( serial )

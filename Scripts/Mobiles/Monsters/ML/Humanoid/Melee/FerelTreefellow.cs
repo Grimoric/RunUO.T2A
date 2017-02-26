@@ -5,11 +5,6 @@ namespace Server.Mobiles
     [CorpseName( "a treefellow corpse" )]
 	public class FerelTreefellow : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.Dismount;
-		}
-
 		[Constructable]
 		public FerelTreefellow() : base( AIType.AI_Melee, FightMode.Evil, 10, 1, 0.2, 0.4 )
 		{
@@ -23,13 +18,6 @@ namespace Server.Mobiles
 			SetHits( 1170, 1320 );
 
 			SetDamage( 26, 35 );
-
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 60, 70 );
-			SetResistance( ResistanceType.Cold, 70, 80 );
-			SetResistance( ResistanceType.Poison, 60, 70 );
-			SetResistance( ResistanceType.Energy, 40, 60 );
 
 			SetSkill( SkillName.MagicResist, 40.1, 55.0 );// Unknown
 			SetSkill( SkillName.Tactics, 65.1, 90.0 );// Unknown

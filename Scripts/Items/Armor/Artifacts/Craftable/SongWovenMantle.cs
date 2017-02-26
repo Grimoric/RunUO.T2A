@@ -4,19 +4,10 @@ namespace Server.Items
 	{
 		public override int LabelNumber{ get{ return 1072931; } } // Song Woven Mantle
 
-		public override int BasePhysicalResistance{ get{ return 14; } }
-		public override int BaseColdResistance{ get{ return 14; } }
-		public override int BaseEnergyResistance{ get{ return 16; } }
-
 		[Constructable]
 		public SongWovenMantle()
 		{
 			Hue = 0x493;
-
-			SkillBonuses.SetValues( 0, SkillName.Musicianship, 10.0 );
-
-			Attributes.Luck = 100;
-			Attributes.DefendChance = 5;
 		}
 
 		public SongWovenMantle( Serial serial ) : base( serial )

@@ -151,11 +151,6 @@ namespace Server.Engines.Quests.Ninja
 
 											Kama kama = new Kama();
 
-											if ( stolenTreasure )
-												BaseRunicTool.ApplyAttributesTo( kama, 1, 10, 20 );
-											else
-												BaseRunicTool.ApplyAttributesTo( kama, 1, 10, 30 );
-
 											if ( player.PlaceInBackpack( kama ) )
 											{
 												katana.Delete();

@@ -6,11 +6,6 @@ namespace Server.Mobiles
     [CorpseName( "a yomotsu corpse" )]
 	public class YomotsuWarrior : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.DoubleStrike;
-		}
-
 		[Constructable]
 		public YomotsuWarrior() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -26,14 +21,6 @@ namespace Server.Mobiles
 			SetMana( 17, 31 );
 
 			SetDamage( 8, 10 );
-
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 65, 85 );
-			SetResistance( ResistanceType.Fire, 30, 50 );
-			SetResistance( ResistanceType.Cold, 45, 65 );
-			SetResistance( ResistanceType.Poison, 35, 55 );
-			SetResistance( ResistanceType.Energy, 25, 50 );
 
 			SetSkill( SkillName.Anatomy, 85.1, 95.0 );
 			SetSkill( SkillName.MagicResist, 82.6, 90.5 );

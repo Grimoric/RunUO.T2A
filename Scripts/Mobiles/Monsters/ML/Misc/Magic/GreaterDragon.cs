@@ -23,14 +23,6 @@ namespace Server.Mobiles
 
 			SetDamage( 24, 33 );
 
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 60, 85 );
-			SetResistance( ResistanceType.Fire, 65, 90 );
-			SetResistance( ResistanceType.Cold, 40, 55 );
-			SetResistance( ResistanceType.Poison, 40, 60 );
-			SetResistance( ResistanceType.Energy, 50, 75 );
-
 			SetSkill( SkillName.Meditation, 0 );
 			SetSkill( SkillName.EvalInt, 110.0, 140.0 );
 			SetSkill( SkillName.Magery, 110.0, 140.0 );
@@ -68,11 +60,6 @@ namespace Server.Mobiles
 		public override FoodType FavoriteFood{ get{ return FoodType.Meat; } }
 		public override bool CanAngerOnTame { get { return true; } }
 		public override bool CanFly { get { return true; } }
-
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.BleedAttack;
-		}
 
 		public GreaterDragon( Serial serial ) : base( serial )
 		{

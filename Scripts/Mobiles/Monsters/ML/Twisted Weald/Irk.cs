@@ -23,12 +23,6 @@ namespace Server.Mobiles
 
 			SetDamage( 14, 20 );
 
-			SetResistance( ResistanceType.Physical, 80, 90 );
-			SetResistance( ResistanceType.Fire, 40, 50 );
-			SetResistance( ResistanceType.Cold, 40, 50 );
-			SetResistance( ResistanceType.Poison, 41, 50 );
-			SetResistance( ResistanceType.Energy, 40, 49 );
-
 			SetSkill( SkillName.Wrestling, 120.3, 123.0 );
 			SetSkill( SkillName.Tactics, 120.1, 131.8 );
 			SetSkill( SkillName.MagicResist, 132.3, 165.8 );
@@ -41,8 +35,6 @@ namespace Server.Mobiles
 		}
 
 		// TODO: Angry fire
-
-		public override bool GivesMLMinorArtifact{ get{ return true; } }
 
 		public override void GenerateLoot()
 		{

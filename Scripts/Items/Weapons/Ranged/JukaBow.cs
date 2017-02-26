@@ -3,9 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x13B2, 0x13B1 )]
 	public class JukaBow : Bow
 	{
-		public override int AosStrengthReq{ get{ return 80; } }
-		public override int AosDexterityReq{ get{ return 80; } }
-
 		public override int OldStrengthReq{ get{ return 80; } }
 		public override int OldDexterityReq{ get{ return 80; } }
 

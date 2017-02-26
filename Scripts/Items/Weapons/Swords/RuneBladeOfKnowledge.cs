@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public RuneBladeOfKnowledge()
 		{
-			Attributes.SpellDamage = 5;
 		}
 
 		public RuneBladeOfKnowledge( Serial serial ) : base( serial )

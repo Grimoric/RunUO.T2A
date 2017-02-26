@@ -13,7 +13,7 @@ namespace Server.Engines.Quests.Necro
 
 			for ( int i = 0; i < 40; i++ )
 			{
-				Item scroll = Loot.RandomScroll( 0, 15, SpellbookType.Necromancer );
+				Item scroll = Loot.RandomScroll( 0, 15, SpellbookType.Regular );
 				scroll.Movable = false;
 				DropItem( scroll );
 			}

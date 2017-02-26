@@ -7,8 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public GuardianAxe()
 		{
-			Attributes.BonusHits = 4;
-			Attributes.RegenHits = 1;
 		}
 
 		public GuardianAxe( Serial serial ) : base( serial )

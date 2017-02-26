@@ -15,12 +15,6 @@ namespace Server.Factions
 			SetDex( 61, 85 );
 			SetInt( 81, 95 );
 
-			SetResistance( ResistanceType.Physical, 20, 40 );
-			SetResistance( ResistanceType.Fire, 20, 40 );
-			SetResistance( ResistanceType.Cold, 20, 40 );
-			SetResistance( ResistanceType.Energy, 20, 40 );
-			SetResistance( ResistanceType.Poison, 20, 40 );
-
 			VirtualArmor = 16;
 
 			SetSkill( SkillName.Fencing, 90.0, 100.0 );

@@ -59,16 +59,14 @@ namespace Server.Spells.Second
 				target.PlaySound( 0x1E9 );
 				target.FixedParticles( 0x375A, 9, 20, 5016, EffectLayer.Waist );
 
-				mods = new object[2]
+				mods = new object[1]
 					{
-						new ResistanceMod( ResistanceType.Physical, -15 + Math.Min( (int)(caster.Skills[SkillName.Inscribe].Value / 20), 15 ) ),
 						new DefaultSkillMod( SkillName.MagicResist, true, -35 + Math.Min( (int)(caster.Skills[SkillName.Inscribe].Value / 20), 35 ) )
 					};
 
 				m_Table[target] = mods;
 				Registry[target] = 100.0;
 
-				target.AddResistanceMod( (ResistanceMod)mods[0] );
 				target.AddSkillMod( (SkillMod)mods[1] );
 
 				int physloss = -15 + (int) (caster.Skills[SkillName.Inscribe].Value / 20);
@@ -84,7 +82,6 @@ namespace Server.Spells.Second
 				m_Table.Remove( target );
 				Registry.Remove( target );
 
-				target.RemoveResistanceMod( (ResistanceMod)mods[0] );
 				target.RemoveSkillMod( (SkillMod)mods[1] );
 
 				BuffInfo.RemoveBuff(target, BuffIcon.Protection);
@@ -100,7 +97,6 @@ namespace Server.Spells.Second
 				m_Table.Remove( m );
 				Registry.Remove( m );
 
-				m.RemoveResistanceMod( (ResistanceMod) mods[ 0 ] );
 				m.RemoveSkillMod( (SkillMod) mods[ 1 ] );
 
 				BuffInfo.RemoveBuff( m, BuffIcon.Protection );

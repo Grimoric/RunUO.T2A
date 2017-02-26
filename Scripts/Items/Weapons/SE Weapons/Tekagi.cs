@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x27Ab, 0x27F6 )]
 	public class Tekagi : BaseKnife
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.DualWield; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.TalonStrike; } }
-
-		public override int AosStrengthReq{ get{ return 10; } }
-		public override int AosMinDamage{ get{ return 10; } }
-		public override int AosMaxDamage{ get{ return 12; } }
-		public override int AosSpeed{ get{ return 53; } }
-		public override float MlSpeed{ get{ return 2.00f; } }
-
 		public override int OldStrengthReq{ get{ return 10; } }
 		public override int OldMinDamage{ get{ return 10; } }
 		public override int OldMaxDamage{ get{ return 12; } }

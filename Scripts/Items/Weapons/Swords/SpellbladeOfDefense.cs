@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public SpellbladeOfDefense()
 		{
-			Attributes.DefendChance = 5;
 		}
 
 		public SpellbladeOfDefense( Serial serial ) : base( serial )

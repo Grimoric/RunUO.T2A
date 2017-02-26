@@ -3,7 +3,6 @@ namespace Server.Items
     public class AncientFarmersKasa : Kasa
 	{
 		public override int LabelNumber{ get{ return 1070922; } } // Ancient Farmer's Kasa
-		public override int BaseColdResistance { get { return 19; } }
 
 		public override int InitMinHits{ get{ return 255; } }
 		public override int InitMaxHits{ get { return 255; } }
@@ -11,11 +10,6 @@ namespace Server.Items
 		[Constructable]
 		public AncientFarmersKasa() : base()
 		{
-			Attributes.BonusStr = 5;
-			Attributes.BonusStam = 5;
-			Attributes.RegenStam = 5;
-
-			SkillBonuses.SetValues( 0, SkillName.AnimalLore, 5.0 );
 		}
 
 		public AncientFarmersKasa( Serial serial ) : base( serial )
@@ -34,15 +28,6 @@ namespace Server.Items
 			base.Deserialize( reader );
 
 			int version = reader.ReadInt();
-
-			if ( version <= 1 )
-			{
-				MaxHitPoints = 255;
-				HitPoints = 255;
-			}
-
-			if( version == 0 )
-				SkillBonuses.SetValues( 0, SkillName.AnimalLore, 5.0 );
 		}
 	}
 
@@ -50,18 +35,9 @@ namespace Server.Items
 	{
 		public override int LabelNumber { get { return 1070926; } } // Ancient Samurai Do
 
-		public override int BasePhysicalResistance { get { return 15; } }
-		public override int BaseFireResistance { get { return 12; } }
-		public override int BaseColdResistance { get { return 10; } }
-		public override int BasePoisonResistance { get { return 11; } }
-		public override int BaseEnergyResistance { get { return 8; } }
-
 		[Constructable]
 		public AncientSamuraiDo() : base()
 		{
-			ArmorAttributes.LowerStatReq = 100;
-			ArmorAttributes.MageArmor = 1;
-			SkillBonuses.SetValues( 0, SkillName.Parry, 10.0 );
 		}
 
 		public AncientSamuraiDo( Serial serial ) : base( serial )
@@ -90,15 +66,9 @@ namespace Server.Items
 	{
 		public override int LabelNumber { get { return 1070921; } } // Arms of Tactical Excellence
 
-		public override int BaseFireResistance { get { return 9; } }
-		public override int BaseColdResistance { get { return 13; } }
-		public override int BasePoisonResistance { get { return 8; } }
-
 		[Constructable]
 		public ArmsOfTacticalExcellence() : base()
 		{
-			Attributes.BonusDex = 5;
-			SkillBonuses.SetValues( 0, SkillName.Tactics, 12.0 );
 		}
 
 		public ArmsOfTacticalExcellence( Serial serial ) : base( serial )
@@ -127,21 +97,12 @@ namespace Server.Items
 	{
 		public override int LabelNumber { get { return 1070919; } } // Black Lotus Hood
 
-		public override int BasePhysicalResistance { get { return 0; } }
-		public override int BaseFireResistance { get { return 11; } }
-		public override int BaseColdResistance { get { return 15; } }
-		public override int BasePoisonResistance { get { return 11; } }
-		public override int BaseEnergyResistance { get { return 11; } }
-
 		public override int InitMinHits { get { return 255; } }
 		public override int InitMaxHits { get { return 255; } }
 
 		[Constructable]
 		public BlackLotusHood() : base()
 		{
-			Attributes.LowerManaCost = 6;
-			Attributes.AttackChance = 6;
-			ClothingAttributes.SelfRepair = 5;
 		}
 
 		public BlackLotusHood( Serial serial ) : base( serial )
@@ -173,15 +134,9 @@ namespace Server.Items
 	{
 		public override int LabelNumber { get { return 1070920; } } // Daimyo's Helm
 
-		public override int BaseColdResistance { get { return 10; } }
-
 		[Constructable]
 		public DaimyosHelm() : base()
 		{
-			ArmorAttributes.LowerStatReq = 100;
-			ArmorAttributes.MageArmor = 1;
-			ArmorAttributes.SelfRepair = 3;
-			Attributes.WeaponSpeed = 10;
 		}
 
 		public DaimyosHelm( Serial serial ) : base( serial )
@@ -213,12 +168,6 @@ namespace Server.Items
 		[Constructable]
 		public DemonForks() : base()
 		{
-			WeaponAttributes.ResistFireBonus = 10;
-			WeaponAttributes.ResistPoisonBonus = 10;
-
-			Attributes.ReflectPhysical = 10;
-			Attributes.WeaponDamage = 35;
-			Attributes.DefendChance = 10;
 		}
 
 		public DemonForks( Serial serial ) : base( serial )
@@ -250,12 +199,6 @@ namespace Server.Items
 		[Constructable]
 		public DragonNunchaku() : base()
 		{
-			WeaponAttributes.ResistFireBonus = 5;
-			WeaponAttributes.SelfRepair = 3;
-			WeaponAttributes.HitFireball = 50;
-
-			Attributes.WeaponDamage = 40;
-			Attributes.WeaponSpeed = 20;
 		}
 
 		public DragonNunchaku( Serial serial ) : base( serial )
@@ -287,18 +230,7 @@ namespace Server.Items
 		[Constructable]
 		public Exiler() : base()
 		{
-			WeaponAttributes.HitDispel = 33;
 			Slayer = SlayerName.Exorcism;
-
-			Attributes.WeaponDamage = 40;
-			Attributes.WeaponSpeed = 20;
-		}
-
-		public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
-		{
-			phys = fire = cold = pois = chaos = direct = 0;
-
-			nrgy = 100;
 		}
 
 
@@ -328,15 +260,9 @@ namespace Server.Items
 	{
 		public override int LabelNumber { get { return 1070924; } } // Gloves of the Sun
 
-		public override int BaseFireResistance { get { return 24; } }
-
 		[Constructable]
 		public GlovesOfTheSun() : base()
 		{
-			Attributes.RegenHits = 2;
-			Attributes.NightSight = 1;
-			Attributes.LowerManaCost = 5;
-			Attributes.LowerRegCost = 18;
 		}
 
 		public GlovesOfTheSun( Serial serial ) : base( serial )
@@ -368,12 +294,6 @@ namespace Server.Items
 		[Constructable]
 		public HanzosBow() : base()
 		{
-			WeaponAttributes.HitLeechHits = 40;
-			WeaponAttributes.SelfRepair = 3;
-
-			Attributes.WeaponDamage = 50;
-
-			SkillBonuses.SetValues( 0, SkillName.Ninjitsu, 10 );
 		}
 
 		public HanzosBow( Serial serial ) : base( serial )
@@ -402,17 +322,9 @@ namespace Server.Items
 	{
 		public override int LabelNumber { get { return 1070925; } } // Legs of Stability
 
-		public override int BasePhysicalResistance { get { return 20; } }
-		public override int BasePoisonResistance { get { return 18; } }
-
 		[Constructable]
 		public LegsOfStability() : base()
 		{
-			Attributes.BonusStam = 5;
-
-			ArmorAttributes.SelfRepair = 3;
-			ArmorAttributes.LowerStatReq = 100;
-			ArmorAttributes.MageArmor = 1;
 		}
 
 		public LegsOfStability( Serial serial ) : base( serial )
@@ -444,11 +356,6 @@ namespace Server.Items
 		[Constructable]
 		public PeasantsBokuto() : base()
 		{
-			WeaponAttributes.SelfRepair = 3;
-			WeaponAttributes.HitLowerDefend = 30;
-
-			Attributes.WeaponDamage = 35;
-			Attributes.WeaponSpeed = 10;
 			Slayer = SlayerName.SnakesBane;
 		}
 
@@ -481,11 +388,6 @@ namespace Server.Items
 		[Constructable]
 		public PilferedDancerFans() : base()
 		{
-			Attributes.WeaponDamage = 20;
-			Attributes.WeaponSpeed = 20;
-			Attributes.CastRecovery = 2;
-			Attributes.DefendChance = 5;
-			Attributes.SpellChanneling = 1;
 		}
 
 		public PilferedDancerFans( Serial serial ) : base( serial )
@@ -517,11 +419,6 @@ namespace Server.Items
 		[Constructable]
 		public TheDestroyer() : base()
 		{
-			WeaponAttributes.HitLeechStam = 40;
-
-			Attributes.BonusStr = 6;
-			Attributes.AttackChance = 10;
-			Attributes.WeaponDamage = 50;
 		}
 
 		public TheDestroyer( Serial serial ) : base( serial )
@@ -555,10 +452,6 @@ namespace Server.Items
 		{
 			LootType = LootType.Regular;
 			Hue = 0x455;
-
-			Attributes.BonusInt = 5;
-			Attributes.SpellDamage = 10;
-			Attributes.CastSpeed = 1;
 		}
 
 		public TomeOfEnlightenment( Serial serial ) : base( serial )
@@ -584,20 +477,11 @@ namespace Server.Items
 	{
 		public override int LabelNumber { get { return 1071460; } } // Leurocian's mempo of fortune
 
-		public override int BasePhysicalResistance{ get{ return 15; } }
-		public override int BaseFireResistance{ get{ return 10; } }
-		public override int BaseColdResistance{ get{ return 10; } }
-		public override int BasePoisonResistance{ get{ return 10; } }
-		public override int BaseEnergyResistance{ get{ return 15; } }
-		
 		[Constructable]
 		public LeurociansMempoOfFortune() : base()
 		{
 			LootType = LootType.Regular;
 			Hue = 0x501;
-
-			Attributes.Luck = 300;
-			Attributes.RegenMana = 1;
 		}
 
 		public LeurociansMempoOfFortune( Serial serial ) : base( serial )

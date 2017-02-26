@@ -6,11 +6,6 @@ namespace Server.Mobiles
     [CorpseName( "a glowing yomotsu corpse" )]
 	public class YomotsuPriest : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.DoubleStrike;
-		}
-
 		[Constructable]
 		public YomotsuPriest() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -25,14 +20,6 @@ namespace Server.Mobiles
 			SetHits( 486, 530 );
 
 			SetDamage( 8, 10 );
-
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 65, 85 );
-			SetResistance( ResistanceType.Fire, 30, 50 );
-			SetResistance( ResistanceType.Cold, 45, 65 );
-			SetResistance( ResistanceType.Poison, 35, 55 );
-			SetResistance( ResistanceType.Energy, 25, 50 );
 
 			SetSkill( SkillName.EvalInt, 92.6, 107.5 );
 			SetSkill( SkillName.Magery, 105.1, 115.0 );

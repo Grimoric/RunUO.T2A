@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public RangersShortbow()
 		{
-			Attributes.WeaponSpeed = 5;
 		}
 
 		public RangersShortbow( Serial serial ) : base( serial )

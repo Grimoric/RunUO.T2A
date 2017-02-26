@@ -11,12 +11,6 @@ namespace Server.Items
 		public BladeDance()
 		{
 			Hue = 0x66C;
-
-			Attributes.BonusMana = 8;
-			Attributes.SpellChanneling = 1;
-			Attributes.WeaponDamage = 30;
-			WeaponAttributes.HitLeechMana = 20;
-			WeaponAttributes.UseBestSkill = 1;
 		}
 
 		public BladeDance( Serial serial ) : base( serial )

@@ -4,8 +4,6 @@ namespace Server.Items
 	{
 		public override int LabelNumber{ get{ return 1094931; } } // The Robe of Britannia "Ari" [Replica]
 
-		public override int BasePhysicalResistance{ get{ return 10; } }
-
 		public override int InitMinHits{ get{ return 150; } }
 		public override int InitMaxHits{ get{ return 150; } }
 

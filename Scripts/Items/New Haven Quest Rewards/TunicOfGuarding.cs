@@ -4,19 +4,10 @@ namespace Server.Items
 	{
 		public override int LabelNumber{ get{ return 1077693; } } // Tunic of Guarding
 
-		public override int BasePhysicalResistance{ get{ return 6; } }
-		public override int BaseFireResistance{ get{ return 6; } }
-		public override int BaseColdResistance{ get{ return 5; } }
-		public override int BasePoisonResistance{ get{ return 5; } }
-		public override int BaseEnergyResistance{ get{ return 5; } }
-
 		[Constructable]
 		public TunicOfGuarding()
 		{
 			LootType = LootType.Blessed;
-
-			Attributes.BonusHits = 2;
-			Attributes.ReflectPhysical = 5;
 		}
 
 		public TunicOfGuarding( Serial serial ) : base( serial )

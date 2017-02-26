@@ -7,8 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public CorruptedRuneBlade()
 		{
-			WeaponAttributes.ResistPhysicalBonus = -5;
-			WeaponAttributes.ResistPoisonBonus = 12;
 		}
 
 		public CorruptedRuneBlade( Serial serial ) : base( serial )

@@ -12,10 +12,6 @@ namespace Server.Items
 		public TitansHammer()
 		{
 			Hue = 0x482;
-			WeaponAttributes.HitEnergyArea = 100;
-			Attributes.BonusStr = 15;
-			Attributes.AttackChance = 15;
-			Attributes.WeaponDamage = 50;
 		}
 
 		public TitansHammer( Serial serial ) : base( serial )

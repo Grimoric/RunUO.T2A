@@ -28,13 +28,6 @@ namespace Server.Mobiles
 
 			steed.SetDamage( 20, 24 );
 
-			steed.SetDamageType( ResistanceType.Physical, 25 );
-			steed.SetDamageType( ResistanceType.Fire, 75 );
-
-			steed.SetResistance( ResistanceType.Physical, 60, 70 );
-			steed.SetResistance( ResistanceType.Fire, 90 );
-			steed.SetResistance( ResistanceType.Poison, 100 );
-
 			steed.SetSkill( SkillName.MagicResist, 90.1, 110.0 );
 			steed.SetSkill( SkillName.Tactics, 50.0 );
 			steed.SetSkill( SkillName.Wrestling, 90.1, 110.0 );

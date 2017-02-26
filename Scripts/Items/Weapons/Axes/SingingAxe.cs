@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public SingingAxe()
 		{
-			SkillBonuses.SetValues( 0, SkillName.Musicianship, 5 );
 		}
 
 		public SingingAxe( Serial serial ) : base( serial )

@@ -12,12 +12,6 @@ namespace Server.Items
 		{
 			ItemID = 0x2D23;
 			Hue = 0x1E6;
-
-			Attributes.BonusMana = 8;
-			Attributes.SpellChanneling = 1;
-			Attributes.WeaponSpeed = 20;
-
-			WeaponAttributes.HitLeechHits = 40;
 		}
 
 		public RaedsGlory( Serial serial ) : base( serial )

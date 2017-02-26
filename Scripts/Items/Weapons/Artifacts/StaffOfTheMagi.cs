@@ -12,16 +12,6 @@ namespace Server.Items
 		public StaffOfTheMagi()
 		{
 			Hue = 0x481;
-			WeaponAttributes.MageWeapon = 30;
-			Attributes.SpellChanneling = 1;
-			Attributes.CastSpeed = 1;
-			Attributes.WeaponDamage = 50;
-		}
-
-		public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
-		{
-			phys = fire = cold = pois = chaos = direct = 0;
-			nrgy = 100;
 		}
 
 		public StaffOfTheMagi( Serial serial ) : base( serial )
@@ -40,9 +30,6 @@ namespace Server.Items
 			base.Deserialize( reader );
 
 			int version = reader.ReadInt();
-
-			if ( WeaponAttributes.MageWeapon == 0 )
-				WeaponAttributes.MageWeapon = 30;
 
 			if ( ItemID == 0xDF1 )
 				ItemID = 0xDF0;

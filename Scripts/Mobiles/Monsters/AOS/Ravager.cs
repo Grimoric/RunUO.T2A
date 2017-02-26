@@ -5,11 +5,6 @@ namespace Server.Mobiles
     [CorpseName( "a ravager corpse" )]
 	public class Ravager : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return Utility.RandomBool() ? WeaponAbility.Dismount : WeaponAbility.CrushingBlow;
-		}
-
 		[Constructable]
 		public Ravager() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -24,14 +19,6 @@ namespace Server.Mobiles
 			SetHits( 161, 175 );
 
 			SetDamage( 15, 20 );
-
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 50, 60 );
-			SetResistance( ResistanceType.Fire, 50, 60 );
-			SetResistance( ResistanceType.Cold, 60, 70 );
-			SetResistance( ResistanceType.Poison, 30, 40 );
-			SetResistance( ResistanceType.Energy, 20, 30 );
 
 			SetSkill( SkillName.MagicResist, 50.1, 75.0 );
 			SetSkill( SkillName.Tactics, 75.1, 100.0 );

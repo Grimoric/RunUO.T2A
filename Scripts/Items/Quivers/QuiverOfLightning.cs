@@ -14,12 +14,6 @@ namespace Server.Items
 		{
 		}
 
-		public override void AlterBowDamage( ref int phys, ref int fire, ref int cold, ref int pois, ref int nrgy, ref int chaos, ref int direct )
-		{
-			fire = cold = pois = chaos = direct = 0;
-			phys = nrgy = 50;
-		}
-
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );

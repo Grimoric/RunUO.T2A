@@ -12,16 +12,7 @@ namespace Server.Items
 		{
 			Hue = 0x489;
 			
-			SkillBonuses.SetValues( 0, SkillName.Archery, 10 );
-			WeaponAttributes.ResistFireBonus = 25;
-			
 			Velocity = 15;			
-		}
-
-		public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
-		{
-			phys = cold = pois = nrgy = chaos = direct = 0;
-			fire = 100;
 		}
 
 		public WildfireBow( Serial serial ) : base( serial )

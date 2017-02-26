@@ -32,20 +32,14 @@ namespace Server.Spells.Seventh
 
 		public override bool CheckCast()
 		{
-			/*if ( Caster.Mounted )
+			if ( Caster.Mounted )
 			{
 				Caster.SendLocalizedMessage( 1042561 ); //Please dismount first.
 				return false;
 			}
-			else */
-			if ( Factions.Sigil.ExistsOn( Caster ) )
+			else if ( Factions.Sigil.ExistsOn( Caster ) )
 			{
 				Caster.SendLocalizedMessage( 1010521 ); // You cannot polymorph while you have a Town Sigil
-				return false;
-			}
-			else if( TransformationSpellHelper.UnderTransformation( Caster ) )
-			{
-				Caster.SendLocalizedMessage( 1061633 ); // You cannot polymorph while in that form.
 				return false;
 			}
 			else if ( DisguiseTimers.IsDisguised( Caster ) )
@@ -76,22 +70,17 @@ namespace Server.Spells.Seventh
 
 		public override void OnCast()
 		{
-			/*if ( Caster.Mounted )
+			if ( Caster.Mounted )
 			{
 				Caster.SendLocalizedMessage( 1042561 ); //Please dismount first.
 			} 
-			else */
-			if ( Factions.Sigil.ExistsOn( Caster ) )
+			else if ( Factions.Sigil.ExistsOn( Caster ) )
 			{
 				Caster.SendLocalizedMessage( 1010521 ); // You cannot polymorph while you have a Town Sigil
 			}
 			else if ( !Caster.CanBeginAction( typeof( PolymorphSpell ) ) )
 			{
 				Caster.SendLocalizedMessage( 1005559 ); // This spell is already in effect.
-			}
-			else if( TransformationSpellHelper.UnderTransformation( Caster ) )
-			{
-				Caster.SendLocalizedMessage( 1061633 ); // You cannot polymorph while in that form.
 			}
 			else if ( DisguiseTimers.IsDisguised( Caster ) )
 			{

@@ -20,14 +20,6 @@ namespace Server.Mobiles
 
 			SetDamage( 11, 17 );
 
-			SetDamageType( ResistanceType.Physical, 20 );
-			SetDamageType( ResistanceType.Fire, 80 );
-
-			SetResistance( ResistanceType.Physical, 25, 35 );
-			SetResistance( ResistanceType.Fire, 30, 40 );
-			SetResistance( ResistanceType.Poison, 10, 20 );
-			SetResistance( ResistanceType.Energy, 10, 20 );
-
 			Fame = 3400;
 			Karma = -3400;
 

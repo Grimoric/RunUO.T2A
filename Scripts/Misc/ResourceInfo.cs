@@ -48,25 +48,10 @@ namespace Server.Items
 
 	public class CraftAttributeInfo
 	{
-		private int m_WeaponFireDamage;
-		private int m_WeaponColdDamage;
-		private int m_WeaponPoisonDamage;
-		private int m_WeaponEnergyDamage;
-		private int m_WeaponChaosDamage;
-		private int m_WeaponDirectDamage;
 		private int m_WeaponDurability;
-		private int m_WeaponLuck;
-		private int m_WeaponGoldIncrease;
 		private int m_WeaponLowerRequirements;
 
-		private int m_ArmorPhysicalResist;
-		private int m_ArmorFireResist;
-		private int m_ArmorColdResist;
-		private int m_ArmorPoisonResist;
-		private int m_ArmorEnergyResist;
 		private int m_ArmorDurability;
-		private int m_ArmorLuck;
-		private int m_ArmorGoldIncrease;
 		private int m_ArmorLowerRequirements;
 
 		private int m_RunicMinAttributes;
@@ -74,25 +59,10 @@ namespace Server.Items
 		private int m_RunicMinIntensity;
 		private int m_RunicMaxIntensity;
 
-		public int WeaponFireDamage{ get{ return m_WeaponFireDamage; } set{ m_WeaponFireDamage = value; } }
-		public int WeaponColdDamage{ get{ return m_WeaponColdDamage; } set{ m_WeaponColdDamage = value; } }
-		public int WeaponPoisonDamage{ get{ return m_WeaponPoisonDamage; } set{ m_WeaponPoisonDamage = value; } }
-		public int WeaponEnergyDamage{ get{ return m_WeaponEnergyDamage; } set{ m_WeaponEnergyDamage = value; } }
-		public int WeaponChaosDamage{ get{ return m_WeaponChaosDamage; } set{ m_WeaponChaosDamage = value; } }
-		public int WeaponDirectDamage{ get{ return m_WeaponDirectDamage; } set{ m_WeaponDirectDamage = value; } }
 		public int WeaponDurability{ get{ return m_WeaponDurability; } set{ m_WeaponDurability = value; } }
-		public int WeaponLuck{ get{ return m_WeaponLuck; } set{ m_WeaponLuck = value; } }
-		public int WeaponGoldIncrease{ get{ return m_WeaponGoldIncrease; } set{ m_WeaponGoldIncrease = value; } }
 		public int WeaponLowerRequirements{ get{ return m_WeaponLowerRequirements; } set{ m_WeaponLowerRequirements = value; } }
 
-		public int ArmorPhysicalResist{ get{ return m_ArmorPhysicalResist; } set{ m_ArmorPhysicalResist = value; } }
-		public int ArmorFireResist{ get{ return m_ArmorFireResist; } set{ m_ArmorFireResist = value; } }
-		public int ArmorColdResist{ get{ return m_ArmorColdResist; } set{ m_ArmorColdResist = value; } }
-		public int ArmorPoisonResist{ get{ return m_ArmorPoisonResist; } set{ m_ArmorPoisonResist = value; } }
-		public int ArmorEnergyResist{ get{ return m_ArmorEnergyResist; } set{ m_ArmorEnergyResist = value; } }
 		public int ArmorDurability{ get{ return m_ArmorDurability; } set{ m_ArmorDurability = value; } }
-		public int ArmorLuck{ get{ return m_ArmorLuck; } set{ m_ArmorLuck = value; } }
-		public int ArmorGoldIncrease{ get{ return m_ArmorGoldIncrease; } set{ m_ArmorGoldIncrease = value; } }
 		public int ArmorLowerRequirements{ get{ return m_ArmorLowerRequirements; } set{ m_ArmorLowerRequirements = value; } }
 
 		public int RunicMinAttributes{ get{ return m_RunicMinAttributes; } set{ m_RunicMinAttributes = value; } }
@@ -116,7 +86,6 @@ namespace Server.Items
 
 			CraftAttributeInfo dullCopper = DullCopper = new CraftAttributeInfo();
 
-			dullCopper.ArmorPhysicalResist = 6;
 			dullCopper.ArmorDurability = 50;
 			dullCopper.ArmorLowerRequirements = 20;
 			dullCopper.WeaponDurability = 100;
@@ -128,11 +97,7 @@ namespace Server.Items
 
 			CraftAttributeInfo shadowIron = ShadowIron = new CraftAttributeInfo();
 
-			shadowIron.ArmorPhysicalResist = 2;
-			shadowIron.ArmorFireResist = 1;
-			shadowIron.ArmorEnergyResist = 5;
 			shadowIron.ArmorDurability = 100;
-			shadowIron.WeaponColdDamage = 20;
 			shadowIron.WeaponDurability = 50;
 			shadowIron.RunicMinAttributes = 2;
 			shadowIron.RunicMaxAttributes = 2;
@@ -141,12 +106,6 @@ namespace Server.Items
 
 			CraftAttributeInfo copper = Copper = new CraftAttributeInfo();
 
-			copper.ArmorPhysicalResist = 1;
-			copper.ArmorFireResist = 1;
-			copper.ArmorPoisonResist = 5;
-			copper.ArmorEnergyResist = 2;
-			copper.WeaponPoisonDamage = 10;
-			copper.WeaponEnergyDamage = 20;
 			copper.RunicMinAttributes = 2;
 			copper.RunicMaxAttributes = 3;
             copper.RunicMinIntensity = 25;
@@ -154,11 +113,6 @@ namespace Server.Items
 
 			CraftAttributeInfo bronze = Bronze = new CraftAttributeInfo();
 
-			bronze.ArmorPhysicalResist = 3;
-			bronze.ArmorColdResist = 5;
-			bronze.ArmorPoisonResist = 1;
-			bronze.ArmorEnergyResist = 1;
-			bronze.WeaponFireDamage = 40;
 			bronze.RunicMinAttributes = 3;
 			bronze.RunicMaxAttributes = 3;
             bronze.RunicMinIntensity = 30;
@@ -166,13 +120,7 @@ namespace Server.Items
 
 			CraftAttributeInfo golden = Golden = new CraftAttributeInfo();
 
-			golden.ArmorPhysicalResist = 1;
-			golden.ArmorFireResist = 1;
-			golden.ArmorColdResist = 2;
-			golden.ArmorEnergyResist = 2;
-			golden.ArmorLuck = 40;
 			golden.ArmorLowerRequirements = 30;
-			golden.WeaponLuck = 40;
 			golden.WeaponLowerRequirements = 50;
 			golden.RunicMinAttributes = 3;
 			golden.RunicMaxAttributes = 4;
@@ -181,13 +129,6 @@ namespace Server.Items
 
 			CraftAttributeInfo agapite = Agapite = new CraftAttributeInfo();
 
-			agapite.ArmorPhysicalResist = 2;
-			agapite.ArmorFireResist = 3;
-			agapite.ArmorColdResist = 2;
-			agapite.ArmorPoisonResist = 2;
-			agapite.ArmorEnergyResist = 2;
-			agapite.WeaponColdDamage = 30;
-			agapite.WeaponEnergyDamage = 20;
 			agapite.RunicMinAttributes = 4;
 			agapite.RunicMaxAttributes = 4;
             agapite.RunicMinIntensity = 40;
@@ -195,13 +136,6 @@ namespace Server.Items
 
 			CraftAttributeInfo verite = Verite = new CraftAttributeInfo();
 
-			verite.ArmorPhysicalResist = 3;
-			verite.ArmorFireResist = 3;
-			verite.ArmorColdResist = 2;
-			verite.ArmorPoisonResist = 3;
-			verite.ArmorEnergyResist = 1;
-			verite.WeaponPoisonDamage = 40;
-			verite.WeaponEnergyDamage = 20;
 			verite.RunicMinAttributes = 4;
 			verite.RunicMaxAttributes = 5;
             verite.RunicMinIntensity = 45;
@@ -209,15 +143,7 @@ namespace Server.Items
 
 			CraftAttributeInfo valorite = Valorite = new CraftAttributeInfo();
 
-			valorite.ArmorPhysicalResist = 4;
-			valorite.ArmorColdResist = 3;
-			valorite.ArmorPoisonResist = 3;
-			valorite.ArmorEnergyResist = 3;
 			valorite.ArmorDurability = 50;
-			valorite.WeaponFireDamage = 10;
-			valorite.WeaponColdDamage = 20;
-			valorite.WeaponPoisonDamage = 10;
-			valorite.WeaponEnergyDamage = 20;
 			valorite.RunicMinAttributes = 5;
 			valorite.RunicMaxAttributes = 5;
             valorite.RunicMinIntensity = 50;
@@ -225,8 +151,6 @@ namespace Server.Items
 
 			CraftAttributeInfo spined = Spined = new CraftAttributeInfo();
 
-			spined.ArmorPhysicalResist = 5;
-			spined.ArmorLuck = 40;
 			spined.RunicMinAttributes = 1;
 			spined.RunicMaxAttributes = 3;
             spined.RunicMinIntensity = 20;
@@ -234,11 +158,6 @@ namespace Server.Items
 
 			CraftAttributeInfo horned = Horned = new CraftAttributeInfo();
 
-			horned.ArmorPhysicalResist = 2;
-			horned.ArmorFireResist = 3;
-			horned.ArmorColdResist = 2;
-			horned.ArmorPoisonResist = 2;
-			horned.ArmorEnergyResist = 2;
 			horned.RunicMinAttributes = 3;
 			horned.RunicMaxAttributes = 4;
             horned.RunicMinIntensity = 30;
@@ -246,11 +165,6 @@ namespace Server.Items
 
 			CraftAttributeInfo barbed = Barbed = new CraftAttributeInfo();
 
-			barbed.ArmorPhysicalResist = 2;
-			barbed.ArmorFireResist = 1;
-			barbed.ArmorColdResist = 2;
-			barbed.ArmorPoisonResist = 3;
-			barbed.ArmorEnergyResist = 4;
 			barbed.RunicMinAttributes = 4;
 			barbed.RunicMaxAttributes = 5;
             barbed.RunicMinIntensity = 40;
@@ -258,35 +172,15 @@ namespace Server.Items
 
 			CraftAttributeInfo red = RedScales = new CraftAttributeInfo();
 
-			red.ArmorFireResist = 10;
-			red.ArmorColdResist = -3;
-
 			CraftAttributeInfo yellow = YellowScales = new CraftAttributeInfo();
-
-			yellow.ArmorPhysicalResist = -3;
-			yellow.ArmorLuck = 20;
 
 			CraftAttributeInfo black = BlackScales = new CraftAttributeInfo();
 
-			black.ArmorPhysicalResist = 10;
-			black.ArmorEnergyResist = -3;
-
 			CraftAttributeInfo green = GreenScales = new CraftAttributeInfo();
-
-			green.ArmorFireResist = -3;
-			green.ArmorPoisonResist = 10;
 
 			CraftAttributeInfo white = WhiteScales = new CraftAttributeInfo();
 
-			white.ArmorPhysicalResist = -3;
-			white.ArmorColdResist = 10;
-
 			CraftAttributeInfo blue = BlueScales = new CraftAttributeInfo();
-
-			blue.ArmorPoisonResist = -3;
-			blue.ArmorEnergyResist = 10;
-
-			//public static readonly CraftAttributeInfo OakWood, AshWood, YewWood, Heartwood, Bloodwood, Frostwood;
 
 			CraftAttributeInfo oak = OakWood = new CraftAttributeInfo();
 

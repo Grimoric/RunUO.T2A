@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x1401, 0x1400 )]
 	public class Kryss : BaseSword
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ArmorIgnore; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.InfectiousStrike; } }
-
-		public override int AosStrengthReq{ get{ return 10; } }
-		public override int AosMinDamage{ get{ return 10; } }
-		public override int AosMaxDamage{ get{ return 12; } }
-		public override int AosSpeed{ get{ return 53; } }
-		public override float MlSpeed{ get{ return 2.00f; } }
-
 		public override int OldStrengthReq{ get{ return 10; } }
 		public override int OldMinDamage{ get{ return 3; } }
 		public override int OldMaxDamage{ get{ return 28; } }

@@ -7,8 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public TrueWarCleaver()
 		{
-			Attributes.WeaponDamage = 4;
-			Attributes.RegenHits = 2;
 		}
 
 		public TrueWarCleaver( Serial serial ) : base( serial )

@@ -38,21 +38,10 @@ namespace Server.Mobiles
 
 			SetDamage( 16, 17 );
 
-			// Bestiary says 50 phys 50 cold, animal lore says differently
-			SetDamageType( ResistanceType.Physical, 100 );
-
 			SetSkill( SkillName.MagicResist, 100.0 * scalar ); // magic resist is absolute value of spiritspeak
 			SetSkill( SkillName.Tactics, 100.0 ); // always 100
 			SetSkill( SkillName.Swords, 100.0 * scalar ); // not displayed in animal lore but tests clearly show this is influenced
 			SetSkill( SkillName.DetectHidden, 75.0 * scalar );
-
-			scalar /= 1.2;
-
-			SetResistance( ResistanceType.Physical, 40 + (int)(20 * scalar), 50 + (int)(20 * scalar)  );
-			SetResistance( ResistanceType.Cold, 40 + (int)(20 * scalar), 50 + (int)(20 * scalar) );
-			SetResistance( ResistanceType.Fire, (int)(20 * scalar) );
-			SetResistance( ResistanceType.Poison, 100 );
-			SetResistance( ResistanceType.Energy, 40 + (int)(20 * scalar), 50 + (int)(20 * scalar) );
 
 			Fame = 0;
 			Karma = 0;

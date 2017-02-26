@@ -1,6 +1,6 @@
 ﻿namespace Server.Items
 {
-    public class OssianGrimoire : NecromancerSpellbook, ITokunoDyable
+    public class OssianGrimoire : Spellbook, ITokunoDyable
 	{
 		public override int LabelNumber { get { return 1078148; } } // Ossian Grimoire
 
@@ -8,11 +8,6 @@
 		public OssianGrimoire()
 		{
 			LootType = LootType.Blessed;
-
-			SkillBonuses.SetValues( 0, SkillName.Necromancy, 10.0 );
-			Attributes.RegenMana = 1;
-			Attributes.CastSpeed = 1;
-			Attributes.IncreasedKarmaLoss = 5;
 		}
 
 		public OssianGrimoire( Serial serial ) : base( serial )
@@ -31,9 +26,6 @@
 			base.Deserialize( reader );
 
 			int version = reader.ReadEncodedInt();
-
-			if ( version == 0 )
-				Attributes.IncreasedKarmaLoss = 5;
 		}
 	}
 }

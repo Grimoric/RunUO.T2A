@@ -9,11 +9,6 @@ namespace Server.Items
 		public RingOfTheElements()
 		{
 			Hue = 0x4E9;
-			Attributes.Luck = 100;
-			Resistances.Fire = 16;
-			Resistances.Cold = 16;
-			Resistances.Poison = 16;
-			Resistances.Energy = 16;
 		}
 
 		public RingOfTheElements( Serial serial ) : base( serial )

@@ -14,9 +14,6 @@ namespace Server.Items
 		{
 			Hue = 0x483;
 			StrRequirement = 0;
-
-			SkillBonuses.Skill_1_Name = SkillName.Stealth;
-			SkillBonuses.Skill_1_Value = 5;
 		}
 
 		public EmbroideredOakLeafCloak( Serial serial ) : base( serial )

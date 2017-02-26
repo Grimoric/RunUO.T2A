@@ -123,8 +123,6 @@ namespace Server.Items
 						{
 							int initMaxHP = wearable.InitMaxHits;
 
-							wearable.UnscaleDurability();
-
 							if ( wearable.MaxHitPoints < initMaxHP )
 							{
 								int bonus = initMaxHP - wearable.MaxHitPoints;
@@ -134,8 +132,6 @@ namespace Server.Items
 
 								wearable.MaxHitPoints += bonus;
 								wearable.HitPoints += bonus;
-
-								wearable.ScaleDurability();
 
 								if ( wearable.MaxHitPoints > 255 ) wearable.MaxHitPoints = 255;
 								if ( wearable.HitPoints > 255 ) wearable.HitPoints = 255;
@@ -163,7 +159,6 @@ namespace Server.Items
 							else
 							{
 								from.SendLocalizedMessage( 1049085 ); // The item cannot be improved any further.
-								wearable.ScaleDurability();
 							}
 						}
 						else

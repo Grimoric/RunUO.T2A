@@ -12,13 +12,7 @@ namespace Server.Items
 		[Constructable]
 		public RoyalGuardSurvivalKnife()
 		{
-			Attributes.SpellChanneling = 1;
-			Attributes.Luck = 140;
-			Attributes.EnhancePotions = 25;
-
-			WeaponAttributes.UseBestSkill = 1;
-			WeaponAttributes.LowerStatReq = 50;
-		}
+    	}
 
 		public RoyalGuardSurvivalKnife( Serial serial ) : base( serial )
 		{

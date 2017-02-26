@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public IcyScimitar()
 		{
-			WeaponAttributes.HitHarm = 15;
 		}
 
 		public IcyScimitar( Serial serial ) : base( serial )

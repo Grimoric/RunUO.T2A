@@ -4,12 +4,6 @@ namespace Server.Items
 	{
 		public override int LabelNumber{ get{ return 1070817; } } // Heart of the Lion
 
-		public override int BasePhysicalResistance{ get{ return 15; } }
-		public override int BaseFireResistance{ get{ return 10; } }
-		public override int BaseColdResistance{ get{ return 10; } }
-		public override int BasePoisonResistance{ get{ return 10; } }
-		public override int BaseEnergyResistance{ get{ return 10; } }
-
 		public override int InitMinHits{ get{ return 255; } }
 		public override int InitMaxHits{ get{ return 255; } }
 
@@ -17,10 +11,6 @@ namespace Server.Items
 		public HeartOfTheLion()
 		{
 			Hue = 0x501;
-			Attributes.Luck = 95;
-			Attributes.DefendChance = 15;
-			ArmorAttributes.LowerStatReq = 100;
-			ArmorAttributes.MageArmor = 1;
 		}
 
 		public HeartOfTheLion( Serial serial ) : base( serial )

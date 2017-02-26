@@ -23,15 +23,6 @@ namespace Server.Mobiles
 
 			SetDamage( 19, 28 );
 
-			SetDamageType( ResistanceType.Physical, 50 );
-			SetDamageType( ResistanceType.Poison, 50 );
-
-			SetResistance( ResistanceType.Physical, 56, 62 );
-			SetResistance( ResistanceType.Fire, 25, 30 );
-			SetResistance( ResistanceType.Cold, 25, 30 );
-			SetResistance( ResistanceType.Poison, 100 );
-			SetResistance( ResistanceType.Energy, 25, 30 );
-
 			SetSkill( SkillName.Wrestling, 124.5, 141.3 );
 			SetSkill( SkillName.Tactics, 130.2, 142.0 );
 			SetSkill( SkillName.MagicResist, 102.3, 113.0 );
@@ -47,11 +38,6 @@ namespace Server.Mobiles
 		public override void GenerateLoot()
 		{
 			AddLoot( LootPack.UltraRich, 3 );
-		}
-
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.MortalStrike;
 		}
 
 		public override void OnDeath( Container c )
@@ -78,7 +64,6 @@ namespace Server.Mobiles
 
 		public override Poison HitPoison { get { return Poison.Lethal; } }
 		public override Poison PoisonImmune { get { return Poison.Lethal; } }
-		public override bool GivesMLMinorArtifact { get { return true; } }
 		public override int Hides { get { return 48; } }
 		public override int Meat { get { return 1; } }
 

@@ -7,8 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public Runesabre()
 		{
-			SkillBonuses.SetValues( 0, SkillName.MagicResist, 5.0 );
-			WeaponAttributes.MageWeapon = -29;
 		}
 
 		public Runesabre( Serial serial ) : base( serial )

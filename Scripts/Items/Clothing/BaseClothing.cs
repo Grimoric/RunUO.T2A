@@ -50,11 +50,6 @@ namespace Server.Items
 		protected CraftResource m_Resource;
 		private int m_StrReq = -1;
 
-		private AosAttributes m_AosAttributes;
-		private AosArmorAttributes m_AosClothingAttributes;
-		private AosSkillBonuses m_AosSkillBonuses;
-		private AosElementAttributes m_AosResistances;
-
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int MaxHitPoints
 		{
@@ -121,46 +116,6 @@ namespace Server.Items
 			get{ return m_Resource; }
 			set{ m_Resource = value; Hue = CraftResources.GetHue( m_Resource ); InvalidateProperties(); }
 		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public AosAttributes Attributes
-		{
-			get{ return m_AosAttributes; }
-			set{}
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public AosArmorAttributes ClothingAttributes
-		{
-			get{ return m_AosClothingAttributes; }
-			set{}
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public AosSkillBonuses SkillBonuses
-		{
-			get{ return m_AosSkillBonuses; }
-			set{}
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public AosElementAttributes Resistances
-		{
-			get{ return m_AosResistances; }
-			set{}
-		}
-
-		public virtual int BasePhysicalResistance{ get{ return 0; } }
-		public virtual int BaseFireResistance{ get{ return 0; } }
-		public virtual int BaseColdResistance{ get{ return 0; } }
-		public virtual int BasePoisonResistance{ get{ return 0; } }
-		public virtual int BaseEnergyResistance{ get{ return 0; } }
-
-		public override int PhysicalResistance{ get{ return BasePhysicalResistance + m_AosResistances.Physical; } }
-		public override int FireResistance{ get{ return BaseFireResistance + m_AosResistances.Fire; } }
-		public override int ColdResistance{ get{ return BaseColdResistance + m_AosResistances.Cold; } }
-		public override int PoisonResistance{ get{ return BasePoisonResistance + m_AosResistances.Poison; } }
-		public override int EnergyResistance{ get{ return BaseEnergyResistance + m_AosResistances.Energy; } }
 
 		public virtual int ArtifactRarity{ get{ return 0; } }
 
@@ -251,11 +206,11 @@ namespace Server.Items
 		public int ComputeStatBonus( StatType type )
 		{
 			if ( type == StatType.Str )
-				return BaseStrBonus + Attributes.BonusStr;
+				return BaseStrBonus;
 			else if ( type == StatType.Dex )
-				return BaseDexBonus + Attributes.BonusDex;
+				return BaseDexBonus;
 			else
-				return BaseIntBonus + Attributes.BonusInt;
+				return BaseIntBonus;
 		}
 
 		public virtual void AddStatBonuses( Mobile parent )
@@ -426,24 +381,6 @@ namespace Server.Items
 			m_Quality = ClothingQuality.Regular;
 
 			m_HitPoints = m_MaxHitPoints = Utility.RandomMinMax( InitMinHits, InitMaxHits );
-
-			m_AosAttributes = new AosAttributes( this );
-			m_AosClothingAttributes = new AosArmorAttributes( this );
-			m_AosSkillBonuses = new AosSkillBonuses( this );
-			m_AosResistances = new AosElementAttributes( this );
-		}
-
-		public override void OnAfterDuped( Item newItem )
-		{
-			BaseClothing clothing = newItem as BaseClothing;
-
-			if ( clothing == null )
-				return;
-
-			clothing.m_AosAttributes = new AosAttributes( newItem, m_AosAttributes );
-			clothing.m_AosResistances = new AosElementAttributes( newItem, m_AosResistances );
-			clothing.m_AosSkillBonuses = new AosSkillBonuses( newItem, m_AosSkillBonuses );
-			clothing.m_AosClothingAttributes = new AosArmorAttributes( newItem, m_AosClothingAttributes );
 		}
 
 		public BaseClothing( Serial serial ) : base( serial )
@@ -455,27 +392,7 @@ namespace Server.Items
 			if ( base.AllowEquipedCast( from ) )
 				return true;
 
-			return m_AosAttributes.SpellChanneling != 0;
-		}
-
-		public void UnscaleDurability()
-		{
-			int scale = 100 + m_AosClothingAttributes.DurabilityBonus;
-
-			m_HitPoints = ( m_HitPoints * 100 + ( scale - 1 ) ) / scale;
-			m_MaxHitPoints = ( m_MaxHitPoints * 100 + ( scale - 1 ) ) / scale;
-
-			InvalidateProperties();
-		}
-
-		public void ScaleDurability()
-		{
-			int scale = 100 + m_AosClothingAttributes.DurabilityBonus;
-
-			m_HitPoints = ( m_HitPoints * scale + 99 ) / 100;
-			m_MaxHitPoints = ( m_MaxHitPoints * scale + 99 ) / 100;
-
-			InvalidateProperties();
+			return false;
 		}
 
 		public override bool CheckPropertyConfliction( Mobile m )
@@ -554,96 +471,10 @@ namespace Server.Items
 			if( RequiredRace == Race.Elf )
 				list.Add( 1075086 ); // Elves Only
 
-			if ( m_AosSkillBonuses != null )
-				m_AosSkillBonuses.GetProperties( list );
-
 			int prop;
 
 			if ( (prop = ArtifactRarity) > 0 )
 				list.Add( 1061078, prop.ToString() ); // artifact rarity ~1_val~
-
-			if ( (prop = m_AosAttributes.WeaponDamage) != 0 )
-				list.Add( 1060401, prop.ToString() ); // damage increase ~1_val~%
-
-			if ( (prop = m_AosAttributes.DefendChance) != 0 )
-				list.Add( 1060408, prop.ToString() ); // defense chance increase ~1_val~%
-
-			if ( (prop = m_AosAttributes.BonusDex) != 0 )
-				list.Add( 1060409, prop.ToString() ); // dexterity bonus ~1_val~
-
-			if ( (prop = m_AosAttributes.EnhancePotions) != 0 )
-				list.Add( 1060411, prop.ToString() ); // enhance potions ~1_val~%
-
-			if ( (prop = m_AosAttributes.CastRecovery) != 0 )
-				list.Add( 1060412, prop.ToString() ); // faster cast recovery ~1_val~
-
-			if ( (prop = m_AosAttributes.CastSpeed) != 0 )
-				list.Add( 1060413, prop.ToString() ); // faster casting ~1_val~
-
-			if ( (prop = m_AosAttributes.AttackChance) != 0 )
-				list.Add( 1060415, prop.ToString() ); // hit chance increase ~1_val~%
-
-			if ( (prop = m_AosAttributes.BonusHits) != 0 )
-				list.Add( 1060431, prop.ToString() ); // hit point increase ~1_val~
-
-			if ( (prop = m_AosAttributes.BonusInt) != 0 )
-				list.Add( 1060432, prop.ToString() ); // intelligence bonus ~1_val~
-
-			if ( (prop = m_AosAttributes.LowerManaCost) != 0 )
-				list.Add( 1060433, prop.ToString() ); // lower mana cost ~1_val~%
-
-			if ( (prop = m_AosAttributes.LowerRegCost) != 0 )
-				list.Add( 1060434, prop.ToString() ); // lower reagent cost ~1_val~%
-
-			if ( (prop = m_AosClothingAttributes.LowerStatReq) != 0 )
-				list.Add( 1060435, prop.ToString() ); // lower requirements ~1_val~%
-
-			if ( (prop = m_AosAttributes.Luck) != 0 )
-				list.Add( 1060436, prop.ToString() ); // luck ~1_val~
-
-			if ( (prop = m_AosClothingAttributes.MageArmor) != 0 )
-				list.Add( 1060437 ); // mage armor
-
-			if ( (prop = m_AosAttributes.BonusMana) != 0 )
-				list.Add( 1060439, prop.ToString() ); // mana increase ~1_val~
-
-			if ( (prop = m_AosAttributes.RegenMana) != 0 )
-				list.Add( 1060440, prop.ToString() ); // mana regeneration ~1_val~
-
-			if ( (prop = m_AosAttributes.NightSight) != 0 )
-				list.Add( 1060441 ); // night sight
-
-			if ( (prop = m_AosAttributes.ReflectPhysical) != 0 )
-				list.Add( 1060442, prop.ToString() ); // reflect physical damage ~1_val~%
-
-			if ( (prop = m_AosAttributes.RegenStam) != 0 )
-				list.Add( 1060443, prop.ToString() ); // stamina regeneration ~1_val~
-
-			if ( (prop = m_AosAttributes.RegenHits) != 0 )
-				list.Add( 1060444, prop.ToString() ); // hit point regeneration ~1_val~
-
-			if ( (prop = m_AosClothingAttributes.SelfRepair) != 0 )
-				list.Add( 1060450, prop.ToString() ); // self repair ~1_val~
-
-			if ( (prop = m_AosAttributes.SpellChanneling) != 0 )
-				list.Add( 1060482 ); // spell channeling
-
-			if ( (prop = m_AosAttributes.SpellDamage) != 0 )
-				list.Add( 1060483, prop.ToString() ); // spell damage increase ~1_val~%
-
-			if ( (prop = m_AosAttributes.BonusStam) != 0 )
-				list.Add( 1060484, prop.ToString() ); // stamina increase ~1_val~
-
-			if ( (prop = m_AosAttributes.BonusStr) != 0 )
-				list.Add( 1060485, prop.ToString() ); // strength bonus ~1_val~
-
-			if ( (prop = m_AosAttributes.WeaponSpeed) != 0 )
-				list.Add( 1060486, prop.ToString() ); // swing speed increase ~1_val~%
-
-			base.AddResistanceProperties( list );
-
-			if ( (prop = m_AosClothingAttributes.DurabilityBonus) > 0 )
-				list.Add( 1060410, prop.ToString() ); // durability ~1_val~%
 
 			if ( (prop = ComputeStatReq( StatType.Str )) > 0 )
 				list.Add( 1061170, prop.ToString() ); // strength requirement ~1_val~
@@ -735,10 +566,6 @@ namespace Server.Items
 			SaveFlag flags = SaveFlag.None;
 
 			SetSaveFlag( ref flags, SaveFlag.Resource,			m_Resource != DefaultResource );
-			SetSaveFlag( ref flags, SaveFlag.Attributes,		!m_AosAttributes.IsEmpty );
-			SetSaveFlag( ref flags, SaveFlag.ClothingAttributes,!m_AosClothingAttributes.IsEmpty );
-			SetSaveFlag( ref flags, SaveFlag.SkillBonuses,		!m_AosSkillBonuses.IsEmpty );
-			SetSaveFlag( ref flags, SaveFlag.Resistances,		!m_AosResistances.IsEmpty );
 			SetSaveFlag( ref flags, SaveFlag.MaxHitPoints,		m_MaxHitPoints != 0 );
 			SetSaveFlag( ref flags, SaveFlag.HitPoints,			m_HitPoints != 0 );
 			SetSaveFlag( ref flags, SaveFlag.PlayerConstructed,	m_PlayerConstructed != false );
@@ -750,18 +577,6 @@ namespace Server.Items
 
 			if ( GetSaveFlag( flags, SaveFlag.Resource ) )
 				writer.WriteEncodedInt( (int) m_Resource );
-
-			if ( GetSaveFlag( flags, SaveFlag.Attributes ) )
-				m_AosAttributes.Serialize( writer );
-
-			if ( GetSaveFlag( flags, SaveFlag.ClothingAttributes ) )
-				m_AosClothingAttributes.Serialize( writer );
-
-			if ( GetSaveFlag( flags, SaveFlag.SkillBonuses ) )
-				m_AosSkillBonuses.Serialize( writer );
-
-			if ( GetSaveFlag( flags, SaveFlag.Resistances ) )
-				m_AosResistances.Serialize( writer );
 
 			if ( GetSaveFlag( flags, SaveFlag.MaxHitPoints ) )
 				writer.WriteEncodedInt( (int) m_MaxHitPoints );
@@ -796,26 +611,6 @@ namespace Server.Items
 					else
 						m_Resource = DefaultResource;
 
-					if ( GetSaveFlag( flags, SaveFlag.Attributes ) )
-						m_AosAttributes = new AosAttributes( this, reader );
-					else
-						m_AosAttributes = new AosAttributes( this );
-
-					if ( GetSaveFlag( flags, SaveFlag.ClothingAttributes ) )
-						m_AosClothingAttributes = new AosArmorAttributes( this, reader );
-					else
-						m_AosClothingAttributes = new AosArmorAttributes( this );
-
-					if ( GetSaveFlag( flags, SaveFlag.SkillBonuses ) )
-						m_AosSkillBonuses = new AosSkillBonuses( this, reader );
-					else
-						m_AosSkillBonuses = new AosSkillBonuses( this );
-
-					if ( GetSaveFlag( flags, SaveFlag.Resistances ) )
-						m_AosResistances = new AosElementAttributes( this, reader );
-					else
-						m_AosResistances = new AosElementAttributes( this );
-
 					if ( GetSaveFlag( flags, SaveFlag.MaxHitPoints ) )
 						m_MaxHitPoints = reader.ReadEncodedInt();
 
@@ -847,14 +642,6 @@ namespace Server.Items
 					goto case 3;
 				}
 				case 3:
-				{
-					m_AosAttributes = new AosAttributes( this, reader );
-					m_AosClothingAttributes = new AosArmorAttributes( this, reader );
-					m_AosSkillBonuses = new AosSkillBonuses( this, reader );
-					m_AosResistances = new AosElementAttributes( this, reader );
-
-					goto case 2;
-				}
 				case 2:
 				{
 					m_PlayerConstructed = reader.ReadBool();
@@ -876,14 +663,6 @@ namespace Server.Items
 
 			if ( version < 2 )
 				m_PlayerConstructed = true; // we don't know, so, assume it's crafted
-
-			if ( version < 3 )
-			{
-				m_AosAttributes = new AosAttributes( this );
-				m_AosClothingAttributes = new AosArmorAttributes( this );
-				m_AosSkillBonuses = new AosSkillBonuses( this );
-				m_AosResistances = new AosElementAttributes( this );
-			}
 
 			if ( version < 4 )
 				m_Resource = DefaultResource;
@@ -960,23 +739,6 @@ namespace Server.Items
 
 			from.SendLocalizedMessage( 502440 ); // Scissors can not be used on that to produce anything.
 			return false;
-		}
-
-		public void DistributeBonuses( int amount )
-		{
-			for ( int i = 0; i < amount; ++i )
-			{
-				switch ( Utility.Random( 5 ) )
-				{
-					case 0: ++m_AosResistances.Physical; break;
-					case 1: ++m_AosResistances.Fire; break;
-					case 2: ++m_AosResistances.Cold; break;
-					case 3: ++m_AosResistances.Poison; break;
-					case 4: ++m_AosResistances.Energy; break;
-				}
-			}
-
-			InvalidateProperties();
 		}
 
 		#region ICraftable Members

@@ -17,47 +17,8 @@ namespace Server.Spells
 			}
 		}
 		
-		//What IS this used for anyways.
-		public static int Count
-		{
-			get
-			{
-				if ( m_Count == -1 )
-				{
-					m_Count = 0;
-
-					for ( int i = 0; i < m_Types.Length; ++i )
-						if ( m_Types[i] != null )
-							++m_Count;
-				}
-
-				return m_Count;
-			}
-		}
-
 		private static Dictionary<Type, Int32> m_IDsFromTypes = new Dictionary<Type, Int32>( m_Types.Length );
 		
-		private static Dictionary<Int32, SpecialMove> m_SpecialMoves = new Dictionary<Int32, SpecialMove>();
-		public static Dictionary<Int32, SpecialMove> SpecialMoves { get { return m_SpecialMoves; } }
-
-		public static int GetRegistryNumber( ISpell s )
-		{
-			return GetRegistryNumber( s.GetType() );
-		}
-
-		public static int GetRegistryNumber( SpecialMove s )
-		{
-			return GetRegistryNumber( s.GetType() );
-		}
-
-		public static int GetRegistryNumber( Type type )
-		{
-			if( m_IDsFromTypes.ContainsKey( type ) )
-				return m_IDsFromTypes[type];
-
-			return -1;
-		}
-
 		public static void Register( int spellID, Type type )
 		{
 			if ( spellID < 0 || spellID >= m_Types.Length )
@@ -70,35 +31,6 @@ namespace Server.Spells
 
 			if( !m_IDsFromTypes.ContainsKey( type ) )
 				m_IDsFromTypes.Add( type, spellID );
-
-			if( type.IsSubclassOf( typeof( SpecialMove ) ) )
-			{
-				SpecialMove spm = null;
-
-				try
-				{
-					spm = Activator.CreateInstance( type ) as SpecialMove;
-				}
-				catch
-				{
-				}
-
-				if( spm != null )
-					m_SpecialMoves.Add( spellID, spm );
-			}
-		}
-
-		public static SpecialMove GetSpecialMove( int spellID )
-		{
-			if ( spellID < 0 || spellID >= m_Types.Length )
-				return null;
-
-			Type t = m_Types[spellID];
-
-			if ( t == null || !t.IsSubclassOf( typeof( SpecialMove ) ) || !m_SpecialMoves.ContainsKey( spellID ) )
-				return null;
-
-			return m_SpecialMoves[spellID];
 		}
 
 		private static object[] m_Params = new object[2];
@@ -110,7 +42,7 @@ namespace Server.Spells
 
 			Type t = m_Types[spellID];
 
-			if( t != null && !t.IsSubclassOf( typeof( SpecialMove ) ) )
+			if( t != null )
 			{
 				m_Params[0] = caster;
 				m_Params[1] = scroll;
@@ -150,7 +82,7 @@ namespace Server.Spells
 			{
 				Type t = ScriptCompiler.FindTypeByFullName( String.Format( "Server.Spells.{0}.{1}", m_CircleNames[i], name ) );
 
-				if ( t != null && !t.IsSubclassOf( typeof( SpecialMove ) ) )
+				if ( t != null )
 				{
 					m_Params[0] = caster;
 					m_Params[1] = scroll;

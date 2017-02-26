@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public MagesRuneBlade()
 		{
-			Attributes.CastSpeed = 1;
 		}
 
 		public MagesRuneBlade( Serial serial ) : base( serial )

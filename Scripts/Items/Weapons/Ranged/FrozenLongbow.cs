@@ -7,8 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public FrozenLongbow()
 		{
-			Attributes.WeaponSpeed = -5;
-			Attributes.DefendChance = 10;
 		}
 
 		public FrozenLongbow( Serial serial ) : base( serial )

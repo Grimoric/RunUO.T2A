@@ -12,15 +12,6 @@ namespace Server.Items
 		{
 			ItemID = 0x2D34;
 			Hue = 0x47E;
-
-			SkillBonuses.SetValues( 0, SkillName.Tactics, 10.0 );
-
-			Attributes.BonusDex = 8;
-			Attributes.WeaponSpeed = 20;
-			Attributes.WeaponDamage = 35;
-
-			WeaponAttributes.HitHarm = 33;
-			WeaponAttributes.UseBestSkill = 1;
 		}
 
 		public TalonBite( Serial serial ) : base( serial )

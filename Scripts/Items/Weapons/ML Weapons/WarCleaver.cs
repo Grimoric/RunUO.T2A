@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x2D2F, 0x2D23 )]
 	public class WarCleaver : BaseKnife
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Disarm; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Bladeweave; } }
-
-		public override int AosStrengthReq{ get{ return 15; } }
-		public override int AosMinDamage{ get{ return 9; } }
-		public override int AosMaxDamage{ get{ return 11; } }
-		public override int AosSpeed{ get{ return 48; } }
-		public override float MlSpeed{ get{ return 2.25f; } }
-
 		public override int OldStrengthReq{ get{ return 15; } }
 		public override int OldMinDamage{ get{ return 9; } }
 		public override int OldMaxDamage{ get{ return 11; } }

@@ -7,13 +7,6 @@ namespace Server.Mobiles
     [CorpseName( "a hiryu corpse" )]
 	public class LesserHiryu : BaseMount
 	{
-		public override double WeaponAbilityChance { get { return 0.07; } } /* 1 in 15 chance of using; 1 in 5 chance of success */
-
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.Dismount;
-		}
-
 		public override bool StatLossAfterTame { get { return true; } }
 
 		private static int GetHue()
@@ -60,14 +53,6 @@ namespace Server.Mobiles
 			SetMana( 60 );
 
 			SetDamage( 18, 23 );
-
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 45, 70 );
-			SetResistance( ResistanceType.Fire, 60, 80 );
-			SetResistance( ResistanceType.Cold, 5, 15 );
-			SetResistance( ResistanceType.Poison, 30, 40 );
-			SetResistance( ResistanceType.Energy, 30, 40 );
 
 			SetSkill( SkillName.Anatomy, 75.1, 80.0 );
 			SetSkill( SkillName.MagicResist, 85.1, 100.0 );
@@ -153,71 +138,6 @@ namespace Server.Mobiles
 		public override int Hides { get { return 60; } }
 		public override FoodType FavoriteFood { get { return FoodType.Meat; } }
 		public override bool CanAngerOnTame { get { return true; } }
-
-		public override void OnGaveMeleeAttack( Mobile defender )
-		{
-			base.OnGaveMeleeAttack( defender );
-
-			if( 0.1 > Utility.RandomDouble() )
-			{
-				/* Grasping Claw
-				 * Start cliloc: 1070836
-				 * Effect: Physical resistance -15% for 5 seconds
-				 * End cliloc: 1070838
-				 * Effect: Type: "3" - From: "0x57D4F5B" (player) - To: "0x0" - ItemId: "0x37B9" - ItemIdName: "glow" - FromLocation: "(1149 808, 32)" - ToLocation: "(1149 808, 32)" - Speed: "10" - Duration: "5" - FixedDirection: "True" - Explode: "False"
-				 */
-
-				ExpireTimer timer = (ExpireTimer)m_Table[defender];
-
-				if( timer != null )
-				{
-					timer.DoExpire();
-					defender.SendLocalizedMessage( 1070837 ); // The creature lands another blow in your weakened state.
-				}
-				else
-					defender.SendLocalizedMessage( 1070836 ); // The blow from the creature's claws has made you more susceptible to physical attacks.
-
-				int effect = -(defender.PhysicalResistance * 15 / 100);
-
-				ResistanceMod mod = new ResistanceMod( ResistanceType.Physical, effect );
-
-				defender.FixedEffect( 0x37B9, 10, 5 );
-				defender.AddResistanceMod( mod );
-
-				timer = new ExpireTimer( defender, mod, TimeSpan.FromSeconds( 5.0 ) );
-				timer.Start();
-				m_Table[defender] = timer;
-			}
-		}
-
-		private static Hashtable m_Table = new Hashtable();
-
-		private class ExpireTimer : Timer
-		{
-			private Mobile m_Mobile;
-			private ResistanceMod m_Mod;
-
-			public ExpireTimer( Mobile m, ResistanceMod mod, TimeSpan delay )
-				: base( delay )
-			{
-				m_Mobile = m;
-				m_Mod = mod;
-				Priority = TimerPriority.TwoFiftyMS;
-			}
-
-			public void DoExpire()
-			{
-				m_Mobile.RemoveResistanceMod( m_Mod );
-				Stop();
-				m_Table.Remove( m_Mobile );
-			}
-
-			protected override void OnTick()
-			{
-				m_Mobile.SendLocalizedMessage( 1070838 ); // Your resistance to physical attacks has returned.
-				DoExpire();
-			}
-		}
 
 		public LesserHiryu( Serial serial )
 			: base( serial )

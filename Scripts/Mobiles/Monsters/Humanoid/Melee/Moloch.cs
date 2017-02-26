@@ -5,11 +5,6 @@ namespace Server.Mobiles
     [CorpseName( "a moloch corpse" )]
 	public class Moloch : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.ConcussionBlow;
-		}
-
 		[Constructable]
 		public Moloch() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -24,12 +19,6 @@ namespace Server.Mobiles
 			SetHits( 171, 200 );
 
 			SetDamage( 15, 23 );
-
-			SetResistance( ResistanceType.Physical, 60, 70 );
-			SetResistance( ResistanceType.Fire, 60, 70 );
-			SetResistance( ResistanceType.Cold, 40, 50 );
-			SetResistance( ResistanceType.Poison, 20, 30 );
-			SetResistance( ResistanceType.Energy, 20, 30 );
 
 			SetSkill( SkillName.MagicResist, 65.1, 75.0 );
 			SetSkill( SkillName.Tactics, 75.1, 90.0 );

@@ -4,19 +4,10 @@ namespace Server.Items
 	{
 		public override int LabelNumber{ get{ return 1077675; } } // Arms of Armstrong
 
-		public override int BasePhysicalResistance{ get{ return 6; } }
-		public override int BaseFireResistance{ get{ return 6; } }
-		public override int BaseColdResistance{ get{ return 5; } }
-		public override int BasePoisonResistance{ get{ return 5; } }
-		public override int BaseEnergyResistance{ get{ return 5; } }
-
 		[Constructable]
 		public ArmsOfArmstrong()
 		{
 			LootType = LootType.Blessed;
-
-			Attributes.BonusStr = 3;
-			Attributes.RegenHits = 1;
 		}
 
 		public ArmsOfArmstrong( Serial serial ) : base( serial )

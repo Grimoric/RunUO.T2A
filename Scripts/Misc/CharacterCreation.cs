@@ -120,19 +120,6 @@ namespace Server.Misc
 			PlaceItemIn( cont, 60, 118, new FletcherTools( 1000 ) );
 			PlaceItemIn( cont, 90, 118, new SewingKit( 1000 ) );
 
-			PlaceItemIn( cont, 36, 51, new RunicHammer( CraftResource.DullCopper, 1000 ) );
-			PlaceItemIn( cont, 42, 51, new RunicHammer( CraftResource.ShadowIron, 1000 ) );
-			PlaceItemIn( cont, 48, 51, new RunicHammer( CraftResource.Copper, 1000 ) );
-			PlaceItemIn( cont, 54, 51, new RunicHammer( CraftResource.Bronze, 1000 ) );
-			PlaceItemIn( cont, 61, 51, new RunicHammer( CraftResource.Gold, 1000 ) );
-			PlaceItemIn( cont, 67, 51, new RunicHammer( CraftResource.Agapite, 1000 ) );
-			PlaceItemIn( cont, 73, 51, new RunicHammer( CraftResource.Verite, 1000 ) );
-			PlaceItemIn( cont, 79, 51, new RunicHammer( CraftResource.Valorite, 1000 ) );
-
-			PlaceItemIn( cont, 36, 55, new RunicSewingKit( CraftResource.SpinedLeather, 1000 ) );
-			PlaceItemIn( cont, 42, 55, new RunicSewingKit( CraftResource.HornedLeather, 1000 ) );
-			PlaceItemIn( cont, 48, 55, new RunicSewingKit( CraftResource.BarbedLeather, 1000 ) );
-
 			PlaceItemIn( bank, 118, 169, cont );
 			// End bag of tools
 
@@ -214,10 +201,6 @@ namespace Server.Misc
 			cont.Name = "Spell Casting Stuff";
 
 			PlaceItemIn( cont, 45, 105, new Spellbook( UInt64.MaxValue ) );
-			PlaceItemIn( cont, 65, 105, new NecromancerSpellbook( (UInt64)0xFFFF ) );
-			PlaceItemIn( cont, 85, 105, new BookOfChivalry( (UInt64)0x3FF ) );
-			PlaceItemIn( cont, 105, 105, new BookOfBushido() );	//Default ctor = full
-			PlaceItemIn( cont, 125, 105, new BookOfNinjitsu() ); //Default ctor = full
 
 			Runebook runebook = new Runebook( 10 );
 			runebook.CurCharges = runebook.MaxCharges;
@@ -996,13 +979,6 @@ namespace Server.Misc
 						EquipItem( NecroHue( new Skirt() ) );
 						EquipItem( new Sandals( 0x8FD ) );
 					}
-
-					Spellbook book = new NecromancerSpellbook( (ulong)0x8981 ); // animate dead, evil omen, pain spike, summon familiar, wraith form
-
-					PackItem( book );
-
-					book.LootType = LootType.Blessed;
-
 					addSkillItems = false;
 
 					break;
@@ -1032,13 +1008,7 @@ namespace Server.Misc
 						EquipItem( new BodySash( 0xCF ) );
 					}
 
-					Spellbook book = new BookOfChivalry( (ulong)0x3FF );
-
-					PackItem( book );
-
-					book.LootType = LootType.Blessed;
-
-					addSkillItems = false;
+                        addSkillItems = false;
 
 					break;
 				}
@@ -1059,9 +1029,6 @@ namespace Server.Misc
 
 					PackItem( new Scissors() );
 					PackItem( new Bandage( 50 ) );
-
-					Spellbook book = new BookOfBushido();
-					PackItem( book );
 
 					break;
 				}
@@ -1084,9 +1051,6 @@ namespace Server.Misc
 						EquipItem( new Tekagi() );
 
 					PackItem( new SmokeBomb() );
-
-					Spellbook book = new BookOfNinjitsu();
-					PackItem( book );
 
 					break;
 				}
@@ -1314,7 +1278,6 @@ namespace Server.Misc
 				{
 					EquipItem( new Hakama() );
 					EquipItem( new Kasa() );
-					EquipItem( new BookOfBushido() );
 					break;
 				}
 				case SkillName.Fletching:
@@ -1358,8 +1321,6 @@ namespace Server.Misc
 				}
 				case SkillName.Chivalry:
 				{
-					PackItem( new BookOfChivalry( (ulong)0x3FF ) );
-
 					break;
 				}
 				case SkillName.DetectHidden:
@@ -1509,7 +1470,6 @@ namespace Server.Misc
 				{
 					EquipItem( new Hakama( 0x2C3 ) );	//Only ninjas get the hued one.
 					EquipItem( new Kasa() );
-					EquipItem( new BookOfNinjitsu() );
 					break;
 				}
 				case SkillName.Parry:

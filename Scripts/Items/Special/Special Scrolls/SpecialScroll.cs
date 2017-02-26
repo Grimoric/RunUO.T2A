@@ -52,7 +52,7 @@ namespace Server.Items
 
 		public virtual string GetNameLocalized()
 		{
-			return String.Concat( "#", AosSkillBonuses.GetLabel( m_Skill ).ToString() );
+			return String.Concat( "#", "" );
 		}
 
 		public virtual string GetName()
@@ -170,10 +170,6 @@ namespace Server.Items
 				else
 					AddHtml( 40, 20, 260, 20, m_Scroll.DefaultTitle, false, false );
 
-				if ( m_Scroll is StatCapScroll )
-					AddHtmlLocalized( 310, 20, 120, 20, 1038019, 0xFFFFFF, false, false ); // Power
-				else
-					AddHtmlLocalized( 310, 20, 120, 20, AosSkillBonuses.GetLabel( m_Scroll.Skill ), 0xFFFFFF, false, false );
 			}
 
 			public override void OnResponse( NetState state, RelayInfo info )

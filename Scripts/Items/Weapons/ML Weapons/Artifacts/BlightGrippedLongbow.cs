@@ -8,12 +8,6 @@ namespace Server.Items
 		public BlightGrippedLongbow()
 		{
 			Hue = 0x8A4;
-
-			WeaponAttributes.HitPoisonArea = 20;
-			Attributes.RegenStam = 3;
-			Attributes.NightSight = 1;
-			Attributes.WeaponSpeed = 20;
-			Attributes.WeaponDamage = 35;
 		}
 
 		public BlightGrippedLongbow( Serial serial ) : base( serial )

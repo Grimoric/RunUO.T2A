@@ -544,7 +544,7 @@ namespace Server.Engines.Doom
 
 		public static bool AniSafe( Mobile m )
 		{
-			return m != null && !TransformationSpellHelper.UnderTransformation( m ) && m.BodyMod == 0 && m.Alive;
+			return m != null && m.BodyMod == 0 && m.Alive;
 		}
 
 		public static IEntity ZAdjustedIEFromMobile( Mobile m, int ZDelta )

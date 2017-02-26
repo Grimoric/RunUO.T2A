@@ -4,18 +4,10 @@ namespace Server.Items
 	{
 		public override int LabelNumber{ get{ return 1072932; } } // Stitcher's Mittens
 
-		public override int BasePhysicalResistance{ get{ return 20; } }
-		public override int BaseColdResistance{ get{ return 20; } }
-
 		[Constructable]
 		public StitchersMittens()
 		{
 			Hue = 0x481;
-
-			SkillBonuses.SetValues( 0, SkillName.Healing, 10.0 );
-
-			Attributes.BonusDex = 5;
-			Attributes.LowerRegCost = 30;
 		}
 
 		public StitchersMittens( Serial serial ) : base( serial )

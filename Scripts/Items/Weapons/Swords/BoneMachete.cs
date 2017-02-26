@@ -4,15 +4,6 @@ namespace Server.Items
 {
     public class BoneMachete : ElvenMachete, ITicket
 	{
-		public override WeaponAbility PrimaryAbility { get { return null; } }
-		public override WeaponAbility SecondaryAbility { get { return null; } }
-
-		public override int PhysicalResistance { get { return 1; } }
-		public override int FireResistance { get { return 1; } }
-		public override int ColdResistance { get { return 1; } }
-		public override int PoisonResistance { get { return 1; } }
-		public override int EnergyResistance { get { return 1; } }
-
 		public override int InitMinHits { get { return 5; } }
 		public override int InitMaxHits { get { return 5; } }
 

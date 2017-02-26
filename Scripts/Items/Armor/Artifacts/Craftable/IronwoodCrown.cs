@@ -4,22 +4,10 @@ namespace Server.Items
 	{
 		public override int LabelNumber{ get{ return 1072924; } } // Ironwood Crown
 
-		public override int BasePhysicalResistance{ get{ return 10; } }
-		public override int BaseFireResistance{ get{ return 6; } }
-		public override int BaseColdResistance{ get{ return 7; } }
-		public override int BasePoisonResistance{ get{ return 7; } }
-		public override int BaseEnergyResistance{ get{ return 10; } }
-
 		[Constructable]
 		public IronwoodCrown()
 		{
 			Hue = 0x1;
-
-			ArmorAttributes.SelfRepair = 3;
-
-			Attributes.BonusStr = 5;
-			Attributes.BonusDex = 5;
-			Attributes.BonusInt = 5;
 		}
 
 		public IronwoodCrown( Serial serial ) : base( serial )

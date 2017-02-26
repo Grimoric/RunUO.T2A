@@ -47,9 +47,6 @@ namespace Server.Items
 
 		public override TimeSpan OnSwing( Mobile attacker, Mobile defender )
 		{
-			WeaponAbility a = WeaponAbility.GetCurrentAbility( attacker );
-
-			// Make sure we've been standing still for .25/.5/1 second depending on Era
 			if ( DateTime.Now > attacker.LastMoveTime + TimeSpan.FromSeconds( 1.0 ))
 			{
 				bool canSwing = true;
@@ -170,12 +167,6 @@ namespace Server.Items
 					/*m_EffectID =*/ reader.ReadInt();
 					break;
 				}
-			}
-
-			if ( version < 2 )
-			{
-				WeaponAttributes.MageWeapon = 0;
-				WeaponAttributes.UseBestSkill = 0;
 			}
 		}
 	}

@@ -13,9 +13,6 @@ namespace Server.Items
 		{
 			ItemID = 0x1406;
 			Hue = 0x60C;
-			WeaponAttributes.HitLowerDefend = 50;
-			Attributes.BonusStr = 10;
-			Attributes.WeaponDamage = 75;
 		}
 
 		public BoneCrusher( Serial serial ) : base( serial )

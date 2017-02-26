@@ -72,7 +72,6 @@ namespace Server.Engines.Quests.Zento
 
 							if ( weapon != null )
 							{
-								BaseRunicTool.ApplyAttributesTo( weapon, 3, 10, 30 );
 								cont.DropItem( weapon );
 							}
 						}
@@ -82,7 +81,6 @@ namespace Server.Engines.Quests.Zento
 
 							if ( armor != null )
 							{
-								BaseRunicTool.ApplyAttributesTo( armor, 1, 10, 20 );
 								cont.DropItem( armor );
 							}
 						}

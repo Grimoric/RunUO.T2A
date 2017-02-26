@@ -579,16 +579,7 @@ namespace Server
 
 		public static SpellScroll RandomScroll( int minIndex, int maxIndex, SpellbookType type )
 		{
-			Type[] types;
-
-			switch ( type )
-			{
-				default:
-				case SpellbookType.Regular: types = m_RegularScrollTypes; break;
-				case SpellbookType.Necromancer: types = m_NecromancyScrollTypes; break;
-				case SpellbookType.Paladin: types = m_PaladinScrollTypes; break;
-				case SpellbookType.Arcanist: types = m_ArcanistScrollTypes; break;
-			}
+			Type[] types = m_RegularScrollTypes;
 
 			return Construct( types, Utility.RandomMinMax( minIndex, maxIndex ) ) as SpellScroll;
 		}

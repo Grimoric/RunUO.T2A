@@ -8,11 +8,6 @@ namespace Server.Items
 		public Heartseeker()
 		{
 			LootType = LootType.Blessed;
-
-			Attributes.AttackChance = 5;
-			Attributes.WeaponSpeed = 10;
-			Attributes.WeaponDamage = 25;
-			WeaponAttributes.LowerStatReq = 70;
 		}
 
 		public Heartseeker( Serial serial ) : base( serial )

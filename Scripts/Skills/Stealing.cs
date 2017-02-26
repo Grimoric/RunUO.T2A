@@ -110,10 +110,6 @@ namespace Server.SkillHandlers
 						{
 							m_Thief.SendLocalizedMessage( 1010582 ); //	You cannot steal the sigil while polymorphed				
 						}
-						else if( TransformationSpellHelper.UnderTransformation( m_Thief ) )
-						{
-							m_Thief.SendLocalizedMessage( 1061622 ); // You cannot steal the sigil while in that form.
-						}
 						else if ( pl.IsLeaving )
 						{
 							m_Thief.SendLocalizedMessage( 1005589 ); // You are currently quitting a faction and cannot steal the town sigil

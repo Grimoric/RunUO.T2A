@@ -16,15 +16,6 @@ namespace Server.Mobiles
 
 			SetDamage( 20, 30 );
 
-			SetDamageType( ResistanceType.Physical, 75 );
-			SetDamageType( ResistanceType.Energy, 25 );
-
-			SetResistance( ResistanceType.Physical, 83, 90 );
-			SetResistance( ResistanceType.Fire, 72, 80 );
-			SetResistance( ResistanceType.Cold, 40, 49 );
-			SetResistance( ResistanceType.Poison, 51, 60 );
-			SetResistance( ResistanceType.Energy, 50, 60 );
-
 			SetSkill( SkillName.EvalInt, 90.3, 99.8 );
 			SetSkill( SkillName.Magery, 100.1, 100.6 ); // 10.1-10.6 on OSI, bug?
 			SetSkill( SkillName.Meditation, 90.1, 110.0 );

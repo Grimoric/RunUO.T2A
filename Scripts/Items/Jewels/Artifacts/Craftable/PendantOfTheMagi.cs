@@ -8,11 +8,6 @@ namespace Server.Items
 		public PendantOfTheMagi()
 		{
 			Hue = 0x48D;
-			Attributes.BonusInt = 10;
-			Attributes.RegenMana = 3;
-			Attributes.SpellDamage = 5;
-			Attributes.LowerManaCost = 10;
-			Attributes.LowerRegCost = 30;
 		}
 
 		public PendantOfTheMagi( Serial serial ) : base( serial )

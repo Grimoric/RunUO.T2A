@@ -26,14 +26,6 @@ namespace Server.Mobiles
 
 			SetDamage( 15, 18 );
 
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 40, 45 );
-			SetResistance( ResistanceType.Fire, 20, 40 );
-			SetResistance( ResistanceType.Cold, 32, 35 );
-			SetResistance( ResistanceType.Poison, 25, 30 );
-			SetResistance( ResistanceType.Energy, 22, 34 );
-
 			SetSkill( SkillName.Wrestling, 96.4, 119.0 );
 			SetSkill( SkillName.Tactics, 96.2, 116.5 );
 			SetSkill( SkillName.MagicResist, 66.2, 83.7 );
@@ -54,8 +46,6 @@ namespace Server.Mobiles
 
 			c.DropItem( new GrobusFur() );
 		}
-
-		public override bool GivesMLMinorArtifact{ get{ return true; } }
 
 		public Grobu( Serial serial )
 			: base( serial )

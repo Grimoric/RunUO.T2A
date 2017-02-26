@@ -5,11 +5,6 @@ namespace Server.Mobiles
     [CorpseName( "an abyssmal horror corpse" )]
 	public class AbysmalHorror : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return Utility.RandomBool() ? WeaponAbility.MortalStrike : WeaponAbility.WhirlwindAttack;
-		}
-
 		public override bool IgnoreYoungProtection { get { return false; } }
 
 		[Constructable]
@@ -26,15 +21,6 @@ namespace Server.Mobiles
 			SetHits( 6000 );
 
 			SetDamage( 13, 17 );
-
-			SetDamageType( ResistanceType.Physical, 50 );
-			SetDamageType( ResistanceType.Poison, 50 );
-
-			SetResistance( ResistanceType.Physical, 30, 35 );
-			SetResistance( ResistanceType.Fire, 100 );
-			SetResistance( ResistanceType.Cold, 50, 55 );
-			SetResistance( ResistanceType.Poison, 60, 65 );
-			SetResistance( ResistanceType.Energy, 77, 80 );
 
 			SetSkill( SkillName.EvalInt, 200.0 );
 			SetSkill( SkillName.Magery, 112.6, 117.5 );

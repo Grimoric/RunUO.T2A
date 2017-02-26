@@ -12,12 +12,6 @@ namespace Server.Items
 		[Constructable]
 		public OblivionsNeedle()
 		{
-			Attributes.BonusStam = 20;
-			Attributes.AttackChance = 20;
-			Attributes.DefendChance = -20;
-			Attributes.WeaponDamage = 40;
-
-			WeaponAttributes.HitLeechStam = 50;
 		}
 
 		public OblivionsNeedle( Serial serial ) : base( serial )

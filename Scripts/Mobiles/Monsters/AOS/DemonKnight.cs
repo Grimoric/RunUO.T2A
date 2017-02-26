@@ -113,17 +113,6 @@ namespace Server.Mobiles
 			return GetArtifactChance( boss ) > Utility.Random( 100000 );
 		}
 
-		public override WeaponAbility GetWeaponAbility()
-		{
-			switch ( Utility.Random( 3 ) )
-			{
-				default:
-				case 0: return WeaponAbility.DoubleStrike;
-				case 1: return WeaponAbility.WhirlwindAttack;
-				case 2: return WeaponAbility.CrushingBlow;
-			}
-		}
-
 		public override void OnDeath( Container c )
 		{
 			base.OnDeath( c );
@@ -148,18 +137,6 @@ namespace Server.Mobiles
 			SetMana( 5000 );
 
 			SetDamage( 17, 21 );
-
-			SetDamageType( ResistanceType.Physical, 20 );
-			SetDamageType( ResistanceType.Fire, 20 );
-			SetDamageType( ResistanceType.Cold, 20 );
-			SetDamageType( ResistanceType.Poison, 20 );
-			SetDamageType( ResistanceType.Energy, 20 );
-
-			SetResistance( ResistanceType.Physical, 30 );
-			SetResistance( ResistanceType.Fire, 30 );
-			SetResistance( ResistanceType.Cold, 30 );
-			SetResistance( ResistanceType.Poison, 30 );
-			SetResistance( ResistanceType.Energy, 30 );
 
 			SetSkill( SkillName.Necromancy, 120, 120.0 );
 			SetSkill( SkillName.SpiritSpeak, 120.0, 120.0 );

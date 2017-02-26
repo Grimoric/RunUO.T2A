@@ -21,15 +21,6 @@ namespace Server.Mobiles
 
 			SetDamage( 15, 25 );
 
-			SetDamageType( ResistanceType.Physical, 40 );
-			SetDamageType( ResistanceType.Cold, 60 );
-
-			SetResistance( ResistanceType.Physical, 55, 62 );
-			SetResistance( ResistanceType.Fire, 40, 48 );
-			SetResistance( ResistanceType.Cold, 71, 80 );
-			SetResistance( ResistanceType.Poison, 40, 50 );
-			SetResistance( ResistanceType.Energy, 50, 60 );
-
 			SetSkill( SkillName.Wrestling, 126.3, 136.5 );
 			SetSkill( SkillName.Tactics, 128.5, 143.8 );
 			SetSkill( SkillName.MagicResist, 102.8, 117.9 );
@@ -95,22 +86,6 @@ namespace Server.Mobiles
 				m.Damage( drain, this );
 			}
 		}
-
-		/*
-		// TODO: uncomment once added
-		public override void OnDeath( Container c )
-		{
-			base.OnDeath( c );
-
-			if ( Utility.RandomDouble() < 0.15 )
-				c.DropItem( new DisintegratingThesisNotes() );
-
-			if ( Utility.RandomDouble() < 0.05 )
-				c.DropItem( new AssassinChest() );
-		}
-		*/
-
-		public override bool GivesMLMinorArtifact{ get{ return true; } }
 
 		public SirPatrick( Serial serial )
 			: base( serial )

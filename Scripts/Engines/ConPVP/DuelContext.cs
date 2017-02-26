@@ -66,35 +66,6 @@ namespace Server.Engines.ConPVP
 			Timer.DelayCall( ts, new TimerStateCallback( DelayBounce_Callback ), new object[]{ mob, corpse } );
 		}
 
-		public static bool AllowSpecialMove( Mobile from, string name, SpecialMove move )
-		{
-			PlayerMobile pm = from as PlayerMobile;
-
-			if( pm == null )
-				return true;
-
-			DuelContext dc = pm.DuelContext;
-
-			return dc == null || dc.InstAllowSpecialMove( @from, name, move );
-		}
-
-		public bool InstAllowSpecialMove( Mobile from, string name, SpecialMove move )
-		{
-
-			if ( !m_StartedBeginCountdown )
-				return true;
-
-			DuelPlayer pl = Find( from );
-
-			if ( pl == null || pl.Eliminated )
-				return true;
-
-			if ( CantDoAnything( from ) )
-				return false;
-
-			return true;
-		}
-
 		public bool AllowSpellCast( Mobile from, Spell spell )
 		{
 			if ( !m_StartedBeginCountdown )
@@ -1648,8 +1619,6 @@ namespace Server.Engines.ConPVP
 			Spells.Fourth.ArchProtectionSpell.RemoveEntry( mob );
 
 			mob.EndAction( typeof( DefensiveSpell ) );
-
-			TransformationSpellHelper.RemoveContext( mob, true );
 
 			if( DisguiseTimers.IsDisguised( mob ) )
 				DisguiseTimers.StopTimer( mob );

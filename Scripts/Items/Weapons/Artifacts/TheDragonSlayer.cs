@@ -13,16 +13,6 @@ namespace Server.Items
 		{
 			Hue = 0x530;
 			Slayer = SlayerName.DragonSlaying;
-			Attributes.Luck = 110;
-			Attributes.WeaponDamage = 50;
-			WeaponAttributes.ResistFireBonus = 20;
-			WeaponAttributes.UseBestSkill = 1;
-		}
-
-		public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
-		{
-			phys = fire = cold = pois = chaos = direct = 0;
-			nrgy = 100;
 		}
 
 		public TheDragonSlayer( Serial serial ) : base( serial )

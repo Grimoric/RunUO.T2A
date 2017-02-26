@@ -22,14 +22,6 @@ namespace Server.Mobiles
 
 			SetDamage( 15, 20 );
 
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 55, 60 );
-			SetResistance( ResistanceType.Fire, 50, 58 );
-			SetResistance( ResistanceType.Cold, 50, 60 );
-			SetResistance( ResistanceType.Poison, 50, 60 );
-			SetResistance( ResistanceType.Energy, 50, 60 );
-
 			SetSkill( SkillName.Wrestling, 69.9, 105.3 );
 			SetSkill( SkillName.Tactics, 113.0, 117.9 );
 			SetSkill( SkillName.MagicResist, 127.0, 132.8 );
@@ -63,12 +55,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.UltraRich, 3 );
 		}
 
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.ParalyzingBlow;
-		}
-
-		public override bool GivesMLMinorArtifact{ get{ return true; } }
 		public override int TreasureMapLevel{ get{ return 5; } }
 
 		public MasterTheophilus( Serial serial )

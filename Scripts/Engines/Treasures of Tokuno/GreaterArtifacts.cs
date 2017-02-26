@@ -10,15 +10,6 @@ namespace Server.Items
 		[Constructable]
 		public DarkenedSky() : base()
 		{
-			WeaponAttributes.HitLightning = 60;
-			Attributes.WeaponSpeed = 25;
-			Attributes.WeaponDamage = 50;
-		}
-
-		public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
-		{
-			phys = fire = pois = chaos = direct = 0;
-			cold = nrgy = 50;
 		}
 
 		public DarkenedSky( Serial serial ) : base( serial )
@@ -45,19 +36,12 @@ namespace Server.Items
 	{
 		public override int LabelNumber { get { return 1070969; } } // Kasa of the Raj-in
 
-		public override int BasePhysicalResistance { get { return 12; } }
-		public override int BaseFireResistance { get { return 17; } }
-		public override int BaseColdResistance { get { return 21; } }
-		public override int BasePoisonResistance { get { return 17; } }
-		public override int BaseEnergyResistance { get { return 17; } }
-
 		public override int InitMinHits { get { return 255; } }
 		public override int InitMaxHits { get { return 255; } }
 
 		[Constructable]
 		public KasaOfTheRajin() : base()
 		{
-			Attributes.SpellDamage = 12;
 		}
 
 		public KasaOfTheRajin( Serial serial ) : base( serial )
@@ -96,17 +80,9 @@ namespace Server.Items
 
 		public override int LabelNumber{ get{ return 1070968; } } // Rune Beetle Carapace
 
-		public override int BaseColdResistance { get { return 14; } }
-		public override int BaseEnergyResistance { get { return 14; } }
-
 		[Constructable]
 		public RuneBeetleCarapace() : base()
 		{
-			Attributes.BonusMana = 10;
-			Attributes.RegenMana = 3;
-			Attributes.LowerManaCost = 15;
-			ArmorAttributes.LowerStatReq = 100;
-			ArmorAttributes.MageArmor = 1;
 		}
 
 		public RuneBeetleCarapace( Serial serial ) : base( serial )
@@ -136,16 +112,9 @@ namespace Server.Items
 
 		public override int LabelNumber{ get{ return 1070970; } } // Stormgrip
 
-		public override int BasePhysicalResistance { get { return 10; } }
-		public override int BaseColdResistance { get { return 18; } }
-		public override int BaseEnergyResistance { get { return 18; } }
-
 		[Constructable]
 		public Stormgrip() : base()
 		{
-			Attributes.BonusInt = 8;
-			Attributes.Luck = 125;
-			Attributes.WeaponDamage = 25;
 		}
 
 		public Stormgrip( Serial serial ) : base( serial )
@@ -178,15 +147,6 @@ namespace Server.Items
 		[Constructable]
 		public SwordOfTheStampede() : base()
 		{
-			WeaponAttributes.HitHarm = 100;
-			Attributes.AttackChance = 10;
-			Attributes.WeaponDamage = 60;
-		}
-
-		public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
-		{
-			phys = fire = pois = nrgy = chaos = direct = 0;
-			cold = 100;
 		}
 
 		public SwordOfTheStampede( Serial serial ) : base( serial )
@@ -219,16 +179,6 @@ namespace Server.Items
 		[Constructable]
 		public SwordsOfProsperity() : base()
 		{
-			WeaponAttributes.MageWeapon = 30;
-			Attributes.SpellChanneling = 1;
-			Attributes.CastSpeed = 1;
-			Attributes.Luck = 200;
-		}
-
-		public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
-		{
-			phys = cold = pois = nrgy = chaos = direct = 0;
-			fire = 100;
 		}
 
 		public SwordsOfProsperity( Serial serial ) : base( serial )
@@ -261,11 +211,6 @@ namespace Server.Items
 		[Constructable]
 		public TheHorselord() : base()
 		{
-			Attributes.BonusDex = 5;
-			Attributes.RegenMana = 1;
-			Attributes.Luck = 125;
-			Attributes.WeaponDamage = 50;
-
 			Slayer = SlayerName.ElementalBan;
 			Slayer2 = SlayerName.ReptilianDeath;
 		}
@@ -298,11 +243,6 @@ namespace Server.Items
 		{
 			LootType = LootType.Regular;
 			Hue = 0x530;
-
-			SkillBonuses.SetValues( 0, SkillName.Magery, 15.0 );
-			Attributes.BonusInt = 8;
-			Attributes.LowerManaCost = 15;
-			Attributes.SpellDamage = 15;
 		}
 
 		public TomeOfLostKnowledge( Serial serial ) : base( serial )
@@ -331,19 +271,7 @@ namespace Server.Items
 		[Constructable]
 		public WindsEdge() : base()
 		{
-			WeaponAttributes.HitLeechMana = 40;
-
-			Attributes.WeaponDamage = 50;
-			Attributes.WeaponSpeed = 50;
-			Attributes.DefendChance = 10;
 		}
-
-		public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
-		{
-			phys = fire = cold = pois = chaos = direct = 0;
-			nrgy = 100;
-		}
-
 
 		public WindsEdge( Serial serial ) : base( serial )
 		{

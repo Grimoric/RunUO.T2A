@@ -12,10 +12,7 @@ namespace Server.Items
 		{
 			ItemID = 0xF51;
 			Hue = 0x455;
-			WeaponAttributes.HitLeechHits = 40;
 			Slayer = SlayerName.Repond;
-			Attributes.WeaponSpeed = 30;
-			Attributes.WeaponDamage = 35;
 		}
 
 		public NightsKiss( Serial serial ) : base( serial )

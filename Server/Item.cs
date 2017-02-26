@@ -974,37 +974,6 @@ namespace Server
 		}
 
 		/// <summary>
-		/// Overridable. Adds any elemental resistances of this item to the given <see cref="ObjectPropertyList" />.
-		/// </summary>
-		public virtual void AddResistanceProperties( ObjectPropertyList list )
-		{
-			int v = PhysicalResistance;
-
-			if ( v != 0 )
-				list.Add( 1060448, v.ToString() ); // physical resist ~1_val~%
-
-			v = FireResistance;
-
-			if ( v != 0 )
-				list.Add( 1060447, v.ToString() ); // fire resist ~1_val~%
-
-			v = ColdResistance;
-
-			if ( v != 0 )
-				list.Add( 1060445, v.ToString() ); // cold resist ~1_val~%
-
-			v = PoisonResistance;
-
-			if ( v != 0 )
-				list.Add( 1060449, v.ToString() ); // poison resist ~1_val~%
-
-			v = EnergyResistance;
-
-			if ( v != 0 )
-				list.Add( 1060446, v.ToString() ); // energy resist ~1_val~%
-		}
-
-		/// <summary>
 		/// Overridable. Determines whether the item will show <see cref="AddWeightProperty" />. 
 		/// </summary>
 		public virtual bool DisplayWeight 
@@ -3474,12 +3443,6 @@ namespace Server
 		public virtual void OnAfterSpawn()
 		{
 		}
-
-		public virtual int PhysicalResistance{ get{ return 0; } }
-		public virtual int FireResistance{ get{ return 0; } }
-		public virtual int ColdResistance{ get{ return 0; } }
-		public virtual int PoisonResistance{ get{ return 0; } }
-		public virtual int EnergyResistance{ get{ return 0; } }
 
 		[CommandProperty( AccessLevel.Counselor )]
 		public Serial Serial

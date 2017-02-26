@@ -7,19 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public ColdForgedBlade()
 		{
-			WeaponAttributes.HitHarm = 40;
-			Attributes.SpellChanneling = 1;
-			Attributes.NightSight = 1;
-			Attributes.WeaponSpeed = 25;
-			Attributes.WeaponDamage = 50;
-
-			Hue = this.GetElementalDamageHue();
-		}
-
-		public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
-		{
-			phys = fire = pois = nrgy = chaos = direct = 0;
-			cold = 100;
 		}
 
 		public ColdForgedBlade( Serial serial ) : base( serial )

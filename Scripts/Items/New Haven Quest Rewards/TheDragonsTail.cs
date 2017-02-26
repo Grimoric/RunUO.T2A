@@ -11,10 +11,6 @@ namespace Server.Items
 		public TheDragonsTail()
 		{
 			LootType = LootType.Blessed;
-
-			WeaponAttributes.HitLeechStam = 16;
-			Attributes.WeaponSpeed = 10;
-			Attributes.WeaponDamage = 25;
 		}
 
 		public TheDragonsTail( Serial serial ) : base( serial )

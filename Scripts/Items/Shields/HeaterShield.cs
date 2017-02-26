@@ -2,16 +2,8 @@ namespace Server.Items
 {
     public class HeaterShield : BaseShield
 	{
-		public override int BasePhysicalResistance{ get{ return 0; } }
-		public override int BaseFireResistance{ get{ return 1; } }
-		public override int BaseColdResistance{ get{ return 0; } }
-		public override int BasePoisonResistance{ get{ return 0; } }
-		public override int BaseEnergyResistance{ get{ return 0; } }
-
 		public override int InitMinHits{ get{ return 50; } }
 		public override int InitMaxHits{ get{ return 65; } }
-
-		public override int AosStrReq{ get{ return 90; } }
 
 		public override int ArmorBase{ get{ return 23; } }
 

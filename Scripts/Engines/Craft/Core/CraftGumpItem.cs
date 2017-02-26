@@ -87,11 +87,6 @@ namespace Server.Engines.Craft
 			DrawSkill();
 			DrawResource();
 
-			/*
-			if( craftItem.RequiresSE )
-				AddHtmlLocalized( 170, 302 + (m_OtherCount++ * 20), 310, 18, 1063363, LabelColor, false, false ); //* Requires the "Samurai Empire" expansion
-			 * */
-
 			if( needsRecipe )
 				AddHtmlLocalized( 170, 302 + m_OtherCount++ * 20, 310, 18, 1073620, RedLabelColor, false, false ); // You have not learned this recipe.
 
@@ -122,7 +117,7 @@ namespace Server.Engines.Craft
 				if ( minSkill < 0 )
 					minSkill = 0;
 
-				AddHtmlLocalized( 170, 132 + i * 20, 200, 18, AosSkillBonuses.GetLabel( skill.SkillToMake ), LabelColor, false, false );
+				AddHtmlLocalized( 170, 132 + i * 20, 200, 18, 0, LabelColor, false, false );
 				AddLabel( 430, 132 + i * 20, LabelHue, String.Format( "{0:F1}", minSkill ) );
 			}
 

@@ -7,8 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public ArcanistsWildStaff()
 		{
-			Attributes.BonusMana = 3;
-			Attributes.WeaponDamage = 3;
 		}
 
 		public ArcanistsWildStaff( Serial serial ) : base( serial )

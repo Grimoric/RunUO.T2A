@@ -5,11 +5,6 @@ namespace Server.Mobiles
     [CorpseName( "a revenant lion corpse" )]
 	public class RevenantLion : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.BleedAttack;
-		}
-
 		[Constructable]
 		public RevenantLion() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -23,17 +18,6 @@ namespace Server.Mobiles
 			SetHits( 251, 280 );
 
 			SetDamage( 18, 24 );
-
-			SetDamageType( ResistanceType.Physical, 30 );
-			SetDamageType( ResistanceType.Cold, 30 );
-			SetDamageType( ResistanceType.Poison, 10 );
-			SetDamageType( ResistanceType.Energy, 30 );
-
-			SetResistance( ResistanceType.Physical, 40, 60 );
-			SetResistance( ResistanceType.Fire, 20, 30 );
-			SetResistance( ResistanceType.Cold, 50, 60 );
-			SetResistance( ResistanceType.Poison, 55, 65 );
-			SetResistance( ResistanceType.Energy, 40, 50 );
 
 			SetSkill( SkillName.EvalInt, 80.1, 90.0 );
 			SetSkill( SkillName.Magery, 80.1, 90.0 );

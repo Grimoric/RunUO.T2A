@@ -43,7 +43,7 @@ namespace Server.Items
 		{
 			if ( from.Hits < from.HitsMax )
 			{
-				if ( from.Poisoned || MortalStrike.IsWounded( from ) )
+				if ( from.Poisoned )
 				{
 					from.LocalOverheadMessage( MessageType.Regular, 0x22, 1005000 ); // You can not heal yourself in your current state.
 				}

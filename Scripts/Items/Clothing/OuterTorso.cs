@@ -263,8 +263,6 @@ namespace Server.Items
 			}
 		}
 
-		public override int BasePhysicalResistance{ get{ return 3; } }
-
 		public override void OnAdded( object parent )
 		{
 			base.OnAdded( parent );
@@ -379,8 +377,6 @@ namespace Server.Items
 				return base.LabelNumber;
 			}
 		}
-
-		public override int BasePhysicalResistance{ get{ return 3; } }
 
 		public override void OnAdded( object parent )
 		{

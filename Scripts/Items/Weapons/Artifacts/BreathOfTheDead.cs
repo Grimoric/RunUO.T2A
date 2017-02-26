@@ -12,10 +12,6 @@ namespace Server.Items
 		public BreathOfTheDead()
 		{
 			Hue = 0x455;
-			WeaponAttributes.HitLeechHits = 100;
-			WeaponAttributes.HitHarm = 25;
-			Attributes.SpellDamage = 5;
-			Attributes.WeaponDamage = 50;
 		}
 
 		public BreathOfTheDead( Serial serial ) : base( serial )

@@ -8,10 +8,6 @@ namespace Server.Items
 		public AlchemistsBauble()
 		{
 			Hue = 0x290;
-			SkillBonuses.SetValues( 0, SkillName.Magery, 10.0 );
-			Attributes.EnhancePotions = 30;
-			Attributes.LowerRegCost = 20;
-			Resistances.Poison = 10;
 		}
 
 		public AlchemistsBauble( Serial serial ) : base( serial )

@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0xE87, 0xE88 )]
 	public class Pitchfork : BaseSpear
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Dismount; } }
-
-		public override int AosStrengthReq{ get{ return 55; } }
-		public override int AosMinDamage{ get{ return 13; } }
-		public override int AosMaxDamage{ get{ return 14; } }
-		public override int AosSpeed{ get{ return 43; } }
-		public override float MlSpeed{ get{ return 2.50f; } }
-
 		public override int OldStrengthReq{ get{ return 15; } }
 		public override int OldMinDamage{ get{ return 4; } }
 		public override int OldMaxDamage{ get{ return 16; } }

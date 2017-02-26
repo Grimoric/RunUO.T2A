@@ -13,10 +13,6 @@ namespace Server.Items
 		public LieutenantOfTheBritannianRoyalGuard()
 		{
 			Hue = 0xe8;
-
-			Attributes.BonusInt = 5;
-			Attributes.RegenMana = 2;
-			Attributes.LowerRegCost = 10;
 		}
 
 		public LieutenantOfTheBritannianRoyalGuard( Serial serial ) : base( serial )

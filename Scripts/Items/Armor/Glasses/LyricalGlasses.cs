@@ -4,22 +4,12 @@ namespace Server.Items
 	{
 		public override int LabelNumber{ get{ return 1073382; } } //Lyrical Reading Glasses
 
-		public override int BasePhysicalResistance{ get{ return 10; } }
-		public override int BaseFireResistance{ get{ return 10; } }
-		public override int BaseColdResistance{ get{ return 10; } }
-		public override int BasePoisonResistance{ get{ return 10; } }
-		public override int BaseEnergyResistance{ get{ return 10; } }
-
 		public override int InitMinHits{ get{ return 255; } }
 		public override int InitMaxHits{ get{ return 255; } }
 
 		[Constructable]
 		public LyricalGlasses()
 		{
-			WeaponAttributes.HitLowerDefend = 20;
-			Attributes.NightSight = 1;
-			Attributes.ReflectPhysical = 15;
-
 			Hue = 0x47F;
 		}
 		public LyricalGlasses( Serial serial ) : base( serial )

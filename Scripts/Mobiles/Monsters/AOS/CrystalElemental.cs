@@ -5,11 +5,6 @@ namespace Server.Mobiles
     [CorpseName( "a crystal elemental corpse" )]
 	public class CrystalElemental : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.BleedAttack;
-		}
-
 		[Constructable]
 		public CrystalElemental() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -24,15 +19,6 @@ namespace Server.Mobiles
 			SetHits( 150 );
 
 			SetDamage( 10, 15 );
-
-			SetDamageType( ResistanceType.Physical, 80 );
-			SetDamageType( ResistanceType.Energy, 20 );
-
-			SetResistance( ResistanceType.Physical, 50, 60 );
-			SetResistance( ResistanceType.Fire, 40, 50 );
-			SetResistance( ResistanceType.Cold, 40, 50 );
-			SetResistance( ResistanceType.Poison, 100 );
-			SetResistance( ResistanceType.Energy, 55, 70 );
 
 			SetSkill( SkillName.EvalInt, 70.1, 75.0 );
 			SetSkill( SkillName.Magery, 70.1, 75.0 );

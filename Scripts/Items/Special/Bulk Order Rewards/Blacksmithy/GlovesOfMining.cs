@@ -3,16 +3,9 @@ namespace Server.Items
     [FlipableAttribute( 0x13c6, 0x13ce )]
 	public class LeatherGlovesOfMining : BaseGlovesOfMining
 	{
-		public override int BasePhysicalResistance{ get{ return 2; } }
-		public override int BaseFireResistance{ get{ return 4; } }
-		public override int BaseColdResistance{ get{ return 3; } }
-		public override int BasePoisonResistance{ get{ return 3; } }
-		public override int BaseEnergyResistance{ get{ return 3; } }
-
 		public override int InitMinHits{ get{ return 30; } }
 		public override int InitMaxHits{ get{ return 40; } }
 
-		public override int AosStrReq{ get{ return 20; } }
 		public override int OldStrReq{ get{ return 10; } }
 
 		public override int ArmorBase{ get{ return 13; } }
@@ -50,16 +43,9 @@ namespace Server.Items
 	[FlipableAttribute( 0x13d5, 0x13dd )]
 	public class StuddedGlovesOfMining : BaseGlovesOfMining
 	{
-		public override int BasePhysicalResistance{ get{ return 2; } }
-		public override int BaseFireResistance{ get{ return 4; } }
-		public override int BaseColdResistance{ get{ return 3; } }
-		public override int BasePoisonResistance{ get{ return 3; } }
-		public override int BaseEnergyResistance{ get{ return 4; } }
-
 		public override int InitMinHits{ get{ return 35; } }
 		public override int InitMaxHits{ get{ return 45; } }
 
-		public override int AosStrReq{ get{ return 25; } }
 		public override int OldStrReq{ get{ return 25; } }
 
 		public override int ArmorBase{ get{ return 16; } }
@@ -95,16 +81,9 @@ namespace Server.Items
 	[FlipableAttribute( 0x13eb, 0x13f2 )]
 	public class RingmailGlovesOfMining : BaseGlovesOfMining
 	{
-		public override int BasePhysicalResistance{ get{ return 3; } }
-		public override int BaseFireResistance{ get{ return 3; } }
-		public override int BaseColdResistance{ get{ return 1; } }
-		public override int BasePoisonResistance{ get{ return 5; } }
-		public override int BaseEnergyResistance{ get{ return 3; } }
-
 		public override int InitMinHits{ get{ return 40; } }
 		public override int InitMaxHits{ get{ return 50; } }
 
-		public override int AosStrReq{ get{ return 40; } }
 		public override int OldStrReq{ get{ return 20; } }
 
 		public override int OldDexBonus{ get{ return -1; } }

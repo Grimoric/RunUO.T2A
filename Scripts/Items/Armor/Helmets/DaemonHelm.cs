@@ -3,16 +3,9 @@ namespace Server.Items
     [FlipableAttribute( 0x1451, 0x1456 )]
 	public class DaemonHelm : BaseArmor
 	{
-		public override int BasePhysicalResistance{ get{ return 6; } }
-		public override int BaseFireResistance{ get{ return 6; } }
-		public override int BaseColdResistance{ get{ return 7; } }
-		public override int BasePoisonResistance{ get{ return 5; } }
-		public override int BaseEnergyResistance{ get{ return 7; } }
-
 		public override int InitMinHits{ get{ return 255; } }
 		public override int InitMaxHits{ get{ return 255; } }
 
-		public override int AosStrReq{ get{ return 20; } }
 		public override int OldStrReq{ get{ return 40; } }
 
 		public override int ArmorBase{ get{ return 46; } }
@@ -27,8 +20,6 @@ namespace Server.Items
 		{
 			Hue = 0x648;
 			Weight = 3.0;
-
-			ArmorAttributes.SelfRepair = 1;
 		}
 
 		public DaemonHelm( Serial serial ) : base( serial )
@@ -50,9 +41,6 @@ namespace Server.Items
 
 			if ( Weight == 1.0 )
 				Weight = 3.0;
-
-			if ( ArmorAttributes.SelfRepair == 0 )
-				ArmorAttributes.SelfRepair = 1;
 		}
 	}
 }

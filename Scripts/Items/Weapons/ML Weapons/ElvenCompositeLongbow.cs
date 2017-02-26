@@ -9,16 +9,7 @@ namespace Server.Items
 		public override Type AmmoType{ get{ return typeof( Arrow ); } }
 		public override Item Ammo{ get{ return new Arrow(); } }
 
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ForceArrow; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.SerpentArrow; } }
-
-		public override int AosStrengthReq{ get{ return 45; } }
-		public override int AosMinDamage{ get{ return 12; } }
-		public override int AosMaxDamage{ get{ return 16; } }
-		public override int AosSpeed{ get{ return 27; } }
-		public override float MlSpeed{ get{ return 4.00f; } }
-
-		public override int OldStrengthReq{ get{ return 45; } }
+    	public override int OldStrengthReq{ get{ return 45; } }
 		public override int OldMinDamage{ get{ return 12; } }
 		public override int OldMaxDamage{ get{ return 16; } }
 		public override int OldSpeed{ get{ return 27; } }

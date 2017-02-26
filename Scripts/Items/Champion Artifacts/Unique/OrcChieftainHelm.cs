@@ -4,12 +4,6 @@ namespace Server.Items
 	{
 		public override int LabelNumber{ get{ return 1094924; } } // Orc Chieftain Helm [Replica]
 
-		public override int BasePhysicalResistance{ get{ return 23; } }
-		public override int BaseFireResistance{ get{ return 1; } }
-		public override int BaseColdResistance{ get{ return 23; } }
-		public override int BasePoisonResistance{ get{ return 3; } }
-		public override int BaseEnergyResistance{ get{ return 5; } }
-
 		public override int InitMinHits{ get{ return 150; } }
 		public override int InitMaxHits{ get{ return 150; } }
 
@@ -19,14 +13,6 @@ namespace Server.Items
 		public OrcChieftainHelm()
 		{
 			Hue = 0x2a3;
-
-			Attributes.Luck = 100;
-			Attributes.RegenHits = 3;
-
-			if( Utility.RandomBool() )
-				Attributes.BonusHits = 30;
-			else
-				Attributes.AttackChance = 30;
 		}
 
 		public OrcChieftainHelm( Serial serial ) : base( serial )

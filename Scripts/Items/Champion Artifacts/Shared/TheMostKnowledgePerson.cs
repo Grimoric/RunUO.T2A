@@ -16,8 +16,6 @@ namespace Server.Items
 		{
 			Hue = 0x117;
 			StrRequirement = 0;
-
-			Attributes.BonusHits = 3 + Utility.RandomMinMax( 0, 2 );
 		}
 
 		public TheMostKnowledgePerson( Serial serial ) : base( serial )

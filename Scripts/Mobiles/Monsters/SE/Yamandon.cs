@@ -7,11 +7,6 @@ namespace Server.Mobiles
 	[CorpseName( "a yamandon corpse" )]
 	public class Yamandon : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.DoubleStrike;
-		}
-
 		[Constructable]
 		public Yamandon() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -25,16 +20,6 @@ namespace Server.Mobiles
 			SetHits( 1601, 1800 );
 
 			SetDamage( 19, 35 );
-
-			SetDamageType( ResistanceType.Physical, 70 );
-			SetDamageType( ResistanceType.Poison, 20 );
-			SetDamageType( ResistanceType.Energy, 10 );
-
-			SetResistance( ResistanceType.Physical, 65, 85 );
-			SetResistance( ResistanceType.Fire, 70, 90 );
-			SetResistance( ResistanceType.Cold, 50, 70 );
-			SetResistance( ResistanceType.Poison, 50, 70 );
-			SetResistance( ResistanceType.Energy, 50, 70 );
 
 			SetSkill( SkillName.Anatomy, 115.1, 130.0 );
 			SetSkill( SkillName.MagicResist, 117.6, 132.5 );

@@ -30,16 +30,6 @@ namespace Server.Mobiles
 
 			SetDamage( 21, 28 );
 
-			SetDamageType( ResistanceType.Physical, 0 );
-			SetDamageType( ResistanceType.Cold, 50 );
-			SetDamageType( ResistanceType.Energy, 50 );
-
-			SetResistance( ResistanceType.Physical, 50, 65 );
-			SetResistance( ResistanceType.Fire, 25, 45 );
-			SetResistance( ResistanceType.Cold, 70, 85 );
-			SetResistance( ResistanceType.Poison, 30, 50 );
-			SetResistance( ResistanceType.Energy, 70, 85 );
-
 			SetSkill( SkillName.Wrestling, 90.1, 96.8 );
 			SetSkill( SkillName.Tactics, 90.3, 99.3 );
 			SetSkill( SkillName.MagicResist, 75.3, 90.0 );
@@ -94,11 +84,6 @@ namespace Server.Mobiles
 		public override bool StatLossAfterTame{ get{ return true; } }
 		public override int Hides{ get{ return 10; } }
 		public override int Meat{ get{ return 3; } }
-
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.BleedAttack;
-		}
 
 		public CuSidhe( Serial serial ) : base( serial )
 		{

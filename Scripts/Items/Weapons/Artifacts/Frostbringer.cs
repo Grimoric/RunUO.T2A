@@ -12,15 +12,6 @@ namespace Server.Items
 		public Frostbringer()
 		{
 			Hue = 0x4F2;
-			WeaponAttributes.HitDispel = 50;
-			Attributes.RegenStam = 10;
-			Attributes.WeaponDamage = 50;
-		}
-
-		public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
-		{
-			phys = fire = pois = nrgy = chaos = direct = 0;
-			cold = 100;
 		}
 
 		public Frostbringer( Serial serial ) : base( serial )

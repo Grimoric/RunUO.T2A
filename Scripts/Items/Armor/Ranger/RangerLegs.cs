@@ -3,16 +3,9 @@ namespace Server.Items
     [FlipableAttribute( 0x13da, 0x13e1 )]
 	public class RangerLegs : BaseArmor
 	{
-		public override int BasePhysicalResistance{ get{ return 2; } }
-		public override int BaseFireResistance{ get{ return 4; } }
-		public override int BaseColdResistance{ get{ return 3; } }
-		public override int BasePoisonResistance{ get{ return 3; } }
-		public override int BaseEnergyResistance{ get{ return 4; } }
-
 		public override int InitMinHits{ get{ return 35; } }
 		public override int InitMaxHits{ get{ return 45; } }
 
-		public override int AosStrReq{ get{ return 30; } }
 		public override int OldStrReq{ get{ return 35; } }
 
 		public override int ArmorBase{ get{ return 16; } }

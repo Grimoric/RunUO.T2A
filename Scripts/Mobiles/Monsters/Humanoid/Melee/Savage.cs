@@ -22,8 +22,6 @@ namespace Server.Mobiles
 
 			SetDamage( 23, 27 );
 
-			SetDamageType( ResistanceType.Physical, 100 );
-
 			SetSkill( SkillName.Fencing, 60.0, 82.5 );
 			SetSkill( SkillName.Macing, 60.0, 82.5 );
 			SetSkill( SkillName.Poisoning, 60.0, 82.5 );

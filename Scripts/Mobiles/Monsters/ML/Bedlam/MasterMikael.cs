@@ -19,14 +19,6 @@ namespace Server.Mobiles
 
 			SetDamage( 11, 19 );
 
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 55, 59 );
-			SetResistance( ResistanceType.Fire, 40, 46 );
-			SetResistance( ResistanceType.Cold, 72, 80 );
-			SetResistance( ResistanceType.Poison, 44, 49 );
-			SetResistance( ResistanceType.Energy, 50, 57 );
-
 			SetSkill( SkillName.Wrestling, 80.1, 87.2 );
 			SetSkill( SkillName.Tactics, 79.0, 90.9 );
 			SetSkill( SkillName.MagicResist, 90.3, 106.9 );
@@ -51,24 +43,6 @@ namespace Server.Mobiles
 		{
 			AddLoot( LootPack.UltraRich, 2 );
 		}
-
-		// TODO: Special move?
-
-		/*
-		// TODO: uncomment once added
-		public override void OnDeath( Container c )
-		{
-			base.OnDeath( c );
-
-			if ( Utility.RandomDouble() < 0.15 )
-				c.DropItem( new DisintegratingThesisNotes() );
-
-			if ( Utility.RandomDouble() < 0.1 )
-				c.DropItem( new ParrotItem() );
-		}
-		*/
-
-		public override bool GivesMLMinorArtifact{ get{ return true; } }
 
 		public MasterMikael( Serial serial )
 			: base( serial )

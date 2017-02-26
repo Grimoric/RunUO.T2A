@@ -4,12 +4,6 @@ namespace Server.Items
 	{
 		public override int LabelNumber{ get{ return 1075047; } } // Aegis of Grace
 
-		public override int BasePhysicalResistance{ get{ return 10; } }
-		public override int BaseFireResistance{ get{ return 9; } }
-		public override int BaseColdResistance{ get{ return 7; } }
-		public override int BasePoisonResistance{ get{ return 7; } }
-		public override int BaseEnergyResistance{ get{ return 15; } }
-
 		public override ArmorMaterialType MaterialType{ get{ return ArmorMaterialType.Dragon; } }
 		public override CraftResource DefaultResource{ get{ return CraftResource.Iron; } }
 
@@ -19,11 +13,6 @@ namespace Server.Items
 		[Constructable]
 		public AegisOfGrace()
 		{
-			SkillBonuses.SetValues( 0, SkillName.MagicResist, 10.0 );
-
-			Attributes.DefendChance = 20;
-
-			ArmorAttributes.SelfRepair = 2;
 		}
 
 		public override Race RequiredRace

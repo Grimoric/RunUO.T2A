@@ -7,8 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public TrueSpellblade()
 		{
-			Attributes.SpellChanneling = 1;
-			Attributes.CastSpeed = -1;
 		}
 
 		public TrueSpellblade( Serial serial ) : base( serial )

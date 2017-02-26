@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public EmeraldMace()
 		{
-			WeaponAttributes.ResistPoisonBonus = 5;
 		}
 
 		public EmeraldMace( Serial serial ) : base( serial )

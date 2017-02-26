@@ -258,55 +258,6 @@ namespace Server
 		public abstract bool CheckCondition();
 	}
 
-	public class ResistanceMod
-	{
-		private Mobile m_Owner;
-		private ResistanceType m_Type;
-		private int m_Offset;
-
-		public Mobile Owner
-		{
-			get { return m_Owner; }
-			set { m_Owner = value; }
-		}
-
-		public ResistanceType Type
-		{
-			get { return m_Type; }
-			set
-			{
-				if( m_Type != value )
-				{
-					m_Type = value;
-
-					if( m_Owner != null )
-						m_Owner.UpdateResistances();
-				}
-			}
-		}
-
-		public int Offset
-		{
-			get { return m_Offset; }
-			set
-			{
-				if( m_Offset != value )
-				{
-					m_Offset = value;
-
-					if( m_Owner != null )
-						m_Owner.UpdateResistances();
-				}
-			}
-		}
-
-		public ResistanceMod( ResistanceType type, int offset )
-		{
-			m_Type = type;
-			m_Offset = offset;
-		}
-	}
-
 	public class StatMod
 	{
 		private StatType m_Type;
@@ -449,15 +400,6 @@ namespace Server
 		None,
 		Related,
 		Everyone
-	}
-
-	public enum ResistanceType
-	{
-		Physical,
-		Fire,
-		Cold,
-		Poison,
-		Energy
 	}
 
 	public enum ApplyPoisonResult
@@ -810,7 +752,6 @@ namespace Server
 					m_Race = Race.DefaultRace;
 
 				this.Body = m_Race.Body( this );
-				this.UpdateResistances();
 
 				Delta( MobileDelta.Race );
 
@@ -823,18 +764,6 @@ namespace Server
 		}
 
 		public virtual double RacialSkillBonus { get { return 0; } }
-
-		private List<ResistanceMod> m_ResistMods;
-
-		private int[] m_Resistances;
-
-		public int[] Resistances { get { return m_Resistances; } }
-
-		public virtual int BasePhysicalResistance { get { return 0; } }
-		public virtual int BaseFireResistance { get { return 0; } }
-		public virtual int BaseColdResistance { get { return 0; } }
-		public virtual int BasePoisonResistance { get { return 0; } }
-		public virtual int BaseEnergyResistance { get { return 0; } }
 
 		public virtual void ComputeLightLevels( out int global, out int personal )
 		{
@@ -852,175 +781,6 @@ namespace Server
 
 		public virtual void CheckLightLevels( bool forceResend )
 		{
-		}
-
-		[CommandProperty( AccessLevel.Counselor )]
-		public virtual int PhysicalResistance
-		{
-			get { return GetResistance( ResistanceType.Physical ); }
-		}
-
-		[CommandProperty( AccessLevel.Counselor )]
-		public virtual int FireResistance
-		{
-			get { return GetResistance( ResistanceType.Fire ); }
-		}
-
-		[CommandProperty( AccessLevel.Counselor )]
-		public virtual int ColdResistance
-		{
-			get { return GetResistance( ResistanceType.Cold ); }
-		}
-
-		[CommandProperty( AccessLevel.Counselor )]
-		public virtual int PoisonResistance
-		{
-			get { return GetResistance( ResistanceType.Poison ); }
-		}
-
-		[CommandProperty( AccessLevel.Counselor )]
-		public virtual int EnergyResistance
-		{
-			get { return GetResistance( ResistanceType.Energy ); }
-		}
-
-		public virtual void UpdateResistances()
-		{
-			if( m_Resistances == null )
-				m_Resistances = new int[5] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
-
-			bool delta = false;
-
-			for( int i = 0; i < m_Resistances.Length; ++i )
-			{
-				if( m_Resistances[i] != int.MinValue )
-				{
-					m_Resistances[i] = int.MinValue;
-					delta = true;
-				}
-			}
-
-			if( delta )
-				Delta( MobileDelta.Resistances );
-		}
-
-		public virtual int GetResistance( ResistanceType type )
-		{
-			if( m_Resistances == null )
-				m_Resistances = new int[5] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
-
-			int v = (int)type;
-
-			if( v < 0 || v >= m_Resistances.Length )
-				return 0;
-
-			int res = m_Resistances[v];
-
-			if( res == int.MinValue )
-			{
-				ComputeResistances();
-				res = m_Resistances[v];
-			}
-
-			return res;
-		}
-
-		public List<ResistanceMod> ResistanceMods
-		{
-			get { return m_ResistMods; }
-			set { m_ResistMods = value; }
-		}
-
-		public virtual void AddResistanceMod( ResistanceMod toAdd )
-		{
-			if ( m_ResistMods == null ) {
-				m_ResistMods = new List<ResistanceMod>();
-			}
-
-			m_ResistMods.Add( toAdd );
-			UpdateResistances();
-		}
-
-		public virtual void RemoveResistanceMod( ResistanceMod toRemove )
-		{
-			if( m_ResistMods != null )
-			{
-				m_ResistMods.Remove( toRemove );
-
-				if( m_ResistMods.Count == 0 )
-					m_ResistMods = null;
-			}
-
-			UpdateResistances();
-		}
-
-		private static int m_MaxPlayerResistance = 70;
-
-		public static int MaxPlayerResistance { get { return m_MaxPlayerResistance; } set { m_MaxPlayerResistance = value; } }
-
-		public virtual void ComputeResistances()
-		{
-			if( m_Resistances == null )
-				m_Resistances = new int[5] { int.MinValue, int.MinValue, int.MinValue, int.MinValue, int.MinValue };
-
-			for( int i = 0; i < m_Resistances.Length; ++i )
-				m_Resistances[i] = 0;
-
-			m_Resistances[0] += this.BasePhysicalResistance;
-			m_Resistances[1] += this.BaseFireResistance;
-			m_Resistances[2] += this.BaseColdResistance;
-			m_Resistances[3] += this.BasePoisonResistance;
-			m_Resistances[4] += this.BaseEnergyResistance;
-
-			for( int i = 0; m_ResistMods != null && i < m_ResistMods.Count; ++i )
-			{
-				ResistanceMod mod = m_ResistMods[i];
-				int v = (int)mod.Type;
-
-				if( v >= 0 && v < m_Resistances.Length )
-					m_Resistances[v] += mod.Offset;
-			}
-
-			for( int i = 0; i < m_Items.Count; ++i )
-			{
-				Item item = m_Items[i];
-
-				if( item.CheckPropertyConfliction( this ) )
-					continue;
-
-				m_Resistances[0] += item.PhysicalResistance;
-				m_Resistances[1] += item.FireResistance;
-				m_Resistances[2] += item.ColdResistance;
-				m_Resistances[3] += item.PoisonResistance;
-				m_Resistances[4] += item.EnergyResistance;
-			}
-
-			for( int i = 0; i < m_Resistances.Length; ++i )
-			{
-				int min = GetMinResistance( (ResistanceType)i );
-				int max = GetMaxResistance( (ResistanceType)i );
-
-				if( max < min )
-					max = min;
-
-				if( m_Resistances[i] > max )
-					m_Resistances[i] = max;
-				else if( m_Resistances[i] < min )
-					m_Resistances[i] = min;
-			}
-		}
-
-		public virtual int GetMinResistance( ResistanceType type )
-		{
-			return int.MinValue;
-		}
-
-		public virtual int GetMaxResistance( ResistanceType type )
-		{
-			if( m_Player )
-				return m_MaxPlayerResistance;
-
-			return int.MaxValue;
 		}
 
 		public int GetAOSStatus( int index )
@@ -5752,8 +5512,6 @@ namespace Server
 
 						UpdateRegion();
 
-						UpdateResistances();
-
 						break;
 					}
 			}
@@ -6222,10 +5980,6 @@ namespace Server
 
 			item.OnAdded( this );
 			OnItemAdded( item );
-
-			if( item.PhysicalResistance != 0 || item.FireResistance != 0 || item.ColdResistance != 0 ||
-				item.PoisonResistance != 0 || item.EnergyResistance != 0 )
-				UpdateResistances();
 		}
 
 		private static IWeapon m_DefaultWeapon;
@@ -6266,10 +6020,6 @@ namespace Server
 
 				item.OnRemoved( this );
 				OnItemRemoved( item );
-
-				if( item.PhysicalResistance != 0 || item.FireResistance != 0 || item.ColdResistance != 0 ||
-					item.PoisonResistance != 0 || item.EnergyResistance != 0 )
-					UpdateResistances();
 			}
 		}
 
@@ -7755,11 +7505,6 @@ namespace Server
 		}
 
 		#endregion
-		
-		public virtual int Luck
-		{
-			get { return 0; }
-		}
 		
 		public virtual int HuedItemID
 		{

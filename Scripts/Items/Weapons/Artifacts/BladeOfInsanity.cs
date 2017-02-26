@@ -12,10 +12,6 @@ namespace Server.Items
 		public BladeOfInsanity()
 		{
 			Hue = 0x76D;
-			WeaponAttributes.HitLeechStam = 100;
-			Attributes.RegenStam = 2;
-			Attributes.WeaponSpeed = 30;
-			Attributes.WeaponDamage = 50;
 		}
 
 		public BladeOfInsanity( Serial serial ) : base( serial )

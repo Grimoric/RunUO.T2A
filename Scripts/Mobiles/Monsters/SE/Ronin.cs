@@ -26,15 +26,6 @@ namespace Server.Mobiles
 
 			SetDamage( 17, 25 );
 
-			SetDamageType( ResistanceType.Physical, 90 );
-			SetDamageType( ResistanceType.Poison, 10 );
-
-			SetResistance( ResistanceType.Physical, 55, 75 );
-			SetResistance( ResistanceType.Fire, 40, 60 );
-			SetResistance( ResistanceType.Cold, 35, 55 );
-			SetResistance( ResistanceType.Poison, 50, 70 );
-			SetResistance( ResistanceType.Energy, 55, 75 );
-
 			SetSkill( SkillName.MagicResist, 42.6, 57.5 );
 			SetSkill( SkillName.Tactics, 115.1, 130.0 );
 			SetSkill( SkillName.Wrestling, 92.6, 107.5 );
@@ -79,14 +70,6 @@ namespace Server.Mobiles
 			Utility.AssignRandomHair( this );
 		}
 		
-		public override void OnDeath( Container c )
- 		{
-			base.OnDeath( c );
-	 		c.DropItem( new BookOfBushido() );
- 		}
-
-		// TODO: Bushido abilities
-
 		public override void GenerateLoot()
 		{
 			AddLoot( LootPack.FilthyRich );

@@ -7,8 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public OrcishMachete()
 		{
-			Attributes.BonusInt = -5;
-			Attributes.WeaponDamage = 10;
 		}
 
 		public OrcishMachete( Serial serial ) : base( serial )

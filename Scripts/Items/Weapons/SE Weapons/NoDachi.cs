@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x27A2, 0x27ED )]
 	public class NoDachi : BaseSword
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.CrushingBlow; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.RidingSwipe; } }
-
-		public override int AosStrengthReq{ get{ return 40; } }
-		public override int AosMinDamage{ get{ return 16; } }
-		public override int AosMaxDamage{ get{ return 18; } }
-		public override int AosSpeed{ get{ return 35; } }
-		public override float MlSpeed{ get{ return 3.50f; } }
-
 		public override int OldStrengthReq{ get{ return 40; } }
 		public override int OldMinDamage{ get{ return 16; } }
 		public override int OldMaxDamage{ get{ return 18; } }

@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x1405, 0x1404 )]
 	public class WarFork : BaseSpear
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.BleedAttack; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Disarm; } }
-
-		public override int AosStrengthReq{ get{ return 45; } }
-		public override int AosMinDamage{ get{ return 12; } }
-		public override int AosMaxDamage{ get{ return 13; } }
-		public override int AosSpeed{ get{ return 43; } }
-		public override float MlSpeed{ get{ return 2.50f; } }
-
 		public override int OldStrengthReq{ get{ return 35; } }
 		public override int OldMinDamage{ get{ return 4; } }
 		public override int OldMaxDamage{ get{ return 32; } }

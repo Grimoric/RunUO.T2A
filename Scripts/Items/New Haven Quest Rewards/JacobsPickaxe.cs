@@ -11,8 +11,6 @@ namespace Server.Items
 		{
 			UsesRemaining = 20;
 			LootType = LootType.Blessed;
-
-			SkillBonuses.SetValues( 0, SkillName.Mining, 10.0 );
 		}
 
 		public JacobsPickaxe( Serial serial )

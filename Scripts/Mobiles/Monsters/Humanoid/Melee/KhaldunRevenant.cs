@@ -81,19 +81,10 @@ namespace Server.Mobiles
 
 			SetDamage( 20, 30 );
 
-			SetDamageType( ResistanceType.Physical, 50 );
-			SetDamageType( ResistanceType.Cold, 50 );
-
 			SetSkill( SkillName.MagicResist, 100.1, 150.0 );
 			SetSkill( SkillName.Tactics, 90.1, 100.0 );
 			SetSkill( SkillName.Swords, 140.1, 150.0 );
 			SetSkill( SkillName.Wrestling, 90.1, 100.0 );
-
-			SetResistance( ResistanceType.Physical, 55, 65  );
-			SetResistance( ResistanceType.Fire, 30, 40 );
-			SetResistance( ResistanceType.Cold, 60, 70 );
-			SetResistance( ResistanceType.Poison, 20, 30 );
-			SetResistance( ResistanceType.Energy, 20, 30 );
 
 			Fame = 0;
 			Karma = 0;

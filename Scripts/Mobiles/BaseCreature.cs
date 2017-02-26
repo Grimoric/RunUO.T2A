@@ -223,14 +223,6 @@ namespace Server.Mobiles
 		private int			m_DamageMin = -1;
 		private int			m_DamageMax = -1;
 
-		private int			m_PhysicalResistance, m_PhysicalDamage = 100;
-		private int			m_FireResistance, m_FireDamage;
-		private int			m_ColdResistance, m_ColdDamage;
-		private int			m_PoisonResistance, m_PoisonDamage;
-		private int			m_EnergyResistance, m_EnergyDamage;
-		private int			m_ChaosDamage;
-		private int			m_DirectDamage;
-
 		private List<Mobile> m_Owners;
 		private List<Mobile> m_Friends;
 
@@ -502,59 +494,6 @@ namespace Server.Mobiles
 				m_DeleteTimer = null;
 			}
 		}
-
-		#endregion
-
-		public virtual double WeaponAbilityChance{ get{ return 0.4; } }
-
-		public virtual WeaponAbility GetWeaponAbility()
-		{
-			return null;
-		}
-
-		#region Elemental Resistance/Damage
-
-		public override int BasePhysicalResistance{ get{ return m_PhysicalResistance; } }
-		public override int BaseFireResistance{ get{ return m_FireResistance; } }
-		public override int BaseColdResistance{ get{ return m_ColdResistance; } }
-		public override int BasePoisonResistance{ get{ return m_PoisonResistance; } }
-		public override int BaseEnergyResistance{ get{ return m_EnergyResistance; } }
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public int PhysicalResistanceSeed{ get{ return m_PhysicalResistance; } set{ m_PhysicalResistance = value; UpdateResistances(); } }
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public int FireResistSeed{ get{ return m_FireResistance; } set{ m_FireResistance = value; UpdateResistances(); } }
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public int ColdResistSeed{ get{ return m_ColdResistance; } set{ m_ColdResistance = value; UpdateResistances(); } }
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public int PoisonResistSeed{ get{ return m_PoisonResistance; } set{ m_PoisonResistance = value; UpdateResistances(); } }
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public int EnergyResistSeed{ get{ return m_EnergyResistance; } set{ m_EnergyResistance = value; UpdateResistances(); } }
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public int PhysicalDamage{ get{ return m_PhysicalDamage; } set{ m_PhysicalDamage = value; } }
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public int FireDamage{ get{ return m_FireDamage; } set{ m_FireDamage = value; } }
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public int ColdDamage{ get{ return m_ColdDamage; } set{ m_ColdDamage = value; } }
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public int PoisonDamage{ get{ return m_PoisonDamage; } set{ m_PoisonDamage = value; } }
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public int EnergyDamage{ get{ return m_EnergyDamage; } set{ m_EnergyDamage = value; } }
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public int ChaosDamage{ get{ return m_ChaosDamage; } set{ m_ChaosDamage = value; } }
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public int DirectDamage{ get{ return m_DirectDamage; } set{ m_DirectDamage = value; } }
 
 		#endregion
 
@@ -990,7 +929,7 @@ namespace Server.Mobiles
 
 		public override string ApplyNameSuffix( string suffix )
 		{
-			if ( IsParagon && !GivesMLMinorArtifact )
+			if ( IsParagon )
 			{
 				if ( suffix.Length == 0 )
 					suffix = "(Paragon)";
@@ -1674,22 +1613,6 @@ namespace Server.Mobiles
 			writer.Write( (int) m_DamageMin );
 			writer.Write( (int) m_DamageMax );
 
-			// Version 7
-			writer.Write( (int) m_PhysicalResistance );
-			writer.Write( (int) m_PhysicalDamage );
-
-			writer.Write( (int) m_FireResistance );
-			writer.Write( (int) m_FireDamage );
-
-			writer.Write( (int) m_ColdResistance );
-			writer.Write( (int) m_ColdDamage );
-
-			writer.Write( (int) m_PoisonResistance );
-			writer.Write( (int) m_PoisonDamage );
-
-			writer.Write( (int) m_EnergyResistance );
-			writer.Write( (int) m_EnergyDamage );
-
 			// Version 8
 			writer.Write( m_Owners, true );
 
@@ -1849,24 +1772,6 @@ namespace Server.Mobiles
 				m_ManaMax = reader.ReadInt();
 				m_DamageMin = reader.ReadInt();
 				m_DamageMax = reader.ReadInt();
-			}
-
-			if ( version >= 7 )
-			{
-				m_PhysicalResistance = reader.ReadInt();
-				m_PhysicalDamage = reader.ReadInt();
-
-				m_FireResistance = reader.ReadInt();
-				m_FireDamage = reader.ReadInt();
-
-				m_ColdResistance = reader.ReadInt();
-				m_ColdDamage = reader.ReadInt();
-
-				m_PoisonResistance = reader.ReadInt();
-				m_PoisonDamage = reader.ReadInt();
-
-				m_EnergyResistance = reader.ReadInt();
-				m_EnergyDamage = reader.ReadInt();
 			}
 
 			if ( version >= 8 )
@@ -3678,42 +3583,6 @@ namespace Server.Mobiles
 			Mana = ManaMax;
 		}
 
-		public void SetDamageType( ResistanceType type, int min, int max )
-		{
-			SetDamageType( type, Utility.RandomMinMax( min, max ) );
-		}
-
-		public void SetDamageType( ResistanceType type, int val )
-		{
-			switch ( type )
-			{
-				case ResistanceType.Physical: m_PhysicalDamage = val; break;
-				case ResistanceType.Fire: m_FireDamage = val; break;
-				case ResistanceType.Cold: m_ColdDamage = val; break;
-				case ResistanceType.Poison: m_PoisonDamage = val; break;
-				case ResistanceType.Energy: m_EnergyDamage = val; break;
-			}
-		}
-
-		public void SetResistance( ResistanceType type, int min, int max )
-		{
-			SetResistance( type, Utility.RandomMinMax( min, max ) );
-		}
-
-		public void SetResistance( ResistanceType type, int val )
-		{
-			switch ( type )
-			{
-				case ResistanceType.Physical: m_PhysicalResistance = val; break;
-				case ResistanceType.Fire: m_FireResistance = val; break;
-				case ResistanceType.Cold: m_ColdResistance = val; break;
-				case ResistanceType.Poison: m_PoisonResistance = val; break;
-				case ResistanceType.Energy: m_EnergyResistance = val; break;
-			}
-
-			UpdateResistances();
-		}
-
 		public void SetSkill( SkillName name, double val )
 		{
 			Skills[name].BaseFixedPoint = (int)(val * 10);
@@ -4469,24 +4338,8 @@ namespace Server.Mobiles
 			return rights;
 		}
 
-		#region Mondain's Legacy
-		public virtual bool GivesMLMinorArtifact{ get{ return false; } }
-		#endregion
-
 		public virtual void OnKilledBy( Mobile mob )
 		{
-			#region Mondain's Legacy
-			if ( GivesMLMinorArtifact )
-			{
-				if ( MondainsLegacy.CheckArtifactChance( mob, this ) )
-					MondainsLegacy.GiveArtifactTo( mob );
-			}
-			#endregion
-			else if ( m_Paragon )
-			{
-				if ( Paragon.CheckArtifactChance( mob, this ) )
-					Paragon.GiveArtifactTo( mob );
-			}
 		}
 
 		public override void OnDeath( Container c )
@@ -4953,11 +4806,6 @@ namespace Server.Mobiles
 						CheckSkill( SkillName.Anatomy, 0.0, 100.0 );
 					}
 				}
-			}
-			else if ( BleedAttack.IsBleeding( patient ) )
-			{
-				patient.SendLocalizedMessage( 1060167 ); // The bleeding wounds have healed, you are no longer bleeding!
-				BleedAttack.EndBleed( patient, false );
 			}
 			else
 			{

@@ -4,19 +4,10 @@ namespace Server.Items
 	{
 		public override int LabelNumber{ get{ return 1077727; } } // Bulwark Leggings
 
-		public override int BasePhysicalResistance{ get{ return 9; } }
-		public override int BaseFireResistance{ get{ return 5; } }
-		public override int BaseColdResistance{ get{ return 5; } }
-		public override int BasePoisonResistance{ get{ return 5; } }
-		public override int BaseEnergyResistance{ get{ return 3; } }
-
 		[Constructable]
 		public BulwarkLeggings()
 		{
 			LootType = LootType.Blessed;
-
-			Attributes.RegenStam = 1;
-			Attributes.RegenMana = 1;
 		}
 
 		public BulwarkLeggings( Serial serial ) : base( serial )

@@ -40,19 +40,6 @@ namespace Server.Mobiles
 
 			SetDamage( (int)(13*scalar), (int)(24*scalar) );
 
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, (int)(35*scalar), (int)(55*scalar) );
-
-			if ( summoned )
-				SetResistance( ResistanceType.Fire, (int)(50*scalar), (int)(60*scalar) );
-			else
-				SetResistance( ResistanceType.Fire, (int)(100*scalar) );
-
-			SetResistance( ResistanceType.Cold, (int)(10*scalar), (int)(30*scalar) );
-			SetResistance( ResistanceType.Poison, (int)(10*scalar), (int)(25*scalar) );
-			SetResistance( ResistanceType.Energy, (int)(30*scalar), (int)(40*scalar) );
-
 			SetSkill( SkillName.MagicResist, 150.1*scalar, 190.0*scalar );
 			SetSkill( SkillName.Tactics, 60.1*scalar, 100.0*scalar );
 			SetSkill( SkillName.Wrestling, 60.1*scalar, 100.0*scalar );

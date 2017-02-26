@@ -8,9 +8,6 @@ namespace Server.Items
 		public EssenceOfBattle()
 		{
 			Hue = 0x550;
-			Attributes.BonusDex = 7;
-			Attributes.BonusStr = 7;
-			Attributes.WeaponDamage = 30;
 		}
 
 		public EssenceOfBattle( Serial serial ) : base( serial )

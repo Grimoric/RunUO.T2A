@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public LongbowOfMight()
 		{
-			Attributes.WeaponDamage = 5;
 		}
 
 		public LongbowOfMight( Serial serial ) : base( serial )

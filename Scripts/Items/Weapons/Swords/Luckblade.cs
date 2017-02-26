@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public Luckblade()
 		{
-			Attributes.Luck = 20;
 		}
 
 		public Luckblade( Serial serial ) : base( serial )

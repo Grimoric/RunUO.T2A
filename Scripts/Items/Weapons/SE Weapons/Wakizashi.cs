@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x27A4, 0x27EF )]
 	public class Wakizashi : BaseSword
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.FrenziedWhirlwind; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.DoubleStrike; } }
-
-		public override int AosStrengthReq{ get{ return 20; } }
-		public override int AosMinDamage{ get{ return 11; } }
-		public override int AosMaxDamage{ get{ return 13; } }
-		public override int AosSpeed{ get{ return 44; } }
-		public override float MlSpeed{ get{ return 2.50f; } }
-
 		public override int OldStrengthReq{ get{ return 20; } }
 		public override int OldMinDamage{ get{ return 11; } }
 		public override int OldMaxDamage{ get{ return 13; } }

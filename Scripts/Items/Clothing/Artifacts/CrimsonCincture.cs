@@ -8,10 +8,6 @@ namespace Server.Items
 		public CrimsonCincture() : base()
 		{
 			Hue = 0x485;
-			
-			Attributes.BonusDex = 5;
-			Attributes.BonusHits = 10;
-			Attributes.RegenHits = 2;
 		}
 
 		public CrimsonCincture( Serial serial ) : base( serial )

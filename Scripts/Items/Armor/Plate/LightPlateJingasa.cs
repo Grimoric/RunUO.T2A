@@ -2,16 +2,9 @@ namespace Server.Items
 {
     public class LightPlateJingasa : BaseArmor
 	{
-		public override int BasePhysicalResistance{ get{ return 7; } }
-		public override int BaseFireResistance{ get{ return 2; } }
-		public override int BaseColdResistance{ get{ return 2; } }
-		public override int BasePoisonResistance{ get{ return 2; } }
-		public override int BaseEnergyResistance{ get{ return 2; } }
-
 		public override int InitMinHits{ get{ return 55; } }
 		public override int InitMaxHits{ get{ return 60; } }
 
-		public override int AosStrReq{ get{ return 55; } }
 		public override int OldStrReq{ get{ return 55; } }
 
 		public override int ArmorBase{ get{ return 4; } }

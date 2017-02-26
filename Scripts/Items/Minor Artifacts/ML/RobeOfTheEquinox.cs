@@ -9,11 +9,6 @@ namespace Server.Items
 		public RobeOfTheEquinox() : base( 0x1F04, 0xD6 )
 		{
 			Weight = 3.0;
-
-			Attributes.Luck = 95;
-
-			// TODO: Supports arcane?
-			// TODO: Elves Only
 		}
 
 		public RobeOfTheEquinox( Serial serial ) : base( serial )

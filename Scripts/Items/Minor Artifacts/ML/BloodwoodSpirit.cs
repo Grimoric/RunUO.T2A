@@ -14,9 +14,6 @@ namespace Server.Items
 			Removal = TalismanRemoval.Damage;
 			Blessed = GetRandomBlessed();
 			Protection = GetRandomProtection( false );
-
-			SkillBonuses.SetValues( 0, SkillName.SpiritSpeak, 10.0 );
-			SkillBonuses.SetValues( 1, SkillName.Necromancy, 5.0 );
 		}
 
 		public BloodwoodSpirit( Serial serial ) :  base( serial )

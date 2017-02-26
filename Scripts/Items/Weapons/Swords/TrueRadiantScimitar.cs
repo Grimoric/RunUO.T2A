@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public TrueRadiantScimitar()
 		{
-			Attributes.NightSight = 1;
 		}
 
 		public TrueRadiantScimitar( Serial serial ) : base( serial )

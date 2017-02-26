@@ -12,10 +12,6 @@ namespace Server.Items
 		public AxeOfTheHeavens()
 		{
 			Hue = 0x4D5;
-			WeaponAttributes.HitLightning = 50;
-			Attributes.AttackChance = 15;
-			Attributes.DefendChance = 15;
-			Attributes.WeaponDamage = 50;
 		}
 
 		public AxeOfTheHeavens( Serial serial ) : base( serial )

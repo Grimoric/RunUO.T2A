@@ -16,9 +16,6 @@ namespace Server.Items
 
 			Blessed = GetRandomBlessed();
 			Protection = GetRandomProtection( false );
-
-			Attributes.RegenHits = 2;
-			Attributes.LowerManaCost = 10;
 		}
 
 		public TotemOfVoid( Serial serial ) :  base( serial )

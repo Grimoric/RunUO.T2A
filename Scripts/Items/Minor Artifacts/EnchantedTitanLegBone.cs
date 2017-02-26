@@ -11,11 +11,6 @@ namespace Server.Items
 		public EnchantedTitanLegBone()
 		{
 			Hue = 0x8A5;
-			WeaponAttributes.HitLowerDefend = 40;
-			WeaponAttributes.HitLightning = 40;
-			Attributes.AttackChance = 10;
-			Attributes.WeaponDamage = 20;
-			WeaponAttributes.ResistPhysicalBonus = 10;
 		}
 
 		public EnchantedTitanLegBone( Serial serial ) : base( serial )

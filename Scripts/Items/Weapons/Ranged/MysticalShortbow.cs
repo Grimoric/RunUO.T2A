@@ -7,8 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public MysticalShortbow()
 		{
-			Attributes.SpellChanneling = 1;
-			Attributes.CastSpeed = -1;
 		}
 
 		public MysticalShortbow( Serial serial ) : base( serial )

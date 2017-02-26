@@ -3,16 +3,9 @@ namespace Server.Items
     [FlipableAttribute( 0x2641, 0x2642 )]
 	public class DragonChest : BaseArmor
 	{
-		public override int BasePhysicalResistance{ get{ return 3; } }
-		public override int BaseFireResistance{ get{ return 3; } }
-		public override int BaseColdResistance{ get{ return 3; } }
-		public override int BasePoisonResistance{ get{ return 3; } }
-		public override int BaseEnergyResistance{ get{ return 3; } }
-
 		public override int InitMinHits{ get{ return 55; } }
 		public override int InitMaxHits{ get{ return 75; } }
 
-		public override int AosStrReq{ get{ return 75; } }
 		public override int OldStrReq{ get{ return 60; } }
 
 		public override int OldDexBonus{ get{ return -8; } }

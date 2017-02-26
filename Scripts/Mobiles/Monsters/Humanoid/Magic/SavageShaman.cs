@@ -24,14 +24,6 @@ namespace Server.Mobiles
 
 			SetDamage( 4, 10 );
 
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 30, 40 );
-			SetResistance( ResistanceType.Fire, 20, 30 );
-			SetResistance( ResistanceType.Cold, 20, 30 );
-			SetResistance( ResistanceType.Poison, 20, 30 );
-			SetResistance( ResistanceType.Energy, 40, 50 );
-
 			SetSkill( SkillName.EvalInt, 77.5, 100.0 );
 			SetSkill( SkillName.Fencing, 62.5, 85.0 );
 			SetSkill( SkillName.Macing, 62.5, 85.0 );
@@ -168,7 +160,7 @@ namespace Server.Mobiles
 							if ( !isFriendly )
 								continue;
 
-							if ( m.Poisoned || MortalStrike.IsWounded( m ) || !CanBeBeneficial( m ) )
+							if ( m.Poisoned || !CanBeBeneficial( m ) )
 								continue;
 
 							DoBeneficial( m );

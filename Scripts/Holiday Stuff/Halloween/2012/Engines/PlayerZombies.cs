@@ -213,15 +213,6 @@ namespace Server.Engines.Events
 
 			SetDamage( 8, 18 );
 
-			SetDamageType( ResistanceType.Physical, 40 );
-			SetDamageType( ResistanceType.Cold, 60 );
-
-			SetResistance( ResistanceType.Fire, 50 );
-			SetResistance( ResistanceType.Energy, 50 );
-			SetResistance( ResistanceType.Physical, 50 );
-			SetResistance( ResistanceType.Cold, 50 );
-			SetResistance( ResistanceType.Poison, 50 );
-
 			SetSkill( SkillName.MagicResist, 65.1, 80.0 );
 			SetSkill( SkillName.Tactics, 95.1, 100 );
 			SetSkill( SkillName.Wrestling, 85.1, 95 );

@@ -6,11 +6,6 @@ namespace Server.Mobiles
     [CorpseName( "a shadow knight corpse" )]
 	public class ShadowKnight : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return Utility.RandomBool() ? WeaponAbility.ConcussionBlow : WeaponAbility.CrushingBlow;
-		}
-
 		public override bool IgnoreYoungProtection { get { return false; } }
 
 		[Constructable]
@@ -27,15 +22,6 @@ namespace Server.Mobiles
 			SetHits( 2000 );
 
 			SetDamage( 20, 30 );
-
-			SetDamageType( ResistanceType.Physical, 60 );
-			SetDamageType( ResistanceType.Cold, 40 );
-
-			SetResistance( ResistanceType.Physical, 90 );
-			SetResistance( ResistanceType.Fire, 65 );
-			SetResistance( ResistanceType.Cold, 75 );
-			SetResistance( ResistanceType.Poison, 75 );
-			SetResistance( ResistanceType.Energy, 55 );
 
 			SetSkill( SkillName.Chivalry, 120.0 );
 			SetSkill( SkillName.DetectHidden, 80.0 );

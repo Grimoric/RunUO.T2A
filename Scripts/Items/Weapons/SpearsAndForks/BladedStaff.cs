@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x26BD, 0x26C7 )]
 	public class BladedStaff : BaseSpear
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ArmorIgnore; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Dismount; } }
-
-		public override int AosStrengthReq{ get{ return 40; } }
-		public override int AosMinDamage{ get{ return 14; } }
-		public override int AosMaxDamage{ get{ return 16; } }
-		public override int AosSpeed{ get{ return 37; } }
-		public override float MlSpeed{ get{ return 3.00f; } }
-
 		public override int OldStrengthReq{ get{ return 40; } }
 		public override int OldMinDamage{ get{ return 14; } }
 		public override int OldMaxDamage{ get{ return 16; } }

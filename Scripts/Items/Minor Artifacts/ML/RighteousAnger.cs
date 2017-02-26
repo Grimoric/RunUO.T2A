@@ -11,11 +11,6 @@ namespace Server.Items
 		public RighteousAnger()
 		{
 			Hue = 0x284;
-
-			Attributes.AttackChance = 15;
-			Attributes.DefendChance = 5;
-			Attributes.WeaponSpeed = 35;
-			Attributes.WeaponDamage = 40;
 		}
 
 		public RighteousAnger( Serial serial ) : base( serial )

@@ -5,8 +5,6 @@ namespace Server.Items
 		public override int LabelNumber{ get{ return 1061093; } } // Midnight Bracers
 		public override int ArtifactRarity{ get{ return 11; } }
 
-		public override int BasePhysicalResistance{ get{ return 23; } }
-
 		public override int InitMinHits{ get{ return 255; } }
 		public override int InitMaxHits{ get{ return 255; } }
 
@@ -14,9 +12,6 @@ namespace Server.Items
 		public MidnightBracers()
 		{
 			Hue = 0x455;
-			SkillBonuses.SetValues( 0, SkillName.Necromancy, 20.0 );
-			Attributes.SpellDamage = 10;
-			ArmorAttributes.MageArmor = 1;
 		}
 
 		public MidnightBracers( Serial serial ) : base( serial )
@@ -35,9 +30,6 @@ namespace Server.Items
 			base.Deserialize( reader );
 
 			int version = reader.ReadInt();
-
-			if ( version < 1 )
-				PhysicalBonus = 0;
 		}
 	}
 }

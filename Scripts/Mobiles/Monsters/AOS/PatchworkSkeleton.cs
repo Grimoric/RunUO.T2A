@@ -5,11 +5,6 @@ namespace Server.Mobiles
     [CorpseName( "a patchwork skeletal corpse" )]
 	public class PatchworkSkeleton : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.Dismount;
-		}
-
 		[Constructable]
 		public PatchworkSkeleton() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -24,15 +19,6 @@ namespace Server.Mobiles
 			SetHits( 58, 72 );
 
 			SetDamage( 18, 22 );
-
-			SetDamageType( ResistanceType.Physical, 85 );
-			SetDamageType( ResistanceType.Cold, 15 );
-
-			SetResistance( ResistanceType.Physical, 55, 65 );
-			SetResistance( ResistanceType.Fire, 50, 60 );
-			SetResistance( ResistanceType.Cold, 70, 80 );
-			SetResistance( ResistanceType.Poison, 100 );
-			SetResistance( ResistanceType.Energy, 40, 50 );
 
 			SetSkill( SkillName.MagicResist, 70.1, 95.0 );
 			SetSkill( SkillName.Tactics, 55.1, 80.0 );

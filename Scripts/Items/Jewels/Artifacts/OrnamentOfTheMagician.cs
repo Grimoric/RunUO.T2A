@@ -9,11 +9,6 @@ namespace Server.Items
 		public OrnamentOfTheMagician()
 		{
 			Hue = 0x554;
-			Attributes.CastRecovery = 3;
-			Attributes.CastSpeed = 2;
-			Attributes.LowerManaCost = 10;
-			Attributes.LowerRegCost = 20;
-			Resistances.Energy = 15;
 		}
 
 		public OrnamentOfTheMagician( Serial serial ) : base( serial )

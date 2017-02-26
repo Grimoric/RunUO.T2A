@@ -23,17 +23,6 @@ namespace Server.Mobiles
 
 			SetDamage( 12, 20 );
 
-			SetDamageType( ResistanceType.Physical, 65 );
-			SetDamageType( ResistanceType.Fire, 15 );
-			SetDamageType( ResistanceType.Poison, 15 );
-			SetDamageType( ResistanceType.Energy, 5 );
-
-			SetResistance( ResistanceType.Physical, 35, 65 );
-			SetResistance( ResistanceType.Fire, 40, 60 );
-			SetResistance( ResistanceType.Cold, 25, 45 );
-			SetResistance( ResistanceType.Poison, 40, 60 );
-			SetResistance( ResistanceType.Energy, 35, 55 );
-
 			SetSkill( SkillName.Anatomy, 105.0, 120.0 );
 			SetSkill( SkillName.MagicResist, 80.0, 100.0 );
 			SetSkill( SkillName.Tactics, 115.0, 130.0 );
@@ -78,12 +67,6 @@ namespace Server.Mobiles
 			}
 
 			Utility.AssignRandomHair( this );
-		}
-
-		public override void OnDeath( Container c )
-		{
-			base.OnDeath( c );
-			c.DropItem( new BookOfNinjitsu() );
 		}
 
 		public override bool BardImmune{ get{ return true; } }

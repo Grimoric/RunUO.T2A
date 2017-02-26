@@ -22,14 +22,6 @@ namespace Server.Mobiles
 
 			SetDamage( 5, 15 );
 
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 45, 55 );
-			SetResistance( ResistanceType.Fire, 10, 20 );
-			SetResistance( ResistanceType.Cold, 40, 50 );
-			SetResistance( ResistanceType.Poison, 35, 45 );
-			SetResistance( ResistanceType.Energy, 35, 45 );
-
 			SetSkill( SkillName.Archery, 90.1, 100.0 );
 			SetSkill( SkillName.MagicResist, 91.0, 100.0 );
 			SetSkill( SkillName.Swords, 90.1, 100.0 );
@@ -123,7 +115,7 @@ namespace Server.Mobiles
 
 				foreach ( Mobile m in this.GetMobilesInRange( 8 ) )
 				{
-					if ( m is MeerWarrior && IsFriend( m ) && CanBeBeneficial( m ) && m.Hits < m.HitsMax && !m.Poisoned && !MortalStrike.IsWounded( m ) )
+					if ( m is MeerWarrior && IsFriend( m ) && CanBeBeneficial( m ) && m.Hits < m.HitsMax && !m.Poisoned )
 						list.Add( m );
 				}
 

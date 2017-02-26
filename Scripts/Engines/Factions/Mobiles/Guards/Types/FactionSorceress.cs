@@ -15,14 +15,6 @@ namespace Server.Factions
 			SetDex( 61, 85 );
 			SetInt( 126, 150 );
 
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 30, 50 );
-			SetResistance( ResistanceType.Fire, 30, 50 );
-			SetResistance( ResistanceType.Cold, 30, 50 );
-			SetResistance( ResistanceType.Energy, 30, 50 );
-			SetResistance( ResistanceType.Poison, 30, 50 );
-
 			VirtualArmor = 24;
 
 			SetSkill( SkillName.Macing, 100.0, 110.0 );

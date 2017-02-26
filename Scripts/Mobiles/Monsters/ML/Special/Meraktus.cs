@@ -19,11 +19,6 @@ namespace Server.Mobiles
 		public override MonsterStatuetteType[] StatueTypes{ get{ return new MonsterStatuetteType[] { 	
 			MonsterStatuetteType.Minotaur }; } }
 
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.Dismount;
-		}
-
 		[Constructable]
 		public Meraktus()
 			: base(AIType.AI_Melee)
@@ -41,14 +36,6 @@ namespace Server.Mobiles
 			SetHits( 4100, 4200 );
 
 			SetDamage( 16, 30 );
-
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 65, 90 );
-			SetResistance( ResistanceType.Fire, 65, 70 );
-			SetResistance( ResistanceType.Cold, 50, 60 );
-			SetResistance( ResistanceType.Poison, 40, 60 );
-			SetResistance( ResistanceType.Energy, 50, 55 );
 
 			//SetSkill( SkillName.Meditation, Unknown );
 			//SetSkill( SkillName.EvalInt, Unknown );

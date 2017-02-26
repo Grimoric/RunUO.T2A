@@ -24,12 +24,6 @@ namespace Server.Mobiles
 			SetSkill( SkillName.Tactics, 80.1, 90.0 );
 			SetSkill( SkillName.Wrestling, 80.1, 100.0 );
 
-			SetResistance( ResistanceType.Physical, 55, 65 );
-			SetResistance( ResistanceType.Fire, 10, 20 );
-			SetResistance( ResistanceType.Cold, 60, 70 );
-			SetResistance( ResistanceType.Poison, 20, 30 );
-			SetResistance( ResistanceType.Energy, 30, 40 );
-
 			Fame = 18000;
 			Karma = -18000;
 

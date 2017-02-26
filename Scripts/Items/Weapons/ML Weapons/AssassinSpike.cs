@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x2D21, 0x2D2D )]
 	public class AssassinSpike : BaseKnife
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.InfectiousStrike; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ShadowStrike; } }
-
-		public override int AosStrengthReq{ get{ return 15; } }
-		public override int AosMinDamage{ get{ return 10; } }
-		public override int AosMaxDamage{ get{ return 12; } }
-		public override int AosSpeed{ get{ return 50; } }
-		public override float MlSpeed{ get{ return 2.00f; } }
-
 		public override int OldStrengthReq{ get{ return 15; } }
 		public override int OldMinDamage{ get{ return 10; } }
 		public override int OldMaxDamage{ get{ return 12; } }

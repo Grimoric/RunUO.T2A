@@ -4,18 +4,10 @@ namespace Server.Items
 	{
 		public override int LabelNumber{ get{ return 1072933; } } // Resillient Bracer
 
-		public override int PhysicalResistance{ get { return 20; } }
-
 		[Constructable]
 		public ResilientBracer()
 		{
 			Hue = 0x488;
-
-			SkillBonuses.SetValues( 0, SkillName.MagicResist, 15.0 );
-
-			Attributes.BonusHits = 5;
-			Attributes.RegenHits = 2;
-			Attributes.DefendChance = 10;
 		}
 
 		public ResilientBracer( Serial serial ) : base( serial )

@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public TrueLeafblade()
 		{
-			WeaponAttributes.ResistPoisonBonus = 5;
 		}
 
 		public TrueLeafblade( Serial serial ) : base( serial )

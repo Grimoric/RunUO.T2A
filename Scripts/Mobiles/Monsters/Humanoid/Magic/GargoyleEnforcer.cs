@@ -5,11 +5,6 @@ namespace Server.Mobiles
     [CorpseName( "a gargoyle corpse" )]
 	public class GargoyleEnforcer : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.WhirlwindAttack;
-		}
-
 		[Constructable]
 		public GargoyleEnforcer() : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -24,12 +19,6 @@ namespace Server.Mobiles
 			SetHits( 482, 485 );
 
 			SetDamage( 7, 14 );
-
-			SetResistance( ResistanceType.Physical, 40, 60 );
-			SetResistance( ResistanceType.Fire, 50, 60 );
-			SetResistance( ResistanceType.Cold, 20, 30 );
-			SetResistance( ResistanceType.Poison, 25, 35 );
-			SetResistance( ResistanceType.Energy, 15, 25 );
 
 			SetSkill( SkillName.MagicResist, 120.1, 130.0 );
 			SetSkill( SkillName.Tactics, 70.1, 80.0 );

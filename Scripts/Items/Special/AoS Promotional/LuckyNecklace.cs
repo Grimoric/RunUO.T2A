@@ -6,10 +6,8 @@
 		public override int LabelNumber{ get { return 1075239; } }  //Lucky Necklace	1075239
 
 		[Constructable]
-		public LuckyNecklace( )
-			: base( 0x1088, Layer.Neck  )
+		public LuckyNecklace( ) : base( 0x1088, Layer.Neck  )
 		{
-			base.Attributes.Luck = 200;
 			LootType = LootType.Blessed;
 		}
 

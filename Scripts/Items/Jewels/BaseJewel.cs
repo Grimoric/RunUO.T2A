@@ -22,9 +22,6 @@ namespace Server.Items
 		private int m_MaxHitPoints;
 		private int m_HitPoints;
 
-		private AosAttributes m_AosAttributes;
-		private AosElementAttributes m_AosResistances;
-		private AosSkillBonuses m_AosSkillBonuses;
 		private CraftResource m_Resource;
 		private GemType m_GemType;
 
@@ -58,27 +55,6 @@ namespace Server.Items
 			}
 		}
 
-		[CommandProperty( AccessLevel.Player )]
-		public AosAttributes Attributes
-		{
-			get{ return m_AosAttributes; }
-			set{}
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public AosElementAttributes Resistances
-		{
-			get{ return m_AosResistances; }
-			set{}
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public AosSkillBonuses SkillBonuses
-		{
-			get{ return m_AosSkillBonuses; }
-			set{}
-		}
-
 		[CommandProperty( AccessLevel.GameMaster )]
 		public CraftResource Resource
 		{
@@ -93,11 +69,6 @@ namespace Server.Items
 			set{ m_GemType = value; InvalidateProperties(); }
 		}
 
-		public override int PhysicalResistance{ get{ return m_AosResistances.Physical; } }
-		public override int FireResistance{ get{ return m_AosResistances.Fire; } }
-		public override int ColdResistance{ get{ return m_AosResistances.Cold; } }
-		public override int PoisonResistance{ get{ return m_AosResistances.Poison; } }
-		public override int EnergyResistance{ get{ return m_AosResistances.Energy; } }
 		public virtual int BaseGemTypeNumber{ get{ return 0; } }
 
 		public virtual int InitMinHits{ get{ return 0; } }
@@ -114,25 +85,10 @@ namespace Server.Items
 			}
 		}
 
-		public override void OnAfterDuped( Item newItem )
-		{
-			BaseJewel jewel = newItem as BaseJewel;
-
-			if ( jewel == null )
-				return;
-
-			jewel.m_AosAttributes = new AosAttributes( newItem, m_AosAttributes );
-			jewel.m_AosResistances = new AosElementAttributes( newItem, m_AosResistances );
-			jewel.m_AosSkillBonuses = new AosSkillBonuses( newItem, m_AosSkillBonuses );
-		}
-
 		public virtual int ArtifactRarity{ get{ return 0; } }
 
 		public BaseJewel( int itemID, Layer layer ) : base( itemID )
 		{
-			m_AosAttributes = new AosAttributes( this );
-			m_AosResistances = new AosElementAttributes( this );
-			m_AosSkillBonuses = new AosSkillBonuses( this );
 			m_Resource = CraftResource.Iron;
 			m_GemType = GemType.None;
 
@@ -149,83 +105,10 @@ namespace Server.Items
 		{
 			base.GetProperties( list );
 
-			m_AosSkillBonuses.GetProperties( list );
-
 			int prop;
 
 			if ( (prop = ArtifactRarity) > 0 )
 				list.Add( 1061078, prop.ToString() ); // artifact rarity ~1_val~
-
-			if ( (prop = m_AosAttributes.WeaponDamage) != 0 )
-				list.Add( 1060401, prop.ToString() ); // damage increase ~1_val~%
-
-			if ( (prop = m_AosAttributes.DefendChance) != 0 )
-				list.Add( 1060408, prop.ToString() ); // defense chance increase ~1_val~%
-
-			if ( (prop = m_AosAttributes.BonusDex) != 0 )
-				list.Add( 1060409, prop.ToString() ); // dexterity bonus ~1_val~
-
-			if ( (prop = m_AosAttributes.EnhancePotions) != 0 )
-				list.Add( 1060411, prop.ToString() ); // enhance potions ~1_val~%
-
-			if ( (prop = m_AosAttributes.CastRecovery) != 0 )
-				list.Add( 1060412, prop.ToString() ); // faster cast recovery ~1_val~
-
-			if ( (prop = m_AosAttributes.CastSpeed) != 0 )
-				list.Add( 1060413, prop.ToString() ); // faster casting ~1_val~
-
-			if ( (prop = m_AosAttributes.AttackChance) != 0 )
-				list.Add( 1060415, prop.ToString() ); // hit chance increase ~1_val~%
-
-			if ( (prop = m_AosAttributes.BonusHits) != 0 )
-				list.Add( 1060431, prop.ToString() ); // hit point increase ~1_val~
-
-			if ( (prop = m_AosAttributes.BonusInt) != 0 )
-				list.Add( 1060432, prop.ToString() ); // intelligence bonus ~1_val~
-
-			if ( (prop = m_AosAttributes.LowerManaCost) != 0 )
-				list.Add( 1060433, prop.ToString() ); // lower mana cost ~1_val~%
-
-			if ( (prop = m_AosAttributes.LowerRegCost) != 0 )
-				list.Add( 1060434, prop.ToString() ); // lower reagent cost ~1_val~%
-
-			if ( (prop = m_AosAttributes.Luck) != 0 )
-				list.Add( 1060436, prop.ToString() ); // luck ~1_val~
-
-			if ( (prop = m_AosAttributes.BonusMana) != 0 )
-				list.Add( 1060439, prop.ToString() ); // mana increase ~1_val~
-
-			if ( (prop = m_AosAttributes.RegenMana) != 0 )
-				list.Add( 1060440, prop.ToString() ); // mana regeneration ~1_val~
-
-			if ( (prop = m_AosAttributes.NightSight) != 0 )
-				list.Add( 1060441 ); // night sight
-
-			if ( (prop = m_AosAttributes.ReflectPhysical) != 0 )
-				list.Add( 1060442, prop.ToString() ); // reflect physical damage ~1_val~%
-
-			if ( (prop = m_AosAttributes.RegenStam) != 0 )
-				list.Add( 1060443, prop.ToString() ); // stamina regeneration ~1_val~
-
-			if ( (prop = m_AosAttributes.RegenHits) != 0 )
-				list.Add( 1060444, prop.ToString() ); // hit point regeneration ~1_val~
-
-			if ( (prop = m_AosAttributes.SpellChanneling) != 0 )
-				list.Add( 1060482 ); // spell channeling
-
-			if ( (prop = m_AosAttributes.SpellDamage) != 0 )
-				list.Add( 1060483, prop.ToString() ); // spell damage increase ~1_val~%
-
-			if ( (prop = m_AosAttributes.BonusStam) != 0 )
-				list.Add( 1060484, prop.ToString() ); // stamina increase ~1_val~
-
-			if ( (prop = m_AosAttributes.BonusStr) != 0 )
-				list.Add( 1060485, prop.ToString() ); // strength bonus ~1_val~
-
-			if ( (prop = m_AosAttributes.WeaponSpeed) != 0 )
-				list.Add( 1060486, prop.ToString() ); // swing speed increase ~1_val~%
-
-			base.AddResistanceProperties( list );
 
 			if ( m_HitPoints >= 0 && m_MaxHitPoints > 0 )
 				list.Add( 1060639, "{0}\t{1}", m_HitPoints, m_MaxHitPoints ); // durability ~1_val~ / ~2_val~
@@ -242,10 +125,6 @@ namespace Server.Items
 
 			writer.WriteEncodedInt( (int) m_Resource );
 			writer.WriteEncodedInt( (int) m_GemType );
-
-			m_AosAttributes.Serialize( writer );
-			m_AosResistances.Serialize( writer );
-			m_AosSkillBonuses.Serialize( writer );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -272,30 +151,6 @@ namespace Server.Items
 				}
 				case 1:
 				{
-					m_AosAttributes = new AosAttributes( this, reader );
-					m_AosResistances = new AosElementAttributes( this, reader );
-					m_AosSkillBonuses = new AosSkillBonuses( this, reader );
-
-	                int strBonus = m_AosAttributes.BonusStr;
-					int dexBonus = m_AosAttributes.BonusDex;
-					int intBonus = m_AosAttributes.BonusInt;
-
-					if ( Parent is Mobile && (strBonus != 0 || dexBonus != 0 || intBonus != 0) )
-					{
-						Mobile m = (Mobile)Parent;
-
-						string modName = Serial.ToString();
-
-						if ( strBonus != 0 )
-							m.AddStatMod( new StatMod( StatType.Str, modName + "Str", strBonus, TimeSpan.Zero ) );
-
-						if ( dexBonus != 0 )
-							m.AddStatMod( new StatMod( StatType.Dex, modName + "Dex", dexBonus, TimeSpan.Zero ) );
-
-						if ( intBonus != 0 )
-							m.AddStatMod( new StatMod( StatType.Int, modName + "Int", intBonus, TimeSpan.Zero ) );
-					}
-
 					if ( Parent is Mobile )
 						((Mobile)Parent).CheckStatTimers();
 
@@ -303,10 +158,6 @@ namespace Server.Items
 				}
 				case 0:
 				{
-					m_AosAttributes = new AosAttributes( this );
-					m_AosResistances = new AosElementAttributes( this );
-					m_AosSkillBonuses = new AosSkillBonuses( this );
-
 					break;
 				}
 			}

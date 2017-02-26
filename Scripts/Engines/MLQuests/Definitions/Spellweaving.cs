@@ -149,7 +149,6 @@ namespace Server.Engines.MLQuests.Definitions
 			Objectives.Add( new KillObjective( 2, new Type[] { typeof( ExodusMinion ) }, "Exodus Minions" ) );
 
 			Rewards.Add( new ItemReward( 1031601, typeof( ArcaneCircleScroll ) ) ); // Arcane Circle
-			Rewards.Add( new ItemReward( 1031600, typeof( SpellweavingBook ) ) ); // Spellweaving Spellbook
 			Rewards.Add( new ItemReward( 1031602, typeof( GiftOfRenewalScroll ) ) ); // Gift of Renewal
 		}
 
@@ -269,7 +268,6 @@ namespace Server.Engines.MLQuests.Definitions
 			Objectives.Add( new CollectObjective( 30, typeof( SeveredHumanEars ), 1032591 ) ); // severed human ears
 
 			Rewards.Add( new ItemReward( 1031601, typeof( ArcaneCircleScroll ) ) ); // Arcane Circle
-			Rewards.Add( new ItemReward( 1031600, typeof( SpellweavingBook ) ) ); // Spellweaving Spellbook
 			Rewards.Add( new ItemReward( 1031602, typeof( GiftOfRenewalScroll ) ) ); // Gift of Renewal
 		}
 

@@ -166,25 +166,6 @@ namespace Server.Items
 		}
 		#endregion
 
-		#region AOS bonuses
-		private AosAttributes m_AosAttributes;
-		private AosSkillBonuses m_AosSkillBonuses;
-
-		[CommandProperty(AccessLevel.GameMaster)]
-		public AosAttributes Attributes
-		{
-			get { return m_AosAttributes; }
-			set { }
-		}
-
-		[CommandProperty(AccessLevel.GameMaster)]
-		public AosSkillBonuses SkillBonuses
-		{
-			get { return m_AosSkillBonuses; }
-			set { }
-		}
-		#endregion
-
 		public BaseTalisman()
 			: this(GetRandomItemID())
 		{
@@ -199,8 +180,6 @@ namespace Server.Items
 			m_Protection = new TalismanAttribute();
 			m_Killer = new TalismanAttribute();
 			m_Summoner = new TalismanAttribute();
-			m_AosAttributes = new AosAttributes(this);
-			m_AosSkillBonuses = new AosSkillBonuses(this);
 		}
 
 		public BaseTalisman(Serial serial)
@@ -218,8 +197,6 @@ namespace Server.Items
 			talisman.m_Summoner = new TalismanAttribute(m_Summoner);
 			talisman.m_Protection = new TalismanAttribute(m_Protection);
 			talisman.m_Killer = new TalismanAttribute(m_Killer);
-			talisman.m_AosAttributes = new AosAttributes(newItem, m_AosAttributes);
-			talisman.m_AosSkillBonuses = new AosSkillBonuses(newItem, m_AosSkillBonuses);
 		}
 
 		public override bool CanEquip( Mobile from )
@@ -238,9 +215,6 @@ namespace Server.Items
 			if (parent is Mobile)
 			{
 				Mobile from = (Mobile)parent;
-
-				m_AosSkillBonuses.AddTo(from);
-				m_AosAttributes.AddStatBonuses(from);
 
 				if (m_Blessed && BlessedFor == null)
 				{
@@ -263,9 +237,6 @@ namespace Server.Items
 			if (parent is Mobile)
 			{
 				Mobile from = (Mobile)parent;
-
-				m_AosSkillBonuses.Remove();
-				m_AosAttributes.RemoveStatBonuses(from);
 
 				if (m_Creature != null && !m_Creature.Deleted)
 				{
@@ -412,85 +383,6 @@ namespace Server.Items
 			if (m_Protection != null && !m_Protection.IsEmpty && m_Protection.Amount > 0)
 				list.Add(1072387, "{0}\t{1}", m_Protection.Name != null ? m_Protection.Name.ToString() : "Unknown", m_Protection.Amount); // ~1_NAME~ Protection: +~2_val~%
 
-			if (m_ExceptionalBonus != 0)
-				list.Add(1072395, "#{0}\t{1}", AosSkillBonuses.GetLabel( m_Skill ), m_ExceptionalBonus); // ~1_NAME~ Exceptional Bonus: ~2_val~%
-
-			if (m_SuccessBonus != 0)
-				list.Add(1072394, "#{0}\t{1}", AosSkillBonuses.GetLabel( m_Skill ), m_SuccessBonus); // ~1_NAME~ Bonus: ~2_val~%
-
-			m_AosSkillBonuses.GetProperties(list);
-
-			int prop;
-
-			if ((prop = m_AosAttributes.WeaponDamage) != 0)
-				list.Add(1060401, prop.ToString()); // damage increase ~1_val~%
-
-			if ((prop = m_AosAttributes.DefendChance) != 0)
-				list.Add(1060408, prop.ToString()); // defense chance increase ~1_val~%
-
-			if ((prop = m_AosAttributes.BonusDex) != 0)
-				list.Add(1060409, prop.ToString()); // dexterity bonus ~1_val~
-
-			if ((prop = m_AosAttributes.EnhancePotions) != 0)
-				list.Add(1060411, prop.ToString()); // enhance potions ~1_val~%
-
-			if ((prop = m_AosAttributes.CastRecovery) != 0)
-				list.Add(1060412, prop.ToString()); // faster cast recovery ~1_val~
-
-			if ((prop = m_AosAttributes.CastSpeed) != 0)
-				list.Add(1060413, prop.ToString()); // faster casting ~1_val~
-
-			if ((prop = m_AosAttributes.AttackChance) != 0)
-				list.Add(1060415, prop.ToString()); // hit chance increase ~1_val~%
-
-			if ((prop = m_AosAttributes.BonusHits) != 0)
-				list.Add(1060431, prop.ToString()); // hit point increase ~1_val~
-
-			if ((prop = m_AosAttributes.BonusInt) != 0)
-				list.Add(1060432, prop.ToString()); // intelligence bonus ~1_val~
-
-			if ((prop = m_AosAttributes.LowerManaCost) != 0)
-				list.Add(1060433, prop.ToString()); // lower mana cost ~1_val~%
-
-			if ((prop = m_AosAttributes.LowerRegCost) != 0)
-				list.Add(1060434, prop.ToString()); // lower reagent cost ~1_val~%
-
-			if ((prop = m_AosAttributes.Luck) != 0)
-				list.Add(1060436, prop.ToString()); // luck ~1_val~
-
-			if ((prop = m_AosAttributes.BonusMana) != 0)
-				list.Add(1060439, prop.ToString()); // mana increase ~1_val~
-
-			if ((prop = m_AosAttributes.RegenMana) != 0)
-				list.Add(1060440, prop.ToString()); // mana regeneration ~1_val~
-
-			if ((prop = m_AosAttributes.NightSight) != 0)
-				list.Add(1060441); // night sight
-
-			if ((prop = m_AosAttributes.ReflectPhysical) != 0)
-				list.Add(1060442, prop.ToString()); // reflect physical damage ~1_val~%
-
-			if ((prop = m_AosAttributes.RegenStam) != 0)
-				list.Add(1060443, prop.ToString()); // stamina regeneration ~1_val~
-
-			if ((prop = m_AosAttributes.RegenHits) != 0)
-				list.Add(1060444, prop.ToString()); // hit point regeneration ~1_val~
-
-			if ((prop = m_AosAttributes.SpellChanneling) != 0)
-				list.Add(1060482); // spell channeling
-
-			if ((prop = m_AosAttributes.SpellDamage) != 0)
-				list.Add(1060483, prop.ToString()); // spell damage increase ~1_val~%
-
-			if ((prop = m_AosAttributes.BonusStam) != 0)
-				list.Add(1060484, prop.ToString()); // stamina increase ~1_val~
-
-			if ((prop = m_AosAttributes.BonusStr) != 0)
-				list.Add(1060485, prop.ToString()); // strength bonus ~1_val~
-
-			if ((prop = m_AosAttributes.WeaponSpeed) != 0)
-				list.Add(1060486, prop.ToString()); // swing speed increase ~1_val~%
-
 			if (m_MaxCharges > 0)
 				list.Add(1060741, m_Charges.ToString()); // charges: ~1_val~
 
@@ -540,8 +432,6 @@ namespace Server.Items
 
 			SaveFlag flags = SaveFlag.None;
 
-			SetSaveFlag(ref flags, SaveFlag.Attributes, !m_AosAttributes.IsEmpty);
-			SetSaveFlag(ref flags, SaveFlag.SkillBonuses, !m_AosSkillBonuses.IsEmpty);
 			SetSaveFlag(ref flags, SaveFlag.Protection, m_Protection != null && !m_Protection.IsEmpty);
 			SetSaveFlag(ref flags, SaveFlag.Killer, m_Killer != null && !m_Killer.IsEmpty);
 			SetSaveFlag(ref flags, SaveFlag.Summoner, m_Summoner != null && !m_Summoner.IsEmpty);
@@ -557,12 +447,6 @@ namespace Server.Items
 			SetSaveFlag(ref flags, SaveFlag.Slayer, m_Slayer != TalismanSlayerName.None);
 
 			writer.WriteEncodedInt((int)flags);
-
-			if (GetSaveFlag(flags, SaveFlag.Attributes))
-				m_AosAttributes.Serialize(writer);
-
-			if (GetSaveFlag(flags, SaveFlag.SkillBonuses))
-				m_AosSkillBonuses.Serialize(writer);
 
 			if (GetSaveFlag(flags, SaveFlag.Protection))
 				m_Protection.Serialize(writer);
@@ -613,17 +497,6 @@ namespace Server.Items
 					{
 						SaveFlag flags = (SaveFlag)reader.ReadEncodedInt();
 
-						if (GetSaveFlag(flags, SaveFlag.Attributes))
-							m_AosAttributes = new AosAttributes(this, reader);
-						else
-							m_AosAttributes = new AosAttributes(this);
-
-						if (GetSaveFlag(flags, SaveFlag.SkillBonuses))
-							m_AosSkillBonuses = new AosSkillBonuses(this, reader);
-						else
-							m_AosSkillBonuses = new AosSkillBonuses(this);
-
-						// Backward compatibility
 						if (GetSaveFlag(flags, SaveFlag.Owner))
 							BlessedFor = reader.ReadMobile();
 
@@ -644,9 +517,6 @@ namespace Server.Items
 
 						if (GetSaveFlag(flags, SaveFlag.Removal))
 							m_Removal = (TalismanRemoval)reader.ReadEncodedInt();
-
-						if (GetSaveFlag(flags, SaveFlag.OldKarmaLoss))
-							m_AosAttributes.IncreasedKarmaLoss = reader.ReadEncodedInt();
 
 						if (GetSaveFlag(flags, SaveFlag.Skill))
 							m_Skill = (SkillName)reader.ReadEncodedInt();
@@ -680,11 +550,6 @@ namespace Server.Items
 
 			if (Parent is Mobile)
 			{
-				Mobile m = (Mobile)Parent;
-
-				m_AosAttributes.AddStatBonuses(m);
-				m_AosSkillBonuses.AddTo(m);
-
 				if (m_ChargeTime > 0)
 					StartTimer();
 			}
@@ -1046,9 +911,6 @@ namespace Server.Items
 						case TalismanRemoval.Damage:
 							target.PlaySound(0x201);
 							Effects.SendLocationParticles(EffectItem.Create(target.Location, target.Map, EffectItem.DefaultDuration), 0x3728, 1, 13, 0x834, 0, 0x13B2, 0);
-
-							BleedAttack.EndBleed(target, true);
-							MortalStrike.EndWound(target);
 
 							BuffInfo.RemoveBuff(target, BuffIcon.Bleed);
 							BuffInfo.RemoveBuff(target, BuffIcon.MortalStrike);

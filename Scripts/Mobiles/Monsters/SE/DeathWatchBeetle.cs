@@ -6,10 +6,6 @@ namespace Server.Mobiles
 	[TypeAlias( "Server.Mobiles.DeathWatchBeetle" )]
 	public class DeathwatchBeetle : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.CrushingBlow;
-		}
 		[Constructable]
 		public DeathwatchBeetle() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 ) 
 		{
@@ -24,14 +20,6 @@ namespace Server.Mobiles
 			SetMana( 20 );
 
 			SetDamage( 5, 10 );
-
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 35, 40 );
-			SetResistance( ResistanceType.Fire, 15, 30 );
-			SetResistance( ResistanceType.Cold, 15, 30 );
-			SetResistance( ResistanceType.Poison, 50, 80 );
-			SetResistance( ResistanceType.Energy, 20, 35 );
 
 			SetSkill( SkillName.MagicResist, 50.1, 58.0 );
 			SetSkill( SkillName.Tactics, 67.1, 77.0 );

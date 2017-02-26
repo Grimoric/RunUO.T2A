@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x2D28, 0x2D34 )]
 	public class OrnateAxe : BaseAxe
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Disarm; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.CrushingBlow; } }
-
-		public override int AosStrengthReq{ get{ return 45; } }
-		public override int AosMinDamage{ get{ return 18; } }
-		public override int AosMaxDamage{ get{ return 20; } }
-		public override int AosSpeed{ get{ return 26; } }
-		public override float MlSpeed{ get{ return 3.50f; } }
-
 		public override int OldStrengthReq{ get{ return 45; } }
 		public override int OldMinDamage{ get{ return 18; } }
 		public override int OldMaxDamage{ get{ return 20; } }

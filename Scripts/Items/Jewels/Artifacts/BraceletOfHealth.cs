@@ -9,8 +9,6 @@ namespace Server.Items
 		public BraceletOfHealth()
 		{
 			Hue = 0x21;
-			Attributes.BonusHits = 5;
-			Attributes.RegenHits = 10;
 		}
 
 		public BraceletOfHealth( Serial serial ) : base( serial )

@@ -5,8 +5,6 @@ namespace Server.Items
 		public override int LabelNumber{ get{ return 1061097; } } // Holy Knight's Breastplate
 		public override int ArtifactRarity{ get{ return 11; } }
 
-		public override int BasePhysicalResistance{ get{ return 35; } }
-
 		public override int InitMinHits{ get{ return 255; } }
 		public override int InitMaxHits{ get{ return 255; } }
 
@@ -14,8 +12,6 @@ namespace Server.Items
 		public HolyKnightsBreastplate()
 		{
 			Hue = 0x47E;
-			Attributes.BonusHits = 10;
-			Attributes.ReflectPhysical = 15;
 		}
 
 		public HolyKnightsBreastplate( Serial serial ) : base( serial )
@@ -34,9 +30,6 @@ namespace Server.Items
 			base.Deserialize( reader );
 
 			int version = reader.ReadInt();
-
-			if ( version < 1 )
-				PhysicalBonus = 0;
 		}
 	}
 }

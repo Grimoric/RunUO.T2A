@@ -13,10 +13,6 @@ namespace Server.Items
 		{
 			ItemID = 0x1B78;
 			Hue = 0x556;
-			Attributes.NightSight = 1;
-			Attributes.SpellChanneling = 1;
-			Attributes.DefendChance = 15;
-			Attributes.CastSpeed = 1;
 		}
 
 		public ArcaneShield( Serial serial ) : base( serial )
@@ -35,9 +31,6 @@ namespace Server.Items
 			base.Deserialize( reader );
 
 			int version = reader.ReadInt();
-
-			if ( Attributes.NightSight == 0 )
-				Attributes.NightSight = 1;
 		}
 	}
 }

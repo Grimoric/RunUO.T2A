@@ -12,8 +12,6 @@ namespace Server.Items
 		public TheBeserkersMaul()
 		{
 			Hue = 0x21;
-			Attributes.WeaponSpeed = 75;
-			Attributes.WeaponDamage = 50;
 		}
 
 		public TheBeserkersMaul( Serial serial ) : base( serial )

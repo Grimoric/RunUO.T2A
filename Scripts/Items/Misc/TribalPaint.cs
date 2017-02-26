@@ -36,11 +36,7 @@ namespace Server.Items
 				{
 					from.SendLocalizedMessage( 501699 ); // You cannot disguise yourself while polymorphed.
 				}
-				else if( TransformationSpellHelper.UnderTransformation( from ) )
-				{
-					from.SendLocalizedMessage( 501699 ); // You cannot disguise yourself while polymorphed.
-				}
-				else if ( from.IsBodyMod || from.FindItemOnLayer( Layer.Helm ) is OrcishKinMask )
+    			else if ( from.IsBodyMod || from.FindItemOnLayer( Layer.Helm ) is OrcishKinMask )
 				{
 					from.SendLocalizedMessage( 501605 ); // You are already disguised.
 				}

@@ -8,10 +8,6 @@ namespace Server.Items
 		public RecarosRiposte()
 		{
 			LootType = LootType.Blessed;
-
-			Attributes.AttackChance = 5;
-			Attributes.WeaponSpeed = 10;
-			Attributes.WeaponDamage = 25;
 		}
 
 		public RecarosRiposte( Serial serial ) : base( serial )

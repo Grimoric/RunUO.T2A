@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public FierySpellblade()
 		{
-			WeaponAttributes.ResistFireBonus = 5;
 		}
 
 		public FierySpellblade( Serial serial ) : base( serial )

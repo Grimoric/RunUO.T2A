@@ -5,11 +5,6 @@ namespace Server.Mobiles
     [CorpseName( "a minotaur corpse" )]
 	public class MinotaurCaptain : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.ParalyzingBlow;
-		}
-
 		[Constructable]
 		public MinotaurCaptain() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 ) // NEED TO CHECK
 		{
@@ -23,14 +18,6 @@ namespace Server.Mobiles
 			SetHits( 401, 440 );
 
 			SetDamage( 11, 20 );
-
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 65, 75 );
-			SetResistance( ResistanceType.Fire, 35, 45 );
-			SetResistance( ResistanceType.Cold, 40, 50 );
-			SetResistance( ResistanceType.Poison, 40, 50 );
-			SetResistance( ResistanceType.Energy, 40, 50 );
 
 			SetSkill( SkillName.Meditation, 0 );
 			SetSkill( SkillName.EvalInt, 0 );

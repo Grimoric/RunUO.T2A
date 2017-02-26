@@ -927,12 +927,6 @@ namespace Server.Commands
 					else
 						rewards[4] = true;
 				}
-				else if( item is RunicSewingKit )
-				{
-					RunicSewingKit rkit = (RunicSewingKit)item;
-
-					rewards[16 + CraftResources.GetIndex( rkit.Resource )] = true;
-				}
 
 				item.Delete();
 			}
@@ -1151,12 +1145,6 @@ namespace Server.Commands
 						rewards[10] = true;
 					else if( ps.Value == 120.0 )
 						rewards[11] = true;
-				}
-				else if( item is RunicHammer )
-				{
-					RunicHammer rh = (RunicHammer)item;
-
-					rewards[11 + CraftResources.GetIndex( rh.Resource )] = true;
 				}
 				else if( item is AncientSmithyHammer )
 				{

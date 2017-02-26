@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x27A3, 0x27EE )]
 	public class Tessen : BaseBashing
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Feint; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.Block; } }
-
-		public override int AosStrengthReq{ get{ return 10; } }
-		public override int AosMinDamage{ get{ return 10; } }
-		public override int AosMaxDamage{ get{ return 12; } }
-		public override int AosSpeed{ get{ return 50; } }
-		public override float MlSpeed{ get{ return 2.00f; } }
-
 		public override int OldStrengthReq{ get{ return 10; } }
 		public override int OldMinDamage{ get{ return 10; } }
 		public override int OldMaxDamage{ get{ return 12; } }

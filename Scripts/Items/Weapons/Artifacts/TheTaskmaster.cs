@@ -12,16 +12,6 @@ namespace Server.Items
 		public TheTaskmaster()
 		{
 			Hue = 0x4F8;
-			WeaponAttributes.HitPoisonArea = 100;
-			Attributes.BonusDex = 5;
-			Attributes.AttackChance = 15;
-			Attributes.WeaponDamage = 50;
-		}
-
-		public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
-		{
-			phys = fire = cold = nrgy = chaos = direct = 0;
-			pois = 100;
 		}
 
 		public TheTaskmaster( Serial serial ) : base( serial )

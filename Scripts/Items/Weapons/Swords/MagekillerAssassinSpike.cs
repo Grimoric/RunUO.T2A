@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public MagekillerAssassinSpike()
 		{
-			WeaponAttributes.HitLeechMana = 16;
 		}
 
 		public MagekillerAssassinSpike( Serial serial ) : base( serial )

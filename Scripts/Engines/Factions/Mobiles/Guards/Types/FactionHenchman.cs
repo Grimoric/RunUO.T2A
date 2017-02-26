@@ -17,13 +17,7 @@ namespace Server.Factions
 
 			SetDamage( 10, 14 );
 
-			SetResistance( ResistanceType.Physical, 10, 30 );
-			SetResistance( ResistanceType.Fire, 10, 30 );
-			SetResistance( ResistanceType.Cold, 10, 30 );
-			SetResistance( ResistanceType.Energy, 10, 30 );
-			SetResistance( ResistanceType.Poison, 10, 30 );
-
-			VirtualArmor = 8;
+    		VirtualArmor = 8;
 
 			SetSkill( SkillName.Fencing, 80.0, 90.0 );
 			SetSkill( SkillName.Wrestling, 80.0, 90.0 );

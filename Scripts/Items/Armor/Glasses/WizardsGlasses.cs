@@ -4,22 +4,12 @@ namespace Server.Items
 	{
 		public override int LabelNumber{ get{ return 1073374; } } //Wizard's Crystal Reading Glasses
 
-		public override int BasePhysicalResistance{ get{ return 5; } }
-		public override int BaseFireResistance{ get{ return 5; } }
-		public override int BaseColdResistance{ get{ return 5; } }
-		public override int BasePoisonResistance{ get{ return 5; } }
-		public override int BaseEnergyResistance{ get{ return 5; } }
-
 		public override int InitMinHits{ get{ return 255; } }
 		public override int InitMaxHits{ get{ return 255; } }
 
 		[Constructable]
 		public WizardsGlasses()
 		{
-			Attributes.BonusMana = 10;
-			Attributes.RegenMana = 3;
-			Attributes.SpellDamage = 15;
-
 			Hue = 0x2B0;
 		}
 		public WizardsGlasses( Serial serial ) : base( serial )

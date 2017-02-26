@@ -327,19 +327,6 @@ namespace Server.Items
 					patientNumber = -1;
 				}
 			}
-			else if ( BleedAttack.IsBleeding( m_Patient ) )
-			{
-				healerNumber = 1060088; // You bind the wound and stop the bleeding
-				patientNumber = 1060167; // The bleeding wounds have healed, you are no longer bleeding!
-
-				BleedAttack.EndBleed( m_Patient, false );
-			}
-			else if ( MortalStrike.IsWounded( m_Patient ) )
-			{
-				healerNumber = m_Healer == m_Patient ? 1005000 : 1010398;
-				patientNumber = -1;
-				playSound = false;
-			}
 			else if ( m_Patient.Hits == m_Patient.HitsMax )
 			{
 				healerNumber = 500967; // You heal what little damage your patient had.
@@ -425,7 +412,7 @@ namespace Server.Items
 			{
 				healer.SendLocalizedMessage( 500970 ); // Bandages cannot be used on that.
 			}
-			else if ( !patient.Poisoned && patient.Hits == patient.HitsMax && !BleedAttack.IsBleeding( patient ) && !isDeadPet )
+			else if ( !patient.Poisoned && patient.Hits == patient.HitsMax && !isDeadPet )
 			{
 				healer.SendLocalizedMessage( 500955 ); // That being is not damaged!
 			}

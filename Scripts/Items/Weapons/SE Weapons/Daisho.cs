@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x27A9, 0x27F4 )]
 	public class Daisho : BaseSword
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Feint; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.DoubleStrike; } }
-
-		public override int AosStrengthReq{ get{ return 40; } }
-		public override int AosMinDamage{ get{ return 13; } }
-		public override int AosMaxDamage{ get{ return 15; } }
-		public override int AosSpeed{ get{ return 40; } }
-		public override float MlSpeed{ get{ return 2.75f; } }
-
 		public override int OldStrengthReq{ get{ return 40; } }
 		public override int OldMinDamage{ get{ return 13; } }
 		public override int OldMaxDamage{ get{ return 15; } }

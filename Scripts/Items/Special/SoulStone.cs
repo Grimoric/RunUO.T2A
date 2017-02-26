@@ -131,9 +131,6 @@ namespace Server.Items
 		{
 			base.GetProperties( list );
 
-			if ( !IsEmpty )
-				list.Add( 1070721, "#{0}\t{1:0.0}", AosSkillBonuses.GetLabel( Skill ), SkillValue ); // Skill stored: ~1_skillname~ ~2_skillamount~
-
 			string name = this.LastUserName;
 
 			if ( name == null )
@@ -301,7 +298,6 @@ namespace Server.Items
 						int y = p / 2 * 20 + 40;
 
 						AddButton( x, y, 0xFA5, 0xFA6, i + 1, GumpButtonType.Reply, 0 );
-						AddHtmlLocalized( x + 45, y + 2, 200, 20, AosSkillBonuses.GetLabel( skill.SkillName ), 0x7FFF, false, false );
 
 						n++;
 					}
@@ -366,9 +362,6 @@ namespace Server.Items
 				 * character on the same account as the character who placed them into the stone.
 				 */
 				AddHtmlLocalized( 10, 42, 500, 110, 1061067, 0x7FFF, false, true );
-
-				AddHtmlLocalized( 10, 200, 390, 20, 1062297, 0x7FFF, false, false ); // Skill Chosen:
-				AddHtmlLocalized( 210, 200, 390, 20, AosSkillBonuses.GetLabel( skill.SkillName ), 0x7FFF, false, false );
 
 				AddHtmlLocalized( 10, 220, 390, 20, 1062298, 0x7FFF, false, false ); // Current Value:
 				AddLabel( 210, 220, 0x481, skill.Base.ToString( "0.0" ) );
@@ -476,8 +469,6 @@ namespace Server.Items
 				 */
 				AddHtmlLocalized( 10, 42, 500, 110, 1061067, 0x7FFF, false, true );
 
-				AddHtmlLocalized( 10, 200, 390, 20, 1070718, 0x7FFF, false, false ); // Skill Stored:
-				AddHtmlLocalized( 210, 200, 390, 20, AosSkillBonuses.GetLabel( stone.Skill ), 0x7FFF, false, false );
 
 				Skill fromSkill = from.Skills[stone.Skill];
 

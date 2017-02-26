@@ -5,11 +5,6 @@ namespace Server.Mobiles
     [CorpseName( "a fleshrenderer corpse" )]
 	public class FleshRenderer : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return Utility.RandomBool() ? WeaponAbility.Dismount : WeaponAbility.ParalyzingBlow;
-		}
-
 		public override bool IgnoreYoungProtection { get { return false; } }
 
 		[Constructable]
@@ -25,15 +20,6 @@ namespace Server.Mobiles
 			SetHits( 4500 );
 
 			SetDamage( 16, 20 );
-
-			SetDamageType( ResistanceType.Physical, 80 );
-			SetDamageType( ResistanceType.Poison, 20 );
-
-			SetResistance( ResistanceType.Physical, 80, 90 );
-			SetResistance( ResistanceType.Fire, 50, 60 );
-			SetResistance( ResistanceType.Cold, 50, 60 );
-			SetResistance( ResistanceType.Poison, 100 );
-			SetResistance( ResistanceType.Energy, 70, 80 );
 
 			SetSkill( SkillName.DetectHidden, 80.0 );
 			SetSkill( SkillName.MagicResist, 155.1, 160.0 );

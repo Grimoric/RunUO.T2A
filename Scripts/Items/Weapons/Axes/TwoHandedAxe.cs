@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x1443, 0x1442 )]
 	public class TwoHandedAxe : BaseAxe
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.DoubleStrike; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ShadowStrike; } }
-
-		public override int AosStrengthReq{ get{ return 40; } }
-		public override int AosMinDamage{ get{ return 16; } }
-		public override int AosMaxDamage{ get{ return 17; } }
-		public override int AosSpeed{ get{ return 31; } }
-		public override float MlSpeed{ get{ return 3.50f; } }
-
 		public override int OldStrengthReq{ get{ return 35; } }
 		public override int OldMinDamage{ get{ return 5; } }
 		public override int OldMaxDamage{ get{ return 39; } }

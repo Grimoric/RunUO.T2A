@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public MagekillerLeafblade()
 		{
-			WeaponAttributes.HitLeechMana = 16;
 		}
 
 		public MagekillerLeafblade( Serial serial ) : base( serial )

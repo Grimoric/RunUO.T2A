@@ -607,8 +607,7 @@ namespace Server.Engines.MLQuests.Definitions
 
 		private class InternalReward : ItemReward
 		{
-			public InternalReward()
-				: base( 1078052, typeof( NecromancerSpellbook ) ) // Complete Necromancer Spellbook
+			public InternalReward() : base( 1078052, typeof( Spellbook ) ) // Complete Necromancer Spellbook
 			{
 			}
 

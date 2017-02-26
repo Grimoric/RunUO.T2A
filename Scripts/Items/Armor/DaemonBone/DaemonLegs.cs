@@ -3,16 +3,9 @@ namespace Server.Items
     [FlipableAttribute( 0x1452, 0x1457 )]
 	public class DaemonLegs : BaseArmor
 	{
-		public override int BasePhysicalResistance{ get{ return 6; } }
-		public override int BaseFireResistance{ get{ return 6; } }
-		public override int BaseColdResistance{ get{ return 7; } }
-		public override int BasePoisonResistance{ get{ return 5; } }
-		public override int BaseEnergyResistance{ get{ return 7; } }
-
 		public override int InitMinHits{ get{ return 255; } }
 		public override int InitMaxHits{ get{ return 255; } }
 
-		public override int AosStrReq{ get{ return 55; } }
 		public override int OldStrReq{ get{ return 40; } }
 
 		public override int OldDexBonus{ get{ return -4; } }
@@ -29,8 +22,6 @@ namespace Server.Items
 		{
 			Weight = 3.0;
 			Hue = 0x648;
-
-			ArmorAttributes.SelfRepair = 1;
 		}
 
 		public DaemonLegs( Serial serial ) : base( serial )
@@ -47,9 +38,6 @@ namespace Server.Items
 		{
 			base.Deserialize( reader );
 			int version = reader.ReadInt();
-
-			if ( ArmorAttributes.SelfRepair == 0 )
-				ArmorAttributes.SelfRepair = 1;
 		}
 	}
 }

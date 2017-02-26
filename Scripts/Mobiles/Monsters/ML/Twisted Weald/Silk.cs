@@ -23,14 +23,6 @@ namespace Server.Mobiles
 
 			SetDamage( 15, 22 );
 
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 40, 50 );
-			SetResistance( ResistanceType.Fire, 30, 39 );
-			SetResistance( ResistanceType.Cold, 30, 40 );
-			SetResistance( ResistanceType.Poison, 70, 76 );
-			SetResistance( ResistanceType.Energy, 30, 40 );
-
 			SetSkill( SkillName.Wrestling, 114.1, 123.7 );
 			SetSkill( SkillName.Tactics, 102.6, 118.3 );
 			SetSkill( SkillName.MagicResist, 78.6, 94.8 );
@@ -45,13 +37,6 @@ namespace Server.Mobiles
 		{
 			AddLoot( LootPack.UltraRich, 2 );
 		}
-
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.ParalyzingBlow;
-		}
-
-		public override bool GivesMLMinorArtifact{ get{ return true; } }
 
 		public Silk( Serial serial )
 			: base( serial )

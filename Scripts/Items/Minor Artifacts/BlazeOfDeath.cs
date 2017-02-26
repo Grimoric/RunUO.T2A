@@ -11,20 +11,6 @@ namespace Server.Items
 		public BlazeOfDeath()
 		{
 			Hue = 0x501;
-			WeaponAttributes.HitFireArea = 50;
-			WeaponAttributes.HitFireball = 50;
-			Attributes.WeaponSpeed = 25;
-			Attributes.WeaponDamage = 35;
-			WeaponAttributes.ResistFireBonus = 10;
-			WeaponAttributes.LowerStatReq = 100;
-		}
-
-		public override void GetDamageTypes( Mobile wielder, out int phys, out int fire, out int cold, out int pois, out int nrgy, out int chaos, out int direct )
-		{
-			fire = 50;
-			phys = 50;
-
-			cold = pois = nrgy = chaos = direct = 0;
 		}
 
 		public BlazeOfDeath( Serial serial ) : base( serial )

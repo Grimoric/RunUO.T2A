@@ -9,10 +9,6 @@ namespace Server.Items
 		public RingOfTheVile()
 		{
 			Hue = 0x4F7;
-			Attributes.BonusDex = 8;
-			Attributes.RegenStam = 6;
-			Attributes.AttackChance = 15;
-			Resistances.Poison = 20;
 		}
 
 		public RingOfTheVile( Serial serial ) : base( serial )

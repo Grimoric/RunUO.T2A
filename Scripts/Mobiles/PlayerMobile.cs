@@ -624,23 +624,9 @@ namespace Server.Mobiles
 			}
 		}
 
-		public override int GetMaxResistance( ResistanceType type )
-		{
-			if ( AccessLevel > AccessLevel.Player )
-				return 100;
-
-			int max = base.GetMaxResistance( type );
-
-			if ( type != ResistanceType.Physical && 60 < max && Spells.Fourth.CurseSpell.UnderEffect( this ) )
-				max = 60;
-
-			return max;
-		}
-
 		protected override void OnRaceChange( Race oldRace )
 		{
 			ValidateEquipment();
-			UpdateResistances();
 		}
 
 		public override int MaxWeight { get { return 40 + (int)(3.5 * this.Str); } }
@@ -651,16 +637,6 @@ namespace Server.Mobiles
 		{
 			m_LastGlobalLight = -1;
 			m_LastPersonalLight = -1;
-		}
-
-		public override void ComputeBaseLightLevels( out int global, out int personal )
-		{
-			global = LightCycle.ComputeLevelFor( this );
-
-			if ( this.LightLevel < 21 && AosAttributes.GetValue( this, AosAttribute.NightSight ) > 0 )
-				personal = 21;
-			else
-				personal = this.LightLevel;
 		}
 
 		public override void CheckLightLevels( bool forceResend )
@@ -685,27 +661,6 @@ namespace Server.Mobiles
 
 			ns.Send( GlobalLightLevel.Instantiate( global ) );
 			ns.Send( new PersonalLightLevel( this, personal ) );
-		}
-
-		public override int GetMinResistance( ResistanceType type )
-		{
-			int magicResist = (int)(Skills[SkillName.MagicResist].Value * 10);
-			int min = int.MinValue;
-
-			if ( magicResist >= 1000 )
-				min = 40 + ((magicResist - 1000) / 50);
-			else if ( magicResist >= 400 )
-				min = (magicResist - 400) / 15;
-
-			if ( min > MaxPlayerResistance )
-				min = MaxPlayerResistance;
-
-			int baseMin = base.GetMinResistance( type );
-
-			if ( min < baseMin )
-				min = baseMin;
-
-			return min;
 		}
 
 		private static void OnLogin( LoginEventArgs e )
@@ -1010,15 +965,6 @@ namespace Server.Mobiles
 			}
 
 			DisguiseTimers.StartTimer( e.Mobile );
-
-			Timer.DelayCall( TimeSpan.Zero, new TimerStateCallback( ClearSpecialMovesCallback ), e.Mobile );
-		}
-
-		private static void ClearSpecialMovesCallback( object state )
-		{
-			Mobile from = (Mobile)state;
-
-			SpecialMove.ClearAllMoves( from );
 		}
 
 		private static void EventSink_Disconnected( DisconnectedEventArgs e )
@@ -1216,18 +1162,6 @@ namespace Server.Mobiles
 
 				return (strBase / 2) + 50 + strOffs;
 			}
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public override int StamMax
-		{
-			get{ return base.StamMax + AosAttributes.GetValue( this, AosAttribute.BonusStam ); }
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public override int ManaMax
-		{
-			get{ return base.ManaMax + AosAttributes.GetValue( this, AosAttribute.BonusMana ); }
 		}
 		#endregion
 
@@ -2843,8 +2777,6 @@ namespace Server.Mobiles
 		{
 			get{ return m_PermaFlags; }
 		}
-
-		public override int Luck{ get{ return AosAttributes.GetValue( this, AosAttribute.Luck ); } }
 
 		public override bool IsHarmfulCriminal( Mobile target )
 		{

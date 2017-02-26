@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public DarkglowScimitar()
 		{
-			WeaponAttributes.HitDispel = 10;
 		}
 
 		public DarkglowScimitar( Serial serial ) : base( serial )

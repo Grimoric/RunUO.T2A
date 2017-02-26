@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public SerratedWarCleaver()
 		{
-			Attributes.WeaponDamage = 7;
 		}
 
 		public SerratedWarCleaver( Serial serial ) : base( serial )

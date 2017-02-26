@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x143D, 0x143C )]
 	public class HammerPick : BaseBashing
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ArmorIgnore; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.MortalStrike; } }
-
-		public override int AosStrengthReq{ get{ return 45; } }
-		public override int AosMinDamage{ get{ return 15; } }
-		public override int AosMaxDamage{ get{ return 17; } }
-		public override int AosSpeed{ get{ return 28; } }
-		public override float MlSpeed{ get{ return 3.75f; } }
-
 		public override int OldStrengthReq{ get{ return 35; } }
 		public override int OldMinDamage{ get{ return 6; } }
 		public override int OldMaxDamage{ get{ return 33; } }

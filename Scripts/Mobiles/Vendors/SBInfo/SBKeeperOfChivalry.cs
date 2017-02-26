@@ -19,7 +19,6 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new GenericBuyInfo( typeof( BookOfChivalry ), 140, 20, 0x2252, 0 ) );
 			}
 		}
 

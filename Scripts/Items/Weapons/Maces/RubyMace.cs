@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public RubyMace()
 		{
-			Attributes.WeaponDamage = 5;
 		}
 
 		public RubyMace( Serial serial ) : base( serial )

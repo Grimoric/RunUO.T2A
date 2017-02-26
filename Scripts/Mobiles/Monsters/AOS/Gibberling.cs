@@ -5,11 +5,6 @@ namespace Server.Mobiles
     [CorpseName( "a gibberling corpse" )]
 	public class Gibberling : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.Dismount;
-		}
-
 		[Constructable]
 		public Gibberling() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -24,16 +19,6 @@ namespace Server.Mobiles
 			SetHits( 85, 99 );
 
 			SetDamage( 12, 17 );
-
-			SetDamageType( ResistanceType.Physical, 0 );
-			SetDamageType( ResistanceType.Fire, 40 );
-			SetDamageType( ResistanceType.Energy, 60 );
-
-			SetResistance( ResistanceType.Physical, 45, 55 );
-			SetResistance( ResistanceType.Fire, 25, 35 );
-			SetResistance( ResistanceType.Cold, 25, 35 );
-			SetResistance( ResistanceType.Poison, 10, 20 );
-			SetResistance( ResistanceType.Energy, 30, 40 );
 
 			SetSkill( SkillName.MagicResist, 45.1, 70.0 );
 			SetSkill( SkillName.Tactics, 67.6, 92.5 );

@@ -13,14 +13,6 @@ namespace Server.Items
 		public Pacify()
 		{
 			Hue = 0x835;
-
-			Attributes.SpellChanneling = 1;
-			Attributes.AttackChance = 10;
-			Attributes.WeaponSpeed = 20;
-			Attributes.WeaponDamage = 50;
-
-			WeaponAttributes.HitLeechMana = 100;
-			WeaponAttributes.UseBestSkill = 1;
 		}
 
 		public Pacify( Serial serial ) : base( serial )

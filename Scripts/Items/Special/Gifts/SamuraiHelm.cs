@@ -5,12 +5,6 @@ namespace Server.Items
 	{
 		public override int LabelNumber{ get{ return 1062923; } } // Ancient Samurai Helm
 
-		public override int BasePhysicalResistance{ get{ return 15; } }
-		public override int BaseFireResistance{ get{ return 10; } }
-		public override int BaseColdResistance{ get{ return 10; } }
-		public override int BasePoisonResistance{ get{ return 15; } }
-		public override int BaseEnergyResistance{ get{ return 10; } }
-
 		public override int InitMinHits{ get{ return 255; } }
 		public override int InitMaxHits{ get{ return 255; } }
 
@@ -21,11 +15,6 @@ namespace Server.Items
 		{
 			Weight = 5.0;
 			LootType = LootType.Blessed;
-
-			Attributes.DefendChance = 15;
-			ArmorAttributes.SelfRepair = 10;
-			ArmorAttributes.LowerStatReq = 100;
-			ArmorAttributes.MageArmor = 1;
 		}
 
 		public SamuraiHelm( Serial serial ) : base( serial )

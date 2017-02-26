@@ -14,11 +14,6 @@ namespace Server.Items
 			LootType = LootType.Blessed;
 
 			Slayer = SlayerName.Silver;
-
-			Attributes.WeaponDamage = 40;
-			WeaponAttributes.SelfRepair = 10;
-			WeaponAttributes.LowerStatReq = 100;
-			WeaponAttributes.UseBestSkill = 1;
 		}
 
 		public HolySword( Serial serial ) : base( serial )

@@ -21,14 +21,6 @@ namespace Server.Mobiles
 
 			SetDamage( 21, 25 );
 
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 100 );
-			SetResistance( ResistanceType.Fire, 40, 50 );
-			SetResistance( ResistanceType.Cold, 40, 50 );
-			SetResistance( ResistanceType.Poison, 50, 60 );
-			SetResistance( ResistanceType.Energy, 30, 40 );
-
 			SetSkill( SkillName.Wrestling, 110.0, 115.0 );
 			SetSkill( SkillName.Tactics, 110.0, 115.0 );
 			SetSkill( SkillName.MagicResist, 80.0, 95.0 );

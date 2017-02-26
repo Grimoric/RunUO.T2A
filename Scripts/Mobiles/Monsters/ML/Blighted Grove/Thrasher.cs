@@ -23,12 +23,6 @@ namespace Server.Mobiles
 
 			SetDamage( 20, 30 );
 
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 50, 55 );
-			SetResistance( ResistanceType.Fire, 25, 29 );
-			SetResistance( ResistanceType.Poison, 25, 28 );
-
 			SetSkill( SkillName.Wrestling, 101.2, 118.3 );
 			SetSkill( SkillName.Tactics, 96.3, 117.3 );
 			SetSkill( SkillName.MagicResist, 102.4, 118.6 );
@@ -41,11 +35,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.FilthyRich, 4 );
 		}
 
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.ArmorIgnore;
-		}
-
 		public override void OnDeath( Container c )
 		{
 			base.OnDeath( c );
@@ -53,7 +42,6 @@ namespace Server.Mobiles
 			c.DropItem( new ThrashersTail() );
 		}
 
-		public override bool GivesMLMinorArtifact { get { return true; } }
 		public override int Hides { get { return 48; } }
 		public override int Meat { get { return 1; } }
 

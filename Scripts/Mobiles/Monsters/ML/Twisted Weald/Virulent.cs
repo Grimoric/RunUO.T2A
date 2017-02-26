@@ -23,15 +23,6 @@ namespace Server.Mobiles
 
 			SetDamage( 15, 22 );
 
-			SetDamageType( ResistanceType.Physical, 20 );
-			SetDamageType( ResistanceType.Poison, 80 );
-
-			SetResistance( ResistanceType.Physical, 60, 68 );
-			SetResistance( ResistanceType.Fire, 40, 49 );
-			SetResistance( ResistanceType.Cold, 41, 50 );
-			SetResistance( ResistanceType.Poison, 100 );
-			SetResistance( ResistanceType.Energy, 40, 49 );
-
 			SetSkill( SkillName.Wrestling, 92.8, 111.7 );
 			SetSkill( SkillName.Tactics, 91.6, 107.4 );
 			SetSkill( SkillName.MagicResist, 78.1, 93.3 );
@@ -47,33 +38,6 @@ namespace Server.Mobiles
 		{
 			AddLoot( LootPack.UltraRich, 3 );
 		}
-
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.MortalStrike;
-		}
-
-		/*
-		// TODO: uncomment once added
-		public override void OnDeath( Container c )
-		{
-			base.OnDeath( c );
-
-			if ( Utility.RandomDouble() < 0.025 )
-			{
-				switch ( Utility.Random( 2 ) )
-				{
-					case 0: c.DropItem( new HunterLegs() ); break;
-					case 1: c.DropItem( new MalekisHonor() ); break;
-				}
-			}
-
-			if ( Utility.RandomDouble() < 0.1 )
-				c.DropItem( new ParrotItem() );
-		}
-		*/
-
-		public override bool GivesMLMinorArtifact{ get{ return true; } }
 
 		public Virulent( Serial serial )
 			: base( serial )

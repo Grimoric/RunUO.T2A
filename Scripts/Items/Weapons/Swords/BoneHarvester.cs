@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x26BB, 0x26C5 )]
 	public class BoneHarvester : BaseSword
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.MortalStrike; } }
-
-		public override int AosStrengthReq{ get{ return 25; } }
-		public override int AosMinDamage{ get{ return 13; } }
-		public override int AosMaxDamage{ get{ return 15; } }
-		public override int AosSpeed{ get{ return 36; } }
-		public override float MlSpeed{ get{ return 3.00f; } }
-
 		public override int OldStrengthReq{ get{ return 25; } }
 		public override int OldMinDamage{ get{ return 13; } }
 		public override int OldMaxDamage{ get{ return 15; } }

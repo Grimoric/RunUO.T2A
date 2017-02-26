@@ -17,7 +17,7 @@ namespace Server.Items
 		public int Level
 		{
 			get{ return m_Level; }
-			set{ m_Level = Math.Max( Math.Min( 2, value), 0 ); Attributes.BonusInt = 2 + m_Level; InvalidateProperties(); }
+			set{ m_Level = Math.Max( Math.Min( 2, value), 0 ); InvalidateProperties(); }
 		}
 
 		[Constructable]
@@ -43,8 +43,6 @@ namespace Server.Items
 			base.Deserialize( reader );
 
 			int version = reader.ReadInt();
-
-			Level = Attributes.BonusInt - 2;
 		}
 	}
 }

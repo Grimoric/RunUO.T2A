@@ -8,12 +8,6 @@ namespace Server.Items
 		public EmberStaff()
 		{
 			LootType = LootType.Blessed;
-
-			WeaponAttributes.HitFireball = 15;
-			WeaponAttributes.MageWeapon = 10;
-			Attributes.SpellChanneling = 1;
-			Attributes.CastSpeed = -1;
-			WeaponAttributes.LowerStatReq = 50;
 		}
 
 		public EmberStaff( Serial serial ) : base( serial )

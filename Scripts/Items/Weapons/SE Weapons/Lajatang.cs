@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x27A7, 0x27F2 )]
 	public class Lajatang : BaseKnife
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.DefenseMastery; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.FrenziedWhirlwind; } }
-
-		public override int AosStrengthReq{ get{ return 65; } }
-		public override int AosMinDamage{ get{ return 16; } }
-		public override int AosMaxDamage{ get{ return 18; } }
-		public override int AosSpeed{ get{ return 32; } }
-		public override float MlSpeed{ get{ return 3.50f; } }
-
 		public override int OldStrengthReq{ get{ return 65; } }
 		public override int OldMinDamage{ get{ return 16; } }
 		public override int OldMaxDamage{ get{ return 18; } }

@@ -25,16 +25,6 @@ namespace Server.Mobiles
 
 			SetDamage( 25, 29 );
 
-			SetDamageType( ResistanceType.Physical, 25 );
-			SetDamageType( ResistanceType.Fire, 75 );
-			SetDamageType( ResistanceType.Cold, 0 );
-
-			SetResistance( ResistanceType.Physical, 60, 70 );
-			SetResistance( ResistanceType.Fire, 90 );
-			SetResistance( ResistanceType.Cold, 0 );
-			SetResistance( ResistanceType.Poison, 100 );
-			SetResistance( ResistanceType.Energy, 0 );
-
 			SetSkill( SkillName.Wrestling, 121.4, 143.7 );
 			SetSkill( SkillName.Tactics, 120.9, 142.2 );
 			SetSkill( SkillName.MagicResist, 120.1, 142.3 );
@@ -54,11 +44,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.UltraRich, 3 );
 		}
 
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.WhirlwindAttack;
-		}
-
 		public override void OnDeath( Container c )
 		{
 			base.OnDeath( c );
@@ -66,7 +51,6 @@ namespace Server.Mobiles
 			c.DropItem( new ResolvesBridle() );
 		}
 
-		public override bool GivesMLMinorArtifact{ get{ return true; } }
 		public override bool AlwaysMurderer{ get{ return true; } }
 		public override bool HasBreath{ get{ return true; } }
 		public override int BreathChaosDamage{ get { return 100; } }

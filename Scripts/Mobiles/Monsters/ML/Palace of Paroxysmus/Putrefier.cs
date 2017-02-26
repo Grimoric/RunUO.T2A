@@ -19,17 +19,6 @@ namespace Server.Mobiles
 
 			SetDamage( 27, 34 );
 
-			SetDamageType( ResistanceType.Physical, 50 );
-			SetDamageType( ResistanceType.Fire, 0 );
-			SetDamageType( ResistanceType.Poison, 50 );
-			SetDamageType( ResistanceType.Energy, 0 );
-
-			SetResistance( ResistanceType.Physical, 65, 80 );
-			SetResistance( ResistanceType.Fire, 65, 80 );
-			SetResistance( ResistanceType.Cold, 50, 60 );
-			SetResistance( ResistanceType.Poison, 100 );
-			SetResistance( ResistanceType.Energy, 40, 50 );
-
 			SetSkill( SkillName.Wrestling, 111.2, 128.0 );
 			SetSkill( SkillName.Tactics, 115.2, 125.2 );
 			SetSkill( SkillName.MagicResist, 143.4, 170.0 );
@@ -51,20 +40,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.UltraRich, 3 );
 		}
 
-		/*
-		// TODO: uncomment once added
-		public override void OnDeath( Container c )
-		{
-			base.OnDeath( c );
-
-			c.DropItem( new SpleenOfThePutrefier() );
-
-			if ( Utility.RandomDouble() < 0.6 )
-				c.DropItem( new ParrotItem() );
-		}
-		*/
-
-		public override bool GivesMLMinorArtifact{ get{ return true; } }
 		public override Poison HitPoison{ get{ return Poison.Deadly; } } // Becomes Lethal with Paragon bonus
 		public override int TreasureMapLevel{ get{ return 5; } }
 

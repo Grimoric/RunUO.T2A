@@ -205,59 +205,13 @@ namespace Server.Items
 			double atSkillValue = attacker.Skills.Ninjitsu.Value;
 			double defSkillValue = defWeapon.GetDefendSkillValue(attacker, defender);
 
-			double attackValue = AosAttributes.GetValue(attacker, AosAttribute.AttackChance);
 
 			if (defSkillValue <= -20.0)
 			{
 				defSkillValue = -19.9;
 			}
 
-			if (HitLower.IsUnderAttackEffect(attacker))
-			{
-				attackValue -= 25;
-			}
-
-			if (attackValue > 45)
-			{
-				attackValue = 45;
-			}
-
-			attackValue = (atSkillValue + 20.0) * (100 + attackValue);
-
-			double defenseValue = AosAttributes.GetValue(defender, AosAttribute.DefendChance);
-
-			if (HitLower.IsUnderDefenseEffect(defender))
-			{
-				defenseValue -= 25;
-			}
-
-			int refBonus = 0;
-
-			if (Block.GetBonus(defender, ref refBonus))
-			{
-				defenseValue += refBonus;
-			}
-
-			if (SkillHandlers.Discordance.GetEffect(attacker, ref refBonus))
-			{
-				defenseValue -= refBonus;
-			}
-
-			if (defenseValue > 45)
-			{
-				defenseValue = 45;
-			}
-
-			defenseValue = (defSkillValue + 20.0) * (100 + defenseValue);
-
-			double chance = attackValue / (defenseValue * 2.0);
-
-			if (chance < 0.02)
-			{
-				chance = 0.02;
-			}
-
-			return attacker.CheckSkill(atkSkill.SkillName, chance);
+			return attacker.CheckSkill(atkSkill.SkillName, 0);
 		}
 
 		private static void OnHit(object[] states)

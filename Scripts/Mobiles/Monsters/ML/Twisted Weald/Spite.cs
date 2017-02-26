@@ -23,14 +23,6 @@ namespace Server.Mobiles
 
 			SetDamage( 14, 20 );
 
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 85, 90 );
-			SetResistance( ResistanceType.Fire, 41, 46 );
-			SetResistance( ResistanceType.Cold, 40, 44 );
-			SetResistance( ResistanceType.Poison, 42, 46 );
-			SetResistance( ResistanceType.Energy, 45, 47 );
-
 			SetSkill( SkillName.Wrestling, 12.8, 16.7 );
 			SetSkill( SkillName.Tactics, 102.6, 131.0 );
 			SetSkill( SkillName.MagicResist, 141.2, 161.6 );
@@ -46,8 +38,6 @@ namespace Server.Mobiles
 		{
 			AddLoot( LootPack.UltraRich, 2 );
 		}
-
-		public override bool GivesMLMinorArtifact{ get{ return true; } }
 
 		public Spite( Serial serial )
 			: base( serial )

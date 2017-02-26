@@ -4,8 +4,6 @@ namespace Server.Items
 	{
 		public override int LabelNumber{ get{ return 1070690; } }
 
-		public override int BasePhysicalResistance{ get{ return 18; } }
-
 		public override int InitMinHits{ get{ return 255; } }
 		public override int InitMaxHits{ get{ return 255; } }
 
@@ -13,9 +11,6 @@ namespace Server.Items
 		public GlovesOfThePugilist()
 		{
 			Hue = 0x6D1;
-			SkillBonuses.SetValues( 0, SkillName.Wrestling, 10.0 );
-			Attributes.BonusDex = 8;
-			Attributes.WeaponDamage = 15;
 		}
 
 		public GlovesOfThePugilist( Serial serial ) : base( serial )

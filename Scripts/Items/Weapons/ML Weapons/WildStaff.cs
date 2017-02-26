@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x2D25, 0x2D31 )]
 	public class WildStaff : BaseStaff
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.Block; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ForceOfNature; } }
-
-		public override int AosStrengthReq{ get{ return 15; } }
-		public override int AosMinDamage{ get{ return 10; } }
-		public override int AosMaxDamage{ get{ return 12; } }
-		public override int AosSpeed{ get{ return 48; } }
-		public override float MlSpeed{ get{ return 2.25f; } }
-
 		public override int OldStrengthReq{ get{ return 15; } }
 		public override int OldMinDamage{ get{ return 10; } }
 		public override int OldMaxDamage{ get{ return 12; } }

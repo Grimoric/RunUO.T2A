@@ -13,14 +13,6 @@ namespace Server.Items
 		public FangOfRactus()
 		{
 			Hue = 0x117;
-
-			Attributes.SpellChanneling = 1;
-			Attributes.AttackChance = 5;
-			Attributes.DefendChance = 5;
-			Attributes.WeaponDamage = 35;
-
-			WeaponAttributes.HitPoisonArea = 20;
-			WeaponAttributes.ResistPoisonBonus = 15;
 		}
 
 		public FangOfRactus( Serial serial ) : base( serial )

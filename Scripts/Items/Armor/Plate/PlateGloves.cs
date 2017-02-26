@@ -3,16 +3,9 @@ namespace Server.Items
     [FlipableAttribute( 0x1414, 0x1418 )]
 	public class PlateGloves : BaseArmor
 	{
-		public override int BasePhysicalResistance{ get{ return 5; } }
-		public override int BaseFireResistance{ get{ return 3; } }
-		public override int BaseColdResistance{ get{ return 2; } }
-		public override int BasePoisonResistance{ get{ return 3; } }
-		public override int BaseEnergyResistance{ get{ return 2; } }
-
 		public override int InitMinHits{ get{ return 50; } }
 		public override int InitMaxHits{ get{ return 65; } }
 
-		public override int AosStrReq{ get{ return 70; } }
 		public override int OldStrReq{ get{ return 30; } }
 
 		public override int OldDexBonus{ get{ return -2; } }

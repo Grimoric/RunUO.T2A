@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0x27A6, 0x27F1 )]
 	public class Tetsubo : BaseBashing
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.FrenziedWhirlwind; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.CrushingBlow; } }
-
-		public override int AosStrengthReq{ get{ return 35; } }
-		public override int AosMinDamage{ get{ return 12; } }
-		public override int AosMaxDamage{ get{ return 14; } }
-		public override int AosSpeed{ get{ return 45; } }
-		public override float MlSpeed{ get{ return 2.50f; } }
-
 		public override int OldStrengthReq{ get{ return 35; } }
 		public override int OldMinDamage{ get{ return 12; } }
 		public override int OldMaxDamage{ get{ return 14; } }

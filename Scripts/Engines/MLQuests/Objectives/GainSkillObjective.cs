@@ -81,16 +81,6 @@ namespace Server.Engines.MLQuests.Objectives
 
 		public override void WriteToGump( Gump g, ref int y )
 		{
-			int skillLabel = AosSkillBonuses.GetLabel( m_Skill );
-			string args;
-
-			if ( m_ThresholdFixed % 10 == 0 )
-				args = String.Format( "#{0}\t{1}", skillLabel, m_ThresholdFixed / 10 ); // as seen on OSI
-			else
-				args = String.Format( "#{0}\t{1:0.0}", skillLabel, (double)m_ThresholdFixed / 10 ); // for non-integer skill levels
-
-			g.AddHtmlLocalized( 98, y, 312, 16, 1077485, args, 0x15F90, false, false ); // Increase ~1_SKILL~ to ~2_VALUE~
-			y += 16;
 		}
 
 		public override BaseObjectiveInstance CreateInstance( MLQuestInstance instance )

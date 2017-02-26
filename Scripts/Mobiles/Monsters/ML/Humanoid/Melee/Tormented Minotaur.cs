@@ -5,11 +5,6 @@ namespace Server.Mobiles
     [CorpseName( "a tormented minotaur corpse" )]
 	public class TormentedMinotaur : BaseCreature
 	{
-		public override WeaponAbility GetWeaponAbility()
-		{
-			return WeaponAbility.Dismount;
-		}
-
 		[Constructable]
 		public TormentedMinotaur() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{
@@ -23,14 +18,6 @@ namespace Server.Mobiles
 			SetHits( 4000, 4200 );
 
 			SetDamage( 16, 30 );
-
-			SetDamageType( ResistanceType.Physical, 100 );
-
-			SetResistance( ResistanceType.Physical, 62 );
-			SetResistance( ResistanceType.Fire, 74 );
-			SetResistance( ResistanceType.Cold, 54 );
-			SetResistance( ResistanceType.Poison, 56 );
-			SetResistance( ResistanceType.Energy, 54 );
 
 			SetSkill( SkillName.Wrestling, 110.1, 111.0 );
 			SetSkill( SkillName.Tactics, 100.7, 102.8 );

@@ -8,12 +8,7 @@ namespace Server.Items
 		public ChurchillsWarMace()
 		{
 			LootType = LootType.Blessed;
-
-			Attributes.AttackChance = 5;
-			Attributes.WeaponSpeed = 10;
-			Attributes.WeaponDamage = 25;
-			WeaponAttributes.LowerStatReq = 70;
-		}
+    	}
 
 		public ChurchillsWarMace( Serial serial ) : base( serial )
 		{

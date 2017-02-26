@@ -12,11 +12,6 @@ namespace Server.Items
 		{
 			Hue = 0x504;
 			LootType = LootType.Blessed;
-
-			Attributes.AttackChance = 15;
-			Attributes.WeaponDamage = 40;
-			WeaponAttributes.SelfRepair = 10;
-			WeaponAttributes.LowerStatReq = 100;
 		}
 
 		public ShaminoCrossbow( Serial serial ) : base( serial )

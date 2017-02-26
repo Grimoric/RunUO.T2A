@@ -132,7 +132,6 @@ namespace Server.Items
 						{
 							((BaseArmor)item).Quality = ArmorQuality.Regular;
 							((BaseArmor)item).Crafter = from;
-							((BaseArmor)item).PhysicalBonus = ((BaseArmor)item).FireBonus = ((BaseArmor)item).ColdBonus = ((BaseArmor)item).PoisonBonus = ((BaseArmor)item).EnergyBonus = 0; // Is there a method to remove bonuses?
 						}
 						else if ( item is BaseWeapon ) // Sanity, weapons cannot recieve gems...
 						{

@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0xDF1, 0xDF0 )]
 	public class BlackStaff : BaseStaff
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.WhirlwindAttack; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ParalyzingBlow; } }
-
-		public override int AosStrengthReq{ get{ return 35; } }
-		public override int AosMinDamage{ get{ return 13; } }
-		public override int AosMaxDamage{ get{ return 16; } }
-		public override int AosSpeed{ get{ return 39; } }
-		public override float MlSpeed{ get{ return 2.75f; } }
-
 		public override int OldStrengthReq{ get{ return 35; } }
 		public override int OldMinDamage{ get{ return 8; } }
 		public override int OldMaxDamage{ get{ return 33; } }

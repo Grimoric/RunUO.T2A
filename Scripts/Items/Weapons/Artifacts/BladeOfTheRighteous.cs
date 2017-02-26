@@ -12,12 +12,7 @@ namespace Server.Items
 		public BladeOfTheRighteous()
 		{
 			Hue = 0x47E;
-			//Slayer = SlayerName.DaemonDismissal;
 			Slayer = SlayerName.Exorcism;
-			WeaponAttributes.HitLeechHits = 50;
-			WeaponAttributes.UseBestSkill = 1;
-			Attributes.BonusHits = 10;
-			Attributes.WeaponDamage = 50;
 		}
 
 		public BladeOfTheRighteous( Serial serial ) : base( serial )

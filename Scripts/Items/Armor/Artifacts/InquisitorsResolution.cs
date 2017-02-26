@@ -5,9 +5,6 @@ namespace Server.Items
 		public override int LabelNumber{ get{ return 1060206; } } // The Inquisitor's Resolution
 		public override int ArtifactRarity{ get{ return 10; } }
 
-		public override int BaseColdResistance{ get{ return 22; } }
-		public override int BaseEnergyResistance{ get{ return 17; } }
-
 		public override int InitMinHits{ get{ return 255; } }
 		public override int InitMaxHits{ get{ return 255; } }
 
@@ -15,9 +12,6 @@ namespace Server.Items
 		public InquisitorsResolution()
 		{
 			Hue = 0x4F2;
-			Attributes.CastRecovery = 3;
-			Attributes.LowerManaCost = 8;
-			ArmorAttributes.MageArmor = 1;
 		}
 
 		public InquisitorsResolution( Serial serial ) : base( serial )
@@ -36,12 +30,6 @@ namespace Server.Items
 			base.Deserialize( reader );
 
 			int version = reader.ReadInt();
-
-			if ( version < 1 )
-			{
-				ColdBonus = 0;
-				EnergyBonus = 0;
-			}
 		}
 	}
 }

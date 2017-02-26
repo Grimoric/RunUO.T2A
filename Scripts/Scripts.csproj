@@ -1637,15 +1637,11 @@
     <Compile Include=".\Items\Skill Items\Harvest Tools\SturdyPickaxe.cs" />
     <Compile Include=".\Items\Skill Items\Harvest Tools\SturdyShovel.cs" />
     <Compile Include=".\Items\Skill Items\Lumberjack\Log.cs" />
-    <Compile Include=".\Items\Skill Items\Magical\BookOfBushido.cs" />
-    <Compile Include=".\Items\Skill Items\Magical\BookOfChivalry.cs" />
-    <Compile Include=".\Items\Skill Items\Magical\BookOfNinjitsu.cs" />
     <Compile Include=".\Items\Skill Items\Magical\Misc\BlankScroll.cs" />
     <Compile Include=".\Items\Skill Items\Magical\Misc\Bottle.cs" />
     <Compile Include=".\Items\Skill Items\Magical\Misc\Moongate.cs" />
     <Compile Include=".\Items\Skill Items\Magical\Misc\PotionKeg.cs" />
     <Compile Include=".\Items\Skill Items\Magical\Misc\RecallRune.cs" />
-    <Compile Include=".\Items\Skill Items\Magical\NecromancerSpellbook.cs" />
     <Compile Include=".\Items\Skill Items\Magical\Potions\Agility Potions\AgilityPotion.cs" />
     <Compile Include=".\Items\Skill Items\Magical\Potions\Agility Potions\BaseAgilityPotion.cs" />
     <Compile Include=".\Items\Skill Items\Magical\Potions\Agility Potions\GreaterAgilityPotion.cs" />
@@ -1768,7 +1764,6 @@
     <Compile Include=".\Items\Skill Items\Magical\Scrolls\Third Circle\UnlockScroll.cs" />
     <Compile Include=".\Items\Skill Items\Magical\Scrolls\Third Circle\WallOfStoneScroll.cs" />
     <Compile Include=".\Items\Skill Items\Magical\Spellbook.cs" />
-    <Compile Include=".\Items\Skill Items\Magical\SpellweavingBook.cs" />
     <Compile Include=".\Items\Skill Items\Misc\Bandage.cs" />
     <Compile Include=".\Items\Skill Items\Misc\FireHorn.cs" />
     <Compile Include=".\Items\Skill Items\Misc\RecipeScroll.cs" />
@@ -1826,7 +1821,6 @@
     <Compile Include=".\Items\Skill Items\Tinkering\Springs.cs" />
     <Compile Include=".\Items\Skill Items\Tinkering\Spyglass.cs" />
     <Compile Include=".\Items\Skill Items\Tinkering\Utensils.cs" />
-    <Compile Include=".\Items\Skill Items\Tools\BaseRunicTool.cs" />
     <Compile Include=".\Items\Skill Items\Tools\BaseTool.cs" />
     <Compile Include=".\Items\Skill Items\Tools\Blowpipe.cs" />
     <Compile Include=".\Items\Skill Items\Tools\DovetailSaw.cs" />
@@ -1843,10 +1837,6 @@
     <Compile Include=".\Items\Skill Items\Tools\MouldingPlane.cs" />
     <Compile Include=".\Items\Skill Items\Tools\Nails.cs" />
     <Compile Include=".\Items\Skill Items\Tools\RollingPin.cs" />
-    <Compile Include=".\Items\Skill Items\Tools\RunicDovetailSaw.cs" />
-    <Compile Include=".\Items\Skill Items\Tools\RunicFletcherTool.cs" />
-    <Compile Include=".\Items\Skill Items\Tools\RunicHammer.cs" />
-    <Compile Include=".\Items\Skill Items\Tools\RunicSewingKit.cs" />
     <Compile Include=".\Items\Skill Items\Tools\Saw.cs" />
     <Compile Include=".\Items\Skill Items\Tools\Scorp.cs" />
     <Compile Include=".\Items\Skill Items\Tools\ScribesPen.cs" />
@@ -2159,31 +2149,6 @@
     <Compile Include=".\Items\Wands\RandomWand.cs" />
     <Compile Include=".\Items\Wands\WandTarget.cs" />
     <Compile Include=".\Items\Wands\WeaknessWand.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\ArmorIgnore.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\ArmorPierce.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\BleedAttack.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\Block.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\ConcussionBlow.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\CrushingBlow.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\DefenseMastery.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\Disarm.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\Dismount.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\Disrobe.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\DoubleShot.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\DoubleStrike.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\DualWield.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\Feint.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\FrenziedWhirlwind.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\InfectiousStrike.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\MortalStrike.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\MovingShot.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\NerveStrike.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\ParalyzingBlow.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\RidingSwipe.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\ShadowStrike.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\TalonStrike.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\WeaponAbility.cs" />
-    <Compile Include=".\Items\Weapons\Abilities\WhirlwindAttack.cs" />
     <Compile Include=".\Items\Weapons\Artifacts\AxeOfTheHeavens.cs" />
     <Compile Include=".\Items\Weapons\Artifacts\BladeOfInsanity.cs" />
     <Compile Include=".\Items\Weapons\Artifacts\BladeOfTheRighteous.cs" />
@@ -3096,12 +3061,10 @@
     <Compile Include=".\SpecialSystems\Items\SupplyBags\TailorBag.cs" />
     <Compile Include=".\Spells\Base\DisturbType.cs" />
     <Compile Include=".\Spells\Base\MagerySpell.cs" />
-    <Compile Include=".\Spells\Base\SpecialMove.cs" />
     <Compile Include=".\Spells\Base\Spell.cs" />
     <Compile Include=".\Spells\Base\SpellCircle.cs" />
     <Compile Include=".\Spells\Base\SpellHelper.cs" />
     <Compile Include=".\Spells\Base\SpellInfo.cs" />
-    <Compile Include=".\Spells\Base\SpellRegistry.cs" />
     <Compile Include=".\Spells\Base\SpellState.cs" />
     <Compile Include=".\Spells\Eighth\AirElemental.cs" />
     <Compile Include=".\Spells\Eighth\EarthElemental.cs" />
@@ -3174,6 +3137,8 @@
     <Compile Include=".\Targets\BladedItemTarget.cs" />
     <Compile Include=".\Targets\MoveTarget.cs" />
     <Compile Include=".\Targets\PickMoveTarget.cs" />
+    <Compile Include="Misc\RegenRates.cs" />
+    <Compile Include="Spells\Base\SpellRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Server\Server.csproj">

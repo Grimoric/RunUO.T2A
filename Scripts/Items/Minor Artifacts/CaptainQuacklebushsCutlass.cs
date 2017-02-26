@@ -11,11 +11,6 @@ namespace Server.Items
 		public CaptainQuacklebushsCutlass()
 		{
 			Hue = 0x66C;
-			Attributes.BonusDex = 5;
-			Attributes.AttackChance = 10;
-			Attributes.WeaponSpeed = 20;
-			Attributes.WeaponDamage = 50;
-			WeaponAttributes.UseBestSkill = 1;
 		}
 
 		public CaptainQuacklebushsCutlass( Serial serial ) : base( serial )
@@ -34,9 +29,6 @@ namespace Server.Items
 			base.Deserialize( reader );
 
 			int version = reader.ReadInt();
-
-			if( Attributes.AttackChance == 50 )
-				Attributes.AttackChance = 10;
 		}
 	}
 }

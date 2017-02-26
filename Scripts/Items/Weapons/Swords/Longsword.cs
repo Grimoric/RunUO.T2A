@@ -3,15 +3,6 @@ namespace Server.Items
     [FlipableAttribute( 0xF61, 0xF60 )]
 	public class Longsword : BaseSword
 	{
-		public override WeaponAbility PrimaryAbility{ get{ return WeaponAbility.ArmorIgnore; } }
-		public override WeaponAbility SecondaryAbility{ get{ return WeaponAbility.ConcussionBlow; } }
-
-		public override int AosStrengthReq{ get{ return 35; } }
-		public override int AosMinDamage{ get{ return 15; } }
-		public override int AosMaxDamage{ get{ return 16; } }
-		public override int AosSpeed{ get{ return 30; } }
-		public override float MlSpeed{ get{ return 3.50f; } }
-
 		public override int OldStrengthReq{ get{ return 25; } }
 		public override int OldMinDamage{ get{ return 5; } }
 		public override int OldMaxDamage{ get{ return 33; } }

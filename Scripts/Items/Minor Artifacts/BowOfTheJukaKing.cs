@@ -11,10 +11,7 @@ namespace Server.Items
 		public BowOfTheJukaKing()
 		{
 			Hue = 0x460;
-			WeaponAttributes.HitMagicArrow = 25;
 			Slayer = SlayerName.ReptilianDeath;
-			Attributes.AttackChance = 15;
-			Attributes.WeaponDamage = 40;
 		}
 
 		public BowOfTheJukaKing( Serial serial ) : base( serial )

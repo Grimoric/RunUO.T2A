@@ -7,7 +7,6 @@ namespace Server.Items
 		[Constructable]
 		public MacheteOfDefense()
 		{
-			Attributes.DefendChance = 5;
 		}
 
 		public MacheteOfDefense( Serial serial ) : base( serial )
