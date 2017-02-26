@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Server.Engines.BulkOrders;
 
 namespace Server.Mobiles
 {
@@ -44,50 +43,6 @@ namespace Server.Mobiles
 
 			AddItem( new Server.Items.HalfApron() );
 		}
-
-		#region Bulk Orders
-		public override Item CreateBulkOrder( Mobile from, bool fromContextMenu )
-		{
-			PlayerMobile pm = from as PlayerMobile;
-
-			if ( pm != null && pm.NextSmithBulkOrder == TimeSpan.Zero && (fromContextMenu || 0.2 > Utility.RandomDouble()) )
-			{
-				double theirSkill = pm.Skills[SkillName.Blacksmith].Base;
-
-				if ( theirSkill >= 70.1 )
-					pm.NextSmithBulkOrder = TimeSpan.FromHours( 6.0 );
-				else if ( theirSkill >= 50.1 )
-					pm.NextSmithBulkOrder = TimeSpan.FromHours( 2.0 );
-				else
-					pm.NextSmithBulkOrder = TimeSpan.FromHours( 1.0 );
-
-				if ( theirSkill >= 70.1 && (theirSkill - 40.0) / 300.0 > Utility.RandomDouble() )
-					return new LargeSmithBOD();
-
-				return SmallSmithBOD.CreateRandomFor( from );
-			}
-
-			return null;
-		}
-
-		public override bool IsValidBulkOrder( Item item )
-		{
-			return item is SmallSmithBOD || item is LargeSmithBOD;
-		}
-
-		public override bool SupportsBulkOrders( Mobile from )
-		{
-			return false;
-		}
-
-		public override TimeSpan GetNextBulkOrder( Mobile from )
-		{
-			if ( from is PlayerMobile )
-				return ((PlayerMobile)from).NextSmithBulkOrder;
-
-			return TimeSpan.Zero;
-		}
-		#endregion
 
 		public Weaponsmith( Serial serial ) : base( serial )
 		{
