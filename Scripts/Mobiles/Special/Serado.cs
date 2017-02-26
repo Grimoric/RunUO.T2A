@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using Server.Items;
 using Server.Engines.CannedEvil;
 

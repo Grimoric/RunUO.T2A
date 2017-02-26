@@ -1021,19 +1021,7 @@ namespace Server
 			if ( DisplayWeight )
 				AddWeightProperty( list );
 
-			if( QuestItem )
-				AddQuestItemProperty( list );
-
-
 			AppendChildNameProperties( list );
-		}
-
-		/// <summary>
-		/// Overridable. Adds the "Quest Item" property to the given <see cref="ObjectPropertyList" />.
-		/// </summary>
-		public virtual void AddQuestItemProperty( ObjectPropertyList list )
-		{
-			list.Add( 1072351 ); // Quest Item
 		}
 
 		/// <summary>
@@ -1204,8 +1192,6 @@ namespace Server
 				return DeathMoveResult.MoveToBackpack;
 			else if ( CheckNewbied() && parent.Kills < 5 )
 				return DeathMoveResult.MoveToBackpack;
-			else if( parent.Player && Nontransferable )
-				return DeathMoveResult.MoveToBackpack;
 			else
 				return DeathMoveResult.MoveToCorpse;
 		}
@@ -1219,8 +1205,6 @@ namespace Server
 			else if ( CheckBlessed( parent ) )
 				return DeathMoveResult.MoveToBackpack;
 			else if ( CheckNewbied() && parent.Kills < 5 )
-				return DeathMoveResult.MoveToBackpack;
-			else if( parent.Player && Nontransferable )
 				return DeathMoveResult.MoveToBackpack;
 			else
 				return DeathMoveResult.MoveToCorpse;
@@ -1503,7 +1487,7 @@ namespace Server
 
 		public virtual bool StackWith( Mobile from, Item dropped, bool playSound )
 		{
-			if ( dropped.Stackable && Stackable && dropped.GetType() == GetType() && dropped.ItemID == ItemID && dropped.Hue == Hue && dropped.Name == Name && dropped.Amount + Amount <= 60000 && dropped != this && !dropped.Nontransferable && !Nontransferable )
+			if ( dropped.Stackable && Stackable && dropped.GetType() == GetType() && dropped.ItemID == ItemID && dropped.Hue == Hue && dropped.Name == Name && dropped.Amount + Amount <= 60000 && dropped != this )
 			{
 				if ( m_LootType != dropped.m_LootType )
 					m_LootType = LootType.Regular;
@@ -2816,20 +2800,6 @@ namespace Server
 			}
 		}
 
-		public const int QuestItemHue = 0x4EA; // Hmmmm... "for EA"?
-
-		public virtual bool Nontransferable
-		{
-			get { return QuestItem; }
-		}
-
-		public virtual void HandleInvalidTransfer( Mobile from )
-		{
-			// OSI sends 1074769, bug!
-			if( QuestItem )
-				from.SendLocalizedMessage( 1049343 ); // You can only drop quest items into the top-most level of your backpack while you still need them for your quest.
-		}
-
 		[CommandProperty( AccessLevel.GameMaster )]
 		public virtual Layer Layer
 		{
@@ -3760,12 +3730,6 @@ namespace Server
 
 		public virtual bool OnDroppedToMobile( Mobile from, Mobile target )
 		{
-			if( Nontransferable && from.Player )
-			{
-				HandleInvalidTransfer( from );
-				return false;
-			}
-
 			return true;
 		}
 
@@ -3793,11 +3757,6 @@ namespace Server
 			{
 				return false;
 			}
-			else if( Nontransferable && from.Player && target != from.Backpack )
-			{
-				HandleInvalidTransfer( from );
-				return false;
-			}
 
 			return target.OnDragDropInto( from, this, p );
 		}
@@ -3814,11 +3773,6 @@ namespace Server
 				return false;
 			else if ( !from.OnDroppedItemOnto( this, target ) )
 				return false;
-			else if( Nontransferable && from.Player && target != from.Backpack )
-			{
-				HandleInvalidTransfer( from );
-				return false;
-			}
 			else
 				return target.OnDragDrop( from, this );
 		}
@@ -3848,12 +3802,6 @@ namespace Server
 
 		public virtual bool OnDroppedToWorld( Mobile from, Point3D p )
 		{
-			if( Nontransferable && from.Player )
-			{
-				HandleInvalidTransfer( from );
-				return false;
-			}
-
 			return true;
 		}
 
@@ -4509,22 +4457,6 @@ namespace Server
 			}
 
 			Delete();
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public bool QuestItem
-		{
-			get { return GetFlag( ImplFlag.QuestItem ); }
-			set 
-			{ 
-				SetFlag( ImplFlag.QuestItem, value ); 
-
-				InvalidateProperties();
-
-				ReleaseWorldPackets();
-
-				Delta( ItemDelta.Update );
-			}
 		}
 
 		public bool Insured

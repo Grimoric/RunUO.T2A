@@ -43,14 +43,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Gems, 2 );
 		}
 
-		public override void OnDeath( Container c )
-		{
-			base.OnDeath( c );
-
-			if ( Utility.RandomDouble() < 0.35 )
-				c.DropItem( new PixieLeg() );
-		}
-
 		public override HideType HideType{ get{ return HideType.Spined; } }
 		public override int Hides{ get{ return 5; } }
 		public override int Meat{ get{ return 1; } }

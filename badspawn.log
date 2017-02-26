@@ -1,0 +1,86 @@
+# Bad spawns : 2017-02-26 03:07:12
+# Format: X Y Z F Name
+
+2110	1306	-50	Malas	Mardoth
+1192	513	-90	Malas	Horus
+423	195	-1	Malas	Victoria
+760	1200	25	Tokuno	AnsellaGryen
+377	742	1	Malas	Haochi
+367	749	-1	Malas	HaochisGuardsman
+367	750	-1	Malas	HaochisGuardsman
+367	739	-1	Malas	HaochisGuardsman
+367	740	-1	Malas	HaochisGuardsman
+367	730	-1	Malas	HaochisGuardsman
+367	729	-1	Malas	HaochisGuardsman
+379	727	-1	Malas	HaochisGuardsman
+380	727	-1	Malas	HaochisGuardsman
+392	730	-1	Malas	HaochisGuardsman
+392	731	-1	Malas	HaochisGuardsman
+392	739	-1	Malas	HaochisGuardsman
+392	740	-1	Malas	HaochisGuardsman
+397	749	-1	Malas	HaochisGuardsman
+398	748	-1	Malas	HaochisGuardsman
+342	736	-1	Malas	DeadlyImp
+339	741	-1	Malas	FierceDragon
+379	710	-1	Malas	Relnia
+403	1094	0	Malas	EnshroudedFigure
+404	1093	0	Malas	JedahEntille
+5776	1898	22	Trammel	RedSolenMatriarch
+3585	2588	0	Trammel	MansionGuard
+3585	2586	0	Trammel	MansionGuard
+3603	2583	0	Trammel	MansionGuard
+3613	2586	0	Trammel	MansionGuard
+3613	2589	0	Trammel	MansionGuard
+3595	2587	0	Trammel	Uzeraan
+5211	1818	0	Trammel	Schmendrick
+5261	1831	0	Trammel	SchmendrickApprenticeCorpse
+5776	1898	22	Felucca	BlackSolenMatriarch
+1414	1594	30	Trammel	Naturalist
+1414	1594	30	Felucca	Naturalist
+1574	1697	35	Trammel	Naturalist
+1574	1697	35	Felucca	Naturalist
+1393	3769	0	Trammel	Naturalist
+1393	3769	0	Felucca	Naturalist
+5240	174	15	Trammel	Naturalist
+5240	174	15	Felucca	Naturalist
+850	1544	0	Trammel	Grizelda
+850	1544	0	Felucca	Grizelda
+2679	2234	2	Trammel	Blackheart
+5790	1983	2	Trammel	RedAmbitiousSolenQueen
+3666	2652	0	Trammel	ElwoodMcCarrin
+2899	709	0	Trammel	AlbertaGiacco
+1443	1557	51	Trammel	GabrielPiete
+1454	1593	20	Trammel	Impresario
+3738	1230	0	Trammel	Impresario
+3736	1220	2	Trammel	Impresario
+1429	4011	0	Trammel	Impresario
+1424	4008	0	Trammel	Impresario
+1839	2674	0	Trammel	TomasONeerlan
+1495	1721	7	Trammel	Naturalist
+1495	1721	7	Felucca	Naturalist
+2679	2234	2	Felucca	Blackheart
+411	810	-1	Malas	Emino
+388	817	-1	Malas	Zoel
+403	1118	0	Malas	HiddenFigure
+405	1118	0	Malas	HiddenFigure
+403	1110	0	Malas	HiddenFigure
+403	1112	0	Malas	HiddenFigure
+403	1103	0	Malas	HiddenFigure
+404	1101	0	Malas	HiddenFigure
+419	1118	0	Malas	HiddenFigure
+418	1120	0	Malas	HiddenFigure
+419	1111	0	Malas	HiddenFigure
+418	1109	0	Malas	HiddenFigure
+419	1102	0	Malas	HiddenFigure
+418	1103	0	Malas	HiddenFigure
+3555	2698	5	Trammel	Dryad
+5790	1983	2	Felucca	BlackAmbitiousSolenQueen
+
+
+# Bad spawns : 2017-02-26 06:22:15
+# Format: X Y Z F Name
+
+5790	1983	2	Felucca	BlackAmbitiousSolenQueen
+5776	1898	22	Felucca	BlackSolenMatriarch
+
+

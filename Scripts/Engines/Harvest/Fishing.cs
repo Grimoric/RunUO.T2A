@@ -2,8 +2,6 @@ using System;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
-using Server.Engines.Quests;
-using Server.Engines.Quests.Collector;
 using System.Collections.Generic;
 
 namespace Server.Engines.Harvest
@@ -127,39 +125,6 @@ namespace Server.Engines.Harvest
 				new MutateEntry(   0.0, 105.0,  -420.0, false, typeof( Boots ), typeof( Shoes ), typeof( Sandals ), typeof( ThighBoots ) ),
 				new MutateEntry(   0.0, 200.0,  -200.0, false, new Type[1]{ null } )
 			};
-
-		public override bool SpecialHarvest( Mobile from, Item tool, HarvestDefinition def, Map map, Point3D loc )
-		{
-			PlayerMobile player = from as PlayerMobile;
-
-			if ( player != null )
-			{
-				QuestSystem qs = player.Quest;
-
-				if ( qs is CollectorQuest )
-				{
-					QuestObjective obj = qs.FindObjective( typeof( FishPearlsObjective ) );
-
-					if ( obj != null && !obj.Completed )
-					{
-						if ( Utility.RandomDouble() < 0.5 )
-						{
-							player.SendLocalizedMessage( 1055086, "", 0x59 ); // You pull a shellfish out of the water, and find a rainbow pearl inside of it.
-
-							obj.CurProgress++;
-						}
-						else
-						{
-							player.SendLocalizedMessage( 1055087, "", 0x2C ); // You pull a shellfish out of the water, but it doesn't have a rainbow pearl.
-						}
-
-						return true;
-					}
-				}
-			}
-
-			return false;
-		}
 
 		public override Type MutateType( Type type, Mobile from, Item tool, HarvestDefinition def, Map map, Point3D loc, HarvestResource resource )
 		{

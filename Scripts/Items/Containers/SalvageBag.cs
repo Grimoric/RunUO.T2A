@@ -260,7 +260,7 @@ namespace Server.Items
 				{
 					IScissorable scissorable = (IScissorable)item;
 
-					if ( Scissors.CanScissor( from, scissorable ) && scissorable.Scissor( from, scissors ) )
+					if ( scissorable.Scissor( from, scissors ) )
 						++salvaged;
 					else
 						++notSalvaged;

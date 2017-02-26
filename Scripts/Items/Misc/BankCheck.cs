@@ -1,9 +1,5 @@
 using System;
-using Server.Mobiles;
 using Server.Network;
-using Server.Engines.Quests;
-using Necro = Server.Engines.Quests.Necro;
-using Haven = Server.Engines.Quests.Haven;
 
 namespace Server.Items
 {
@@ -128,29 +124,6 @@ namespace Server.Items
 
 				// Gold was deposited in your account:
 				from.SendLocalizedMessage( 1042672, true, " " + deposited.ToString() );
-
-				PlayerMobile pm = from as PlayerMobile;
-
-				if ( pm != null )
-				{
-					QuestSystem qs = pm.Quest;
-
-					if ( qs is Necro.DarkTidesQuest )
-					{
-						QuestObjective obj = qs.FindObjective( typeof( Necro.CashBankCheckObjective ) );
-
-						if ( obj != null && !obj.Completed )
-							obj.Complete();
-					}
-
-					if ( qs is Haven.UzeraanTurmoilQuest )
-					{
-						QuestObjective obj = qs.FindObjective( typeof( Haven.CashBankCheckObjective ) );
-
-						if ( obj != null && !obj.Completed )
-							obj.Complete();
-					}
-				}
 			}
 			else
 			{

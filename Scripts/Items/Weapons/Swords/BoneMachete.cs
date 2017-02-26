@@ -1,8 +1,6 @@
-using Server.Engines.MLQuests.Items;
-
 namespace Server.Items
 {
-    public class BoneMachete : ElvenMachete, ITicket
+    public class BoneMachete : ElvenMachete
 	{
 		public override int InitMinHits { get { return 5; } }
 		public override int InitMaxHits { get { return 5; } }

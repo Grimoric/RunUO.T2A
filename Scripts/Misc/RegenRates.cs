@@ -1,8 +1,5 @@
 using System;
-using Server;
 using Server.Items;
-using Server.Spells;
-using Server.Mobiles;
 
 namespace Server.Misc
 {

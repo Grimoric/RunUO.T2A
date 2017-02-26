@@ -4,7 +4,6 @@ using Server.Targeting;
 using Server.Network;
 using Server.Mobiles;
 using Server.Factions;
-using Server.Spells;
 
 namespace Server.SkillHandlers
 {

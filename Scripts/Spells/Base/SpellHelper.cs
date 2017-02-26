@@ -7,9 +7,6 @@ using Server.Mobiles;
 using Server.Targeting;
 using Server.Engines.PartySystem;
 using Server.Misc;
-using System.Collections.Generic;
-using Server.Spells.Seventh;
-using Server.Spells.Fifth;
 
 namespace Server
 {

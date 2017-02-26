@@ -148,7 +148,6 @@ namespace Server.Items
 			result.LootType = LootType;
 			result.Movable = Movable;
 			result.Name = Name;
-			result.QuestItem = QuestItem;
 			result.Visible = Visible;
 
 			return result;

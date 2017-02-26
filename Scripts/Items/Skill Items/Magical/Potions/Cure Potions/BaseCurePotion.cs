@@ -1,5 +1,3 @@
-using Server.Spells;
-
 namespace Server.Items
 {
     public class CureLevelInfo

@@ -1,6 +1,5 @@
 using System;
 using Server.Mobiles;
-using Server.Spells;
 
 namespace Server.Items
 {

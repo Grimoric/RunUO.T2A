@@ -73,14 +73,6 @@ namespace Server.Mobiles
 			Utility.AssignRandomHair( this, true );
 		}
 
-		public override void OnDeath( Container c )
-		{
-			base.OnDeath( c );
-
-			if ( Utility.RandomDouble() < 0.9 )
-				c.DropItem( new SeveredElfEars() );
-		}
-
 		public override void GenerateLoot()
 		{
 			AddLoot( LootPack.Average );

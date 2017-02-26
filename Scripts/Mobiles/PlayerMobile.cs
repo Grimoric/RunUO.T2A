@@ -8,18 +8,14 @@ using Server.Multis;
 using Server.Engines.Help;
 using Server.ContextMenus;
 using Server.Network;
-using Server.Spells;
 using Server.Spells.Fifth;
 using Server.Spells.Seventh;
 using Server.Targeting;
-using Server.Engines.Quests;
 using Server.Factions;
 using Server.Regions;
 using Server.Accounting;
 using Server.Engines.CannedEvil;
 using Server.Engines.Craft;
-using Server.Engines.PartySystem;
-using Server.Engines.MLQuests;
 
 namespace Server.Mobiles
 {
@@ -956,10 +952,6 @@ namespace Server.Mobiles
 			if ( pm != null )
 			{
 				pm.m_SessionStart = DateTime.Now;
-
-				if ( pm.m_Quest != null )
-					pm.m_Quest.StartTimer();
-
 				pm.BedrollLogout = false;
 				pm.LastOnline = DateTime.Now;
 			}
@@ -1001,10 +993,6 @@ namespace Server.Mobiles
 			if ( pm != null )
 			{
 				pm.m_GameTime += (DateTime.Now - pm.m_SessionStart);
-
-				if ( pm.m_Quest != null )
-					pm.m_Quest.StopTimer();
-
 				pm.m_SpeechLog = null;
 				pm.LastOnline = DateTime.Now;
 			}
@@ -1346,9 +1334,6 @@ namespace Server.Mobiles
 
 			if ( from == this )
 			{
-				if ( m_Quest != null )
-					m_Quest.GetContextMenuEntries( list );
-
 				if ( Alive )
 				{
 					if ( InsuranceEnabled )
@@ -1360,9 +1345,6 @@ namespace Server.Mobiles
 						else
 							list.Add( new CallbackEntry( 6200, new ContextCallback( AutoRenewInventoryInsurance ) ) ); // Auto Renew Inventory Insurance
 					}
-
-					if ( MLQuestSystem.Enabled )
-						list.Add( new CallbackEntry( 6169, new ContextCallback( ToggleQuestItem ) ) ); // Toggle Quest Item
 				}
 
 				BaseHouse house = BaseHouse.FindHouseAt( this );
@@ -1823,62 +1805,6 @@ namespace Server.Mobiles
 					m_From.SendGump( new ItemInsuranceMenuGump( m_From, m_Items, m_Insure, m_Page ) );
 				}
 			}
-		}
-
-		#endregion
-
-		#region Toggle Quest Item
-
-		private void ToggleQuestItem()
-		{
-			if ( !CheckAlive() )
-				return;
-
-			ToggleQuestItemTarget();
-		}
-
-		private void ToggleQuestItemTarget()
-		{
-			Server.Engines.MLQuests.Gumps.BaseQuestGump.CloseOtherGumps( this );
-			CloseGump( typeof( Server.Engines.MLQuests.Gumps.QuestLogDetailedGump ) );
-			CloseGump( typeof( Server.Engines.MLQuests.Gumps.QuestLogGump ) );
-			CloseGump( typeof( Server.Engines.MLQuests.Gumps.QuestOfferGump ) );
-			//CloseGump( typeof( UnknownGump802 ) );
-			//CloseGump( typeof( UnknownGump804 ) );
-
-			BeginTarget( -1, false, TargetFlags.None, new TargetCallback( ToggleQuestItem_Callback ) );
-			SendLocalizedMessage( 1072352 ); // Target the item you wish to toggle Quest Item status on <ESC> to cancel
-		}
-
-		private void ToggleQuestItem_Callback( Mobile from, object obj )
-		{
-			if ( !CheckAlive() )
-				return;
-
-			Item item = obj as Item;
-
-			if ( item == null )
-				return;
-
-			if ( from.Backpack == null || item.Parent != from.Backpack )
-			{
-				SendLocalizedMessage( 1074769 ); // An item must be in your backpack (and not in a container within) to be toggled as a quest item.
-			}
-			else if ( item.QuestItem )
-			{
-				item.QuestItem = false;
-				SendLocalizedMessage( 1072354 ); // You remove Quest Item status from the item
-			}
-			else if ( MLQuestSystem.MarkQuestItem( this, item ) )
-			{
-				SendLocalizedMessage( 1072353 ); // You set the item to Quest Item status
-			}
-			else
-			{
-				SendLocalizedMessage( 1072355, "", 0x23 ); // That item does not match any of your quest criteria
-			}
-
-			ToggleQuestItemTarget();
 		}
 
 		#endregion
@@ -2376,9 +2302,6 @@ namespace Server.Mobiles
 		public override DeathMoveResult GetParentMoveResultFor( Item item )
 		{
 			// It seems all items are unmarked on death, even blessed/insured ones
-			if ( item.QuestItem )
-				item.QuestItem = false;
-
 			if ( CheckInsuranceOnDeath( item ) )
 				return DeathMoveResult.MoveToBackpack;
 
@@ -2393,9 +2316,6 @@ namespace Server.Mobiles
 		public override DeathMoveResult GetInventoryMoveResultFor( Item item )
 		{
 			// It seems all items are unmarked on death, even blessed/insured ones
-			if ( item.QuestItem )
-				item.QuestItem = false;
-
 			if ( CheckInsuranceOnDeath( item ) )
 				return DeathMoveResult.MoveToBackpack;
 
@@ -2508,7 +2428,6 @@ namespace Server.Mobiles
 
 			Server.Guilds.Guild.HandleDeath( this, killer );
 
-			MLQuestSystem.HandleDeath( this );
 
 			#region Dueling
 			if ( m_DuelContext != null )
@@ -2925,42 +2844,12 @@ namespace Server.Mobiles
 					goto case 18;
 				}
 				case 18:
-				{
-					m_SolenFriendship = (SolenFriendship) reader.ReadEncodedInt();
-
-					goto case 17;
-				}
-				case 17: // changed how DoneQuests is serialized
+				case 17:
 				case 16:
-				{
-					m_Quest = QuestSerializer.DeserializeQuest( reader );
-
-					if ( m_Quest != null )
-						m_Quest.From = this;
-
-					int count = reader.ReadEncodedInt();
-
-					if ( count > 0 )
-					{
-						m_DoneQuests = new List<QuestRestartInfo>();
-
-						for ( int i = 0; i < count; ++i )
-						{
-							Type questType = QuestSerializer.ReadType( QuestSystem.QuestTypes, reader );
-							DateTime restartTime;
-
-							if ( version < 17 )
-								restartTime = DateTime.MaxValue;
-							else
-								restartTime = reader.ReadDateTime();
-
-							m_DoneQuests.Add( new QuestRestartInfo( questType, restartTime ) );
-						}
-					}
-
-					m_Profession = reader.ReadEncodedInt();
-					goto case 15;
-				}
+			    {
+                        m_Profession = reader.ReadEncodedInt();
+                        goto case 15;
+                }
 				case 15:
 				{
 					m_LastCompassionLoss = reader.ReadDeltaTime();
@@ -3176,28 +3065,7 @@ namespace Server.Mobiles
 			writer.WriteEncodedInt( m_GuildRank.Rank );
 			writer.Write( m_LastOnline );
 
-			writer.WriteEncodedInt( (int) m_SolenFriendship );
-
-			QuestSerializer.Serialize( m_Quest, writer );
-
-			if ( m_DoneQuests == null )
-			{
-				writer.WriteEncodedInt( (int) 0 );
-			}
-			else
-			{
-				writer.WriteEncodedInt( (int) m_DoneQuests.Count );
-
-				for ( int i = 0; i < m_DoneQuests.Count; ++i )
-				{
-					QuestRestartInfo restartInfo = m_DoneQuests[i];
-
-					QuestSerializer.Write( (Type) restartInfo.QuestType, QuestSystem.QuestTypes, writer );
-					writer.Write( (DateTime) restartInfo.RestartTime );
-				}
-			}
-
-			writer.WriteEncodedInt( (int) m_Profession );
+			writer.WriteEncodedInt( m_Profession );
 
 			writer.WriteDeltaTime( m_LastCompassionLoss );
 
@@ -3357,8 +3225,6 @@ namespace Server.Mobiles
 			if ( faction != null )
 				faction.RemoveMember( this );
 
-			MLQuestSystem.HandleDeletion( this );
-
 			BaseHouse.HandleDeletion( this );
 
 			DisguiseTimers.RemoveTimer( this );
@@ -3508,31 +3374,6 @@ namespace Server.Mobiles
 		}
 		#endregion
 
-		#region Quests
-		private QuestSystem m_Quest;
-		private List<QuestRestartInfo> m_DoneQuests;
-		private SolenFriendship m_SolenFriendship;
-
-		public QuestSystem Quest
-		{
-			get{ return m_Quest; }
-			set{ m_Quest = value; }
-		}
-
-		public List<QuestRestartInfo> DoneQuests
-		{
-			get{ return m_DoneQuests; }
-			set{ m_DoneQuests = value; }
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public SolenFriendship SolenFriendship
-		{
-			get{ return m_SolenFriendship; }
-			set{ m_SolenFriendship = value; }
-		}
-		#endregion
-
 		#region MyRunUO Invalidation
 		private bool m_ChangedMyRunUO;
 
@@ -3598,9 +3439,6 @@ namespace Server.Mobiles
 				if ( acc != null )
 					acc.RemoveYoungStatus( 1019036 ); // You have successfully obtained a respectable skill level, and have outgrown your status as a young player!
 			}
-
-			if ( MLQuestSystem.Enabled )
-				MLQuestSystem.HandleSkillGain( this, skill );
 
 			InvalidateMyRunUO();
 		}
@@ -3889,9 +3727,6 @@ namespace Server.Mobiles
 				return false;
 
 			if( from is BaseCreature && ((BaseCreature)from).IgnoreYoungProtection )
-				return false;
-
-			if ( this.Quest != null && this.Quest.IgnoreYoungProtection( from ) )
 				return false;
 
 			if ( DateTime.Now - m_LastYoungMessage > TimeSpan.FromMinutes( 1.0 ) )

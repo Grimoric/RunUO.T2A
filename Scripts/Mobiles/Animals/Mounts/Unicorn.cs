@@ -90,14 +90,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Potions );
 		}
 
-		public override void OnDeath( Container c )
-		{
-			base.OnDeath( c );
-
-			if ( Utility.RandomDouble() < 0.35 )
-				c.DropItem( new UnicornRibs() );
-		}
-
 		public override OppositionGroup OppositionGroup
 		{
 			get{ return OppositionGroup.FeyAndUndead; }
