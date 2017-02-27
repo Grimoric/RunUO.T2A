@@ -49,19 +49,7 @@ namespace Server.Items
 		{
 			if ( DateTime.Now > attacker.LastMoveTime + TimeSpan.FromSeconds( 1.0 ))
 			{
-				bool canSwing = true;
-
-				#region Dueling
-				if ( attacker is PlayerMobile )
-				{
-					PlayerMobile pm = (PlayerMobile)attacker;
-
-					if ( pm.DuelContext != null && !pm.DuelContext.CheckItemEquip( attacker, this ) )
-						canSwing = false;
-				}
-				#endregion
-
-				if ( canSwing && attacker.HarmfulCheck( defender ) )
+				if ( attacker.HarmfulCheck( defender ) )
 				{
 					attacker.DisruptiveAction();
 					attacker.Send( new Swing( 0, attacker, defender ) );

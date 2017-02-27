@@ -76,11 +76,8 @@ namespace Server.SkillHandlers
 
 						from.PlaySound( 0x4F );
 
-						if ( !Engines.ConPVP.DuelContext.IsFreeConsume( from ) )
-						{
-							m_Potion.Consume();
-							from.AddToBackpack( new Bottle() );
-						}
+						m_Potion.Consume();
+						from.AddToBackpack( new Bottle() );
 					}
 					else // Target can't be poisoned
 					{

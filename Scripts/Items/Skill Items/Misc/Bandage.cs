@@ -91,8 +91,7 @@ namespace Server.Items
 					{
 						if ( BandageContext.BeginHeal( from, (Mobile)targeted ) != null )
 						{
-							if ( !Engines.ConPVP.DuelContext.IsFreeConsume( from ) )
-								m_Bandage.Consume();
+							m_Bandage.Consume();
 						}
 					}
 					else

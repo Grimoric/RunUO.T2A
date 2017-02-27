@@ -318,33 +318,6 @@ namespace Server.Spells
 			if( to.Hidden && to.AccessLevel > from.AccessLevel )
 				return false;
 
-			#region Dueling
-			PlayerMobile pmFrom = from as PlayerMobile;
-			PlayerMobile pmTarg = to as PlayerMobile;
-
-			if ( pmFrom == null && from is BaseCreature )
-			{
-				BaseCreature bcFrom = (BaseCreature) from;
-
-				if ( bcFrom.Summoned )
-					pmFrom = bcFrom.SummonMaster as PlayerMobile;
-			}
-
-			if ( pmTarg == null && to is BaseCreature )
-			{
-				BaseCreature bcTarg = (BaseCreature) to;
-
-				if ( bcTarg.Summoned )
-					pmTarg = bcTarg.SummonMaster as PlayerMobile;
-			}
-
-			if ( pmFrom != null && pmTarg != null )
-			{
-				if ( pmFrom.DuelContext != null && pmFrom.DuelContext == pmTarg.DuelContext && pmFrom.DuelContext.Started && pmFrom.DuelPlayer != null && pmTarg.DuelPlayer != null )
-					return pmFrom.DuelPlayer.Participant != pmTarg.DuelPlayer.Participant;
-			}
-			#endregion
-
 			Guild fromGuild = GetGuildFor( from );
 			Guild toGuild = GetGuildFor( to );
 
@@ -694,21 +667,6 @@ namespace Server.Spells
 
 		public static bool IsSafeZone( Map map, Point3D loc )
 		{
-			#region Duels
-			if ( Region.Find( loc, map ).IsPartOf( typeof( Engines.ConPVP.SafeZone ) ) )
-			{
-				if ( m_TravelType == TravelCheckType.TeleportTo || m_TravelType == TravelCheckType.TeleportFrom )
-				{
-					PlayerMobile pm = m_TravelCaster as PlayerMobile;
-
-					if ( pm != null && pm.DuelPlayer != null && !pm.DuelPlayer.Eliminated )
-						return true;
-				}
-
-				return true;
-			}
-			#endregion
-
 			return false;
 		}
 
@@ -804,18 +762,6 @@ namespace Server.Spells
 
 			if( map == null )
 				return false;
-
-			#region Dueling
-			Engines.ConPVP.SafeZone sz = (Engines.ConPVP.SafeZone) Region.Find( loc, map ).GetRegion( typeof( Engines.ConPVP.SafeZone ) );
-
-			if ( sz != null )
-			{
-				PlayerMobile pm = (PlayerMobile) caster;
-
-				if ( pm == null || pm.DuelContext == null || !pm.DuelContext.Started || pm.DuelPlayer == null || pm.DuelPlayer.Eliminated )
-					return true;
-			}
-			#endregion
 
 			GuardedRegion reg = (GuardedRegion) Region.Find( loc, map ).GetRegion( typeof( GuardedRegion ) );
 

@@ -37,7 +37,7 @@ namespace Server.Items
 		{
 			base.OnHit( attacker, defender, damageBonus );
 
-			if (  Layer == Layer.TwoHanded && attacker.Skills[SkillName.Anatomy].Value / 400.0 >= Utility.RandomDouble() && Engines.ConPVP.DuelContext.AllowSpecialAbility( attacker, "Paralyzing Blow", false ) )
+			if (  Layer == Layer.TwoHanded && attacker.Skills[SkillName.Anatomy].Value / 400.0 >= Utility.RandomDouble() )
 			{
 				defender.SendMessage( "You receive a paralyzing blow!" ); // Is this not localized?
 				defender.Freeze( TimeSpan.FromSeconds( 2.0 ) );

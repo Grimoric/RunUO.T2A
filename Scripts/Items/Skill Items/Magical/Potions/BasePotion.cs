@@ -172,11 +172,6 @@ namespace Server.Items
 
 			m.PlaySound( 0x2D6 );
 
-			#region Dueling
-			if ( !Engines.ConPVP.DuelContext.IsFreeConsume( m ) )
-				m.AddToBackpack( new Bottle() );
-			#endregion
-
 			if ( m.Body.IsHuman && !m.Mounted )
 				m.Animate( 34, 5, 1, true, false, 0 );
 		}
