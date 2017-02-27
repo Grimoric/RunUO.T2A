@@ -282,35 +282,6 @@ namespace Server
 		public static Type[] ArcanistScrollTypes{ get{ return m_ArcanistScrollTypes; } }
 		#endregion
 
-		private static Type[] m_GrimmochJournalTypes = new Type[]
-		{
-			typeof( GrimmochJournal1 ),		typeof( GrimmochJournal2 ),		typeof( GrimmochJournal3 ),
-			typeof( GrimmochJournal6 ),		typeof( GrimmochJournal7 ),		typeof( GrimmochJournal11 ),
-			typeof( GrimmochJournal14 ),	typeof( GrimmochJournal17 ),	typeof( GrimmochJournal23 )
-		};
-
-		public static Type[] GrimmochJournalTypes{ get{ return m_GrimmochJournalTypes; } }
-
-		private static Type[] m_LysanderNotebookTypes = new Type[]
-		{
-			typeof( LysanderNotebook1 ),		typeof( LysanderNotebook2 ),		typeof( LysanderNotebook3 ),
-			typeof( LysanderNotebook7 ),		typeof( LysanderNotebook8 ),		typeof( LysanderNotebook11 )
-		};
-
-		public static Type[] LysanderNotebookTypes{ get{ return m_LysanderNotebookTypes; } }
-
-		private static Type[] m_TavarasJournalTypes = new Type[]
-		{
-			typeof( TavarasJournal1 ),		typeof( TavarasJournal2 ),		typeof( TavarasJournal3 ),
-			typeof( TavarasJournal6 ),		typeof( TavarasJournal7 ),		typeof( TavarasJournal8 ),
-			typeof( TavarasJournal9 ),		typeof( TavarasJournal11 ),		typeof( TavarasJournal14 ),
-			typeof( TavarasJournal16 ),		typeof( TavarasJournal16b ),	typeof( TavarasJournal17 ),
-			typeof( TavarasJournal19 )
-		};
-
-		public static Type[] TavarasJournalTypes{ get{ return m_TavarasJournalTypes; } }
-
-
 		private static Type[] m_NewWandTypes = new Type[]
 			{
 				typeof( FireballWand ),		typeof( LightningWand ),		typeof( MagicArrowWand ),
@@ -582,21 +553,6 @@ namespace Server
 			Type[] types = m_RegularScrollTypes;
 
 			return Construct( types, Utility.RandomMinMax( minIndex, maxIndex ) ) as SpellScroll;
-		}
-
-		public static BaseBook RandomGrimmochJournal()
-		{
-			return Construct( m_GrimmochJournalTypes ) as BaseBook;
-		}
-
-		public static BaseBook RandomLysanderNotebook()
-		{
-			return Construct( m_LysanderNotebookTypes ) as BaseBook;
-		}
-
-		public static BaseBook RandomTavarasJournal()
-		{
-			return Construct( m_TavarasJournalTypes ) as BaseBook;
 		}
 
 		public static BaseBook RandomLibraryBook()
