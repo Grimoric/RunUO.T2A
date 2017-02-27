@@ -273,11 +273,6 @@
     <Compile Include=".\Engines\Spawner\Spawner.cs" />
     <Compile Include=".\Engines\Spawner\SpawnerGump.cs" />
     <Compile Include=".\Engines\Spawner\SpawnerType.cs" />
-    <Compile Include=".\Engines\Treasures of Tokuno\BasePigmentsOfTokuno.cs" />
-    <Compile Include=".\Engines\Treasures of Tokuno\GreaterArtifacts.cs" />
-    <Compile Include=".\Engines\Treasures of Tokuno\LesserArtifacts.cs" />
-    <Compile Include=".\Engines\Treasures of Tokuno\TreasuresOfTokuno.cs" />
-    <Compile Include=".\Engines\Treasures of Tokuno\TreasuresOfTokunoPersistance.cs" />
     <Compile Include=".\Engines\VeteranRewards\Character Statue Maker\CharacterStatue.cs" />
     <Compile Include=".\Engines\VeteranRewards\Character Statue Maker\CharacterStatueMaker.cs" />
     <Compile Include=".\Engines\VeteranRewards\Character Statue Maker\CharacterStatuePlinth.cs" />
@@ -385,7 +380,6 @@
     <Compile Include=".\Gumps\SetSecureLevelGump.cs" />
     <Compile Include=".\Gumps\SkillsGump.cs" />
     <Compile Include=".\Gumps\TithingGump.cs" />
-    <Compile Include=".\Gumps\ToTAdminGump.cs" />
     <Compile Include=".\Gumps\VendorInventoryGump.cs" />
     <Compile Include=".\Gumps\VendorRentalGumps.cs" />
     <Compile Include=".\Gumps\ViewHousesGump.cs" />

@@ -4255,9 +4255,7 @@ namespace Server.Mobiles
 					List<int> fame = new List<int>();
 					List<int> karma = new List<int>();
 
-					bool givenToTKill = false;
-
-					for ( int i = 0; i < list.Count; ++i )
+                    for ( int i = 0; i < list.Count; ++i )
 					{
 						DamageStore ds = list[i];
 
@@ -4301,14 +4299,6 @@ namespace Server.Mobiles
 						}
 
 						OnKilledBy( ds.m_Mobile );
-
-						Region region = ds.m_Mobile.Region;
-
-						if( !givenToTKill && ( Map == Map.Tokuno || region.IsPartOf( "Yomotsu Mines" ) || region.IsPartOf( "Fan Dancer's Dojo" ) ))
-						{
-							givenToTKill = true;
-							TreasuresOfTokuno.HandleKill( this, ds.m_Mobile );
-						}
 					}
 
 					for ( int i = 0; i < titles.Count; ++i )
