@@ -945,21 +945,6 @@ namespace Server.Items
 				percentageBonus -= 10;
 			}
 
-			if ( attacker is PlayerMobile )
-			{
-				PlayerMobile pmAttacker = (PlayerMobile) attacker;
-
-				if( pmAttacker.HonorActive && pmAttacker.InRange( defender, 1 ) )
-				{
-					percentageBonus += 25;
-				}
-
-				if( pmAttacker.SentHonorContext != null && pmAttacker.SentHonorContext.Target == defender )
-				{
-					percentageBonus += pmAttacker.SentHonorContext.PerfectionDamageBonus;
-				}
-			}
-
 			BaseTalisman talisman = attacker.Talisman as BaseTalisman;
 
 			if ( talisman != null && talisman.Killer != null )
@@ -1012,33 +997,6 @@ namespace Server.Items
 
 			if ( defender is BaseCreature )
 				((BaseCreature)defender).OnGotMeleeAttack( attacker );
-
-			if ( defender is IHonorTarget && ((IHonorTarget)defender).ReceivedHonorContext != null )
-				((IHonorTarget)defender).ReceivedHonorContext.OnTargetHit( attacker );
-		}
-
-		public virtual double GetAosDamage( Mobile attacker, int bonus, int dice, int sides )
-		{
-			int damage = Utility.Dice( dice, sides, bonus ) * 100;
-			int damageBonus = 0;
-
-			// Inscription bonus
-			int inscribeSkill = attacker.Skills[SkillName.Inscribe].Fixed;
-
-			damageBonus += inscribeSkill / 200;
-
-			if ( inscribeSkill >= 1000 )
-				damageBonus += 5;
-
-			if ( attacker.Player )
-			{
-				// Int bonus
-				damageBonus += attacker.Int / 10;
-			}
-
-			damage = AOS.Scale( damage, 100 + damageBonus );
-
-			return damage / 100;
 		}
 
 		public virtual CheckSlayerResult CheckSlayers( Mobile attacker, Mobile defender )
@@ -1098,9 +1056,6 @@ namespace Server.Items
 			PlaySwingAnimation( attacker );
 			attacker.PlaySound( GetMissAttackSound( attacker, defender ) );
 			defender.PlaySound( GetMissDefendSound( attacker, defender ) );
-
-			if ( defender is IHonorTarget && ((IHonorTarget)defender).ReceivedHonorContext != null )
-				((IHonorTarget)defender).ReceivedHonorContext.OnTargetMissed( attacker );
 		}
 
 		public virtual void GetBaseDamageRange( Mobile attacker, out int min, out int max )

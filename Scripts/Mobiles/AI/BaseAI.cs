@@ -2452,10 +2452,6 @@ namespace Server.Mobiles
 					if (bFacFriend && !m_Mobile.IsFriend(m))
 						continue;
 
-					// Ignore players with activated honor
-					if (m is PlayerMobile && ((PlayerMobile)m).HonorActive && !(m_Mobile.Combatant == m))
-						continue;
-
 					if (acqType == FightMode.Aggressor || acqType == FightMode.Evil)
 					{
 						bool bValid = IsHostile(m);

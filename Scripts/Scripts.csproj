@@ -287,15 +287,6 @@
     <Compile Include=".\Engines\VeteranRewards\RewardNoticeGump.cs" />
     <Compile Include=".\Engines\VeteranRewards\RewardOptionGump.cs" />
     <Compile Include=".\Engines\VeteranRewards\RewardSystem.cs" />
-    <Compile Include=".\Engines\Virtues\Compassion.cs" />
-    <Compile Include=".\Engines\Virtues\Honor.cs" />
-    <Compile Include=".\Engines\Virtues\Justice.cs" />
-    <Compile Include=".\Engines\Virtues\Sacrifice.cs" />
-    <Compile Include=".\Engines\Virtues\Valor.cs" />
-    <Compile Include=".\Engines\Virtues\VirtueGump.cs" />
-    <Compile Include=".\Engines\Virtues\VirtueHelper.cs" />
-    <Compile Include=".\Engines\Virtues\VirtueInfoGump.cs" />
-    <Compile Include=".\Engines\Virtues\VirtueStatusGump.cs" />
     <Compile Include=".\Gumps\AddDoorGump.cs" />
     <Compile Include=".\Gumps\AddGump.cs" />
     <Compile Include=".\Gumps\AdminGump.cs" />
