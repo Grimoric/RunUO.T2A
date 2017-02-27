@@ -1,7 +1,6 @@
 using System;
 using Server.Mobiles;
 using Server.Targeting;
-using Server.Engines.CannedEvil;
 
 namespace Server
 {
@@ -48,75 +47,6 @@ namespace Server
 
 		public static void Valor( Mobile from, object targ )
 		{
-			IdolOfTheChampion idol = targ as IdolOfTheChampion;
-
-			if( idol == null || idol.Deleted || idol.Spawn == null || idol.Spawn.Deleted )
-				from.SendLocalizedMessage( 1054035 ); // You must target a Champion Idol to challenge the Champion's spawn!
-			else if( from.Hidden )
-				from.SendLocalizedMessage( 1052015 ); // You cannot do that while hidden.
-			else if( idol.Spawn.HasBeenAdvanced )
-				from.SendLocalizedMessage( 1054038 ); // The Champion of this region has already been challenged!
-			else
-			{
-				VirtueLevel vl = VirtueHelper.GetLevel( from, VirtueName.Valor );
-				if( idol.Spawn.Active )
-				{
-					if( idol.Spawn.Champion != null )	//TODO: Message?
-						return;
-
-					int needed, consumed;
-					switch( idol.Spawn.GetSubLevel() )
-					{
-						case 0:
-						{
-							needed = consumed = 2500;
-							break;
-						}
-						case 1:
-						{
-							needed = consumed = 5000;
-							break;
-						}
-						case 2:
-						{
-							needed = 10000;
-							consumed = 7500;
-							break;
-						}
-						default:
-						{
-							needed = 20000;
-							consumed = 10000;
-							break;
-						}
-					}
-
-					if( from.Virtues.GetValue( (int)VirtueName.Valor ) >= needed )
-					{
-						VirtueHelper.Atrophy( from, VirtueName.Valor, consumed );
-						from.SendLocalizedMessage( 1054037 ); // Your challenge is heard by the Champion of this region! Beware its wrath!
-						idol.Spawn.HasBeenAdvanced = true;
-						idol.Spawn.AdvanceLevel();
-					}
-					else
-						from.SendLocalizedMessage( 1054039 ); // The Champion of this region ignores your challenge. You must further prove your valor.
-				}
-				else
-				{
-					if( vl == VirtueLevel.Knight )
-					{
-						VirtueHelper.Atrophy( from, VirtueName.Valor, 11000 );
-						from.SendLocalizedMessage( 1054037 ); // Your challenge is heard by the Champion of this region! Beware its wrath!
-						idol.Spawn.EndRestart();
-						idol.Spawn.HasBeenAdvanced = true;
-					}
-					else
-					{
-						from.SendLocalizedMessage( 1054036 ); // You must be a Knight of Valor to summon the champion's spawn in this manner!
-					}
-				}
-			}
-
 		}
 
 		private class InternalTarget : Target

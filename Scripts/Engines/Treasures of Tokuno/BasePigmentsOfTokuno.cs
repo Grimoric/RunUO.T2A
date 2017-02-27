@@ -22,42 +22,6 @@ namespace Server.Items
 			typeof( AnthropomorphistGlasses )
 		};
 
-		private static Type[] m_Replicas = new Type[]
-		{
-			typeof( ANecromancerShroud ),
-			typeof( BraveKnightOfTheBritannia ),
-			typeof( CaptainJohnsHat ),
-			typeof( DetectiveBoots ),
-			typeof( DjinnisRing ),
-			typeof( EmbroideredOakLeafCloak ),
-			typeof( GuantletsOfAnger ),
-			typeof( LieutenantOfTheBritannianRoyalGuard ),
-			typeof( OblivionsNeedle ),
-			typeof( RoyalGuardSurvivalKnife ),
-			typeof( SamaritanRobe ),
-			typeof( TheMostKnowledgePerson ),
-			typeof( TheRobeOfBritanniaAri ),
-			typeof( AcidProofRobe ),
-			typeof( Calm ),
-			typeof( CrownOfTalKeesh ),
-			typeof( FangOfRactus ),
-			typeof( GladiatorsCollar ),
-			typeof( OrcChieftainHelm ),
-			typeof( Pacify ),
-			typeof( Quell ),
-			typeof( ShroudOfDeciet ),
-			typeof( Subdue )
-		};
-
-		private static Type[] m_DyableHeritageItems = new Type[]
-		{
-			typeof( ChargerOfTheFallen ),
-			typeof( SamuraiHelm ),
-			typeof( HolySword ),
-			typeof( LeggingsOfEmbers ),
-			typeof( ShaminoCrossbow )
-		};
-
 		public override int LabelNumber { get { return 1070933; } } // Pigments of Tokuno
 
 		private int m_UsesRemaining;
@@ -177,15 +141,6 @@ namespace Server.Items
 
 			return IsInTypeList( t, TreasuresOfTokuno.LesserArtifactsTotal )
 			      || IsInTypeList( t, TreasuresOfTokuno.GreaterArtifacts )
-			      || IsInTypeList( t, DemonKnight.ArtifactRarity10 )
-			      || IsInTypeList( t, DemonKnight.ArtifactRarity11 )
-			      || IsInTypeList( t, MondainsLegacy.Artifacts )
-			      || IsInTypeList( t, StealableArtifactsSpawner.TypesOfEntires )
-			      || IsInTypeList( t, Paragon.Artifacts )
-			      || IsInTypeList( t, Leviathan.Artifacts )
-			      || IsInTypeList( t, TreasureMapChest.Artifacts )
-			      || IsInTypeList( t, m_Replicas )
-			      || IsInTypeList( t, m_DyableHeritageItems )
 			      || IsInTypeList( t, m_Glasses );
 		}
 

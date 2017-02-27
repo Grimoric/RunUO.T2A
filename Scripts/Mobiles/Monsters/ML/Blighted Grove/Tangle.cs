@@ -35,14 +35,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.UltraRich, 3 );
 		}
 
-		public override void OnDeath( Container c )
-		{
-			base.OnDeath( c );
-
-			if ( Utility.RandomDouble() < 0.3 )
-				c.DropItem( new TaintedSeeds() );
-		}
-
 		public override Poison PoisonImmune { get { return Poison.Lethal; } }
 
 		public Tangle( Serial serial )

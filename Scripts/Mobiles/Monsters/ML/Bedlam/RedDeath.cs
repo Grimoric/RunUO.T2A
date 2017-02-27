@@ -44,13 +44,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.UltraRich, 3 );
 		}
 
-		public override void OnDeath( Container c )
-		{
-			base.OnDeath( c );
-
-			c.DropItem( new ResolvesBridle() );
-		}
-
 		public override bool AlwaysMurderer{ get{ return true; } }
 		public override bool HasBreath{ get{ return true; } }
 		public override int BreathChaosDamage{ get { return 100; } }

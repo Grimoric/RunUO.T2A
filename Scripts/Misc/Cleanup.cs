@@ -139,26 +139,8 @@ namespace Server.Misc
 				|| item is Boots || item is ThighBoots
 				|| item is TreasureMap || item is MessageInABottle
 				|| item is BaseArmor || item is BaseWeapon
-				|| item is BaseClothing
-				#region Champion artifacts
-				|| item is SkullPole
-				|| item is EvilIdolSkull
-				|| item is MonsterStatuette
-				|| item is Pier
-				|| item is ArtifactLargeVase
-				|| item is ArtifactVase
-				|| item is MinotaurStatueDeed
-				|| item is SwampTile
-				|| item is WallBlood
-				|| item is TatteredAncientMummyWrapping
-				|| item is LavaTile
-				|| item is DemonSkull
-				|| item is Web
-				|| item is WaterTile
-				|| item is WindSpirit
-				|| item is DirtPatch
-				|| item is Futon )
-				#endregion
+				|| item is BaseClothing )
+
 				return true;
 
 			return false;

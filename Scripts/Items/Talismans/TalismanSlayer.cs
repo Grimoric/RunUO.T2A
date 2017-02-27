@@ -31,7 +31,7 @@ namespace Server.Items
 
 			m_Table[ TalismanSlayerName.Vermin ] = new Type[]
 			{
-				typeof( RatmanMage ), typeof( RatmanMage ), typeof( RatmanArcher ), typeof( Barracoon),
+				typeof( RatmanMage ), typeof( RatmanMage ), typeof( RatmanArcher ),
 				typeof( Ratman ), typeof( Sewerrat ), typeof( Rat ), typeof( GiantRat ) //, typeof( Chiikkaha )
 			};
 

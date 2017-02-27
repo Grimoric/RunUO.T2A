@@ -241,103 +241,12 @@ namespace Server.Misc
 			PlaceItemIn( bank, 38, 124, cont );
 			// End bag of ethereals
 
-
-			// Begin first bag of artifacts
 			cont = new Backpack();
 			cont.Hue = 0x48F;
-			cont.Name = "Bag of Artifacts";
-
-			PlaceItemIn( cont, 45, 66, new TitansHammer() );
-			PlaceItemIn( cont, 69, 82, new InquisitorsResolution() );
-			PlaceItemIn( cont, 93, 99, new BladeOfTheRighteous() );
-			PlaceItemIn( cont, 117, 115, new ZyronicClaw() );
-
-			PlaceItemIn( bank, 58, 124, cont );
-			// End first bag of artifacts
-
-
-			// Begin second bag of artifacts
-			cont = new Backpack();
-			cont.Hue = 0x48F;
-			cont.Name = "Bag of Artifacts";
-
-			PlaceItemIn( cont, 45, 66, new GauntletsOfNobility() );
-			PlaceItemIn( cont, 69, 82, new MidnightBracers() );
-			PlaceItemIn( cont, 93, 99, new VoiceOfTheFallenKing() );
-			PlaceItemIn( cont, 117, 115, new OrnateCrownOfTheHarrower() );
-			PlaceItemIn( cont, 45, 132, new HelmOfInsight() );
-			PlaceItemIn( cont, 69, 66, new HolyKnightsBreastplate() );
-			PlaceItemIn( cont, 93, 82, new ArmorOfFortune() );
-			PlaceItemIn( cont, 117, 99, new TunicOfFire() );
-			PlaceItemIn( cont, 45, 115, new LeggingsOfBane() );
-			PlaceItemIn( cont, 69, 132, new ArcaneShield() );
-			PlaceItemIn( cont, 93, 66, new Aegis() );
-			PlaceItemIn( cont, 117, 82, new RingOfTheVile() );
-			PlaceItemIn( cont, 45, 99, new BraceletOfHealth() );
-			PlaceItemIn( cont, 69, 115, new RingOfTheElements() );
-			PlaceItemIn( cont, 93, 132, new OrnamentOfTheMagician() );
-			PlaceItemIn( cont, 117, 66, new DivineCountenance() );
-			PlaceItemIn( cont, 45, 82, new JackalsCollar() );
-			PlaceItemIn( cont, 69, 99, new HuntersHeaddress() );
-			PlaceItemIn( cont, 93, 115, new HatOfTheMagi() );
-			PlaceItemIn( cont, 117, 132, new ShadowDancerLeggings() );
-			PlaceItemIn( cont, 45, 66, new SpiritOfTheTotem() );
-			PlaceItemIn( cont, 69, 82, new BladeOfInsanity() );
-			PlaceItemIn( cont, 93, 99, new AxeOfTheHeavens() );
-			PlaceItemIn( cont, 117, 115, new TheBeserkersMaul() );
-			PlaceItemIn( cont, 45, 132, new Frostbringer() );
-			PlaceItemIn( cont, 69, 66, new BreathOfTheDead() );
-			PlaceItemIn( cont, 93, 82, new TheDragonSlayer() );
-			PlaceItemIn( cont, 117, 99, new BoneCrusher() );
-			PlaceItemIn( cont, 45, 115, new StaffOfTheMagi() );
-			PlaceItemIn( cont, 69, 132, new SerpentsFang() );
-			PlaceItemIn( cont, 93, 66, new LegacyOfTheDreadLord() );
-			PlaceItemIn( cont, 117, 82, new TheTaskmaster() );
-			PlaceItemIn( cont, 45, 99, new TheDryadBow() );
-
-			PlaceItemIn( bank, 78, 124, cont );
-			// End second bag of artifacts
-
-			// Begin bag of minor artifacts
-			cont = new Backpack();
-			cont.Hue = 0x48F;
-			cont.Name = "Bag of Minor Artifacts";
-
-
-			PlaceItemIn( cont, 45, 66, new LunaLance() );
-			PlaceItemIn( cont, 69, 82, new VioletCourage() );
-			PlaceItemIn( cont, 93, 99, new CavortingClub() );
-			PlaceItemIn( cont, 117, 115, new CaptainQuacklebushsCutlass() );
-			PlaceItemIn( cont, 45, 132, new NightsKiss() );
-			PlaceItemIn( cont, 69, 66, new ShipModelOfTheHMSCape() );
-			PlaceItemIn( cont, 93, 82, new AdmiralsHeartyRum() );
-			PlaceItemIn( cont, 117, 99, new CandelabraOfSouls() );
-			PlaceItemIn( cont, 45, 115, new IolosLute() );
-			PlaceItemIn( cont, 69, 132, new GwennosHarp() );
-			PlaceItemIn( cont, 93, 66, new ArcticDeathDealer() );
-			PlaceItemIn( cont, 117, 82, new EnchantedTitanLegBone() );
-			PlaceItemIn( cont, 45, 99, new NoxRangersHeavyCrossbow() );
-			PlaceItemIn( cont, 69, 115, new BlazeOfDeath() );
-			PlaceItemIn( cont, 93, 132, new DreadPirateHat() );
-			PlaceItemIn( cont, 117, 66, new BurglarsBandana() );
-			PlaceItemIn( cont, 45, 82, new GoldBricks() );
-			PlaceItemIn( cont, 69, 99, new AlchemistsBauble() );
-			PlaceItemIn( cont, 93, 115, new PhillipsWoodenSteed() );
-			PlaceItemIn( cont, 117, 132, new PolarBearMask() );
-			PlaceItemIn( cont, 45, 66, new BowOfTheJukaKing() );
-			PlaceItemIn( cont, 69, 82, new GlovesOfThePugilist() );
-			PlaceItemIn( cont, 93, 99, new OrcishVisage() );
-			PlaceItemIn( cont, 117, 115, new StaffOfPower() );
-			PlaceItemIn( cont, 45, 132, new ShieldOfInvulnerability() );
-			PlaceItemIn( cont, 69, 66, new HeartOfTheLion() );
-			PlaceItemIn( cont, 93, 82, new ColdBlood() );
-			PlaceItemIn( cont, 117, 99, new GhostShipAnchor() );
-			PlaceItemIn( cont, 45, 115, new SeahorseStatuette() );
-			PlaceItemIn( cont, 69, 132, new WrathOfTheDryad() );
-			PlaceItemIn( cont, 93, 66, new PixieSwatter() );
-
+			cont.Name = "Bag of MiBS";
+            
 			for( int i = 0; i < 10; i++ )
-				PlaceItemIn( cont, 117, 128, new MessageInABottle( Utility.RandomBool() ? Map.Trammel : Map.Felucca, 4 ) );
+				PlaceItemIn( cont, 117, 128, new MessageInABottle( Map.Felucca, 4 ) );
 
 			PlaceItemIn( bank, 18, 124, cont );
 		}

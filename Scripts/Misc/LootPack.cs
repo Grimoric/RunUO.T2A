@@ -559,13 +559,6 @@ namespace Server
 			return m.Map == Map.Tokuno;
 		}
 
-		#region Mondain's Legacy
-		private static bool IsMondain( Mobile m )
-		{
-			return MondainsLegacy.IsMLRegion( m.Region );
-		}
-		#endregion
-
 		public Item Construct( Mobile from, int luckChance, bool spawning )
 		{
 			if ( m_AtSpawnTime != spawning )
@@ -583,7 +576,7 @@ namespace Server
 				LootPackItem item = m_Items[i];
 
 				if ( rnd < item.Chance )
-					return Mutate( from, luckChance, item.Construct( IsInTokuno( from ), IsMondain( from ) ) );
+					return Mutate( from, luckChance, item.Construct( IsInTokuno( from ), false ) );
 
 				rnd -= item.Chance;
 			}

@@ -9,49 +9,6 @@ namespace Server.Mobiles
 	{
 		public override bool IgnoreYoungProtection { get { return false; } }
 
-		public static Type[] ArtifactRarity10 { get { return m_ArtifactRarity10; } }
-		public static Type[] ArtifactRarity11 { get { return m_ArtifactRarity11; } }
-		private static Type[] m_ArtifactRarity10 = new Type[]
-			{
-				typeof( LegacyOfTheDreadLord ),
-				typeof( TheTaskmaster )
-			};
-
-		private static Type[] m_ArtifactRarity11 = new Type[]
-			{
-				typeof( TheDragonSlayer ),
-				typeof( ArmorOfFortune ),
-				typeof( GauntletsOfNobility ),
-				typeof( HelmOfInsight ),
-				typeof( HolyKnightsBreastplate ),
-				typeof( JackalsCollar ),
-				typeof( LeggingsOfBane ),
-				typeof( MidnightBracers ),
-				typeof( OrnateCrownOfTheHarrower ),
-				typeof( ShadowDancerLeggings ),
-				typeof( TunicOfFire ),
-				typeof( VoiceOfTheFallenKing ),
-				typeof( BraceletOfHealth ),
-				typeof( OrnamentOfTheMagician ),
-				typeof( RingOfTheElements ),
-				typeof( RingOfTheVile ),
-				typeof( Aegis ),
-				typeof( ArcaneShield ),
-				typeof( AxeOfTheHeavens ),
-				typeof( BladeOfInsanity ),
-				typeof( BoneCrusher ),
-				typeof( BreathOfTheDead ),
-				typeof( Frostbringer ),
-				typeof( SerpentsFang ),
-				typeof( StaffOfTheMagi ),
-				typeof( TheBeserkersMaul ),
-				typeof( TheDryadBow ),
-				typeof( DivineCountenance ),
-				typeof( HatOfTheMagi ),
-				typeof( HuntersHeaddress ),
-				typeof( SpiritOfTheTotem )
-			};
-
 		public static Item CreateRandomArtifact()
 		{
 			return null;
@@ -210,14 +167,6 @@ namespace Server.Mobiles
 					if ( z == from.Z || !map.CanFit( x, y, z, 16, false, true ) )
 						continue;
 				}
-
-				UnholyBone bone = new UnholyBone();
-
-				bone.Hue = 0;
-				bone.Name = "unholy bones";
-				bone.ItemID = Utility.Random( 0xECA, 9 );
-
-				bone.MoveToWorld( new Point3D( x, y, z ), map );
 			}
 		}
 

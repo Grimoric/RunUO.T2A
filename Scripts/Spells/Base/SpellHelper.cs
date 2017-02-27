@@ -534,24 +534,22 @@ namespace Server.Spells
 				new TravelValidator( IsDoomGauntlet ),
 				new TravelValidator( IsDoomFerry ),
 				new TravelValidator( IsSafeZone ),
-				new TravelValidator( IsChampionSpawn ),
 				new TravelValidator( IsTokunoDungeon ),
 				new TravelValidator( IsLampRoom ),
 				new TravelValidator( IsGuardianRoom ),
 				new TravelValidator( IsHeartwood ),
-				new TravelValidator( IsMLDungeon )
 			};
 
 		private static bool[,] m_Rules = new bool[,]
 			{
-					/*T2A(Fel),	Khaldun,	Ilshenar,	Wind(Tram),	Wind(Fel),	Dungeons(Fel),	Solen(Tram),	Solen(Fel),	CrystalCave(Malas),	Gauntlet(Malas),	Gauntlet(Ferry),	SafeZone,	ChampionSpawn,	Dungeons(Tokuno[Malas]),	LampRoom(Doom),	GuardianRoom(Doom),	Heartwood,	MLDungeons */
-/* Recall From */	{ false,	false,		true,		true,		false,		false,			true,			false,		false,				false,				false,				true,		false,			true,						false,			false,				false,		false },
-/* Recall To */		{ false,	false,		false,		false,		false,		false,			false,			false,		false,				false,				false,				false,		false,			false,						false,			false,				false,		false },
-/* Gate From */		{ false,	false,		false,		false,		false,		false,			false,			false,		false,				false,				false,				false,		false,			false,						false,			false,				false,		false },
-/* Gate To */		{ false,	false,		false,		false,		false,		false,			false,			false,		false,				false,				false,				false,		false,			false,						false,			false,				false,		false },
-/* Mark In */		{ false,	false,		false,		false,		false,		false,			false,			false,		false,				false,				false,				false,		false,			false,						false,			false,				false,		false },
-/* Tele From */		{ true,		true,		true,		true,		true,		true,			true,			true,		false,				true,				true,				true,		true,			true,						true,			true,				false,		true },
-/* Tele To */		{ true,		true,		true,		true,		true,		true,			true,			true,		false,				true,				false,				false,		true,			true,						true,			true,				false,		false },
+					/*T2A(Fel),	Khaldun,	Ilshenar,	Wind(Tram),	Wind(Fel),	Dungeons(Fel),	Solen(Tram),	Solen(Fel),	CrystalCave(Malas),	Gauntlet(Malas),	Gauntlet(Ferry),	SafeZone,	Dungeons(Tokuno[Malas]),	LampRoom(Doom),	GuardianRoom(Doom),	Heartwood */
+/* Recall From */	{ false,	false,		true,		true,		false,		false,			true,			false,		false,				false,				false,				true,			true,						false,			false,				false },
+/* Recall To */		{ false,	false,		false,		false,		false,		false,			false,			false,		false,				false,				false,				false,			false,						false,			false,				false },
+/* Gate From */		{ false,	false,		false,		false,		false,		false,			false,			false,		false,				false,				false,				false,			false,						false,			false,				false },
+/* Gate To */		{ false,	false,		false,		false,		false,		false,			false,			false,		false,				false,				false,				false,			false,						false,			false,				false },
+/* Mark In */		{ false,	false,		false,		false,		false,		false,			false,			false,		false,				false,				false,				false,			false,						false,			false,				false },
+/* Tele From */		{ true,		true,		true,		true,		true,		true,			true,			true,		false,				true,				true,				true,			true,						true,			true,				false },
+/* Tele To */		{ true,		true,		true,		true,		true,		true,			true,			true,		false,				true,				false,				false,			true,						true,			true,				false },
 			};
 
 		public static void SendInvalidMessage( Mobile caster, TravelCheckType type )
@@ -714,11 +712,6 @@ namespace Server.Spells
 			return false;
 		}
 
-		public static bool IsChampionSpawn( Map map, Point3D loc )
-		{
-			return Region.Find( loc, map ).IsPartOf( typeof( Engines.CannedEvil.ChampionSpawnRegion ) );
-		}
-
 		public static bool IsDoomFerry( Map map, Point3D loc )
 		{
 			if( map != Map.Malas )
@@ -784,11 +777,6 @@ namespace Server.Spells
 			int x = loc.X, y = loc.Y;
 
 			return (map == Map.Trammel || map == Map.Felucca) && (x >= 6911 && y >= 254) && x < 7167 && y < 511;
-		}
-
-		public static bool IsMLDungeon( Map map, Point3D loc )
-		{
-			return MondainsLegacy.IsMLRegion( Region.Find( loc, map ) );
 		}
 
 		public static bool IsInvalid( Map map, Point3D loc )

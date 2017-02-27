@@ -1,6 +1,5 @@
 using Server.Regions;
 using Server.Targeting;
-using Server.Engines.CannedEvil;
 using Server.Network;
 
 namespace Server.Multis
@@ -166,7 +165,7 @@ namespace Server.Multis
 
 					if ( region.IsPartOf( typeof( DungeonRegion ) ) )
 						from.SendLocalizedMessage( 502488 ); // You can not place a ship inside a dungeon.
-					else if ( region.IsPartOf( typeof( HouseRegion ) ) || region.IsPartOf( typeof( ChampionSpawnRegion ) ) )
+					else if ( region.IsPartOf( typeof( HouseRegion ) ) )
 						from.SendLocalizedMessage( 1042549 ); // A boat may not be placed in this area.
 					else
 						m_Deed.OnPlacement( from, p );

@@ -34,13 +34,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.UltraRich, 4 );
 		}
 
-		public override void OnDeath( Container c )
-		{
-			base.OnDeath( c );
-
-			c.DropItem( new AbscessTail() );
-		}
-
 		public Abscess( Serial serial )
 			: base( serial )
 		{

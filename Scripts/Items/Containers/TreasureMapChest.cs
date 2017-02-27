@@ -11,19 +11,6 @@ namespace Server.Items
 	{
 		public override int LabelNumber{ get{ return 3000541; } }
 
-		public static Type[] Artifacts { get { return m_Artifacts; } }
-
-		private static Type[] m_Artifacts = new Type[]
-		{
-			typeof( CandelabraOfSouls ), typeof( GoldBricks ), typeof( PhillipsWoodenSteed ),
-			typeof( ArcticDeathDealer ), typeof( BlazeOfDeath ), typeof( BurglarsBandana ),
-			typeof( CavortingClub ), typeof( DreadPirateHat ),
-			typeof( EnchantedTitanLegBone ), typeof( GwennosHarp ), typeof( IolosLute ),
-			typeof( LunaLance ), typeof( NightsKiss ), typeof( NoxRangersHeavyCrossbow ),
-			typeof( PolarBearMask ), typeof( VioletCourage ), typeof( HeartOfTheLion ),
-			typeof( ColdBlood ), typeof( AlchemistsBauble )
-		};
-
 		private int m_Level;
 		private DateTime m_DeleteTime;
 		private Timer m_Timer;

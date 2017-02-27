@@ -101,12 +101,12 @@ namespace Server
 					typeof( Sewerrat ),			typeof( Skeleton ),			typeof( Slime ),
 					typeof( Zombie ),			typeof( Walrus ),			typeof( RestlessSoul ),
 					typeof( CrystalElemental ),	typeof( DarknightCreeper ),	typeof( MoundOfMaggots ),
-					typeof( Juggernaut ),		typeof( Yamandon ),			typeof( Serado )
+					typeof( Juggernaut ),		typeof( Yamandon )
 				} ),
 				/* Fast */
 				new SpeedInfo( 0.2, 0.4, new Type[]
 				{
-					typeof( LordOaks ),			typeof( Silvani ),			typeof( AirElemental ),
+					typeof( AirElemental ),
 					typeof( AncientWyrm ),		typeof( Balron ),			typeof( BladeSpirits ),
 					typeof( DreadSpider ),		typeof( Efreet ),			typeof( EtherealWarrior ),
 					typeof( Lich ),				typeof( Nightmare ),		typeof( OphidianArchmage ),
@@ -132,11 +132,10 @@ namespace Server
 				/* Very Fast */
 				new SpeedInfo( 0.175, 0.350, new Type[]
 				{
-					typeof( Barracoon ),		typeof( Mephitis ),			typeof( Neira ),
-					typeof( Rikktor ),			typeof( Semidar ),			typeof( EnergyVortex ),
+					typeof( EnergyVortex ),
 					typeof( EliteNinja ),			typeof( Pixie ),		typeof( SilverSerpent ),
 					typeof( VorpalBunny ),		typeof( FleshRenderer ),	typeof( KhaldunRevenant ),
-					typeof( Leviathan ),		typeof( FireBeetle ),       typeof( FanDancer )
+					typeof( FireBeetle ),       typeof( FanDancer )
 				} ),
 				/* Medium */
 				new SpeedInfo( 0.25, 0.5, new Type[]
@@ -163,7 +162,7 @@ namespace Server
 					typeof( GiantSpider ),		typeof( GiantToad ),		typeof( Goat ),
 					typeof( GoldenElemental ),	typeof( Gorilla ),			typeof( GreatHart ),
 					typeof( GreyWolf ),			typeof( GrizzlyBear ),		typeof( Guardian ),
-					typeof( Harpy ),			typeof( Harrower ),			typeof( HellHound ),
+					typeof( Harpy ),			typeof( HellHound ),
 					typeof( Hind ),				typeof( HordeMinion ),		typeof( Horse ),
 					typeof( Horse ),			typeof( IceElemental ),		typeof( IceFiend ),
 					typeof( IceSnake ),			typeof( Imp ),				typeof( JackRabbit ),

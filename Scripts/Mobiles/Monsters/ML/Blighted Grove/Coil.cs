@@ -40,28 +40,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.UltraRich, 3 );
 		}
 
-		public override void OnDeath( Container c )
-		{
-			base.OnDeath( c );
-
-			c.DropItem( new CoilsFang() );
-
-			/*
-			// TODO: uncomment once added
-			if ( Utility.RandomDouble() < 0.025 )
-			{
-				switch ( Utility.Random( 5 ) )
-				{
-					case 0: c.DropItem( new AssassinChest() ); break;
-					case 1: c.DropItem( new DeathGloves() ); break;
-					case 2: c.DropItem( new LeafweaveLegs() ); break;
-					case 3: c.DropItem( new HunterLegs() ); break;
-					case 4: c.DropItem( new MyrmidonLegs() ); break;
-				}
-			}
-			*/
-		}
-
 		public override Poison HitPoison { get { return Poison.Lethal; } }
 		public override Poison PoisonImmune { get { return Poison.Lethal; } }
 		public override int Hides { get { return 48; } }
