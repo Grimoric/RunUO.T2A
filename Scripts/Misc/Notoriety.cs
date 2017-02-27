@@ -5,7 +5,6 @@ using Server.Guilds;
 using Server.Multis;
 using Server.Mobiles;
 using Server.Engines.PartySystem;
-using Server.Factions;
 
 namespace Server.Misc
 {
@@ -113,17 +112,6 @@ namespace Server.Misc
 			#endregion
 
 			Map map = from.Map;
-
-			#region Factions
-			Faction targetFaction = Faction.Find( target, true );
-
-			if( targetFaction != null )
-			{
-				if( Faction.Find( from, true ) != targetFaction )
-					return false;
-			}
-			#endregion
-			
 
 			if( map != null && (map.Rules & MapRules.BeneficialRestrictions) == 0 )
 				return true; // In felucca, anything goes
@@ -277,12 +265,6 @@ namespace Server.Misc
 						return Notoriety.Enemy;
 				}
 
-				Faction srcFaction = Faction.Find( source, true, true );
-				Faction trgFaction = Faction.Find( target.Owner, true, true );
-
-				if( srcFaction != null && trgFaction != null && srcFaction != trgFaction && source.Map == Faction.Facet )
-					return Notoriety.Enemy;
-
 				if( CheckHouseFlag( source, target.Owner, target.Location, target.Map ) )
 					return Notoriety.CanBeAttacked;
 
@@ -323,20 +305,6 @@ namespace Server.Misc
 						return Notoriety.Ally;
 					else if( sourceGuild.IsEnemy( targetGuild ) )
 						return Notoriety.Enemy;
-				}
-
-				Faction srcFaction = Faction.Find( source, true, true );
-				Faction trgFaction = Faction.Find( target.Owner, true, true );
-
-				if( srcFaction != null && trgFaction != null && srcFaction != trgFaction && source.Map == Faction.Facet )
-				{
-					List<Mobile> secondList = target.Aggressors;
-
-					for( int i = 0; i < secondList.Count; ++i )
-					{
-						if( secondList[i] == source || secondList[i] is BaseFactionGuard )
-							return Notoriety.Enemy;
-					}
 				}
 
 				if( target.Owner != null && target.Owner is BaseCreature && ((BaseCreature)target.Owner).AlwaysAttackable )
@@ -407,12 +375,6 @@ namespace Server.Misc
 				else if( sourceGuild.IsEnemy( targetGuild ) )
 					return Notoriety.Enemy;
 			}
-
-			Faction srcFaction = Faction.Find( source, true, true );
-			Faction trgFaction = Faction.Find( target, true, true );
-
-			if( srcFaction != null && trgFaction != null && srcFaction != trgFaction && source.Map == Faction.Facet )
-				return Notoriety.Enemy;
 
 			if( SkillHandlers.Stealing.ClassicMode && target is PlayerMobile && ((PlayerMobile)target).PermaFlags.Contains( source ) )
 				return Notoriety.CanBeAttacked;

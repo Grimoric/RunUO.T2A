@@ -82,7 +82,6 @@ namespace Server.Misc
 			PlaceItemIn( cont, 52, 51, new BankCheck( 100000 ) );
 			PlaceItemIn( cont, 64, 51, new BankCheck(  50000 ) );
 
-			PlaceItemIn( cont, 16, 115, new Factions.Silver( 9000 ) );
 			PlaceItemIn( cont, 34, 115, new Gold( 60000 ) );
 
 			PlaceItemIn( bank, 18, 169, cont );

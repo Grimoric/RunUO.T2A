@@ -222,21 +222,9 @@ namespace Server.Items
 		private ulong m_Content;
 		private int m_Count;
 
-		public override bool AllowSecureTrade( Mobile from, Mobile to, Mobile newOwner, bool accepted )
-		{
-			if ( !Ethics.Ethic.CheckTrade( from, to, newOwner, this ) )
-				return false;
-
-			return base.AllowSecureTrade( from, to, newOwner, accepted );
-		}
-
 		public override bool CanEquip( Mobile from )
 		{
-			if ( !Ethics.Ethic.CheckEquip( from, this ) )
-			{
-				return false;
-			}
-			else if ( !from.CanBeginAction( typeof( BaseWeapon ) ) )
+			if ( !from.CanBeginAction( typeof( BaseWeapon ) ) )
 			{
 				return false;
 			}

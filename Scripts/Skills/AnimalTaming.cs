@@ -3,7 +3,6 @@ using System.Collections;
 using Server.Targeting;
 using Server.Network;
 using Server.Mobiles;
-using Server.Factions;
 
 namespace Server.SkillHandlers
 {
@@ -153,19 +152,6 @@ namespace Server.SkillHandlers
 						}
 						else if ( from.Skills[SkillName.AnimalTaming].Value >= creature.MinTameSkill )
 						{
-							FactionWarHorse warHorse = creature as FactionWarHorse;
-
-							if ( warHorse != null )
-							{
-								Faction faction = Faction.Find( from );
-
-								if ( faction == null || faction != warHorse.Faction )
-								{
-									creature.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1042590, from.NetState ); // You cannot tame this creature.
-									return;
-								}
-							}
-
 							if ( m_BeingTamed.Contains( targeted ) )
 							{
 								creature.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 502802, from.NetState ); // Someone else is already taming this.

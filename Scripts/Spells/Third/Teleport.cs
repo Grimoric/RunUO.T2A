@@ -22,12 +22,7 @@ namespace Server.Spells.Third
 
 		public override bool CheckCast()
 		{
-			if ( Factions.Sigil.ExistsOn( Caster ) )
-			{
-				Caster.SendLocalizedMessage( 1061632 ); // You can't do that while carrying the sigil.
-				return false;
-			}
-			else if ( Server.Misc.WeightOverloading.IsOverloaded( Caster ) )
+			if ( Server.Misc.WeightOverloading.IsOverloaded( Caster ) )
 			{
 				Caster.SendLocalizedMessage( 502359, "", 0x22 ); // Thou art too encumbered to move.
 				return false;
@@ -51,11 +46,7 @@ namespace Server.Spells.Third
 			Point3D from = Caster.Location;
 			Point3D to = new Point3D( p );
 
-			if ( Factions.Sigil.ExistsOn( Caster ) )
-			{
-				Caster.SendLocalizedMessage( 1061632 ); // You can't do that while carrying the sigil.
-			}
-			else if ( Server.Misc.WeightOverloading.IsOverloaded( Caster ) )
+			if ( Server.Misc.WeightOverloading.IsOverloaded( Caster ) )
 			{
 				Caster.SendLocalizedMessage( 502359, "", 0x22 ); // Thou art too encumbered to move.
 			}

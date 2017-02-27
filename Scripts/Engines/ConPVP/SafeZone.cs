@@ -28,12 +28,6 @@ namespace Server.Engines.ConPVP
 
 		public override bool OnMoveInto( Mobile m, Direction d, Point3D newLocation, Point3D oldLocation )
 		{
-			if ( m.Player && Factions.Sigil.ExistsOn( m ) )
-			{
-				m.SendMessage( 0x22, "You are holding a sigil and cannot enter this zone." );
-				return false;
-			}
-
 			PlayerMobile pm = m as PlayerMobile;
 
 			if ( pm == null && m is BaseCreature )

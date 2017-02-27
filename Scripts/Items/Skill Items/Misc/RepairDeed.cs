@@ -208,7 +208,7 @@ namespace Server.Items
 			if( !m.Region.IsPartOf( typeof( TownRegion ) ) )
 				return false;
 
-			return Server.Factions.Faction.IsNearType( m, RepairSkillInfo.GetInfo( m_Skill ).NearbyTypes, 6 );
+		    return true;
 		}
 
 		public override void Serialize( GenericWriter writer )

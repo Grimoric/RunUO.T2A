@@ -2,7 +2,6 @@ using System;
 using Server.Mobiles;
 using Server.Gumps;
 using Server.Network;
-using Server.Factions;
 
 namespace Server.Guilds
 {
@@ -389,10 +388,6 @@ namespace Server.Guilds
 						{
 							pm.SendLocalizedMessage( 1070747 ); // You don't have permission to create an alliance.
 						}
-						else if( Faction.Find( guild.Leader ) != Faction.Find( m_Other.Leader ) )
-						{
-							pm.SendLocalizedMessage( 1070758 ); // You cannot propose an alliance to a guild with a different faction allegiance.
-						}
 						else if( otherAlliance != null )
 						{
 							if( otherAlliance.IsPendingMember( m_Other ) )
@@ -444,10 +439,6 @@ namespace Server.Guilds
 						else if( guild.AcceptedWars.Count > 0 || guild.PendingWars.Count > 0 )
 						{
 							pm.SendLocalizedMessage( 1063427, guild.Name ); // ~1_val~ is currently involved in a guild war.
-						}
-						else if( Faction.Find( guild.Leader ) != Faction.Find( m_Other.Leader ) )
-						{
-							pm.SendLocalizedMessage( 1070758 ); // You cannot propose an alliance to a guild with a different faction allegiance.
 						}
 						else
 						{
@@ -589,11 +580,6 @@ namespace Server.Guilds
 			if( !playerRank.GetFlag( RankFlags.AllianceControl ) )
 			{
 				pm.SendLocalizedMessage( 1070747 ); // You don't have permission to create an alliance.
-			}
-			else if( Faction.Find( guild.Leader ) != Faction.Find( m_Other.Leader ) )
-			{
-				//Notes about this: OSI only cares/checks when proposing, you can change your faction all you want later.  
-				pm.SendLocalizedMessage( 1070758 ); // You cannot propose an alliance to a guild with a different faction allegiance.
 			}
 			else if( otherAlliance != null )
 			{

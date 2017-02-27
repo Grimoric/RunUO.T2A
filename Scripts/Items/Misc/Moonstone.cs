@@ -66,10 +66,6 @@ namespace Server.Items
 			{
 				from.SendLocalizedMessage( 1005400 ); // You can not bury a stone in this form.
 			}
-			else if ( Factions.Sigil.ExistsOn( from ) )
-			{
-				from.SendLocalizedMessage( 1061632 ); // You can't do that while carrying the sigil.
-			}
 			else if ( from.Map == GetTargetMap() || @from.Map != Map.Trammel && @from.Map != Map.Felucca )
 			{
 				from.SendLocalizedMessage( 1005401 ); // You cannot bury the stone here.

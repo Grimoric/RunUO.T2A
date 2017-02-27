@@ -1,7 +1,6 @@
 using System;
 using Server.Network;
 using Server.Mobiles;
-using Server.Factions;
 using Server.Engines.Craft;
 using System.Collections.Generic;
 
@@ -13,7 +12,7 @@ namespace Server.Items
 		SlayerName Slayer2 { get; set; }
 	}
 
-	public abstract class BaseWeapon : Item, IWeapon, IFactionItem, ICraftable, ISlayer, IDurability
+	public abstract class BaseWeapon : Item, IWeapon, ICraftable, ISlayer, IDurability
 	{
 		private string m_EngravedText;
 		
@@ -23,24 +22,6 @@ namespace Server.Items
 			get{ return m_EngravedText; }
 			set{ m_EngravedText = value; InvalidateProperties(); }
 		}
-
-		#region Factions
-		private FactionItem m_FactionState;
-
-		public FactionItem FactionItemState
-		{
-			get{ return m_FactionState; }
-			set
-			{
-				m_FactionState = value;
-
-				if ( m_FactionState == null )
-					Hue = CraftResources.GetHue( Resource );
-
-				LootType = m_FactionState == null ? LootType.Regular : LootType.Blessed;
-			}
-		}
-		#endregion
 
 		/* Weapon internals work differently now (Mar 13 2003)
 		 * 
@@ -432,21 +413,10 @@ namespace Server.Items
 			return false;
 		}
 
-		public override bool AllowSecureTrade( Mobile from, Mobile to, Mobile newOwner, bool accepted )
-		{
-			if ( !Ethics.Ethic.CheckTrade( from, to, newOwner, this ) )
-				return false;
-
-			return base.AllowSecureTrade( from, to, newOwner, accepted );
-		}
-
 		public virtual Race RequiredRace { get { return null; } }	//On OSI, there are no weapons with race requirements, this is for custom stuff
 
 		public override bool CanEquip( Mobile from )
 		{
-			if ( !Ethics.Ethic.CheckEquip( from, this ) )
-				return false;
-
 			if( RequiredRace != null && from.Race != RequiredRace )
 			{
 				if( RequiredRace == Race.Elf )
@@ -1968,11 +1938,6 @@ namespace Server.Items
 			if ( m_Crafter != null )
 				list.Add( 1050043, m_Crafter.Name ); // crafted by ~1_NAME~
 
-			#region Factions
-			if ( m_FactionState != null )
-				list.Add( 1041350 ); // faction item
-			#endregion
-
 			if ( m_Quality == WeaponQuality.Exceptional )
 				list.Add( 1060636 ); // exceptional
 
@@ -2043,11 +2008,6 @@ namespace Server.Items
 				else if ( LootType == LootType.Cursed )
 					attrs.Add( new EquipInfoAttribute( 1049643 ) ); // cursed
 			}
-
-			#region Factions
-			if ( m_FactionState != null )
-				attrs.Add( new EquipInfoAttribute( 1041350 ) ); // faction item
-			#endregion
 
 			if ( m_Quality == WeaponQuality.Exceptional )
 				attrs.Add( new EquipInfoAttribute( 1018305 - (int)m_Quality ) );

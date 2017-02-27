@@ -1,14 +1,9 @@
-using Server.Factions;
-
 namespace Server.Mobiles
 {
     [CorpseName("a silver serpent corpse")]
 	[TypeAlias( "Server.Mobiles.Silverserpant" )]
 	public class SilverSerpent : BaseCreature
 	{
-		public override Faction FactionAllegiance { get { return TrueBritannians.Instance; } }
-		public override Ethics.Ethic EthicAllegiance { get { return Ethics.Ethic.Hero; } }
-
 		[Constructable]
 		public SilverSerpent() : base( AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4 )
 		{

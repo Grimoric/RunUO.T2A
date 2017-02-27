@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using Server.Mobiles;
-using Server.Factions;
 
 namespace Server
 {
@@ -135,13 +134,9 @@ namespace Server
 				{
 					typeof( Barracoon ),		typeof( Mephitis ),			typeof( Neira ),
 					typeof( Rikktor ),			typeof( Semidar ),			typeof( EnergyVortex ),
-					typeof( EliteNinja ),			typeof( Pixie ),			typeof( SilverSerpent ),
+					typeof( EliteNinja ),			typeof( Pixie ),		typeof( SilverSerpent ),
 					typeof( VorpalBunny ),		typeof( FleshRenderer ),	typeof( KhaldunRevenant ),
-					typeof( FactionDragoon ),	typeof( FactionKnight ),	typeof( FactionPaladin ),
-					typeof( FactionHenchman ),	typeof( FactionMercenary ),	typeof( FactionNecromancer ),
-					typeof( FactionSorceress ),	typeof( FactionWizard ),	typeof( FactionBerserker ),
-					typeof( FactionPaladin ),	typeof( Leviathan ),		typeof( FireBeetle ),
-					typeof( FanDancer ),		typeof( FactionDeathKnight )
+					typeof( Leviathan ),		typeof( FireBeetle ),       typeof( FanDancer )
 				} ),
 				/* Medium */
 				new SpeedInfo( 0.25, 0.5, new Type[]
@@ -194,8 +189,7 @@ namespace Server
 					typeof( TerathanDrone ),	typeof( TerathanMatriarch ), typeof( TerathanWarrior ),
 					typeof( TimberWolf ),		typeof( Titan ),			typeof( Troll ),
 					typeof( Unicorn ),			typeof( ValoriteElemental ), typeof( VeriteElemental ),
-					typeof( CoMWarHorse ),		typeof( MinaxWarHorse ),	typeof( SLWarHorse ),
-					typeof( TBWarHorse ),		typeof( WaterElemental ),	typeof( WhippingVine ),
+					typeof( WaterElemental ),	typeof( WhippingVine ),
 					typeof( WhiteWolf ),		typeof( Wraith ),			typeof( Wyvern ),
 					typeof( KhaldunZealot ),	typeof( KhaldunSummoner ),	typeof( SavageRidgeback ),
 					typeof( LichLord ),			typeof( SkeletalKnight ),	typeof( SummonedDaemon ),

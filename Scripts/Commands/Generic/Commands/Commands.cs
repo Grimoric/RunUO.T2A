@@ -51,9 +51,6 @@ namespace Server.Commands.Generic
 			Register( new InterfaceCommand() );
 			Register( new RefreshHouseCommand() );
 			Register( new ConditionCommand() );
-			Register( new Factions.FactionKickCommand( Factions.FactionKickType.Kick ) );
-			Register( new Factions.FactionKickCommand( Factions.FactionKickType.Ban ) );
-			Register( new Factions.FactionKickCommand( Factions.FactionKickType.Unban ) );
 			Register( new BringToPackCommand() );
 			Register( new TraceLockdownCommand() );
 		}

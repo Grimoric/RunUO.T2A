@@ -2,7 +2,6 @@ using System;
 using Server.Guilds;
 using Server.Mobiles;
 using Server.Network;
-using Server.Factions;
 
 namespace Server.Gumps
 {
@@ -58,13 +57,8 @@ namespace Server.Gumps
 
 			if ( m_Guild.Type != newType )
 			{
-				PlayerState pl = PlayerState.Find( m_Mobile );
 
-				if ( pl != null )
-				{
-					m_Mobile.SendLocalizedMessage( 1010405 ); // You cannot change guild types while in a Faction!
-				}
-				else if ( m_Guild.TypeLastChange.AddDays( 7 ) > DateTime.Now )
+				if ( m_Guild.TypeLastChange.AddDays( 7 ) > DateTime.Now )
 				{
 					m_Mobile.SendLocalizedMessage( 1011142 ); // You have already changed your guild type recently.
 					// TODO: Clilocs 1011142-1011145 suggest a timer for pending changes

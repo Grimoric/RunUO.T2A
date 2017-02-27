@@ -1,5 +1,3 @@
-using Server.Factions;
-
 namespace Server.Mobiles
 {
     [CorpseName( "a daemon corpse" )]
@@ -7,9 +5,6 @@ namespace Server.Mobiles
 	{
 		public override double DispelDifficulty{ get{ return 125.0; } }
 		public override double DispelFocus{ get{ return 45.0; } }
-
-		public override Faction FactionAllegiance { get { return Shadowlords.Instance; } }
-		public override Ethics.Ethic EthicAllegiance { get { return Ethics.Ethic.Evil; } }
 
 		[Constructable]
 		public Daemon () : base( AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4 )

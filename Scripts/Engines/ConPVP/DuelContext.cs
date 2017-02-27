@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Server.Commands;
 using Server.Engines.PartySystem;
-using Server.Factions;
 using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
@@ -2267,9 +2266,6 @@ namespace Server.Engines.ConPVP
 
 					if ( dp.Mobile.Region.IsPartOf( typeof( Regions.Jail ) ) )
 						return String.Format( "{0} is in jail", dp.Mobile.Name );
-
-					if ( Sigil.ExistsOn( dp.Mobile ) )
-						return String.Format( "{0} is holding a sigil", dp.Mobile.Name );
 
 					if ( !dp.Mobile.Alive )
 					{

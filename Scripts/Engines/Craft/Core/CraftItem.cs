@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Server.Items;
-using Server.Factions;
 using Server.Mobiles;
 using Server.Commands;
 
@@ -84,18 +83,9 @@ namespace Server.Engines.Craft
 		public static int ItemIDOf( Type type ) {
 			int itemId;
 
-			if ( !_itemIds.TryGetValue( type, out itemId ) ) {
-				if ( type == typeof( FactionExplosionTrap ) ) {
-					itemId = 14034;
-				} else if ( type == typeof( FactionGasTrap ) ) {
-					itemId = 4523;
-				} else if ( type == typeof( FactionSawTrap ) ) {
-					itemId = 4359;
-				} else if ( type == typeof( FactionSpikeTrap ) ) {
-					itemId = 4517;
-				}
-
-				if ( itemId == 0 ) {
+            if (!_itemIds.TryGetValue(type, out itemId))
+            {
+                if ( itemId == 0 ) {
 					object[] attrs = type.GetCustomAttributes( typeof( CraftItemIDAttribute ), false );
 
 					if ( attrs.Length > 0 ) {
@@ -1193,44 +1183,7 @@ namespace Server.Engines.Craft
 				if ( num == 0 )
 					num = craftSystem.PlayEndingEffect( from, false, true, toolBroken, endquality, makersMark, this );
 
-				bool queryFactionImbue = false;
-				int availableSilver = 0;
-				FactionItemDefinition def = null;
-				Faction faction = null;
-
-				if ( item is IFactionItem )
-				{
-					def = FactionItemDefinition.Identify( item );
-
-					if ( def != null )
-					{
-						faction = Faction.Find( from );
-
-						if ( faction != null )
-						{
-							Town town = Town.FromRegion( from.Region );
-
-							if ( town != null && town.Owner == faction )
-							{
-								Container pack = from.Backpack;
-
-								if ( pack != null )
-								{
-									availableSilver = pack.GetAmount( typeof( Silver ) );
-
-									if ( availableSilver >= def.SilverCost )
-										queryFactionImbue = Faction.IsNearType( from, def.VendorType, 12 );
-								}
-							}
-						}
-					}
-				}
-
-				// TODO: Scroll imbuing
-
-				if ( queryFactionImbue )
-					from.SendGump( new FactionImbueGump( quality, item, from, craftSystem, tool, num, availableSilver, faction, def ) );
-				else if ( tool != null && !tool.Deleted && tool.UsesRemaining > 0 )
+				if ( tool != null && !tool.Deleted && tool.UsesRemaining > 0 )
 					from.SendGump( new CraftGump( from, craftSystem, tool, num ) );
 				else if ( num > 0 )
 					from.SendLocalizedMessage( num );

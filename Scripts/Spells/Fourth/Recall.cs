@@ -42,12 +42,7 @@ namespace Server.Spells.Fourth
 
 		public override bool CheckCast()
 		{
-			if ( Factions.Sigil.ExistsOn( Caster ) )
-			{
-				Caster.SendLocalizedMessage( 1061632 ); // You can't do that while carrying the sigil.
-				return false;
-			}
-			else if ( Caster.Criminal )
+			if ( Caster.Criminal )
 			{
 				Caster.SendLocalizedMessage( 1005561, "", 0x22 ); // Thou'rt a criminal and cannot escape so easily.
 				return false;
@@ -68,11 +63,7 @@ namespace Server.Spells.Fourth
 
 		public void Effect( Point3D loc, Map map, bool checkMulti )
 		{
-			if ( Factions.Sigil.ExistsOn( Caster ) )
-			{
-				Caster.SendLocalizedMessage( 1061632 ); // You can't do that while carrying the sigil.
-			}
-			else if ( map == null || Caster.Map != map )
+			if ( map == null || Caster.Map != map )
 			{
 				Caster.SendLocalizedMessage( 1005569 ); // You can not recall to another facet.
 			}

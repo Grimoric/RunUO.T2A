@@ -5,9 +5,7 @@ using Server.Items;
 using Server.Network;
 using Server.ContextMenus;
 using Server.Mobiles;
-using Server.Misc;
 using Server.Regions;
-using Server.Factions;
 
 namespace Server.Mobiles
 {
@@ -51,31 +49,6 @@ namespace Server.Mobiles
 
 		public override bool ShowFameTitle { get { return false; } }
         
-		#region Faction
-		public virtual int GetPriceScalar()
-		{
-			Town town = Town.FromRegion( this.Region );
-
-			if ( town != null )
-				return 100 + town.Tax;
-
-			return 100;
-		}
-
-		public void UpdateBuyInfo()
-		{
-			int priceScalar = GetPriceScalar();
-
-			IBuyItemInfo[] buyinfo = (IBuyItemInfo[])m_ArmorBuyInfo.ToArray( typeof( IBuyItemInfo ) );
-
-			if ( buyinfo != null )
-			{
-				foreach ( IBuyItemInfo info in buyinfo )
-					info.PriceScalar = priceScalar;
-			}
-		}
-		#endregion
-
 		public BaseVendor( string title )
 			: base( AIType.AI_Vendor, FightMode.None, 2, 1, 0.5, 2 )
 		{
@@ -460,8 +433,6 @@ namespace Server.Mobiles
 			if ( DateTime.Now - m_LastRestock > RestockDelay )
 				Restock();
 
-			UpdateBuyInfo();
-
 			int count = 0;
 			List<BuyItemState> list;
 			IBuyItemInfo[] buyInfo = this.GetBuyInfo();
@@ -793,8 +764,6 @@ namespace Server.Mobiles
 				Say( 501522 ); // I shall not treat with scum like thee!
 				return false;
 			}
-
-			UpdateBuyInfo();
 
 			IBuyItemInfo[] buyInfo = this.GetBuyInfo();
 			IShopSellInfo[] info = GetSellInfo();
