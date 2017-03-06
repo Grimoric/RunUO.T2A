@@ -60,9 +60,6 @@ namespace Server.Items
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			if( Guild.NewGuildSystem )
-				return;
-
 			Guildstone stone = m_Stone as Guildstone;
 
 			if ( !IsChildOf( from.Backpack ) )

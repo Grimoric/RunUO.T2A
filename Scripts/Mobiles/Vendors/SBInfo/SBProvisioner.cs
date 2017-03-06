@@ -88,8 +88,7 @@ namespace Server.Mobiles
 				Add( new GenericBuyInfo( typeof( Backgammon ), 2, 20, 0xE1C, 0 ) );
 				Add( new GenericBuyInfo( typeof( Dices ), 2, 20, 0xFA7, 0 ) );
 
-				if( !Guild.NewGuildSystem )
-					Add( new GenericBuyInfo( "1041055", typeof( GuildDeed ), 12450, 20, 0x14F0, 0 ) );
+				Add( new GenericBuyInfo( "1041055", typeof( GuildDeed ), 12450, 20, 0x14F0, 0 ) );
 			}
 		}
 
@@ -153,8 +152,7 @@ namespace Server.Mobiles
 				Add( typeof( GoldEarrings ), 13 );
 				Add( typeof( SilverEarrings ), 10 );
 
-				if( !Guild.NewGuildSystem )
-					Add( typeof( GuildDeed ), 6225 );
+				Add( typeof( GuildDeed ), 6225 );
 			}
 		}
 	}

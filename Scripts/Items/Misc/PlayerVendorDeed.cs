@@ -59,30 +59,21 @@ namespace Server.Items
 				{
 					from.SendLocalizedMessage( 503240 ); // Vendors can only be placed in houses.	
 				}
-				else if ( !BaseHouse.NewVendorSystem && !house.IsFriend( from ) )
+				else if ( !house.IsFriend( from ) )
 				{
 					from.SendLocalizedMessage( 503242 ); // You must ask the owner of this building to name you a friend of the household in order to place a vendor here.
 				}
-				else if ( BaseHouse.NewVendorSystem && !house.IsOwner( from ) )
-				{
-					from.SendLocalizedMessage( 1062423 ); // Only the house owner can directly place vendors.  Please ask the house owner to offer you a vendor contract so that you may place a vendor in this house.
-				}
-				else if ( !house.Public || !house.CanPlaceNewVendor() ) 
+				else if ( !house.Public ) 
 				{
 					from.SendLocalizedMessage( 503241 ); // You cannot place this vendor or barkeep.  Make sure the house is public and has sufficient storage available.
 				}
 				else
 				{
-					bool vendor, contract;
-					BaseHouse.IsThereVendor( from.Location, from.Map, out vendor, out contract );
+                    bool vendor = BaseHouse.IsThereVendor(from.Location, from.Map);
 
-					if ( vendor )
+                    if ( vendor )
 					{
 						from.SendLocalizedMessage( 1062677 ); // You cannot place a vendor or barkeep at this location.
-					}
-					else if ( contract )
-					{
-						from.SendLocalizedMessage( 1062678 ); // You cannot place a vendor or barkeep on top of a rental contract!
 					}
 					else
 					{

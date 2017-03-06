@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using Server.Multis;
 using Server.Targeting;
-using Server.ContextMenus;
 using Server.Gumps;
 
 namespace Server.Items
@@ -128,12 +126,6 @@ namespace Server.Items
 			m_Redyable = true;
 		}
 		
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-			SetSecureLevelEntry.AddTo( from, this, list );
-		}
-
 		public DyeTub( Serial serial ) : base( serial )
 		{
 		}

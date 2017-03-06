@@ -155,11 +155,6 @@ namespace Server.Mobiles
 				from.SendLocalizedMessage( 1049679 ); // You have too many followers to summon your mount.
 				return false;
 			}
-			else if( !Multis.DesignContext.Check( from ) )
-			{
-				// Check sends the message
-				return false;
-			}
 
 			return true;
 		}

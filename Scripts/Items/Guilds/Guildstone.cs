@@ -41,7 +41,7 @@ namespace Server.Items
 		{
 		}
 
-		public Guildstone( Guild g, string guildName, string abbrev ) : base( Guild.NewGuildSystem ? 0xED6 : 0xED4 )
+		public Guildstone( Guild g, string guildName, string abbrev ) : base( 0xED4 )
 		{
 			m_Guild = g;
 			m_GuildName = guildName;
@@ -107,28 +107,11 @@ namespace Server.Items
 				}
 			}
 
-			if( Guild.NewGuildSystem && ItemID == 0xED4 )
-				ItemID = 0xED6;
-
 			if( version <= 2 )
 				m_BeforeChangeover = true;
 
-			if( Guild.NewGuildSystem && m_BeforeChangeover )
-				Timer.DelayCall( TimeSpan.Zero, new TimerCallback( AddToHouse ) );
-
-			if( !Guild.NewGuildSystem && m_Guild == null )
+			if( m_Guild == null )
 				this.Delete();
-		}
-
-		private void AddToHouse()
-		{
-			BaseHouse house = BaseHouse.FindHouseAt( this );
-
-			if( Guild.NewGuildSystem && m_BeforeChangeover && house != null && !house.Addons.Contains( this ) )
-			{
-				house.Addons.Add( this );
-				m_BeforeChangeover = false;
-			}
 		}
 
 		public override void GetProperties( ObjectPropertyList list )
@@ -176,15 +159,12 @@ namespace Server.Items
 
 		public override void OnAfterDelete()
 		{
-			if( !Guild.NewGuildSystem && m_Guild != null && !m_Guild.Disbanded )
+			if( m_Guild != null && !m_Guild.Disbanded )
 				m_Guild.Disband();
 		}
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			if( Guild.NewGuildSystem )
-				return;
-
 			if( m_Guild == null || m_Guild.Disbanded )
 			{
 				Delete();
@@ -229,28 +209,6 @@ namespace Server.Items
 
 		public void OnChop( Mobile from )
 		{
-			if( !Guild.NewGuildSystem )
-				return;
-
-			BaseHouse house = BaseHouse.FindHouseAt( this );
-
-			if( house == null && m_BeforeChangeover || house != null && house.IsOwner( @from ) && house.Addons.Contains( this ))
-			{
-				Effects.PlaySound( GetWorldLocation(), Map, 0x3B3 );
-				from.SendLocalizedMessage( 500461 ); // You destroy the item.
-
-				Delete();
-
-				if( house != null && house.Addons.Contains( this ) )
-					house.Addons.Remove( this );
-
-				Item deed = Deed;
-
-				if( deed != null )
-				{
-					from.AddToBackpack( deed );
-				}
-			}
 		}
 
 		#endregion

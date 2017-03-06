@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Server.Items;
-using Server.Multis;
-using Server.Mobiles;
 
 namespace Server.Misc
 {
@@ -36,22 +34,6 @@ namespace Server.Misc
 						validItems.Add( deed.Commodity );
 
 					continue;
-				}
-				else if ( item is BaseHouse )
-				{
-					BaseHouse house = (BaseHouse)item;
-
-					foreach ( RelocatedEntity relEntity in house.RelocatedEntities )
-					{
-						if ( relEntity.Entity is Item )
-							validItems.Add( (Item)relEntity.Entity );
-					}
-
-					foreach ( VendorInventory inventory in house.VendorInventories )
-					{
-						foreach ( Item subItem in inventory.Items )
-							validItems.Add( subItem );
-					}
 				}
 				else if ( item is BankBox )
 				{

@@ -12,8 +12,6 @@ namespace Server.Multis
 
 		public override int DefaultPrice{ get{ return 43800; } }
 
-		public override HousePlacementEntry ConvertEntry{ get{ return HousePlacementEntry.TwoStoryFoundations[0]; } }
-
 		public SmallOldHouse( Mobile owner, int id ) : base( id, owner, 425, 3 )
 		{
 			uint keyValue = CreateKeys( owner );
@@ -60,7 +58,6 @@ namespace Server.Multis
 
 		public override int DefaultPrice{ get{ return 144500; } }
 
-		public override HousePlacementEntry ConvertEntry{ get{ return HousePlacementEntry.ThreeStoryFoundations[20]; } }
 		public override int ConvertOffsetX{ get{ return -1; } }
 		public override int ConvertOffsetY{ get{ return -1; } }
 
@@ -152,7 +149,6 @@ namespace Server.Multis
 
 		public override int DefaultPrice{ get{ return 433200; } }
 
-		public override HousePlacementEntry ConvertEntry{ get{ return HousePlacementEntry.ThreeStoryFoundations[37]; } }
 		public override int ConvertOffsetY{ get{ return -1; } }
 
 		public override Rectangle2D[] Area{ get{ return AreaArray; } }
@@ -274,7 +270,6 @@ namespace Server.Multis
 
 		public override int DefaultPrice{ get{ return 152800; } }
 
-		public override HousePlacementEntry ConvertEntry{ get{ return HousePlacementEntry.ThreeStoryFoundations[29]; } }
 		public override int ConvertOffsetY{ get{ return -1; } }
 
 		public override Rectangle2D[] Area { get { return AreaArray; } }
@@ -318,7 +313,6 @@ namespace Server.Multis
 
 		public override int DefaultPrice{ get{ return 192000; } }
 
-		public override HousePlacementEntry ConvertEntry{ get{ return HousePlacementEntry.ThreeStoryFoundations[29]; } }
 		public override int ConvertOffsetY{ get{ return -1; } }
 
 		public override Rectangle2D[] Area { get { return AreaArray; } }
@@ -358,8 +352,6 @@ namespace Server.Multis
 
 		public override int DefaultPrice{ get{ return 88500; } }
 
-		public override HousePlacementEntry ConvertEntry{ get{ return HousePlacementEntry.TwoStoryFoundations[6]; } }
-
 		public override Rectangle2D[] Area{ get{ return AreaArray; } }
 		public override Point3D BaseBanLocation{ get{ return new Point3D( 1, 4, 0 ); } }
 
@@ -396,8 +388,6 @@ namespace Server.Multis
 		public static Rectangle2D[] AreaArray = new Rectangle2D[]{ new Rectangle2D( -3, -6, 8, 13 ) };
 
 		public override int DefaultPrice{ get{ return 97800; } }
-
-		public override HousePlacementEntry ConvertEntry{ get{ return HousePlacementEntry.TwoStoryFoundations[12]; } }
 
 		public override Rectangle2D[] Area { get { return AreaArray; } }
 		public override Point3D BaseBanLocation { get { return new Point3D( 5, 8, 0 ); } }
@@ -438,8 +428,7 @@ namespace Server.Multis
 
 		public override int DefaultPrice{ get{ return 90900; } }
 
-		public override HousePlacementEntry ConvertEntry{ get{ return HousePlacementEntry.TwoStoryFoundations[35]; } }
-		public override int ConvertOffsetY{ get{ return -1; } }
+    	public override int ConvertOffsetY{ get{ return -1; } }
 
 		public override Rectangle2D[] Area { get { return AreaArray; } }
 		public override Point3D BaseBanLocation { get { return new Point3D( 4, 6, 0 ); } }
@@ -478,7 +467,6 @@ namespace Server.Multis
 
 		public override int DefaultPrice{ get{ return 136500; } }
 
-		public override HousePlacementEntry ConvertEntry{ get{ return HousePlacementEntry.TwoStoryFoundations[31]; } }
 
 		public override Rectangle2D[] Area{ get{ return AreaArray; } }
 		public override Point3D BaseBanLocation{ get{ return new Point3D( 3, 8, 0 ); } }
@@ -521,8 +509,6 @@ namespace Server.Multis
 
 		public override int DefaultPrice{ get{ return 63000; } }
 
-		public override HousePlacementEntry ConvertEntry{ get{ return HousePlacementEntry.TwoStoryFoundations[0]; } }
-
 		public static Rectangle2D[] AreaArray1 = new Rectangle2D[]{ new Rectangle2D(-3,-3,7,7), new Rectangle2D( -1, 4, 4, 1 ) };
 		public static Rectangle2D[] AreaArray2 = new Rectangle2D[]{ new Rectangle2D(-3,-3,7,7), new Rectangle2D( -2, 4, 3, 1 ) };
 
@@ -540,8 +526,6 @@ namespace Server.Multis
 
 			AddDoor( door, -2, 0, id == 0xA2 ? 24 : 27 );
 
-			//AddSouthDoor( false, -2, 0, 27 - (id == 0xA2 ? 3 : 0), keyValue );
-			
 			SetSign( 3, 4, 7 - (id == 0xA2 ? 2 : 0) );
 		}
 

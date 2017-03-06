@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Server.Multis;
 using Server.Mobiles;
 using Server.Network;
-using Server.ContextMenus;
 
 namespace Server.Items
 {
@@ -31,26 +30,12 @@ namespace Server.Items
 			return base.IsAccessibleTo( m );
 		}
 
-		public override bool CheckHold( Mobile m, Item item, bool message, bool checkItems, int plusItems, int plusWeight )
-		{
-			if ( this.IsSecure && !BaseHouse.CheckHold( m, this, item, message, checkItems, plusItems, plusWeight ) )
-				return false;
-
-			return base.CheckHold( m, item, message, checkItems, plusItems, plusWeight );
-		}
-
 		public override bool CheckItemUse( Mobile from, Item item )
 		{
 			if ( IsDecoContainer && item is BaseBook )
 				return true;
 
 			return base.CheckItemUse( from, item );
-		}
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-			SetSecureLevelEntry.AddTo( from, this, list );
 		}
 
 		public override bool TryDropItem( Mobile from, Item dropped, bool sendFullMessage )
@@ -62,12 +47,6 @@ namespace Server.Items
 
 			if ( house != null && house.IsLockedDown( this ) )
 			{
-				if ( dropped is VendorRentalContract || dropped is Container && ((Container)dropped).FindItemByType( typeof( VendorRentalContract ) ) != null )
-				{
-					from.SendLocalizedMessage( 1062492 ); // You cannot place a rental contract in a locked down container.
-					return false;
-				}
-
 				if ( !house.LockDown( from, dropped, false ) )
 					return false;
 			}
@@ -96,12 +75,6 @@ namespace Server.Items
 
 			if ( house != null && house.IsLockedDown( this ) )
 			{
-				if ( item is VendorRentalContract || item is Container && ((Container)item).FindItemByType( typeof( VendorRentalContract ) ) != null )
-				{
-					from.SendLocalizedMessage( 1062492 ); // You cannot place a rental contract in a locked down container.
-					return false;
-				}
-
 				if ( !house.LockDown( from, item, false ) )
 					return false;
 			}

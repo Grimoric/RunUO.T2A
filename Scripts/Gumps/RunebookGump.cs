@@ -242,7 +242,7 @@ namespace Server.Gumps
 		{
 			Mobile from = state.Mobile;
 
-			if ( m_Book.Deleted || !from.InRange( m_Book.GetWorldLocation(), 1 ) || !Multis.DesignContext.Check( from ) )
+			if ( m_Book.Deleted || !from.InRange( m_Book.GetWorldLocation(), 1 ) )
 			{
 				m_Book.Openers.Remove( from );
 				return;

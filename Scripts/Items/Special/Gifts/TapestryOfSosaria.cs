@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using Server.Gumps;
 using Server.Network;
 using Server.Multis;
-using Server.ContextMenus;
 
 namespace Server.Items
 {
@@ -25,13 +23,6 @@ namespace Server.Items
 		{
 			Weight = 1.0;
 			LootType = LootType.Blessed;
-		}
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-
-			SetSecureLevelEntry.AddTo( from, this, list );
 		}
 
 		public override void OnDoubleClick( Mobile from )

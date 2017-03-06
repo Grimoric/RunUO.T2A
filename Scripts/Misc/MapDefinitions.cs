@@ -35,9 +35,9 @@ namespace Server.Misc
 			 *  - <rules> : Rules and restrictions associated with the map. See documentation for details
 			*/
 
-			TileMatrixPatch.Enabled = false; // OSI Client Patch 6.0.0.0
+			TileMatrixPatch.Enabled = true; // OSI Client Patch 6.0.0.0
 
-			MultiComponentList.PostHSFormat = true; // OSI Client Patch 7.0.9.0
+			MultiComponentList.PostHSFormat = false; // OSI Client Patch 7.0.9.0
 		}
 
 		public static void RegisterMap( int mapIndex, int mapID, int fileIndex, int width, int height, int season, string name, MapRules rules )

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Server.ContextMenus;
 using Server.Gumps;
 using Server.Multis;
 using Server.Network;
@@ -95,13 +94,6 @@ namespace Server.Items
 				list.Add( 1075235, uncommonSongs.ToString() ); // ~1_NUMBER~ Uncommon Tracks
 			if ( rareSongs > 0 )
 				list.Add( 1075236, rareSongs.ToString() ); // ~1_NUMBER~ Rare Tracks
-		}
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-
-			SetSecureLevelEntry.AddTo( from, this, list ); // Set secure level
 		}
 
 		public override void OnDoubleClick( Mobile from )

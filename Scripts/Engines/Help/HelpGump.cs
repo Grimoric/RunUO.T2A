@@ -224,11 +224,7 @@ namespace Server.Engines.Help
 				{
 					BaseHouse house = BaseHouse.FindHouseAt( from );
 
-					if ( house != null && house.IsAosRules )
-					{
-						from.Location = house.BanLocation;
-					}
-					else if ( from.Region.IsPartOf( typeof( Server.Regions.Jail ) ) )
+					if ( from.Region.IsPartOf( typeof( Server.Regions.Jail ) ) )
 					{
 						from.SendLocalizedMessage( 1114345, "", 0x35 ); // You'll need a better jailbreak plan than that!
 					}

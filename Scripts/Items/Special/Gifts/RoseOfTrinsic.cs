@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using Server.Network;
 using Server.Gumps;
 using Server.Multis;
-using Server.ContextMenus;
 
 namespace Server.Items
 {
@@ -68,13 +66,6 @@ namespace Server.Items
 			base.GetProperties( list );
 
 			list.Add( 1062925, Petals.ToString() ); // Petals:  ~1_COUNT~
-		}
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-
-			SetSecureLevelEntry.AddTo( from, this, list );
 		}
 
 		private void StartSpawnTimer( TimeSpan delay )

@@ -117,8 +117,6 @@ namespace Server.Items
 
 			if ( ValidateDefault( from, this ) )
 				list.Add( new DefaultEntry( from, this ) );
-
-			SetSecureLevelEntry.AddTo( from, this, list );
 		}
 
 		public static bool ValidateDefault( Mobile from, BaseBoard board )

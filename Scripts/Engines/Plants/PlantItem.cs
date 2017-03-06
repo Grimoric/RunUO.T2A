@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Server.Gumps;
 using Server.Items;
 using Server.Multis;
-using Server.ContextMenus;
 using Server.Network;
 
 namespace Server.Engines.Plants
@@ -206,12 +204,6 @@ namespace Server.Engines.Plants
 
 		public PlantItem( Serial serial ) : base( serial )
 		{
-		}
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-			SetSecureLevelEntry.AddTo( from, this, list );
 		}
 
 		public int GetLocalizedPlantStatus()

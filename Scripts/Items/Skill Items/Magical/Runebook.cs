@@ -5,7 +5,6 @@ using Server.Network;
 using Server.Mobiles;
 using Server.Multis;
 using Server.Engines.Craft;
-using Server.ContextMenus;
 
 namespace Server.Items
 {
@@ -164,12 +163,6 @@ namespace Server.Items
 		public override bool AllowEquipedCast( Mobile from )
 		{
 			return true;
-		}
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-			SetSecureLevelEntry.AddTo( from, this, list );
 		}
 
 		public override void Serialize( GenericWriter writer )
@@ -373,9 +366,6 @@ namespace Server.Items
 				return true;
 
 			BaseHouse house = BaseHouse.FindHouseAt( this );
-
-			if ( house != null && house.IsAosRules && (house.Public ? house.IsBanned( m ) : !house.HasAccess( m )) )
-				return false;
 
 			return house != null && house.HasSecureAccess( m, m_Level );
 		}

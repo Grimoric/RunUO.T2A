@@ -87,7 +87,6 @@
     <Compile Include=".\Commands\GenCategorization.cs" />
     <Compile Include=".\Commands\Generic\Commands\BaseCommand.cs" />
     <Compile Include=".\Commands\Generic\Commands\Commands.cs" />
-    <Compile Include=".\Commands\Generic\Commands\DesignInsert.cs" />
     <Compile Include=".\Commands\Generic\Commands\Interface.cs" />
     <Compile Include=".\Commands\Generic\Extensions\BaseExtension.cs" />
     <Compile Include=".\Commands\Generic\Extensions\Compilers\ConditionalCompiler.cs" />
@@ -298,7 +297,6 @@
     <Compile Include=".\Gumps\ClientGump.cs" />
     <Compile Include=".\Gumps\ConfirmBreakCrystalGump.cs" />
     <Compile Include=".\Gumps\ConfirmHeritageGump.cs" />
-    <Compile Include=".\Gumps\ConfirmHouseResize.cs" />
     <Compile Include=".\Gumps\ConfirmReleaseGump.cs" />
     <Compile Include=".\Gumps\DawnsMusicBoxGump.cs" />
     <Compile Include=".\Gumps\Go\ChildNode.cs" />
@@ -330,23 +328,10 @@
     <Compile Include=".\Gumps\Guilds\GuildWarAdminGump.cs" />
     <Compile Include=".\Gumps\Guilds\GuildWarGump.cs" />
     <Compile Include=".\Gumps\Guilds\GuildWebsitePrompt.cs" />
-    <Compile Include=".\Gumps\Guilds\New Guild System\AdvancedSearch.cs" />
-    <Compile Include=".\Gumps\Guilds\New Guild System\BaseGuildGump.cs" />
-    <Compile Include=".\Gumps\Guilds\New Guild System\BaseGuildListGump.cs" />
-    <Compile Include=".\Gumps\Guilds\New Guild System\Create Guild Gump.cs" />
-    <Compile Include=".\Gumps\Guilds\New Guild System\DiplomacyGump.cs" />
-    <Compile Include=".\Gumps\Guilds\New Guild System\GuildInfoGump.cs" />
-    <Compile Include=".\Gumps\Guilds\New Guild System\GuildInvitationRequest.cs" />
-    <Compile Include=".\Gumps\Guilds\New Guild System\GuildMemberInfoGump.cs" />
-    <Compile Include=".\Gumps\Guilds\New Guild System\GuildRosterGump.cs" />
-    <Compile Include=".\Gumps\Guilds\New Guild System\OtherGuildInfo.cs" />
-    <Compile Include=".\Gumps\Guilds\New Guild System\War Declaration gump.cs" />
     <Compile Include=".\Gumps\Guilds\RecruitTarget.cs" />
     <Compile Include=".\Gumps\HeritageTokenGump.cs" />
     <Compile Include=".\Gumps\HonorSelf.cs" />
-    <Compile Include=".\Gumps\HouseDemolishGump.cs" />
     <Compile Include=".\Gumps\HouseGump.cs" />
-    <Compile Include=".\Gumps\HouseGumpAOS.cs" />
     <Compile Include=".\Gumps\HouseTransferGump.cs" />
     <Compile Include=".\Gumps\NoticeGump.cs" />
     <Compile Include=".\Gumps\PetResurrectGump.cs" />
@@ -363,7 +348,6 @@
     <Compile Include=".\Gumps\Properties\SetPoint2DGump.cs" />
     <Compile Include=".\Gumps\Properties\SetPoint3DGump.cs" />
     <Compile Include=".\Gumps\Properties\SetTimeSpanGump.cs" />
-    <Compile Include=".\Gumps\ReclaimVendorGump.cs" />
     <Compile Include=".\Gumps\ReportMurderer.cs" />
     <Compile Include=".\Gumps\ResurrectGump.cs" />
     <Compile Include=".\Gumps\RewardGump.cs" />
@@ -371,8 +355,6 @@
     <Compile Include=".\Gumps\SetSecureLevelGump.cs" />
     <Compile Include=".\Gumps\SkillsGump.cs" />
     <Compile Include=".\Gumps\TithingGump.cs" />
-    <Compile Include=".\Gumps\VendorInventoryGump.cs" />
-    <Compile Include=".\Gumps\VendorRentalGumps.cs" />
     <Compile Include=".\Gumps\ViewHousesGump.cs" />
     <Compile Include=".\Gumps\WarningGump.cs" />
     <Compile Include=".\Gumps\WhoGump.cs" />
@@ -763,7 +745,6 @@
     <Compile Include=".\Items\Deeds\HolidayTreeDeed.cs" />
     <Compile Include=".\Items\Deeds\NameChangeDeed.cs" />
     <Compile Include=".\Items\Deeds\NewPlayerTicket.cs" />
-    <Compile Include=".\Items\Deeds\VendorRentalContract.cs" />
     <Compile Include=".\Items\Facial\Beard.cs" />
     <Compile Include=".\Items\Facial\Hair.cs" />
     <Compile Include=".\Items\Farming\FarmableCabbage.cs" />
@@ -2208,7 +2189,6 @@
     <Compile Include=".\Mobiles\Vendors\PlayerBarkeeper.cs" />
     <Compile Include=".\Mobiles\Vendors\PlayerVendor.cs" />
     <Compile Include=".\Mobiles\Vendors\PresetMapBuy.cs" />
-    <Compile Include=".\Mobiles\Vendors\RentedVendor.cs" />
     <Compile Include=".\Mobiles\Vendors\SBInfo\Armors\SBChainmailArmor.cs" />
     <Compile Include=".\Mobiles\Vendors\SBInfo\Armors\SBHelmetArmor.cs" />
     <Compile Include=".\Mobiles\Vendors\SBInfo\Armors\SBLeatherArmor.cs" />
@@ -2289,8 +2269,7 @@
     <Compile Include=".\Mobiles\Vendors\SBInfo\Weapons\SBSpearForkWeapon.cs" />
     <Compile Include=".\Mobiles\Vendors\SBInfo\Weapons\SBStavesWeapon.cs" />
     <Compile Include=".\Mobiles\Vendors\SBInfo\Weapons\SBSwordWeapon.cs" />
-    <Compile Include=".\Mobiles\Vendors\VendorInventory.cs" />
-    <Compile Include=".\Multis\BaseHouse.cs" />
+    <Compile Include="Multis\Houses\BaseHouse.cs" />
     <Compile Include=".\Multis\Boats\BaseBoat.cs" />
     <Compile Include=".\Multis\Boats\BaseBoatDeed.cs" />
     <Compile Include=".\Multis\Boats\BaseDockedBoat.cs" />
@@ -2314,17 +2293,11 @@
     <Compile Include=".\Multis\Camps\MageCamp.cs" />
     <Compile Include=".\Multis\Camps\OrcCamp.cs" />
     <Compile Include=".\Multis\Camps\RatCamp.cs" />
-    <Compile Include=".\Multis\ComponentVerification.cs" />
-    <Compile Include=".\Multis\Deeds.cs" />
-    <Compile Include=".\Multis\DynamicDecay.cs" />
-    <Compile Include=".\Multis\HouseFoundation.cs" />
-    <Compile Include=".\Multis\HousePlacement.cs" />
-    <Compile Include=".\Multis\HousePlacementTool.cs" />
-    <Compile Include=".\Multis\Houses.cs" />
-    <Compile Include=".\Multis\HouseSign.cs" />
-    <Compile Include=".\Multis\HouseTeleporter.cs" />
-    <Compile Include=".\Multis\MovingCrate.cs" />
-    <Compile Include=".\Multis\PreviewHouse.cs" />
+    <Compile Include="Multis\Houses\Deeds.cs" />
+    <Compile Include="Multis\Houses\HousePlacement.cs" />
+    <Compile Include="Multis\Houses\Houses.cs" />
+    <Compile Include="Multis\Houses\HouseSign.cs" />
+    <Compile Include="Multis\Houses\PreviewHouse.cs" />
     <Compile Include=".\Regions\BaseRegion.cs" />
     <Compile Include=".\Regions\DungeonRegion.cs" />
     <Compile Include=".\Regions\GreenAcres.cs" />
@@ -2480,6 +2453,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>
     <VisualStudio AllowExistingFolder="true" />

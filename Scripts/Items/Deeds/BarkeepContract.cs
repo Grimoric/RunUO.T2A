@@ -67,16 +67,11 @@ namespace Server.Items
 				}
 				else
 				{
-					bool vendor, contract;
-					BaseHouse.IsThereVendor( from.Location, from.Map, out vendor, out contract );
+                    bool vendor = BaseHouse.IsThereVendor(from.Location, from.Map);
 
-					if ( vendor )
+                    if ( vendor )
 					{
 						from.SendLocalizedMessage( 1062677 ); // You cannot place a vendor or barkeep at this location.
-					}
-					else if ( contract )
-					{
-						from.SendLocalizedMessage( 1062678 ); // You cannot place a vendor or barkeep on top of a rental contract!
 					}
 					else
 					{

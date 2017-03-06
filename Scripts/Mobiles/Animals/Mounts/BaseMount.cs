@@ -147,9 +147,6 @@ namespace Server.Mobiles
 				return;
 			}
 
-			if ( !Multis.DesignContext.Check( from ) )
-				return;
-
 			if ( from.HasTrade )
 			{
 				from.SendLocalizedMessage( 1042317, "", 0x41 ); // You may not ride at this time

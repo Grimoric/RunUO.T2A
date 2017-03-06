@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Server.Items;
 using Server.Network;
 using Server.Prompts;
 using Server.Multis;
@@ -247,14 +248,9 @@ namespace Server.Gumps
 			from.CloseGump( typeof( HouseListGump ) );
 			from.CloseGump( typeof( HouseRemoveGump ) );
 
-			bool isCombatRestricted = house.IsCombatRestricted( from );
-
 			bool isOwner = m_House.IsOwner( from );
 			bool isCoOwner = isOwner || m_House.IsCoOwner( from );
 			bool isFriend = isCoOwner || m_House.IsFriend( from );
-
-			if ( isCombatRestricted )
-				isFriend = isCoOwner = isOwner = false;
 
 			AddPage( 0 );
 
@@ -445,14 +441,9 @@ namespace Server.Gumps
 
 			Mobile from = sender.Mobile;
 
-			bool isCombatRestricted = m_House.IsCombatRestricted( from );
-
 			bool isOwner = m_House.IsOwner( from );
 			bool isCoOwner = isOwner || m_House.IsCoOwner( from );
 			bool isFriend = isCoOwner || m_House.IsFriend( from );
-
-			if ( isCombatRestricted )
-				isFriend = isCoOwner = isOwner = false;
 
 			if ( !isFriend || !from.Alive )
 				return;
@@ -631,15 +622,34 @@ namespace Server.Gumps
 				{
 					if ( isOwner )
 					{
-						if ( !Guilds.Guild.NewGuildSystem && m_House.FindGuildstone() != null )
+						if ( m_House.FindGuildstone() != null )
 						{
 							from.SendLocalizedMessage( 501389 ); // You cannot redeed a house with a guildstone inside.
 						}
 						else
 						{
-							from.CloseGump( typeof( HouseDemolishGump ) );
-							from.SendGump( new HouseDemolishGump( from, m_House ) );
-						}
+                                Item toGive = m_House.GetDeed();
+
+                                Container backpack = from.Backpack;
+
+
+                                if (backpack.TryDropItem(from, toGive, false))
+                                {
+                                    from.SendLocalizedMessage(501391); // You place the deed in your backpack.
+
+                                    m_House.RemoveKeys(from);
+                                    m_House.Delete();
+                                }
+                                else
+                                {
+                                    from.SendLocalizedMessage(501294); // Redeeding the house has failed. 
+                                    from.SendLocalizedMessage(501390); // You do not have room in your backpack for a house deed. 
+
+                                    toGive.Delete();
+                                }
+
+
+                            }
 					}
 					else
 					{

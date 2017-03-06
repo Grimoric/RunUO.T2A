@@ -108,16 +108,12 @@ namespace Server.Gumps
 							AddButton( 190, 17, 0x15E3, 0x15E7, 0, GumpButtonType.Page, page-1 );
 					}
 
-					object name = FindHouseName( list[i] );
+				    string name = list[i].LabelNumber.ToString();
 
-					AddHtml( 15, 40 + i % 15 * 20,  20, 20, Color( String.Format( "{0}.", i+1 ), White ), false, false );
+                    AddHtml(15, 40 + i % 15 * 20, 20, 20, Color(String.Format("{0}.", i + 1), White), false, false);
+                    AddHtml(35, 40 + i % 15 * 20, 160, 20, Color(String.Format("{0}.", name), White), false, false);
 
-					if ( name is int )
-						AddHtmlLocalized( 35, 40 + i % 15 * 20, 160, 20, (int)name, White16, false, false );
-					else if ( name is string )
-						AddHtml( 35, 40 + i % 15 * 20, 160, 20, Color( (string)name, White ), false, false );
-
-					AddButton( 198, 39 + i % 15 * 20, 4005, 4007, i+1, GumpButtonType.Reply, 0 );
+                    AddButton( 198, 39 + i % 15 * 20, 4005, 4007, i+1, GumpButtonType.Reply, 0 );
 				}
 			}
 			else
@@ -227,7 +223,6 @@ namespace Server.Gumps
 					case 3:
 					{
 						m_From.SendGump( new ViewHousesGump( m_From, m_List, m_Selection ) );
-						m_From.SendGump( new HouseDemolishGump( m_From, m_Selection ) );
 
 						break;
 					}
@@ -241,7 +236,7 @@ namespace Server.Gumps
 				}
 			}
 		}
-
+/*
 		public object FindHouseName( BaseHouse house )
 		{
 			int multiID = house.ItemID;
@@ -255,25 +250,9 @@ namespace Server.Gumps
 					return entries[i].Description;
 			}
 
-			entries = HousePlacementEntry.TwoStoryFoundations;
-
-			for ( int i = 0; i < entries.Length; ++i )
-			{
-				if ( entries[i].MultiID == multiID )
-					return entries[i].Description;
-			}
-
-			entries = HousePlacementEntry.ThreeStoryFoundations;
-
-			for ( int i = 0; i < entries.Length; ++i )
-			{
-				if ( entries[i].MultiID == multiID )
-					return entries[i].Description;
-			}
-
 			return house.GetType().Name;
 		}
-
+        */
 		private const int White16 = 0x7FFF;
 		private const int White = 0xFFFFFF;
 

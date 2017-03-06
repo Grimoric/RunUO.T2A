@@ -156,8 +156,6 @@ namespace Server.Engines.Mahjong
 
 			if ( from.Alive && IsAccessibleTo( from ) && m_Players.GetInGameMobiles( true, false ).Count == 0 )
 				list.Add( new ResetGameEntry( this ) );
-
-			SetSecureLevelEntry.AddTo( from, this, list );
 		}
 
 		private class ResetGameEntry : ContextMenuEntry

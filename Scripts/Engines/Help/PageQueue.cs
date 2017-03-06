@@ -218,12 +218,7 @@ namespace Server.Engines.Help
 			if ( pm == null )
 				return true;
 
-			if ( pm.DesignContext != null )
-			{
-				from.SendLocalizedMessage( 500182 ); // You cannot request help while customizing a house or transferring a character.
-				return false;
-			}
-			else if ( pm.PagingSquelched )
+			if ( pm.PagingSquelched )
 			{
 				from.SendMessage( "You cannot request help, sorry." );
 				return false;

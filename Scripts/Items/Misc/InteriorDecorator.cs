@@ -204,10 +204,6 @@ namespace Server.Items
 						else
 							from.SendLocalizedMessage( 1042271 ); // That is not locked down.
 					}
-					else if ( item is VendorRentalContract )
-					{
-						from.SendLocalizedMessage( 1062491 ); // You cannot use the house decorator on that object.
-					}
 					else if ( item.TotalWeight + item.PileWeight > 100 )
 					{
 						from.SendLocalizedMessage( 1042272 ); // That is too heavy.

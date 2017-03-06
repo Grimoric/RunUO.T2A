@@ -5,7 +5,6 @@ using Server.Multis;
 using Server.Prompts;
 using Server.Mobiles;
 using Server.Network;
-using Server.ContextMenus;
 
 namespace Server.Items
 {
@@ -109,12 +108,6 @@ namespace Server.Items
 		{
 		}
 
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-			SetSecureLevelEntry.AddTo( from, this, list );
-		}
-
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
@@ -178,10 +171,7 @@ namespace Server.Items
 
 		public static bool CheckAccess( BaseHouse house, Mobile from )
 		{
-			if ( house.Public || !house.IsAosRules )
-				return !house.IsBanned( from );
-
-			return house.HasAccess( from );
+			return !house.IsBanned( from );
 		}
 
 		public override void OnDoubleClick( Mobile from )

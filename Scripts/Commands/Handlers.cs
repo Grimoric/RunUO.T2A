@@ -953,9 +953,6 @@ namespace Server.Commands
 		{
 			if ( e.Length == 1 )
 			{
-				if ( !Multis.DesignContext.Check( e.Mobile ) )
-					return; // They are customizing
-
 				Spell spell = SpellRegistry.NewSpell( e.GetString( 0 ), e.Mobile, null );
 
 				if ( spell != null )

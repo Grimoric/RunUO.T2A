@@ -1,8 +1,6 @@
 using System;
 using Server.Multis;
 using Server.Gumps;
-using System.Collections.Generic;
-using Server.ContextMenus;
 
 namespace Server.Items
 {
@@ -109,12 +107,6 @@ namespace Server.Items
 			set{ m_Level = value; }
 		}
 
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-			SetSecureLevelEntry.AddTo( from, this, list );
-		}
-
 		public BaseHouseDoor( DoorFacing facing, int closedID, int openedID, int openedSound, int closedSound, Point3D offset ) : base( closedID, openedID, openedSound, closedSound, offset )
 		{
 			m_Facing = facing;
@@ -140,13 +132,7 @@ namespace Server.Items
 			if ( house == null )
 				return false;
 
-			if ( !house.IsAosRules )
-				return true;
-
-			if ( house.Public ? house.IsBanned( m ) : !house.HasAccess( m ) )
-				return false;
-
-			return house.HasSecureAccess( m, m_Level );
+			return true;
 		}
 
 		public override void OnOpened( Mobile from )
@@ -158,13 +144,6 @@ namespace Server.Items
 
 			if ( house != null && house.Public && !house.IsFriend( from ) )
 				house.Visits++;
-		}
-
-		public override bool UseLocks()
-		{
-			BaseHouse house = FindHouse();
-
-			return house == null || !house.IsAosRules;
 		}
 
 		public override void Use( Mobile from )

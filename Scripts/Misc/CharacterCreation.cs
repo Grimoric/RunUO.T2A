@@ -109,7 +109,6 @@ namespace Server.Misc
 			cont.Name = "Tool Bag";
 
 			PlaceItemIn( cont, 30,  35, new TinkerTools( 1000 ) );
-			PlaceItemIn( cont, 60,  35, new HousePlacementTool() );
 			PlaceItemIn( cont, 90,  35, new DovetailSaw( 1000 ) );
 			PlaceItemIn( cont, 30,  68, new Scissors() );
 			PlaceItemIn( cont, 45,  68, new MortarPestle( 1000 ) );

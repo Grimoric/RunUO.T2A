@@ -28,8 +28,6 @@ namespace Server.Multis.Deeds
 
 				if ( from.AccessLevel >= AccessLevel.GameMaster || reg.AllowHousing( from, p ) )
 					m_Deed.OnPlacement( from, p );
-				else if ( reg.IsPartOf( typeof( TempNoHousingRegion ) ) )
-					from.SendLocalizedMessage( 501270 ); // Lord British has decreed a 'no build' period, thus you cannot build this house at this time.
 				else if ( reg.IsPartOf( typeof( TreasureRegion ) ) || reg.IsPartOf( typeof( HouseRegion ) ) )
 					from.SendLocalizedMessage( 1043287 ); // The house could not be created here.  Either something is blocking the house, or the house would not be on valid terrain.
 				else if ( reg.IsPartOf( typeof( HouseRaffleRegion ) ) )

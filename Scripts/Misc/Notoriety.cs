@@ -133,7 +133,7 @@ namespace Server.Misc
 			{
 				c.DisplayGuildTitle = false;
 
-				if( c.Map != Map.Internal && ( Guild.NewGuildSystem || c.ControlOrder == OrderType.Attack || c.ControlOrder == OrderType.Guard) )
+				if( c.Map != Map.Internal && ( c.ControlOrder == OrderType.Attack || c.ControlOrder == OrderType.Guard) )
 					g = (Guild)(c.Guild = c.ControlMaster.Guild);
 				else if( c.Map == Map.Internal || c.ControlMaster.Guild == null )
 					g = (Guild)(c.Guild = null);

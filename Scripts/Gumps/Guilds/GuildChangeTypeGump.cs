@@ -42,7 +42,7 @@ namespace Server.Gumps
 
 		public override void OnResponse( NetState state, RelayInfo info )
 		{
-			if ( Guild.NewGuildSystem && !BaseGuildGump.IsLeader( m_Mobile, m_Guild ) || !Guild.NewGuildSystem && GuildGump.BadLeader( m_Mobile, m_Guild ) )
+			if ( GuildGump.BadLeader( m_Mobile, m_Guild ) )
 				return;
 
 			GuildType newType;
@@ -68,14 +68,6 @@ namespace Server.Gumps
 					m_Guild.Type = newType;
 					m_Guild.GuildMessage( 1018022, true, newType.ToString() ); // Guild Message: Your guild type has changed:
 				}
-			}
-
-			if ( Guild.NewGuildSystem )
-			{
-				if ( m_Mobile is PlayerMobile )
-					m_Mobile.SendGump( new GuildInfoGump( (PlayerMobile)m_Mobile, m_Guild ) );
-
-				return;
 			}
 
 			GuildGump.EnsureClosed( m_Mobile );
