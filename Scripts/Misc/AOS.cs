@@ -27,9 +27,6 @@ namespace Server
             if (m == null || m.Deleted || !m.Alive || damage <= 0)
                 return 0;
 
-            if (phys == 0 && fire == 100 && cold == 0 && pois == 0 && nrgy == 0)
-                Mobiles.MeerMage.StopEffect(m, true);
-
             m.Damage(damage, from);
             return damage;
         }

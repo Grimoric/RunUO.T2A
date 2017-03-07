@@ -86,18 +86,14 @@ namespace Server.Items
 
 			private static Type[] m_ChampTamables = new Type[]
 			{
-				typeof( StrongMongbat ), typeof( Imp ), typeof( Scorpion ), typeof( GiantSpider ),
+				typeof( Imp ), typeof( Scorpion ), typeof( GiantSpider ),
 				typeof( Snake ), typeof( LavaLizard ), typeof( Drake ), typeof( Dragon ),
-				typeof( Kirin ), typeof( Unicorn ), typeof( GiantRat ), typeof( Slime ),
-				typeof( DireWolf ), typeof( HellHound ), typeof( DeathwatchBeetle ), 
-				typeof( LesserHiryu ), typeof( Hiryu )
+				typeof( GiantRat ), typeof( Slime ),
+				typeof( DireWolf ), typeof( HellHound )
 			};
 
 			private bool IsHerdable( BaseCreature bc )
 			{
-				if ( bc.IsParagon )
-					return false;
-
 				if ( bc.Tamable )
 					return true;
 

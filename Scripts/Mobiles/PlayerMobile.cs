@@ -1950,8 +1950,6 @@ namespace Server.Mobiles
 			EndAction( typeof( PolymorphSpell ) );
 			EndAction( typeof( IncognitoSpell ) );
 
-			MeerMage.StopEffect( this, false );
-
 			SkillHandlers.StolenItem.ReturnOnDeath( this, c );
 
 			if ( m_PermaFlags.Count > 0 )

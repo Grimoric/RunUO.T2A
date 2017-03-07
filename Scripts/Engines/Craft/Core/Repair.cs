@@ -41,11 +41,6 @@ namespace Server.Engines.Craft
 				m_Deed = deed;
 			}
 
-			private static void EndGolemRepair( object state )
-			{
-				((Mobile)state).EndAction( typeof( Golem ) );
-			}
-
 			private int GetWeakenChance( Mobile mob, SkillName skill, int curHits, int maxHits )
 			{
 				// 40% - (1% per hp lost) - (1% per 10 craft skill)
@@ -218,69 +213,6 @@ namespace Server.Engines.Craft
 				if ( m_CraftSystem.CanCraft( from, m_Tool, targeted.GetType() ) == 1044267 )
 				{
 					number = 1044282; // You must be near a forge and and anvil to repair items. * Yes, there are two and's *
-				}
-				else if ( m_CraftSystem is DefTinkering && targeted is Golem )
-				{
-					Golem g = (Golem)targeted;
-					int damage = g.HitsMax - g.Hits;
-
-					if ( g.IsDeadBondedPet )
-					{
-						number = 500426; // You can't repair that.
-					}
-					else if ( damage <= 0 )
-					{
-						number = 500423; // That is already in full repair.
-					}
-					else
-					{
-						double skillValue = usingDeed? m_Deed.SkillLevel : from.Skills[SkillName.Tinkering].Value;
-
-						if ( skillValue < 60.0 )
-						{
-							number = 1044153; // You don't have the required skills to attempt this item.	//TODO: How does OSI handle this with deeds with golems?
-						}
-						else if ( !from.CanBeginAction( typeof( Golem ) ) )
-						{
-							number = 501789; // You must wait before trying again.
-						}
-						else
-						{
-							if ( damage > (int)(skillValue * 0.3) )
-								damage = (int)(skillValue * 0.3);
-
-							damage += 30;
-
-							if ( !from.CheckSkill( SkillName.Tinkering, 0.0, 100.0 ) )
-								damage /= 2;
-
-							Container pack = from.Backpack;
-
-							if ( pack != null )
-							{
-								int v = pack.ConsumeUpTo( typeof( IronIngot ), (damage+4)/5 );
-
-								if ( v > 0 )
-								{
-									g.Hits += v*5;
-
-									number = 1044279; // You repair the item.
-									toDelete = true;
-
-									from.BeginAction( typeof( Golem ) );
-									Timer.DelayCall( TimeSpan.FromSeconds( 12.0 ), new TimerStateCallback( EndGolemRepair ), from );
-								}
-								else
-								{
-									number = 1044037; // You do not have sufficient metal to make that.
-								}
-							}
-							else
-							{
-								number = 1044037; // You do not have sufficient metal to make that.
-							}
-						}
-					}
 				}
 				else if ( targeted is BaseWeapon )
 				{

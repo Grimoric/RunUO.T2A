@@ -1211,9 +1211,6 @@ namespace Server.Mobiles
 					}
 			}
 
-			if ( IsParagon )
-				IsParagon = false;
-
 			Timer.DelayCall( TimeSpan.Zero, new TimerCallback( CheckMorph ) );
 		}
 

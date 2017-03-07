@@ -206,19 +206,6 @@ namespace Server.SkillHandlers
 			AddHtmlLocalized( 153, 222, 160, 18, 1044061, LabelColor, false, false ); // Anatomy
 			AddHtml( 320, 222, 35, 18, FormatSkill( c, SkillName.Anatomy ), false, false );
 
-			#region Mondain's Legacy
-			if ( c is CuSidhe )
-			{
-				AddHtmlLocalized( 153, 240, 160, 18, 1044077, LabelColor, false, false ); // Healing
-				AddHtml( 320, 240, 35, 18, FormatSkill( c, SkillName.Healing ), false, false );
-			}
-			else
-			{
-				AddHtmlLocalized( 153, 240, 160, 18, 1044090, LabelColor, false, false ); // Poisoning
-				AddHtml( 320, 240, 35, 18, FormatSkill( c, SkillName.Poisoning ), false, false );
-			}
-			#endregion
-
 			AddImage( 128, 260, 2086 );
 			AddHtmlLocalized( 147, 258, 160, 18, 3001032, 200, false, false ); // Lore & Knowledge
 

@@ -72,19 +72,12 @@ namespace Server
 				new Type[]
 				{
 					typeof( Orc ),
-					typeof( OrcBomber ),
-					typeof( OrcBrute ),
 					typeof( OrcCaptain ),
 					typeof( OrcishLord ),
-					typeof( OrcishMage ),
-					typeof( SpawnedOrcishLord )
+					typeof( OrcishMage )
 				},
 				new Type[]
 				{
-					typeof( Savage ),
-					typeof( SavageRider ),
-					typeof( SavageRidgeback ),
-					typeof( SavageShaman )
 				}
 			} );
 
@@ -97,20 +90,10 @@ namespace Server
 			{
 				new Type[]
 				{
-					typeof( Centaur ),
-					typeof( EtherealWarrior ),
-					typeof( Kirin ),
-					typeof( Pixie ),
-					typeof( Unicorn ),
-					typeof( Wisp ),
-					typeof( Treefellow ),
-					typeof( MLDryad ),
-					typeof( Satyr )
-				},
+					typeof( Wisp )
+                },
 				new Type[]
 				{
-					typeof( AncientLich ),
-					typeof( Bogle ),
 					typeof( LichLord ),
 					typeof( Shade ),
 					typeof( Spectre ),
@@ -121,12 +104,7 @@ namespace Server
 					typeof( SkeletalKnight ),
 					typeof( Skeleton ),
 					typeof( Zombie ),
-					typeof( ShadowKnight ),
-					typeof( DarknightCreeper ),
-					typeof( RevenantLion ),
-					typeof( LadyOfTheSnow ),
 					typeof( RottingCorpse ),
-					typeof( SkeletalDragon ),
 					typeof( Lich )
 				}
 			} );

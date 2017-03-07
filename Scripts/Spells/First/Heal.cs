@@ -36,10 +36,6 @@ namespace Server.Spells.First
 			{
 				Caster.SendLocalizedMessage( 1060177 ); // You cannot heal a creature that is already dead!
 			}
-			else if ( m is Golem )
-			{
-				Caster.LocalOverheadMessage( MessageType.Regular, 0x3B2, 500951 ); // You cannot heal that.
-			}
 			else if ( m.Poisoned )
 			{
 				Caster.LocalOverheadMessage( MessageType.Regular, 0x22, Caster == m ? 1005000 : 1010398 );

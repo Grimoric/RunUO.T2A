@@ -501,10 +501,6 @@ namespace Server.Items
 					EffectItem dummy = EffectItem.Create( Location, Map, TimeSpan.FromSeconds( 20.0 ) );
 					dummy.PublicOverheadMessage( MessageType.Regular, 0x3B2, true, "* A magical bunny leaps out of its hole, disturbed by the thorn's effect! *" );
 
-					BaseCreature spawn = new VorpalBunny();
-					if ( !SpawnCreature( spawn ) )
-						spawn.Delete();
-
 					return TimeSpan.Zero;
 				}
 			}
@@ -545,10 +541,6 @@ namespace Server.Items
 					EffectItem dummy = EffectItem.Create( Location, Map, TimeSpan.FromSeconds( 20.0 ) );
 					dummy.PublicOverheadMessage( MessageType.Regular, 0x3B2, true, "* Strange green tendrils rise from the ground, whipping wildly! *" );
 					Effects.PlaySound( Location, Map, 0x2B0 );
-
-					BaseCreature spawn = new WhippingVine();
-					if ( !SpawnCreature( spawn ) )
-						spawn.Delete();
 
 					return TimeSpan.Zero;
 				}

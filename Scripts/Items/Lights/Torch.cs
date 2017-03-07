@@ -23,22 +23,6 @@ namespace Server.Items
 			Weight = 1.0;
 		}
 
-		public override void OnAdded( object parent )
-		{
-			base.OnAdded( parent );
-
-			if ( parent is Mobile && Burning )
-				Mobiles.MeerMage.StopEffect( (Mobile)parent, true );
-		}
-
-		public override void Ignite()
-		{
-			base.Ignite();
-
-			if ( Parent is Mobile && Burning )
-				Mobiles.MeerMage.StopEffect( (Mobile)Parent, true );
-		}
-
 		public Torch( Serial serial ) : base( serial )
 		{
 		}

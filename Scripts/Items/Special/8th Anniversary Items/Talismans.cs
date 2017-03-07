@@ -47,15 +47,6 @@ namespace Server.Items
 
 		public static bool EntryEnabled( Mobile m, Type type )
 		{
-			if ( type == typeof( Squirrel ) )
-				return m.Talisman is SquirrelFormTalisman;
-			else if ( type ==  typeof( Ferret ) )
-				return m.Talisman is FerretFormTalisman;
-			else if ( type ==  typeof( CuSidhe ) )
-				return m.Talisman is CuSidheFormTalisman;
-			else if ( type ==  typeof( Reptalon ) )
-				return m.Talisman is ReptalonFormTalisman;
-
 			return true;
 		}
 	}

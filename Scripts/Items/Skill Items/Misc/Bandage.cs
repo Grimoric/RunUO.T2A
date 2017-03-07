@@ -99,26 +99,10 @@ namespace Server.Items
 						from.SendLocalizedMessage( 500295 ); // You are too far away to do that.
 					}
 				}
-				else if ( targeted is PlagueBeastInnard )
-				{
-					if ( ((PlagueBeastInnard) targeted).OnBandage( from ) )
-						m_Bandage.Consume();
-				}
 				else
 				{
 					from.SendLocalizedMessage( 500970 ); // Bandages can not be used on that.
 				}
-			}
-
-			protected override void OnNonlocalTarget( Mobile from, object targeted )
-			{
-				if ( targeted is PlagueBeastInnard )
-				{
-					if ( ((PlagueBeastInnard) targeted).OnBandage( from ) )
-						m_Bandage.Consume();
-				}
-				else
-					base.OnNonlocalTarget( from, targeted );
 			}
 		}
 	}
@@ -407,11 +391,7 @@ namespace Server.Items
 		{
 			bool isDeadPet = patient is BaseCreature && ((BaseCreature)patient).IsDeadPet;
 
-			if ( patient is Golem )
-			{
-				healer.SendLocalizedMessage( 500970 ); // Bandages cannot be used on that.
-			}
-			else if ( !patient.Poisoned && patient.Hits == patient.HitsMax && !isDeadPet )
+			if ( !patient.Poisoned && patient.Hits == patient.HitsMax && !isDeadPet )
 			{
 				healer.SendLocalizedMessage( 500955 ); // That being is not damaged!
 			}

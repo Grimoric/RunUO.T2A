@@ -970,9 +970,9 @@ namespace Server.Items
 
 			AOS.Damage( defender, attacker, damage, false, 0, 0, 0, 0, 0, 0, 0, false, this is BaseRanged, false );
 
-			if ( m_MaxHits > 0 && (MaxRange <= 1 && (defender is Slime || defender is AcidElemental) || Utility.Random( 25 ) == 0) ) // Stratics says 50% chance, seems more like 4%..
+			if ( m_MaxHits > 0 && (MaxRange <= 1 && (defender is Slime) || Utility.Random( 25 ) == 0) ) // Stratics says 50% chance, seems more like 4%..
 			{
-				if ( MaxRange <= 1 && (defender is Slime || defender is AcidElemental) )
+				if ( MaxRange <= 1 && (defender is Slime) )
 					attacker.LocalOverheadMessage( MessageType.Regular, 0x3B2, 500263 ); // *Acid blood scars your weapon!*
 
 				if ( m_Hits > 0 )

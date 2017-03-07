@@ -35,7 +35,7 @@ namespace Server.Mobiles
 
 		public virtual bool SmartAI
 		{
-			get { return m_Mobile is BaseVendor || m_Mobile is BaseEscortable || m_Mobile is Changeling; }
+			get { return m_Mobile is BaseVendor || m_Mobile is BaseEscortable; }
 		}
 
 		private const double HealChance = 0.10; // 10% chance to heal at gm magery

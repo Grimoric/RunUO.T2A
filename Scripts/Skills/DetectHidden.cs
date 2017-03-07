@@ -66,9 +66,6 @@ namespace Server.SkillHandlers
 
 							if ( src.AccessLevel >= trg.AccessLevel && ( ss >= ts || inHouse && house.IsInside( trg ) ) )
 							{
-								if ( trg is ShadowKnight && (trg.X != p.X || trg.Y != p.Y) )
-									continue;
-
 								trg.RevealingAction();
 								trg.SendLocalizedMessage( 500814 ); // You have been revealed!
 								foundAnyone = true;

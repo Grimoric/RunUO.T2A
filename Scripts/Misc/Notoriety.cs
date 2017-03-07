@@ -247,7 +247,7 @@ namespace Server.Misc
 					return Notoriety.Enemy;
 			}
 
-			if ( target.Kills >= 5 || target.Body.IsMonster && IsSummoned( target as BaseCreature ) && !( target is Golem ) || target is BaseCreature && ( ( (BaseCreature)target ).AlwaysMurderer ) )
+			if ( target.Kills >= 5 || target.Body.IsMonster && IsSummoned( target as BaseCreature ) || target is BaseCreature && ( ( (BaseCreature)target ).AlwaysMurderer ) )
 				return Notoriety.Murderer;
 
 			if( target.Criminal )

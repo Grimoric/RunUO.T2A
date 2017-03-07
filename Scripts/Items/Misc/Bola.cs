@@ -64,11 +64,8 @@ namespace Server.Items
 			Mobile from = (Mobile)states[0];
 			Mobile to = (Mobile)states[1];
 
-			if ( to is ChaosDragoon || to is ChaosDragoonElite )
-				from.SendLocalizedMessage( 1042047 ); // You fail to knock the rider from its mount.
-
 			IMount mt = to.Mount;
-			if ( mt != null && !( to is ChaosDragoon || to is ChaosDragoonElite ) )
+			if ( mt != null )
 				mt.Rider = null;
 
 			if (to is PlayerMobile)

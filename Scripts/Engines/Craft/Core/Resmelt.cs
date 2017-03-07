@@ -85,7 +85,7 @@ namespace Server.Engines.Craft
 					Type resourceType = info.ResourceTypes[0];
 					Item ingot = (Item)Activator.CreateInstance( resourceType );
 
-					if ( item is DragonBardingDeed || item is BaseArmor && ((BaseArmor)item).PlayerConstructed || item is BaseWeapon && ((BaseWeapon)item).PlayerConstructed || item is BaseClothing && ((BaseClothing)item).PlayerConstructed )
+					if ( item is BaseArmor && ((BaseArmor)item).PlayerConstructed || item is BaseWeapon && ((BaseWeapon)item).PlayerConstructed || item is BaseClothing && ((BaseClothing)item).PlayerConstructed )
 						ingot.Amount = craftResource.Amount / 2;
 					else
 						ingot.Amount = 1;
@@ -139,11 +139,6 @@ namespace Server.Engines.Craft
 					{
 						result = Resmelt( from, (BaseWeapon)targeted, ((BaseWeapon)targeted).Resource );
 						isStoreBought = !((BaseWeapon)targeted).PlayerConstructed;
-					}
-					else if ( targeted is DragonBardingDeed )
-					{
-						result = Resmelt( from, (DragonBardingDeed)targeted, ((DragonBardingDeed)targeted).Resource );
-						isStoreBought = false;
 					}
 
 					switch ( result )

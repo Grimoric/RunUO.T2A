@@ -45,12 +45,6 @@ namespace Server.Spells.Fifth
 				if ( CheckResisted( m ) )
 					duration *= 0.75;
 
-				if ( m is PlagueBeastLord )
-				{
-					( (PlagueBeastLord) m ).OnParalyzed( Caster );
-					duration = 120;
-				}
-
 				m.Paralyze( TimeSpan.FromSeconds( duration ) );
 
 				m.PlaySound( 0x204 );

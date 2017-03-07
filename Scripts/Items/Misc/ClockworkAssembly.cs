@@ -42,19 +42,6 @@ namespace Server.Items
 				return;
 			}
 
-			double scalar;
-
-			if ( tinkerSkill >= 100.0 )
-				scalar = 1.0;
-			else if ( tinkerSkill >= 90.0 )
-				scalar = 0.9;
-			else if ( tinkerSkill >= 80.0 )
-				scalar = 0.8;
-			else if ( tinkerSkill >= 70.0 )
-				scalar = 0.7;
-			else
-				scalar = 0.6;
-
 			Container pack = from.Backpack;
 
 			if ( pack == null )
@@ -100,16 +87,6 @@ namespace Server.Items
 				}
 				default:
 				{
-					Golem g = new Golem( true, scalar );
-
-					if ( g.SetControlMaster( from ) )
-					{
-						Delete();
-
-						g.MoveToWorld( from.Location, from.Map );
-						from.PlaySound( 0x241 );
-					}
-
 					break;
 				}
 			}

@@ -341,7 +341,7 @@ namespace Server.Engines.Craft
 		private static Type[] m_ColoredItemTable = new Type[]
 			{
 				typeof( BaseWeapon ), typeof( BaseArmor ), typeof( BaseClothing ),
-				typeof( BaseJewel ), typeof( DragonBardingDeed )
+				typeof( BaseJewel )
 			};
 
 		private static Type[] m_ColoredResourceTable = new Type[]
@@ -358,7 +358,6 @@ namespace Server.Engines.Craft
 					typeof( BaseWeapon ),
 					typeof( BaseClothing ),
 					typeof( BaseInstrument ),
-					typeof( DragonBardingDeed ),
 					typeof( BaseTool ),
 					typeof( BaseHarvestTool ),
 					typeof( FukiyaDarts ), typeof( Shuriken ),

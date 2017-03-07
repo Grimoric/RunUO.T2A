@@ -37,34 +37,30 @@ namespace Server.Items
 
 			m_Table[ TalismanSlayerName.Bat ] = new Type[]
 			{
-				typeof( Mongbat ), typeof( StrongMongbat ), typeof( VampireBat )
+				typeof( Mongbat )
 			};
 			
 			m_Table[ TalismanSlayerName.Mage ] = new Type[]
 			{
-				typeof( EvilMage ), typeof( EvilMageLord ), typeof( AncientLich ), typeof( Lich ), typeof( LichLord ),
-				typeof( SkeletalMage ), typeof( BoneMagi ), typeof( OrcishMage ), typeof( KhaldunZealot ), typeof( JukaMage ),
+				typeof( EvilMage ), typeof( EvilMageLord ), typeof( Lich ), typeof( LichLord ),
+				typeof( SkeletalMage ), typeof( BoneMagi ), typeof( OrcishMage )
 			};
 
 			m_Table[ TalismanSlayerName.Beetle ] = new Type[]
 			{
-				typeof( Beetle ), typeof( RuneBeetle ), typeof( FireBeetle ), typeof( DeathwatchBeetle ),
-				typeof( DeathwatchBeetleHatchling )
 			};
 
 			m_Table[ TalismanSlayerName.Bird ] = new Type[]
 			{
-				typeof( Bird ), typeof( TropicalBird ), typeof( Chicken ), typeof( Crane ),
+				typeof( Bird ), typeof( TropicalBird ), typeof( Chicken ),
 				typeof( DesertOstard ), typeof( Eagle ), typeof( ForestOstard ), typeof( FrenziedOstard ),
-				typeof( Phoenix ), /*typeof( Pyre ), typeof( Swoop ), typeof( Saliva ),*/ typeof( Harpy ),
-				typeof( StoneHarpy ) // ?????
+				typeof( Phoenix ), typeof( Harpy ), typeof( StoneHarpy ) 
 			};
 
 			m_Table[ TalismanSlayerName.Ice ] = new Type[]
 			{ 
-				typeof( ArcticOgreLord ), typeof( IceElemental ), typeof( SnowElemental ), typeof( FrostOoze ),
-				typeof( IceFiend ), /*typeof( UnfrozenMummy ),*/ typeof( FrostSpider ), typeof( LadyOfTheSnow ),
-				typeof( FrostTroll ),
+			    typeof( IceElemental ), typeof( SnowElemental ), typeof( FrostOoze ),
+				typeof( IceFiend ), typeof( FrostSpider ), typeof( FrostTroll ),
 
 				  // TODO WinterReaper, check
 				typeof( IceSnake ), typeof( SnowLeopard ), typeof( PolarBear ),  typeof( IceSerpent ), typeof( GiantIceWorm )
@@ -72,9 +68,9 @@ namespace Server.Items
 			
 			m_Table[ TalismanSlayerName.Flame ] = new Type[]
 			{
-				typeof( FireBeetle ), typeof( HellHound ), typeof( LavaSerpent ), typeof( FireElemental ),
-				typeof( PredatorHellCat ), typeof( Phoenix ), typeof( FireGargoyle ), typeof( HellCat ),
-				/*typeof( Pyre ),*/ typeof( FireSteed ), typeof( LavaLizard ),
+				typeof( HellHound ), typeof( LavaSerpent ), typeof( FireElemental ),
+				typeof( PredatorHellCat ), typeof( Phoenix ), typeof( HellCat ),
+				typeof( LavaLizard ),
 
 				// TODO check
 				typeof( LavaSnake ),
@@ -82,10 +78,7 @@ namespace Server.Items
 
 			m_Table[ TalismanSlayerName.Bovine ] = new Type[]
 			{
-				typeof( Cow ), typeof( Bull ), typeof( Gaman ) /*, typeof( MinotaurCaptain ),
-				typeof( MinotaurScout ), typeof( Minotaur )*/
-
-				// TODO TormentedMinotaur
+				typeof( Cow ), typeof( Bull )
 			};
 		}
 

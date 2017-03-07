@@ -113,10 +113,7 @@ namespace Server.Regions
 		{
 			get
 			{
-				if ( this.Map == Map.Ilshenar || this.Map == Map.Malas )
-					return typeof( ArcherGuard );
-				else
-					return typeof( WarriorGuard );
+				return typeof( WarriorGuard );
 			}
 		}
 

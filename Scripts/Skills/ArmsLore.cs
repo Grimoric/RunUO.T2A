@@ -137,26 +137,6 @@ namespace Server.SkillHandlers
 						from.SendLocalizedMessage( 500353 ); // You are not certain...
 					}
 				}
-				else if ( targeted is SwampDragon && ((SwampDragon)targeted).HasBarding )
-				{
-					SwampDragon pet = (SwampDragon)targeted;
-
-					if ( from.CheckTargetSkill( SkillName.ArmsLore, targeted, 0, 100 ) )
-					{
-						int perc = 4 * pet.BardingHP / pet.BardingMaxHP;
-
-						if ( perc < 0 )
-							perc = 0;
-						else if ( perc > 4 )
-							perc = 4;
-
-						pet.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1053021 - perc, from.NetState );
-					}
-					else
-					{
-						from.SendLocalizedMessage( 500353 ); // You are not certain...
-					}
-				}
 				else
 				{
 					from.SendLocalizedMessage( 500352 ); // This is neither weapon nor armor.
