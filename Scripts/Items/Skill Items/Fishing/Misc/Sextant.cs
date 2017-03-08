@@ -46,7 +46,7 @@ namespace Server.Items
 		{
 			xWidth = 5120; yHeight = 4096;
 
-			if ( map == Map.Trammel || map == Map.Felucca )
+			if ( map == Map.Felucca )
 			{
 				if ( x >= 0 && y >= 0 && x < 5120 && y < 4096 )
 				{

@@ -3681,11 +3681,11 @@ namespace Server.Network
 		{
 		}
 
-		public CityInfo( string city, string building, int description, int x, int y, int z ) : this( city, building, description, x, y, z, Map.Trammel )
+		public CityInfo( string city, string building, int description, int x, int y, int z ) : this( city, building, description, x, y, z, Map.Felucca )
 		{
 		}
 
-		public CityInfo( string city, string building, int x, int y, int z ) : this( city, building, 0, x, y, z, Map.Trammel )
+		public CityInfo( string city, string building, int x, int y, int z ) : this( city, building, 0, x, y, z, Map.Felucca)
 		{
 		}
 

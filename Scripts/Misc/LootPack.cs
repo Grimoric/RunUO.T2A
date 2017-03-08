@@ -548,17 +548,6 @@ namespace Server
 			set{ m_Items = value; }
 		}
 
-		private static bool IsInTokuno( Mobile m )
-		{
-			if ( m.Region.IsPartOf( "Fan Dancer's Dojo" ) )
-				return true;
-
-			if ( m.Region.IsPartOf( "Yomotsu Mines" ) )
-				return true;
-
-			return m.Map == Map.Tokuno;
-		}
-
 		public Item Construct( Mobile from, int luckChance, bool spawning )
 		{
 			if ( m_AtSpawnTime != spawning )
@@ -576,7 +565,7 @@ namespace Server
 				LootPackItem item = m_Items[i];
 
 				if ( rnd < item.Chance )
-					return Mutate( from, luckChance, item.Construct( IsInTokuno( from ), false ) );
+					return Mutate( from, luckChance, item.Construct( false, false ) );
 
 				rnd -= item.Chance;
 			}

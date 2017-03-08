@@ -99,12 +99,12 @@ namespace Server.Mobiles
 
 			if (escorter == null)
 			{
-				Say("I am looking to go to {0}, will you take me?", dest.Name == "Ocllo" && m.Map == Map.Trammel ? "Haven" : dest.Name);
+				Say("I am looking to go to {0}, will you take me?", dest.Name);
 				return true;
 			}
 			else if (escorter == m)
 			{
-				Say("Lead on! Payment will be made when we arrive in {0}.", dest.Name == "Ocllo" && m.Map == Map.Trammel ? "Haven" : dest.Name);
+				Say("Lead on! Payment will be made when we arrive in {0}.", dest.Name);
 				return true;
 			}
 
@@ -151,7 +151,7 @@ namespace Server.Mobiles
 				if (m is PlayerMobile)
 					((PlayerMobile)m).LastEscortTime = DateTime.Now;
 
-				Say("Lead on! Payment will be made when we arrive in {0}.", dest.Name == "Ocllo" && m.Map == Map.Trammel ? "Haven" : dest.Name);
+				Say("Lead on! Payment will be made when we arrive in {0}.", dest.Name);
 				m_EscortTable[m] = this;
 				StartFollow();
 				return true;

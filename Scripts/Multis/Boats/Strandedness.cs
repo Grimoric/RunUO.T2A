@@ -126,12 +126,6 @@ namespace Server.Misc
 
 			if( map == Map.Felucca )
 				list = m_Felucca;
-			else if( map == Map.Trammel )
-				list = m_Trammel;
-			else if( map == Map.Ilshenar )
-				list = m_Ilshenar;
-			else if( map == Map.Tokuno )
-				list = m_Tokuno;
 			else
 				return;
 

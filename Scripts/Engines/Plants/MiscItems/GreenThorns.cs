@@ -71,7 +71,7 @@ namespace Server.Items
 					return;
 				}
 
-				if ( from.Map != Map.Trammel && from.Map != Map.Felucca )
+				if ( from.Map != Map.Felucca )
 				{
 					from.LocalOverheadMessage( MessageType.Regular, 0x2B2, true, "No solen lairs exist on this facet.  Try again in Trammel or Felucca." );
 					return;

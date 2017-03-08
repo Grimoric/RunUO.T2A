@@ -2841,60 +2841,7 @@ namespace Server.Mobiles
 
 		public bool YoungDeathTeleport()
 		{
-			if ( this.Region.IsPartOf( typeof( Jail ) )
-				|| this.Region.IsPartOf( "Samurai start location" )
-				|| this.Region.IsPartOf( "Ninja start location" )
-				|| this.Region.IsPartOf( "Ninja cave" ) )
-				return false;
-
-			Point3D loc;
-			Map map;
-
-			DungeonRegion dungeon = (DungeonRegion) this.Region.GetRegion( typeof( DungeonRegion ) );
-			if ( dungeon != null && dungeon.EntranceLocation != Point3D.Zero )
-			{
-				loc = dungeon.EntranceLocation;
-				map = dungeon.EntranceMap;
-			}
-			else
-			{
-				loc = this.Location;
-				map = this.Map;
-			}
-
-			Point3D[] list;
-
-			if ( map == Map.Trammel )
-				list = m_TrammelDeathDestinations;
-			else if ( map == Map.Ilshenar )
-				list = m_IlshenarDeathDestinations;
-			else if ( map == Map.Malas )
-				list = m_MalasDeathDestinations;
-			else if ( map == Map.Tokuno )
-				list = m_TokunoDeathDestinations;
-			else
-				return false;
-
-			Point3D dest = Point3D.Zero;
-			int sqDistance = int.MaxValue;
-
-			for ( int i = 0; i < list.Length; i++ )
-			{
-				Point3D curDest = list[i];
-
-				int width = loc.X - curDest.X;
-				int height = loc.Y - curDest.Y;
-				int curSqDistance = width * width + height * height;
-
-				if ( curSqDistance < sqDistance )
-				{
-					dest = curDest;
-					sqDistance = curSqDistance;
-				}
-			}
-
-			this.MoveToWorld( dest, map );
-			return true;
+			return false;
 		}
 
 		private void SendYoungDeathNotice()

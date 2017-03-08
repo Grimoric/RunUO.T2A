@@ -66,10 +66,6 @@ namespace Server.Multis
 			{
 				from.SendLocalizedMessage( 1042001 ); // That must be in your pack for you to use it.
 			}
-			else if ( from.AccessLevel < AccessLevel.GameMaster && (from.Map == Map.Ilshenar || from.Map == Map.Malas) )
-			{
-				from.SendLocalizedMessage( 1010567, null, 0x25 ); // You may not place a boat from this location.
-			}
 			else
 			{
 				from.LocalOverheadMessage( MessageType.Regular, 0x3B2, 502482 ); // Where do you wish to place the ship?
@@ -96,12 +92,6 @@ namespace Server.Multis
 
 				if ( map == null )
 					return;
-
-				if ( from.AccessLevel < AccessLevel.GameMaster && (map == Map.Ilshenar || map == Map.Malas) )
-				{
-					from.SendLocalizedMessage( 1043284 ); // A ship can not be created here.
-					return;
-				}
 
 				if ( from.Region.IsPartOf( typeof( HouseRegion ) ) || BaseBoat.FindBoatAt( from, from.Map ) != null )
 				{

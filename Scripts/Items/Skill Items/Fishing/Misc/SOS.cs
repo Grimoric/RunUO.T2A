@@ -70,7 +70,7 @@ namespace Server.Items
 		}
 
 		[Constructable]
-		public SOS() : this( Map.Trammel )
+		public SOS() : this( Map.Felucca )
 		{
 		}
 
@@ -137,7 +137,7 @@ namespace Server.Items
 					m_TargetMap = this.Map;
 
 					if ( m_TargetMap == null || m_TargetMap == Map.Internal )
-						m_TargetMap = Map.Trammel;
+						m_TargetMap = Map.Felucca;
 
 					m_TargetLocation = FindLocation( m_TargetMap );
 					m_MessageIndex = Utility.Random( MessageEntry.Entries.Length );
@@ -151,9 +151,6 @@ namespace Server.Items
 
 			if ( version < 3 )
 				UpdateHue();
-
-			if( version < 4 && m_TargetMap == Map.Tokuno )
-				m_TargetMap = Map.Trammel;
 		}
 		
 		public override void OnDoubleClick( Mobile from )
@@ -193,12 +190,8 @@ namespace Server.Items
 
 			Rectangle2D[] regions;
 
-			if ( map == Map.Felucca || map == Map.Trammel )
+			if ( map == Map.Felucca )
 				regions = m_BritRegions;
-			else if ( map == Map.Ilshenar )
-				regions = m_IlshRegions;
-			else if ( map == Map.Malas )
-				regions = m_MalasRegions;
 			else
 				regions = new Rectangle2D[]{ new Rectangle2D( 0, 0, map.Width, map.Height ) };
 

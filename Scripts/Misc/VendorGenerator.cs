@@ -42,9 +42,7 @@ namespace Server
 		[Description( "Generates vendors based on display cases and floor plans. Analyzes the map files, slow." )]
 		private static void VendorGen_OnCommand( CommandEventArgs e )
 		{
-			Process( Map.Trammel, m_BritRegions );
 			Process( Map.Felucca, m_BritRegions );
-			Process( Map.Ilshenar, m_IlshRegions );
 		}
 
 		private static bool GetFloorZ( Map map, int x, int y, out int z )

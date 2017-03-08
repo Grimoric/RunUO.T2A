@@ -946,7 +946,7 @@ namespace Server.Multis
 
 				return false;
 			}
-			else if ( this.Map != Map.Trammel && this.Map != Map.Felucca || NextNavPoint < 0 || NextNavPoint >= MapItem.Pins.Count )
+			else if ( this.Map != Map.Felucca || NextNavPoint < 0 || NextNavPoint >= MapItem.Pins.Count )
 			{
 				if ( message && TillerMan != null )
 					TillerMan.Say( 1042551 ); // I don't see that navpoint, sir.
@@ -1296,12 +1296,7 @@ namespace Server.Multis
 
 		public static Rectangle2D[] GetWrapFor( Map m )
 		{
-			if( m == Map.Ilshenar )
-				return m_IlshWrap;
-			else if( m == Map.Tokuno )
-				return m_TokunoWrap;
-			else
-				return m_BritWrap;
+			return m_BritWrap;
 		}
 
 		public Direction GetMovementFor( int x, int y, out int maxSpeed )
@@ -1349,7 +1344,7 @@ namespace Server.Multis
 
 				return false;
 			}
-			else if ( this.Map != Map.Trammel && this.Map != Map.Felucca || NextNavPoint < 0 || NextNavPoint >= MapItem.Pins.Count )
+			else if ( this.Map != Map.Felucca || NextNavPoint < 0 || NextNavPoint >= MapItem.Pins.Count )
 			{
 				if ( message && TillerMan != null )
 					TillerMan.Say( 1042551 ); // I don't see that navpoint, sir.

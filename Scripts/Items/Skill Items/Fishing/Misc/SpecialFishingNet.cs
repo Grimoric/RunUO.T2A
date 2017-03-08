@@ -265,7 +265,7 @@ namespace Server.Items
 			spawn.MoveToWorld( new Point3D( x, y, p.Z ), map );
 
 			if ( spawn is Kraken && 0.2 > Utility.RandomDouble() )
-				spawn.PackItem( new MessageInABottle( map == Map.Felucca ? Map.Felucca : Map.Trammel ) );
+				spawn.PackItem( new MessageInABottle(Map.Felucca ) );
 		}
 
 		protected virtual void FinishEffect( Point3D p, Map map, Mobile from )

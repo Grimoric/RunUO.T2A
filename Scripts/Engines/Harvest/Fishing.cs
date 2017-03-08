@@ -152,14 +152,6 @@ namespace Server.Engines.Harvest
 			return type;
 		}
 
-		private static Map SafeMap( Map map )
-		{
-			if ( map == null || map == Map.Internal )
-				return Map.Trammel;
-
-			return map;
-		}
-
 		public override bool CheckResources( Mobile from, Item tool, HarvestDefinition def, Map map, Point3D loc, bool timed )
 		{
 			Container pack = from.Backpack;
@@ -172,7 +164,7 @@ namespace Server.Engines.Harvest
 				{
 					SOS sos = messages[i];
 
-					if ( ( from.Map == Map.Felucca || from.Map == Map.Trammel ) && from.InRange( sos.TargetLocation, 60 ) )
+					if ( ( from.Map == Map.Felucca ) && from.InRange( sos.TargetLocation, 60 ) )
 						return true;
 				}
 			}
@@ -184,17 +176,13 @@ namespace Server.Engines.Harvest
 		{
 			if ( type == typeof( TreasureMap ) )
 			{
-				int level;
-				if ( from is PlayerMobile && ((PlayerMobile)from).Young && from.Map == Map.Trammel && TreasureMap.IsInHavenIsland( from ) )
-					level = 0;
-				else
-					level = 1;
+				int level = 1;
 
-				return new TreasureMap( level, from.Map == Map.Felucca ? Map.Felucca : Map.Trammel );
+				return new TreasureMap( level, Map.Felucca );
 			}
 			else if ( type == typeof( MessageInABottle ) )
 			{
-				return new MessageInABottle( from.Map == Map.Felucca ? Map.Felucca : Map.Trammel );
+				return new MessageInABottle( Map.Felucca );
 			}
 
 			Container pack = from.Backpack;
@@ -207,7 +195,7 @@ namespace Server.Engines.Harvest
 				{
 					SOS sos = messages[i];
 
-					if ( ( from.Map == Map.Felucca || from.Map == Map.Trammel ) && from.InRange( sos.TargetLocation, 60 ) )
+					if ( from.Map == Map.Felucca && from.InRange( sos.TargetLocation, 60 ) )
 					{
 						Item preLoot = null;
 

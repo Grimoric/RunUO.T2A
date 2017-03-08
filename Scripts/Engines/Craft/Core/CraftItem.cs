@@ -1102,7 +1102,7 @@ namespace Server.Engines.Craft
 				{
 					item = customCraft.CompleteCraft( out num );
 				}
-				else if ( typeof( MapItem ).IsAssignableFrom( ItemType ) && from.Map != Map.Trammel && from.Map != Map.Felucca )
+				else if ( typeof( MapItem ).IsAssignableFrom( ItemType ) && from.Map != Map.Felucca )
 				{
 					item = new IndecipherableMap();
 					from.SendLocalizedMessage( 1070800 ); // The map you create becomes mysteriously indecipherable.

@@ -29,8 +29,6 @@ namespace Server.Mobiles
 
 		private DateTime m_LastRestock;
 
-		private DateTime m_NextTrickOrTreat;
-
 		public override bool CanTeach { get { return true; } }
 
 		public override bool BardImmune { get { return true; } }
@@ -43,18 +41,17 @@ namespace Server.Mobiles
 
 		public virtual NpcGuild NpcGuild { get { return NpcGuild.None; } }
 
-		public override bool IsInvulnerable { get { return true; } }
-
-		public virtual DateTime NextTrickOrTreat { get { return m_NextTrickOrTreat; } set { m_NextTrickOrTreat = value; } }
+		public override bool IsInvulnerable { get { return false; } }
 
 		public override bool ShowFameTitle { get { return false; } }
+
+        public override bool ClickTitle { get { return false; } }
         
-		public BaseVendor( string title )
-			: base( AIType.AI_Vendor, FightMode.None, 2, 1, 0.5, 2 )
+        public BaseVendor( string title ) : base( AIType.AI_Vendor, FightMode.None, 2, 1, 0.5, 2 )
 		{
 			LoadSBInfo();
 
-			this.Title = title;
+			Title = title;
 			InitBody();
 			InitOutfit();
 
@@ -197,158 +194,11 @@ namespace Server.Mobiles
 			get { return VendorShoeType.Shoes; }
 		}
 
-		public virtual void CheckMorph()
-		{
-			if ( CheckGargoyle() )
-				return;
-
-			if ( CheckNecromancer() )
-				return;
-
-			CheckTokuno();
-		}
-
-		public virtual bool CheckTokuno()
-		{
-			if ( this.Map != Map.Tokuno )
-				return false;
-
-			NameList n;
-
-			if ( Female )
-				n = NameList.GetNameList( "tokuno female" );
-			else
-				n = NameList.GetNameList( "tokuno male" );
-
-			if ( !n.ContainsName( this.Name ) )
-				TurnToTokuno();
-
-			return true;
-		}
-
-		public virtual void TurnToTokuno()
-		{
-			if ( Female )
-				this.Name = NameList.RandomName( "tokuno female" );
-			else
-				this.Name = NameList.RandomName( "tokuno male" );
-		}
-
-		public virtual bool CheckGargoyle()
-		{
-			Map map = this.Map;
-
-			if ( map != Map.Ilshenar )
-				return false;
-
-			if ( !Region.IsPartOf( "Gargoyle City" ) )
-				return false;
-
-			if ( Body != 0x2F6 || ( Hue & 0x8000 ) == 0 )
-				TurnToGargoyle();
-
-			return true;
-		}
-
-		public virtual bool CheckNecromancer()
-		{
-			Map map = this.Map;
-
-			if ( map != Map.Malas )
-				return false;
-
-			if ( !Region.IsPartOf( "Umbra" ) )
-				return false;
-
-			if ( Hue != 0x83E8 )
-				TurnToNecromancer();
-
-			return true;
-		}
-
-		public override void OnAfterSpawn()
-		{
-			CheckMorph();
-		}
-
 		protected override void OnMapChange( Map oldMap )
 		{
 			base.OnMapChange( oldMap );
 
-			CheckMorph();
-
 			LoadSBInfo();
-		}
-
-		public virtual int GetRandomNecromancerHue()
-		{
-			switch ( Utility.Random( 20 ) )
-			{
-				case 0: return 0;
-				case 1: return 0x4E9;
-				default: return Utility.RandomList( 0x485, 0x497 );
-			}
-		}
-
-		public virtual void TurnToNecromancer()
-		{
-			for ( int i = 0; i < this.Items.Count; ++i )
-			{
-				Item item = this.Items[i];
-
-				if ( item is Hair || item is Beard )
-					item.Hue = 0;
-				else if ( item is BaseClothing || item is BaseWeapon || item is BaseArmor || item is BaseTool )
-					item.Hue = GetRandomNecromancerHue();
-			}
-
-			HairHue = 0;
-			FacialHairHue = 0;
-
-			Hue = 0x83E8;
-		}
-
-		public virtual void TurnToGargoyle()
-		{
-			for ( int i = 0; i < this.Items.Count; ++i )
-			{
-				Item item = this.Items[i];
-
-				if ( item is BaseClothing || item is Hair || item is Beard )
-					item.Delete();
-			}
-
-			HairItemID = 0;
-			FacialHairItemID = 0;
-
-			Body = 0x2F6;
-			Hue = Utility.RandomBrightHue() | 0x8000;
-			Name = NameList.RandomName( "gargoyle vendor" );
-
-			CapitalizeTitle();
-		}
-
-		public virtual void CapitalizeTitle()
-		{
-			string title = this.Title;
-
-			if ( title == null )
-				return;
-
-			string[] split = title.Split( ' ' );
-
-			for ( int i = 0; i < split.Length; ++i )
-			{
-				if ( Insensitive.Equals( split[i], "the" ) )
-					continue;
-
-				if ( split[i].Length > 1 )
-					split[i] = Char.ToUpper( split[i][0] ) + split[i].Substring( 1 );
-				else if ( split[i].Length > 0 )
-					split[i] = Char.ToUpper( split[i][0] ).ToString();
-			}
-
-			this.Title = String.Join( " ", split );
 		}
 
 		public virtual int GetHairHue()
@@ -1208,8 +1058,6 @@ namespace Server.Mobiles
 						break;
 					}
 			}
-
-			Timer.DelayCall( TimeSpan.Zero, new TimerCallback( CheckMorph ) );
 		}
 
 		public override void AddCustomContextEntries( Mobile from, List<ContextMenuEntry> list )
