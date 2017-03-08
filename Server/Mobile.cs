@@ -4953,14 +4953,14 @@ namespace Server
 		{
 		}
 
-		public virtual void Damage( int amount )
+        public virtual bool CanBeDamaged()
+        {
+            return !m_Blessed;
+        }
+
+        public virtual void Damage( int amount )
 		{
 			Damage( amount, null );
-		}
-
-		public virtual bool CanBeDamaged()
-		{
-			return !m_Blessed;
 		}
 
 		public virtual void Damage( int amount, Mobile from )
@@ -4970,10 +4970,10 @@ namespace Server
 
 		public virtual void Damage( int amount, Mobile from, bool informMount )
 		{
-			if( !CanBeDamaged() || m_Deleted )
-				return;
+			if( !CanBeDamaged() || !Alive || amount <= 0 )
+                return;
 
-			if( !this.Region.OnDamage( this, ref amount ) )
+            if( !Region.OnDamage( this, ref amount ) )
 				return;
 
 			if( amount > 0 )
@@ -4983,9 +4983,6 @@ namespace Server
 
 				if( m_Spell != null )
 					m_Spell.OnCasterHurt();
-
-				//if ( m_Spell != null && m_Spell.State == SpellState.Casting )
-				//	m_Spell.Disturb( DisturbType.Hurt, false, true );
 
 				if( from != null )
 					RegisterDamage( amount, from );
@@ -5018,7 +5015,7 @@ namespace Server
 
 							if( amount > 0 && (ourState != null || theirState != null) )
 							{
-								Packet p = null;// = new DamagePacket( this, amount );
+								Packet p = null;
 
 								if( ourState != null )
 								{

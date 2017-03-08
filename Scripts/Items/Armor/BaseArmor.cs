@@ -312,7 +312,7 @@ namespace Server.Items
 			else
 				v = IntRequirement;
 
-			return AOS.Scale( v, 100 - GetLowerStatReq() );
+			return v;
 		}
 
 		public int ComputeStatBonus( StatType type )
@@ -489,11 +489,6 @@ namespace Server.Items
 					}
 				}
 			}
-		}
-
-		public int GetLowerStatReq()
-		{
-			return 0;
 		}
 
 		public override void OnAdded( object parent )
@@ -1126,9 +1121,6 @@ namespace Server.Items
 
 			if ( (prop = ArtifactRarity) > 0 )
 				list.Add( 1061078, prop.ToString() ); // artifact rarity ~1_val~
-
-			if ( (prop = GetLowerStatReq()) != 0 )
-				list.Add( 1060435, prop.ToString() ); // lower requirements ~1_val~%
 
 			if ( (prop = GetDurabilityBonus()) > 0 )
 				list.Add( 1060410, prop.ToString() ); // durability ~1_val~%

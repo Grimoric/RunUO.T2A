@@ -797,9 +797,10 @@ namespace Server.Spells
 
 				WeightOverloading.DFA = dfa;
 
-				int damageGiven = AOS.Damage( target, from, iDamage, phys, fire, cold, pois, nrgy );
+                target.Damage(iDamage, from);
+			    int damageGiven = iDamage;
 
-				if ( from != null ) // sanity check
+                if ( from != null ) // sanity check
 				{
 					DoLeech( damageGiven, from, target );
 				}
@@ -905,9 +906,10 @@ namespace Server.Spells
 
 				WeightOverloading.DFA = m_DFA;
 
-				int damageGiven = AOS.Damage( m_Target, m_From, m_Damage, m_Phys, m_Fire, m_Cold, m_Pois, m_Nrgy );
-
-				if ( m_From != null ) // sanity check
+                m_Target.Damage(m_Damage, m_From);
+                int damageGiven = m_Damage;
+                
+                if ( m_From != null ) // sanity check
 				{
 					DoLeech( damageGiven, m_From, m_Target );
 				}

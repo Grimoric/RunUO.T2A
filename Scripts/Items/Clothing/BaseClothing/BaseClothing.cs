@@ -151,12 +151,9 @@ namespace Server.Items
 
 		public int ComputeStatReq( StatType type )
 		{
-			int v;
+			int v = StrRequirement;
 
-			//if ( type == StatType.Str )
-				v = StrRequirement;
-
-			return AOS.Scale( v, 100 - GetLowerStatReq() );
+			return v;
 		}
 
 		public int ComputeStatBonus( StatType type )
@@ -235,11 +232,6 @@ namespace Server.Items
 					}
 				}
 			}
-		}
-
-		public int GetLowerStatReq()
-		{
-			return 0;
 		}
 
 		public override void OnAdded( object parent )

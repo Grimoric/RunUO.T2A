@@ -557,33 +557,8 @@ namespace Server.Mobiles
 
 		public virtual void BreathDealDamage( Mobile target )
 		{
-			int physDamage = BreathPhysicalDamage;
-			int fireDamage = BreathFireDamage;
-			int coldDamage = BreathColdDamage;
-			int poisDamage = BreathPoisonDamage;
-			int nrgyDamage = BreathEnergyDamage;
-
-			if( BreathChaosDamage > 0 )
-			{
-				switch( Utility.Random( 5 ))
-				{
-					case 0: physDamage += BreathChaosDamage; break;
-					case 1: fireDamage += BreathChaosDamage; break;
-					case 2: coldDamage += BreathChaosDamage; break;
-					case 3: poisDamage += BreathChaosDamage; break;
-					case 4: nrgyDamage += BreathChaosDamage; break;
-				}
-			}
-
-			if( physDamage == 0 && fireDamage == 0 && coldDamage == 0 && poisDamage == 0 && nrgyDamage == 0 )
-			{
-				target.Damage( BreathComputeDamage(), this );// Unresistable damage even in AOS
-			}
-			else
-			{
-				AOS.Damage( target, this, BreathComputeDamage(), physDamage, fireDamage, coldDamage, poisDamage, nrgyDamage );
-			}
-		}
+			target.Damage(BreathComputeDamage(), this);
+        }
 
 		public virtual int BreathComputeDamage()
 		{
@@ -4506,8 +4481,8 @@ namespace Server.Mobiles
 
 			foreach ( Mobile m in list )
 			{
-				AOS.Damage( m, this, AuraBaseDamage, AuraPhysicalDamage, AuraFireDamage, AuraColdDamage, AuraPoisonDamage, AuraEnergyDamage, AuraChaosDamage );
-				AuraEffect( m );
+                m.Damage(AuraBaseDamage, this);
+                AuraEffect( m );
 			}
 		}
 

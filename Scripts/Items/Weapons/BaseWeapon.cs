@@ -14,15 +14,6 @@ namespace Server.Items
 
 	public abstract class BaseWeapon : Item, IWeapon, ICraftable, ISlayer, IDurability
 	{
-		private string m_EngravedText;
-		
-		[CommandProperty( AccessLevel.GameMaster )]
-		public string EngravedText
-		{
-			get{ return m_EngravedText; }
-			set{ m_EngravedText = value; InvalidateProperties(); }
-		}
-
 		/* Weapon internals work differently now (Mar 13 2003)
 		 * 
 		 * The attributes defined below default to -1.
@@ -368,17 +359,6 @@ namespace Server.Items
 			return bonus;
 		}
 
-		public int GetLowerStatReq()
-		{
-				return 0;
-		}
-
-		public static void BlockEquip( Mobile m, TimeSpan duration )
-		{
-			if ( m.BeginAction( typeof( BaseWeapon ) ) )
-				new ResetEquipTimer( m, duration ).Start();
-		}
-
 		private class ResetEquipTimer : Timer
 		{
 			private Mobile m_Mobile;
@@ -431,7 +411,7 @@ namespace Server.Items
 				from.SendMessage( "You are not nimble enough to equip that." );
 				return false;
 			} 
-			else if ( from.Str < AOS.Scale( StrRequirement, 100 - GetLowerStatReq() ) )
+			else if ( from.Str < StrRequirement )
 			{
 				from.SendLocalizedMessage( 500213 ); // You are not strong enough to equip that.
 				return false;
@@ -643,118 +623,6 @@ namespace Server.Items
 		}
 		#endregion
 
-		public static bool CheckParry( Mobile defender )
-		{
-			if ( defender == null )
-				return false;
-
-			BaseShield shield = defender.FindItemOnLayer( Layer.TwoHanded ) as BaseShield;
-
-			double parry = defender.Skills[SkillName.Parry].Value;
-			double bushidoNonRacial = defender.Skills[SkillName.Bushido].NonRacialValue;
-			double bushido = defender.Skills[SkillName.Bushido].Value;
-
-			if ( shield != null )
-			{
-				double chance = (parry - bushidoNonRacial) / 400.0;	// As per OSI, no negitive effect from the Racial stuffs, ie, 120 parry and '0' bushido with humans
-
-				if ( chance < 0 ) // chance shouldn't go below 0
-					chance = 0;				
-
-				// Parry/Bushido over 100 grants a 5% bonus.
-				if ( parry >= 100.0 || bushido >= 100.0)
-					chance += 0.05;
-
-				// Low dexterity lowers the chance.
-				if ( defender.Dex < 80 )
-					chance = chance * (20 + defender.Dex) / 100;
-
-				return defender.CheckSkill( SkillName.Parry, chance );
-			}
-			else if ( !(defender.Weapon is Fists) && !(defender.Weapon is BaseRanged) )
-			{
-				BaseWeapon weapon = defender.Weapon as BaseWeapon;
-
-				double divisor = weapon.Layer == Layer.OneHanded ? 48000.0 : 41140.0;
-
-				double chance = parry * bushido / divisor;
-
-				double aosChance = parry / 800.0;
-
-				// Parry or Bushido over 100 grant a 5% bonus.
-				if( parry >= 100.0 )
-				{
-					chance += 0.05;
-					aosChance += 0.05;
-				}
-				else if( bushido >= 100.0 )
-				{
-					chance += 0.05;
-				}
-
-				// Low dexterity lowers the chance.
-				if( defender.Dex < 80 )
-					chance = chance * (20 + defender.Dex) / 100;
-
-				if ( chance > aosChance )
-					return defender.CheckSkill( SkillName.Parry, chance );
-				else
-					return aosChance > Utility.RandomDouble(); // Only skillcheck if wielding a shield & there's no effect from Bushido
-			}
-
-			return false;
-		}
-
-		public virtual int AbsorbDamageAOS( Mobile attacker, Mobile defender, int damage )
-		{
-			bool blocked = false;
-
-			if ( defender.Player || defender.Body.IsHuman )
-			{
-				blocked = CheckParry( defender );
-
-				if ( blocked )
-				{
-					defender.FixedEffect( 0x37B9, 10, 16 );
-					damage = 0;
-
-					BaseShield shield = defender.FindItemOnLayer( Layer.TwoHanded ) as BaseShield;
-
-					if ( shield != null )
-					{
-						shield.OnHit( this, damage );
-					}
-				}
-			}
-
-			if ( !blocked )
-			{
-				double positionChance = Utility.RandomDouble();
-
-				Item armorItem;
-
-				if( positionChance < 0.07 )
-					armorItem = defender.NeckArmor;
-				else if( positionChance < 0.14 )
-					armorItem = defender.HandArmor;
-				else if( positionChance < 0.28 )
-					armorItem = defender.ArmsArmor;
-				else if( positionChance < 0.43 )
-					armorItem = defender.HeadArmor;
-				else if( positionChance < 0.65 )
-					armorItem = defender.LegsArmor;
-				else
-					armorItem = defender.ChestArmor;
-
-				IWearableDurability armor = armorItem as IWearableDurability;
-
-				if ( armor != null )
-					armor.OnHit( this, damage ); // call OnHit to lose durability
-			}
-
-			return damage;
-		}
-
 		public virtual int AbsorbDamage( Mobile attacker, Mobile defender, int damage )
 		{
 			BaseShield shield = defender.FindItemOnLayer( Layer.TwoHanded ) as BaseShield;
@@ -809,65 +677,6 @@ namespace Server.Items
 			return damage;
 		}
 
-		public virtual int GetPackInstinctBonus( Mobile attacker, Mobile defender )
-		{
-			if ( attacker.Player || defender.Player )
-				return 0;
-
-			BaseCreature bc = attacker as BaseCreature;
-
-			if ( bc == null || bc.PackInstinct == PackInstinct.None || !bc.Controlled && !bc.Summoned )
-				return 0;
-
-			Mobile master = bc.ControlMaster;
-
-			if ( master == null )
-				master = bc.SummonMaster;
-
-			if ( master == null )
-				return 0;
-
-			int inPack = 1;
-
-			foreach ( Mobile m in defender.GetMobilesInRange( 1 ) )
-			{
-				if ( m != attacker && m is BaseCreature )
-				{
-					BaseCreature tc = (BaseCreature)m;
-
-					if ( (tc.PackInstinct & bc.PackInstinct) == 0 || !tc.Controlled && !tc.Summoned )
-						continue;
-
-					Mobile theirMaster = tc.ControlMaster;
-
-					if ( theirMaster == null )
-						theirMaster = tc.SummonMaster;
-
-					if ( master == theirMaster && tc.Combatant == defender )
-						++inPack;
-				}
-			}
-
-			if ( inPack >= 5 )
-				return 100;
-			else if ( inPack >= 4 )
-				return 75;
-			else if ( inPack >= 3 )
-				return 50;
-			else if ( inPack >= 2 )
-				return 25;
-
-			return 0;
-		}
-
-		private static bool m_InDoubleStrike;
-
-		public static bool InDoubleStrike
-		{
-			get{ return m_InDoubleStrike; }
-			set{ m_InDoubleStrike = value; }
-		}
-
 		public void OnHit( Mobile attacker, Mobile defender )
 		{
 			OnHit( attacker, defender, 1.0 );
@@ -883,73 +692,6 @@ namespace Server.Items
 
 			int damage = ComputeDamage( attacker, defender );
 
-			#region Damage Multipliers
-			/*
-			 * The following damage bonuses multiply damage by a factor.
-			 * Capped at x3 (300%).
-			 */
-			int percentageBonus = (int)(damageBonus * 100) - 100;
-
-			CheckSlayerResult cs = CheckSlayers( attacker, defender );
-
-			if ( cs != CheckSlayerResult.None )
-			{
-				if ( cs == CheckSlayerResult.Slayer )
-					defender.FixedEffect( 0x37B9, 10, 5 );
-
-				percentageBonus += 100;
-			}
-
-			if ( !attacker.Player )
-			{
-				if ( defender is PlayerMobile )
-				{
-					PlayerMobile pm = (PlayerMobile)defender;
-
-					if( pm.EnemyOfOneType != null && pm.EnemyOfOneType != attacker.GetType() )
-					{
-						percentageBonus += 100;
-					}
-				}
-			}
-			else if ( !defender.Player )
-			{
-				if ( attacker is PlayerMobile )
-				{
-					PlayerMobile pm = (PlayerMobile)attacker;
-
-					if ( pm.WaitingForEnemy )
-					{
-						pm.EnemyOfOneType = defender.GetType();
-						pm.WaitingForEnemy = false;
-					}
-
-					if ( pm.EnemyOfOneType == defender.GetType() )
-					{
-						defender.FixedEffect( 0x37B9, 10, 5, 1160, 0 );
-
-						percentageBonus += 50;
-					}
-				}
-			}
-
-			int packInstinctBonus = GetPackInstinctBonus( attacker, defender );
-
-			if( packInstinctBonus != 0 )
-			{
-				percentageBonus += packInstinctBonus;
-			}
-
-			if( m_InDoubleStrike )
-			{
-				percentageBonus -= 10;
-			}
-
-			percentageBonus = Math.Min( percentageBonus, 300 );
-
-			damage = AOS.Scale( damage, 100 + percentageBonus );
-			#endregion
-
 			if ( attacker is BaseCreature )
 				((BaseCreature)attacker).AlterMeleeDamageTo( defender, ref damage );
 
@@ -963,9 +705,9 @@ namespace Server.Items
 
 			AddBlood( attacker, defender, damage );
 
-			AOS.Damage( defender, attacker, damage, false, 0, 0, 0, 0, 0, 0, 0, false, this is BaseRanged, false );
-
-			if ( m_MaxHits > 0 && (MaxRange <= 1 && (defender is Slime) || Utility.Random( 25 ) == 0) ) // Stratics says 50% chance, seems more like 4%..
+            defender.Damage(damage, attacker);
+            
+            if ( m_MaxHits > 0 && (MaxRange <= 1 && (defender is Slime) || Utility.Random( 25 ) == 0) ) // Stratics says 50% chance, seems more like 4%..
 			{
 				if ( MaxRange <= 1 && (defender is Slime) )
 					attacker.LocalOverheadMessage( MessageType.Regular, 0x3B2, 500263 ); // *Acid blood scars your weapon!*
@@ -1200,17 +942,7 @@ namespace Server.Items
 			// Apply bonuses
 			damage += damage * modifiers;
 
-			return ScaleDamageByDurability( (int)damage );
-		}
-
-		public virtual int ScaleDamageByDurability( int damage )
-		{
-			int scale = 100;
-
-			if ( m_MaxHits > 0 && m_Hits < m_MaxHits )
-				scale = 50 + 50 * m_Hits / m_MaxHits;
-
-			return AOS.Scale( damage, scale );
+			return (int)damage;
 		}
 
 		public virtual int ComputeDamage( Mobile attacker, Mobile defender )
@@ -1366,7 +1098,6 @@ namespace Server.Items
 			SetSaveFlag( ref flags, SaveFlag.Resource,			m_Resource != CraftResource.Iron );
 			SetSaveFlag( ref flags, SaveFlag.PlayerConstructed,	m_PlayerConstructed );
 			SetSaveFlag( ref flags, SaveFlag.Slayer2,			m_Slayer2 != SlayerName.None );
-			SetSaveFlag( ref flags, SaveFlag.EngravedText,		!String.IsNullOrEmpty( m_EngravedText ) );
 
 			writer.Write( (int) flags );
 
@@ -1441,9 +1172,6 @@ namespace Server.Items
 
 			if ( GetSaveFlag( flags, SaveFlag.Slayer2 ) )
 				writer.Write( (int)m_Slayer2 );
-
-			if( GetSaveFlag( flags, SaveFlag.EngravedText ) )
-				writer.Write( (string) m_EngravedText );
 		}
 
 		[Flags]
@@ -1630,9 +1358,6 @@ namespace Server.Items
 
     				if( GetSaveFlag( flags, SaveFlag.Slayer2 ) )
 						m_Slayer2 = (SlayerName)reader.ReadInt();
-
-					if( GetSaveFlag( flags, SaveFlag.EngravedText ) )
-						m_EngravedText = reader.ReadString();
 
 					break;
 				}
@@ -1832,11 +1557,6 @@ namespace Server.Items
 			 * easily put this back, and use it in the deserialize
 			 * method and engraving tool, to make it perm cleaned up.
 			 */
-
-			if ( !String.IsNullOrEmpty( m_EngravedText ) )
-				list.Add( 1062613, m_EngravedText );
-
-				/* list.Add( 1062613, Utility.FixHtml( m_EngravedText ) ); */
 		}
 
 		public override bool AllowEquipedCast( Mobile from )
@@ -1904,7 +1624,7 @@ namespace Server.Items
 			if ( MaxRange > 1 )
 				list.Add( 1061169, MaxRange.ToString() ); // range ~1_val~
 
-			int strReq = AOS.Scale( StrRequirement, 100 - GetLowerStatReq() );
+			int strReq = StrRequirement;
 
 			if ( strReq > 0 )
 				list.Add( 1061170, strReq.ToString() ); // strength requirement ~1_val~

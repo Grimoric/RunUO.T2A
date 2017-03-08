@@ -1256,7 +1256,6 @@
     <Compile Include=".\Items\Weapons\WeaponEnums.cs" />
     <Compile Include=".\Misc\AccountPrompt.cs" />
     <Compile Include=".\Misc\Animations.cs" />
-    <Compile Include=".\Misc\AOS.cs" />
     <Compile Include=".\Misc\AttackMessage.cs" />
     <Compile Include=".\Misc\AutoRestart.cs" />
     <Compile Include=".\Misc\AutoSave.cs" />

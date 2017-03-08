@@ -116,9 +116,9 @@ namespace Server
 				if ( m_From != null )
 					m_From.DoHarmful( m_Mobile, true );
 
-				AOS.Damage( m_Mobile, m_From, damage, 0, 0, 0, 100, 0 );
+                m_Mobile.Damage(damage, m_From);
 
-				if ( 0.60 <= Utility.RandomDouble() ) // OSI: randomly revealed between first and third damage tick, guessing 60% chance
+                if ( 0.60 <= Utility.RandomDouble() ) // OSI: randomly revealed between first and third damage tick, guessing 60% chance
 						m_Mobile.RevealingAction();
 
 				if ( m_Index % m_Poison.m_MessageInterval == 0 )

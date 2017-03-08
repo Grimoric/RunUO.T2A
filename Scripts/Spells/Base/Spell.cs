@@ -106,47 +106,6 @@ namespace Server.Spells
 			m_Info = info;
 		}
 
-		public virtual int GetNewAosDamage( int bonus, int dice, int sides, Mobile singleTarget )
-		{
-			if( singleTarget != null )
-			{
-				return GetNewAosDamage( bonus, dice, sides, Caster.Player && singleTarget.Player, GetDamageScalar( singleTarget ) );
-			}
-			else
-			{
-				return GetNewAosDamage( bonus, dice, sides, false );
-			}
-		}
-
-		public virtual int GetNewAosDamage( int bonus, int dice, int sides, bool playerVsPlayer )
-		{
-			return GetNewAosDamage( bonus, dice, sides, playerVsPlayer, 1.0 );
-		}
-
-		public virtual int GetNewAosDamage( int bonus, int dice, int sides, bool playerVsPlayer, double scalar )
-		{
-			int damage = Utility.Dice( dice, sides, bonus ) * 100;
-			int damageBonus = 0;
-
-			int inscribeSkill = GetInscribeFixed( m_Caster );
-			int inscribeBonus = (inscribeSkill + 1000 * (inscribeSkill / 1000)) / 200;
-			damageBonus += inscribeBonus;
-
-			int intBonus = Caster.Int / 10;
-			damageBonus += intBonus;
-
-			damage = AOS.Scale( damage, 100 + damageBonus );
-
-			int evalSkill = GetDamageFixed( m_Caster );
-			int evalScale = 30 + 9 * evalSkill / 100;
-
-			damage = AOS.Scale( damage, evalScale );
-
-			damage = AOS.Scale( damage, (int)(scalar*100) );
-
-			return damage / 100;
-		}
-
 		public virtual bool IsCasting{ get{ return m_State == SpellState.Casting; } }
 
 		public virtual void OnCasterHurt()
