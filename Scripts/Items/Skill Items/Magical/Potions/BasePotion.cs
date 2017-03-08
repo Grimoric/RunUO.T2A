@@ -37,7 +37,7 @@ namespace Server.Items
 		Darkglow,
 	}
 
-	public abstract class BasePotion : Item, ICraftable, ICommodity
+	public abstract class BasePotion : Item, ICraftable
 	{
 		private PotionEffect m_PotionEffect;
 
@@ -53,9 +53,6 @@ namespace Server.Items
 				InvalidateProperties();
 			}
 		}
-
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return false; } }
 
 		public override int LabelNumber{ get{ return 1041314 + (int)m_PotionEffect; } }
 

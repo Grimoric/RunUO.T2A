@@ -118,8 +118,6 @@ namespace Server.Engines.Craft
 		{
 			if ( tool == null || tool.Deleted || tool.UsesRemaining < 0 )
 				return 1044038; // You have worn out your tool!
-			else if ( !BaseTool.CheckTool( tool, from ) )
-				return 1048146; // If you have a tool equipped, you must use that tool.
 			else if ( !BaseTool.CheckAccessible( tool, from ) )
 				return 1044263; // The tool must be on your person to use.
 
@@ -216,8 +214,6 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( ChainChest ), 1011077, 1025055, 39.1, 89.1, typeof( IronIngot ), 1044036, 20, 1044037 );
 			#endregion
 
-			int index = -1;
-
 			#region Platemail
 			AddCraft( typeof( PlateArms ), 1011078, 1025136, 66.3, 116.3, typeof( IronIngot ), 1044036, 18, 1044037 );
 			AddCraft( typeof( PlateGloves ), 1011078, 1025140, 58.9, 108.9, typeof( IronIngot ), 1044036, 12, 1044037 );
@@ -282,23 +278,6 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( WarHammer ), 1011084, 1025177, 34.2, 84.2, typeof( IronIngot ), 1044036, 16, 1044037 );
 			#endregion
 
-			#region Dragon Scale Armor
-			index = AddCraft( typeof( DragonGloves ), 1053114, 1029795, 68.9, 118.9, typeof( RedScales ), 1060883, 16, 1060884 );
-			SetUseSubRes2( index, true );
-
-			index = AddCraft( typeof( DragonHelm ), 1053114, 1029797, 72.6, 122.6, typeof( RedScales ), 1060883, 20, 1060884 );
-			SetUseSubRes2( index, true );
-
-			index = AddCraft( typeof( DragonLegs ), 1053114, 1029799, 78.8, 128.8, typeof( RedScales ), 1060883, 28, 1060884 );
-			SetUseSubRes2( index, true );
-
-			index = AddCraft( typeof( DragonArms ), 1053114, 1029815, 76.3, 126.3, typeof( RedScales ), 1060883, 24, 1060884 );
-			SetUseSubRes2( index, true );
-
-			index = AddCraft( typeof( DragonChest ), 1053114, 1029793, 85.0, 135.0, typeof( RedScales ), 1060883, 36, 1060884 );
-			SetUseSubRes2( index, true );
-			#endregion
-			
 			// Set the overridable material
 			SetSubRes( typeof( IronIngot ), 1044022 );
 
@@ -313,15 +292,6 @@ namespace Server.Engines.Craft
 			AddSubRes( typeof( AgapiteIngot ),		1044028, 90.0, 1044036, 1044268 );
 			AddSubRes( typeof( VeriteIngot ),		1044029, 95.0, 1044036, 1044268 );
 			AddSubRes( typeof( ValoriteIngot ),		1044030, 99.0, 1044036, 1044268 );
-
-			SetSubRes2( typeof( RedScales ), 1060875 );
-
-			AddSubRes2( typeof( RedScales ),		1060875, 0.0, 1053137, 1044268 );
-			AddSubRes2( typeof( YellowScales ),		1060876, 0.0, 1053137, 1044268 );
-			AddSubRes2( typeof( BlackScales ),		1060877, 0.0, 1053137, 1044268 );
-			AddSubRes2( typeof( GreenScales ),		1060878, 0.0, 1053137, 1044268 );
-			AddSubRes2( typeof( WhiteScales ),		1060879, 0.0, 1053137, 1044268 );
-			AddSubRes2( typeof( BlueScales ),		1060880, 0.0, 1053137, 1044268 );
 
 			Resmelt = true;
 			Repair = true;

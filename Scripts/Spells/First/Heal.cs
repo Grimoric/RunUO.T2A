@@ -1,6 +1,5 @@
 using Server.Targeting;
 using Server.Network;
-using Server.Mobiles;
 
 namespace Server.Spells.First
 {

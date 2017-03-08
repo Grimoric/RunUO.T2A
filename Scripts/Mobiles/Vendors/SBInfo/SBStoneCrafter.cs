@@ -32,10 +32,6 @@ namespace Server.Mobiles
 				Add( new GenericBuyInfo( typeof( MouldingPlane ), 11, 20, 0x102C, 0 ) );
 				Add( new GenericBuyInfo( typeof( SmoothingPlane ), 10, 20, 0x1032, 0 ) );
 				Add( new GenericBuyInfo( typeof( JointingPlane ), 11, 20, 0x1030, 0 ) );
-
-				Add( new GenericBuyInfo( "Making Valuables With Stonecrafting", typeof( MasonryBook ), 10625, 10, 0xFBE, 0 ) );
-				Add( new GenericBuyInfo( "Mining For Quality Stone", typeof( StoneMiningBook ), 10625, 10, 0xFBE, 0 ) );
-				Add( new GenericBuyInfo( "1044515", typeof( MalletAndChisel ), 3, 50, 0x12B3, 0 ) );
 			}
 		}
 
@@ -43,10 +39,6 @@ namespace Server.Mobiles
 		{
 			public InternalSellInfo()
 			{
-				Add( typeof( MasonryBook ), 5000 );
-				Add( typeof( StoneMiningBook ), 5000 );
-				Add( typeof( MalletAndChisel ), 1 );
-
 				Add( typeof( WoodenBox ), 7 );
 				Add( typeof( SmallCrate ), 5 );
 				Add( typeof( MediumCrate ), 6 );

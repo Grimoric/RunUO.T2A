@@ -1,10 +1,7 @@
 namespace Server.Items
 {
-    public class PigIron : BaseReagent, ICommodity
+    public class PigIron : BaseReagent
 	{
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return true; } }
-
 		[Constructable]
 		public PigIron() : this( 1 )
 		{

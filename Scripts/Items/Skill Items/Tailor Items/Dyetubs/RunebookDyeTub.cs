@@ -1,6 +1,6 @@
 namespace Server.Items
 {
-    public class RunebookDyeTub : DyeTub, Engines.VeteranRewards.IRewardItem
+    public class RunebookDyeTub : DyeTub
 	{
 		public override bool AllowDyables{ get{ return false; } }
 		public override bool AllowRunebooks{ get{ return true; } }
@@ -9,27 +9,10 @@ namespace Server.Items
 		public override int LabelNumber{ get{ return 1049740; } } // Runebook Dye Tub
 		public override CustomHuePicker CustomHuePicker{ get{ return CustomHuePicker.LeatherDyeTub; } }
 
-		private bool m_IsRewardItem;
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public bool IsRewardItem
-		{
-			get{ return m_IsRewardItem; }
-			set{ m_IsRewardItem = value; }
-		}
-
 		[Constructable]
 		public RunebookDyeTub()
 		{
 			LootType = LootType.Blessed;
-		}
-
-		public override void OnDoubleClick( Mobile from )
-		{
-			if ( m_IsRewardItem && !Engines.VeteranRewards.RewardSystem.CheckIsUsableBy( from, this, null ) )
-				return;
-
-			base.OnDoubleClick( from );
 		}
 
 		public RunebookDyeTub( Serial serial ) : base( serial )
@@ -41,8 +24,6 @@ namespace Server.Items
 			base.Serialize( writer );
 
 			writer.Write( (int) 1 ); // version
-
-			writer.Write( (bool) m_IsRewardItem );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -50,15 +31,6 @@ namespace Server.Items
 			base.Deserialize( reader );
 
 			int version = reader.ReadInt();
-
-			switch ( version )
-			{
-				case 1:
-				{
-					m_IsRewardItem = reader.ReadBool();
-					break;
-				}
-			}
 		}
 	}
 }

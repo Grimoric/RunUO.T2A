@@ -1,6 +1,5 @@
 using Server.Multis;
 using Server.Network;
-using Server.Guilds;
 
 namespace Server.Gumps
 {

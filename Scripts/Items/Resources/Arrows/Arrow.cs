@@ -1,10 +1,7 @@
 namespace Server.Items
 {
-    public class Arrow : Item, ICommodity
+    public class Arrow : Item
 	{
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return true; } }
-
 		public override double DefaultWeight
 		{
 			get { return 0.1; }

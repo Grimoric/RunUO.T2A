@@ -1,10 +1,7 @@
 namespace Server.Items
 {
-    public class SpidersSilk : BaseReagent, ICommodity
+    public class SpidersSilk : BaseReagent
 	{
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return true; } }
-
 		[Constructable]
 		public SpidersSilk() : this( 1 )
 		{

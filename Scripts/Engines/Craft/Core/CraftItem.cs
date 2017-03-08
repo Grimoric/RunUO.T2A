@@ -321,16 +321,7 @@ namespace Server.Engines.Craft
 		private static Type[][] m_TypesTable = new Type[][]
 			{
 				new Type[]{ typeof( Log ), typeof( Board ) },
-				new Type[]{ typeof( HeartwoodLog ), typeof( HeartwoodBoard ) },
-				new Type[]{ typeof( BloodwoodLog ), typeof( BloodwoodBoard ) },
-				new Type[]{ typeof( FrostwoodLog ), typeof( FrostwoodBoard ) },
-				new Type[]{ typeof( OakLog ), typeof( OakBoard ) },
-				new Type[]{ typeof( AshLog ), typeof( AshBoard ) },
-				new Type[]{ typeof( YewLog ), typeof( YewBoard ) },
 				new Type[]{ typeof( Leather ), typeof( Hides ) },
-				new Type[]{ typeof( SpinedLeather ), typeof( SpinedHides ) },
-				new Type[]{ typeof( HornedLeather ), typeof( HornedHides ) },
-				new Type[]{ typeof( BarbedLeather ), typeof( BarbedHides ) },
 				new Type[]{ typeof( BlankMap ), typeof( BlankScroll ) },
 				new Type[]{ typeof( Cloth ), typeof( UncutCloth ) },
 				new Type[]{ typeof( CheeseWheel ), typeof( CheeseWedge ) },
@@ -348,8 +339,7 @@ namespace Server.Engines.Craft
 			{
 				typeof( BaseIngot ), typeof( BaseOre ),
 				typeof( BaseLeather ), typeof( BaseHides ),
-				typeof( UncutCloth ), typeof( Cloth ),
-				typeof( BaseGranite ), typeof( BaseScales )
+				typeof( UncutCloth ), typeof( Cloth )
 			};
 
 		private static Type[] m_MarkableTable = new Type[]
@@ -360,9 +350,7 @@ namespace Server.Engines.Craft
 					typeof( BaseInstrument ),
 					typeof( BaseTool ),
 					typeof( BaseHarvestTool ),
-					typeof( FukiyaDarts ), typeof( Shuriken ),
-					typeof( Spellbook ), typeof( Runebook ),
-					typeof( BaseQuiver )
+					typeof( Spellbook ), typeof( Runebook )
 				};
 
 		private static Type[] m_NeverColorTable = new Type[]
@@ -843,19 +831,6 @@ namespace Server.Engines.Craft
 			if( m_ForceNonExceptional )
 				return 0.0;
 
-			double bonus = 0.0;
-
-			if ( from.Talisman is BaseTalisman )
-			{
-				BaseTalisman talisman = (BaseTalisman) from.Talisman;
-				
-				if ( talisman.Skill == system.MainSkill )
-				{
-					chance -= talisman.SuccessBonus / 100.0;
-					bonus = talisman.ExceptionalBonus / 100.0;
-				}
-			}
-
 			switch ( system.ECA )
 			{
 				default:
@@ -876,7 +851,7 @@ namespace Server.Engines.Craft
 			}
 
 			if ( chance > 0 )
-				return chance + bonus;
+				return chance;
 
 			return chance;
 		}
@@ -932,14 +907,6 @@ namespace Server.Engines.Craft
 				chance = craftSystem.GetChanceAtMin( this ) + (valMainSkill - minMainSkill) / (maxMainSkill - minMainSkill) * (1.0 - craftSystem.GetChanceAtMin( this ));
 			else
 				chance = 0.0;
-
-			if ( allRequiredSkills && from.Talisman is BaseTalisman )
-			{
-				BaseTalisman talisman = (BaseTalisman) from.Talisman;
-				
-				if ( talisman.Skill == craftSystem.MainSkill )
-					chance += talisman.SuccessBonus / 100.0;
-			}
 
 			if ( allRequiredSkills && valMainSkill == maxMainSkill )
 				chance = 1.0;
@@ -1121,17 +1088,6 @@ namespace Server.Engines.Craft
 				}
 
 				tool.UsesRemaining--;
-
-				if ( craftSystem is DefBlacksmithy )
-				{
-					AncientSmithyHammer hammer = from.FindItemOnLayer( Layer.OneHanded ) as AncientSmithyHammer;
-					if ( hammer != null && hammer != tool )
-					{
-						hammer.UsesRemaining--;
-						if ( hammer.UsesRemaining < 1 )
-							hammer.Delete();
-					}
-				}
 
 				if ( tool.UsesRemaining < 1 && tool.BreakOnDepletion )
 					toolBroken = true;

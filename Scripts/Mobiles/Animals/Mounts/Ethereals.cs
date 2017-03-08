@@ -1,35 +1,18 @@
 using System;
 using Server.Items;
 using Server.Spells;
-using Server.Engines.VeteranRewards;
 
 namespace Server.Mobiles
 {
-    public class EtherealMount : Item, IMount, IMountItem, Engines.VeteranRewards.IRewardItem
+    public class EtherealMount : Item, IMount, IMountItem
 	{
 		private int m_MountedID;
 		private int m_RegularID;
 		private Mobile m_Rider;
-		private bool m_IsRewardItem;
-		private bool m_IsDonationItem;
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public bool IsRewardItem
-		{
-			get { return m_IsRewardItem; }
-			set { m_IsRewardItem = value; }
-		}
 
 		public override double DefaultWeight
 		{
 			get { return 1.0; }
-		}
-
-		[CommandProperty( AccessLevel.GameMaster, AccessLevel.Administrator )]
-		public bool IsDonationItem
-		{
-			get { return m_IsDonationItem; }
-			set { m_IsDonationItem = value; InvalidateProperties(); }
 		}
 
 		[Constructable]
@@ -43,17 +26,6 @@ namespace Server.Mobiles
 			Layer = Layer.Invalid;
 
 			LootType = LootType.Blessed;
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if( m_IsDonationItem )
-			{
-				list.Add( "Donation Ethereal" );
-				list.Add( "7.5 sec slower cast time if not a 9mo. Veteran" );
-			}
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -125,11 +97,6 @@ namespace Server.Mobiles
 				from.SayTo( from, 1010095 ); // This must be on your person to use.
 				return false;
 			}
-			else if( m_IsRewardItem && !RewardSystem.CheckIsUsableBy( from, this, null ) )
-			{
-				// CheckIsUsableBy sends the message
-				return false;
-			}
 			else if( !BaseMount.CheckMountAllowed( from ) )
 			{
 				// CheckMountAllowed sends the message
@@ -165,24 +132,11 @@ namespace Server.Mobiles
 				new EtherealSpell( this, from ).Cast();
 		}
 
-		public override void OnSingleClick( Mobile from )
-		{
-			base.OnSingleClick( from );
-
-			if ( m_IsDonationItem )
-				LabelTo( from, "Donation Ethereal" );
-			else
-				LabelTo( from, "Veteran Reward" );
-		}
-
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
 
 			writer.Write( (int)3 ); // version
-
-			writer.Write( m_IsDonationItem );
-			writer.Write( m_IsRewardItem );
 
 			writer.Write( (int)m_MountedID );
 			writer.Write( (int)m_RegularID );
@@ -199,15 +153,7 @@ namespace Server.Mobiles
 			switch( version )
 			{
 				case 3:
-				{
-					m_IsDonationItem = reader.ReadBool();
-					goto case 2;
-				}
 				case 2:
-				{
-					m_IsRewardItem = reader.ReadBool();
-					goto case 0;
-				}
 				case 1: reader.ReadInt(); goto case 0;
 				case 0:
 				{
@@ -373,7 +319,7 @@ namespace Server.Mobiles
 			{
 				get
 				{
-					return TimeSpan.FromSeconds( m_Mount.IsDonationItem && RewardSystem.GetRewardLevel( m_Rider ) < 3 ? 7.5 + 2.0 : 2.0 );
+					return TimeSpan.FromSeconds( 2.0 );
 				}
 			}
 

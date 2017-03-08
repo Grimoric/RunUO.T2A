@@ -1,10 +1,7 @@
 namespace Server.Items
 {
-    public class Feather : Item, ICommodity
+    public class Feather : Item
 	{
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return true; } }
-
 		public override double DefaultWeight
 		{
 			get { return 0.1; }

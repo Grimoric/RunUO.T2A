@@ -4,7 +4,7 @@ using Server.ContextMenus;
 
 namespace Server.Items
 {
-    public class SpellScroll : Item, ICommodity
+    public class SpellScroll : Item
 	{
 		private int m_SpellID;
 
@@ -15,9 +15,6 @@ namespace Server.Items
 				return m_SpellID;
 			}
 		}
-
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return false; } }
 
 		public SpellScroll( Serial serial ) : base( serial )
 		{

@@ -1,5 +1,4 @@
 using System;
-using Server.Mobiles;
 using Server.Targeting;
 using Server.Items;
 
@@ -122,36 +121,12 @@ namespace Server.Engines.Craft
 				{
 					return weapon is Club
 						|| weapon is BlackStaff
-						|| weapon is MagicWand
-					#region Temporary
-					// TODO: Make these items craftable
-						|| weapon is WildStaff;
-					#endregion
+						|| weapon is MagicWand;
 				}
 				else if ( m_CraftSystem is DefBlacksmithy )
 				{
-					return weapon is Pitchfork
-					#region Temporary
-					// TODO: Make these items craftable
-						|| weapon is RadiantScimitar
-						|| weapon is WarCleaver
-						|| weapon is ElvenSpellblade
-						|| weapon is AssassinSpike
-						|| weapon is Leafblade
-						|| weapon is RuneBlade
-						|| weapon is ElvenMachete
-						|| weapon is OrnateAxe
-						|| weapon is DiamondMace;
-					#endregion
+					return weapon is Pitchfork;
 				}
-				#region Temporary
-				// TODO: Make these items craftable
-				else if ( m_CraftSystem is DefBowFletching )
-				{
-					return weapon is ElvenCompositeLongbow
-						|| weapon is MagicalShortbow;
-				}
-				#endregion
 
 				return false;
 			}
@@ -159,41 +134,6 @@ namespace Server.Engines.Craft
 			private bool IsSpecialArmor( BaseArmor armor )
 			{
 				// Armor repairable but not craftable
-
-				#region Temporary
-				// TODO: Make these items craftable
-				if ( m_CraftSystem is DefTailoring )
-				{
-					return armor is LeafTonlet
-						|| armor is LeafArms
-						|| armor is LeafChest
-						|| armor is LeafGloves
-						|| armor is LeafGorget
-						|| armor is LeafLegs
-						|| armor is HideChest
-						|| armor is HideGloves
-						|| armor is HideGorget
-						|| armor is HidePants
-						|| armor is HidePauldrons;
-				}
-				else if ( m_CraftSystem is DefCarpentry )
-				{
-					return armor is WingedHelm
-						|| armor is RavenHelm
-						|| armor is VultureHelm
-						|| armor is WoodlandArms
-						|| armor is WoodlandChest
-						|| armor is WoodlandGloves
-						|| armor is WoodlandGorget
-						|| armor is WoodlandLegs;
-				}
-				else if ( m_CraftSystem is DefBlacksmithy )
-				{
-					return armor is Circlet
-						|| armor is RoyalCirclet
-						|| armor is GemmedCirclet;
-				}
-				#endregion
 
 				return false;
 			}
@@ -350,7 +290,7 @@ namespace Server.Engines.Craft
 							toWeaken = 3;
 					}
 
- 					if (m_CraftSystem.CraftItems.SearchForSubclass(clothing.GetType()) == null && !IsSpecialClothing(clothing) && !(targeted is TribalMask || targeted is HornedTribalMask) )
+ 					if (m_CraftSystem.CraftItems.SearchForSubclass(clothing.GetType()) == null && !IsSpecialClothing(clothing) && !(targeted is TribalMask ) )
  					{
 						number = usingDeed ? 1061136 : 1044277; // That item cannot be repaired. // You cannot repair that item with this type of repair contract.
 					}

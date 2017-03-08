@@ -85,47 +85,6 @@ namespace Server.Items
 						from.SendLocalizedMessage( 1010497 ); // You have cleaned the item.
 				}
 			}
-			else if ( obj == from && obj is PlayerMobile )
-			{
-				PlayerMobile pm = (PlayerMobile)obj;
-
-				if ( pm.BodyMod == 183 || pm.BodyMod == 184 )
-				{
-					pm.SavagePaintExpiration = TimeSpan.Zero;
-
-					pm.BodyMod = 0;
-					pm.HueMod = -1;
-
-					from.SendLocalizedMessage( 1040006 ); // You wipe away all of your body paint.
-
-					Consume();
-				}
-				else
-				{
-					from.LocalOverheadMessage( Network.MessageType.Regular, 0x3B2, 1005422 ); // Hmmmm... this does not need to be cleaned.
-				}
-			}
-			#region Firebomb
-			else if ( obj is BaseBeverage )
-			{
-				BaseBeverage beverage = (BaseBeverage) obj;
-
-				if ( beverage.Content == BeverageType.Liquor )
-				{
-					Firebomb bomb = new Firebomb( beverage.ItemID );
-					bomb.Name = beverage.Name;
-
-					beverage.ReplaceWith( bomb );
-
-					from.SendLocalizedMessage( 1060580 ); // You prepare a firebomb.
-					Consume();
-				}
-			}
-			else if ( obj is Firebomb )
-			{
-				from.SendLocalizedMessage( 1060579 ); // That is already a firebomb!
-			}
-			#endregion
 			else
 			{
 				from.SendLocalizedMessage( 1005426 ); // The cloth will not work on that.

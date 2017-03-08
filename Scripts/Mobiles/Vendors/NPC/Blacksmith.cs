@@ -43,11 +43,6 @@ namespace Server.Mobiles
 			m_SBInfos.Add( new SBSwordWeapon() );*/
 			
 			m_SBInfos.Add( new SBBlacksmith() );
-			if ( IsTokunoVendor )
-			{
-				m_SBInfos.Add( new SBSEArmor() );	
-				m_SBInfos.Add( new SBSEWeapons() );
-			}
 		}
 
 		public override VendorShoeType ShoeType

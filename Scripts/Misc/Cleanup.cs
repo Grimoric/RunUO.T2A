@@ -26,15 +26,6 @@ namespace Server.Misc
 					items.Add( item );
 					continue;
 				}
-				else if ( item is CommodityDeed )
-				{
-					CommodityDeed deed = (CommodityDeed)item;
-
-					if ( deed.Commodity != null )
-						validItems.Add( deed.Commodity );
-
-					continue;
-				}
 				else if ( item is BankBox )
 				{
 					BankBox box = (BankBox)item;
@@ -113,14 +104,22 @@ namespace Server.Misc
 			if ( item is Fists )
 				return false;
 
-			if ( item is ICommodity || item is Multis.BaseBoat
-				|| item is Fish || item is BigFish
-				|| item is BasePotion || item is Food || item is CookableFood
-				|| item is SpecialFishingNet || item is BaseMagicFish
-				|| item is Shoes || item is Sandals
-				|| item is Boots || item is ThighBoots
-				|| item is TreasureMap || item is MessageInABottle
-				|| item is BaseArmor || item is BaseWeapon
+			if ( item is Multis.BaseBoat
+				|| item is Fish 
+                || item is BigFish
+				|| item is BasePotion 
+                || item is Food 
+                || item is CookableFood
+				|| item is SpecialFishingNet 
+                || item is BaseMagicFish
+				|| item is Shoes 
+                || item is Sandals
+				|| item is Boots 
+                || item is ThighBoots
+				|| item is TreasureMap 
+                || item is MessageInABottle
+				|| item is BaseArmor 
+                || item is BaseWeapon
 				|| item is BaseClothing )
 
 				return true;

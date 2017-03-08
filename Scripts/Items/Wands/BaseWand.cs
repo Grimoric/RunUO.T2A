@@ -21,7 +21,7 @@ namespace Server.Items
 		ManaDraining
 	}
 
-	public abstract class BaseWand : BaseBashing, ITokunoDyable
+	public abstract class BaseWand : BaseBashing
 	{
 		public override int OldStrengthReq { get { return 0; } }
 		public override int OldMinDamage { get { return 2; } }

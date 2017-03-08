@@ -6,68 +6,6 @@ namespace Server
     public class Loot
 	{
 		#region List definitions
-
-		#region Mondain's Legacy
-		private static Type[] m_MLWeaponTypes = new Type[]
-			{
-				typeof( AssassinSpike ),		typeof( DiamondMace ),			typeof( ElvenMachete ),
-				typeof( ElvenSpellblade ),		typeof( Leafblade ),			typeof( OrnateAxe ),
-				typeof( RadiantScimitar ),		typeof( RuneBlade ),			typeof( WarCleaver ),
-				typeof( WildStaff )
-			};
-
-		public static Type[] MLWeaponTypes{ get{ return m_MLWeaponTypes; } }
-		
-		private static Type[] m_MLRangedWeaponTypes = new Type[]
-			{
-				typeof( ElvenCompositeLongbow ),	typeof( MagicalShortbow )
-			};
-
-		public static Type[] MLRangedWeaponTypes{ get{ return m_MLRangedWeaponTypes; } }
-		
-		private static Type[] m_MLArmorTypes = new Type[]
-			{
-				typeof( Circlet ),				typeof( GemmedCirclet ),		typeof( LeafTonlet ),
-				typeof( RavenHelm ),			typeof( RoyalCirclet ),			typeof( VultureHelm ),
-				typeof( WingedHelm ),			typeof( LeafArms ),				typeof( LeafChest ),
-				typeof( LeafGloves ),			typeof( LeafGorget ),			typeof( LeafLegs ),
-				typeof( WoodlandArms ),			typeof( WoodlandChest ),		typeof( WoodlandGloves ),
-				typeof( WoodlandGorget ),		typeof( WoodlandLegs ),			typeof( HideChest ),
-				typeof( HideGloves ),			typeof( HideGorget ),			typeof( HidePants ),
-				typeof( HidePauldrons )
-			};
-
-		public static Type[] MLArmorTypes{ get{ return m_MLArmorTypes; } }
-
-		private static Type[] m_MLClothingTypes = new Type[]
-			{
-				typeof( MaleElvenRobe ),		typeof( FemaleElvenRobe ),		typeof( ElvenPants ),
-				typeof( ElvenShirt ),			typeof( ElvenDarkShirt ),		typeof( ElvenBoots ),
-				typeof( VultureHelm ),			typeof( WoodlandBelt )
-			};
-
-		public static Type[] MLClothingTypes{ get{ return m_MLClothingTypes; } }
-		#endregion
-
-		private static Type[] m_SEWeaponTypes = new Type[]
-			{
-				typeof( Bokuto ),				typeof( Daisho ),				typeof( Kama ),
-				typeof( Lajatang ),				typeof( NoDachi ),				typeof( Nunchaku ),
-				typeof( Sai ),					typeof( Tekagi ),				typeof( Tessen ),
-				typeof( Tetsubo ),				typeof( Wakizashi )
-			};
-
-		public static Type[] SEWeaponTypes{ get{ return m_SEWeaponTypes; } }
-
-		private static Type[] m_AosWeaponTypes = new Type[]
-			{
-				typeof( Scythe ),				typeof( BoneHarvester ),		typeof( Scepter ),
-				typeof( BladedStaff ),			typeof( Pike ),					typeof( DoubleBladedStaff ),
-				typeof( Lance ),				typeof( CrescentBlade )
-			};
-
-		public static Type[] AosWeaponTypes{ get{ return m_AosWeaponTypes; } }
-
 		private static Type[] m_WeaponTypes = new Type[]
 			{
 				typeof( Axe ),					typeof( BattleAxe ),			typeof( DoubleAxe ),
@@ -86,42 +24,12 @@ namespace Server
 
 		public static Type[] WeaponTypes{ get{ return m_WeaponTypes; } }
 
-		private static Type[] m_SERangedWeaponTypes = new Type[]
-			{
-				typeof( Yumi )
-			};
-
-		public static Type[] SERangedWeaponTypes{ get{ return m_SERangedWeaponTypes; } }
-
-		private static Type[] m_AosRangedWeaponTypes = new Type[]
-			{
-				typeof( CompositeBow ),			typeof( RepeatingCrossbow )
-			};
-
-		public static Type[] AosRangedWeaponTypes{ get{ return m_AosRangedWeaponTypes; } }
-
 		private static Type[] m_RangedWeaponTypes = new Type[]
 			{
 				typeof( Bow ),					typeof( Crossbow ),				typeof( HeavyCrossbow )
 			};
 
 		public static Type[] RangedWeaponTypes{ get{ return m_RangedWeaponTypes; } }
-
-		private static Type[] m_SEArmorTypes = new Type[]
-			{
-				typeof( ChainHatsuburi ),		typeof( LeatherDo ),			typeof( LeatherHaidate ),
-				typeof( LeatherHiroSode ),		typeof( LeatherJingasa ),		typeof( LeatherMempo ),
-				typeof( LeatherNinjaHood ),		typeof( LeatherNinjaJacket ),	typeof( LeatherNinjaMitts ),
-				typeof( LeatherNinjaPants ),	typeof( LeatherSuneate ),		typeof( DecorativePlateKabuto ),
-				typeof( HeavyPlateJingasa ),	typeof( LightPlateJingasa ),	typeof( PlateBattleKabuto ),
-				typeof( PlateDo ),				typeof( PlateHaidate ),			typeof( PlateHatsuburi ),
-				typeof( PlateHiroSode ),		typeof( PlateMempo ),			typeof( PlateSuneate ),
-				typeof( SmallPlateJingasa ),	typeof( StandardPlateKabuto ),	typeof( StuddedDo ),
-				typeof( StuddedHaidate ),		typeof( StuddedHiroSode ),		typeof( StuddedMempo ),
-				typeof( StuddedSuneate )
-			};
-
-		public static Type[] SEArmorTypes{ get{ return m_SEArmorTypes; } }
 
 		private static Type[] m_ArmorTypes = new Type[]
 			{
@@ -201,13 +109,6 @@ namespace Server
 
 		public static Type[] PotionTypes{ get{ return m_PotionTypes; } }
 
-		private static Type[] m_SEInstrumentTypes = new Type[]
-			{
-				typeof( BambooFlute )
-			};
-
-		public static Type[] SEInstrumentTypes{ get{ return m_SEInstrumentTypes; } }
-
 		private static Type[] m_InstrumentTypes = new Type[]
 			{
 				typeof( Drums ),				typeof( Harp ),					typeof( LapHarp ),
@@ -245,42 +146,8 @@ namespace Server
 				typeof( SummonDaemonScroll ),	typeof( SummonEarthElementalScroll ),	typeof( SummonFireElementalScroll ),	typeof( SummonWaterElementalScroll )
 			};
 
-		private static Type[] m_NecromancyScrollTypes = new Type[]
-			{
-				typeof( AnimateDeadScroll ),		typeof( BloodOathScroll ),		typeof( CorpseSkinScroll ),	typeof( CurseWeaponScroll ),
-				typeof( EvilOmenScroll ),			typeof( HorrificBeastScroll ),	typeof( LichFormScroll ),	typeof( MindRotScroll ),
-				typeof( PainSpikeScroll ),			typeof( PoisonStrikeScroll ),	typeof( StrangleScroll ),	typeof( SummonFamiliarScroll ),
-				typeof( VampiricEmbraceScroll ),	typeof( VengefulSpiritScroll ),	typeof( WitherScroll ),		typeof( WraithFormScroll )
-			};
-			
-		private static Type[] m_SENecromancyScrollTypes = new Type[]
-		{
-			typeof( AnimateDeadScroll ),		typeof( BloodOathScroll ),		typeof( CorpseSkinScroll ),	typeof( CurseWeaponScroll ),
-			typeof( EvilOmenScroll ),			typeof( HorrificBeastScroll ),	typeof( LichFormScroll ),	typeof( MindRotScroll ),
-			typeof( PainSpikeScroll ),			typeof( PoisonStrikeScroll ),	typeof( StrangleScroll ),	typeof( SummonFamiliarScroll ),
-			typeof( VampiricEmbraceScroll ),	typeof( VengefulSpiritScroll ),	typeof( WitherScroll ),		typeof( WraithFormScroll ),
-			typeof( ExorcismScroll )
-		};
-
-		private static Type[] m_PaladinScrollTypes = new Type[0];
-
-		#region Mondain's Legacy
-		private static Type[] m_ArcanistScrollTypes = new Type[]
-		{
-			typeof( ArcaneCircleScroll ),	typeof( GiftOfRenewalScroll ),	typeof( ImmolatingWeaponScroll ),	typeof( AttuneWeaponScroll ),
-			typeof( ThunderstormScroll ),	typeof( NatureFuryScroll ),		/*typeof( SummonFeyScroll ),			typeof( SummonFiendScroll ),*/
-			typeof( ReaperFormScroll ),		typeof( WildfireScroll ),		typeof( EssenceOfWindScroll ),		typeof( DryadAllureScroll ),
-			typeof( EtherealVoyageScroll ),	typeof( WordOfDeathScroll ),	typeof( GiftOfLifeScroll ),			typeof( ArcaneEmpowermentScroll )
-		};
-		#endregion
 
 		public static Type[] RegularScrollTypes{ get{ return m_RegularScrollTypes; } }
-		public static Type[] NecromancyScrollTypes{ get{ return m_NecromancyScrollTypes; } }
-		public static Type[] SENecromancyScrollTypes{ get{ return m_SENecromancyScrollTypes; } }
-		public static Type[] PaladinScrollTypes{ get{ return m_PaladinScrollTypes; } }
-		#region Mondain's Legacy
-		public static Type[] ArcanistScrollTypes{ get{ return m_ArcanistScrollTypes; } }
-		#endregion
 
 		private static Type[] m_NewWandTypes = new Type[]
 			{
@@ -302,23 +169,6 @@ namespace Server
 			};
 		public static Type[] OldWandTypes{ get{ return m_OldWandTypes; } }
 
-		private static Type[] m_SEClothingTypes = new Type[]
-			{
-				typeof( ClothNinjaJacket ),		typeof( FemaleKimono ),			typeof( Hakama ),
-				typeof( HakamaShita ),			typeof( JinBaori ),				typeof( Kamishimo ),
-				typeof( MaleKimono ),			typeof( NinjaTabi ),			typeof( Obi ),
-				typeof( SamuraiTabi ),			typeof( TattsukeHakama ),		typeof( Waraji )
-			};
-
-		public static Type[] SEClothingTypes{ get{ return m_SEClothingTypes; } }
-
-		private static Type[] m_AosClothingTypes = new Type[]
-			{
-				typeof( FurSarong ),			typeof( FurCape ),				typeof( FlowerGarland ),
-				typeof( GildedDress ),			typeof( FurBoots ),				typeof( FormalShirt ),
-		};
-
-		public static Type[] AosClothingTypes{ get{ return m_AosClothingTypes; } }
 
 		private static Type[] m_ClothingTypes = new Type[]
 			{
@@ -337,27 +187,14 @@ namespace Server
 			};
 		public static Type[] ClothingTypes{ get{ return m_ClothingTypes; } }
 
-		private static Type[] m_SEHatTypes = new Type[]
-			{
-				typeof( ClothNinjaHood ),		typeof( Kasa )
-			};
-
-		public static Type[] SEHatTypes{ get{ return m_SEHatTypes; } }
-
-		private static Type[] m_AosHatTypes = new Type[]
-			{
-				typeof( FlowerGarland ),	typeof( BearMask ),		typeof( DeerMask )	//Are Bear& Deer mask inside the Pre-AoS loottables too?
-			};
-
-		public static Type[] AosHatTypes{ get{ return m_AosHatTypes; } }
-
 		private static Type[] m_HatTypes = new Type[]
 			{
 				typeof( SkullCap ),			typeof( Bandana ),		typeof( FloppyHat ),
 				typeof( Cap ),				typeof( WideBrimHat ),	typeof( StrawHat ),
 				typeof( TallStrawHat ),		typeof( WizardsHat ),	typeof( Bonnet ),
-				typeof( FeatheredHat ),		typeof( TricorneHat ),	typeof( JesterHat )
-			};
+				typeof( FeatheredHat ),		typeof( TricorneHat ),	typeof( JesterHat ),
+                typeof( BearMask ),         typeof( DeerMask )
+            };
 
 		public static Type[] HatTypes{ get{ return m_HatTypes; } }
 
@@ -506,13 +343,6 @@ namespace Server
 			return Construct( m_WeaponTypes, m_RangedWeaponTypes, m_ArmorTypes, m_HatTypes, m_ShieldTypes, m_JewelryTypes );
 		}
 		
-		#region Chest of Heirlooms
-		public static Item ChestOfHeirloomsContains()
-		{
-			return Construct( m_SEArmorTypes, m_SEHatTypes, m_SEWeaponTypes, m_SERangedWeaponTypes, m_JewelryTypes );
-		}
-		#endregion
-
 		public static Item RandomGem()
 		{
 			return Construct( m_GemTypes );
@@ -558,44 +388,6 @@ namespace Server
 		public static BaseBook RandomLibraryBook()
 		{
 			return Construct( m_LibraryBookTypes ) as BaseBook;
-		}
-
-		public static BaseTalisman RandomTalisman()
-		{
-			BaseTalisman talisman = new BaseTalisman( BaseTalisman.GetRandomItemID() );
-
-			talisman.Summoner = BaseTalisman.GetRandomSummoner();
-
-			if ( talisman.Summoner.IsEmpty )
-			{
-				talisman.Removal = BaseTalisman.GetRandomRemoval();
-
-				if ( talisman.Removal != TalismanRemoval.None )
-				{
-					talisman.MaxCharges = BaseTalisman.GetRandomCharges();
-					talisman.MaxChargeTime = 1200;
-				}
-			}
-			else
-			{
-				talisman.MaxCharges = Utility.RandomMinMax( 10, 50 );
-
-				if ( talisman.Summoner.IsItem )
-					talisman.MaxChargeTime = 60;
-				else
-					talisman.MaxChargeTime = 1800;
-			}
-
-			talisman.Blessed = BaseTalisman.GetRandomBlessed();
-			talisman.Slayer = BaseTalisman.GetRandomSlayer();
-			talisman.Protection = BaseTalisman.GetRandomProtection();
-			talisman.Killer = BaseTalisman.GetRandomKiller();
-			talisman.Skill = BaseTalisman.GetRandomSkill();
-			talisman.ExceptionalBonus = BaseTalisman.GetRandomExceptional();
-			talisman.SuccessBonus = BaseTalisman.GetRandomSuccessful();
-			talisman.Charges = talisman.MaxCharges;
-
-			return talisman;
 		}
 		#endregion
 

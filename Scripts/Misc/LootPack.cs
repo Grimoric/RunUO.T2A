@@ -613,13 +613,6 @@ namespace Server
 		{
 			if ( item != null )
 			{
-				if ( item is BaseWeapon && 1 > Utility.Random( 100 ) )
-				{
-					item.Delete();
-					item = new FireHorn();
-					return item;
-				}
-
 				if ( item is BaseWeapon || item is BaseArmor || item is BaseJewel || item is BaseHat )
 				{
 					if ( item is BaseWeapon )
@@ -764,24 +757,6 @@ namespace Server
 		}
 
 		private static Type[]   m_BlankTypes = new Type[]{ typeof( BlankScroll ) };
-		private static Type[][] m_NecroTypes = new Type[][]
-			{
-				new Type[] // low
-				{
-					typeof( AnimateDeadScroll ),		typeof( BloodOathScroll ),		typeof( CorpseSkinScroll ),	typeof( CurseWeaponScroll ),
-					typeof( EvilOmenScroll ),			typeof( HorrificBeastScroll ),	typeof( MindRotScroll ),	typeof( PainSpikeScroll ),
-					typeof( SummonFamiliarScroll ),		typeof( WraithFormScroll )
-				},
-				new Type[] // med
-				{
-					typeof( LichFormScroll ),			typeof( PoisonStrikeScroll ),	typeof( StrangleScroll ),	typeof( WitherScroll )
-				},
-
-				new Type[] // high
-				{
-					typeof( VengefulSpiritScroll ),		typeof( VampiricEmbraceScroll )
-				}
-			};
 
 		public static Item RandomScroll( int index, int minCircle, int maxCircle )
 		{

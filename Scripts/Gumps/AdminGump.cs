@@ -374,7 +374,9 @@ namespace Server.Gumps
 					AddButtonLabeled( 20, 225, GetButtonID( 3, 104 ), "Doors" );
 					AddButtonLabeled( 220, 225, GetButtonID( 3, 105 ), "Signs" );
 
-					AddHtml( 20, 275, 400, 30, Color( Center( "Statics" ), LabelColor32 ), false, false );
+                    AddButtonLabeled( 20, 250, GetButtonID( 3, 108 ), "Monsters & NPCs" );
+
+                    AddHtml( 20, 275, 400, 30, Color( Center( "Statics" ), LabelColor32 ), false, false );
 
 					AddButtonLabeled( 20, 300, GetButtonID( 3, 110 ), "Freeze (Target)" );
 					AddButtonLabeled( 20, 325, GetButtonID( 3, 111 ), "Freeze (World)" );
@@ -1766,8 +1768,9 @@ namespace Server.Gumps
 						case 105: InvokeCommand( "SignGen" ); notice = "Signs have been generated."; break;
 						case 106: InvokeCommand( "Decorate" ); notice = "Decoration has been generated."; break;
 						case 107: InvokeCommand( "RebuildCategorization" ); notice = "Categorization menu has been regenerated. The server should be restarted."; break;
+                        case 108: InvokeCommand( "GenMonsters" ); notice = "Monsters & NPCs has been generated."; break;
 
-						case 110: InvokeCommand( "Freeze" ); notice = "Target bounding points."; break;
+                        case 110: InvokeCommand( "Freeze" ); notice = "Target bounding points."; break;
 						case 120: InvokeCommand( "Unfreeze" ); notice = "Target bounding points."; break;
 
 						case 200: InvokeCommand( "Save" ); notice = "The world has been saved."; break;

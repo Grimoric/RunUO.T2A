@@ -1,10 +1,7 @@
 namespace Server.Items
 {
-    public class SulfurousAsh : BaseReagent, ICommodity
+    public class SulfurousAsh : BaseReagent
 	{
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return true; } }
-
 		[Constructable]
 		public SulfurousAsh() : this( 1 )
 		{

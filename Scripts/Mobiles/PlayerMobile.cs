@@ -1175,7 +1175,7 @@ namespace Server.Mobiles
 
 		private bool CanInsure( Item item )
 		{
-			if ( ( item is Container && !( item is BaseQuiver ) ) || item is BagOfSending || item is KeyRing || item is PotionKeg )
+			if ( item is Container || item is KeyRing || item is PotionKeg )
 				return false;
 
 			if ( item.Stackable )
@@ -1939,7 +1939,6 @@ namespace Server.Mobiles
 
 			HueMod = -1;
 			NameMod = null;
-			SavagePaintExpiration = TimeSpan.Zero;
 
 			SetHairMods( -1, -1 );
 
@@ -2015,8 +2014,6 @@ namespace Server.Mobiles
 		private TimeSpan m_LongTermElapse;
 		private DateTime m_SessionStart;
 		private DateTime m_LastEscortTime;
-		private DateTime m_LastPetBallTime;
-		private DateTime m_SavagePaintExpiration;
 		private SkillName m_Learning = (SkillName)(-1);
 
 		public SkillName Learning
@@ -2026,35 +2023,10 @@ namespace Server.Mobiles
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public TimeSpan SavagePaintExpiration
-		{
-			get
-			{
-				TimeSpan ts = m_SavagePaintExpiration - DateTime.Now;
-
-				if ( ts < TimeSpan.Zero )
-					ts = TimeSpan.Zero;
-
-				return ts;
-			}
-			set
-			{
-				m_SavagePaintExpiration = DateTime.Now + value;
-			}
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
 		public DateTime LastEscortTime
 		{
 			get{ return m_LastEscortTime; }
 			set{ m_LastEscortTime = value; }
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public DateTime LastPetBallTime
-		{
-			get{ return m_LastPetBallTime; }
-			set{ m_LastPetBallTime = value; }
 		}
 
 		public PlayerMobile()
@@ -2074,50 +2046,6 @@ namespace Server.Mobiles
 
 			InvalidateMyRunUO();
 		}
-
-		private static void SendToStaffMessage( Mobile from, string text )
-		{
-			Packet p = null;
-
-			foreach( NetState ns in from.GetClientsInRange( 8 ) )
-			{
-				Mobile mob = ns.Mobile;
-
-				if( mob != null && mob.AccessLevel >= AccessLevel.GameMaster && mob.AccessLevel > from.AccessLevel )
-				{
-					if( p == null )
-						p = Packet.Acquire( new UnicodeMessage( from.Serial, from.Body, MessageType.Regular, from.SpeechHue, 3, from.Language, from.Name, text ) );
-
-					ns.Send( p );
-				}
-			}
-
-			Packet.Release( p );
-		}
-
-		private static void SendToStaffMessage( Mobile from, string format, params object[] args )
-		{
-			SendToStaffMessage( from, String.Format( format, args ) );
-		}
-
-		public override void Damage( int amount, Mobile from )
-		{
-			if ( from != null && Talisman is BaseTalisman )
-			{
-				BaseTalisman talisman = (BaseTalisman) Talisman;
-
-				if ( talisman.Protection != null && talisman.Protection.Type != null )
-				{
-					Type type = talisman.Protection.Type;
-
-					if ( type.IsAssignableFrom( from.GetType() ) )
-						amount = (int)( amount * ( 1 - (double)talisman.Protection.Amount / 100 ) );
-				}
-			}
-
-			base.Damage( amount, from );
-		}
-
 		#region Poison
 
 		public override ApplyPoisonResult ApplyPoison( Mobile from, Poison poison )
@@ -2318,17 +2246,6 @@ namespace Server.Mobiles
 					goto case 9;
 				}
 				case 9:
-				{
-					SavagePaintExpiration = reader.ReadTimeSpan();
-
-					if ( SavagePaintExpiration > TimeSpan.Zero )
-					{
-						BodyMod = ( Female ? 184 : 183 );
-						HueMod = 0;
-					}
-
-					goto case 8;
-				}
 				case 8:
 				{
 					m_NpcGuild = (NpcGuild)reader.ReadInt();
@@ -2462,8 +2379,6 @@ namespace Server.Mobiles
 				writer.Write( (int) m_BeardModHue );
 			}
 
-			writer.Write( SavagePaintExpiration );
-
 			writer.Write( (int) m_NpcGuild );
 			writer.Write( (DateTime) m_NpcGuildJoinTime );
 			writer.Write( (TimeSpan) m_NpcGuildGameTime );
@@ -2520,9 +2435,6 @@ namespace Server.Mobiles
 
 		public override bool CanSee( Mobile m )
 		{
-			if ( m is CharacterStatue )
-				((CharacterStatue) m).OnRequestedAnimation( this );
-
 			if ( m is PlayerMobile && ((PlayerMobile)m).m_VisList.Contains( this ) )
 				return true;
 

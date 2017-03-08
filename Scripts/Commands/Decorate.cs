@@ -926,11 +926,6 @@ namespace Server.Commands
 
 							eable.Free();
 						}
-						else if ( item is MarkContainer )
-						{
-							try{ ((MarkContainer)item).Target = Point3D.Parse( extra ); }
-							catch{}
-						}
 
 						item = null;
 					}

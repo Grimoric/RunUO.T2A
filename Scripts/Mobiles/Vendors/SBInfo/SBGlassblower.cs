@@ -42,10 +42,6 @@ namespace Server.Mobiles
 				Add( new GenericBuyInfo( typeof( Bottle ), 5, 100, 0xF0E, 0 ) ); 
 
 				Add( new GenericBuyInfo( typeof( HeatingStand ), 2, 100, 0x1849, 0 ) ); 
-
-				Add( new GenericBuyInfo( "Crafting Glass With Glassblowing", typeof( GlassblowingBook ), 10637, 30, 0xFF4, 0 ) );
-				Add( new GenericBuyInfo( "Finding Glass-Quality Sand", typeof( SandMiningBook ), 10637, 30, 0xFF4, 0 ) );
-				Add( new GenericBuyInfo( "1044608", typeof( Blowpipe ), 21, 100, 0xE8A, 0x3B9 ) );
 			}
 		}
 
@@ -72,10 +68,6 @@ namespace Server.Mobiles
 				Add( typeof( LesserHealPotion ), 7 );
 				Add( typeof( LesserPoisonPotion ), 7 );
 				Add( typeof( LesserExplosionPotion ), 10 );
-
-				Add( typeof( GlassblowingBook ), 5000 );
-				Add( typeof( SandMiningBook ), 5000 );
-				Add( typeof( Blowpipe ), 10 );
 			}
 		}
 	}

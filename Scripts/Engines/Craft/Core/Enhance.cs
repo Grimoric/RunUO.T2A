@@ -31,13 +31,6 @@ namespace Server.Engines.Craft
 			if ( !(item is BaseArmor) && !(item is BaseWeapon) )
 				return EnhanceResult.BadItem;
 
-			if ( item is IArcaneEquip )
-			{
-				IArcaneEquip eq = (IArcaneEquip)item;
-				if ( eq.IsArcane )
-					return EnhanceResult.BadItem;
-			}
-
 			if ( CraftResources.IsStandard( resource ) )
 				return EnhanceResult.BadResource;
 			
@@ -72,17 +65,6 @@ namespace Server.Engines.Craft
 
 			if ( !craftItem.ConsumeRes( from, resType, craftSystem, ref resHue, ref maxAmount, ConsumeType.None, ref resMessage ) )
 				return EnhanceResult.NoResources;
-
-			if ( craftSystem is DefBlacksmithy )
-			{
-				AncientSmithyHammer hammer = from.FindItemOnLayer( Layer.OneHanded ) as AncientSmithyHammer;
-				if ( hammer != null )
-				{
-					hammer.UsesRemaining--;
-					if ( hammer.UsesRemaining < 1 )
-						hammer.Delete();
-				}
-			}
 
 			int phys = 0, fire = 0, cold = 0, pois = 0, nrgy = 0;
 			int dura = 0, luck = 0, lreq = 0, dinc = 0;

@@ -1,6 +1,6 @@
 namespace Server.Items
 {
-    public abstract class BaseHides : Item, ICommodity
+    public abstract class BaseHides : Item
 	{
 		private CraftResource m_Resource;
 
@@ -11,9 +11,6 @@ namespace Server.Items
 			set{ m_Resource = value; InvalidateProperties(); }
 		}
 		
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return true; } }
-
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
@@ -91,9 +88,6 @@ namespace Server.Items
 		{
 			get
 			{
-				if ( m_Resource >= CraftResource.SpinedLeather && m_Resource <= CraftResource.BarbedLeather )
-					return 1049687 + (int)(m_Resource - CraftResource.SpinedLeather);
-
 				return 1047023;
 			}
 		}
@@ -136,132 +130,6 @@ namespace Server.Items
                 return false;
 
 			base.ScissorHelper( from, new Leather(), 1 );
-
-			return true;
-		}
-	}
-
-	[FlipableAttribute( 0x1079, 0x1078 )]
-	public class SpinedHides : BaseHides, IScissorable
-	{
-		[Constructable]
-		public SpinedHides() : this( 1 )
-		{
-		}
-
-		[Constructable]
-		public SpinedHides( int amount ) : base( CraftResource.SpinedLeather, amount )
-		{
-		}
-
-		public SpinedHides( Serial serial ) : base( serial )
-		{
-		}
-
-		public override void Serialize( GenericWriter writer )
-		{
-			base.Serialize( writer );
-
-			writer.Write( (int) 0 ); // version
-		}
-
-		public override void Deserialize( GenericReader reader )
-		{
-			base.Deserialize( reader );
-
-			int version = reader.ReadInt();
-		}
-
-		public bool Scissor( Mobile from, Scissors scissors )
-		{
-			if ( Deleted || !from.CanSee( this ) )
-                return false;
-
-			base.ScissorHelper( from, new SpinedLeather(), 1 );
-
-			return true;
-		}
-	}
-
-	[FlipableAttribute( 0x1079, 0x1078 )]
-	public class HornedHides : BaseHides, IScissorable
-	{
-		[Constructable]
-		public HornedHides() : this( 1 )
-		{
-		}
-
-		[Constructable]
-		public HornedHides( int amount ) : base( CraftResource.HornedLeather, amount )
-		{
-		}
-
-		public HornedHides( Serial serial ) : base( serial )
-		{
-		}
-
-		public override void Serialize( GenericWriter writer )
-		{
-			base.Serialize( writer );
-
-			writer.Write( (int) 0 ); // version
-		}
-
-		public override void Deserialize( GenericReader reader )
-		{
-			base.Deserialize( reader );
-
-			int version = reader.ReadInt();
-		}
-
-		public bool Scissor( Mobile from, Scissors scissors )
-		{
-			if ( Deleted || !from.CanSee( this ) )
-                return false;
-
-			base.ScissorHelper( from, new HornedLeather(), 1 );
-
-			return true;
-		}
-	}
-
-	[FlipableAttribute( 0x1079, 0x1078 )]
-	public class BarbedHides : BaseHides, IScissorable
-	{
-		[Constructable]
-		public BarbedHides() : this( 1 )
-		{
-		}
-
-		[Constructable]
-		public BarbedHides( int amount ) : base( CraftResource.BarbedLeather, amount )
-		{
-		}
-
-		public BarbedHides( Serial serial ) : base( serial )
-		{
-		}
-
-		public override void Serialize( GenericWriter writer )
-		{
-			base.Serialize( writer );
-
-			writer.Write( (int) 0 ); // version
-		}
-
-		public override void Deserialize( GenericReader reader )
-		{
-			base.Deserialize( reader );
-
-			int version = reader.ReadInt();
-		}
-
-		public bool Scissor( Mobile from, Scissors scissors )
-		{
-			if ( Deleted || !from.CanSee( this ) )
-                return false;
-
-			base.ScissorHelper( from, new BarbedLeather(), 1 );
 
 			return true;
 		}

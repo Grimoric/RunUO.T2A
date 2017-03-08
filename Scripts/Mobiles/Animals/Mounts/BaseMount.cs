@@ -252,11 +252,6 @@ namespace Server.Mobiles
 						value.Direction = this.Direction;
 
 						Internalize();
-
-						if( value.Target is Bola.BolaTarget )
-						{
-							Target.Cancel( value );
-						}
 					}
 
 					m_Rider = value;

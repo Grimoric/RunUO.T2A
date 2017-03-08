@@ -20,16 +20,11 @@ namespace Server.Engines.Harvest
 			}
 		}
 
-		private HarvestDefinition m_OreAndStone, m_Sand;
+		private HarvestDefinition m_OreAndStone;
 
 		public HarvestDefinition OreAndStone
 		{
 			get{ return m_OreAndStone; }
-		}
-
-		public HarvestDefinition Sand
-		{
-			get{ return m_Sand; }
 		}
 
 		private Mining()
@@ -82,15 +77,15 @@ namespace Server.Engines.Harvest
 
 			res = new HarvestResource[]
 				{
-					new HarvestResource( 00.0, 00.0, 100.0, 1007072, typeof( IronOre ),			typeof( Granite ) ),
-					new HarvestResource( 65.0, 25.0, 105.0, 1007073, typeof( DullCopperOre ),	typeof( DullCopperGranite ) ),
-					new HarvestResource( 70.0, 30.0, 110.0, 1007074, typeof( ShadowIronOre ),	typeof( ShadowIronGranite ) ),
-					new HarvestResource( 75.0, 35.0, 115.0, 1007075, typeof( CopperOre ),		typeof( CopperGranite ) ),
-					new HarvestResource( 80.0, 40.0, 120.0, 1007076, typeof( BronzeOre ),		typeof( BronzeGranite ) ),
-					new HarvestResource( 85.0, 45.0, 125.0, 1007077, typeof( GoldOre ),			typeof( GoldGranite ) ),
-					new HarvestResource( 90.0, 50.0, 130.0, 1007078, typeof( AgapiteOre ),		typeof( AgapiteGranite ) ),
-					new HarvestResource( 95.0, 55.0, 135.0, 1007079, typeof( VeriteOre ),		typeof( VeriteGranite ) ),
-					new HarvestResource( 99.0, 59.0, 139.0, 1007080, typeof( ValoriteOre ),		typeof( ValoriteGranite ) )
+					new HarvestResource( 00.0, 00.0, 100.0, 1007072, typeof( IronOre ) ),
+					new HarvestResource( 65.0, 25.0, 105.0, 1007073, typeof( DullCopperOre ) ),
+					new HarvestResource( 70.0, 30.0, 110.0, 1007074, typeof( ShadowIronOre ) ),
+					new HarvestResource( 75.0, 35.0, 115.0, 1007075, typeof( CopperOre ) ),
+					new HarvestResource( 80.0, 40.0, 120.0, 1007076, typeof( BronzeOre ) ),
+					new HarvestResource( 85.0, 45.0, 125.0, 1007077, typeof( GoldOre ) ),
+					new HarvestResource( 90.0, 50.0, 130.0, 1007078, typeof( AgapiteOre ) ),
+					new HarvestResource( 95.0, 55.0, 135.0, 1007079, typeof( VeriteOre ) ),
+					new HarvestResource( 99.0, 59.0, 139.0, 1007080, typeof( ValoriteOre ) )
 				};
 
 			veins = new HarvestVein[]
@@ -113,65 +108,6 @@ namespace Server.Engines.Harvest
 			oreAndStone.RandomizeVeins = false;
 
 			Definitions.Add( oreAndStone );
-			#endregion
-
-			#region Mining for sand
-			HarvestDefinition sand = m_Sand = new HarvestDefinition();
-
-			// Resource banks are every 8x8 tiles
-			sand.BankWidth = 8;
-			sand.BankHeight = 8;
-
-			// Every bank holds from 6 to 12 sand
-			sand.MinTotal = 6;
-			sand.MaxTotal = 12;
-
-			// A resource bank will respawn its content every 10 to 20 minutes
-			sand.MinRespawn = TimeSpan.FromMinutes( 10.0 );
-			sand.MaxRespawn = TimeSpan.FromMinutes( 20.0 );
-
-			// Skill checking is done on the Mining skill
-			sand.Skill = SkillName.Mining;
-
-			// Set the list of harvestable tiles
-			sand.Tiles = m_SandTiles;
-
-			// Players must be within 2 tiles to harvest
-			sand.MaxRange = 2;
-
-			// One sand per harvest action
-			sand.ConsumedPerHarvest = 1;
-			sand.ConsumedPerFeluccaHarvest = 1;
-
-			// The digging effect
-			sand.EffectActions = new int[]{ 11 };
-			sand.EffectSounds = new int[]{ 0x125, 0x126 };
-			sand.EffectCounts = new int[]{ 6 };
-			sand.EffectDelay = TimeSpan.FromSeconds( 1.6 );
-			sand.EffectSoundDelay = TimeSpan.FromSeconds( 0.9 );
-
-			sand.NoResourcesMessage = 1044629; // There is no sand here to mine.
-			sand.DoubleHarvestMessage = 1044629; // There is no sand here to mine.
-			sand.TimedOutOfRangeMessage = 503041; // You have moved too far away to continue mining.
-			sand.OutOfRangeMessage = 500446; // That is too far away.
-			sand.FailMessage = 1044630; // You dig for a while but fail to find any of sufficient quality for glassblowing.
-			sand.PackFullMessage = 1044632; // Your backpack can't hold the sand, and it is lost!
-			sand.ToolBrokeMessage = 1044038; // You have worn out your tool!
-
-			res = new HarvestResource[]
-				{
-					new HarvestResource( 100.0, 70.0, 400.0, 1044631, typeof( Sand ) )
-				};
-
-			veins = new HarvestVein[]
-				{
-					new HarvestVein( 100.0, 0.0, res[0], null )
-				};
-
-			sand.Resources = res;
-			sand.Veins = veins;
-
-			Definitions.Add( sand );
 			#endregion
 		}
 
@@ -208,25 +144,12 @@ namespace Server.Engines.Harvest
 			return true;
 		}
 
-		public override void SendSuccessTo( Mobile from, Item item, HarvestResource resource )
-		{
-			if ( item is BaseGranite )
-				from.SendLocalizedMessage( 1044606 ); // You carefully extract some workable stone from the ore vein!
-			else
-				base.SendSuccessTo( from, item, resource );
-		}
-
 		public override bool CheckHarvest( Mobile from, Item tool, HarvestDefinition def, object toHarvest )
 		{
 			if ( !base.CheckHarvest( from, tool, def, toHarvest ) )
 				return false;
 
-			if ( def == m_Sand && !(from is PlayerMobile && from.Skills[SkillName.Mining].Base >= 100.0 && ((PlayerMobile)from).SandMining) )
-			{
-				OnBadHarvestTarget( from, tool, toHarvest );
-				return false;
-			}
-			else if ( from.Mounted )
+			if ( from.Mounted )
 			{
 				from.SendLocalizedMessage( 501864 ); // You can't mine while riding.
 				return false;

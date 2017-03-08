@@ -1,10 +1,7 @@
 namespace Server.Items
 {
-    public class Bottle : Item, ICommodity
+    public class Bottle : Item
 	{
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return false; } }
-
 		[Constructable]
 		public Bottle() : this( 1 )
 		{

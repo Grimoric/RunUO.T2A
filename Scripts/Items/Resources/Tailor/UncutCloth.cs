@@ -3,11 +3,8 @@ using Server.Network;
 namespace Server.Items
 {
     [FlipableAttribute( 0x1765, 0x1767 )]
-	public class UncutCloth : Item, IScissorable, IDyable, ICommodity
+	public class UncutCloth : Item, IScissorable, IDyable
 	{
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return true; } }
-
 		public override double DefaultWeight
 		{
 			get { return 0.1; }

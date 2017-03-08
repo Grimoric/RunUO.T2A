@@ -37,9 +37,6 @@ namespace Server.Mobiles
 		{
 			m_SBInfos.Add( new SBBowyer() );
 			m_SBInfos.Add( new SBRangedWeapon() );
-			
-			if ( IsTokunoVendor )
-				m_SBInfos.Add( new SBSEBowyer() );	
 		}
 
 		public Bowyer( Serial serial ) : base( serial )

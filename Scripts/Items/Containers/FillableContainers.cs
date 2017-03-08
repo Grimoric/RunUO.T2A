@@ -782,7 +782,6 @@ namespace Server.Items
 				new FillableEntry( 2, typeof( Tongs ) ),
 				new FillableEntry( 4, typeof( Lockpick ) ),
 				new FillableEntry( 4, typeof( TinkerTools ) ),
-				new FillableEntry( 1, typeof( MalletAndChisel ) ),
 				new FillableEntry( 1, typeof( StatueEast2 ) ),
 				new FillableEntry( 1, typeof( StatueSouth ) ),
 				new FillableEntry( 1, typeof( StatueSouthEast ) ),
@@ -794,8 +793,7 @@ namespace Server.Items
 				new FillableEntry( 1, typeof( BearMask ) ),
 				new FillableEntry( 1, typeof( DeerMask ) ),
 				new FillableEntry( 4, typeof( OrcHelm ) ),
-				new FillableEntry( 1, typeof( TribalMask ) ),
-				new FillableEntry( 1, typeof( HornedTribalMask ) )
+				new FillableEntry( 1, typeof( TribalMask ) )
 			} );
 
 		public static FillableContent Baker = new FillableContent(
@@ -1393,7 +1391,6 @@ namespace Server.Items
 				new FillableEntry( 1, typeof( BearMask ) ),
 				new FillableEntry( 1, typeof( DeerMask ) ),
 				new FillableEntry( 1, typeof( TribalMask ) ),
-				new FillableEntry( 1, typeof( HornedTribalMask ) ),
 				new FillableEntry( 4, typeof( OrcHelm ) )
 			} );
 

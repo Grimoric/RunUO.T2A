@@ -124,9 +124,6 @@ namespace Server.Engines.Craft
 
 			index = AddCraft( typeof( UnbakedPumpkinPie ), 1044496, 1041342, 0.0, 100.0, typeof( Dough ), 1044469, 1, 1044253 );
 			AddRes( index, typeof( Pumpkin ), 1044484, 1, 1044253 );
-
-			index = AddCraft( typeof( TribalPaint ), 1044496, 1040000, 80.0, 80.0, typeof( SackFlour ), 1044468, 1, 1044253 );
-			AddRes( index, typeof( TribalBerry ), 1046460, 1, 1044253 );
 			/* End Preparations */
 
 			/* Begin Baking */

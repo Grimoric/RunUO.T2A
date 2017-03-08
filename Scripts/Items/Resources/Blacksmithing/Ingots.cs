@@ -1,6 +1,6 @@
 namespace Server.Items
 {
-    public abstract class BaseIngot : Item, ICommodity
+    public abstract class BaseIngot : Item
 	{
 		private CraftResource m_Resource;
 
@@ -16,9 +16,6 @@ namespace Server.Items
 			get { return 0.1; }
 		}
 		
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return true; } }
-
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );

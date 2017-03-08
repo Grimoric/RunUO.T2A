@@ -73,17 +73,6 @@ namespace Server.Mobiles
 		Bull			= 0x0080
 	}
 
-	public enum ScaleType
-	{
-		Red,
-		Yellow,
-		Black,
-		Green,
-		White,
-		Blue,
-		All
-	}
-
 	public enum MeatType
 	{
 		Ribs,
@@ -93,10 +82,7 @@ namespace Server.Mobiles
 
 	public enum HideType
 	{
-		Regular,
-		Spined,
-		Horned,
-		Barbed
+		Regular
 	}
 
 	#endregion
@@ -1190,9 +1176,8 @@ namespace Server.Mobiles
 			int wool = Wool;
 			int meat = Meat;
 			int hides = Hides;
-			int scales = Scales;
 
-			if ( feathers == 0 && wool == 0 && meat == 0 && hides == 0 && scales == 0 || Summoned || IsBonded || corpse.Animated )
+			if ( feathers == 0 && wool == 0 && meat == 0 && hides == 0 || Summoned || IsBonded || corpse.Animated )
 			{
 				if ( corpse.Animated )
 					corpse.SendLocalizedMessageTo( from, 500464 ); // Use this on corpses to carve away meat and hide
@@ -1238,41 +1223,8 @@ namespace Server.Mobiles
 				{
 				    if ( HideType == HideType.Regular )
 						corpse.DropItem( new Hides( hides ) );
-					else if ( HideType == HideType.Spined )
-						corpse.DropItem( new SpinedHides( hides ) );
-					else if ( HideType == HideType.Horned )
-						corpse.DropItem( new HornedHides( hides ) );
-					else if ( HideType == HideType.Barbed )
-						corpse.DropItem( new BarbedHides( hides ) );
 
 					from.SendLocalizedMessage( 500471 ); // You skin it, and the hides are now in the corpse.
-				}
-
-				if ( scales != 0 )
-				{
-					ScaleType sc = this.ScaleType;
-
-					switch ( sc )
-					{
-						case ScaleType.Red:     corpse.AddCarvedItem( new RedScales( scales ), from ); break;
-						case ScaleType.Yellow:  corpse.AddCarvedItem( new YellowScales( scales ), from ); break;
-						case ScaleType.Black:   corpse.AddCarvedItem( new BlackScales( scales ), from ); break;
-						case ScaleType.Green:   corpse.AddCarvedItem( new GreenScales( scales ), from ); break;
-						case ScaleType.White:   corpse.AddCarvedItem( new WhiteScales( scales ), from ); break;
-						case ScaleType.Blue:    corpse.AddCarvedItem( new BlueScales( scales ), from ); break;
-						case ScaleType.All:
-						{
-							corpse.AddCarvedItem( new RedScales( scales ), from );
-							corpse.AddCarvedItem( new YellowScales( scales ), from );
-							corpse.AddCarvedItem( new BlackScales( scales ), from );
-							corpse.AddCarvedItem( new GreenScales( scales ), from );
-							corpse.AddCarvedItem( new WhiteScales( scales ), from );
-							corpse.AddCarvedItem( new BlueScales( scales ), from );
-							break;
-						}
-					}
-
-					from.SendMessage( "You cut away some scales, but they remain on the corpse." );
 				}
 
 				corpse.Carved = true;
@@ -2444,9 +2396,6 @@ namespace Server.Mobiles
 
 		public virtual int Hides{ get{ return 0; } }
 		public virtual HideType HideType{ get{ return HideType.Regular; } }
-
-		public virtual int Scales{ get{ return 0; } }
-		public virtual ScaleType ScaleType{ get{ return ScaleType.Red; } }
 		#endregion
 
 		public virtual bool AutoDispel{ get{ return false; } }

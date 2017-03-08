@@ -1,10 +1,7 @@
 namespace Server.Items
 {
-    public class Garlic : BaseReagent, ICommodity
+    public class Garlic : BaseReagent
 	{
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return true; } }
-
 		[Constructable]
 		public Garlic() : this( 1 )
 		{

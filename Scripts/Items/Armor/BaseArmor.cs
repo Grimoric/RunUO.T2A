@@ -112,9 +112,6 @@ namespace Server.Items
 					case CraftResource.Agapite:			ar += 12; break;
 					case CraftResource.Verite:			ar += 14; break;
 					case CraftResource.Valorite:		ar += 16; break;
-					case CraftResource.SpinedLeather:	ar += 10; break;
-					case CraftResource.HornedLeather:	ar += 13; break;
-					case CraftResource.BarbedLeather:	ar += 16; break;
 				}
 
 				ar += -8 + 8 * (int)m_Quality;
@@ -830,12 +827,6 @@ namespace Server.Items
 					{
 						if ( mat == ArmorMaterialType.Studded || mat == ArmorMaterialType.Leather )
 							m_Resource = CraftResource.RegularLeather;
-						else if ( mat == ArmorMaterialType.Spined )
-							m_Resource = CraftResource.SpinedLeather;
-						else if ( mat == ArmorMaterialType.Horned )
-							m_Resource = CraftResource.HornedLeather;
-						else if ( mat == ArmorMaterialType.Barbed )
-							m_Resource = CraftResource.BarbedLeather;
 						else
 							m_Resource = CraftResource.Iron;
 					}
@@ -1092,15 +1083,6 @@ namespace Server.Items
 				case CraftResource.Agapite:			oreType = 1053103; break; // agapite
 				case CraftResource.Verite:			oreType = 1053102; break; // verite
 				case CraftResource.Valorite:		oreType = 1053101; break; // valorite
-				case CraftResource.SpinedLeather:	oreType = 1061118; break; // spined
-				case CraftResource.HornedLeather:	oreType = 1061117; break; // horned
-				case CraftResource.BarbedLeather:	oreType = 1061116; break; // barbed
-				case CraftResource.RedScales:		oreType = 1060814; break; // red
-				case CraftResource.YellowScales:	oreType = 1060818; break; // yellow
-				case CraftResource.BlackScales:		oreType = 1060820; break; // black
-				case CraftResource.GreenScales:		oreType = 1060819; break; // green
-				case CraftResource.WhiteScales:		oreType = 1060821; break; // white
-				case CraftResource.BlueScales:		oreType = 1060815; break; // blue
 				default: oreType = 0; break;
 			}
 

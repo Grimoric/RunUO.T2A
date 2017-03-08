@@ -945,11 +945,6 @@ namespace Server.Items
 				percentageBonus -= 10;
 			}
 
-			BaseTalisman talisman = attacker.Talisman as BaseTalisman;
-
-			if ( talisman != null && talisman.Killer != null )
-				percentageBonus += talisman.Killer.DamageBonus( defender );
-
 			percentageBonus = Math.Min( percentageBonus, 300 );
 
 			damage = AOS.Scale( damage, 100 + percentageBonus );
@@ -1005,15 +1000,7 @@ namespace Server.Items
 			SlayerEntry atkSlayer = SlayerGroup.GetEntryByName( atkWeapon.Slayer );
 			SlayerEntry atkSlayer2 = SlayerGroup.GetEntryByName( atkWeapon.Slayer2 );
 
-			if( atkWeapon is ButchersWarCleaver && TalismanSlayer.Slays( TalismanSlayerName.Bovine, defender ) )
-				return CheckSlayerResult.Slayer;
-
 			if ( atkSlayer != null && atkSlayer.Slays( defender )  || atkSlayer2 != null && atkSlayer2.Slays( defender ) )
-				return CheckSlayerResult.Slayer;
-
-			BaseTalisman talisman = attacker.Talisman as BaseTalisman;
-
-			if ( talisman != null && TalismanSlayer.Slays( talisman.Slayer, defender ) )
 				return CheckSlayerResult.Slayer;
 
 			ISlayer defISlayer = Spellbook.FindEquippedSpellbook( defender );
@@ -1823,15 +1810,6 @@ namespace Server.Items
 				case CraftResource.Agapite:			oreType = 1053103; break; // agapite
 				case CraftResource.Verite:			oreType = 1053102; break; // verite
 				case CraftResource.Valorite:		oreType = 1053101; break; // valorite
-				case CraftResource.SpinedLeather:	oreType = 1061118; break; // spined
-				case CraftResource.HornedLeather:	oreType = 1061117; break; // horned
-				case CraftResource.BarbedLeather:	oreType = 1061116; break; // barbed
-				case CraftResource.RedScales:		oreType = 1060814; break; // red
-				case CraftResource.YellowScales:	oreType = 1060818; break; // yellow
-				case CraftResource.BlackScales:		oreType = 1060820; break; // black
-				case CraftResource.GreenScales:		oreType = 1060819; break; // green
-				case CraftResource.WhiteScales:		oreType = 1060821; break; // white
-				case CraftResource.BlueScales:		oreType = 1060815; break; // blue
 				default: oreType = 0; break;
 			}
 

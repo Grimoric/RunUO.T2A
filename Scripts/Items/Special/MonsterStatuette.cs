@@ -1,7 +1,6 @@
 using Server.Multis;
 using Server.Gumps;
 using Server.Network;
-using Server.Engines.VeteranRewards;
 
 namespace Server.Items
 {
@@ -128,18 +127,10 @@ namespace Server.Items
 		}
 	}
 
-	public class MonsterStatuette : Item, IRewardItem
+	public class MonsterStatuette : Item
 	{
 		private MonsterStatuetteType m_Type;
 		private bool m_TurnedOn;
-		private bool m_IsRewardItem;
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public bool IsRewardItem
-		{
-			get{ return m_IsRewardItem; }
-			set{ m_IsRewardItem = value; }
-		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool TurnedOn
@@ -295,7 +286,6 @@ namespace Server.Items
 
 			writer.WriteEncodedInt( (int) m_Type );
 			writer.Write( (bool) m_TurnedOn );
-			writer.Write( (bool) m_IsRewardItem );
 		}
 
 		public override void Deserialize( GenericReader reader )
@@ -304,16 +294,8 @@ namespace Server.Items
 
 			int version = reader.ReadInt();
 
-			switch ( version )
-			{
-				case 0:
-				{
-					m_Type = (MonsterStatuetteType)reader.ReadEncodedInt();
-					m_TurnedOn = reader.ReadBool();
-					m_IsRewardItem = reader.ReadBool();
-					break;
-				}
-			}
+			m_Type = (MonsterStatuetteType)reader.ReadEncodedInt();
+			m_TurnedOn = reader.ReadBool();
 		}
 	}
 }

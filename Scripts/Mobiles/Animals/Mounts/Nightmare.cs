@@ -82,7 +82,7 @@ namespace Server.Mobiles
 		public override bool HasBreath{ get{ return true; } } // fire breath enabled
 		public override int Meat{ get{ return 5; } }
 		public override int Hides{ get{ return 10; } }
-		public override HideType HideType{ get{ return HideType.Barbed; } }
+		public override HideType HideType{ get{ return HideType.Regular; } }
 		public override FoodType FavoriteFood{ get{ return FoodType.Meat; } }
 		public override bool CanAngerOnTame { get { return true; } }
 

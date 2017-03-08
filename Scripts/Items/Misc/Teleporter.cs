@@ -1015,12 +1015,6 @@ namespace Server.Items
 					m.SendMessage("You must empty your backpack before proceeding.");
 					return false;
 				}
-
-				if (GetFlag(ConditionFlag.DenyPackEthereals) && (pack.FindItemByType(typeof(EtherealMount)) != null || pack.FindItemByType(typeof(BaseImprisonedMobile)) != null))
-				{
-					m.SendMessage("You must empty your backpack of ethereal mounts before proceeding.");
-					return false;
-				}
 			}
 
 			if (GetFlag(ConditionFlag.DenyHolding) && m.Holding != null)

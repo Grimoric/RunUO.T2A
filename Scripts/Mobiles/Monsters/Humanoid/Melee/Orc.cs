@@ -50,9 +50,6 @@ namespace Server.Mobiles
 				case 1: PackItem( new Shaft() ); break;
 				case 2: PackItem( new Candle() ); break;
 			}
-
-			if ( 0.2 > Utility.RandomDouble() )
-				PackItem( new BolaBall() );
 		}
 
 		public override void GenerateLoot()

@@ -1,10 +1,7 @@
 namespace Server.Items
 {
-    public class Nightshade : BaseReagent, ICommodity
+    public class Nightshade : BaseReagent
 	{
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return true; } }
-
 		[Constructable]
 		public Nightshade() : this( 1 )
 		{

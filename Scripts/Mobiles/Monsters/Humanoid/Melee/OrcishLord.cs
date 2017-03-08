@@ -44,9 +44,6 @@ namespace Server.Mobiles
 
 			if ( 0.3 > Utility.RandomDouble() )
 				PackItem( Loot.RandomPossibleReagent() );
-
-			if ( 0.2 > Utility.RandomDouble() )
-				PackItem( new BolaBall() );
 		}
 
 		public override void GenerateLoot()

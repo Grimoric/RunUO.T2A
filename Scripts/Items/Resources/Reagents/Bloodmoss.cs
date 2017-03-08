@@ -1,10 +1,7 @@
 namespace Server.Items
 {
-    public class Bloodmoss : BaseReagent, ICommodity
+    public class Bloodmoss : BaseReagent
 	{
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return true; } }
-
 		[Constructable]
 		public Bloodmoss() : this( 1 )
 		{

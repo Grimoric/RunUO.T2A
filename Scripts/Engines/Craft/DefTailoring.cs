@@ -49,27 +49,12 @@ namespace Server.Engines.Craft
 			return 0;
 		}
 
-		private static Type[] m_TailorColorables = new Type[]
-			{
-				typeof( GozaMatEastDeed ), typeof( GozaMatSouthDeed ),
-				typeof( SquareGozaMatEastDeed ), typeof( SquareGozaMatSouthDeed ),
-				typeof( BrocadeGozaMatEastDeed ), typeof( BrocadeGozaMatSouthDeed ),
-				typeof( BrocadeSquareGozaMatEastDeed ), typeof( BrocadeSquareGozaMatSouthDeed )
-			};
-
 		public override bool RetainsColorFrom( CraftItem item, Type type )
 		{
 			if ( type != typeof( Cloth ) && type != typeof( UncutCloth ) )
 				return false;
 
-			type = item.ItemType;
-
-			bool contains = false;
-
-			for ( int i = 0; !contains && i < m_TailorColorables.Length; ++i )
-				contains = m_TailorColorables[i] == type;
-
-			return contains;
+			return true;
 		}
 
 		public override void PlayCraftEffect( Mobile from )
@@ -207,9 +192,6 @@ namespace Server.Engines.Craft
 			// Add every material you want the player to be able to choose from
 			// This will override the overridable material
 			AddSubRes( typeof( Leather ),		1049150, 00.0, 1044462, 1049311 );
-			AddSubRes( typeof( SpinedLeather ),	1049151, 65.0, 1044462, 1049311 );
-			AddSubRes( typeof( HornedLeather ),	1049152, 80.0, 1044462, 1049311 );
-			AddSubRes( typeof( BarbedLeather ),	1049153, 99.0, 1044462, 1049311 );
 
 			MarkOption = true;
 			Repair = false;

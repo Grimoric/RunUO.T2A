@@ -59,7 +59,7 @@ namespace Server.Engines.Craft
 				typeof( Plate ),
 				typeof( Goblet ), typeof( PewterMug ),
 				typeof( KeyRing ),
-				typeof( Candelabra ), typeof( Scales ),
+				typeof( Candelabra ),
 				typeof( Key ), typeof( Globe ),
 				typeof( Spyglass ), typeof( Lantern ),
 				typeof( HeatingStand )
@@ -181,7 +181,6 @@ namespace Server.Engines.Craft
 			AddCraft( typeof( SextantParts ), 1044047, 1024185, 30.0, 80.0, typeof( IronIngot ), 1044036, 4, 1044037 );
 			AddCraft( typeof( BarrelHoops ), 1044047, 1024321, -15.0, 35.0, typeof( IronIngot ), 1044036, 5, 1044037 );
 			AddCraft( typeof( Hinge ), 1044047, 1024181, 5.0, 55.0, typeof( IronIngot ), 1044036, 2, 1044037 );
-			AddCraft( typeof( BolaBall ), 1044047, 1023699, 45.0, 95.0, typeof( IronIngot ), 1044036, 10, 1044037 );
 			#endregion
 
 			#region Utensils
@@ -202,7 +201,6 @@ namespace Server.Engines.Craft
 			#region Misc
 			AddCraft( typeof( KeyRing ), 1044050, 1024113, 10.0, 60.0, typeof( IronIngot ), 1044036, 2, 1044037 );
 			AddCraft( typeof( Candelabra ), 1044050, 1022599, 55.0, 105.0, typeof( IronIngot ), 1044036, 4, 1044037 );
-			AddCraft( typeof( Scales ), 1044050, 1026225, 60.0, 110.0, typeof( IronIngot ), 1044036, 4, 1044037 );
 			AddCraft( typeof( Key ), 1044050, 1024112, 20.0, 70.0, typeof( IronIngot ), 1044036, 3, 1044037 );
 			AddCraft( typeof( Globe ), 1044050, 1024167, 55.0, 105.0, typeof( IronIngot ), 1044036, 4, 1044037 );
 			AddCraft( typeof( Spyglass ), 1044050, 1025365, 60.0, 110.0, typeof( IronIngot ), 1044036, 4, 1044037 );
@@ -239,9 +237,6 @@ namespace Server.Engines.Craft
 			AddRes( index, typeof( ClockParts ), 1044173, 1, 1044253 );
 
 			AddCraft( typeof( Sextant ), 1044051, 1024183, 0.0, 0.0, typeof( SextantParts ), 1044175, 1, 1044253 );
-
-			index = AddCraft( typeof( Bola ), 1044051, 1046441, 60.0, 80.0, typeof( BolaBall ), 1046440, 4, 1042613 );
-			AddRes( index, typeof( Leather ), 1044462, 3, 1044463 );
 
 			index = AddCraft( typeof( PotionKeg ), 1044051, 1044258, 75.0, 100.0, typeof( Keg ), 1044255, 1, 1044253 );
 			AddRes( index, typeof( Bottle ), 1044250, 10, 1044253 );

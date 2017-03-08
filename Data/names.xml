@@ -1,16 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?> 
 <names>
-	<namelist type="tokuno male">
-		Dosyaku, Warimoto, Ogino, Soutatsu, Wajida, Batsu, Hikoza, Adai, Ukita, Sanesue,
-		Chihu, Akiosa, Riku, Kongou, Numata, Kirzahn, Gakudai, Nakai, Ukita, Ashimaru,
-		Fuha, Gakudai, Numata, Waricika, Chihu, Sanesue, Yose, Shinsirou, Yasuke, Akisuke,
-		Naozumi, Numatta, Kichizo, Nasuno, Akaba, Arikoto, Kengi, Magosuke
-	</namelist>
-	<namelist type="tokuno female">
-		Ahara, Yume, Ayane, Yuki, Wakae, Akala, Ikuha, Wayu, Haru, Zannia, Shino, Agate,
-		Akashi, Niji, Yochika, Toyoka, Wayo, Iroha, Nakai, Ayatsumi, Wayu, Yumiha, Enji,
-		Aasin, Akela, Chiwa, Suni, Wakumi, Ruri, Tama
-	</namelist>
 	<namelist type="bird">
 		a wren, a swallow, a warbler, a nuthatch, a chickadee, a thrush, 
 		a nightingale, a starling, a skylark, a finch, a crossbill, a sparrow, a towhee, 

@@ -122,11 +122,6 @@
 					<child name="Entrance" x="5732" y="1858" z="0" />
 				</parent>
 			</parent>
-			<parent name="Khaldun">
-				<child name="Entrance 1" x="6009" y="3775" z="19" />
-				<child name="Entrance 2" x="5882" y="3819" z="-1" />
-				<child name="Level 1" x="5571" y="1302" z="0" />
-			</parent>
 		</parent>
 		<parent name="Internal">
 			<parent name="Jail Cells">

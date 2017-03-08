@@ -17,9 +17,6 @@ namespace Server.Spells
 			if( base.ConsumeReagents() )
 				return true;
 
-			if( ArcaneGem.ConsumeCharges( Caster, 1 + (int)Circle ) )
-				return true;
-
 			return false;
 		}
 

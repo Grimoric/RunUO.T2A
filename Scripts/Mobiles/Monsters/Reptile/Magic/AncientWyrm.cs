@@ -50,11 +50,9 @@ namespace Server.Mobiles
 		public override bool ReacquireOnMovement{ get{ return true; } }
 		public override bool HasBreath{ get{ return true; } } // fire breath enabled
 		public override bool AutoDispel{ get{ return true; } }
-		public override HideType HideType{ get{ return HideType.Barbed; } }
+		public override HideType HideType{ get{ return HideType.Regular; } }
 		public override int Hides{ get{ return 40; } }
 		public override int Meat{ get{ return 19; } }
-		public override int Scales{ get{ return 12; } }
-		public override ScaleType ScaleType{ get{ return (ScaleType)Utility.Random( 4 ); } }
 		public override Poison PoisonImmune{ get{ return Poison.Regular; } }
 		public override Poison HitPoison{ get{ return Utility.RandomBool() ? Poison.Lesser : Poison.Regular; } }
 		public override int TreasureMapLevel{ get{ return 5; } }

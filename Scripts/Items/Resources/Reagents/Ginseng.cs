@@ -1,10 +1,7 @@
 namespace Server.Items
 {
-    public class Ginseng : BaseReagent, ICommodity
+    public class Ginseng : BaseReagent
 	{
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return true; } }
-
 		[Constructable]
 		public Ginseng() : this( 1 )
 		{

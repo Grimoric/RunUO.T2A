@@ -101,21 +101,6 @@ namespace Server.Items
 			return tool.IsChildOf( m ) || tool.Parent == m;
 		}
 
-		public static bool CheckTool( Item tool, Mobile m )
-		{
-			Item check = m.FindItemOnLayer( Layer.OneHanded );
-
-			if ( check is BaseTool && check != tool && !(check is AncientSmithyHammer) )
-				return false;
-
-			check = m.FindItemOnLayer( Layer.TwoHanded );
-
-			if ( check is BaseTool && check != tool && !(check is AncientSmithyHammer) )
-				return false;
-
-			return true;
-		}
-
 		public override void OnSingleClick( Mobile from )
 		{
 			DisplayDurabilityTo( from );

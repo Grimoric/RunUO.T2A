@@ -120,8 +120,6 @@ namespace Server.Mobiles
 
 		public abstract void InitSBInfo();
 
-		public virtual bool IsTokunoVendor { get { return Map == Map.Tokuno; } }
-
 		protected void LoadSBInfo()
 		{
 			m_LastRestock = DateTime.Now;

@@ -33,7 +33,7 @@ namespace Server.Spells.Third
 				// You cannot cast this on a locked down item.
 				Caster.LocalOverheadMessage( MessageType.Regular, 0x22, 501761 );
 			}
-			else if ( targ.Locked || targ.LockLevel == 0 || targ is ParagonChest )
+			else if ( targ.Locked || targ.LockLevel == 0 )
 			{
 				// Target must be an unlocked chest.
 				Caster.SendLocalizedMessage( 501762 );

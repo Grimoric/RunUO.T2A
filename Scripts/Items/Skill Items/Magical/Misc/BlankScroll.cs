@@ -1,6 +1,6 @@
 namespace Server.Items
 {
-    public class BlankScroll : Item, ICommodity
+    public class BlankScroll : Item
 	{
 		[Constructable]
 		public BlankScroll() : this( 1 )
@@ -14,9 +14,6 @@ namespace Server.Items
 			Weight = 1.0;
 			Amount = amount;
 		}
-
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return false; } }
 
 		public BlankScroll( Serial serial ) : base( serial )
 		{

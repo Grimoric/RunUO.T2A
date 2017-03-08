@@ -17,24 +17,7 @@ namespace Server.Items
 		Valorite,
 
 		RegularLeather = 101,
-		SpinedLeather,
-		HornedLeather,
-		BarbedLeather,
-
-		RedScales = 201,
-		YellowScales,
-		BlackScales,
-		GreenScales,
-		WhiteScales,
-		BlueScales,
-
-		RegularWood = 301,
-		OakWood,
-		AshWood,
-		YewWood,
-		Heartwood,
-		Bloodwood,
-		Frostwood
+		RegularWood = 301
 	}
 
 	public enum CraftResourceType
@@ -42,7 +25,6 @@ namespace Server.Items
 		None,
 		Metal,
 		Leather,
-		Scales,
 		Wood
 	}
 
@@ -76,9 +58,6 @@ namespace Server.Items
 
 		public static readonly CraftAttributeInfo Blank;
 		public static readonly CraftAttributeInfo DullCopper, ShadowIron, Copper, Bronze, Golden, Agapite, Verite, Valorite;
-		public static readonly CraftAttributeInfo Spined, Horned, Barbed;
-		public static readonly CraftAttributeInfo RedScales, YellowScales, BlackScales, GreenScales, WhiteScales, BlueScales;
-		public static readonly CraftAttributeInfo OakWood, AshWood, YewWood, Heartwood, Bloodwood, Frostwood;
 
 		static CraftAttributeInfo()
 		{
@@ -148,51 +127,6 @@ namespace Server.Items
 			valorite.RunicMaxAttributes = 5;
             valorite.RunicMinIntensity = 50;
             valorite.RunicMaxIntensity = 100;
-
-			CraftAttributeInfo spined = Spined = new CraftAttributeInfo();
-
-			spined.RunicMinAttributes = 1;
-			spined.RunicMaxAttributes = 3;
-            spined.RunicMinIntensity = 20;
-            spined.RunicMaxIntensity = 40;
-
-			CraftAttributeInfo horned = Horned = new CraftAttributeInfo();
-
-			horned.RunicMinAttributes = 3;
-			horned.RunicMaxAttributes = 4;
-            horned.RunicMinIntensity = 30;
-            horned.RunicMaxIntensity = 70;
-
-			CraftAttributeInfo barbed = Barbed = new CraftAttributeInfo();
-
-			barbed.RunicMinAttributes = 4;
-			barbed.RunicMaxAttributes = 5;
-            barbed.RunicMinIntensity = 40;
-            barbed.RunicMaxIntensity = 100;
-
-			CraftAttributeInfo red = RedScales = new CraftAttributeInfo();
-
-			CraftAttributeInfo yellow = YellowScales = new CraftAttributeInfo();
-
-			CraftAttributeInfo black = BlackScales = new CraftAttributeInfo();
-
-			CraftAttributeInfo green = GreenScales = new CraftAttributeInfo();
-
-			CraftAttributeInfo white = WhiteScales = new CraftAttributeInfo();
-
-			CraftAttributeInfo blue = BlueScales = new CraftAttributeInfo();
-
-			CraftAttributeInfo oak = OakWood = new CraftAttributeInfo();
-
-			CraftAttributeInfo ash = AshWood = new CraftAttributeInfo();
-
-			CraftAttributeInfo yew = YewWood = new CraftAttributeInfo();
-
-			CraftAttributeInfo heart = Heartwood = new CraftAttributeInfo();
-
-			CraftAttributeInfo blood = Bloodwood = new CraftAttributeInfo();
-
-			CraftAttributeInfo frost = Frostwood = new CraftAttributeInfo();
 		}
 	}
 
@@ -230,52 +164,25 @@ namespace Server.Items
 	{
 		private static CraftResourceInfo[] m_MetalInfo = new CraftResourceInfo[]
 			{
-				new CraftResourceInfo( 0x000, 1053109, "Iron",			CraftAttributeInfo.Blank,		CraftResource.Iron,				typeof( IronIngot ),		typeof( IronOre ),			typeof( Granite ) ),
-				new CraftResourceInfo( 0x973, 1053108, "Dull Copper",	CraftAttributeInfo.DullCopper,	CraftResource.DullCopper,		typeof( DullCopperIngot ),	typeof( DullCopperOre ),	typeof( DullCopperGranite ) ),
-				new CraftResourceInfo( 0x966, 1053107, "Shadow Iron",	CraftAttributeInfo.ShadowIron,	CraftResource.ShadowIron,		typeof( ShadowIronIngot ),	typeof( ShadowIronOre ),	typeof( ShadowIronGranite ) ),
-				new CraftResourceInfo( 0x96D, 1053106, "Copper",		CraftAttributeInfo.Copper,		CraftResource.Copper,			typeof( CopperIngot ),		typeof( CopperOre ),		typeof( CopperGranite ) ),
-				new CraftResourceInfo( 0x972, 1053105, "Bronze",		CraftAttributeInfo.Bronze,		CraftResource.Bronze,			typeof( BronzeIngot ),		typeof( BronzeOre ),		typeof( BronzeGranite ) ),
-				new CraftResourceInfo( 0x8A5, 1053104, "Gold",			CraftAttributeInfo.Golden,		CraftResource.Gold,				typeof( GoldIngot ),		typeof( GoldOre ),			typeof( GoldGranite ) ),
-				new CraftResourceInfo( 0x979, 1053103, "Agapite",		CraftAttributeInfo.Agapite,		CraftResource.Agapite,			typeof( AgapiteIngot ),		typeof( AgapiteOre ),		typeof( AgapiteGranite ) ),
-				new CraftResourceInfo( 0x89F, 1053102, "Verite",		CraftAttributeInfo.Verite,		CraftResource.Verite,			typeof( VeriteIngot ),		typeof( VeriteOre ),		typeof( VeriteGranite ) ),
-				new CraftResourceInfo( 0x8AB, 1053101, "Valorite",		CraftAttributeInfo.Valorite,	CraftResource.Valorite,			typeof( ValoriteIngot ),	typeof( ValoriteOre ),		typeof( ValoriteGranite ) ),
-			};
-
-		private static CraftResourceInfo[] m_ScaleInfo = new CraftResourceInfo[]
-			{
-				new CraftResourceInfo( 0x66D, 1053129, "Red Scales",	CraftAttributeInfo.RedScales,		CraftResource.RedScales,		typeof( RedScales ) ),
-				new CraftResourceInfo( 0x8A8, 1053130, "Yellow Scales",	CraftAttributeInfo.YellowScales,	CraftResource.YellowScales,		typeof( YellowScales ) ),
-				new CraftResourceInfo( 0x455, 1053131, "Black Scales",	CraftAttributeInfo.BlackScales,		CraftResource.BlackScales,		typeof( BlackScales ) ),
-				new CraftResourceInfo( 0x851, 1053132, "Green Scales",	CraftAttributeInfo.GreenScales,		CraftResource.GreenScales,		typeof( GreenScales ) ),
-				new CraftResourceInfo( 0x8FD, 1053133, "White Scales",	CraftAttributeInfo.WhiteScales,		CraftResource.WhiteScales,		typeof( WhiteScales ) ),
-				new CraftResourceInfo( 0x8B0, 1053134, "Blue Scales",	CraftAttributeInfo.BlueScales,		CraftResource.BlueScales,		typeof( BlueScales ) )
+				new CraftResourceInfo( 0x000, 1053109, "Iron",			CraftAttributeInfo.Blank,		CraftResource.Iron,				typeof( IronIngot ),		typeof( IronOre ) ),
+				new CraftResourceInfo( 0x973, 1053108, "Dull Copper",	CraftAttributeInfo.DullCopper,	CraftResource.DullCopper,		typeof( DullCopperIngot ),	typeof( DullCopperOre ) ),
+				new CraftResourceInfo( 0x966, 1053107, "Shadow Iron",	CraftAttributeInfo.ShadowIron,	CraftResource.ShadowIron,		typeof( ShadowIronIngot ),	typeof( ShadowIronOre ) ),
+				new CraftResourceInfo( 0x96D, 1053106, "Copper",		CraftAttributeInfo.Copper,		CraftResource.Copper,			typeof( CopperIngot ),		typeof( CopperOre ) ),
+				new CraftResourceInfo( 0x972, 1053105, "Bronze",		CraftAttributeInfo.Bronze,		CraftResource.Bronze,			typeof( BronzeIngot ),		typeof( BronzeOre ) ),
+				new CraftResourceInfo( 0x8A5, 1053104, "Gold",			CraftAttributeInfo.Golden,		CraftResource.Gold,				typeof( GoldIngot ),		typeof( GoldOre ) ),
+				new CraftResourceInfo( 0x979, 1053103, "Agapite",		CraftAttributeInfo.Agapite,		CraftResource.Agapite,			typeof( AgapiteIngot ),		typeof( AgapiteOre ) ),
+				new CraftResourceInfo( 0x89F, 1053102, "Verite",		CraftAttributeInfo.Verite,		CraftResource.Verite,			typeof( VeriteIngot ),		typeof( VeriteOre ) ),
+				new CraftResourceInfo( 0x8AB, 1053101, "Valorite",		CraftAttributeInfo.Valorite,	CraftResource.Valorite,			typeof( ValoriteIngot ),	typeof( ValoriteOre ) ),
 			};
 
 		private static CraftResourceInfo[] m_LeatherInfo = new CraftResourceInfo[]
 			{
-				new CraftResourceInfo( 0x000, 1049353, "Normal",		CraftAttributeInfo.Blank,		CraftResource.RegularLeather,	typeof( Leather ),			typeof( Hides ) ),
-				new CraftResourceInfo( 0x283, 1049354, "Spined",		CraftAttributeInfo.Spined,		CraftResource.SpinedLeather,	typeof( SpinedLeather ),	typeof( SpinedHides ) ),
-				new CraftResourceInfo( 0x227, 1049355, "Horned",		CraftAttributeInfo.Horned,		CraftResource.HornedLeather,	typeof( HornedLeather ),	typeof( HornedHides ) ),
-				new CraftResourceInfo( 0x1C1, 1049356, "Barbed",		CraftAttributeInfo.Barbed,		CraftResource.BarbedLeather,	typeof( BarbedLeather ),	typeof( BarbedHides ) )
-			};
-
-		private static CraftResourceInfo[] m_AOSLeatherInfo = new CraftResourceInfo[]
-			{
-				new CraftResourceInfo( 0x000, 1049353, "Normal",		CraftAttributeInfo.Blank,		CraftResource.RegularLeather,	typeof( Leather ),			typeof( Hides ) ),
-				new CraftResourceInfo( 0x8AC, 1049354, "Spined",		CraftAttributeInfo.Spined,		CraftResource.SpinedLeather,	typeof( SpinedLeather ),	typeof( SpinedHides ) ),
-				new CraftResourceInfo( 0x845, 1049355, "Horned",		CraftAttributeInfo.Horned,		CraftResource.HornedLeather,	typeof( HornedLeather ),	typeof( HornedHides ) ),
-				new CraftResourceInfo( 0x851, 1049356, "Barbed",		CraftAttributeInfo.Barbed,		CraftResource.BarbedLeather,	typeof( BarbedLeather ),	typeof( BarbedHides ) ),
+				new CraftResourceInfo( 0x000, 1049353, "Normal",		CraftAttributeInfo.Blank,		CraftResource.RegularLeather,	typeof( Leather ),			typeof( Hides ) )
 			};
 
 		private static CraftResourceInfo[] m_WoodInfo = new CraftResourceInfo[]
 			{
-				new CraftResourceInfo( 0x000, 1011542, "Normal",		CraftAttributeInfo.Blank,		CraftResource.RegularWood,	typeof( Log ),			typeof( Board ) ),
-				new CraftResourceInfo( 0x7DA, 1072533, "Oak",			CraftAttributeInfo.OakWood,		CraftResource.OakWood,		typeof( OakLog ),		typeof( OakBoard ) ),
-				new CraftResourceInfo( 0x4A7, 1072534, "Ash",			CraftAttributeInfo.AshWood,		CraftResource.AshWood,		typeof( AshLog ),		typeof( AshBoard ) ),
-				new CraftResourceInfo( 0x4A8, 1072535, "Yew",			CraftAttributeInfo.YewWood,		CraftResource.YewWood,		typeof( YewLog ),		typeof( YewBoard ) ),
-				new CraftResourceInfo( 0x4A9, 1072536, "Heartwood",		CraftAttributeInfo.Heartwood,	CraftResource.Heartwood,	typeof( HeartwoodLog ),	typeof( HeartwoodBoard ) ),
-				new CraftResourceInfo( 0x4AA, 1072538, "Bloodwood",		CraftAttributeInfo.Bloodwood,	CraftResource.Bloodwood,	typeof( BloodwoodLog ),	typeof( BloodwoodBoard ) ),
-				new CraftResourceInfo( 0x47F, 1072539, "Frostwood",		CraftAttributeInfo.Frostwood,	CraftResource.Frostwood,	typeof( FrostwoodLog ),	typeof( FrostwoodBoard ) )
+				new CraftResourceInfo( 0x000, 1011542, "Normal",		CraftAttributeInfo.Blank,		CraftResource.RegularWood,	typeof( Log ),			typeof( Board ) )
 			};
 
 		/// <summary>
@@ -326,7 +233,6 @@ namespace Server.Items
 			{
 				case CraftResourceType.Metal: list = m_MetalInfo; break;
 				case CraftResourceType.Leather: list = m_LeatherInfo; break;
-				case CraftResourceType.Scales: list = m_ScaleInfo; break;
 				case CraftResourceType.Wood: list = m_WoodInfo; break;
 			}
 
@@ -349,13 +255,10 @@ namespace Server.Items
 			if ( resource >= CraftResource.Iron && resource <= CraftResource.Valorite )
 				return CraftResourceType.Metal;
 
-			if ( resource >= CraftResource.RegularLeather && resource <= CraftResource.BarbedLeather )
+			if ( resource == CraftResource.RegularLeather )
 				return CraftResourceType.Leather;
 
-			if ( resource >= CraftResource.RedScales && resource <= CraftResource.BlueScales )
-				return CraftResourceType.Scales;
-
-			if ( resource >= CraftResource.RegularWood && resource <= CraftResource.Frostwood )
+			if ( resource == CraftResource.RegularWood )
 				return CraftResourceType.Wood;
 
 			return CraftResourceType.None;
@@ -370,7 +273,6 @@ namespace Server.Items
 			{
 				case CraftResourceType.Metal: return CraftResource.Iron;
 				case CraftResourceType.Leather: return CraftResource.RegularLeather;
-				case CraftResourceType.Scales: return CraftResource.RedScales;
 				case CraftResourceType.Wood: return CraftResource.RegularWood;
 			}
 
@@ -425,13 +327,7 @@ namespace Server.Items
 		/// </summary>
 		public static CraftResource GetFromOreInfo( OreInfo info )
 		{
-			if ( info.Name.IndexOf( "Spined" ) >= 0 )
-				return CraftResource.SpinedLeather;
-			else if ( info.Name.IndexOf( "Horned" ) >= 0 )
-				return CraftResource.HornedLeather;
-			else if ( info.Name.IndexOf( "Barbed" ) >= 0 )
-				return CraftResource.BarbedLeather;
-			else if ( info.Name.IndexOf( "Leather" ) >= 0 )
+			if ( info.Name.IndexOf( "Leather" ) >= 0 )
 				return CraftResource.RegularLeather;
 
 			if ( info.Level == 0 )
@@ -461,17 +357,11 @@ namespace Server.Items
 		/// </summary>
 		public static CraftResource GetFromOreInfo( OreInfo info, ArmorMaterialType material )
 		{
-			if ( material == ArmorMaterialType.Studded || material == ArmorMaterialType.Leather || material == ArmorMaterialType.Spined ||
-				material == ArmorMaterialType.Horned || material == ArmorMaterialType.Barbed )
+			if ( material == ArmorMaterialType.Studded || material == ArmorMaterialType.Leather )
 			{
 				if ( info.Level == 0 )
 					return CraftResource.RegularLeather;
 				else if ( info.Level == 1 )
-					return CraftResource.SpinedLeather;
-				else if ( info.Level == 2 )
-					return CraftResource.HornedLeather;
-				else if ( info.Level == 3 )
-					return CraftResource.BarbedLeather;
 
 				return CraftResource.None;
 			}

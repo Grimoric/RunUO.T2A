@@ -1,10 +1,7 @@
 namespace Server.Items
 {
-    public class BlackPearl : BaseReagent, ICommodity
+    public class BlackPearl : BaseReagent
 	{
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return true; } }
-
 		[Constructable]
 		public BlackPearl() : this( 1 )
 		{

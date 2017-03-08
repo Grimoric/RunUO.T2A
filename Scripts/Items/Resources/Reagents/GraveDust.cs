@@ -1,10 +1,7 @@
 namespace Server.Items
 {
-    public class GraveDust : BaseReagent, ICommodity
+    public class GraveDust : BaseReagent
 	{
-		int ICommodity.DescriptionNumber { get { return LabelNumber; } }
-		bool ICommodity.IsDeedable { get { return true; } }
-
 		[Constructable]
 		public GraveDust() : this( 1 )
 		{
