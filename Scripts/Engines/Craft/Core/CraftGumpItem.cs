@@ -107,51 +107,51 @@ namespace Server.Engines.Craft
 			}
 		}
 
-		public void DrawSkill()
-		{
-			for ( int i = 0; i < m_CraftItem.Skills.Count; i++ )
-			{
-				CraftSkill skill = m_CraftItem.Skills.GetAt( i );
-				double minSkill = skill.MinSkill, maxSkill = skill.MaxSkill;
+        public void DrawSkill()
+        {
+            for ( int i = 0; i < m_CraftItem.Skills.Count; i++ )
+            {
+                CraftSkill skill = m_CraftItem.Skills.GetAt( i );
+                double minSkill = skill.MinSkill, maxSkill = skill.MaxSkill;
 
-				if ( minSkill < 0 )
-					minSkill = 0;
+                if ( minSkill < 0 )
+                    minSkill = 0;
 
-				AddHtmlLocalized( 170, 132 + i * 20, 200, 18, 0, LabelColor, false, false );
-				AddLabel( 430, 132 + i * 20, LabelHue, String.Format( "{0:F1}", minSkill ) );
-			}
+                AddHtmlLocalized( 170, 132 + i * 20, 200, 18, 1044060 + (int)skill.SkillToMake, LabelColor, false, false);
+                AddLabel( 430, 132 + i * 20, LabelHue, String.Format( "{0:F1}", minSkill ) );
+            }
 
-			CraftSubResCol res = m_CraftItem.UseSubRes2 ? m_CraftSystem.CraftSubRes2 : m_CraftSystem.CraftSubRes;
-			int resIndex = -1;
+            CraftSubResCol res = m_CraftItem.UseSubRes2 ? m_CraftSystem.CraftSubRes2 : m_CraftSystem.CraftSubRes;
+            int resIndex = -1;
 
-			CraftContext context = m_CraftSystem.GetContext( m_From );
+            CraftContext context = m_CraftSystem.GetContext( m_From );
 
-			if ( context != null )
-				resIndex = m_CraftItem.UseSubRes2 ? context.LastResourceIndex2 : context.LastResourceIndex;
+            if ( context != null )
+                resIndex = m_CraftItem.UseSubRes2 ? context.LastResourceIndex2 : context.LastResourceIndex;
 
-			bool allRequiredSkills = true;
-			double chance = m_CraftItem.GetSuccessChance( m_From, resIndex > -1 ? res.GetAt( resIndex ).ItemType : null, m_CraftSystem, false, ref allRequiredSkills );
-			double excepChance = m_CraftItem.GetExceptionalChance( m_CraftSystem, chance, m_From );
+            bool allRequiredSkills = true;
+            double chance = m_CraftItem.GetSuccessChance( m_From, resIndex > -1 ? res.GetAt( resIndex ).ItemType : null, m_CraftSystem, false, ref allRequiredSkills );
+            double excepChance = m_CraftItem.GetExceptionalChance( m_CraftSystem, chance, m_From );
 
-			if ( chance < 0.0 )
-				chance = 0.0;
-			else if ( chance > 1.0 )
-				chance = 1.0;
+            if ( chance < 0.0 )
+                chance = 0.0;
+            else if ( chance > 1.0 )
+                chance = 1.0;
 
-			AddHtmlLocalized( 170, 80, 250, 18, 1044057, LabelColor, false, false ); // Success Chance:
-			AddLabel( 430, 80, LabelHue, String.Format( "{0:F1}%", chance * 100 ) );
+            AddHtmlLocalized( 170, 80, 250, 18, 1044057, LabelColor, false, false ); // Success Chance:
+            AddLabel( 430, 80, LabelHue, String.Format( "{0:F1}%", chance * 100 ) );
 
-			if ( m_ShowExceptionalChance )
-			{
-				if( excepChance < 0.0 )
-					excepChance = 0.0;
-				else if( excepChance > 1.0 )
-					excepChance = 1.0;
+            if ( m_ShowExceptionalChance )
+            {
+                if( excepChance < 0.0 )
+                    excepChance = 0.0;
+                else if( excepChance > 1.0 )
+                    excepChance = 1.0;
 
-				AddHtmlLocalized( 170, 100, 250, 18, 1044058, 32767, false, false ); // Exceptional Chance:
-				AddLabel( 430, 100, LabelHue, String.Format( "{0:F1}%", excepChance * 100 ) );
-			}
-		}
+                AddHtmlLocalized( 170, 100, 250, 18, 1044058, 32767, false, false ); // Exceptional Chance:
+                AddLabel( 430, 100, LabelHue, String.Format( "{0:F1}%", excepChance * 100 ) );
+            }
+        }
 
 		private static Type typeofBlankScroll = typeof( BlankScroll );
 		private static Type typeofSpellScroll = typeof( SpellScroll );
