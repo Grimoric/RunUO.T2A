@@ -13,7 +13,7 @@ namespace Server
 		private static int m_Count;
 
 		//configuration
-		private const int NPCCount = 2;//2 npcs per type (so a mage spawner will spawn 2 npcs, a alchemist and herbalist spawner will spawn 4 npcs total)
+		private const int NPCCount = 1;//2 npcs per type (so a mage spawner will spawn 2 npcs, a alchemist and herbalist spawner will spawn 4 npcs total)
 		private const int HomeRange = 5;//How far should they wander?
 		private const bool TotalRespawn = true;//Should we spawn them up right away?
 		private static TimeSpan MinTime = TimeSpan.FromMinutes( 2.5 );//min spawn time

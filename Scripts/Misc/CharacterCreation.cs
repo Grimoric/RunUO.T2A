@@ -43,8 +43,6 @@ namespace Server.Misc
 		{
 			BankBox bank = m.BankBox;
 
-			bank.DropItem( new BankCheck( 1000000 ) );
-
 			// Full spellbook
 			Spellbook book = new Spellbook();
 

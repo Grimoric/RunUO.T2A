@@ -812,9 +812,6 @@ namespace Server.Multis
 			packKey.KeyValue = value;
 			bankKey.KeyValue = value;
 
-			packKey.LootType = LootType.Newbied;
-			bankKey.LootType = LootType.Newbied;
-
 			BankBox box = m.BankBox;
 
 			if ( !box.TryDropItem( m, bankKey, false ) )

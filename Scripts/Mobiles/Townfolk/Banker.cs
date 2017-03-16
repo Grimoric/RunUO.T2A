@@ -17,19 +17,21 @@ namespace Server.Mobiles
 		{
 		}
 
-		public override void InitSBInfo()
+        public override bool IsInvulnerable { get { return true; } }
+
+        public override void InitSBInfo()
 		{
 			m_SBInfos.Add( new SBBanker() );
 		}
 
 		public static int GetBalance( Mobile from )
 		{
-			Item[] gold, checks;
+			Item[] gold;
 
-			return GetBalance( from, out gold, out checks );
+			return GetBalance( from, out gold );
 		}
 
-		public static int GetBalance( Mobile from, out Item[] gold, out Item[] checks )
+		public static int GetBalance( Mobile from, out Item[] gold )
 		{
 			int balance = 0;
 
@@ -38,17 +40,13 @@ namespace Server.Mobiles
 			if ( bank != null )
 			{
 				gold = bank.FindItemsByType( typeof( Gold ) );
-				checks = bank.FindItemsByType( typeof( BankCheck ) );
 
 				for ( int i = 0; i < gold.Length; ++i )
 					balance += gold[i].Amount;
-
-				for ( int i = 0; i < checks.Length; ++i )
-					balance += ((BankCheck)checks[i]).Worth;
 			}
 			else
 			{
-				gold = checks = new Item[0];
+				gold = new Item[0];
 			}
 
 			return balance;
@@ -56,8 +54,8 @@ namespace Server.Mobiles
 
 		public static bool Withdraw( Mobile from, int amount )
 		{
-			Item[] gold, checks;
-			int balance = GetBalance( from, out gold, out checks );
+			Item[] gold;
+			int balance = GetBalance( from, out gold );
 
 			if ( balance < amount )
 				return false;
@@ -76,22 +74,6 @@ namespace Server.Mobiles
 				}
 			}
 
-			for ( int i = 0; amount > 0 && i < checks.Length; ++i )
-			{
-				BankCheck check = (BankCheck)checks[i];
-
-				if ( check.Worth <= amount )
-				{
-					amount -= check.Worth;
-					check.Delete();
-				}
-				else
-				{
-					check.Worth -= amount;
-					amount = 0;
-				}
-			}
-
 			return true;
 		}
 
@@ -106,20 +88,15 @@ namespace Server.Mobiles
 			while ( amount > 0 )
 			{
 				Item item;
-				if ( amount < 5000 )
+				if ( amount <= 60000 )
 				{
 					item = new Gold( amount );
 					amount = 0;
 				}
-				else if ( amount <= 1000000 )
-				{
-					item = new BankCheck( amount );
-					amount = 0;
-				}
 				else
 				{
-					item = new BankCheck( 1000000 );
-					amount -= 1000000;
+                    item = new Gold( 60000 );
+                    amount -= 60000;
 				}
 
 				if ( box.TryDropItem( from, item, false ) )
@@ -153,20 +130,15 @@ namespace Server.Mobiles
 				Item item;
 				int amountGiven;
 
-				if ( amountLeft < 5000 )
+				if ( amountLeft <= 60000 )
 				{
 					item = new Gold( amountLeft );
 					amountGiven = amountLeft;
 				}
-				else if ( amountLeft <= 1000000 )
-				{
-					item = new BankCheck( amountLeft );
-					amountGiven = amountLeft;
-				}
 				else
 				{
-					item = new BankCheck( 1000000 );
-					amountGiven = 1000000;
+					item = new Gold( 60000 );
+					amountGiven = 60000;
 				}
 
 				if ( box.TryDropItem( from, item, false ) )
@@ -189,21 +161,16 @@ namespace Server.Mobiles
 			{
 				Item item;
 
-				if ( amount < 5000 )
+				if ( amount <= 60000 )
 				{
 					item = new Gold( amount );
 					amount = 0;
 				}
-				else if ( amount <= 1000000 )
-				{
-					item = new BankCheck( amount );
-					amount = 0;
-				}
 				else
 				{
-					item = new BankCheck( 1000000 );
-					amount -= 1000000;
-				}
+                    item = new Gold(60000);
+                    amount -= 60000;
+                }
 
 				cont.DropItem( item );
 			}
@@ -309,58 +276,6 @@ namespace Server.Mobiles
 							}
 
 							e.Mobile.BankBox.Open();
-
-							break;
-						}
-						case 0x0003: // *check*
-						{
-							e.Handled = true;
-
-							if ( e.Mobile.Criminal )
-							{
-								this.Say( 500389 ); // I will not do business with a criminal!
-								break;
-							}
-
-							string[] split = e.Speech.Split( ' ' );
-
-							if ( split.Length >= 2 )
-							{
-								int amount;
-
-                                if ( !int.TryParse( split[1], out amount ) )
-                                    break;
-
-								if ( amount < 5000 )
-								{
-									this.Say( 1010006 ); // We cannot create checks for such a paltry amount of gold!
-								}
-								else if ( amount > 1000000 )
-								{
-									this.Say( 1010007 ); // Our policies prevent us from creating checks worth that much!
-								}
-								else
-								{
-									BankCheck check = new BankCheck( amount );
-
-									BankBox box = e.Mobile.BankBox;
-
-									if ( !box.TryDropItem( e.Mobile, check, false ) )
-									{
-										this.Say( 500386 ); // There's not enough room in your bankbox for the check!
-										check.Delete();
-									}
-									else if ( !box.ConsumeTotal( typeof( Gold ), amount ) )
-									{
-										this.Say( 500384 ); // Ah, art thou trying to fool me? Thou hast not so much gold!
-										check.Delete();
-									}
-									else
-									{
-										this.Say( 1042673, AffixType.Append, amount.ToString(), "" ); // Into your bank box I have placed a check in the amount of:
-									}
-								}
-							}
 
 							break;
 						}

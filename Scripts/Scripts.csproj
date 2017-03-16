@@ -753,7 +753,6 @@
     <Compile Include=".\Items\Maps\TreasureMap.cs" />
     <Compile Include=".\Items\Maps\WorldMap.cs" />
     <Compile Include=".\Items\Misc\AcidSlime.cs" />
-    <Compile Include=".\Items\Misc\BankCheck.cs" />
     <Compile Include=".\Items\Misc\Beeswax.cs" />
     <Compile Include=".\Items\Misc\Blocker.cs" />
     <Compile Include=".\Items\Misc\Blood.cs" />
@@ -1306,7 +1305,7 @@
     <Compile Include=".\Misc\Titles.cs" />
     <Compile Include=".\Misc\ToggleItem.cs" />
     <Compile Include=".\Misc\TreasureMapProtection.cs" />
-    <Compile Include=".\Misc\uoamVendors.cs" />
+    <Compile Include="Commands\GenVendors.cs" />
     <Compile Include=".\Misc\ValidationQueue.cs" />
     <Compile Include=".\Misc\VendorGenerator.cs" />
     <Compile Include=".\Misc\Weather.cs" />
