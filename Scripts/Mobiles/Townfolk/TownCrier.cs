@@ -487,8 +487,6 @@ namespace Server.Mobiles
 			Title = "the town crier";
 			Hue = Utility.RandomSkinHue();
 
-			NameHue = 0x35;
-
 			if ( this.Female = Utility.RandomBool() )
 			{
 				this.Body = 0x191;

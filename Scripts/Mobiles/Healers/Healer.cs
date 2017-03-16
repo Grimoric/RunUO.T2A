@@ -20,8 +20,6 @@ namespace Server.Mobiles
 		{
 			Title = "the healer";
 
-			NameHue = 0x35;
-
 			SetSkill( SkillName.Forensics, 80.0, 100.0 );
 			SetSkill( SkillName.SpiritSpeak, 80.0, 100.0 );
 			SetSkill( SkillName.Swords, 80.0, 100.0 );

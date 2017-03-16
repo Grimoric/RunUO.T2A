@@ -271,8 +271,6 @@ namespace Server.Mobiles
 
 			CantWalk = true;
 
-			NameHue = 0x35;
-
 			InitStats( 100, 100, 25 );
 			InitBody();
 			InitOutfit();
@@ -379,8 +377,6 @@ namespace Server.Mobiles
 		{
 			Hue = Utility.RandomSkinHue();
 			SpeechHue = 0x3B2;
-
-			NameHue = 0x35;
 
 			if ( this.Female = Utility.RandomBool() )
 			{

@@ -8,6 +8,7 @@ using Server.Misc;
 using Server.Items;
 using Server.ContextMenus;
 using Server.Engines.PartySystem;
+using Server.Guilds;
 using Server.SkillHandlers;
 
 namespace Server.Mobiles
@@ -1262,9 +1263,6 @@ namespace Server.Mobiles
 
 			if ( speechType != null )
 				speechType.OnConstruct( this );
-
-			if ( IsInvulnerable )
-				NameHue = 0x35;
 
 			GenerateLoot( true );
 		}
@@ -3761,26 +3759,97 @@ namespace Server.Mobiles
 			}
 		}
 
-		public override void OnSingleClick( Mobile from )
-		{
-			if ( Controlled && Commandable )
-			{
-				int number;
+        private static string[] m_GuildTypes = new string[]
+        {
+                "",
+                " (Chaos)",
+                " (Order)"
+        };
 
-				if ( Summoned )
-					number = 1049646; // (summoned)
-				else if ( IsBonded )
-					number = 1049608; // (bonded)
-				else
-					number = 502006; // (tame)
+        public override void OnSingleClick(Mobile from)
+        {
+            if (Deleted)
+                return;
+            else if (AccessLevel == AccessLevel.Player && DisableHiddenSelfClick && Hidden && from == this)
+                return;
 
-				PrivateOverheadMessage( MessageType.Regular, 0x3B2, number, from.NetState );
-			}
+            if (GuildClickMessage)
+            {
+                BaseGuild guild = Guild;
 
-			base.OnSingleClick( from );
-		}
+                if (guild != null && (DisplayGuildTitle || Player && guild.Type != GuildType.Regular))
+                {
+                    string title = GuildTitle;
+                    string type;
 
-		public virtual double TreasureMapChance{ get{ return TreasureMap.LootChance; } }
+                    if (title == null)
+                        title = "";
+                    else
+                        title = title.Trim();
+
+                    if (guild.Type >= 0 && (int)guild.Type < m_GuildTypes.Length)
+                        type = m_GuildTypes[(int)guild.Type];
+                    else
+                        type = "";
+
+                    string text = String.Format(title.Length <= 0 ? "[{1}]{2}" : "[{0}, {1}]{2}", title, guild.Abbreviation, type);
+
+                    PrivateOverheadMessage(MessageType.Regular, SpeechHue, true, text, from.NetState);
+                }
+            }
+
+            int hue;
+
+            if (NameHue != -1)
+                hue = NameHue;
+            else
+                hue = Notoriety.GetHue(Notoriety.Compute(from, this));
+
+            string name = Name;
+
+            if (name == null)
+                name = String.Empty;
+
+            string prefix = "";
+
+            if (ShowFameTitle && (Body.IsHuman) && Fame >= 10000)
+                prefix = Female ? "Lady" : "Lord";
+
+            string suffix = "";
+
+            if (ClickTitle && Title != null && Title.Length > 0)
+                suffix = Title;
+
+            suffix = ApplyNameSuffix(suffix);
+
+            string val;
+
+            if (prefix.Length > 0 && suffix.Length > 0)
+                val = String.Concat(prefix, " ", name, " ", suffix);
+            else if (prefix.Length > 0)
+                val = String.Concat(prefix, " ", name);
+            else if (suffix.Length > 0)
+                val = String.Concat(name, " ", suffix);
+            else
+                val = name;
+
+            if (Controlled && Commandable)
+            {
+                if (Summoned)
+                    val += " [summoned]"; // (summoned)
+                else if (IsBonded)
+                    val += " [bonded]"; // (bonded)
+                else
+                    val += " [tame]"; // (tame)
+            }
+
+            if (IsInvulnerable)
+                val += " [invulnerable]";
+
+            PrivateOverheadMessage(MessageType.Label, hue, true, val, from.NetState);
+        }
+
+        public virtual double TreasureMapChance{ get{ return TreasureMap.LootChance; } }
 		public virtual int TreasureMapLevel{ get{ return -1; } }
 
 		public virtual bool IgnoreYoungProtection { get { return false; } }
