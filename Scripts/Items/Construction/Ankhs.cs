@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Server.Gumps;
 using Server.Mobiles;
-using Server.ContextMenus;
 
 namespace Server.Items
 {
@@ -10,14 +9,6 @@ namespace Server.Items
 		public const int ResurrectRange = 2;
 		public const int TitheRange = 2;
 		public const int LockRange = 2;
-
-		public static void GetContextMenuEntries( Mobile from, Item item, List<ContextMenuEntry> list )
-		{
-			if ( from is PlayerMobile )
-				list.Add( new LockKarmaEntry( (PlayerMobile)from ) );
-
-			list.Add( new ResurrectEntry( from, item ) );
-		}
 
 		public static void Resurrect( Mobile m, Item item )
 		{
@@ -33,63 +24,6 @@ namespace Server.Items
 			}
 			else
 				m.SendLocalizedMessage( 502391 ); // Thou can not be resurrected there!
-		}
-
-		private class ResurrectEntry : ContextMenuEntry
-		{
-			private Mobile m_Mobile;
-			private Item m_Item;
-
-			public ResurrectEntry( Mobile mobile, Item item ) : base( 6195, ResurrectRange )
-			{
-				m_Mobile = mobile;
-				m_Item = item;
-
-				Enabled = !m_Mobile.Alive;
-			}
-
-			public override void OnClick()
-			{
-				Resurrect( m_Mobile, m_Item );
-			}
-		}
-
-		private class LockKarmaEntry : ContextMenuEntry
-		{
-			private PlayerMobile m_Mobile;
-
-			public LockKarmaEntry( PlayerMobile mobile ) : base( mobile.KarmaLocked ? 6197 : 6196, LockRange )
-			{
-				m_Mobile = mobile;
-			}
-
-			public override void OnClick()
-			{
-				m_Mobile.KarmaLocked = !m_Mobile.KarmaLocked;
-
-				if ( m_Mobile.KarmaLocked )
-					m_Mobile.SendLocalizedMessage( 1060192 ); // Your karma has been locked. Your karma can no longer be raised.
-				else
-					m_Mobile.SendLocalizedMessage( 1060191 ); // Your karma has been unlocked. Your karma can be raised again.
-			}
-		}
-
-		private class TitheEntry : ContextMenuEntry
-		{
-			private Mobile m_Mobile;
-
-			public TitheEntry( Mobile mobile ) : base( 6198, TitheRange )
-			{
-				m_Mobile = mobile;
-
-				Enabled = m_Mobile.Alive;
-			}
-
-			public override void OnClick()
-			{
-				if ( m_Mobile.CheckAlive() )
-					m_Mobile.SendGump( new TithingGump( m_Mobile, 0 ) );
-			}
 		}
 	}
 
@@ -120,12 +54,6 @@ namespace Server.Items
 		{
 			if ( Parent == null && Utility.InRange( Location, m.Location, 1 ) && !Utility.InRange( Location, oldLocation, 1 ) )
 				Ankhs.Resurrect( m, this );
-		}
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-			Ankhs.GetContextMenuEntries( from, this, list );
 		}
 
 		[Hue, CommandProperty( AccessLevel.GameMaster )]
@@ -221,12 +149,6 @@ namespace Server.Items
 					Ankhs.Resurrect( m, this );
 			}
 
-			public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-			{
-				base.GetContextMenuEntries( from, list );
-				Ankhs.GetContextMenuEntries( from, this, list );
-			}
-
 			[Hue, CommandProperty( AccessLevel.GameMaster )]
 			public override int Hue
 			{
@@ -288,12 +210,6 @@ namespace Server.Items
 		{
 			if ( Parent == null && Utility.InRange( Location, m.Location, 1 ) && !Utility.InRange( Location, oldLocation, 1 ) )
 				Ankhs.Resurrect( m, this );
-		}
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-			Ankhs.GetContextMenuEntries( from, this, list );
 		}
 
 		[Hue, CommandProperty( AccessLevel.GameMaster )]
@@ -389,12 +305,6 @@ namespace Server.Items
 			{
 				if ( Parent == null && Utility.InRange( Location, m.Location, 1 ) && !Utility.InRange( Location, oldLocation, 1 ) )
 					Ankhs.Resurrect( m, this );
-			}
-
-			public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-			{
-				base.GetContextMenuEntries( from, list );
-				Ankhs.GetContextMenuEntries( from, this, list );
 			}
 
 			[Hue, CommandProperty( AccessLevel.GameMaster )]

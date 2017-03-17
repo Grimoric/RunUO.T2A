@@ -4,11 +4,10 @@ using Server.Mobiles;
 using Server.Network;
 using Server.Engines.Craft;
 using Server.Engines.Harvest;
-using Server.ContextMenus;
 
 namespace Server.Items
 {
-	public interface IUsesRemaining
+    public interface IUsesRemaining
 	{
 		int UsesRemaining{ get; set; }
 		bool ShowUsesRemaining{ get; set; }
@@ -106,85 +105,6 @@ namespace Server.Items
 				HarvestSystem.BeginHarvesting( from, this );
 			else
 				from.SendLocalizedMessage( 1042001 ); // That must be in your pack for you to use it.
-		}
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-
-			AddContextMenuEntries( from, this, list, HarvestSystem );
-		}
-
-		public static void AddContextMenuEntries( Mobile from, Item item, List<ContextMenuEntry> list, HarvestSystem system )
-		{
-			if ( system != Mining.System )
-				return;
-
-			if ( !item.IsChildOf( from.Backpack ) && item.Parent != from )
-				return;
-
-			PlayerMobile pm = from as PlayerMobile;
-
-			if ( pm == null )
-				return;
-
-			ContextMenuEntry miningEntry = new ContextMenuEntry( pm.ToggleMiningStone ? 6179 : 6178 );
-			miningEntry.Color = 0x421F;
-			list.Add( miningEntry );
-
-			list.Add( new ToggleMiningStoneEntry( pm, false, 6176 ) );
-			list.Add( new ToggleMiningStoneEntry( pm, true, 6177 ) );
-		}
-
-		private class ToggleMiningStoneEntry : ContextMenuEntry
-		{
-			private PlayerMobile m_Mobile;
-			private bool m_Value;
-
-			public ToggleMiningStoneEntry( PlayerMobile mobile, bool value, int number ) : base( number )
-			{
-				m_Mobile = mobile;
-				m_Value = value;
-
-				bool stoneMining = mobile.StoneMining && mobile.Skills[SkillName.Mining].Base >= 100.0;
-
-				if ( mobile.ToggleMiningStone == value || value && !stoneMining )
-					this.Flags |= CMEFlags.Disabled;
-			}
-
-			public override void OnClick()
-			{
-				bool oldValue = m_Mobile.ToggleMiningStone;
-
-				if ( m_Value )
-				{
-					if ( oldValue )
-					{
-						m_Mobile.SendLocalizedMessage( 1054023 ); // You are already set to mine both ore and stone!
-					}
-					else if ( !m_Mobile.StoneMining || m_Mobile.Skills[SkillName.Mining].Base < 100.0 )
-					{
-						m_Mobile.SendLocalizedMessage( 1054024 ); // You have not learned how to mine stone or you do not have enough skill!
-					}
-					else
-					{
-						m_Mobile.ToggleMiningStone = true;
-						m_Mobile.SendLocalizedMessage( 1054022 ); // You are now set to mine both ore and stone.
-					}
-				}
-				else
-				{
-					if ( oldValue )
-					{
-						m_Mobile.ToggleMiningStone = false;
-						m_Mobile.SendLocalizedMessage( 1054020 ); // You are now set to mine only ore.
-					}
-					else
-					{
-						m_Mobile.SendLocalizedMessage( 1054021 ); // You are already set to mine only ore!
-					}
-				}
-			}
 		}
 
 		public BaseHarvestTool( Serial serial ) : base( serial )

@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Server.Items;
-using Server.ContextMenus;
 using EDI = Server.Mobiles.EscortDestinationInfo;
 
 namespace Server.Mobiles
@@ -392,25 +391,6 @@ namespace Server.Mobiles
 			return @from.AccessLevel >= AccessLevel.GameMaster;
 		}
 
-		public override void AddCustomContextEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			if ( from.Alive )
-			{
-				Mobile escorter = GetEscorter();
-
-				if ( escorter == null || escorter == from )
-					list.Add( new AskDestinationEntry( this, from ) );
-
-				if ( escorter == null )
-					list.Add( new AcceptEscortEntry( this, from ) );
-
-				if ( escorter == from )
-					list.Add( new AbandonEscortEntry( this, from ) );
-			}
-
-			base.AddCustomContextEntries( from, list );
-		}
-
 		public virtual string[] GetPossibleDestinations()
 		{
 				return m_TownNames;
@@ -531,60 +511,6 @@ namespace Server.Mobiles
 				return null;
 
 			return (EscortDestinationInfo)m_Table[name];
-		}
-	}
-
-	public class AskDestinationEntry : ContextMenuEntry
-	{
-		private BaseEscortable m_Mobile;
-		private Mobile m_From;
-
-		public AskDestinationEntry(BaseEscortable m, Mobile from)
-			: base(6100, 3)
-		{
-			m_Mobile = m;
-			m_From = from;
-		}
-
-		public override void OnClick()
-		{
-			m_Mobile.SayDestinationTo(m_From);
-		}
-	}
-
-	public class AcceptEscortEntry : ContextMenuEntry
-	{
-		private BaseEscortable m_Mobile;
-		private Mobile m_From;
-
-		public AcceptEscortEntry(BaseEscortable m, Mobile from)
-			: base(6101, 3)
-		{
-			m_Mobile = m;
-			m_From = from;
-		}
-
-		public override void OnClick()
-		{
-			m_Mobile.AcceptEscorter(m_From);
-		}
-	}
-
-	public class AbandonEscortEntry : ContextMenuEntry
-	{
-		private BaseEscortable m_Mobile;
-		private Mobile m_From;
-
-		public AbandonEscortEntry(BaseEscortable m, Mobile from)
-			: base(6102, 3)
-		{
-			m_Mobile = m;
-			m_From = from;
-		}
-
-		public override void OnClick()
-		{
-			m_Mobile.Delete(); // OSI just seems to delete instantly
 		}
 	}
 }

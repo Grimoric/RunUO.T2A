@@ -6,7 +6,6 @@ using Server.Items;
 using Server.Gumps;
 using Server.Multis;
 using Server.Engines.Help;
-using Server.ContextMenus;
 using Server.Network;
 using Server.Spells.Fifth;
 using Server.Spells.Seventh;
@@ -17,8 +16,8 @@ using Server.Engines.Craft;
 
 namespace Server.Mobiles
 {
-	#region Enums
-	[Flags]
+    #region Enums
+    [Flags]
 	public enum PlayerFlag // First 16 bits are reserved for default-distro use, start custom flags at 0x00010000
 	{
 		None					= 0x00000000,
@@ -1137,26 +1136,6 @@ namespace Server.Mobiles
 				RecheckTownProtection();
 		}
 
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-
-			if ( from == this )
-			{
-				if ( Alive )
-				{
-					if ( InsuranceEnabled )
-					{
-						list.Add( new CallbackEntry( 6201, new ContextCallback( ToggleItemInsurance ) ) ); // Toggle Item Insurance
-
-						if ( AutoRenewInsurance )
-							list.Add( new CallbackEntry( 6202, new ContextCallback( CancelRenewInventoryInsurance ) ) ); // Cancel Renewing Inventory Insurance
-						else
-							list.Add( new CallbackEntry( 6200, new ContextCallback( AutoRenewInventoryInsurance ) ) ); // Auto Renew Inventory Insurance
-					}
-				}
-			}
-		}
 		#region Insurance
 
 		private static int GetInsuranceCost( Item item )
@@ -1586,26 +1565,6 @@ namespace Server.Mobiles
 		#endregion
 
 		private delegate void ContextCallback();
-
-		private class CallbackEntry : ContextMenuEntry
-		{
-			private ContextCallback m_Callback;
-
-			public CallbackEntry( int number, ContextCallback callback ) : this( number, -1, callback )
-			{
-			}
-
-			public CallbackEntry( int number, int range, ContextCallback callback ) : base( number, range )
-			{
-				m_Callback = callback;
-			}
-
-			public override void OnClick()
-			{
-				if ( m_Callback != null )
-					m_Callback();
-			}
-		}
 
 		public override void DisruptiveAction()
 		{

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Server.ContextMenus;
 using Server.Engines.PartySystem;
 using Server.Guilds;
 using Server.Misc;
@@ -921,21 +920,6 @@ namespace Server.Items
 
 			if ( m_InstancedItems != null && m_InstancedItems.ContainsKey( item ) )
 				m_InstancedItems.Remove( item );
-		}
-
-		private class OpenCorpseEntry : ContextMenuEntry
-		{
-			public OpenCorpseEntry() : base( 6215, 2 )
-			{
-			}
-
-			public override void OnClick()
-			{
-				Corpse corpse = Owner.Target as Corpse;
-
-				if ( corpse != null && Owner.From.CheckAlive() )
-					corpse.Open( Owner.From, false );
-			}
 		}
 
 		private Dictionary<Item, Point3D> m_RestoreTable;

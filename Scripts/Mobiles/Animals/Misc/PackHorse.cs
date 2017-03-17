@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Server.Items;
-using Server.ContextMenus;
 
 namespace Server.Mobiles
 {
@@ -108,13 +107,6 @@ namespace Server.Mobiles
 		{
 			PackAnimal.TryPackOpen( this, from );
 		}
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-
-			PackAnimal.GetContextMenuEntries( this, from, list );
-		}
 		#endregion
 
 		public override void Serialize( GenericWriter writer )
@@ -132,34 +124,8 @@ namespace Server.Mobiles
 		}
 	}
 
-	public class PackAnimalBackpackEntry : ContextMenuEntry
-	{
-		private BaseCreature m_Animal;
-		private Mobile m_From;
-
-		public PackAnimalBackpackEntry( BaseCreature animal, Mobile from ) : base( 6145, 3 )
-		{
-			m_Animal = animal;
-			m_From = from;
-
-			if ( animal.IsDeadPet )
-				Enabled = false;
-		}
-
-		public override void OnClick()
-		{
-			PackAnimal.TryPackOpen( m_Animal, m_From );
-		}
-	}
-
 	public class PackAnimal
 	{
-		public static void GetContextMenuEntries( BaseCreature animal, Mobile from, List<ContextMenuEntry> list )
-		{
-			if ( CheckAccess( animal, from ) )
-				list.Add( new PackAnimalBackpackEntry( animal, from ) );
-		}
-
 		public static bool CheckAccess( BaseCreature animal, Mobile from )
 		{
 			if ( from == animal || from.AccessLevel >= AccessLevel.GameMaster )

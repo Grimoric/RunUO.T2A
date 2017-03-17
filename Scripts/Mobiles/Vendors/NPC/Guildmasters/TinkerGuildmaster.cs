@@ -1,5 +1,3 @@
-using Server.ContextMenus;
-
 namespace Server.Mobiles
 {
     public class TinkerGuildmaster : BaseGuildmaster
@@ -30,22 +28,6 @@ namespace Server.Mobiles
 			base.Deserialize( reader );
 
 			int version = reader.ReadInt();
-		}
-
-		private class RechargeEntry : ContextMenuEntry
-		{
-			private Mobile m_From;
-			private Mobile m_Vendor;
-
-			public RechargeEntry( Mobile from, Mobile vendor ) : base( 6271, 6 )
-			{
-				m_From = from;
-				m_Vendor = vendor;
-			}
-
-			public override void OnClick()
-			{
-			}
 		}
 	}
 }

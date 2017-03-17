@@ -74,14 +74,6 @@ namespace Server.Engines.Craft
 			return c;
 		}
 
-		public void OnMade( Mobile m, CraftItem item )
-		{
-			CraftContext c = GetContext( m );
-
-			if ( c != null )
-				c.OnMade( item );
-		}
-
 		public bool Resmelt
 		{
 			get { return m_Resmelt; }
@@ -141,36 +133,9 @@ namespace Server.Engines.Craft
 			}
 		}
 
-		public int RandomRecipe()
-		{
-			if ( m_Recipes.Count == 0 )
-				return -1;
-
-			return m_Recipes[Utility.Random( m_Recipes.Count )];
-		}
-
-		public int RandomRareRecipe()
-		{
-			if ( m_RareRecipes.Count == 0 )
-				return -1;
-
-			return m_RareRecipes[Utility.Random( m_RareRecipes.Count )];
-		}
-
-
-		public int AddCraft( Type typeItem, TextDefinition group, TextDefinition name, double minSkill, double maxSkill, Type typeRes, TextDefinition nameRes, int amount )
-		{
-			return AddCraft( typeItem, group, name, MainSkill, minSkill, maxSkill, typeRes, nameRes, amount, "" );
-		}
-
 		public int AddCraft( Type typeItem, TextDefinition group, TextDefinition name, double minSkill, double maxSkill, Type typeRes, TextDefinition nameRes, int amount, TextDefinition message )
 		{
 			return AddCraft( typeItem, group, name, MainSkill, minSkill, maxSkill, typeRes, nameRes, amount, message );
-		}
-
-		public int AddCraft( Type typeItem, TextDefinition group, TextDefinition name, SkillName skillToMake, double minSkill, double maxSkill, Type typeRes, TextDefinition nameRes, int amount )
-		{
-			return AddCraft( typeItem, group, name, skillToMake, minSkill, maxSkill, typeRes, nameRes, amount, "" );
 		}
 
 		public int AddCraft( Type typeItem, TextDefinition group, TextDefinition name, SkillName skillToMake, double minSkill, double maxSkill, Type typeRes, TextDefinition nameRes, int amount, TextDefinition message )
@@ -200,29 +165,10 @@ namespace Server.Engines.Craft
 			}
 		}
 
-
-		public void SetItemHue( int index, int hue )
-		{
-			CraftItem craftItem = m_CraftItems.GetAt( index );
-			craftItem.ItemHue = hue;
-		}
-
 		public void SetManaReq( int index, int mana )
 		{
 			CraftItem craftItem = m_CraftItems.GetAt( index );
 			craftItem.Mana = mana;
-		}
-
-		public void SetStamReq( int index, int stam )
-		{
-			CraftItem craftItem = m_CraftItems.GetAt( index );
-			craftItem.Stam = stam;
-		}
-
-		public void SetHitsReq( int index, int hits )
-		{
-			CraftItem craftItem = m_CraftItems.GetAt( index );
-			craftItem.Hits = hits;
 		}
 		
 		public void SetUseAllRes( int index, bool useAll )
@@ -243,27 +189,10 @@ namespace Server.Engines.Craft
 			craftItem.NeedOven = needOven;
 		}
 
-		public void SetBeverageType( int index, BeverageType requiredBeverage )
-		{
-			CraftItem craftItem = m_CraftItems.GetAt( index );
-			craftItem.RequiredBeverage = requiredBeverage;
-		}
-
-		public void SetNeedMill( int index, bool needMill )
+    	public void SetNeedMill( int index, bool needMill )
 		{
 			CraftItem craftItem = m_CraftItems.GetAt( index );
 			craftItem.NeedMill = needMill;
-		}
-
-		public void SetNeededExpansion( int index, Expansion expansion )
-		{
-			CraftItem craftItem = m_CraftItems.GetAt( index );
-			craftItem.RequiredExpansion = expansion;
-		}
-
-		public void AddRes( int index, Type type, TextDefinition name, int amount )
-		{
-			AddRes( index, type, name, amount, "" );
 		}
 
 		public void AddRes( int index, Type type, TextDefinition name, int amount, TextDefinition message )
@@ -278,49 +207,6 @@ namespace Server.Engines.Craft
 			craftItem.AddSkill(skillToMake, minSkill, maxSkill);
 		}
 
-		public void SetUseSubRes2( int index, bool val )
-		{
-			CraftItem craftItem = m_CraftItems.GetAt(index);
-			craftItem.UseSubRes2 = val;
-		}
-
-		private void AddRecipeBase( int index, int id )
-		{
-			CraftItem craftItem = m_CraftItems.GetAt( index );
-			craftItem.AddRecipe( id, this );
-		}
-
-		public void AddRecipe( int index, int id )
-		{
-			AddRecipeBase( index, id );
-			m_Recipes.Add( id );
-		}
-
-		public void AddRareRecipe( int index, int id )
-		{
-			AddRecipeBase( index, id );
-			m_RareRecipes.Add( id );
-		}
-
-		public void AddQuestRecipe( int index, int id )
-		{
-			AddRecipeBase( index, id );
-		}
-
-		public void ForceNonExceptional( int index )
-		{
-			CraftItem craftItem = m_CraftItems.GetAt( index );
-			craftItem.ForceNonExceptional = true;
-		}
-
-
-		public void SetSubRes( Type type, string name )
-		{
-			m_CraftSubRes.ResType = type;
-			m_CraftSubRes.NameString = name;
-			m_CraftSubRes.Init = true;
-		}
-
 		public void SetSubRes( Type type, int name )
 		{
 			m_CraftSubRes.ResType = type;
@@ -328,55 +214,10 @@ namespace Server.Engines.Craft
 			m_CraftSubRes.Init = true;
 		}
 
-		public void AddSubRes( Type type, int name, double reqSkill, object message )
-		{
-			CraftSubRes craftSubRes = new CraftSubRes( type, name, reqSkill, message );
-			m_CraftSubRes.Add( craftSubRes );
-		}
-
 		public void AddSubRes( Type type, int name, double reqSkill, int genericName, object message )
 		{
 			CraftSubRes craftSubRes = new CraftSubRes( type, name, reqSkill, genericName, message );
 			m_CraftSubRes.Add( craftSubRes );
-		}
-
-		public void AddSubRes( Type type, string name, double reqSkill, object message )
-		{
-			CraftSubRes craftSubRes = new CraftSubRes( type, name, reqSkill, message );
-			m_CraftSubRes.Add( craftSubRes );
-		}
-
-
-		public void SetSubRes2( Type type, string name )
-		{
-			m_CraftSubRes2.ResType = type;
-			m_CraftSubRes2.NameString = name;
-			m_CraftSubRes2.Init = true;
-		}
-
-		public void SetSubRes2( Type type, int name )
-		{
-			m_CraftSubRes2.ResType = type;
-			m_CraftSubRes2.NameNumber = name;
-			m_CraftSubRes2.Init = true;
-		}
-
-		public void AddSubRes2( Type type, int name, double reqSkill, object message )
-		{
-			CraftSubRes craftSubRes = new CraftSubRes( type, name, reqSkill, message );
-			m_CraftSubRes2.Add( craftSubRes );
-		}
-
-		public void AddSubRes2( Type type, int name, double reqSkill, int genericName, object message )
-		{
-			CraftSubRes craftSubRes = new CraftSubRes( type, name, reqSkill, genericName, message );
-			m_CraftSubRes2.Add( craftSubRes );
-		}
-
-		public void AddSubRes2( Type type, string name, double reqSkill, object message )
-		{
-			CraftSubRes craftSubRes = new CraftSubRes( type, name, reqSkill, message );
-			m_CraftSubRes2.Add( craftSubRes );
 		}
 
 		public abstract void InitCraftList();

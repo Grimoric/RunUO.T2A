@@ -1,6 +1,5 @@
 using Server.Engines.Harvest;
 using System.Collections.Generic;
-using Server.ContextMenus;
 using Server.Network;
 
 namespace Server.Items
@@ -22,13 +21,6 @@ namespace Server.Items
 				from.LocalOverheadMessage( MessageType.Regular, 0x3E9, 1019045 ); // I can't reach that
 			else
 				Fishing.System.BeginHarvesting( from, this );
-		}
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-
-			BaseHarvestTool.AddContextMenuEntries( from, this, list, Fishing.System );
 		}
 
 		public override bool CheckConflictingLayer( Mobile m, Item item, Layer layer )

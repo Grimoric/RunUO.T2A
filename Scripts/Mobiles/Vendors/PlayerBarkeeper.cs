@@ -4,7 +4,6 @@ using Server.Items;
 using Server.Gumps;
 using Server.Prompts;
 using Server.Network;
-using Server.ContextMenus;
 using Server.Multis;
 
 namespace Server.Mobiles
@@ -116,23 +115,6 @@ namespace Server.Mobiles
 				writer.Write( rumor.m_Message );
 				writer.Write( rumor.m_Keyword );
 			}
-		}
-	}
-
-	public class ManageBarkeeperEntry : ContextMenuEntry
-	{
-		private Mobile m_From;
-		private PlayerBarkeeper m_Barkeeper;
-
-		public ManageBarkeeperEntry( Mobile from, PlayerBarkeeper barkeeper ) : base( 6151, 12 )
-		{
-			m_From = from;
-			m_Barkeeper = barkeeper;
-		}
-
-		public override void OnClick()
-		{
-			m_Barkeeper.BeginManagement( m_From );
 		}
 	}
 
@@ -362,14 +344,6 @@ namespace Server.Mobiles
 				return true;
 
 			return m_Owner == @from;
-		}
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-
-			if ( IsOwner( from ) && from.InLOS( this ) )
-				list.Add( new ManageBarkeeperEntry( from, this ) );
 		}
 
 		public void BeginManagement( Mobile from )

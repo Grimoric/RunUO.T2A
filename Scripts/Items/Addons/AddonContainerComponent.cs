@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Server.ContextMenus;
 
 namespace Server.Items
 {
@@ -68,12 +67,6 @@ namespace Server.Items
 		{
 			if ( m_Addon != null )
 				m_Addon.Location = new Point3D( X - m_Offset.X, Y - m_Offset.Y, Z - m_Offset.Z );
-		}
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			if ( m_Addon != null )
-				m_Addon.GetContextMenuEntries( from, list );
 		}
 
 		public override void OnMapChange()

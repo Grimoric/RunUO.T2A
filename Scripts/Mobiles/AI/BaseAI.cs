@@ -6,7 +6,6 @@ using Server.Items;
 using Server.Targets;
 using Server.Network;
 using Server.Regions;
-using Server.ContextMenus;
 using MoveImpl = Server.Movement.MovementImpl;
 
 namespace Server.Mobiles
@@ -84,113 +83,6 @@ namespace Server.Mobiles
 			string name = m_Mobile.Name;
 
 			return name != null && Insensitive.StartsWith(speech, name);
-		}
-
-		private class InternalEntry : ContextMenuEntry
-		{
-			private Mobile m_From;
-			private BaseCreature m_Mobile;
-			private BaseAI m_AI;
-			private OrderType m_Order;
-
-			public InternalEntry(Mobile from, int number, int range, BaseCreature mobile, BaseAI ai, OrderType order)
-				: base(number, range)
-			{
-				m_From = from;
-				m_Mobile = mobile;
-				m_AI = ai;
-				m_Order = order;
-
-				if (mobile.IsDeadPet && (order == OrderType.Guard || order == OrderType.Attack || order == OrderType.Transfer || order == OrderType.Drop))
-					Enabled = false;
-			}
-
-			public override void OnClick()
-			{
-				if (!m_Mobile.Deleted && m_Mobile.Controlled && m_From.CheckAlive())
-				{
-					if (m_Mobile.IsDeadPet && (m_Order == OrderType.Guard || m_Order == OrderType.Attack || m_Order == OrderType.Transfer || m_Order == OrderType.Drop))
-						return;
-
-					bool isOwner = m_From == m_Mobile.ControlMaster;
-					bool isFriend = !isOwner && m_Mobile.IsPetFriend(m_From);
-
-					if (!isOwner && !isFriend)
-						return;
-					else if (isFriend && m_Order != OrderType.Follow && m_Order != OrderType.Stay && m_Order != OrderType.Stop)
-						return;
-
-					switch (m_Order)
-					{
-						case OrderType.Follow:
-						case OrderType.Attack:
-						case OrderType.Transfer:
-						case OrderType.Friend:
-						case OrderType.Unfriend:
-							{
-								if (m_Order == OrderType.Transfer && m_From.HasTrade)
-									m_From.SendLocalizedMessage(1010507); // You cannot transfer a pet with a trade pending
-								else if (m_Order == OrderType.Friend && m_From.HasTrade)
-									m_From.SendLocalizedMessage(1070947); // You cannot friend a pet with a trade pending
-								else
-									m_AI.BeginPickTarget(m_From, m_Order);
-
-								break;
-							}
-						case OrderType.Release:
-							{
-								if (m_Mobile.Summoned)
-									goto default;
-								else
-									m_From.SendGump(new Gumps.ConfirmReleaseGump(m_From, m_Mobile));
-
-								break;
-							}
-						default:
-							{
-								if (m_Mobile.CheckControlChance(m_From))
-									m_Mobile.ControlOrder = m_Order;
-
-								break;
-							}
-					}
-				}
-			}
-		}
-
-		public virtual void GetContextMenuEntries(Mobile from, List<ContextMenuEntry> list)
-		{
-			if (from.Alive && m_Mobile.Controlled && from.InRange(m_Mobile, 14))
-			{
-				if (from == m_Mobile.ControlMaster)
-				{
-					list.Add(new InternalEntry(from, 6107, 14, m_Mobile, this, OrderType.Guard));  // Command: Guard
-					list.Add(new InternalEntry(from, 6108, 14, m_Mobile, this, OrderType.Follow)); // Command: Follow
-
-					if (m_Mobile.CanDrop)
-						list.Add(new InternalEntry(from, 6109, 14, m_Mobile, this, OrderType.Drop));   // Command: Drop
-
-					list.Add(new InternalEntry(from, 6111, 14, m_Mobile, this, OrderType.Attack)); // Command: Kill
-
-					list.Add(new InternalEntry(from, 6112, 14, m_Mobile, this, OrderType.Stop));   // Command: Stop
-					list.Add(new InternalEntry(from, 6114, 14, m_Mobile, this, OrderType.Stay));   // Command: Stay
-
-					if (!m_Mobile.Summoned)
-					{
-						list.Add(new InternalEntry(from, 6110, 14, m_Mobile, this, OrderType.Friend)); // Add Friend
-						list.Add(new InternalEntry(from, 6099, 14, m_Mobile, this, OrderType.Unfriend)); // Remove Friend
-						list.Add(new InternalEntry(from, 6113, 14, m_Mobile, this, OrderType.Transfer)); // Transfer
-					}
-
-					list.Add(new InternalEntry(from, 6118, 14, m_Mobile, this, OrderType.Release)); // Release
-				}
-				else if (m_Mobile.IsPetFriend(from))
-				{
-					list.Add(new InternalEntry(from, 6108, 14, m_Mobile, this, OrderType.Follow)); // Command: Follow
-					list.Add(new InternalEntry(from, 6112, 14, m_Mobile, this, OrderType.Stop));   // Command: Stop
-					list.Add(new InternalEntry(from, 6114, 14, m_Mobile, this, OrderType.Stay));   // Command: Stay
-				}
-			}
 		}
 
 		public virtual void BeginPickTarget(Mobile from, OrderType order)

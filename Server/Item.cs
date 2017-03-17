@@ -22,7 +22,6 @@ using System;
 using System.Collections.Generic;
 using Server.Network;
 using Server.Items;
-using Server.ContextMenus;
 
 namespace Server
 {
@@ -1159,22 +1158,6 @@ namespace Server
 		public virtual bool CanEquip( Mobile m )
 		{
 			return m_Layer != Layer.Invalid && m.FindItemOnLayer( m_Layer ) == null;
-		}
-
-		public virtual void GetChildContextMenuEntries( Mobile from, List<ContextMenuEntry> list, Item item )
-		{
-			if ( m_Parent is Item )
-				((Item)m_Parent).GetChildContextMenuEntries( from, list, item );
-			else if ( m_Parent is Mobile )
-				((Mobile)m_Parent).GetChildContextMenuEntries( from, list, item );
-		}
-
-		public virtual void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			if ( m_Parent is Item )
-				((Item)m_Parent).GetChildContextMenuEntries( from, list, this );
-			else if ( m_Parent is Mobile )
-				((Mobile)m_Parent).GetChildContextMenuEntries( from, list, this );
 		}
 
 		public virtual bool VerifyMove( Mobile from )

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Server.ContextMenus;
 
 namespace Server.Items
 {
@@ -43,14 +42,6 @@ namespace Server.Items
 
 		public Food( Serial serial ) : base( serial )
 		{
-		}
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-
-			if ( from.Alive )
-				list.Add( new ContextMenus.EatEntry( from, this ) );
 		}
 
 		public override void OnDoubleClick( Mobile from )

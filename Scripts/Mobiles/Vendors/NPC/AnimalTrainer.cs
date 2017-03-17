@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Server.ContextMenus;
 using Server.Gumps;
 using Server.Items;
 using Server.Network;
@@ -43,23 +42,6 @@ namespace Server.Mobiles
 			AddItem( Utility.RandomBool() ? (Item)new QuarterStaff() : (Item)new ShepherdsCrook() );
 		}
 
-		private class StableEntry : ContextMenuEntry
-		{
-			private AnimalTrainer m_Trainer;
-			private Mobile m_From;
-
-			public StableEntry( AnimalTrainer trainer, Mobile from ) : base( 6126, 12 )
-			{
-				m_Trainer = trainer;
-				m_From = from;
-			}
-
-			public override void OnClick()
-			{
-				m_Trainer.BeginStable( m_From );
-			}
-		}
-
 		private class ClaimListGump : Gump
 		{
 			private AnimalTrainer m_Trainer;
@@ -100,36 +82,6 @@ namespace Server.Mobiles
 				if ( index >= 0 && index < m_List.Count )
 					m_Trainer.EndClaimList( m_From, m_List[index] );
 			}
-		}
-
-		private class ClaimAllEntry : ContextMenuEntry
-		{
-			private AnimalTrainer m_Trainer;
-			private Mobile m_From;
-
-			public ClaimAllEntry( AnimalTrainer trainer, Mobile from ) : base( 6127, 12 )
-			{
-				m_Trainer = trainer;
-				m_From = from;
-			}
-
-			public override void OnClick()
-			{
-				m_Trainer.Claim( m_From );
-			}
-		}
-
-		public override void AddCustomContextEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			if ( from.Alive )
-			{
-				list.Add( new StableEntry( this, from ) );
-
-				if ( from.Stabled.Count > 0 )
-					list.Add( new ClaimAllEntry( this, from ) );
-			}
-
-			base.AddCustomContextEntries( from, list );
 		}
 
 		public static int GetMaxStabled( Mobile from )

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Server.Engines.Harvest;
-using Server.ContextMenus;
 using Server.Network;
 
 namespace Server.Items
@@ -98,14 +97,6 @@ namespace Server.Items
 				from.SendLocalizedMessage( 1010018 ); // What do you want to use this item on?
 
 			HarvestSystem.BeginHarvesting( from, this );
-		}
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-
-			if ( HarvestSystem != null )
-				BaseHarvestTool.AddContextMenuEntries( from, this, list, HarvestSystem );
 		}
 
 		public override void Serialize( GenericWriter writer )

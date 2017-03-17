@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Server.ContextMenus;
 using Server.Engines.PartySystem;
 using Server.Gumps;
 using Server.Network;
@@ -370,14 +369,6 @@ namespace Server.Items
 			base.OnAfterDelete();
 		}
 
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-
-			if ( from.Alive )
-				list.Add( new RemoveEntry( from, this ) );
-		}
-
 		public void BeginRemove( Mobile from )
 		{
 			if ( !from.Alive )
@@ -427,28 +418,6 @@ namespace Server.Items
 			{
 				if ( info.ButtonID == 1 )
 					m_Chest.EndRemove( m_From );
-			}
-		}
-
-		private class RemoveEntry : ContextMenuEntry
-		{
-			private Mobile m_From;
-			private TreasureMapChest m_Chest;
-
-			public RemoveEntry( Mobile from, TreasureMapChest chest ) : base( 6149, 3 )
-			{
-				m_From = from;
-				m_Chest = chest;
-
-				Enabled = @from == chest.Owner;
-			}
-
-			public override void OnClick()
-			{
-				if ( m_Chest.Deleted || m_From != m_Chest.Owner || !m_From.CheckAlive() )
-					return;
-
-				m_Chest.BeginRemove( m_From );
 			}
 		}
 

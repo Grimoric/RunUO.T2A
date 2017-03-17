@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Server.Mobiles;
 using Server.Network;
 using Server.Targeting;
-using Server.ContextMenus;
 
 namespace Server.Items
 {
@@ -710,84 +709,6 @@ namespace Server.Items
 
 			from.PlaySound( 0x249 );
 			base.DisplayTo( from );
-		}
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-
-			if ( !m_Completed )
-			{
-				if ( m_Decoder == null )
-				{
-					list.Add( new DecodeMapEntry( this ) );
-				}
-				else
-				{
-					bool digTool = HasDiggingTool( from );
-
-					list.Add( new OpenMapEntry( this ) );
-					list.Add( new DigEntry( this, digTool ) );
-				}
-			}
-		}
-
-		private class DecodeMapEntry : ContextMenuEntry
-		{
-			private TreasureMap m_Map;
-
-			public DecodeMapEntry( TreasureMap map ) : base( 6147, 2 )
-			{
-				m_Map = map;
-			}
-
-			public override void OnClick()
-			{
-				if ( !m_Map.Deleted )
-					m_Map.Decode( Owner.From );
-			}
-		}
-
-		private class OpenMapEntry : ContextMenuEntry
-		{
-			private TreasureMap m_Map;
-
-			public OpenMapEntry( TreasureMap map ) : base( 6150, 2 )
-			{
-				m_Map = map;
-			}
-
-			public override void OnClick()
-			{
-				if ( !m_Map.Deleted )
-					m_Map.DisplayTo( Owner.From );
-			}
-		}
-
-		private class DigEntry : ContextMenuEntry
-		{
-			private TreasureMap m_Map;
-
-			public DigEntry( TreasureMap map, bool enabled ) : base( 6148, 2 )
-			{
-				m_Map = map;
-
-				if ( !enabled )
-					this.Flags |= CMEFlags.Disabled;
-			}
-
-			public override void OnClick()
-			{
-				if ( m_Map.Deleted )
-					return;
-
-				Mobile from = Owner.From;
-
-				if ( HasDiggingTool( from ) )
-					m_Map.OnBeginDig( from );
-				else
-					from.SendMessage( "You must have a digging tool to dig for treasure." );
-			}
 		}
 
 		public override int LabelNumber

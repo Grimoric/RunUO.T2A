@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text;
 using Server.Accounting;
-using Server.ContextMenus;
 using Server.Gumps;
 using Server.Network;
 using Server.Regions;
@@ -445,21 +444,6 @@ namespace Server.Items
 			}
 		}
 
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-
-			if ( from.AccessLevel >= AccessLevel.Seer )
-			{
-				list.Add( new EditEntry( from, this ) );
-
-				if ( m_State == HouseRaffleState.Inactive )
-					list.Add( new ActivateEntry( from, this ) );
-				else
-					list.Add( new ManagementEntry( from, this ) );
-			}
-		}
-
 		public override void OnDoubleClick( Mobile from )
 		{
 			if ( m_State != HouseRaffleState.Active || !from.CheckAlive() )
@@ -657,69 +641,6 @@ namespace Server.Items
 
 					break;
 				}
-			}
-		}
-
-		private class RaffleContextMenuEntry : ContextMenuEntry
-		{
-			protected Mobile m_From;
-			protected HouseRaffleStone m_Stone;
-
-			public RaffleContextMenuEntry( Mobile from, HouseRaffleStone stone, int label )
-				: base( label )
-			{
-				m_From = from;
-				m_Stone = stone;
-			}
-		}
-
-		private class EditEntry : RaffleContextMenuEntry
-		{
-			public EditEntry( Mobile from, HouseRaffleStone stone )
-				: base( from, stone, 5101 ) // Edit
-			{
-			}
-
-			public override void OnClick()
-			{
-				if ( m_Stone.Deleted || m_From.AccessLevel < AccessLevel.Seer )
-					return;
-
-				m_From.SendGump( new PropertiesGump( m_From, m_Stone ) );
-			}
-		}
-
-		private class ActivateEntry : RaffleContextMenuEntry
-		{
-			public ActivateEntry( Mobile from, HouseRaffleStone stone )
-				: base( from, stone, 5113 ) // Start
-			{
-				if ( !stone.ValidLocation() )
-					Flags |= Network.CMEFlags.Disabled;
-			}
-
-			public override void OnClick()
-			{
-				if ( m_Stone.Deleted || m_From.AccessLevel < AccessLevel.Seer || !m_Stone.ValidLocation() )
-					return;
-
-				m_Stone.CurrentState = HouseRaffleState.Active;
-			}
-		}
-
-		private class ManagementEntry : RaffleContextMenuEntry
-		{
-			public ManagementEntry( Mobile from, HouseRaffleStone stone)
-				: base( from, stone, 5032 ) // Game Monitor
-			{
-			}
-
-			public override void OnClick()
-			{
-				if ( m_Stone.Deleted || m_From.AccessLevel < AccessLevel.Seer )
-					return;
-
-				m_From.SendGump( new HouseRaffleManagementGump( m_Stone ) );
 			}
 		}
 	}

@@ -26,6 +26,8 @@ namespace Server.Misc
 				m.AddItem( pack );
 			}
 
+            PackItem( new GrimsHammer() ); // Testing
+
 			PackItem( new RedBook( "a book", m.Name, 20, true ) );
 			PackItem( new Gold( 1000 ) ); // Starting gold can be customized here
 			PackItem( new Dagger() );

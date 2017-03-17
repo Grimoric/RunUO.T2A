@@ -26,7 +26,6 @@ namespace Server.Mobiles
 		}
 
 		public override bool IsActiveVendor{ get{ return true; } }
-		public override bool IsInvulnerable{ get{ return true; } }
 
 		public override void InitSBInfo()
 		{

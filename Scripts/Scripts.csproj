@@ -124,12 +124,6 @@
     <Compile Include=".\Commands\Statics.cs" />
     <Compile Include=".\Commands\VisibilityList.cs" />
     <Compile Include=".\Commands\Wipe.cs" />
-    <Compile Include=".\Context Menus\AddToParty.cs" />
-    <Compile Include=".\Context Menus\AddToSpellbookEntry.cs" />
-    <Compile Include=".\Context Menus\EatEntry.cs" />
-    <Compile Include=".\Context Menus\EjectPlayer.cs" />
-    <Compile Include=".\Context Menus\OpenBankEntry.cs" />
-    <Compile Include=".\Context Menus\TeachEntry.cs" />
     <Compile Include=".\Engines\Chat\Channel.cs" />
     <Compile Include=".\Engines\Chat\Chat.cs" />
     <Compile Include=".\Engines\Chat\ChatActionHandler.cs" />
@@ -200,7 +194,6 @@
     <Compile Include=".\Engines\Party\Party.cs" />
     <Compile Include=".\Engines\Party\PartyCommands.cs" />
     <Compile Include=".\Engines\Party\PartyMemberInfo.cs" />
-    <Compile Include=".\Engines\Party\RemoveFromParty.cs" />
     <Compile Include=".\Engines\Party\RemovePartyTarget.cs" />
     <Compile Include=".\Engines\Pathing\FastAStarAlgorithm.cs" />
     <Compile Include=".\Engines\Pathing\Movement.cs" />
@@ -552,7 +545,6 @@
     <Compile Include=".\Items\Containers\FillableContainers.cs" />
     <Compile Include=".\Items\Containers\FurnitureContainer.cs" />
     <Compile Include=".\Items\Containers\LockableContainer.cs" />
-    <Compile Include=".\Items\Containers\SalvageBag.cs" />
     <Compile Include=".\Items\Containers\Strongbox.cs" />
     <Compile Include=".\Items\Containers\TrapableContainer.cs" />
     <Compile Include=".\Items\Containers\TreasureChest.cs" />
@@ -1785,6 +1777,8 @@
     <Compile Include=".\Targets\PickMoveTarget.cs" />
     <Compile Include="Misc\RegenRates.cs" />
     <Compile Include="Spells\Base\SpellRegistry.cs" />
+    <Compile Include="=DEV=\BlacksmithMenuTest.cs" />
+    <Compile Include="=DEV=\GrimsHammer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Server\Server.csproj">

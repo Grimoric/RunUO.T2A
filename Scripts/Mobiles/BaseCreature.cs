@@ -6,19 +6,18 @@ using Server.Multis;
 using Server.Spells;
 using Server.Misc;
 using Server.Items;
-using Server.ContextMenus;
 using Server.Engines.PartySystem;
 using Server.Guilds;
 using Server.SkillHandlers;
 
 namespace Server.Mobiles
 {
-	#region Enums
-	/// <summary>
-	/// Summary description for MobileAI.
-	/// </summary>
-	///
-	public enum FightMode
+    #region Enums
+    /// <summary>
+    /// Summary description for MobileAI.
+    /// </summary>
+    ///
+    public enum FightMode
 	{
 		None,			// Never focus on others
 		Aggressor,		// Only attack aggressors
@@ -2526,33 +2525,6 @@ namespace Server.Mobiles
 			return iCount;
 		}
 
-		private class TameEntry : ContextMenuEntry
-		{
-			private BaseCreature m_Mobile;
-
-			public TameEntry( Mobile from, BaseCreature creature ) : base( 6130, 6 )
-			{
-				m_Mobile = creature;
-
-				Enabled = Enabled && ( from.Female ? creature.AllowFemaleTamer : creature.AllowMaleTamer );
-			}
-
-			public override void OnClick()
-			{
-				if ( !Owner.From.CheckAlive() )
-					return;
-
-				Owner.From.TargetLocked = true;
-				SkillHandlers.AnimalTaming.DisableMessage = true;
-
-				if ( Owner.From.UseSkill( SkillName.AnimalTaming ) )
-					Owner.From.Target.Invoke( Owner.From, m_Mobile );
-
-				SkillHandlers.AnimalTaming.DisableMessage = false;
-				Owner.From.TargetLocked = false;
-			}
-		}
-
 		#region Teaching
 		public virtual bool CanTeach{ get{ return false; } }
 
@@ -2788,46 +2760,7 @@ namespace Server.Mobiles
 			return base.OnMoveOver( m );
 		}
 
-		public virtual void AddCustomContextEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-		}
-
-		public virtual bool CanDrop { get { return IsBonded; } }
-
-		public override void GetContextMenuEntries( Mobile from, List<ContextMenuEntry> list )
-		{
-			base.GetContextMenuEntries( from, list );
-
-			if ( m_AI != null && Commandable )
-				m_AI.GetContextMenuEntries( from, list );
-
-			if ( m_bTamable && !m_bControlled && from.Alive )
-				list.Add( new TameEntry( from, this ) );
-
-			AddCustomContextEntries( from, list );
-
-			if ( CanTeach && from.Alive )
-			{
-				Skills ourSkills = this.Skills;
-				Skills theirSkills = from.Skills;
-
-				for ( int i = 0; i < ourSkills.Length && i < theirSkills.Length; ++i )
-				{
-					Skill skill = ourSkills[i];
-					Skill theirSkill = theirSkills[i];
-
-					if ( skill != null && theirSkill != null && skill.Base >= 60.0 && CheckTeach( skill.SkillName, from ) )
-					{
-						int toTeach = skill.BaseFixedPoint / 3;
-
-						if ( toTeach > 420 )
-							toTeach = 420;
-
-						list.Add( new TeachEntry( (SkillName)i, this, from, toTeach > theirSkill.BaseFixedPoint ) );
-					}
-				}
-			}
-		}
+    	public virtual bool CanDrop { get { return IsBonded; } }
 
 		public override bool HandlesOnSpeech( Mobile from )
 		{
