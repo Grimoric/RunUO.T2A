@@ -18,8 +18,8 @@ namespace Server.Misc
 			Kick
 		}
 
-		private static bool m_DetectClientRequirement = true;
-		private static OldClientResponse m_OldClientResponse = OldClientResponse.LenientKick;
+		private static bool m_DetectClientRequirement = false;
+		private static OldClientResponse m_OldClientResponse = OldClientResponse.Ignore;
 
 		private static ClientVersion m_Required;
 		private static bool m_AllowRegular = true, m_AllowUOTD = true, m_AllowGod = true;
