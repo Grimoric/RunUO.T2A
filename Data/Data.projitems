@@ -58,7 +58,6 @@
     <None Include="$(MSBuildThisFileDirectory)shrink.cfg" />
     <None Include="$(MSBuildThisFileDirectory)signs.cfg" />
     <None Include="$(MSBuildThisFileDirectory)treasure.cfg" />
-    <None Include="$(MSBuildThisFileDirectory)UOT2A.COM-master.zip" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Components\doors.txt" />
@@ -71,7 +70,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Components\walls.txt" />
     <Content Include="$(MSBuildThisFileDirectory)Locations\felucca.xml" />
     <Content Include="$(MSBuildThisFileDirectory)names.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)objects.xml" />
     <Content Include="$(MSBuildThisFileDirectory)Regions.xml" />
     <Content Include="$(MSBuildThisFileDirectory)SpawnDefinitions.xml" />
   </ItemGroup>
