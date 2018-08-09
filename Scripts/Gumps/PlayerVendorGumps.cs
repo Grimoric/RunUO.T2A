@@ -408,9 +408,6 @@ namespace Server.Gumps
 			if ( m_Vendor is PlayerVendor && !((PlayerVendor)m_Vendor).CanInteractWith( from, true ) )
 				return;
 
-			if ( m_Vendor is PlayerBarkeeper && !((PlayerBarkeeper)m_Vendor).IsOwner( from ) )
-				return;
-
 			if ( info.ButtonID == 0 )
 			{
 				if ( m_Vendor is PlayerVendor ) // do nothing for barkeeps
@@ -602,9 +599,6 @@ namespace Server.Gumps
 				if ( m_Vendor is PlayerVendor && !((PlayerVendor)m_Vendor).CanInteractWith( m_Mob, true ) )
 					return;
 
-				if ( m_Vendor is PlayerBarkeeper && !((PlayerBarkeeper)m_Vendor).IsOwner( m_Mob ) )
-					return;
-
 				m_Item.Hue = hue;
 				m_Mob.SendGump( new PlayerVendorCustomizeGump( m_Vendor, m_Mob ) );
 			}
@@ -629,9 +623,6 @@ namespace Server.Gumps
 					return;
 
 				if ( m_Vendor is PlayerVendor && !((PlayerVendor)m_Vendor).CanInteractWith( m_Mob, true ) )
-					return;
-
-				if ( m_Vendor is PlayerBarkeeper && !((PlayerBarkeeper)m_Vendor).IsOwner( m_Mob ) )
 					return;
 
 				if ( m_FacialHair )

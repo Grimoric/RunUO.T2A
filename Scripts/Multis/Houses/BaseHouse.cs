@@ -165,11 +165,6 @@ namespace Server.Multis
 
 			foreach ( PlayerVendor vendor in list )
 				vendor.Destroy( true );
-
-			list = new ArrayList( PlayerBarkeepers );
-
-			foreach ( PlayerBarkeeper barkeeper in list )
-				barkeeper.Delete();
 		}
 
 		public virtual void Decay_Sandbox()
@@ -233,11 +228,6 @@ namespace Server.Multis
 
 		public const int MaximumBarkeepCount = 2;
 
-		public virtual bool CanPlaceNewBarkeep()
-		{
-			return PlayerBarkeepers.Count < MaximumBarkeepCount;
-		}
-
 		public static bool IsThereVendor( Point3D location, Map map )
 		{
 			bool vendor = false;
@@ -248,7 +238,7 @@ namespace Server.Multis
 			{
 				if ( Math.Abs( location.Z - entity.Z ) <= 16 )
 				{
-					if ( entity is PlayerVendor || entity is PlayerBarkeeper )
+					if ( entity is PlayerVendor )
 					{
 						vendor = true;
 						break;
@@ -300,12 +290,6 @@ namespace Server.Multis
 			}
 
 			foreach ( PlayerVendor mobile in PlayerVendors )
-			{
-				if ( mobile.Map != Map.Internal )
-					list.Add( mobile );
-			}
-
-			foreach ( Mobile mobile in PlayerBarkeepers )
 			{
 				if ( mobile.Map != Map.Internal )
 					list.Add( mobile );
@@ -2221,7 +2205,6 @@ namespace Server.Multis
 		public ArrayList Secures{ get{ return m_Secures; } }
 		public HouseSign Sign{ get{ return m_Sign; } set{ m_Sign = value; } }
 		public ArrayList PlayerVendors{ get{ return m_PlayerVendors; } }
-		public ArrayList PlayerBarkeepers{ get{ return m_PlayerBarkeepers; } }
 
 		public DateTime BuiltOn
 		{
