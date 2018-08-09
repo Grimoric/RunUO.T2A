@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>5405a77b-4f9f-4a18-b5fd-4384fdd2d226</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Data</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Assemblies.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Binary\Bounds.bin" />
+    <None Include="$(MSBuildThisFileDirectory)bodyTable.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Common.map" />
+    <None Include="$(MSBuildThisFileDirectory)containers.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\britain.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\bucs.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\bucsportal.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\cove.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\delucia.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\despise.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\destard.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\hythloth.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\jhelom.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\magincia.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\magincia.missing.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\minoc.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\moonglow.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\nujelm.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\ocllo.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\papua.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\patches.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\serpent pillars.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\serpentshold.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\shame.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\shrines.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\skara.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\trinsic.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\vesper.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\wind.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\yew.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\_covetous.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\_deceit.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\_despise.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\_destard.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\_fire.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\_hedgemaze.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\_hythloth.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\_ice.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\_orccave.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\_shame.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\_terathankeep.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\_wrong.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)items.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)mobiles.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)pageresponse.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)shrink.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)signs.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)treasure.cfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Components\doors.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Components\floors.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Components\misc.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Components\roof.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Components\stairs.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Components\suppinfo.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Components\teleprts.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Components\walls.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Locations\felucca.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)names.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)objects.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Regions.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)SpawnDefinitions.xml" />
+  </ItemGroup>
+</Project>

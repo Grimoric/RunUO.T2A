@@ -18,7 +18,6 @@ namespace Server.Items
 
 		public override SkillName AccuracySkill{ get{ return SkillName.Archery; } }
 
-		private Timer m_RecoveryTimer; // so we don't start too many timers
 		private bool m_Balanced;
 		private int m_Velocity;
 		
