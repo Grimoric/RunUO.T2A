@@ -1,0 +1,235 @@
+﻿Order vs Chaos was a system used before Faction was introduced in UOR.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Old newsgroup post explaining in details how it worked pre Aug 1998:
+https://groups.google.com/forum/#!searchin/rec.games.computer.ultima.online/order$20chaos%7Csort:date/rec.games.computer.ultima.online/xDxy3xKGb5U/k7jWiUvmNukJ
+
+[***Please Explain the Order and Chaos Shield***]
+
+(1)
+Sorry for the stupidity, but if someone could explain the shield system
+I would be most appreciative. Not a newbie but probably should be
+
+(2)
+You must have Great Lord title to get a Chaos or Order sheild. Then you go to
+lord british's or lord blackthorn's castle(blackthorn = chaos, british = order)
+and get one. Only you can use your sheild. If anyone else attempts to take it
+or use it it exploads. The 2 sheilds provide 7 or so armour value i believe and
+an order guard can fight a chaos guard in town without guards killing them. 
+The only problem is that people dont like to play their roles so you end up
+having great lords with chaos sheilds( making them a guard of chaos) attacking
+dreadlords.....go figure. I always thought a guard of chaos wouldnt kill
+followers of chaos. Heh...
+
+(3)
+>You must have Great Lord title to get a Chaos or Order sheild. Then you go to
+>lord british's or lord blackthorn's castle(blackthorn = chaos, british = order)
+>and get one.
+
+Actually, you must be at the TOP of notoriety in GL, +127, not just
++120.  then you say"virtue guard" to a guard with the shield of your
+choice, then say "yea" when they ask if you want to join.
+
+>The only problem is that people dont like to play their roles so you end up
+>having great lords with chaos sheilds( making them a guard of chaos) attacking
+>dreadlords.....go figure. I always thought a guard of chaos wouldnt kill
+>followers of chaos. Heh...
+
+and moron PK boy here doesn't realize that Chaos Shield wearers are
+followers of Lord Blackthorn, who is most honorable, but believes in
+more free choice than Lord Blackthorn.
+
+In reality it was a way to allow the more powerful characters to get a
+little PvP experience without having to become scumbag PKers, preying
+on newbies and powerful characters alike.
+
+(4)
+> You must have Great Lord title to get a Chaos or Order sheild. Then you go to
+> lord british's or lord blackthorn's castle(blackthorn = chaos, british = order)
+> and get one. Only you can use your sheild. If anyone else attempts to take it
+> or use it it exploads. The 2 sheilds provide 7 or so armour value i believe and
+> an order guard can fight a chaos guard in town without guards killing them.
+> The only problem is that people dont like to play their roles so you end up
+> having great lords with chaos sheilds( making them a guard of chaos) attacking
+> dreadlords.....go figure. I always thought a guard of chaos wouldnt kill
+> followers of chaos. Heh...
+
+Chaos does not equal evil.  That is why one must be a Great Lord/Lady to
+get not only an Order Shield, but also a Chaos Shield.  Read Sherry the
+Mouse's book on the subject :)  
+
+(5)
+> always thought a guard of chaos wouldnt kill followers of chaos. Heh...
+
+So you're a follower of Chaos then? I suppose that means you follow
+Compassion, the virtue aligned the most with Chaos? I suppose that
+also means your character believes in the ideas Blackthorn expresses
+in "On the Diversity of Our Land", which basically speaks against
+random killing and general brutality against all sentient beings.
+
+Is that you?
+
+If so I'm sorry that the Chaos Guards went after you, because they are
+not supposed to be NPKs.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Seams like the old pre-T2A system required the player to hold the shield and not just join the system:
+https://groups.google.com/forum/#!searchin/rec.games.computer.ultima.online/Order$20and$20Chaos$20Shield%7Csort:date/rec.games.computer.ultima.online/KOTF9c4A_FE/KXnZJoPSQCQJ
+
+[***Virtue Guards Implementation A Mockey***]
+
+(1)
+Okay, so my VG character, Anna McCloud, is in town, her Order shield
+in her bank account, so she could shop without being attacked every
+ten seconds.
+She's by the bank, when she notices another Order Guard (who is trying
+to bank) about to be attacked by a Chaos Guard named "Gospadin
+Peroda."
+
+Anna McCloud: Be warned Lord Raswell!
+Anna McCloud: You are about to be attacked!
+Raswell Jr: sorry
+Raswell Jr: Im very
+
+[Anna notices he can't move, decides to get her shield to help]
+
+Anna McCloud: bank
+Raswell Jr: heavy
+
+[But before she can, Raswell leaves using magic]
+
+Raswell Jr: Kal Ort Por
+Gospadin Peroda: you're very gone
+Gospadin Peroda: heh
+Anna McCloud: Why you could not wait?
+Anna McCloud: That was not virtuous!
+Anna McCloud: You could have at least waited until he was done
+banking!
+Gospadin Peroda: Fuck virtue, I just do it to pk people
+Anna McCloud: You are no Great Lord!
+Gospadin Peroda: Anna
+Anna McCloud: You dishonor Lord Blackthorn!
+Gospadin Peroda: you're the one who posted to the CoB, right?
+Gospadin Peroda: Kal In Ex
+You are now Anna McCloud, Master Warrior
+
+[The next two lines are system messages, too]
+
+Anna McCloud: Thou hast made a mockery of the virtues!
+You are dead.
+
+
+So be warned - even if you don't have the shield on you, but just have
+in your bank account - Incognito can STILL work on you.
+
+I could get into a rant about how upset I am, but actually I'm just
+more resigned than anything, the fact that this could happen doesn't
+even surprise me.
+
+I don't know what I'll do now. I called the meeting for the 22nd, I'm
+not sure I'll show up. It'll likely go on without me at least in some
+form, if it does I hope it's a success. But for now, I'm not thrilled
+with UO, to say the least, and (incidentally) not thrilled with
+players like "Gospadin Peroda" who roleplay so badly....  :-(
+
+(2)
+No, the way it goes is if you are wearing the shield then the spell is
+unable to harm you. However, if you have the shield in your backpack and
+apparently in your deposit box it can still cause you to get killed.
+
+(3)
+>No, the way it goes is if you are wearing the shield then the spell is
+>unable to harm you. However, if you have the shield in your backpack and
+>apparently in your deposit box it can still cause you to get killed.
+I know that's the "way it goes" - now. But that's not the way it was
+*intended.*
+
+As it is now, getting the shield at all is just too dangerous. If you
+wear it, PKer "Great Lords" can and will attack you without warning,
+though at least that's part of the intent. But if you have it in your
+backpack or bank account, you can be killed with complete ease.
+
+I knew about the backpack bug, I did not know about the bank account
+bug.
+
+I wouldn't have been so annoyed if Anna had had the shield equipped
+and had been attacked normally. But she was killed by a BeAvIs type
+using bug exploitation - and even though OSI is *supposed* to punish
+people like "Gospadin Peroda" when they do this, I know there's no
+chance of that ever happening.... :-(
+
+(4)
+> I thought you cant cast incognito on Virtue uards anymore. Hmmmm I
+> think I read it on the latest patch infos at owo.com. Youre right this
+> guy shouldn't have any shield.
+> 
+> OSI please stop those good notoriety Pkers. I think this problem is
+> not new to you.
+> 
+> Jorgus (pacific)
+> 
+> I wasn't aware that as a virtue guard you can kill in town.
+Here is how the incognito bug works now.
+
+If you have the shield in your backpack or in your bank deposit box, it
+will work.
+If you have the shield EQUIPED, it will not work.
+
+I know the UOvualt URL has moved, but people should really make an
+effort to visit UO information sites to keep themselves updated......
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Here is a description on a update version released in T2A:
+https://uo.com/wiki/ultima-online-wiki/technical/previous-publishes/1998-2/1998-8-11th-june/
+
+[***A new free-for-all warfare method exists: order and chaos guilds.***]
+- Order and Virtue guards as they currently exist go away.
+- Guildmasters can now declare their guild to be either order or chaos, if they meet the requirements.
+- You must be at the third tier of Fame (the level just below Lord) and not be a murderer, in order to join an order or chaos guild.
+- Any members who do not meet the requirements when a guild becomes an order or chaos guild will be kicked out of the guild automatically.
+- If you are a member of an order or chaos guild, and become a murderer, or lose enough fame to fall below the requirements (by dying or by atrophy), you’ll be removed from the guild.
+- All members of order and chaos guilds will be forced to display their guild abbreviation at all times. In addition, their abbreviation will automatically be followed by “(Order)” or “(Chaos)”.
+- If you are a member of an order or chaos guild, and do not have the special shield, you can simply say “order shield” or “chaos shield” to one of the guards of Lord British or Lord Blackthorn (you must ask the appropriate guard for the appropriate shield, of course).
+- The shields will no longr disappear immediately. They are also no longer required to be worn.
+- For highlighting purposes, all members of guilds of the opposing alignment will appear orange, and can be freely attacked. All members of guilds of the same alignment will appear green, and can also be freely attacked.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Here is a update changes explained:
+https://web.archive.org/web/20000831173243/http://uo.stratics.com/reputation/coguards.shtml
+
+First notice that the term "Virtue Guard" is no longer used. Since they never really had anything to do with the Virtues, they are now only referred to as Chaos/Order Guards.
+
+What are the requirements for being a Chaos or Order Guard?
+- You must belong to a guild. If you're not in a guild, you'll have to purchase a Guildstone and declare yourself as a single person guild.
+- You cannot be a murderer.
+- How do I become a Chaos or Order Guard?
+- Under a new guildmaster option, a guildmaster can declare his guild to be either a Chaos or Order Guild assuming the guildmaster meets the requirements for being a Chaos or Order Guard.
+- Any members who do not meet the new guild requirements when a guild is converted over will be removed from the guild.
+- If you are a member of a Chaos or Order guild, and you become a murderer, or lose fame below the requirement (by dying, or by atrophy), you'll be removed from the guild.
+- All members of Chaos and Order guilds are forced to display their guild abbreviation. In addition to this, members will have (Chaos) or (Order) after their guild abbreviation.
+- If you are a member of a Chaos or Order guild, and you don't have a shield, simply say "chaos shield" to one of Lord Blackthorne's guards or "order shield" to one of Lord British's guards.
+- All guild members of the opposite alignment will appear orange, and members can be freely attacked.
+- All guild members of the same alignment will appear green, and members can be freely attacked.
+- What special rules does the shield have in the new system?
+- The shields are no longer required to be worn. (But they are nice shields)
+- Shields will not disappear right away anymore. However, they are valueless, so they can't be sold. If anyone tries to equip a Chaos or Order shield who isn't a member of the appropriate guild type, the shield will destroy itself.
+- Shields don't ever kill anyone anymore.
+- You can no longer cast spells with the shield equipped.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-Grim

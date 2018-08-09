@@ -19,8 +19,6 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new GenericBuyInfo( "1060834", typeof( Engines.Plants.PlantBowl ), 2, 20, 0x15FD, 0 ) );
-
 				Add( new GenericBuyInfo( typeof( Arrow ), 2, 20, 0xF3F, 0 ) );
 				Add( new GenericBuyInfo( typeof( Bolt ), 5, 20, 0x1BFB, 0 ) );
 

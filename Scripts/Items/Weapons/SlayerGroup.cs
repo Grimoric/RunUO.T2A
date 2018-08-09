@@ -120,13 +120,13 @@ namespace Server.Items
 
 			reptilian.Opposition = new SlayerGroup[]{ arachnid };
 			reptilian.FoundOn = new Type[]{ typeof( TerathanAvenger ), typeof( TerathanMatriarch ) };
-			reptilian.Super = new SlayerEntry( SlayerName.ReptilianDeath, typeof( AncientWyrm ), typeof( DeepSeaSerpent ), typeof( Dragon ), typeof( Drake ), typeof( GiantIceWorm ), typeof( IceSerpent ), typeof( GiantSerpent ), typeof( IceSnake ), typeof( LavaSerpent ), typeof( LavaSnake ), typeof( Lizardman ), typeof( OphidianArchmage ), typeof( OphidianKnight ), typeof( OphidianMage ), typeof( OphidianMatriarch ), typeof( OphidianWarrior ), typeof( SeaSerpent ), typeof( SilverSerpent ), typeof( Snake ), typeof( WhiteWyrm ), typeof( Wyvern ) );
+			reptilian.Super = new SlayerEntry( SlayerName.ReptilianDeath, typeof( AncientWyrm ), typeof( DeepSeaSerpent ), typeof( Dragon ), typeof( Drake ), typeof( IceSerpent ), typeof( GiantSerpent ), typeof( IceSnake ), typeof( LavaSerpent ), typeof( LavaSnake ), typeof( Lizardman ), typeof( OphidianArchmage ), typeof( OphidianKnight ), typeof( OphidianMage ), typeof( OphidianMatriarch ), typeof( OphidianWarrior ), typeof( SeaSerpent ), typeof( SilverSerpent ), typeof( Snake ), typeof( WhiteWyrm ), typeof( Wyvern ) );
 			reptilian.Entries = new SlayerEntry[]
 				{
 					new SlayerEntry( SlayerName.DragonSlaying, typeof( AncientWyrm ), typeof( Dragon ), typeof( Drake ), typeof( WhiteWyrm ), typeof( Wyvern ) ),
 					new SlayerEntry( SlayerName.LizardmanSlaughter, typeof( Lizardman ) ),
 					new SlayerEntry( SlayerName.Ophidian, typeof( OphidianArchmage ), typeof( OphidianKnight ), typeof( OphidianMage ), typeof( OphidianMatriarch ), typeof( OphidianWarrior ) ),
-					new SlayerEntry( SlayerName.SnakesBane, typeof( DeepSeaSerpent ), typeof( GiantIceWorm ), typeof( GiantSerpent ), typeof( IceSerpent ), typeof( IceSnake ), typeof( LavaSerpent ), typeof( LavaSnake ), typeof( SeaSerpent ), typeof( SilverSerpent ), typeof( Snake ) )
+					new SlayerEntry( SlayerName.SnakesBane, typeof( DeepSeaSerpent ), typeof( GiantSerpent ), typeof( IceSerpent ), typeof( IceSnake ), typeof( LavaSerpent ), typeof( LavaSnake ), typeof( SeaSerpent ), typeof( SilverSerpent ), typeof( Snake ) )
 				};
 
 			m_Groups = new SlayerGroup[]

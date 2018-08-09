@@ -33,7 +33,6 @@ namespace Server.Mobiles
 			VirtualArmor = 34;
 			ControlSlots = 2;
 
-			PackItem( new FertileDirt( Utility.RandomMinMax( 1, 4 ) ) );
 			PackItem( new MandrakeRoot() );
 			
 			Item ore = new IronOre( 5 );

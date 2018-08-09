@@ -202,25 +202,6 @@
     <Compile Include=".\Engines\Pathing\PathAlgorithm.cs" />
     <Compile Include=".\Engines\Pathing\PathFollower.cs" />
     <Compile Include=".\Engines\Pathing\SlowAStarAlgorithm.cs" />
-    <Compile Include=".\Engines\Plants\EmptyTheBowlGump.cs" />
-    <Compile Include=".\Engines\Plants\MainPlantGump.cs" />
-    <Compile Include=".\Engines\Plants\MiscItems\FertileDirt.cs" />
-    <Compile Include=".\Engines\Plants\MiscItems\GreenThorns.cs" />
-    <Compile Include=".\Engines\Plants\MiscItems\OrangePetals.cs" />
-    <Compile Include=".\Engines\Plants\MiscItems\RedLeaves.cs" />
-    <Compile Include=".\Engines\Plants\MiscMobiles\GiantIceWorm.cs" />
-    <Compile Include=".\Engines\Plants\Network\DisplayHelpTopic.cs" />
-    <Compile Include=".\Engines\Plants\PlantBowl.cs" />
-    <Compile Include=".\Engines\Plants\PlantHue.cs" />
-    <Compile Include=".\Engines\Plants\PlantItem.cs" />
-    <Compile Include=".\Engines\Plants\PlantPourTarget.cs" />
-    <Compile Include=".\Engines\Plants\PlantResources.cs" />
-    <Compile Include=".\Engines\Plants\PlantSystem.cs" />
-    <Compile Include=".\Engines\Plants\PlantType.cs" />
-    <Compile Include=".\Engines\Plants\PollinateTarget.cs" />
-    <Compile Include=".\Engines\Plants\ReproductionGump.cs" />
-    <Compile Include=".\Engines\Plants\Seed.cs" />
-    <Compile Include=".\Engines\Plants\SetToDecorativeGump.cs" />
     <Compile Include=".\Engines\RemoteAdmin\Network.cs" />
     <Compile Include=".\Engines\RemoteAdmin\PacketHandlers.cs" />
     <Compile Include=".\Engines\RemoteAdmin\Packets.cs" />
@@ -395,6 +376,9 @@
     <Compile Include=".\Items\Armor\DaemonBone\DaemonGloves.cs" />
     <Compile Include=".\Items\Armor\DaemonBone\DaemonLegs.cs" />
     <Compile Include="Commands\GenMonsters.cs" />
+    <Compile Include="Engines\Factions %28Virtue Guards%29\Mobiles\BaseShieldGuard.cs" />
+    <Compile Include="Engines\Factions %28Virtue Guards%29\Mobiles\ChaosGuard.cs" />
+    <Compile Include="Engines\Factions %28Virtue Guards%29\Mobiles\OrderGuard.cs" />
     <Compile Include="Items\Armor\Plate\Bascinet.cs" />
     <Compile Include="Items\Armor\Bone\BoneHelm.cs" />
     <Compile Include="Items\Armor\Chain\ChainCoif.cs" />
@@ -1803,7 +1787,9 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Engines\Factions %28Virtue Guards%29\informations.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>
     <VisualStudio AllowExistingFolder="true" />

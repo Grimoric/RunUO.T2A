@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Server.Engines.Plants;
 using Server.Mobiles;
 using Server.Network;
 using Server.Targeting;
@@ -477,10 +476,6 @@ namespace Server.Items
                         from.PlaySound( 0x4E );
                     }
                 }
-            }
-            else if( targ is PlantItem )
-            {
-                ( (PlantItem)targ ).Pour( from, this );
             }
             else
             {
