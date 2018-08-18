@@ -20,7 +20,7 @@ namespace Server.Items
 			{
 				BaseClothing item = (BaseClothing)target;
 
-				if ( item.LootType == LootType.Blessed || item.BlessedFor == from || Mobile.InsuranceEnabled && item.Insured ) // Check if its already newbied (blessed)
+				if ( item.LootType == LootType.Blessed ) // Check if its already newbied (blessed)
 				{
 					from.SendLocalizedMessage( 1045113 ); // That item is already blessed
 				}

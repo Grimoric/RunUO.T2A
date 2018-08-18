@@ -6,7 +6,6 @@ namespace Server
 	{
 		public static void Configure()
 		{
-			Mobile.InsuranceEnabled = false;
 			ObjectPropertyList.Enabled = false;
 			Mobile.VisibleDamageType = VisibleDamageType.None;
 			Mobile.GuildClickMessage = true;

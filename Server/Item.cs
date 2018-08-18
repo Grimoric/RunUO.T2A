@@ -968,8 +968,6 @@ namespace Server
 				list.Add( 1038021 ); // blessed
 			else if ( m_LootType == LootType.Cursed )
 				list.Add( 1049643 ); // cursed
-			else if ( Insured )
-				list.Add( 1061682 ); // <b>insured</b>
 		}
 
 		/// <summary>
@@ -1008,11 +1006,6 @@ namespace Server
 				AddSecureProperty( list );
 			else if ( IsLockedDown )
 				AddLockedDownProperty( list );
-
-			Mobile blessedFor = this.BlessedFor;
-
-			if ( blessedFor != null && !blessedFor.Deleted )
-				AddBlessedForProperty( list, blessedFor );
 
 			if ( DisplayLootType )
 				AddLootTypeProperty( list );
@@ -4442,42 +4435,6 @@ namespace Server
 			Delete();
 		}
 
-		public bool Insured
-		{
-			get{ return GetFlag( ImplFlag.Insured ); }
-			set{ SetFlag( ImplFlag.Insured, value ); InvalidateProperties(); }
-		}
-
-		public bool PayedInsurance
-		{
-			get{ return GetFlag( ImplFlag.PayedInsurance ); }
-			set{ SetFlag( ImplFlag.PayedInsurance, value ); }
-		}
-
-		public Mobile BlessedFor
-		{
-			get
-			{
-				CompactInfo info = LookupCompactInfo();
-
-				if ( info != null )
-					return info.m_BlessedFor;
-
-				return null;
-			}
-			set
-			{
-				CompactInfo info = AcquireCompactInfo();
-
-				info.m_BlessedFor = value;
-
-				if ( info.m_BlessedFor == null )
-					VerifyCompactInfo();
-
-				InvalidateProperties();
-			}
-		}
-
 		public virtual bool CheckBlessed( object obj )
 		{
 			return CheckBlessed( obj as Mobile );
@@ -4485,10 +4442,10 @@ namespace Server
 
 		public virtual bool CheckBlessed( Mobile m )
 		{
-			if ( m_LootType == LootType.Blessed || Mobile.InsuranceEnabled && Insured )
+			if ( m_LootType == LootType.Blessed )
 				return true;
 
-			return m != null && m == this.BlessedFor;
+			return false;
 		}
 
 		public virtual bool CheckNewbied()
@@ -4498,12 +4455,6 @@ namespace Server
 
 		public virtual bool IsStandardLoot()
 		{
-			if ( Mobile.InsuranceEnabled && Insured )
-				return false;
-
-			if ( this.BlessedFor != null )
-				return false;
-
 			return m_LootType == LootType.Regular;
 		}
 
