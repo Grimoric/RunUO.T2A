@@ -99,12 +99,6 @@ namespace Server.Mobiles
 		private int m_Profession;
 		private bool m_IsStealthing; // IsStealthing should be moved to Server.Mobiles
 		private bool m_IgnoreMobiles; // IgnoreMobiles should be moved to Server.Mobiles
-		private bool m_NinjaWepCooldown;
-		/*
-		 * a value of zero means, that the mobile is not executing the spell. Otherwise,
-		 * the value should match the BaseMana required
-		*/
-		private int m_ExecutesLightningStrike; // move to Server.Mobiles??
 
 		private DateTime m_LastOnline;
 		private Server.Guilds.RankDefinition m_GuildRank;
@@ -130,18 +124,6 @@ namespace Server.Mobiles
 		}
 
 		public List<Mobile> AutoStabled { get { return m_AutoStabled; } }
-
-		public bool NinjaWepCooldown
-		{
-			get
-			{
-				return m_NinjaWepCooldown;
-			}
-			set
-			{
-				m_NinjaWepCooldown = value;
-			}
-		}
 
 		public List<Mobile> AllFollowers
 		{
@@ -249,20 +231,6 @@ namespace Server.Mobiles
 			get{ return m_NpcGuildGameTime; }
 			set{ m_NpcGuildGameTime = value; }
 		}
-
-		public int ExecutesLightningStrike
-		{
-			get { return m_ExecutesLightningStrike; }
-			set { m_ExecutesLightningStrike = value; }
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public int ToothAche
-		{
-			get { return CandyCane.GetToothAche( this ); }
-			set { CandyCane.SetToothAche( this, value ); }
-		}
-
 		#endregion
 
 		#region PlayerFlags
@@ -387,26 +355,6 @@ namespace Server.Mobiles
 			get { return m_PeacedUntil; }
 			set { m_PeacedUntil = value; }
 		}
-
-		#region Scroll of Alacrity
-		private DateTime m_AcceleratedStart;
-
-		[CommandProperty(AccessLevel.GameMaster)]
-		public DateTime AcceleratedStart
-		{
-			get { return m_AcceleratedStart; }
-			set { m_AcceleratedStart = value; }
-		}
-
-		private SkillName m_AcceleratedSkill;
-
-		[CommandProperty(AccessLevel.GameMaster)]
-		public SkillName AcceleratedSkill
-		{
-			get { return m_AcceleratedSkill; }
-			set { m_AcceleratedSkill = value; }
-		}
-		#endregion
 
 		public static Direction GetDirection4( Point3D from, Point3D to )
 		{

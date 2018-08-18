@@ -27,8 +27,6 @@ namespace Server.Mobiles
 
 		private DateTime m_LastRestock;
 
-		private DateTime m_NextTrickOrTreat;
-
 		public override bool CanTeach { get { return true; } }
 
 		public override bool BardImmune { get { return true; } }
@@ -40,10 +38,6 @@ namespace Server.Mobiles
 		public virtual bool IsActiveSeller { get { return IsActiveVendor; } } // repsonse to vendor BUY
 
 		public virtual NpcGuild NpcGuild { get { return NpcGuild.None; } }
-
-		public override bool IsInvulnerable { get { return true; } }
-
-		public virtual DateTime NextTrickOrTreat { get { return m_NextTrickOrTreat; } set { m_NextTrickOrTreat = value; } }
 
 		public override bool ShowFameTitle { get { return false; } }
 

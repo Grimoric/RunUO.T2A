@@ -15,8 +15,6 @@ namespace Server.Mobiles
         {
         }
 
-        public override bool IsInvulnerable { get { return true; } }
-
         public override void InitSBInfo()
         {
             m_SBInfos.Add(new SBBanker());
