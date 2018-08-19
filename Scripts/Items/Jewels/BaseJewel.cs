@@ -29,7 +29,7 @@ namespace Server.Items
 		public int MaxHitPoints
 		{
 			get{ return m_MaxHitPoints; }
-			set{ m_MaxHitPoints = value; InvalidateProperties(); }
+			set{ m_MaxHitPoints = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -49,8 +49,6 @@ namespace Server.Items
 						Delete();
 					else if ( m_HitPoints > MaxHitPoints )
 						m_HitPoints = MaxHitPoints;
-
-					InvalidateProperties();
 				}
 			}
 		}
@@ -66,7 +64,7 @@ namespace Server.Items
 		public GemType GemType
 		{
 			get{ return m_GemType; }
-			set{ m_GemType = value; InvalidateProperties(); }
+			set{ m_GemType = value; }
 		}
 
 		public virtual int BaseGemTypeNumber{ get{ return 0; } }
@@ -99,19 +97,6 @@ namespace Server.Items
 
 		public BaseJewel( Serial serial ) : base( serial )
 		{
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			int prop;
-
-			if ( (prop = ArtifactRarity) > 0 )
-				list.Add( 1061078, prop.ToString() ); // artifact rarity ~1_val~
-
-			if ( m_HitPoints >= 0 && m_MaxHitPoints > 0 )
-				list.Add( 1060639, "{0}\t{1}", m_HitPoints, m_MaxHitPoints ); // durability ~1_val~ / ~2_val~
 		}
 
 		public override void Serialize( GenericWriter writer )

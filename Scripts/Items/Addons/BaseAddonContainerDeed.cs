@@ -22,8 +22,6 @@ namespace Server.Items
 				{
 					m_Resource = value;
 					Hue = CraftResources.GetHue( m_Resource );
-					
-					InvalidateProperties();
 				}
 			}
 		}
@@ -69,14 +67,6 @@ namespace Server.Items
 				from.Target = new InternalTarget( this );
 			else
 				from.SendLocalizedMessage( 1062334 ); // This item must be in your backpack to be used.
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( !CraftResources.IsStandard( m_Resource ) )
-				list.Add( CraftResources.GetLocalizationNumber( m_Resource ) );
 		}
 
 		#region ICraftable

@@ -46,9 +46,6 @@ namespace Server.Mobiles
                     m_Description = value;
                 else
                     m_Description = "";
-
-                if (Valid)
-                    Item.InvalidateProperties();
             }
         }
 
@@ -124,43 +121,6 @@ namespace Server.Mobiles
                 return true;
 
             return targ.GetType().IsDefined(typeof(PlayerVendorTargetAttribute), false);
-        }
-
-        public override void GetChildNameProperties(ObjectPropertyList list, Item item)
-        {
-            base.GetChildNameProperties(list, item);
-
-            PlayerVendor pv = RootParent as PlayerVendor;
-
-            if (pv == null)
-                return;
-
-            VendorItem vi = pv.GetVendorItem(item);
-
-            if (vi == null)
-                return;
-
-            if (!vi.IsForSale)
-                list.Add(1043307); // Price: Not for sale.
-            else if (vi.IsForFree)
-                list.Add(1043306); // Price: FREE!
-            else
-                list.Add(1043304, vi.FormattedPrice); // Price: ~1_COST~
-        }
-
-        public override void GetChildProperties(ObjectPropertyList list, Item item)
-        {
-            base.GetChildProperties(list, item);
-
-            PlayerVendor pv = RootParent as PlayerVendor;
-
-            if (pv == null)
-                return;
-
-            VendorItem vi = pv.GetVendorItem(item);
-
-            if (vi != null && vi.Description != null && vi.Description.Length > 0)
-                list.Add(1043305, vi.Description); // <br>Seller's Description:<br>"~1_DESC~"
         }
 
         public override void OnSingleClickContained(Mobile from, Item item)
@@ -551,8 +511,6 @@ namespace Server.Mobiles
             VendorItem vi = new VendorItem(item, price, description, created);
             m_SellItems[item] = vi;
 
-            item.InvalidateProperties();
-
             return vi;
         }
 
@@ -569,8 +527,6 @@ namespace Server.Mobiles
                 {
                     RemoveVendorItem(subItem);
                 }
-
-                item.InvalidateProperties();
             }
         }
 

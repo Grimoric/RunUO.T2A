@@ -17,19 +17,19 @@ namespace Server.Items
 		private Point2D m_Location;
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public int Level{ get{ return m_Level; } set{ m_Level = value; InvalidateProperties(); } }
+		public int Level{ get{ return m_Level; } set{ m_Level = value; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public bool Completed{ get{ return m_Completed; } set{ m_Completed = value; InvalidateProperties(); } }
+		public bool Completed{ get{ return m_Completed; } set{ m_Completed = value; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public Mobile CompletedBy{ get{ return m_CompletedBy; } set{ m_CompletedBy = value; InvalidateProperties(); } }
+		public Mobile CompletedBy{ get{ return m_CompletedBy; } set{ m_CompletedBy = value; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public Mobile Decoder{ get{ return m_Decoder; } set{ m_Decoder = value; InvalidateProperties(); } }
+		public Mobile Decoder{ get{ return m_Decoder; } set{ m_Decoder = value; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public Map ChestMap{ get{ return m_Map; } set{ m_Map = value; InvalidateProperties(); } }
+		public Map ChestMap{ get{ return m_Map; } set{ m_Map = value; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public Point2D ChestLocation{ get{ return m_Location; } set{ m_Location = value; } }
@@ -726,18 +726,6 @@ namespace Server.Items
 					return 1063452;
 				else
 					return 1041510 + m_Level;
-			}
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			list.Add( m_Map == Map.Felucca ? 1041502 : 1041503 ); // for somewhere in Felucca : for somewhere in Trammel
-
-			if ( m_Completed )
-			{
-				list.Add( 1041507, m_CompletedBy == null ? "someone" : m_CompletedBy.Name ); // completed by ~1_val~
 			}
 		}
 

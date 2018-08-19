@@ -42,7 +42,6 @@ namespace Server.Multis
 		        if (m_Owner != null)
 		        {
                     m_Owner.RestrictDecay = value;
-                    m_Owner.InvalidateProperties();
                 }
             }
 		}

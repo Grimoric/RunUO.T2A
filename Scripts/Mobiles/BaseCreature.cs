@@ -330,7 +330,7 @@ namespace Server.Mobiles
 		public bool IsBonded
 		{
 			get{ return m_IsBonded; }
-			set{ m_IsBonded = value; InvalidateProperties(); }
+			set{ m_IsBonded = value; }
 		}
 
 		public bool IsDeadPet
@@ -2082,8 +2082,6 @@ namespace Server.Mobiles
 
 				m_bControlled = value;
 				Delta( MobileDelta.Noto );
-
-				InvalidateProperties();
 			}
 		}
 
@@ -2223,11 +2221,6 @@ namespace Server.Mobiles
 
 				if ( m_AI != null )
 					m_AI.OnCurrentOrderChanged();
-
-				InvalidateProperties();
-
-				if ( m_ControlMaster != null )
-					m_ControlMaster.InvalidateProperties();
 			}
 		}
 
@@ -2338,8 +2331,6 @@ namespace Server.Mobiles
 
 				m_bSummoned = value;
 				Delta( MobileDelta.Noto );
-
-				InvalidateProperties();
 			}
 		}
 
@@ -3677,21 +3668,6 @@ namespace Server.Mobiles
 			base.OnDoubleClick( from );
 		}
 
-		public override void AddNameProperties( ObjectPropertyList list )
-		{
-			base.AddNameProperties( list );
-
-            if ( Summoned )
-				list.Add( 1049646 ); // (summoned)
-			else if ( Controlled && Commandable )
-			{
-				if ( IsBonded )	//Intentional difference (showing ONLY bonded when bonded instead of bonded & tame)
-					list.Add( 1049608 ); // (bonded)
-				else
-					list.Add( 502006 ); // (tame)
-			}
-		}
-
         private static string[] m_GuildTypes = new string[]
         {
                 "",
@@ -4140,9 +4116,6 @@ namespace Server.Mobiles
 			SummonMaster = null;
 
 			base.OnDelete();
-
-			if ( m != null )
-				m.InvalidateProperties();
 		}
 
 		public override bool CanBeHarmful( Mobile target, bool message, bool ignoreOurBlessedness )
@@ -4218,8 +4191,6 @@ namespace Server.Mobiles
 
 				Delta( MobileDelta.Noto );
 			}
-
-			InvalidateProperties();
 
 			return true;
 		}

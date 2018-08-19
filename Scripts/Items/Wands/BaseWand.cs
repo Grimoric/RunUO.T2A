@@ -40,14 +40,14 @@ namespace Server.Items
 		public WandEffect Effect
 		{
 			get{ return m_WandEffect; }
-			set{ m_WandEffect = value; InvalidateProperties(); }
+			set{ m_WandEffect = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int Charges
 		{
 			get{ return m_Charges; }
-			set{ m_Charges = value; InvalidateProperties(); }
+			set{ m_Charges = value; }
 		}
 
 		public BaseWand( WandEffect effect, int minCharges, int maxCharges ) : base( Utility.RandomList( 0xDF2, 0xDF3, 0xDF4, 0xDF5 ) )
@@ -128,26 +128,6 @@ namespace Server.Items
 
 					break;
 				}
-			}
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			switch ( m_WandEffect )
-			{
-				case WandEffect.Clumsiness:			list.Add( 1017326, m_Charges.ToString() ); break; // clumsiness charges: ~1_val~
-				case WandEffect.Identification:		list.Add( 1017350, m_Charges.ToString() ); break; // identification charges: ~1_val~
-				case WandEffect.Healing:			list.Add( 1017329, m_Charges.ToString() ); break; // healing charges: ~1_val~
-				case WandEffect.Feeblemindedness:	list.Add( 1017327, m_Charges.ToString() ); break; // feeblemind charges: ~1_val~
-				case WandEffect.Weakness:			list.Add( 1017328, m_Charges.ToString() ); break; // weakness charges: ~1_val~
-				case WandEffect.MagicArrow:			list.Add( 1060492, m_Charges.ToString() ); break; // magic arrow charges: ~1_val~
-				case WandEffect.Harming:			list.Add( 1017334, m_Charges.ToString() ); break; // harm charges: ~1_val~
-				case WandEffect.Fireball:			list.Add( 1060487, m_Charges.ToString() ); break; // fireball charges: ~1_val~
-				case WandEffect.GreaterHealing:		list.Add( 1017330, m_Charges.ToString() ); break; // greater healing charges: ~1_val~
-				case WandEffect.Lightning:			list.Add( 1060491, m_Charges.ToString() ); break; // lightning charges: ~1_val~
-				case WandEffect.ManaDraining:		list.Add( 1017339, m_Charges.ToString() ); break; // mana drain charges: ~1_val~
 			}
 		}
 

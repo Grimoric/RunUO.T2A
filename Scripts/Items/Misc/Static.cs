@@ -48,7 +48,7 @@ namespace Server.Items
 		public int Number
 		{
 			get{ return m_LabelNumber; }
-			set{ m_LabelNumber = value; InvalidateProperties(); }
+			set{ m_LabelNumber = value; }
 		}
 
 		public override int LabelNumber{ get{ return m_LabelNumber; } }

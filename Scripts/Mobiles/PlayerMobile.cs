@@ -2090,7 +2090,7 @@ namespace Server.Mobiles
 		public bool Young
 		{
 			get{ return GetFlag( PlayerFlag.Young ); }
-			set{ SetFlag( PlayerFlag.Young, value ); InvalidateProperties(); }
+			set{ SetFlag( PlayerFlag.Young, value ); }
 		}
 
 		public override string ApplyNameSuffix( string suffix )

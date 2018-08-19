@@ -643,15 +643,11 @@ namespace Server
 			foreach ( Item item in m_Items.Values ) {
 				if ( item.Parent == null )
 					item.UpdateTotals();
-
-				item.ClearProperties();
 			}
 
 			foreach ( Mobile m in m_Mobiles.Values ) {
 				m.UpdateRegion(); // Is this really needed?
 				m.UpdateTotals();
-
-				m.ClearProperties();
 			}
 
 			watch.Stop();

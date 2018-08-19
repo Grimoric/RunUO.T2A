@@ -14,28 +14,28 @@ namespace Server.Items
 		public HouseRaffleStone Stone
 		{
 			get { return m_Stone; }
-			set { m_Stone = value; InvalidateProperties(); }
+			set { m_Stone = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster, AccessLevel.Seer )]
 		public Point3D PlotLocation
 		{
 			get { return m_PlotLocation; }
-			set { m_PlotLocation = value; InvalidateProperties(); }
+			set { m_PlotLocation = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster, AccessLevel.Seer )]
 		public Map PlotFacet
 		{
 			get { return m_Facet; }
-			set { m_Facet = value; InvalidateProperties(); }
+			set { m_Facet = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster, AccessLevel.Seer )]
 		public Mobile AwardedTo
 		{
 			get { return m_AwardedTo; }
-			set { m_AwardedTo = value; InvalidateProperties(); }
+			set { m_AwardedTo = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster, AccessLevel.Seer )]
@@ -84,23 +84,6 @@ namespace Server.Items
 		public bool ValidLocation()
 		{
 			return m_PlotLocation != Point3D.Zero && m_Facet != null && m_Facet != Map.Internal;
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( ValidLocation() )
-			{
-				list.Add( 1060658, "location\t{0}", HouseRaffleStone.FormatLocation( m_PlotLocation, m_Facet, false ) ); // ~1_val~: ~2_val~
-				list.Add( 1060659, "facet\t{0}", m_Facet ); // ~1_val~: ~2_val~
-				list.Add( 1150486 ); // [Marked Item]
-			}
-
-			if ( IsExpired )
-				list.Add( 1150487 ); // [Expired]
-
-			//list.Add( 1060660, "shard\t{0}", ServerList.ServerName ); // ~1_val~: ~2_val~
 		}
 
 		public override void OnDoubleClick( Mobile from )

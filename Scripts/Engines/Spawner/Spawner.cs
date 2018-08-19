@@ -60,8 +60,6 @@ namespace Server.Mobiles
 				m_SpawnNames = value;
 				if ( m_SpawnNames.Count < 1 )
 					Stop();
-
-				InvalidateProperties();
 			}
 		}
 
@@ -126,7 +124,7 @@ namespace Server.Mobiles
 		public int Count
 		{
 			get { return m_Count; }
-			set { m_Count = value; InvalidateProperties(); }
+			set { m_Count = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -152,8 +150,6 @@ namespace Server.Mobiles
 					Start();
 				else
 					Stop();
-
-				InvalidateProperties();
 			}
 		}
 
@@ -174,35 +170,35 @@ namespace Server.Mobiles
 		public int HomeRange
 		{
 			get { return m_HomeRange; }
-			set { m_HomeRange = value; InvalidateProperties(); }
+			set { m_HomeRange = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int WalkingRange
 		{
 			get { return m_WalkingRange; }
-			set { m_WalkingRange = value; InvalidateProperties(); }
+			set { m_WalkingRange = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int Team
 		{
 			get { return m_Team; }
-			set { m_Team = value; InvalidateProperties(); }
+			set { m_Team = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public TimeSpan MinDelay
 		{
 			get { return m_MinDelay; }
-			set { m_MinDelay = value; InvalidateProperties(); }
+			set { m_MinDelay = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public TimeSpan MaxDelay
 		{
 			get { return m_MaxDelay; }
-			set { m_MaxDelay = value; InvalidateProperties(); }
+			set { m_MaxDelay = value; }
 		}
 
 		public DateTime End
@@ -232,7 +228,7 @@ namespace Server.Mobiles
 		public bool Group
 		{
 			get { return m_Group; }
-			set { m_Group = value; InvalidateProperties(); }
+			set { m_Group = value; }
 		}
 
 		[Constructable]
@@ -306,31 +302,6 @@ namespace Server.Mobiles
 			from.SendGump( g );
 		}
 
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( m_Running )
-			{
-				list.Add( 1060742 ); // active
-
-				list.Add( 1060656, m_Count.ToString() ); // amount to make: ~1_val~
-				list.Add( 1061169, m_HomeRange.ToString() ); // range ~1_val~
-				list.Add( 1060658, "walking range\t{0}", m_WalkingRange ); // ~1_val~: ~2_val~
-
-				list.Add( 1060659, "group\t{0}", m_Group ); // ~1_val~: ~2_val~
-				list.Add( 1060660, "team\t{0}", m_Team ); // ~1_val~: ~2_val~
-				list.Add( 1060661, "speed\t{0} to {1}", m_MinDelay, m_MaxDelay ); // ~1_val~: ~2_val~
-
-				if ( m_SpawnNames.Count != 0 )
-					list.Add( SpawnedStats() );
-			}
-			else
-			{
-				list.Add( 1060743 ); // inactive
-			}
-		}
-
 		public override void OnSingleClick( Mobile from )
 		{
 			base.OnSingleClick( from );
@@ -371,8 +342,6 @@ namespace Server.Mobiles
 
 		public void Defrag()
 		{
-			bool removed = false;
-
 			for ( int i = 0; i < m_Spawned.Count; ++i )
 			{
 				ISpawnable e = m_Spawned[i];
@@ -409,12 +378,8 @@ namespace Server.Mobiles
 				{
 					m_Spawned.RemoveAt(i);
 					--i;
-					removed = true;
 				}
 			}
-
-			if ( removed )
-				InvalidateProperties();
 		}
 
 		bool ISpawner.UnlinkOnTaming { get { return true; } }
@@ -422,8 +387,6 @@ namespace Server.Mobiles
 		void ISpawner.Remove( ISpawnable spawn )
 		{
 			m_Spawned.Remove( spawn );
-
-			InvalidateProperties();
 		}
 
 		public void OnTick()
@@ -653,8 +616,6 @@ namespace Server.Mobiles
 
 				bc.Home = m_UsesSpawnerHome ? this.HomeLocation : bc.Location;
 			}
-
-			InvalidateProperties();
 		}
 
 		public Point3D GetSpawnPosition()
@@ -853,8 +814,6 @@ namespace Server.Mobiles
 				if ( Insensitive.Equals( creatureName, e.GetType().Name ) )
 					e.Delete();
 			}
-
-			InvalidateProperties();
 		}
 
 		public void RemoveSpawned()
@@ -863,8 +822,6 @@ namespace Server.Mobiles
 
 			for ( int i = m_Spawned.Count - 1; i >= 0; --i )
 				m_Spawned[i].Delete();
-
-			InvalidateProperties();
 		}
 
 		public void BringToHome()

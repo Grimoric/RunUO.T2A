@@ -38,7 +38,7 @@ namespace Server.Items
 		public int SoundID
 		{
 			get { return m_SoundID; }
-			set { m_SoundID = value; InvalidateProperties(); }
+			set { m_SoundID = value; }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]

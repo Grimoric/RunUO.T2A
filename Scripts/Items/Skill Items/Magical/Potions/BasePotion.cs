@@ -50,7 +50,6 @@ namespace Server.Items
 			set
 			{
 				m_PotionEffect = value;
-				InvalidateProperties();
 			}
 		}
 

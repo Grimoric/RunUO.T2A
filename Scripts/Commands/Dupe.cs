@@ -101,8 +101,6 @@ namespace Server.Commands
 								else
 									newItem.MoveToWorld( from.Location, from.Map );
 
-								newItem.InvalidateProperties();
-
 								CommandLogging.WriteLine( from, "{0} {1} duped {2} creating {3}", from.AccessLevel, CommandLogging.Format( from ), CommandLogging.Format( targ ), CommandLogging.Format( newItem ) );
 							}
 						}

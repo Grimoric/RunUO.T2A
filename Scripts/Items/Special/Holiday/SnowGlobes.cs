@@ -64,7 +64,7 @@ namespace Server.Items
 		public SnowGlobeTypeOne Place
 		{
 			get { return m_Type; }
-			set { m_Type = value; InvalidateProperties(); }
+			set { m_Type = value; }
 		}
 
 		public override int LabelNumber { get { return 1041454 + (int) m_Type; } }
@@ -166,7 +166,7 @@ namespace Server.Items
 		public SnowGlobeTypeTwo Place
 		{
 			get { return m_Type; }
-			set { m_Type = value; InvalidateProperties(); }
+			set { m_Type = value; }
 		}
 
 		public override string DefaultName
@@ -252,7 +252,7 @@ namespace Server.Items
 		public SnowGlobeTypeThree Place
 		{
 			get { return m_Type; }
-			set { m_Type = value; InvalidateProperties(); }
+			set { m_Type = value; }
 		}
 
 		public override int LabelNumber

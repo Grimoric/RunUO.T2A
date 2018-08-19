@@ -124,7 +124,6 @@ namespace Server.Items
 					}
 
 					m_State = value;
-					InvalidateProperties();
 				}
 			}
 		}
@@ -138,7 +137,6 @@ namespace Server.Items
 				m_Bounds = value;
 
 				InvalidateRegion();
-				InvalidateProperties();
 			}
 		}
 
@@ -151,7 +149,6 @@ namespace Server.Items
 				m_Facet = value;
 
 				InvalidateRegion();
-				InvalidateProperties();
 			}
 		}
 
@@ -159,7 +156,7 @@ namespace Server.Items
 		public Mobile Winner
 		{
 			get { return m_Winner; }
-			set { m_Winner = value; InvalidateProperties(); }
+			set { m_Winner = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster, AccessLevel.Seer )]
@@ -173,14 +170,14 @@ namespace Server.Items
 		public DateTime Started
 		{
 			get { return m_Started; }
-			set { m_Started = value; InvalidateProperties(); }
+			set { m_Started = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster, AccessLevel.Seer )]
 		public TimeSpan Duration
 		{
 			get { return m_Duration; }
-			set { m_Duration = value; InvalidateProperties(); }
+			set { m_Duration = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -209,7 +206,6 @@ namespace Server.Items
 			set
 			{
 				m_TicketPrice = Math.Max( 0, value );
-				InvalidateProperties();
 			}
 		}
 
@@ -402,29 +398,6 @@ namespace Server.Items
 				return String.Format( "{0} gold", m_TicketPrice );
 		}
 
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( ValidLocation() )
-				list.Add( FormatLocation() );
-
-			switch ( m_State )
-			{
-				case HouseRaffleState.Active:
-				{
-					list.Add( 1060658, "ticket price\t{0}", FormatPrice() ); // ~1_val~: ~2_val~
-					list.Add( 1060659, "ends\t{0}", m_Started + m_Duration ); // ~1_val~: ~2_val~
-					break;
-				}
-				case HouseRaffleState.Completed:
-				{
-					list.Add( 1060658, "winner\t{0}", m_Winner == null ? "unknown" : m_Winner.Name ); // ~1_val~: ~2_val~
-					break;
-				}
-			}
-		}
-
 		public override void OnSingleClick( Mobile from )
 		{
 			base.OnSingleClick( from );
@@ -530,8 +503,6 @@ namespace Server.Items
 					}
 				}
 			}
-
-			InvalidateProperties();
 		}
 
 		public override void OnDelete()

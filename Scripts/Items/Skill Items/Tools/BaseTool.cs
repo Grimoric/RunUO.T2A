@@ -21,21 +21,21 @@ namespace Server.Items
 		public Mobile Crafter
 		{
 			get{ return m_Crafter; }
-			set{ m_Crafter = value; InvalidateProperties(); }
+			set{ m_Crafter = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public ToolQuality Quality
 		{
 			get{ return m_Quality; }
-			set{ UnscaleUses(); m_Quality = value; InvalidateProperties(); ScaleUses(); }
+			set{ UnscaleUses(); m_Quality = value; ScaleUses(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int UsesRemaining
 		{
 			get { return m_UsesRemaining; }
-			set { m_UsesRemaining = value; InvalidateProperties(); }
+			set { m_UsesRemaining = value; }
 		}
 
 		public virtual bool BreakOnDepletion { get { return true; } }
@@ -43,7 +43,6 @@ namespace Server.Items
 		public void ScaleUses()
 		{
 			m_UsesRemaining = m_UsesRemaining * GetUsesScalar() / 100;
-			InvalidateProperties();
 		}
 
 		public void UnscaleUses()
@@ -75,20 +74,6 @@ namespace Server.Items
 
 		public BaseTool( Serial serial ) : base( serial )
 		{
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			// Makers mark not displayed on OSI
-			//if ( m_Crafter != null )
-			//	list.Add( 1050043, m_Crafter.Name ); // crafted by ~1_NAME~
-
-			if ( m_Quality == ToolQuality.Exceptional )
-				list.Add( 1060636 ); // exceptional
-
-			list.Add( 1060584, m_UsesRemaining.ToString() ); // uses remaining: ~1_val~
 		}
 
 		public virtual void DisplayDurabilityTo( Mobile m )

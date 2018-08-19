@@ -28,13 +28,6 @@ namespace Server.Items
 			}
 		}
 
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			list.Add( m_Boat.Status );
-		}
-
 		public void Say( int number )
 		{
 			PublicOverheadMessage( MessageType.Regular, 0x3B2, number );
@@ -43,14 +36,6 @@ namespace Server.Items
 		public void Say( int number, string args )
 		{
 			PublicOverheadMessage( MessageType.Regular, 0x3B2, number, args );
-		}
-
-		public override void AddNameProperty( ObjectPropertyList list )
-		{
-			if ( m_Boat != null && m_Boat.ShipName != null )
-				list.Add( 1042884, m_Boat.ShipName ); // the tiller man of the ~1_SHIP_NAME~
-			else
-				base.AddNameProperty( list );
 		}
 
 		public override void OnSingleClick( Mobile from )

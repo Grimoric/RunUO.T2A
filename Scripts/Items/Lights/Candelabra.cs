@@ -43,14 +43,6 @@ namespace Server.Items
 			}
 		}
 
-		public override void AddNameProperties( ObjectPropertyList list )
-		{
-			base.AddNameProperties( list );
-
-			if ( m_IsShipwreckedItem )
-				list.Add( 1041645 ); // recovered from a shipwreck
-		}
-
 		public override void OnSingleClick( Mobile from )
 		{
 			base.OnSingleClick( from );

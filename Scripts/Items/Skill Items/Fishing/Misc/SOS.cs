@@ -36,7 +36,6 @@ namespace Server.Items
 			{
 				m_Level = Math.Max( 1, Math.Min( value, 4 ) );
 				UpdateHue();
-				InvalidateProperties();
 			}
 		}
 

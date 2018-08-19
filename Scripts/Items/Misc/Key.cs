@@ -103,7 +103,6 @@ namespace Server.Items
 			set
 			{
 				m_Description = value;
-				InvalidateProperties();
 			}
 		}
 
@@ -132,7 +131,6 @@ namespace Server.Items
 			set
 			{
 				m_KeyVal = value;
-				InvalidateProperties();
 			}
 		}
 
@@ -256,21 +254,6 @@ namespace Server.Items
 
 			from.SendLocalizedMessage( number );
 			from.Target = t;
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			string desc;
-
-			if ( m_KeyVal == 0 )
-				desc = "(blank)";
-			else if ( (desc = m_Description) == null || (desc = desc.Trim()).Length <= 0 )
-				desc = null;
-
-			if ( desc != null )
-				list.Add( desc );
 		}
 
 		public override void OnSingleClick( Mobile from )

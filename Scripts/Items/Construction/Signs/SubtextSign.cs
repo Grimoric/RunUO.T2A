@@ -10,7 +10,7 @@ namespace Server.Items
 		public string Subtext
 		{
 			get { return m_Subtext; }
-			set { m_Subtext = value; InvalidateProperties(); }
+			set { m_Subtext = value; }
 		}
 
 		[Constructable]
@@ -33,14 +33,6 @@ namespace Server.Items
 
 			if ( !String.IsNullOrEmpty( m_Subtext ) )
 				LabelTo( from, m_Subtext );
-		}
-
-		public override void AddNameProperties( ObjectPropertyList list )
-		{
-			base.AddNameProperties( list );
-
-			if ( !String.IsNullOrEmpty( m_Subtext ) )
-				list.Add( m_Subtext );
 		}
 
 		public SubtextSign( Serial serial )

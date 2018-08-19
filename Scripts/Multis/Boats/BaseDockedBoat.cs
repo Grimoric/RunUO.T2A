@@ -16,7 +16,7 @@ namespace Server.Multis
 		public Point3D Offset{ get{ return m_Offset; } set{ m_Offset = value; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public string ShipName{ get{ return m_ShipName; } set{ m_ShipName = value; InvalidateProperties(); } }
+		public string ShipName{ get{ return m_ShipName; } set{ m_ShipName = value; } }
 
 		public BaseDockedBoat( int id, Point3D offset, BaseBoat boat ) : base( 0x14F4 )
 		{
@@ -88,14 +88,6 @@ namespace Server.Multis
 		}
 
 		public abstract BaseBoat Boat{ get; }
-
-		public override void AddNameProperty( ObjectPropertyList list )
-		{
-			if ( m_ShipName != null )
-				list.Add( m_ShipName );
-			else
-				base.AddNameProperty( list );
-		}
 
 		public override void OnSingleClick( Mobile from )
 		{

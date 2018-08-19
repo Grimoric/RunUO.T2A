@@ -12,8 +12,6 @@ namespace Server.Items
 		{ 
 		} 
 
-		public override bool ForceShowProperties{ get{ return ObjectPropertyList.Enabled; } } 
-
 		public override void Serialize(GenericWriter writer) 
 		{ 
 			base.Serialize(writer); 
@@ -40,8 +38,6 @@ namespace Server.Items
 		public StatueSouth2(Serial serial) : base(serial) 
 		{ 
 		} 
-
-		public override bool ForceShowProperties{ get{ return ObjectPropertyList.Enabled; } } 
 
 		public override void Serialize(GenericWriter writer) 
 		{ 
@@ -70,8 +66,6 @@ namespace Server.Items
 		{ 
 		} 
 
-		public override bool ForceShowProperties{ get{ return ObjectPropertyList.Enabled; } } 
-
 		public override void Serialize(GenericWriter writer) 
 		{ 
 			base.Serialize(writer); 
@@ -98,8 +92,6 @@ namespace Server.Items
 		public StatueWest(Serial serial) : base(serial) 
 		{ 
 		} 
-
-		public override bool ForceShowProperties{ get{ return ObjectPropertyList.Enabled; } } 
 
 		public override void Serialize(GenericWriter writer) 
 		{ 
@@ -128,8 +120,6 @@ namespace Server.Items
 		{ 
 		} 
 
-		public override bool ForceShowProperties{ get{ return ObjectPropertyList.Enabled; } } 
-
 		public override void Serialize(GenericWriter writer) 
 		{ 
 			base.Serialize(writer); 
@@ -156,8 +146,6 @@ namespace Server.Items
 		public StatueEast2(Serial serial) : base(serial) 
 		{ 
 		} 
-
-		public override bool ForceShowProperties{ get{ return ObjectPropertyList.Enabled; } } 
 
 		public override void Serialize(GenericWriter writer) 
 		{ 
@@ -186,8 +174,6 @@ namespace Server.Items
 		{ 
 		} 
 
-		public override bool ForceShowProperties{ get{ return ObjectPropertyList.Enabled; } } 
-
 		public override void Serialize(GenericWriter writer) 
 		{ 
 			base.Serialize(writer); 
@@ -214,8 +200,6 @@ namespace Server.Items
 		public BustSouth(Serial serial) : base(serial) 
 		{ 
 		} 
-
-		public override bool ForceShowProperties{ get{ return ObjectPropertyList.Enabled; } } 
 
 		public override void Serialize(GenericWriter writer) 
 		{ 
@@ -244,8 +228,6 @@ namespace Server.Items
 		{ 
 		} 
 
-		public override bool ForceShowProperties{ get{ return ObjectPropertyList.Enabled; } } 
-
 		public override void Serialize(GenericWriter writer) 
 		{ 
 			base.Serialize(writer); 
@@ -273,8 +255,6 @@ namespace Server.Items
 		{ 
 		} 
 
-		public override bool ForceShowProperties{ get{ return ObjectPropertyList.Enabled; } } 
-
 		public override void Serialize(GenericWriter writer) 
 		{ 
 			base.Serialize(writer); 
@@ -301,8 +281,6 @@ namespace Server.Items
 		public StatuePegasus2(Serial serial) : base(serial) 
 		{ 
 		} 
-
-		public override bool ForceShowProperties{ get{ return ObjectPropertyList.Enabled; } } 
 
 		public override void Serialize(GenericWriter writer) 
 		{ 

@@ -12,7 +12,7 @@ namespace Server.Items
 		public int Charges
 		{
 			get{ return m_Charges; }
-			set{ m_Charges = value; InvalidateProperties(); }
+			set{ m_Charges = value; }
 		}
 
 		[Constructable]
@@ -29,13 +29,6 @@ namespace Server.Items
 
 		public FireworksWand( Serial serial ) : base( serial )
 		{
-		}
-
-		public override void AddNameProperties( ObjectPropertyList list )
-		{
-			base.AddNameProperties( list );
-
-			list.Add( 1060741, m_Charges.ToString() ); // charges: ~1_val~
 		}
 
 		public override void OnDoubleClick( Mobile from )

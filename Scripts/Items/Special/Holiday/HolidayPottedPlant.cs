@@ -5,8 +5,6 @@ namespace Server.Items
 {
     public class HolidayPottedPlant : Item
 	{
-		public override bool ForceShowProperties { get { return ObjectPropertyList.Enabled; } }
-
 		[Constructable]
 		public HolidayPottedPlant()
 			: this( Utility.RandomMinMax( 0x11C8, 0x11CC ) )

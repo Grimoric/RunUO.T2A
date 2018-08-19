@@ -42,28 +42,28 @@ namespace Server.Items
 		public SlayerName Slayer
 		{
 			get{ return m_Slayer; }
-			set{ m_Slayer = value; InvalidateProperties(); }
+			set{ m_Slayer = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public SlayerName Slayer2
 		{
 			get{ return m_Slayer2; }
-			set{ m_Slayer2 = value; InvalidateProperties(); }
+			set{ m_Slayer2 = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public InstrumentQuality Quality
 		{
 			get{ return m_Quality; }
-			set{ UnscaleUses(); m_Quality = value; InvalidateProperties(); ScaleUses(); }
+			set{ UnscaleUses(); m_Quality = value; ScaleUses(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public Mobile Crafter
 		{
 			get{ return m_Crafter; }
-			set{ m_Crafter = value; InvalidateProperties(); }
+			set{ m_Crafter = value; }
 		}
 
 		public virtual int InitMinUses{ get{ return 350; } }
@@ -75,7 +75,7 @@ namespace Server.Items
 		public int UsesRemaining
 		{
 			get{ CheckReplenishUses(); return m_UsesRemaining; }
-			set{ m_UsesRemaining = value; InvalidateProperties(); }
+			set{ m_UsesRemaining = value; }
 		}
 
 		private DateTime m_LastReplenished;
@@ -100,13 +100,7 @@ namespace Server.Items
 				m_ReplenishesCharges = value; 
 			}
 		}
-
 		public void CheckReplenishUses()
-		{
-			CheckReplenishUses( true );
-		}
-
-		public void CheckReplenishUses( bool invalidate )
 		{
 			if( !m_ReplenishesCharges || m_UsesRemaining >= InitMaxUses )
 				return;
@@ -117,10 +111,6 @@ namespace Server.Items
 
 				m_UsesRemaining = Math.Min( m_UsesRemaining + (int)( timeDifference.Ticks / ChargeReplenishRate.Ticks), InitMaxUses );	//How rude of TimeSpan to not allow timespan division.
 				m_LastReplenished = DateTime.Now;
-
-				if( invalidate )
-					InvalidateProperties();
-
 			}
 		}
 
@@ -327,42 +317,6 @@ namespace Server.Items
 			m_WellSound = wellSound;
 			m_BadlySound = badlySound;
 			UsesRemaining = Utility.RandomMinMax( InitMinUses, InitMaxUses );
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			int oldUses = m_UsesRemaining;
-			CheckReplenishUses( false );
-
-			base.GetProperties( list );
-
-			if ( m_Crafter != null )
-				list.Add( 1050043, m_Crafter.Name ); // crafted by ~1_NAME~
-
-			if ( m_Quality == InstrumentQuality.Exceptional )
-				list.Add( 1060636 ); // exceptional
-
-			list.Add( 1060584, m_UsesRemaining.ToString() ); // uses remaining: ~1_val~
-
-			if( m_ReplenishesCharges )
-				list.Add( 1070928 ); // Replenish Charges
-
-			if( m_Slayer != SlayerName.None )
-			{
-				SlayerEntry entry = SlayerGroup.GetEntryByName( m_Slayer );
-				if( entry != null )
-					list.Add( entry.Title );
-			}
-
-			if( m_Slayer2 != SlayerName.None )
-			{
-				SlayerEntry entry = SlayerGroup.GetEntryByName( m_Slayer2 );
-				if( entry != null )
-					list.Add( entry.Title );
-			}
-
-			if( m_UsesRemaining != oldUses )
-				Timer.DelayCall( TimeSpan.Zero, new TimerCallback( InvalidateProperties ) );
 		}
 
 		public override void OnSingleClick( Mobile from )

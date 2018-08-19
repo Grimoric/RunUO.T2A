@@ -6,7 +6,6 @@ namespace Server
 	{
 		public static void Configure()
 		{
-			ObjectPropertyList.Enabled = false;
 			Mobile.VisibleDamageType = VisibleDamageType.None;
 			Mobile.GuildClickMessage = true;
 			Mobile.AsciiClickMessage = true;

@@ -73,36 +73,21 @@ namespace Server.Items
 		public RepairSkillType RepairSkill
 		{
 			get { return m_Skill; }
-			set { m_Skill = value; InvalidateProperties(); }
+			set { m_Skill = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public double SkillLevel
 		{
 			get { return m_SkillLevel; }
-			set { m_SkillLevel = Math.Max( Math.Min( value, 120.0 ), 0 ); InvalidateProperties(); }
+			set { m_SkillLevel = Math.Max( Math.Min( value, 120.0 ), 0 ); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public Mobile Crafter
 		{
 			get { return m_Crafter; }
-			set { m_Crafter = value; InvalidateProperties(); }
-		}
-
-		public override void AddNameProperty( ObjectPropertyList list )
-		{
-			list.Add( 1061133, String.Format( "{0}\t{1}", GetSkillTitle( m_SkillLevel ).ToString(), RepairSkillInfo.GetInfo( m_Skill ).Name ) ); // A repair service contract from ~1_SKILL_TITLE~ ~2_SKILL_NAME~.
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if( m_Crafter != null )
-				list.Add( 1050043, m_Crafter.Name ); // crafted by ~1_NAME~
-
-			//On OSI it says it's exceptional.  Intentional difference.
+			set { m_Crafter = value; }
 		}
 
 		public override void OnSingleClick( Mobile from )

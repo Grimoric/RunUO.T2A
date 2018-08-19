@@ -38,8 +38,6 @@
 						if( rootParent != null && rootParent.Map != null && rootParent.Map != Map.Internal )
 							MoveToWorld( rootParent.Location, rootParent.Map );
 					}
-
-					InvalidateProperties();
 				}
 			}
 		}
@@ -72,29 +70,6 @@
 					LabelTo( from, LabelNumber );
 				else
 					LabelTo( from, Name );
-			}
-		}
-
-		public override void OnAosSingleClick( Mobile from )
-		{
-			if( IsEmpty )
-			{
-				base.OnAosSingleClick( from );
-			}
-			else
-			{
-				if( Name == null )
-					LabelTo( from, LabelNumber );
-				else
-					LabelTo( from, Name );
-			}
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			if( IsEmpty )
-			{
-				base.GetProperties( list );
 			}
 		}
 

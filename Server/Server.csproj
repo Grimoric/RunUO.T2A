@@ -149,7 +149,6 @@
     <Compile Include=".\Network\PacketWriter.cs" />
     <Compile Include=".\Network\SendQueue.cs" />
     <Compile Include=".\Notoriety.cs" />
-    <Compile Include=".\ObjectPropertyList.cs" />
     <Compile Include=".\Party.cs" />
     <Compile Include=".\Persistence\BinaryMemoryWriter.cs" />
     <Compile Include=".\Persistence\DualSaveStrategy.cs" />

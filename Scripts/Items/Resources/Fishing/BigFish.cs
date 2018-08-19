@@ -10,7 +10,7 @@ namespace Server.Items
 		public Mobile Fisher
 		{
 			get{ return m_Fisher; }
-			set{ m_Fisher = value; InvalidateProperties(); }
+			set{ m_Fisher = value; }
 		}
 
 		public void Carve( Mobile from, Item item )
@@ -25,19 +25,6 @@ namespace Server.Items
 		{
 			Weight = Utility.RandomMinMax( 3, 200 );	//TODO: Find correct formula.  max on OSI currently 200, OSI dev says it's not 200 as max, and ~ 1/1,000,000 chance to get highest
 			Hue = Utility.RandomBool() ? 0x847 : 0x58C;
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( Weight >= 20 )
-			{
-				if ( m_Fisher != null )
-					list.Add( 1070857, m_Fisher.Name ); // Caught by ~1_fisherman~
-
-				list.Add( 1070858, ((int)Weight).ToString() ); // ~1_weight~ stones
-			}
 		}
 
 		public BigFish( Serial serial ) : base( serial )

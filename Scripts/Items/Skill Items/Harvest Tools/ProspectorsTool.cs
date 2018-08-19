@@ -12,7 +12,7 @@ namespace Server.Items
 		public int UsesRemaining
 		{
 			get { return m_UsesRemaining; }
-			set { m_UsesRemaining = value; InvalidateProperties(); }
+			set { m_UsesRemaining = value; }
 		}
 
 		public bool ShowUsesRemaining{ get{ return true; } set{} }

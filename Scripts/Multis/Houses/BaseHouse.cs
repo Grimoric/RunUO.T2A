@@ -105,7 +105,6 @@ namespace Server.Multis
 				if ( result != m_LastDecayLevel )
 				{
 					m_LastDecayLevel = result;
-					m_Sign.InvalidateProperties();
 				}
 
 				return result;
@@ -141,9 +140,6 @@ namespace Server.Multis
 			DecayLevel oldLevel = this.DecayLevel;
 
 			m_LastRefreshed = DateTime.Now;
-
-			if ( m_Sign != null )
-				m_Sign.InvalidateProperties();
 
 			return oldLevel > DecayLevel.LikeNew;
 		}
@@ -989,36 +985,6 @@ namespace Server.Multis
 
 				Hue = 0x480;
 				Movable = false;
-			}
-
-			public override void GetProperties( ObjectPropertyList list )
-			{
-				base.GetProperties( list );
-
-				string houseName, owner, location;
-
-				houseName = m_House == null ? "an unnamed house" : m_House.Sign.GetName();
-
-				Mobile houseOwner = m_House == null ? null : m_House.Owner;
-
-				if ( houseOwner == null )
-					owner = "nobody";
-				else
-					owner = houseOwner.Name;
-
-				int xLong = 0, yLat = 0, xMins = 0, yMins = 0;
-				bool xEast = false, ySouth = false;
-
-				bool valid = m_House != null && Sextant.Format( m_House.Location, m_House.Map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth );
-
-				if ( valid )
-					location = String.Format( "{0}° {1}'{2}, {3}° {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W" );
-				else
-					location = "unknown";
-
-				list.Add( 1061112, Utility.FixHtml( houseName ) ); // House Name: ~1_val~
-				list.Add( 1061113, owner ); // Owner: ~1_val~
-				list.Add( 1061114, location ); // Location: ~1_val~
 			}
 
 			public TransferItem( Serial serial ) : base( serial )
@@ -2026,9 +1992,6 @@ namespace Server.Multis
 					list.Add( this );
 					m_Owner.Delta( MobileDelta.Noto );
 				}
-
-				if ( m_Sign != null )
-					m_Sign.InvalidateProperties();
 			}
 		}
 
@@ -2054,9 +2017,6 @@ namespace Server.Multis
 
 					if ( !m_Public ) // Privatizing the house, change to brass sign
 						ChangeSignType( 0xBD2 );
-
-					if ( m_Sign != null )
-						m_Sign.InvalidateProperties();
 				}
 			}
 		}

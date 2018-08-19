@@ -100,7 +100,7 @@ namespace Server.Items
 		public int MaxItems
 		{
 			get{ return m_MaxItems == -1 ? DefaultMaxItems : m_MaxItems; }
-			set{ m_MaxItems = value; InvalidateProperties(); }
+			set{ m_MaxItems = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -1421,12 +1421,10 @@ namespace Server.Items
 
 					case TotalType.Items:
 						m_TotalItems += delta;
-						InvalidateProperties();
 						break;
 
 					case TotalType.Weight:
 						m_TotalWeight += delta;
-						InvalidateProperties();
 						break;
 				}
 			}
@@ -1636,14 +1634,6 @@ namespace Server.Items
 				to.Send( new ContainerContent6017( to, this ) );
 			else
 				to.Send( new ContainerContent( to, this ) );
-
-			if ( ObjectPropertyList.Enabled )
-			{
-				List<Item> items = this.Items;
-
-				for ( int i = 0; i < items.Count; ++i )
-					to.Send( items[i].OPLPacket );
-			}
 		}
 
 		public void ProcessOpeners( Mobile opener )
@@ -1689,16 +1679,6 @@ namespace Server.Items
 					m_Openers = null;
 				}
 			}
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if( DisplaysContent )//CheckContentDisplay( from ) )
-			{
-				list.Add( 1050044, "{0}\t{1}", TotalItems, TotalWeight ); // ~1_COUNT~ items, ~2_WEIGHT~ stones
-    		}
 		}
 
 		public override void OnDoubleClick( Mobile from )

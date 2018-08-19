@@ -121,14 +121,6 @@ namespace Server.Commands
 										ns.Send( new MobileIncoming( targ, from ) );
 									else
 										ns.Send( new MobileIncomingOld( targ, from ) );
-
-									if ( ObjectPropertyList.Enabled )
-									{
-										ns.Send( from.OPLPacket );
-
-										foreach ( Item item in from.Items )
-											ns.Send( item.OPLPacket );
-									}
 								}
 								else
 								{

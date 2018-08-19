@@ -20,7 +20,6 @@ namespace Server.Items
 				{
 					m_Held = value;
 					UpdateWeight();
-					InvalidateProperties();
 				}
 			}
 		}
@@ -35,7 +34,6 @@ namespace Server.Items
 			set
 			{
 				m_Type = value;
-				InvalidateProperties();
 			}
 		}
 
@@ -99,40 +97,6 @@ namespace Server.Items
 
 				return m_Held > 0 ? 1041620 + (int)m_Type : 1041641; 
 			} 
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			int number;
-
-			if ( m_Held <= 0 )
-				number = 502246; // The keg is empty.
-			else if ( m_Held < 5 )
-				number = 502248; // The keg is nearly empty.
-			else if ( m_Held < 20 )
-				number = 502249; // The keg is not very full.
-			else if ( m_Held < 30 )
-				number = 502250; // The keg is about one quarter full.
-			else if ( m_Held < 40 )
-				number = 502251; // The keg is about one third full.
-			else if ( m_Held < 47 )
-				number = 502252; // The keg is almost half full.
-			else if ( m_Held < 54 )
-				number = 502254; // The keg is approximately half full.
-			else if ( m_Held < 70 )
-				number = 502253; // The keg is more than half full.
-			else if ( m_Held < 80 )
-				number = 502255; // The keg is about three quarters full.
-			else if ( m_Held < 96 )
-				number = 502256; // The keg is very full.
-			else if ( m_Held < 100 )
-				number = 502257; // The liquid is almost to the top of the keg.
-			else
-				number = 502258; // The keg is completely full.
-
-			list.Add( number );
 		}
 
 		public override void OnSingleClick( Mobile from )

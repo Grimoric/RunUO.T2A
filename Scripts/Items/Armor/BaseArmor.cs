@@ -131,49 +131,49 @@ namespace Server.Items
 		public int StrBonus
 		{
 			get{ return m_StrBonus == -1 ? OldStrBonus : m_StrBonus; }
-			set{ m_StrBonus = value; InvalidateProperties(); }
+			set{ m_StrBonus = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int DexBonus
 		{
 			get{ return m_DexBonus == -1 ? OldDexBonus : m_DexBonus; }
-			set{ m_DexBonus = value; InvalidateProperties(); }
+			set{ m_DexBonus = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int IntBonus
 		{
 			get{ return m_IntBonus == -1 ? OldIntBonus : m_IntBonus; }
-			set{ m_IntBonus = value; InvalidateProperties(); }
+			set{ m_IntBonus = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int StrRequirement
 		{
 			get{ return m_StrReq == -1 ? OldStrReq : m_StrReq; }
-			set{ m_StrReq = value; InvalidateProperties(); }
+			set{ m_StrReq = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int DexRequirement
 		{
 			get{ return m_DexReq == -1 ? OldDexReq : m_DexReq; }
-			set{ m_DexReq = value; InvalidateProperties(); }
+			set{ m_DexReq = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int IntRequirement
 		{
 			get{ return m_IntReq == -1 ? OldIntReq : m_IntReq; }
-			set{ m_IntReq = value; InvalidateProperties(); }
+			set{ m_IntReq = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool Identified
 		{
 			get{ return m_Identified; }
-			set{ m_Identified = value; InvalidateProperties(); }
+			set{ m_Identified = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -204,7 +204,6 @@ namespace Server.Items
 					}
 
 					Invalidate();
-					InvalidateProperties();
 
 					ScaleDurability();
 				}
@@ -228,7 +227,7 @@ namespace Server.Items
 		public int MaxHitPoints
 		{
 			get{ return m_MaxHitPoints; }
-			set{ m_MaxHitPoints = value; InvalidateProperties(); }
+			set{ m_MaxHitPoints = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -248,8 +247,6 @@ namespace Server.Items
 						Delete();
 					else if ( m_HitPoints > MaxHitPoints )
 						m_HitPoints = MaxHitPoints;
-
-					InvalidateProperties();
 				}
 			}
 		}
@@ -259,7 +256,7 @@ namespace Server.Items
 		public Mobile Crafter
 		{
 			get{ return m_Crafter; }
-			set{ m_Crafter = value; InvalidateProperties(); }
+			set{ m_Crafter = value; }
 		}
 
 		
@@ -267,14 +264,14 @@ namespace Server.Items
 		public ArmorQuality Quality
 		{
 			get{ return m_Quality; }
-			set{ UnscaleDurability(); m_Quality = value; Invalidate(); InvalidateProperties(); ScaleDurability(); }
+			set{ UnscaleDurability(); m_Quality = value; Invalidate(); ScaleDurability(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public ArmorDurabilityLevel Durability
 		{
 			get{ return m_Durability; }
-			set{ UnscaleDurability(); m_Durability = value; ScaleDurability(); InvalidateProperties(); }
+			set{ UnscaleDurability(); m_Durability = value; ScaleDurability(); }
 		}
 
 		public virtual int ArtifactRarity
@@ -296,7 +293,6 @@ namespace Server.Items
 					m_Protection = value;
 
 					Invalidate();
-					InvalidateProperties();
 				}
 			}
 		}
@@ -372,7 +368,6 @@ namespace Server.Items
 
 			m_HitPoints = (m_HitPoints * 100 + (scale - 1)) / scale;
 			m_MaxHitPoints = (m_MaxHitPoints * 100 + (scale - 1)) / scale;
-			InvalidateProperties();
 		}
 
 		public void ScaleDurability()
@@ -381,7 +376,6 @@ namespace Server.Items
 
 			m_HitPoints = (m_HitPoints * scale + 99) / 100;
 			m_MaxHitPoints = (m_MaxHitPoints * scale + 99) / 100;
-			InvalidateProperties();
 		}
 
 		public int GetDurabilityBonus()
@@ -1061,42 +1055,7 @@ namespace Server.Items
 		public override int Hue
 		{
 			get{ return base.Hue; }
-			set{ base.Hue = value; InvalidateProperties(); }
-		}
-
-		public override void AddNameProperty( ObjectPropertyList list )
-		{
-			int oreType;
-
-			switch ( m_Resource )
-			{
-				case CraftResource.DullCopper:		oreType = 1053108; break; // dull copper
-				case CraftResource.ShadowIron:		oreType = 1053107; break; // shadow iron
-				case CraftResource.Copper:			oreType = 1053106; break; // copper
-				case CraftResource.Bronze:			oreType = 1053105; break; // bronze
-				case CraftResource.Gold:			oreType = 1053104; break; // golden
-				case CraftResource.Agapite:			oreType = 1053103; break; // agapite
-				case CraftResource.Verite:			oreType = 1053102; break; // verite
-				case CraftResource.Valorite:		oreType = 1053101; break; // valorite
-				default: oreType = 0; break;
-			}
-
-			if ( m_Quality == ArmorQuality.Exceptional )
-			{
-				if ( oreType != 0 )
-					list.Add( 1053100, "#{0}\t{1}", oreType, GetNameString() ); // exceptional ~1_oretype~ ~2_armortype~
-				else
-					list.Add( 1050040, GetNameString() ); // exceptional ~1_ITEMNAME~
-			}
-			else
-			{
-				if ( oreType != 0 )
-					list.Add( 1053099, "#{0}\t{1}", oreType, GetNameString() ); // ~1_oretype~ ~2_armortype~
-				else if ( Name == null )
-					list.Add( LabelNumber );
-				else
-					list.Add( Name );
-			}
+			set{ base.Hue = value; }
 		}
 
 		public override bool AllowEquipedCast( Mobile from )
@@ -1105,31 +1064,6 @@ namespace Server.Items
 				return true;
 
 			return false;
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( m_Crafter != null )
-				list.Add( 1050043, m_Crafter.Name ); // crafted by ~1_NAME~
-
-			if( RequiredRace == Race.Elf )
-				list.Add( 1075086 ); // Elves Only
-
-			int prop;
-
-			if ( (prop = ArtifactRarity) > 0 )
-				list.Add( 1061078, prop.ToString() ); // artifact rarity ~1_val~
-
-			if ( (prop = GetDurabilityBonus()) > 0 )
-				list.Add( 1060410, prop.ToString() ); // durability ~1_val~%
-
-			if ( (prop = ComputeStatReq( StatType.Str )) > 0 )
-				list.Add( 1061170, prop.ToString() ); // strength requirement ~1_val~
-
-			if ( m_HitPoints >= 0 && m_MaxHitPoints > 0 )
-				list.Add( 1060639, "{0}\t{1}", m_HitPoints, m_MaxHitPoints ); // durability ~1_val~ / ~2_val~
 		}
 
 		public override void OnSingleClick( Mobile from )

@@ -72,7 +72,7 @@ namespace Server.Items
 
 				return m_House;
 			}
-			set{ m_House = value; CalculateHue(); InvalidateProperties(); }
+			set{ m_House = value; CalculateHue(); }
 		}
 
 		[CommandProperty( AccessLevel.Counselor, AccessLevel.GameMaster )]
@@ -85,7 +85,6 @@ namespace Server.Items
 			set
 			{
 				m_Description = value;
-				InvalidateProperties();
 			}
 		}
 
@@ -102,7 +101,6 @@ namespace Server.Items
 				{
 					m_Marked = value;
 					CalculateHue();
-					InvalidateProperties();
 				}
 			}
 		}
@@ -133,7 +131,6 @@ namespace Server.Items
 				{
 					m_TargetMap = value;
 					CalculateHue();
-					InvalidateProperties();
 				}
 			}
 		}
@@ -157,28 +154,9 @@ namespace Server.Items
 			m_Description = BaseRegion.GetRuneNameFor( Region.Find( m_Target, m_TargetMap ) );
 
 			CalculateHue();
-			InvalidateProperties();
 		}
 
 		private const string RuneFormat = "a recall rune for {0}";
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( m_Marked )
-			{
-				string desc;
-
-				if ( (desc = m_Description) == null || (desc = desc.Trim()).Length == 0 )
-					desc = "an unknown location";
-
-				if ( m_TargetMap == Map.Felucca )
-					list.Add( House != null ? 1062452 : 1060805, RuneFormat, desc ); // ~1_val~ (Felucca)[(House)]
-				else
-					list.Add( House != null ? "{0} ({1})(House)" : "{0} ({1})", String.Format( RuneFormat, desc ), m_TargetMap );
-			}
-		}
 
 		public override void OnSingleClick( Mobile from )
 		{

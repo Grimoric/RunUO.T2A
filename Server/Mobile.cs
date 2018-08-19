@@ -781,115 +781,12 @@ namespace Server
 		{
 		}
 
-		public int GetAOSStatus( int index )
-		{
-			return m_AOSStatusHandler == null ? 0 : m_AOSStatusHandler( this, index );
-		}
-
-		public virtual void SendPropertiesTo( Mobile from )
-		{
-			from.Send( PropertyList );
-		}
-
-		public virtual void OnAosSingleClick( Mobile from )
-		{
-			ObjectPropertyList opl = this.PropertyList;
-
-			if( opl.Header > 0 )
-			{
-				int hue;
-
-				if( m_NameHue != -1 )
-					hue = m_NameHue;
-				else if( m_AccessLevel > AccessLevel.Player )
-					hue = 11;
-				else
-					hue = Notoriety.GetHue( Notoriety.Compute( from, this ) );
-
-				from.Send( new MessageLocalized( m_Serial, Body, MessageType.Label, hue, 3, opl.Header, Name, opl.HeaderArgs ) );
-			}
-		}
-
 		public virtual string ApplyNameSuffix( string suffix )
 		{
 			return suffix;
 		}
 
-		public virtual void AddNameProperties( ObjectPropertyList list )
-		{
-			string name = Name;
-
-			if( name == null )
-				name = String.Empty;
-
-			string prefix = "";
-
-			if( ShowFameTitle && (m_Player || m_Body.IsHuman) && m_Fame >= 10000 )
-				prefix = m_Female ? "Lady" : "Lord";
-
-			string suffix = "";
-
-			if( PropertyTitle && Title != null && Title.Length > 0 )
-				suffix = Title;
-
-			BaseGuild guild = m_Guild;
-
-			if( guild != null && (m_Player || m_DisplayGuildTitle) )
-			{
-				if( suffix.Length > 0 )
-					suffix = String.Format( "{0} [{1}]", suffix, Utility.FixHtml( guild.Abbreviation ) );
-				else
-					suffix = String.Format( "[{0}]", Utility.FixHtml( guild.Abbreviation ) );
-			}
-
-			suffix = ApplyNameSuffix( suffix );
-
-			list.Add( 1050045, "{0} \t{1}\t {2}", prefix, name, suffix ); // ~1_PREFIX~~2_NAME~~3_SUFFIX~
-
-			if( guild != null && (m_DisplayGuildTitle || m_Player && guild.Type != GuildType.Regular) )
-			{
-				string type;
-
-				if( guild.Type >= 0 && (int)guild.Type < m_GuildTypes.Length )
-					type = m_GuildTypes[(int)guild.Type];
-				else
-					type = "";
-
-				string title = GuildTitle;
-
-				if( title == null )
-					title = "";
-				else
-					title = title.Trim();
-
-				if( NewGuildDisplay && title.Length > 0 )
-				{
-					list.Add( "{0}, {1}", Utility.FixHtml( title ), Utility.FixHtml( guild.Name ) );
-				}
-				else
-				{
-					if( title.Length > 0 )
-						list.Add( "{0}, {1} Guild{2}", Utility.FixHtml( title ), Utility.FixHtml( guild.Name ), type );
-					else
-						list.Add( Utility.FixHtml( guild.Name ) );
-				}
-			}
-		}
-
 		public virtual bool NewGuildDisplay { get { return false; } }
-
-		public virtual void GetProperties( ObjectPropertyList list )
-		{
-			AddNameProperties( list );
-		}
-
-		public virtual void GetChildProperties( ObjectPropertyList list, Item item )
-		{
-		}
-
-		public virtual void GetChildNameProperties( ObjectPropertyList list, Item item )
-		{
-		}
 
 		private void UpdateAggrExpire()
 		{
@@ -4180,9 +4077,6 @@ namespace Server
 					state.Send( new EquipUpdate( item ) );
 				else
 					item.SendInfoTo( state );
-
-				if( ObjectPropertyList.Enabled && item.Parent != null )
-					state.Send( item.OPLPacket );
 			}
 		}
 
@@ -5783,7 +5677,6 @@ namespace Server
 			set
 			{
 				m_Player = value;
-				InvalidateProperties();
 
 				if( !m_Player && m_Dex <= 100 && m_CombatTimer != null )
 					m_CombatTimer.Priority = TimerPriority.FiftyMS;
@@ -5804,7 +5697,6 @@ namespace Server
 			set
 			{
 				m_Title = value;
-				InvalidateProperties();
 			}
 		}
 
@@ -6068,7 +5960,6 @@ namespace Server
 				{
 					m_AccessLevel = value;
 					Delta( MobileDelta.Noto );
-					InvalidateProperties();
 
 					SendMessage( "Your access level has been changed. You are now {0}.", GetAccessLevelName( value ) );
 
@@ -6098,9 +5989,6 @@ namespace Server
 				if( oldValue != value )
 				{
 					m_Fame = value;
-
-					if( ShowFameTitle && (m_Player || m_Body.IsHuman) && oldValue >= 10000 != value >= 10000 )
-						InvalidateProperties();
 
 					OnFameChange( oldValue );
 				}
@@ -6547,14 +6435,6 @@ namespace Server
 
 							if( m.IsDeadBondedPet )
 								ns.Send( new BondedStatus( 0, m.m_Serial, 1 ) );
-
-							if( ObjectPropertyList.Enabled )
-							{
-								ns.Send( m.OPLPacket );
-
-								//foreach ( Item item in m.m_Items )
-								//	ns.Send( item.OPLPacket );
-							}
 						}
 					}
 				}
@@ -7707,14 +7587,6 @@ namespace Server
 
 								if( IsDeadBondedPet )
 									state.Send( new BondedStatus( 0, m_Serial, 1 ) );
-
-								if( ObjectPropertyList.Enabled )
-								{
-									state.Send( OPLPacket );
-
-									//foreach ( Item item in m_Items )
-									//	state.Send( item.OPLPacket );
-								}
 							}
 						}
 
@@ -8002,8 +7874,6 @@ namespace Server
 					if( m_Guild != null && !m_Guild.Disbanded && m_GuildTitle != null )
 						this.SendLocalizedMessage( 1018026, true, m_GuildTitle ); // Your guild title has changed :
 
-					InvalidateProperties();
-
 					OnGuildTitleChange( old );
 				}
 			}
@@ -8023,7 +7893,6 @@ namespace Server
 			set
 			{
 				m_DisplayGuildTitle = value;
-				InvalidateProperties();
 			}
 		}
 
@@ -8055,7 +7924,6 @@ namespace Server
 				{
 					m_NameMod = value;
 					Delta( MobileDelta.Name );
-					InvalidateProperties();
 				}
 			}
 		}
@@ -8101,7 +7969,6 @@ namespace Server
 					m_Name = value;
 					OnAfterNameChange( oldName, m_Name );
 					Delta( MobileDelta.Name );
-					InvalidateProperties();
 				}
 			}
 		}
@@ -8189,7 +8056,6 @@ namespace Server
 					m_Guild = value;
 
 					Delta( MobileDelta.Noto );
-					InvalidateProperties();
 
 					OnGuildChange( old );
 				}
@@ -8451,7 +8317,6 @@ namespace Server
 					m_BodyMod = value;
 
 					Delta( MobileDelta.Body );
-					InvalidateProperties();
 
 					CheckStatTimers();
 				}
@@ -8484,7 +8349,6 @@ namespace Server
 					m_Body = SafeBody( value );
 
 					Delta( MobileDelta.Body );
-					InvalidateProperties();
 
 					CheckStatTimers();
 				}
@@ -8582,8 +8446,6 @@ namespace Server
 		public void FreeCache()
 		{
 			Packet.Release( ref m_RemovePacket );
-			Packet.Release( ref m_PropertyList );
-			Packet.Release( ref m_OPLPacket );
 		}
 
 		private Packet m_RemovePacket;
@@ -8599,71 +8461,6 @@ namespace Server
 				}
 
 				return m_RemovePacket;
-			}
-		}
-
-		private Packet m_OPLPacket;
-
-		public Packet OPLPacket
-		{
-			get
-			{
-				if( m_OPLPacket == null )
-				{
-					m_OPLPacket = new OPLInfo( PropertyList );
-					m_OPLPacket.SetStatic();
-				}
-
-				return m_OPLPacket;
-			}
-		}
-
-		private ObjectPropertyList m_PropertyList;
-
-		public ObjectPropertyList PropertyList
-		{
-			get
-			{
-				if( m_PropertyList == null )
-				{
-					m_PropertyList = new ObjectPropertyList( this );
-
-					GetProperties( m_PropertyList );
-
-					m_PropertyList.Terminate();
-					m_PropertyList.SetStatic();
-				}
-
-				return m_PropertyList;
-			}
-		}
-
-		public void ClearProperties()
-		{
-			Packet.Release( ref m_PropertyList );
-			Packet.Release( ref m_OPLPacket );
-		}
-
-		public void InvalidateProperties()
-		{
-			if( !ObjectPropertyList.Enabled )
-				return;
-
-			if( m_Map != null && m_Map != Map.Internal && !World.Loading )
-			{
-				ObjectPropertyList oldList = m_PropertyList;
-				Packet.Release( ref m_PropertyList );
-				ObjectPropertyList newList = PropertyList;
-
-				if( oldList == null || oldList.Hash != newList.Hash )
-				{
-					Packet.Release( ref m_OPLPacket );
-					Delta( MobileDelta.Properties );
-				}
-			}
-			else
-			{
-				ClearProperties();
 			}
 		}
 
@@ -8891,14 +8688,6 @@ namespace Server
 
 									if( IsDeadBondedPet )
 										m.m_NetState.Send( new BondedStatus( 0, m_Serial, 1 ) );
-
-									if( ObjectPropertyList.Enabled )
-									{
-										m.m_NetState.Send( OPLPacket );
-
-										//foreach ( Item item in m_Items )
-										//	m.m_NetState.Send( item.OPLPacket );
-									}
 								}
 
 								if( !inOldRange && CanSee( m ) )
@@ -8917,14 +8706,6 @@ namespace Server
 
 									if( m.IsDeadBondedPet )
 										ourState.Send( new BondedStatus( 0, m.m_Serial, 1 ) );
-
-									if( ObjectPropertyList.Enabled )
-									{
-										ourState.Send( m.OPLPacket );
-
-										//foreach ( Item item in m.m_Items )
-										//	ourState.Send( item.OPLPacket );
-									}
 								}
 							}
 						}
@@ -8954,14 +8735,6 @@ namespace Server
 
 								if( IsDeadBondedPet )
 									ns.Send( new BondedStatus( 0, m_Serial, 1 ) );
-
-								if( ObjectPropertyList.Enabled )
-								{
-									ns.Send( OPLPacket );
-
-									//foreach ( Item item in m_Items )
-									//	ns.Send( item.OPLPacket );
-								}
 							}
 						}
 
@@ -9293,14 +9066,6 @@ namespace Server
 
 						if( IsDeadBondedPet )
 							state.Send( new BondedStatus( 0, m_Serial, 1 ) );
-
-						if( ObjectPropertyList.Enabled )
-						{
-							state.Send( OPLPacket );
-
-							//foreach ( Item item in m_Items )
-							//	state.Send( item.OPLPacket );
-						}
 					}
 				}
 
@@ -9718,7 +9483,6 @@ namespace Server
 			bool sendUpdate = false, sendRemove = false;
 			bool sendPublicStats = false, sendPrivateStats = false;
 			bool sendMoving = false, sendNonlocalMoving = false;
-			bool sendOPLUpdate = ObjectPropertyList.Enabled && (delta & MobileDelta.Properties) != 0;
 
 			bool sendHair = false, sendFacialHair = false, removeHair = false, removeFacialHair = false;
 
@@ -9916,16 +9680,13 @@ namespace Server
 					else
 						ourState.Send( new FacialHairEquipUpdate( m ) );
 				}
-
-				if( sendOPLUpdate )
-					ourState.Send( OPLPacket );
 			}
 
 			sendMoving = sendMoving || sendNonlocalMoving;
 			sendIncoming = sendIncoming || sendNonlocalIncoming;
 			sendHits = sendHits || sendAll;
 
-			if( m.m_Map != null && (sendRemove || sendIncoming || sendPublicStats || sendHits || sendMoving || sendOPLUpdate || sendHair || sendFacialHair || sendHealthbarPoison || sendHealthbarYellow) )
+			if( m.m_Map != null && (sendRemove || sendIncoming || sendPublicStats || sendHits || sendMoving || sendHair || sendFacialHair || sendHealthbarPoison || sendHealthbarYellow) )
 			{
 				Mobile beholder;
 
@@ -10052,9 +9813,6 @@ namespace Server
 
 							state.Send( facialhairPacket );
 						}
-
-						if( sendOPLUpdate )
-							state.Send( OPLPacket );
 					}
 				}
 
@@ -10108,7 +9866,6 @@ namespace Server
 					if( oldValue >= 5 != m_Kills >= 5 )
 					{
 						Delta( MobileDelta.Noto );
-						InvalidateProperties();
 					}
 
 					OnKillsChange( oldValue );
@@ -10152,7 +9909,6 @@ namespace Server
 				{
 					m_Criminal = value;
 					Delta( MobileDelta.Noto );
-					InvalidateProperties();
 				}
 
 				if( m_Criminal )

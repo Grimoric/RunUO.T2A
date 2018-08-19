@@ -75,7 +75,7 @@ namespace Server.Items
 		public string Title
 		{
 			get{ return m_Title; }
-			set{ m_Title = value; InvalidateProperties(); }
+			set{ m_Title = value; }
 		}
 
 		[Constructable]
@@ -101,14 +101,6 @@ namespace Server.Items
 			LootType = LootType.Blessed;
 
 			m_Title = title;
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( m_Title != null )
-				list.Add( 1062841, m_Title ); // ~1_NAME~ the Snowman
 		}
 
 		public bool Dye( Mobile from, DyeTub sender )

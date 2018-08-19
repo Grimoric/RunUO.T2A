@@ -31,7 +31,6 @@ namespace Server.Items
 			set
 			{
 				m_Owner = value;
-				InvalidateProperties();
 			}
 		}
 
@@ -97,14 +96,6 @@ namespace Server.Items
 			{
 				return TimeSpan.FromMinutes( 30.0 );
 			}
-		}
-
-		public override void AddNameProperty( ObjectPropertyList list )
-		{
-			if ( m_Owner != null )
-				list.Add( 1042887, m_Owner.Name ); // a strong box owned by ~1_OWNER_NAME~
-			else
-				base.AddNameProperty( list );
 		}
 
 		public override void OnSingleClick( Mobile from )

@@ -91,7 +91,7 @@ namespace Server.Multis
 		public bool Anchored{ get{ return m_Anchored; } set{ m_Anchored = value; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public string ShipName{ get{ return m_ShipName; } set{ m_ShipName = value; if ( m_TillerMan != null ) m_TillerMan.InvalidateProperties(); } }
+		public string ShipName{ get{ return m_ShipName; } set{ m_ShipName = value; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public BoatOrder Order{ get{ return m_Order; } set{ m_Order = value; } }
@@ -103,7 +103,7 @@ namespace Server.Multis
 		public int NextNavPoint{ get{ return m_NextNavPoint; } set{ m_NextNavPoint = value; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public DateTime TimeOfDecay{ get{ return m_DecayTime; } set{ m_DecayTime = value; if ( m_TillerMan != null ) m_TillerMan.InvalidateProperties(); } }
+		public DateTime TimeOfDecay{ get{ return m_DecayTime; } set{ m_DecayTime = value; } }
 
 		public int Status
 		{
@@ -201,7 +201,6 @@ namespace Server.Multis
 			{
 				m_TillerMan.Location = new Point3D( X + xOffset * TillerManDistance + (m_Facing == Direction.North ? 1 : 0), Y + yOffset * TillerManDistance, m_TillerMan.Z );
 				m_TillerMan.SetFacing( m_Facing );
-				m_TillerMan.InvalidateProperties();
 			}
 
 			if ( m_Hold != null )
@@ -463,9 +462,6 @@ namespace Server.Multis
 		public void Refresh()
 		{
 			m_DecayTime = DateTime.Now + BoatDecayDelay;
-
-			if( m_TillerMan != null )
-				m_TillerMan.InvalidateProperties();
 		}
 
 		private class DecayTimer : Timer

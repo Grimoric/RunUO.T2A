@@ -100,17 +100,6 @@ namespace Server
 			return null;
 		}
 
-		public static void AddTo( ObjectPropertyList list, TextDefinition def )
-		{
-			if ( def == null )
-				return;
-
-			if ( def.m_Number > 0 )
-				list.Add( def.m_Number );
-			else if ( def.m_String != null )
-				list.Add( def.m_String );
-		}
-
 		public static implicit operator TextDefinition( int v )
 		{
 			return new TextDefinition( v );

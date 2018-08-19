@@ -9,7 +9,7 @@ namespace Server.Items
 		public CraftResource Resource
 		{
 			get { return m_Resource; }
-			set { m_Resource = value; InvalidateProperties(); }
+			set { m_Resource = value; }
 		}
 
 		[Constructable]
@@ -39,21 +39,7 @@ namespace Server.Items
 			Hue = CraftResources.GetHue( resource );
 		}
 
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( !CraftResources.IsStandard( m_Resource ) )
-			{
-				int num = CraftResources.GetLocalizationNumber( m_Resource );
-
-				if ( num > 0 )
-					list.Add( num );
-				else
-					list.Add( CraftResources.GetName( m_Resource ) );
-			}
-		}
-		public Log( Serial serial ) : base( serial )
+    	public Log( Serial serial ) : base( serial )
 		{
 		}
 

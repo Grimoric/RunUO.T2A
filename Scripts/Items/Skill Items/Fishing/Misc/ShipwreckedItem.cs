@@ -24,12 +24,6 @@ namespace Server.Items
 			this.LabelTo( from, 1050039, String.Format( "#{0}\t#1041645", LabelNumber ) );
 		}
 
-		public override void AddNameProperties( ObjectPropertyList list )
-		{
-			base.AddNameProperties( list );
-			list.Add( 1041645 ); // recovered from a shipwreck
-		}
-
 		public ShipwreckedItem( Serial serial ) : base( serial )
 		{
 		}

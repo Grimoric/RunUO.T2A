@@ -44,8 +44,6 @@ namespace Server.Items
 				{
 					m_Resource = value;
 					Hue = CraftResources.GetHue( m_Resource );
-
-					InvalidateProperties();
 				}
 			}
 		}
@@ -109,14 +107,6 @@ namespace Server.Items
 				house.Addons.Remove( this );
 
 			base.OnDelete();
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( !CraftResources.IsStandard( m_Resource ) )
-				list.Add( CraftResources.GetLocalizationNumber( m_Resource ) );
 		}
 
 		public override void OnAfterDelete()

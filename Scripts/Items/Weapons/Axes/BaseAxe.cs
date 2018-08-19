@@ -28,14 +28,14 @@ namespace Server.Items
 		public int UsesRemaining
 		{
 			get { return m_UsesRemaining; }
-			set { m_UsesRemaining = value; InvalidateProperties(); }
+			set { m_UsesRemaining = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public bool ShowUsesRemaining
 		{
 			get { return m_ShowUsesRemaining; }
-			set { m_ShowUsesRemaining = value; InvalidateProperties(); }
+			set { m_ShowUsesRemaining = value; }
 		}
 
 		public virtual int GetUsesScalar()
@@ -53,7 +53,6 @@ namespace Server.Items
 			int scale = GetUsesScalar();
 
 			m_UsesRemaining = (m_UsesRemaining * 100 + (scale - 1)) / scale;
-			InvalidateProperties();
 		}
 
 		public override void ScaleDurability()
@@ -63,7 +62,6 @@ namespace Server.Items
 			int scale = GetUsesScalar();
 
 			m_UsesRemaining = (m_UsesRemaining * scale + 99) / 100;
-			InvalidateProperties();
 		}
 
 		public BaseAxe( int itemID ) : base( itemID )

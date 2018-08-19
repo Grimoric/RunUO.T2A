@@ -94,7 +94,7 @@ namespace Server.Items
 		public bool Identified
 		{
 			get{ return m_Identified; }
-			set{ m_Identified = value; InvalidateProperties(); }
+			set{ m_Identified = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -110,8 +110,6 @@ namespace Server.Items
 					value = m_MaxHits;
 
 				m_Hits = value;
-
-				InvalidateProperties();
 			}
 		}
 
@@ -119,70 +117,70 @@ namespace Server.Items
 		public int MaxHitPoints
 		{
 			get{ return m_MaxHits; }
-			set{ m_MaxHits = value; InvalidateProperties(); }
+			set{ m_MaxHits = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int PoisonCharges
 		{
 			get{ return m_PoisonCharges; }
-			set{ m_PoisonCharges = value; InvalidateProperties(); }
+			set{ m_PoisonCharges = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public Poison Poison
 		{
 			get{ return m_Poison; }
-			set{ m_Poison = value; InvalidateProperties(); }
+			set{ m_Poison = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public WeaponQuality Quality
 		{
 			get{ return m_Quality; }
-			set{ UnscaleDurability(); m_Quality = value; ScaleDurability(); InvalidateProperties(); }
+			set{ UnscaleDurability(); m_Quality = value; ScaleDurability(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public Mobile Crafter
 		{
 			get{ return m_Crafter; }
-			set{ m_Crafter = value; InvalidateProperties(); }
+			set{ m_Crafter = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public SlayerName Slayer
 		{
 			get{ return m_Slayer; }
-			set{ m_Slayer = value; InvalidateProperties(); }
+			set{ m_Slayer = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public SlayerName Slayer2
 		{
 			get { return m_Slayer2; }
-			set { m_Slayer2 = value; InvalidateProperties(); }
+			set { m_Slayer2 = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public CraftResource Resource
 		{
 			get{ return m_Resource; }
-			set{ UnscaleDurability(); m_Resource = value; Hue = CraftResources.GetHue( m_Resource ); InvalidateProperties(); ScaleDurability(); }
+			set{ UnscaleDurability(); m_Resource = value; Hue = CraftResources.GetHue( m_Resource ); ScaleDurability(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public WeaponDamageLevel DamageLevel
 		{
 			get{ return m_DamageLevel; }
-			set{ m_DamageLevel = value; InvalidateProperties(); }
+			set{ m_DamageLevel = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public WeaponDurabilityLevel DurabilityLevel
 		{
 			get{ return m_DurabilityLevel; }
-			set{ UnscaleDurability(); m_DurabilityLevel = value; InvalidateProperties(); ScaleDurability(); }
+			set{ UnscaleDurability(); m_DurabilityLevel = value; ScaleDurability(); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -196,7 +194,7 @@ namespace Server.Items
 		public int MaxRange
 		{
 			get{ return m_MaxRange == -1 ? OldMaxRange : m_MaxRange; }
-			set{ m_MaxRange = value; InvalidateProperties(); }
+			set{ m_MaxRange = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -217,7 +215,7 @@ namespace Server.Items
 		public SkillName Skill
 		{
 			get{ return m_Skill == (SkillName)(-1) ? OldSkill : m_Skill; }
-			set{ m_Skill = value; InvalidateProperties(); }
+			set{ m_Skill = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -238,14 +236,14 @@ namespace Server.Items
 		public int MinDamage
 		{
 			get{ return m_MinDamage == -1 ? OldMinDamage : m_MinDamage; }
-			set{ m_MinDamage = value; InvalidateProperties(); }
+			set{ m_MinDamage = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int MaxDamage
 		{
 			get{ return m_MaxDamage == -1 ? OldMaxDamage : m_MaxDamage; }
-			set{ m_MaxDamage = value; InvalidateProperties(); }
+			set{ m_MaxDamage = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -258,14 +256,14 @@ namespace Server.Items
 
 				return OldSpeed;
 			}
-			set{ m_Speed = value; InvalidateProperties(); }
+			set{ m_Speed = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int StrRequirement
 		{
 			get{ return m_StrReq == -1 ? OldStrengthReq : m_StrReq; }
-			set{ m_StrReq = value; InvalidateProperties(); }
+			set{ m_StrReq = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -314,8 +312,6 @@ namespace Server.Items
 							m_SkillMod.Value = (int)m_AccuracyLevel * 5;
 						}
 					}
-
-					InvalidateProperties();
 				}
 			}
 		}
@@ -328,7 +324,6 @@ namespace Server.Items
 
 			m_Hits = (m_Hits * 100 + (scale - 1)) / scale;
 			m_MaxHits = (m_MaxHits * 100 + (scale - 1)) / scale;
-			InvalidateProperties();
 		}
 
 		public virtual void ScaleDurability()
@@ -337,7 +332,6 @@ namespace Server.Items
 
 			m_Hits = (m_Hits * scale + 99) / 100;
 			m_MaxHits = (m_MaxHits * scale + 99) / 100;
-			InvalidateProperties();
 		}
 
 		public int GetDurabilityBonus()
@@ -1518,45 +1512,7 @@ namespace Server.Items
 		public override int Hue
 		{
 			get{ return base.Hue; }
-			set{ base.Hue = value; InvalidateProperties(); }
-		}
-
-		public override void AddNameProperty( ObjectPropertyList list )
-		{
-			int oreType;
-
-			switch ( m_Resource )
-			{
-				case CraftResource.DullCopper:		oreType = 1053108; break; // dull copper
-				case CraftResource.ShadowIron:		oreType = 1053107; break; // shadow iron
-				case CraftResource.Copper:			oreType = 1053106; break; // copper
-				case CraftResource.Bronze:			oreType = 1053105; break; // bronze
-				case CraftResource.Gold:			oreType = 1053104; break; // golden
-				case CraftResource.Agapite:			oreType = 1053103; break; // agapite
-				case CraftResource.Verite:			oreType = 1053102; break; // verite
-				case CraftResource.Valorite:		oreType = 1053101; break; // valorite
-				default: oreType = 0; break;
-			}
-
-			if ( oreType != 0 )
-				list.Add( 1053099, "#{0}\t{1}", oreType, GetNameString() ); // ~1_oretype~ ~2_armortype~
-			else if ( Name == null )
-				list.Add( LabelNumber );
-			else
-				list.Add( Name );
-				
-			/*
-			 * Want to move this to the engraving tool, let the non-harmful 
-			 * formatting show, and remove CLILOCs embedded: more like OSI
-			 * did with the books that had markup, etc.
-			 * 
-			 * This will have a negative effect on a few event things imgame 
-			 * as is.
-			 * 
-			 * If we cant find a more OSI-ish way to clean it up, we can 
-			 * easily put this back, and use it in the deserialize
-			 * method and engraving tool, to make it perm cleaned up.
-			 */
+			set{ base.Hue = value; }
 		}
 
 		public override bool AllowEquipedCast( Mobile from )
@@ -1565,77 +1521,6 @@ namespace Server.Items
 				return true;
 
 			return false;
-		}
-
-		public virtual int ArtifactRarity
-		{
-			get{ return 0; }
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( m_Crafter != null )
-				list.Add( 1050043, m_Crafter.Name ); // crafted by ~1_NAME~
-
-			if ( m_Quality == WeaponQuality.Exceptional )
-				list.Add( 1060636 ); // exceptional
-
-			if( RequiredRace == Race.Elf )
-				list.Add( 1075086 ); // Elves Only
-
-			if ( ArtifactRarity > 0 )
-				list.Add( 1061078, ArtifactRarity.ToString() ); // artifact rarity ~1_val~
-
-			if ( this is IUsesRemaining && ((IUsesRemaining)this).ShowUsesRemaining )
-				list.Add( 1060584, ((IUsesRemaining)this).UsesRemaining.ToString() ); // uses remaining: ~1_val~
-
-			if ( m_Poison != null && m_PoisonCharges > 0 )
-				list.Add( 1062412 + m_Poison.Level, m_PoisonCharges.ToString() );
-
-			if( m_Slayer != SlayerName.None )
-			{
-				SlayerEntry entry = SlayerGroup.GetEntryByName( m_Slayer );
-				if( entry != null )
-					list.Add( entry.Title );
-			}
-
-			if( m_Slayer2 != SlayerName.None )
-			{
-				SlayerEntry entry = SlayerGroup.GetEntryByName( m_Slayer2 );
-				if( entry != null )
-					list.Add( entry.Title );
-			}
-
-			int prop;
-
-			if ( (prop = GetDamageBonus() ) != 0 )
-				list.Add( 1060401, prop.ToString() ); // damage increase ~1_val~%
-
-			if ( (prop = GetHitChanceBonus() ) != 0 )
-				list.Add( 1060415, prop.ToString() ); // hit chance increase ~1_val~%
-
-
-			list.Add( 1061168, "{0}\t{1}", MinDamage.ToString(), MaxDamage.ToString() ); // weapon damage ~1_val~ - ~2_val~
-
-			list.Add( 1061167, Speed.ToString() );
-
-			if ( MaxRange > 1 )
-				list.Add( 1061169, MaxRange.ToString() ); // range ~1_val~
-
-			int strReq = StrRequirement;
-
-			if ( strReq > 0 )
-				list.Add( 1061170, strReq.ToString() ); // strength requirement ~1_val~
-
-			if ( Layer == Layer.TwoHanded )
-				list.Add( 1061171 ); // two-handed weapon
-			else
-				list.Add( 1061824 ); // one-handed weapon
-
-			if ( m_Hits >= 0 && m_MaxHits > 0 )
-				list.Add( 1060639, "{0}\t{1}", m_Hits, m_MaxHits ); // durability ~1_val~ / ~2_val~
 		}
 
 		public override void OnSingleClick( Mobile from )

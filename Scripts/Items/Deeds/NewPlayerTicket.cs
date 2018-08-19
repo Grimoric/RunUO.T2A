@@ -24,13 +24,6 @@ namespace Server.Items
 			LootType = LootType.Blessed;
 		}
 
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			list.Add( 1041492 ); // This is half a prize ticket! Double-click this ticket and target any other ticket marked NEW PLAYER and get a prize! This ticket will only work for YOU, so don't give it away!
-		}
-
 		public override bool DisplayLootType{ get{ return false; } }
 
 		public NewPlayerTicket( Serial serial ) : base( serial )

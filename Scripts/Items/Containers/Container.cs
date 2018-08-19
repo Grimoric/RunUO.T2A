@@ -87,14 +87,6 @@ namespace Server.Items
 			return true;
 		}
 
-		public override void UpdateTotal( Item sender, TotalType type, int delta )
-		{
-			base.UpdateTotal( sender, type, delta );
-
-			if ( type == TotalType.Weight && RootParent is Mobile )
-				((Mobile) RootParent).InvalidateProperties();
-		}
-
 		public override void OnDoubleClick( Mobile from )
 		{
 			if ( from.AccessLevel > AccessLevel.Player || from.InRange( this.GetWorldLocation(), 2 ) || this.RootParent is PlayerVendor )
@@ -133,14 +125,6 @@ namespace Server.Items
 			Layer = Layer.Backpack;
 			Hue = 5;
 			Weight = 3.0;
-		}
-
-		public override void AddNameProperty( ObjectPropertyList list )
-		{
-			if ( Name != null )
-				list.Add( 1075257, Name ); // Contents of ~1_PETNAME~'s pack.
-			else
-				base.AddNameProperty( list );
 		}
 
 		public override void OnItemRemoved( Item item )

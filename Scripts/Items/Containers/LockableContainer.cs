@@ -77,8 +77,6 @@ namespace Server.Items
 
 				if ( m_Locked )
 					m_Picker = null;
-
-				InvalidateProperties();
 			}
 		}
 
@@ -337,14 +335,6 @@ namespace Server.Items
 			{
 				this.TrapOnLockpick = false;
 			}
-		}
-
-		public override void AddNameProperties( ObjectPropertyList list )
-		{
-			base.AddNameProperties( list );
-
-			if ( m_IsShipwreckedItem )
-				list.Add( 1041645 ); // recovered from a shipwreck
 		}
 
 		public override void OnSingleClick( Mobile from )

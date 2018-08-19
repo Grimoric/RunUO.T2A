@@ -58,14 +58,5 @@ namespace Server.Items
 			if( m_IsShipwreckedItem )
 				attrs.Add( new EquipInfoAttribute( 1041645 ) );	// recovered from a shipwreck
 		}
-
-		public override void AddNameProperties( ObjectPropertyList list )
-		{
-			base.AddNameProperties( list );
-
-			if ( m_IsShipwreckedItem )
-				list.Add( 1041645 ); // recovered from a shipwreck
-		}
-
 	}
 }

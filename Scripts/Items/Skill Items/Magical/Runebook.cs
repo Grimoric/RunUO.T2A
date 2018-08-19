@@ -18,7 +18,7 @@ namespace Server.Items
 		public BookQuality Quality
 		{
 			get{ return m_Quality; }
-			set{ m_Quality = value; InvalidateProperties(); }
+			set{ m_Quality = value; }
 		}
 
 		private List<RunebookEntry> m_Entries;
@@ -43,7 +43,7 @@ namespace Server.Items
 		public Mobile Crafter
 		{
 			get{ return m_Crafter; }
-			set{ m_Crafter = value; InvalidateProperties(); }
+			set{ m_Crafter = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -63,7 +63,6 @@ namespace Server.Items
 			set
 			{
 				m_Description = value;
-				InvalidateProperties();
 			}
 		}
 
@@ -272,20 +271,6 @@ namespace Server.Items
 		}
 
 		public override bool DisplayLootType{ get{ return false; } }
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( m_Quality == BookQuality.Exceptional )
-				list.Add( 1063341 ); // exceptional
-
-			if ( m_Crafter != null )
-				list.Add( 1050043, m_Crafter.Name ); // crafted by ~1_NAME~
-
-			if ( m_Description != null && m_Description.Length > 0 )
-				list.Add( m_Description );
-		}
 		
 		public override bool OnDragLift( Mobile from )
 		{

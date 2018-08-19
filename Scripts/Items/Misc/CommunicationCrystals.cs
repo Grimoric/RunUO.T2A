@@ -59,7 +59,6 @@ namespace Server.Items
 			set
 			{
 				this.ItemID = value ? 0x1ECD : 0x1ED0;
-				InvalidateProperties();
 			}
 		}
 
@@ -70,7 +69,6 @@ namespace Server.Items
 			set
 			{
 				m_Charges = value;
-				InvalidateProperties();
 			}
 		}
 
@@ -96,18 +94,6 @@ namespace Server.Items
 
 		public BroadcastCrystal( Serial serial ) : base( serial )
 		{
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			list.Add( this.Active ? 1060742 : 1060743 ); // active / inactive
-			list.Add( 1060745 ); // broadcast
-			list.Add( 1060741, this.Charges.ToString() ); // charges: ~1_val~
-
-			if ( Receivers.Count > 0 )
-				list.Add( 1060746, Receivers.Count.ToString() ); // links: ~1_val~
 		}
 
 		public override void OnSingleClick(Mobile from)
@@ -312,7 +298,6 @@ namespace Server.Items
 			set
 			{
 				this.ItemID = value ? 0x1ED1 : 0x1ED0;
-				InvalidateProperties();
 			}
 		}
 
@@ -325,7 +310,6 @@ namespace Server.Items
 				if ( m_Sender != null )
 				{
 					m_Sender.Receivers.Remove( this );
-					m_Sender.InvalidateProperties();
 				}
 
 				m_Sender = value;
@@ -333,7 +317,6 @@ namespace Server.Items
 				if ( value != null )
 				{
 					value.Receivers.Add( this );
-					value.InvalidateProperties();
 				}
 			}
 		}
@@ -346,14 +329,6 @@ namespace Server.Items
 
 		public ReceiverCrystal( Serial serial ) : base( serial )
 		{
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			list.Add( this.Active ? 1060742 : 1060743 ); // active / inactive
-			list.Add( 1060744 ); // receiver
 		}
 
 		public override void OnSingleClick( Mobile from )

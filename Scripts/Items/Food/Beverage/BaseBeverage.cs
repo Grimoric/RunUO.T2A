@@ -77,8 +77,6 @@ namespace Server.Items
             {
                 m_Content = value;
 
-                InvalidateProperties();
-
                 int itemID = ComputeItemID();
 
                 if( itemID > 0 )
@@ -101,8 +99,6 @@ namespace Server.Items
 
                 m_Quantity = value;
 
-                InvalidateProperties();
-
                 int itemID = ComputeItemID();
 
                 if( itemID > 0 )
@@ -124,14 +120,6 @@ namespace Server.Items
                 return 1042973; // It's half full.
             else
                 return 1042972; // It's full.
-        }
-
-        public override void GetProperties( ObjectPropertyList list )
-        {
-            base.GetProperties( list );
-
-            if( ShowQuantity )
-                list.Add( GetQuantityDescription() );
         }
 
         public override void OnSingleClick( Mobile from )

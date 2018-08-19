@@ -1438,14 +1438,6 @@ namespace Server.Network
 			}
 		}
 
-		private static bool m_SingleClickProps;
-
-		public static bool SingleClickProps
-		{
-			get{ return m_SingleClickProps; }
-			set{ m_SingleClickProps = value; }
-		}
-
 		public static void LookReq( NetState state, PacketReader pvSrc )
 		{
 			Mobile from = state.Mobile;
@@ -1458,15 +1450,8 @@ namespace Server.Network
 
 				if ( m != null && from.CanSee( m ) && Utility.InUpdateRange( from, m ) )
 				{
-					if ( m_SingleClickProps )
-					{
-						m.OnAosSingleClick( from );
-					}
-					else
-					{
-						if ( from.Region.OnSingleClick( from, m ) )
-							m.OnSingleClick( from );
-					}
+					if ( from.Region.OnSingleClick( from, m ) )
+						m.OnSingleClick( from );
 				}
 			}
 			else if ( s.IsItem )
@@ -1475,17 +1460,10 @@ namespace Server.Network
 
 				if ( item != null && !item.Deleted && from.CanSee( item ) && Utility.InUpdateRange( from.Location, item.GetWorldLocation() ) )
 				{
-					if ( m_SingleClickProps )
-					{
-						item.OnAosSingleClick( from );
-					}
-					else if ( from.Region.OnSingleClick( from, item ) )
-					{
-						if ( item.Parent is Item )
-							((Item)item.Parent).OnSingleClickContained( from, item );
+					if ( item.Parent is Item )
+						((Item)item.Parent).OnSingleClickContained( from, item );
 
-						item.OnSingleClick( from );
-					}
+					item.OnSingleClick( from );
 				}
 			}
 		}
@@ -1616,62 +1594,12 @@ namespace Server.Network
 
 		public static void BatchQueryProperties( NetState state, PacketReader pvSrc )
 		{
-			if ( !ObjectPropertyList.Enabled )
-				return;
-
-			Mobile from = state.Mobile;
-
-			int length = pvSrc.Size-3;
-
-			if ( length < 0 || length%4 != 0 )
-				return;
-
-			int count = length/4;
-
-			for ( int i = 0; i < count; ++i )
-			{
-				Serial s = pvSrc.ReadInt32();
-
-				if ( s.IsMobile )
-				{
-					Mobile m = World.FindMobile( s );
-
-					if ( m != null && from.CanSee( m ) && Utility.InUpdateRange( from, m ) )
-						m.SendPropertiesTo( from );
-				}
-				else if ( s.IsItem )
-				{
-					Item item = World.FindItem( s );
-
-					if ( item != null && !item.Deleted && from.CanSee( item ) && Utility.InUpdateRange( from.Location, item.GetWorldLocation() ) )
-						item.SendPropertiesTo( from );
-				}
-			}
+            return;
 		}
 
 		public static void QueryProperties( NetState state, PacketReader pvSrc )
 		{
-			if ( !ObjectPropertyList.Enabled )
-				return;
-
-			Mobile from = state.Mobile;
-
-			Serial s = pvSrc.ReadInt32();
-
-			if ( s.IsMobile )
-			{
-				Mobile m = World.FindMobile( s );
-
-				if ( m != null && from.CanSee( m ) && Utility.InUpdateRange( from, m ) )
-					m.SendPropertiesTo( from );
-			}
-			else if ( s.IsItem )
-			{
-				Item item = World.FindItem( s );
-
-				if ( item != null && !item.Deleted && from.CanSee( item ) && Utility.InUpdateRange( from.Location, item.GetWorldLocation() ) )
-					item.SendPropertiesTo( from );
-			}
+            return;
 		}
 
 		public static void PartyMessage( NetState state, PacketReader pvSrc )

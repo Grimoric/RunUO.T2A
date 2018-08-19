@@ -8,7 +8,7 @@ namespace Server.Items
 		public CraftResource Resource
 		{
 			get{ return m_Resource; }
-			set{ m_Resource = value; InvalidateProperties(); }
+			set{ m_Resource = value; }
 		}
 		
 		public override void Serialize( GenericWriter writer )
@@ -59,29 +59,6 @@ namespace Server.Items
 
 		public BaseLeather( Serial serial ) : base( serial )
 		{
-		}
-
-		public override void AddNameProperty( ObjectPropertyList list )
-		{
-			if ( Amount > 1 )
-				list.Add( 1050039, "{0}\t#{1}", Amount, 1024199 ); // ~1_NUMBER~ ~2_ITEMNAME~
-			else
-				list.Add( 1024199 ); // cut leather
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( !CraftResources.IsStandard( m_Resource ) )
-			{
-				int num = CraftResources.GetLocalizationNumber( m_Resource );
-
-				if ( num > 0 )
-					list.Add( num );
-				else
-					list.Add( CraftResources.GetName( m_Resource ) );
-			}
 		}
 
 		public override int LabelNumber

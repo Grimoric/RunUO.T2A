@@ -29,14 +29,14 @@ namespace Server.Items
 		public string EngravedText
 		{
 			get{ return m_EngravedText; }
-			set{ m_EngravedText = value; InvalidateProperties(); }
+			set{ m_EngravedText = value; }
 		}
 				
 		[CommandProperty( AccessLevel.GameMaster )]		
 		public BookQuality Quality
 		{
 			get{ return m_Quality; }
-			set{ m_Quality = value; InvalidateProperties(); }
+			set{ m_Quality = value; }
 		}
 
 		public static void Initialize()
@@ -263,8 +263,6 @@ namespace Server.Items
 						m_Content |= (ulong)1 << val;
 						++m_Count;
 
-						InvalidateProperties();
-
 						scroll.Delete();
 
 						from.Send( new PlaySound( 0x249, GetWorldLocation() ) );
@@ -300,8 +298,6 @@ namespace Server.Items
 						m_Count += (int)(value & 0x1);
 						value >>= 1;
 					}
-
-					InvalidateProperties();
 				}
 			}
 		}
@@ -389,40 +385,10 @@ namespace Server.Items
 		public Mobile Crafter
 		{
 			get{ return m_Crafter; }
-			set{ m_Crafter = value; InvalidateProperties(); }
+			set{ m_Crafter = value; }
 		}
 
 		public override bool DisplayLootType{ get{ return false; } }
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-	
-			if ( m_Quality == BookQuality.Exceptional )
-				list.Add( 1063341 ); // exceptional
-				
-			if ( m_EngravedText != null )
-				list.Add( 1072305, m_EngravedText ); // Engraved: ~1_INSCRIPTION~
-
-			if ( m_Crafter != null )
-				list.Add( 1050043, m_Crafter.Name ); // crafted by ~1_NAME~
-				
-			if( m_Slayer != SlayerName.None )
-			{
-				SlayerEntry entry = SlayerGroup.GetEntryByName( m_Slayer );
-				if( entry != null )
-					list.Add( entry.Title );
-			}
-
-			if( m_Slayer2 != SlayerName.None )
-			{
-				SlayerEntry entry = SlayerGroup.GetEntryByName( m_Slayer2 );
-				if( entry != null )
-					list.Add( entry.Title );
-			}
-
-			list.Add( 1042886, m_Count.ToString() ); // ~1_NUMBERS_OF_SPELLS~ Spells
-		}
 
 		public override void OnSingleClick( Mobile from )
 		{
@@ -453,14 +419,14 @@ namespace Server.Items
 		public SlayerName Slayer
 		{
 			get { return m_Slayer; }
-			set { m_Slayer = value; InvalidateProperties(); }
+			set { m_Slayer = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public SlayerName Slayer2
 		{
 			get { return m_Slayer2; }
-			set { m_Slayer2 = value; InvalidateProperties(); }
+			set { m_Slayer2 = value; }
 		}
 
 		public override void Serialize( GenericWriter writer )

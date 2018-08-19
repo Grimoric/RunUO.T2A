@@ -21,70 +21,70 @@ namespace Server.Items
 		public bool SourceEffect
 		{
 			get { return m_SourceEffect; }
-			set { m_SourceEffect = value; InvalidateProperties(); }
+			set { m_SourceEffect = value; }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public bool DestEffect
 		{
 			get { return m_DestEffect; }
-			set { m_DestEffect = value; InvalidateProperties(); }
+			set { m_DestEffect = value; }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public int SoundID
 		{
 			get { return m_SoundID; }
-			set { m_SoundID = value; InvalidateProperties(); }
+			set { m_SoundID = value; }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public TimeSpan Delay
 		{
 			get { return m_Delay; }
-			set { m_Delay = value; InvalidateProperties(); }
+			set { m_Delay = value; }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public bool Active
 		{
 			get { return m_Active; }
-			set { m_Active = value; InvalidateProperties(); }
+			set { m_Active = value; }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public Point3D PointDest
 		{
 			get { return m_PointDest; }
-			set { m_PointDest = value; InvalidateProperties(); }
+			set { m_PointDest = value; }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public Map MapDest
 		{
 			get { return m_MapDest; }
-			set { m_MapDest = value; InvalidateProperties(); }
+			set { m_MapDest = value; }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public bool Creatures
 		{
 			get { return m_Creatures; }
-			set { m_Creatures = value; InvalidateProperties(); }
+			set { m_Creatures = value; }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public bool CombatCheck
 		{
 			get { return m_CombatCheck; }
-			set { m_CombatCheck = value; InvalidateProperties(); }
+			set { m_CombatCheck = value; }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public bool CriminalCheck
 		{
 			get { return m_CriminalCheck; }
-			set { m_CriminalCheck = value; InvalidateProperties(); }
+			set { m_CriminalCheck = value; }
 		}
 
 		public override int LabelNumber { get { return 1026095; } } // teleporter
@@ -115,24 +115,6 @@ namespace Server.Items
 
 			m_CombatCheck = false;
 			m_CriminalCheck = false;
-		}
-
-		public override void GetProperties(ObjectPropertyList list)
-		{
-			base.GetProperties(list);
-
-			if (m_Active)
-				list.Add(1060742); // active
-			else
-				list.Add(1060743); // inactive
-
-			if (m_MapDest != null)
-				list.Add(1060658, "Map\t{0}", m_MapDest);
-
-			if (m_PointDest != Point3D.Zero)
-				list.Add(1060659, "Coords\t{0}", m_PointDest);
-
-			list.Add(1060660, "Creatures\t{0}", m_Creatures ? "Yes" : "No");
 		}
 
 		public override void OnSingleClick(Mobile from)
@@ -303,28 +285,28 @@ namespace Server.Items
 		public SkillName Skill
 		{
 			get { return m_Skill; }
-			set { m_Skill = value; InvalidateProperties(); }
+			set { m_Skill = value; }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public double Required
 		{
 			get { return m_Required; }
-			set { m_Required = value; InvalidateProperties(); }
+			set { m_Required = value; }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public string MessageString
 		{
 			get { return m_MessageString; }
-			set { m_MessageString = value; InvalidateProperties(); }
+			set { m_MessageString = value; }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public int MessageNumber
 		{
 			get { return m_MessageNumber; }
-			set { m_MessageNumber = value; InvalidateProperties(); }
+			set { m_MessageNumber = value; }
 		}
 
 		private void EndMessageLock(object state)
@@ -355,26 +337,6 @@ namespace Server.Items
 			}
 
 			return true;
-		}
-
-		public override void GetProperties(ObjectPropertyList list)
-		{
-			base.GetProperties(list);
-
-			int skillIndex = (int)m_Skill;
-			string skillName;
-
-			if (skillIndex >= 0 && skillIndex < SkillInfo.Table.Length)
-				skillName = SkillInfo.Table[skillIndex].Name;
-			else
-				skillName = "(Invalid)";
-
-			list.Add(1060661, "{0}\t{1:F1}", skillName, m_Required);
-
-			if (m_MessageString != null)
-				list.Add(1060662, "Message\t{0}", m_MessageString);
-			else if (m_MessageNumber != 0)
-				list.Add(1060662, "Message\t#{0}", m_MessageNumber);
 		}
 
 		[Constructable]
@@ -430,21 +392,21 @@ namespace Server.Items
 		public string Substring
 		{
 			get { return m_Substring; }
-			set { m_Substring = value; InvalidateProperties(); }
+			set { m_Substring = value; }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public int Keyword
 		{
 			get { return m_Keyword; }
-			set { m_Keyword = value; InvalidateProperties(); }
+			set { m_Keyword = value; }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public int Range
 		{
 			get { return m_Range; }
-			set { m_Range = value; InvalidateProperties(); }
+			set { m_Range = value; }
 		}
 
 		public override bool HandlesOnSpeech { get { return true; } }
@@ -484,19 +446,6 @@ namespace Server.Items
 		public override bool OnMoveOver(Mobile m)
 		{
 			return true;
-		}
-
-		public override void GetProperties(ObjectPropertyList list)
-		{
-			base.GetProperties(list);
-
-			list.Add(1060661, "Range\t{0}", m_Range);
-
-			if (m_Keyword >= 0)
-				list.Add(1060662, "Keyword\t{0}", m_Keyword);
-
-			if (m_Substring != null)
-				list.Add(1060663, "Substring\t{0}", m_Substring);
 		}
 
 		[Constructable]
@@ -927,63 +876,63 @@ namespace Server.Items
 		public bool DenyMounted
 		{
 			get { return GetFlag(ConditionFlag.DenyMounted); }
-			set { SetFlag(ConditionFlag.DenyMounted, value); InvalidateProperties(); }
+			set { SetFlag(ConditionFlag.DenyMounted, value); }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public bool DenyFollowers
 		{
 			get { return GetFlag(ConditionFlag.DenyFollowers); }
-			set { SetFlag(ConditionFlag.DenyFollowers, value); InvalidateProperties(); }
+			set { SetFlag(ConditionFlag.DenyFollowers, value); }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public bool DenyPackContents
 		{
 			get { return GetFlag(ConditionFlag.DenyPackContents); }
-			set { SetFlag(ConditionFlag.DenyPackContents, value); InvalidateProperties(); }
+			set { SetFlag(ConditionFlag.DenyPackContents, value); }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public bool DenyHolding
 		{
 			get { return GetFlag(ConditionFlag.DenyHolding); }
-			set { SetFlag(ConditionFlag.DenyHolding, value); InvalidateProperties(); }
+			set { SetFlag(ConditionFlag.DenyHolding, value); }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public bool DenyEquipment
 		{
 			get { return GetFlag(ConditionFlag.DenyEquipment); }
-			set { SetFlag(ConditionFlag.DenyEquipment, value); InvalidateProperties(); }
+			set { SetFlag(ConditionFlag.DenyEquipment, value); }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public bool DenyTransformed
 		{
 			get { return GetFlag(ConditionFlag.DenyTransformed); }
-			set { SetFlag(ConditionFlag.DenyTransformed, value); InvalidateProperties(); }
+			set { SetFlag(ConditionFlag.DenyTransformed, value); }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public bool StaffOnly
 		{
 			get { return GetFlag(ConditionFlag.StaffOnly); }
-			set { SetFlag(ConditionFlag.StaffOnly, value); InvalidateProperties(); }
+			set { SetFlag(ConditionFlag.StaffOnly, value); }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public bool DenyPackEthereals
 		{
 			get { return GetFlag(ConditionFlag.DenyPackEthereals); }
-			set { SetFlag(ConditionFlag.DenyPackEthereals, value); InvalidateProperties(); }
+			set { SetFlag(ConditionFlag.DenyPackEthereals, value); }
 		}
 
 		[CommandProperty(AccessLevel.GameMaster)]
 		public bool DeadOnly
 		{
 			get { return GetFlag(ConditionFlag.DeadOnly); }
-			set { SetFlag(ConditionFlag.DeadOnly, value); InvalidateProperties(); }
+			set { SetFlag(ConditionFlag.DeadOnly, value); }
 		}
 
 		public override bool CanTeleport(Mobile m)
@@ -1064,46 +1013,6 @@ namespace Server.Items
 		[Constructable]
 		public ConditionTeleporter()
 		{
-		}
-
-		public override void GetProperties(ObjectPropertyList list)
-		{
-			base.GetProperties(list);
-
-			StringBuilder props = new StringBuilder();
-
-			if (GetFlag(ConditionFlag.DenyMounted))
-				props.Append("<BR>Deny Mounted");
-
-			if (GetFlag(ConditionFlag.DenyFollowers))
-				props.Append("<BR>Deny Followers");
-
-			if (GetFlag(ConditionFlag.DenyPackContents))
-				props.Append("<BR>Deny Pack Contents");
-
-			if (GetFlag(ConditionFlag.DenyPackEthereals))
-				props.Append("<BR>Deny Pack Ethereals");
-
-			if (GetFlag(ConditionFlag.DenyHolding))
-				props.Append("<BR>Deny Holding");
-
-			if (GetFlag(ConditionFlag.DenyEquipment))
-				props.Append("<BR>Deny Equipment");
-
-			if (GetFlag(ConditionFlag.DenyTransformed))
-				props.Append("<BR>Deny Transformed");
-
-			if (GetFlag(ConditionFlag.StaffOnly))
-				props.Append("<BR>Staff Only");
-
-			if (GetFlag(ConditionFlag.DeadOnly))
-				props.Append("<BR>Dead Only");
-
-			if (props.Length != 0)
-			{
-				props.Remove(0, 4);
-				list.Add(props.ToString());
-			}
 		}
 
 		public ConditionTeleporter(Serial serial)

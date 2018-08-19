@@ -136,7 +136,7 @@ namespace Server.Items
 		public bool TurnedOn
 		{
 			get{ return m_TurnedOn; }
-			set{ m_TurnedOn = value; InvalidateProperties(); }
+			set{ m_TurnedOn = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -156,8 +156,6 @@ namespace Server.Items
 					Hue = 0xF4;
 				else
 					Hue = 0;
-
-				InvalidateProperties();
 			}
 		}
 
@@ -208,16 +206,6 @@ namespace Server.Items
 
 		public MonsterStatuette( Serial serial ) : base( serial )
 		{
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( m_TurnedOn )
-				list.Add( 502695 ); // turned on
-			else
-				list.Add( 502696 ); // turned off
 		}
 
 		public bool IsOwner( Mobile mob )

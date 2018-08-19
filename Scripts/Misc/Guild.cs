@@ -256,7 +256,6 @@ namespace Server.Guilds
 				for ( int i = 0; i < m_Members.Count; i++ )
 				{
 					Mobile m = m_Members[i];
-					m.InvalidateProperties();
 
 					if ( !onlyOPL )
 						m.Delta( MobileDelta.Noto );
@@ -771,9 +770,6 @@ namespace Server.Guilds
 				m_Name = value;
 
 				InvalidateMemberProperties( true );
-
-				if ( m_Guildstone != null )
-					m_Guildstone.InvalidateProperties();
 			}
 		}
 
@@ -802,9 +798,6 @@ namespace Server.Guilds
 				m_Abbreviation = value;
 
 				InvalidateMemberProperties( true );
-
-				if( m_Guildstone != null )
-					m_Guildstone.InvalidateProperties();
 			}
 		}
 

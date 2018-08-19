@@ -36,8 +36,6 @@ namespace Server.Items
 				{
 					m_Resource = value;
 					Hue = CraftResources.GetHue( m_Resource );
-					
-					InvalidateProperties();
 				}
 			}
 		}

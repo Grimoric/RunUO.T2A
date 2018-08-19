@@ -604,9 +604,6 @@ namespace Server
 		private Packet m_WorldPacketSA;
 		private Packet m_WorldPacketHS;
 		private Packet m_RemovePacket;
-
-		private Packet m_OPLPacket;
-		private ObjectPropertyList m_PropertyList;
 		#endregion
 
 		public int TempFlags
@@ -929,48 +926,6 @@ namespace Server
 		}
 
 		/// <summary>
-		/// Overridable. Sends the <see cref="PropertyList">object property list</see> to <paramref name="from" />.
-		/// </summary>
-		public virtual void SendPropertiesTo( Mobile from )
-		{
-			from.Send( PropertyList );
-		}
-
-		/// <summary>
-		/// Overridable. Adds the name of this item to the given <see cref="ObjectPropertyList" />. This method should be overriden if the item requires a complex naming format.
-		/// </summary>
-		public virtual void AddNameProperty( ObjectPropertyList list )
-		{
-			string name = this.Name;
-
-			if ( name == null )
-			{
-				if ( m_Amount <= 1 )
-					list.Add( LabelNumber );
-				else
-					list.Add( 1050039, "{0}\t#{1}", m_Amount, LabelNumber ); // ~1_NUMBER~ ~2_ITEMNAME~
-			}
-			else
-			{
-				if ( m_Amount <= 1 )
-					list.Add( name );
-				else
-					list.Add( 1050039, "{0}\t{1}", m_Amount, Name ); // ~1_NUMBER~ ~2_ITEMNAME~
-			}
-		}
-
-		/// <summary>
-		/// Overridable. Adds the loot type of this item to the given <see cref="ObjectPropertyList" />. By default, this will be either 'blessed', 'cursed', or 'insured'.
-		/// </summary>
-		public virtual void AddLootTypeProperty( ObjectPropertyList list )
-		{
-			if ( m_LootType == LootType.Blessed )
-				list.Add( 1038021 ); // blessed
-			else if ( m_LootType == LootType.Cursed )
-				list.Add( 1049643 ); // cursed
-		}
-
-		/// <summary>
 		/// Overridable. Determines whether the item will show <see cref="AddWeightProperty" />. 
 		/// </summary>
 		public virtual bool DisplayWeight 
@@ -979,95 +934,6 @@ namespace Server
 			{
 				return false;
 			} 
-		}
-
-		/// <summary>
-		/// Overridable. Displays cliloc 1072788-1072789. 
-		/// </summary>
-		public virtual void AddWeightProperty( ObjectPropertyList list )
-		{
-			int weight = this.PileWeight + this.TotalWeight;
-
-			if ( weight == 1 ) {
-				list.Add( 1072788, weight.ToString() ); //Weight: ~1_WEIGHT~ stone
-			} else {
-				list.Add( 1072789, weight.ToString() ); //Weight: ~1_WEIGHT~ stones
-			}
-		}
-
-		/// <summary>
-		/// Overridable. Adds header properties. By default, this invokes <see cref="AddNameProperty" />, <see cref="AddBlessedForProperty" /> (if applicable), and <see cref="AddLootTypeProperty" /> (if <see cref="DisplayLootType" />).
-		/// </summary>
-		public virtual void AddNameProperties( ObjectPropertyList list )
-		{
-			AddNameProperty( list );
-
-			if ( IsSecure )
-				AddSecureProperty( list );
-			else if ( IsLockedDown )
-				AddLockedDownProperty( list );
-
-			if ( DisplayLootType )
-				AddLootTypeProperty( list );
-
-			if ( DisplayWeight )
-				AddWeightProperty( list );
-
-			AppendChildNameProperties( list );
-		}
-
-		/// <summary>
-		/// Overridable. Adds the "Locked Down & Secure" property to the given <see cref="ObjectPropertyList" />.
-		/// </summary>
-		public virtual void AddSecureProperty( ObjectPropertyList list )
-		{
-			list.Add( 501644 ); // locked down & secure
-		}
-
-		/// <summary>
-		/// Overridable. Adds the "Locked Down" property to the given <see cref="ObjectPropertyList" />.
-		/// </summary>
-		public virtual void AddLockedDownProperty( ObjectPropertyList list )
-		{
-			list.Add( 501643 ); // locked down
-		}
-
-		/// <summary>
-		/// Overridable. Adds the "Blessed for ~1_NAME~" property to the given <see cref="ObjectPropertyList" />.
-		/// </summary>
-		public virtual void AddBlessedForProperty( ObjectPropertyList list, Mobile m )
-		{
-			list.Add( 1062203, "{0}", m.Name ); // Blessed for ~1_NAME~
-		}
-
-		/// <summary>
-		/// Overridable. Fills an <see cref="ObjectPropertyList" /> with everything applicable. By default, this invokes <see cref="AddNameProperties" />, then <see cref="Item.GetChildProperties">Item.GetChildProperties</see> or <see cref="Mobile.GetChildProperties">Mobile.GetChildProperties</see>. This method should be overriden to add any custom properties.
-		/// </summary>
-		public virtual void GetProperties( ObjectPropertyList list )
-		{
-			AddNameProperties( list );
-		}
-
-		/// <summary>
-		/// Overridable. Event invoked when a child (<paramref name="item" />) is building it's <see cref="ObjectPropertyList" />. Recursively calls <see cref="Item.GetChildProperties">Item.GetChildProperties</see> or <see cref="Mobile.GetChildProperties">Mobile.GetChildProperties</see>.
-		/// </summary>
-		public virtual void GetChildProperties( ObjectPropertyList list, Item item )
-		{
-			if ( m_Parent is Item )
-				((Item)m_Parent).GetChildProperties( list, item );
-			else if ( m_Parent is Mobile )
-				((Mobile)m_Parent).GetChildProperties( list, item );
-		}
-
-		/// <summary>
-		/// Overridable. Event invoked when a child (<paramref name="item" />) is building it's Name <see cref="ObjectPropertyList" />. Recursively calls <see cref="Item.GetChildProperties">Item.GetChildNameProperties</see> or <see cref="Mobile.GetChildProperties">Mobile.GetChildNameProperties</see>.
-		/// </summary>
-		public virtual void GetChildNameProperties( ObjectPropertyList list, Item item )
-		{
-			if ( m_Parent is Item )
-				((Item)m_Parent).GetChildNameProperties( list, item );
-			else if ( m_Parent is Mobile )
-				((Mobile)m_Parent).GetChildNameProperties( list, item );
 		}
 
 		public virtual bool IsChildVisibleTo( Mobile m, Item child )
@@ -1327,9 +1193,6 @@ namespace Server
 				}
 
 				RemDelta( ItemDelta.Update );
-
-				if ( old == null || old == Map.Internal )
-					InvalidateProperties();
 			}
 			else if ( m_Map != null )
 			{
@@ -1404,9 +1267,6 @@ namespace Server
 				if ( m_LootType != value )
 				{
 					m_LootType = value;
-
-					if ( DisplayLootType )
-						InvalidateProperties();
 				}
 			}
 		}
@@ -1556,84 +1416,6 @@ namespace Server
 			}
 		}
 
-		public Packet OPLPacket
-		{
-			get
-			{
-				if ( m_OPLPacket == null )
-				{
-					m_OPLPacket = new OPLInfo( PropertyList );
-					m_OPLPacket.SetStatic();
-				}
-
-				return m_OPLPacket;
-			}
-		}
-
-		public ObjectPropertyList PropertyList
-		{
-			get
-			{
-				if ( m_PropertyList == null )
-				{
-					m_PropertyList = new ObjectPropertyList( this );
-
-					GetProperties( m_PropertyList );
-					AppendChildProperties( m_PropertyList );
-
-					m_PropertyList.Terminate();
-					m_PropertyList.SetStatic();
-				}
-
-				return m_PropertyList;
-			}
-		}
-
-		public virtual void AppendChildProperties( ObjectPropertyList list )
-		{
-			if ( m_Parent is Item )
-				((Item)m_Parent).GetChildProperties( list, this );
-			else if ( m_Parent is Mobile )
-				((Mobile)m_Parent).GetChildProperties( list, this );
-		}
-
-		public virtual void AppendChildNameProperties( ObjectPropertyList list )
-		{
-			if ( m_Parent is Item )
-				((Item)m_Parent).GetChildNameProperties( list, this );
-			else if ( m_Parent is Mobile )
-				((Mobile)m_Parent).GetChildNameProperties( list, this );
-		}
-
-		public void ClearProperties()
-		{
-			Packet.Release( ref m_PropertyList );
-			Packet.Release( ref m_OPLPacket );
-		}
-
-		public void InvalidateProperties()
-		{
-			if ( !ObjectPropertyList.Enabled )
-				return;
-
-			if ( m_Map != null && m_Map != Map.Internal && !World.Loading )
-			{
-				ObjectPropertyList oldList = m_PropertyList;
-				m_PropertyList = null;
-				ObjectPropertyList newList = PropertyList;
-
-				if ( oldList == null || oldList.Hash != newList.Hash )
-				{
-					Packet.Release( ref m_OPLPacket );
-					Delta( ItemDelta.Properties );
-				}
-			}
-			else
-			{
-				ClearProperties();
-			}
-		}
-
 		public Packet WorldPacket
 		{
 			get
@@ -1761,8 +1543,6 @@ namespace Server
 			}
 		}
 
-		public virtual bool ForceShowProperties{ get{ return false; } }
-
 		public virtual int GetPacketFlags()
 		{
 			int flags = 0;
@@ -1770,7 +1550,7 @@ namespace Server
 			if ( !Visible )
 				flags |= 0x80;
 
-			if ( Movable || ForceShowProperties )
+			if ( Movable )
 				flags |= 0x20;
 
 			return flags;
@@ -1844,9 +1624,6 @@ namespace Server
 					Delta( ItemDelta.Update );
 
 					this.OnMapChange();
-
-					if ( old == null || old == Map.Internal )
-						InvalidateProperties();
 				}
 			}
 		}
@@ -2165,13 +1942,13 @@ namespace Server
 		public bool IsLockedDown
 		{
 			get{ return GetTempFlag( m_LockedDownFlag ); }
-			set{ SetTempFlag( m_LockedDownFlag, value ); InvalidateProperties(); }
+			set{ SetTempFlag( m_LockedDownFlag, value ); }
 		}
 
 		public bool IsSecure
 		{
 			get{ return GetTempFlag( m_SecureFlag ); }
-			set{ SetTempFlag( m_SecureFlag, value ); InvalidateProperties(); }
+			set{ SetTempFlag( m_SecureFlag, value ); }
 		}
 
 		public bool GetTempFlag( int flag )
@@ -2616,16 +2393,8 @@ namespace Server
 			return 18;
 		}
 
-		public void SendInfoTo( NetState state ) {
-			SendInfoTo( state, ObjectPropertyList.Enabled );
-		}
-
-		public virtual void SendInfoTo( NetState state, bool sendOplPacket ) {
+		public virtual void SendInfoTo( NetState state ) {
 			state.Send( GetWorldPacketFor( state ) );
-
-			if ( sendOplPacket ) {
-				state.Send( OPLPacket );
-			}
 		}
 
 		protected virtual Packet GetWorldPacketFor( NetState state ) {
@@ -2734,8 +2503,6 @@ namespace Server
 					int newPileWeight = this.PileWeight;
 
 					UpdateTotal( this, TotalType.Weight, newPileWeight - oldPileWeight );
-
-					InvalidateProperties();
 				}
 			}
 		}
@@ -2956,8 +2723,6 @@ namespace Server
 
 			if ( map != null && !Deleted )
 			{
-				bool sendOPLUpdate = ObjectPropertyList.Enabled && (flags & ItemDelta.Properties) != 0;
-
 				Container contParent = m_Parent as Container;
 
 				if ( contParent != null && !contParent.IsPublicContainer )
@@ -2981,9 +2746,6 @@ namespace Server
 										ns.Send( new ContainerContentUpdate6017( this ) );
 									else
 										ns.Send( new ContainerContentUpdate( this ) );
-
-									if ( ObjectPropertyList.Enabled )
-										ns.Send( OPLPacket );
 								}
 							}
 						}
@@ -3018,9 +2780,6 @@ namespace Server
 												ns.Send( new ContainerContentUpdate6017( this ) );
 											else
 												ns.Send( new ContainerContentUpdate( this ) );
-
-											if ( ObjectPropertyList.Enabled )
-												ns.Send( OPLPacket );
 										}
 									}
 								}
@@ -3056,9 +2815,6 @@ namespace Server
 												ns.Send( new ContainerContentUpdate6017( this ) );
 											else
 												ns.Send( new ContainerContentUpdate( this ) );
-
-											if ( ObjectPropertyList.Enabled )
-												ns.Send( OPLPacket );
 										}
 									}
 								}
@@ -3083,7 +2839,7 @@ namespace Server
 
 						if ( m.CanSee( this ) && m.InRange( worldLoc, GetUpdateRange( m ) ) ) {
 							if ( m_Parent == null ) {
-								SendInfoTo( state, ObjectPropertyList.Enabled );
+								SendInfoTo( state );
 							} else {
 								if ( p == null ) {
 									if ( m_Parent is Item ) {
@@ -3096,12 +2852,9 @@ namespace Server
 										p.Acquire();
 										state.Send( p );
 									}
-								} else {
+								} else
+                                {
 									state.Send( p );
-								}
-
-								if ( ObjectPropertyList.Enabled ) {
-									state.Send( OPLPacket );
 								}
 							}
 						}
@@ -3111,7 +2864,6 @@ namespace Server
 						Packet.Release( p );
 
 					eable.Free();
-					sendOPLUpdate = false;
 				}
 				else if ( (flags & ItemDelta.EquipOnly ) != 0 )
 				{
@@ -3128,40 +2880,17 @@ namespace Server
 
 							if ( m.CanSee( this ) && m.InRange( worldLoc, GetUpdateRange( m ) ) )
 							{
-								//if ( sendOPLUpdate )
-								//	state.Send( RemovePacket );
-
 								if ( p == null )
 									p = Packet.Acquire( new EquipUpdate( this ) );
 
 								state.Send( p );
-
-								if ( ObjectPropertyList.Enabled )
-									state.Send( OPLPacket );
 							}
 						}
 
 						Packet.Release( p );
 
 						eable.Free();
-						sendOPLUpdate = false;
 					}
-				}
-
-				if ( sendOPLUpdate )
-				{
-					Point3D worldLoc = GetWorldLocation();
-					IPooledEnumerable eable = map.GetClientsInRange( worldLoc, GetMaxUpdateRange() );
-
-					foreach ( NetState state in eable )
-					{
-						Mobile m = state.Mobile;
-
-						if ( m.CanSee( this ) && m.InRange( worldLoc, GetUpdateRange( m ) ) )
-							state.Send( OPLPacket );
-					}
-
-					eable.Free();
 				}
 			}
 		}
@@ -3200,8 +2929,6 @@ namespace Server
 		{
 			ReleaseWorldPackets();
 			Packet.Release( ref m_RemovePacket );
-			Packet.Release( ref m_OPLPacket );
-			Packet.Release( ref m_PropertyList );
 		}
 
 		public virtual void Delete()
@@ -3557,8 +3284,7 @@ namespace Server
 
 					UpdateTotal( this, TotalType.Weight, newPileWeight - oldPileWeight );
 
-					InvalidateProperties();
-					Delta( ItemDelta.Update );
+                    Delta( ItemDelta.Update );
 				}
 			}
 		}
@@ -3590,8 +3316,6 @@ namespace Server
 
 					if ( info.m_Name == null )
 						VerifyCompactInfo();
-
-					InvalidateProperties();
 				}
 			}
 		}
@@ -3684,9 +3408,6 @@ namespace Server
 					OnAmountChange( oldValue );
 
 					Delta( ItemDelta.Update );
-
-					if ( oldValue > 1 || value > 1 )
-						InvalidateProperties();
 
 					if ( !Stackable && m_Amount > 1 )
 						Console.WriteLine( "Warning: 0x{0:X}: Amount changed for non-stackable item '{2}'. ({1})", m_Serial.Value, m_Amount, GetType().Name );
@@ -4328,14 +4049,6 @@ namespace Server
 		{
 			if ( m_Parent is Item )
 				((Item)m_Parent).OnSingleClickContained( from, item );
-		}
-
-		public virtual void OnAosSingleClick( Mobile from )
-		{
-			ObjectPropertyList opl = this.PropertyList;
-
-			if ( opl.Header > 0 )
-				from.Send( new MessageLocalized( m_Serial, m_ItemID, MessageType.Label, 0x3B2, 3, opl.Header, this.Name, opl.HeaderArgs ) );
 		}
 
 		public virtual void OnSingleClick( Mobile from )

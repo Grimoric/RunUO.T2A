@@ -1456,17 +1456,6 @@ namespace Server.Mobiles
 				Delete();
 			}
 
-			public override void GetProperties(ObjectPropertyList list)
-			{
-				base.GetProperties(list);
-
-				list.Add(1041603); // This item represents a pet currently in consideration for trade
-				list.Add(1041601, m_Creature.Name); // Pet Name: ~1_val~
-
-				if (m_Creature.ControlMaster != null)
-					list.Add(1041602, m_Creature.ControlMaster.Name); // Owner: ~1_val~
-			}
-
 			public override bool AllowSecureTrade(Mobile from, Mobile to, Mobile newOwner, bool accepted)
 			{
 				if (!base.AllowSecureTrade(from, to, newOwner, accepted))

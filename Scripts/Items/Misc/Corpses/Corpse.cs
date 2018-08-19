@@ -832,9 +832,9 @@ namespace Server.Items
 			return m_Devourer.Devour( this ); // Devour the corpse if it hasn't
 		}
 
-		public override void SendInfoTo( NetState state, bool sendOplPacket )
+		public override void SendInfoTo( NetState state )
 		{
-			base.SendInfoTo( state, sendOplPacket );
+			base.SendInfoTo( state );
 
 			if (((Body)Amount).IsHuman && ItemID == 0x2006)
 			{
@@ -1099,30 +1099,6 @@ namespace Server.Items
 		}
 
 		public override bool DisplaysContent{ get{ return false; } }
-
-		public override void AddNameProperty( ObjectPropertyList list )
-		{
-			if ( ItemID == 0x2006 ) // Corpse form
-			{
-				if ( m_CorpseName != null )
-					list.Add( m_CorpseName );
-				else
-					list.Add( 1046414, this.Name ); // the remains of ~1_NAME~
-			}
-			else // Bone form
-			{
-				list.Add( 1046414, this.Name ); // the remains of ~1_NAME~
-			}
-		}
-
-		public override void OnAosSingleClick( Mobile from )
-		{
-			int hue = Notoriety.GetHue( NotorietyHandlers.CorpseNotoriety( from, this ) );
-			ObjectPropertyList opl = this.PropertyList;
-
-			if ( opl.Header > 0 )
-				from.Send( new MessageLocalized( Serial, ItemID, MessageType.Label, hue, 3, opl.Header, Name, opl.HeaderArgs ) );
-		}
 
 		public override void OnSingleClick( Mobile from )
 		{

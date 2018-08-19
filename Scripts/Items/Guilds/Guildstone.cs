@@ -16,14 +16,14 @@ namespace Server.Items
 		public string GuildName
 		{
 			get { return m_GuildName; }
-			set { m_GuildName = value; InvalidateProperties(); }
+			set { m_GuildName = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public string GuildAbbrev
 		{
 			get { return m_GuildAbbrev; }
-			set { m_GuildAbbrev = value; InvalidateProperties(); }
+			set { m_GuildAbbrev = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -112,30 +112,6 @@ namespace Server.Items
 
 			if( m_Guild == null )
 				this.Delete();
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if( m_Guild != null && !m_Guild.Disbanded )
-			{
-				string name;
-				string abbr;
-
-				if( (name = m_Guild.Name) == null || (name = name.Trim()).Length <= 0 )
-					name = "(unnamed)";
-
-				if( (abbr = m_Guild.Abbreviation) == null || (abbr = abbr.Trim()).Length <= 0 )
-					abbr = "";
-
-				//list.Add( 1060802, Utility.FixHtml( name ) ); // Guild name: ~1_val~
-				list.Add( 1060802, String.Format( "{0} [{1}]", Utility.FixHtml( name ), Utility.FixHtml( abbr ) ) );
-			}
-			else if( m_GuildName != null && m_GuildAbbrev != null )
-			{
-				list.Add( 1060802, String.Format( "{0} [{1}]", Utility.FixHtml( m_GuildName ), Utility.FixHtml( m_GuildAbbrev ) ) );
-			}
 		}
 
 		public override void OnSingleClick( Mobile from )
@@ -227,14 +203,14 @@ namespace Server.Items
 		public string GuildName
 		{
 			get { return m_GuildName; }
-			set { m_GuildName = value; InvalidateProperties(); }
+			set { m_GuildName = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public string GuildAbbrev
 		{
 			get { return m_GuildAbbrev; }
-			set { m_GuildAbbrev = value; InvalidateProperties(); }
+			set { m_GuildAbbrev = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -304,30 +280,6 @@ namespace Server.Items
 
 					break;
 				}
-			}
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if( m_Guild != null && !m_Guild.Disbanded )
-			{
-				string name;
-				string abbr;
-
-				if( (name = m_Guild.Name) == null || (name = name.Trim()).Length <= 0 )
-					name = "(unnamed)";
-
-				if( (abbr = m_Guild.Abbreviation) == null || (abbr = abbr.Trim()).Length <= 0 )
-					abbr = "";
-
-				//list.Add( 1060802, Utility.FixHtml( name ) ); // Guild name: ~1_val~
-				list.Add( 1060802, String.Format( "{0} [{1}]", Utility.FixHtml( name ), Utility.FixHtml( abbr ) ) );
-			}
-			else if( m_GuildName != null && m_GuildAbbrev != null )
-			{
-				list.Add( 1060802, String.Format( "{0} [{1}]", Utility.FixHtml( m_GuildName ), Utility.FixHtml( m_GuildAbbrev ) ) );
 			}
 		}
 

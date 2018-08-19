@@ -21,7 +21,7 @@ namespace Server.Items
 		public int MaxHitPoints
 		{
 			get{ return m_MaxHitPoints; }
-			set{ m_MaxHitPoints = value; InvalidateProperties(); }
+			set{ m_MaxHitPoints = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -41,8 +41,6 @@ namespace Server.Items
 						Delete();
 					else if ( m_HitPoints > MaxHitPoints )
 						m_HitPoints = MaxHitPoints;
-
-					InvalidateProperties();
 				}
 			}
 		}
@@ -51,21 +49,21 @@ namespace Server.Items
 		public Mobile Crafter
 		{
 			get{ return m_Crafter; }
-			set{ m_Crafter = value; InvalidateProperties(); }
+			set{ m_Crafter = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public int StrRequirement
 		{
 			get{ return m_StrReq == -1 ? OldStrReq : m_StrReq; }
-			set{ m_StrReq = value; InvalidateProperties(); }
+			set{ m_StrReq = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public ClothingQuality Quality
 		{
 			get{ return m_Quality; }
-			set{ m_Quality = value; InvalidateProperties(); }
+			set{ m_Quality = value; }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -81,7 +79,7 @@ namespace Server.Items
 		public CraftResource Resource
 		{
 			get{ return m_Resource; }
-			set{ m_Resource = value; Hue = CraftResources.GetHue( m_Resource ); InvalidateProperties(); }
+			set{ m_Resource = value; Hue = CraftResources.GetHue( m_Resource ); }
 		}
 
 		public virtual int ArtifactRarity{ get{ return 0; } }
@@ -355,66 +353,6 @@ namespace Server.Items
 				return m.FindItemOnLayer( Layer.InnerTorso ) != null;
 
 			return false;
-		}
-
-		private string GetNameString()
-		{
-			string name = this.Name;
-
-			if ( name == null )
-				name = String.Format( "#{0}", LabelNumber );
-
-			return name;
-		}
-
-		public override void AddNameProperty( ObjectPropertyList list )
-		{
-			int oreType;
-
-			switch ( m_Resource )
-			{
-				case CraftResource.DullCopper:		oreType = 1053108; break; // dull copper
-				case CraftResource.ShadowIron:		oreType = 1053107; break; // shadow iron
-				case CraftResource.Copper:			oreType = 1053106; break; // copper
-				case CraftResource.Bronze:			oreType = 1053105; break; // bronze
-				case CraftResource.Gold:			oreType = 1053104; break; // golden
-				case CraftResource.Agapite:			oreType = 1053103; break; // agapite
-				case CraftResource.Verite:			oreType = 1053102; break; // verite
-				case CraftResource.Valorite:		oreType = 1053101; break; // valorite
-				default: oreType = 0; break;
-			}
-
-			if ( oreType != 0 )
-				list.Add( 1053099, "#{0}\t{1}", oreType, GetNameString() ); // ~1_oretype~ ~2_armortype~
-			else if ( Name == null )
-				list.Add( LabelNumber );
-			else
-				list.Add( Name );
-		}
-
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			if ( m_Crafter != null )
-				list.Add( 1050043, m_Crafter.Name ); // crafted by ~1_NAME~
-
-			if ( m_Quality == ClothingQuality.Exceptional )
-				list.Add( 1060636 ); // exceptional
-
-			if( RequiredRace == Race.Elf )
-				list.Add( 1075086 ); // Elves Only
-
-			int prop;
-
-			if ( (prop = ArtifactRarity) > 0 )
-				list.Add( 1061078, prop.ToString() ); // artifact rarity ~1_val~
-
-			if ( (prop = ComputeStatReq( StatType.Str )) > 0 )
-				list.Add( 1061170, prop.ToString() ); // strength requirement ~1_val~
-
-			if ( m_HitPoints >= 0 && m_MaxHitPoints > 0 )
-				list.Add( 1060639, "{0}\t{1}", m_HitPoints, m_MaxHitPoints ); // durability ~1_val~ / ~2_val~
 		}
 
 		public override void OnSingleClick( Mobile from )

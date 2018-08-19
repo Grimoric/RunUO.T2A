@@ -52,19 +52,6 @@ namespace Server.Items
 		{
 		}
 
-		public override void GetProperties( ObjectPropertyList list )
-		{
-			base.GetProperties( list );
-
-			AddNetProperties( list );
-		}
-
-		protected virtual void AddNetProperties( ObjectPropertyList list )
-		{
-			// as if the name wasn't enough..
-			list.Add( 1017410 ); // Special Fishing Net
-		}
-
 		public override void Serialize( GenericWriter writer )
 		{
 			base.Serialize( writer );
@@ -369,10 +356,6 @@ namespace Server.Items
 		public FabledFishingNet()
 		{
 			Hue = 0x481;
-		}
-
-		protected override void AddNetProperties( ObjectPropertyList list )
-		{
 		}
 
 		protected override int GetSpawnCount()
