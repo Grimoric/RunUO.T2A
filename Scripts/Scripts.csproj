@@ -152,7 +152,6 @@
     <Compile Include=".\Engines\Craft\Core\CustomCraft.cs" />
     <Compile Include=".\Engines\Craft\Core\Enhance.cs" />
     <Compile Include=".\Engines\Craft\Core\QueryMakersMarkGump.cs" />
-    <Compile Include=".\Engines\Craft\Core\Recipes.cs" />
     <Compile Include=".\Engines\Craft\Core\Repair.cs" />
     <Compile Include=".\Engines\Craft\Core\Resmelt.cs" />
     <Compile Include=".\Engines\Craft\DefAlchemy.cs" />

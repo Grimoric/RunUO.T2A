@@ -184,9 +184,6 @@ namespace Server.Mobiles
 				DoClaim( from, pet );
 
 				from.Stabled.Remove( pet );
-
-				if ( from is PlayerMobile )
-					((PlayerMobile)from).AutoStabled.Remove( pet );
 			}
 			else
 			{
@@ -325,9 +322,6 @@ namespace Server.Mobiles
 					DoClaim( from, pet );
 
 					from.Stabled.RemoveAt( i );
-
-					if ( from is PlayerMobile )
-						((PlayerMobile)from).AutoStabled.Remove( pet );
 
 					--i;
 

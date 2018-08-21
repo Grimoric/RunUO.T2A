@@ -60,24 +60,6 @@ namespace Server.Engines.Craft
 			set { m_RequiredExpansion = value; }
 		}
 
-		private Recipe m_Recipe;
-
-		public Recipe Recipe
-		{
-			get { return m_Recipe; }
-		}
-
-		public void AddRecipe( int id, CraftSystem system )
-		{
-			if( m_Recipe != null )
-			{
-				Console.WriteLine( "Warning: Attempted add of recipe #{0} to the crafting of {1} in CraftSystem {2}.", id, this.m_Type.Name, system );
-				return;
-			}
-
-			m_Recipe = new Recipe( id, system, this );
-		}
-
 		private static Dictionary<Type, int> _itemIds = new Dictionary<Type, int>();
 		
 		public static int ItemIDOf( Type type ) {
@@ -925,38 +907,30 @@ namespace Server.Engines.Craft
 
 					if ( allRequiredSkills && chance >= 0.0 )
 					{
-						if( this.Recipe == null || !(from is PlayerMobile) || ((PlayerMobile)from).HasRecipe( this.Recipe ) )
+						int badCraft = craftSystem.CanCraft( from, tool, m_Type );
+
+						if( badCraft <= 0 )
 						{
-							int badCraft = craftSystem.CanCraft( from, tool, m_Type );
+							int resHue = 0;
+							int maxAmount = 0;
+							object message = null;
 
-							if( badCraft <= 0 )
+							if( ConsumeRes( from, typeRes, craftSystem, ref resHue, ref maxAmount, ConsumeType.None, ref message ) )
 							{
-								int resHue = 0;
-								int maxAmount = 0;
-								object message = null;
+								message = null;
 
-								if( ConsumeRes( from, typeRes, craftSystem, ref resHue, ref maxAmount, ConsumeType.None, ref message ) )
+								if( ConsumeAttributes( from, ref message, false ) )
 								{
-									message = null;
+									CraftContext context = craftSystem.GetContext( from );
 
-									if( ConsumeAttributes( from, ref message, false ) )
-									{
-										CraftContext context = craftSystem.GetContext( from );
+									if( context != null )
+										context.OnMade( this );
 
-										if( context != null )
-											context.OnMade( this );
-
-										int iMin = craftSystem.MinCraftEffect;
-										int iMax = craftSystem.MaxCraftEffect - iMin + 1;
-										int iRandom = Utility.Random( iMax );
-										iRandom += iMin + 1;
-										new InternalTimer( from, craftSystem, this, typeRes, tool, iRandom ).Start();
-									}
-									else
-									{
-										from.EndAction( typeof( CraftSystem ) );
-										from.SendGump( new CraftGump( from, craftSystem, tool, message ) );
-									}
+									int iMin = craftSystem.MinCraftEffect;
+									int iMax = craftSystem.MaxCraftEffect - iMin + 1;
+									int iRandom = Utility.Random( iMax );
+									iRandom += iMin + 1;
+									new InternalTimer( from, craftSystem, this, typeRes, tool, iRandom ).Start();
 								}
 								else
 								{
@@ -967,13 +941,13 @@ namespace Server.Engines.Craft
 							else
 							{
 								from.EndAction( typeof( CraftSystem ) );
-								from.SendGump( new CraftGump( from, craftSystem, tool, badCraft ) );
+								from.SendGump( new CraftGump( from, craftSystem, tool, message ) );
 							}
 						}
 						else
 						{
 							from.EndAction( typeof( CraftSystem ) );
-							from.SendGump( new CraftGump( from, craftSystem, tool, 1072847 ) ); // You must learn that recipe from a scroll.
+							from.SendGump( new CraftGump( from, craftSystem, tool, badCraft ) );
 						}
 					}
 					else

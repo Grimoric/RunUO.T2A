@@ -62,18 +62,8 @@ namespace Server.Engines.Craft
 			AddButton( 15, 387, 4014, 4016, 0, GumpButtonType.Reply, 0 );
 			AddHtmlLocalized( 50, 390, 150, 18, 1044150, LabelColor, false, false ); // BACK
 
-			bool needsRecipe = craftItem.Recipe != null && @from is PlayerMobile && !((PlayerMobile)@from).HasRecipe( craftItem.Recipe );
-
-			if( needsRecipe )
-			{
-				AddButton( 270, 387, 4005, 4007, 0, GumpButtonType.Page, 0 );
-				AddHtmlLocalized( 305, 390, 150, 18, 1044151, GreyLabelColor, false, false ); // MAKE NOW
-			}
-			else
-			{
-				AddButton( 270, 387, 4005, 4007, 1, GumpButtonType.Reply, 0 );
-				AddHtmlLocalized( 305, 390, 150, 18, 1044151, LabelColor, false, false ); // MAKE NOW
-			}
+			AddButton( 270, 387, 4005, 4007, 1, GumpButtonType.Reply, 0 );
+			AddHtmlLocalized( 305, 390, 150, 18, 1044151, LabelColor, false, false ); // MAKE NOW
 
 			if ( craftItem.NameNumber > 0 )
 				AddHtmlLocalized( 330, 40, 180, 18, craftItem.NameNumber, LabelColor, false, false );
@@ -86,10 +76,6 @@ namespace Server.Engines.Craft
 			DrawItem();
 			DrawSkill();
 			DrawResource();
-
-			if( needsRecipe )
-				AddHtmlLocalized( 170, 302 + m_OtherCount++ * 20, 310, 18, 1073620, RedLabelColor, false, false ); // You have not learned this recipe.
-
 		}
 
 		private bool m_ShowExceptionalChance;

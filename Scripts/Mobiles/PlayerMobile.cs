@@ -105,7 +105,6 @@ namespace Server.Mobiles
 
 		private int m_GuildMessageHue, m_AllianceMessageHue;
 
-		private List<Mobile> m_AutoStabled;
 		private List<Mobile> m_AllFollowers;
 		private List<Mobile> m_RecentlyReported;
 
@@ -122,8 +121,6 @@ namespace Server.Mobiles
 				m_RecentlyReported = value;
 			}
 		}
-
-		public List<Mobile> AutoStabled { get { return m_AutoStabled; } }
 
 		public List<Mobile> AllFollowers
 		{
@@ -1397,8 +1394,6 @@ namespace Server.Mobiles
 
 		public PlayerMobile()
 		{
-			m_AutoStabled = new List<Mobile>();
-
 			m_VisList = new List<Mobile>();
 			m_PermaFlags = new List<Mobile>();
 			m_AntiMacroTable = new Hashtable();
@@ -1532,28 +1527,7 @@ namespace Server.Mobiles
 					goto case 26;
 				}
 				case 26:
-				{
-					m_AutoStabled = reader.ReadStrongMobileList();
-
-					goto case 25;
-				}
 				case 25:
-				{
-					int recipeCount = reader.ReadInt();
-
-					if( recipeCount > 0 )
-					{
-						m_AcquiredRecipes = new Dictionary<int, bool>();
-
-						for( int i = 0; i < recipeCount; i++ )
-						{
-							int r = reader.ReadInt();
-							if( reader.ReadBool() )	//Don't add in recipies which we haven't gotten or have been removed
-								m_AcquiredRecipes.Add( r, true );
-						}
-					}
-					goto case 24;
-				}
 				case 24:
 				case 23:
 				case 22:
@@ -1631,8 +1605,6 @@ namespace Server.Mobiles
 				}
 				case 0:
 				{
-					if( version < 26 )
-						m_AutoStabled = new List<Mobile>();
 					break;
 				}
 			}
@@ -1697,22 +1669,6 @@ namespace Server.Mobiles
 
 			writer.Write( (DateTime) m_PeacedUntil );
 			writer.Write( (DateTime) m_AnkhNextUse );
-			writer.Write( m_AutoStabled, true );
-
-			if( m_AcquiredRecipes == null )
-			{
-				writer.Write( (int)0 );
-			}
-			else
-			{
-				writer.Write( m_AcquiredRecipes.Count );
-
-				foreach( KeyValuePair<int, bool> kvp in m_AcquiredRecipes )
-				{
-					writer.Write( kvp.Key );
-					writer.Write( kvp.Value );
-				}
-			}
 
 			writer.WriteEncodedInt( m_AllianceMessageHue );
 			writer.WriteEncodedInt( m_GuildMessageHue );
@@ -2219,59 +2175,6 @@ namespace Server.Mobiles
 					m_SpeechLog = new SpeechLog();
 
 				m_SpeechLog.Add( e.Mobile, e.Speech );
-			}
-		}
-
-		#endregion
-
-		#region Recipes
-
-		private Dictionary<int, bool> m_AcquiredRecipes;
-
-		public virtual bool HasRecipe( Recipe r )
-		{
-			if( r == null )
-				return false;
-
-			return HasRecipe( r.ID );
-		}
-
-		public virtual bool HasRecipe( int recipeID )
-		{
-			if( m_AcquiredRecipes != null && m_AcquiredRecipes.ContainsKey( recipeID ) )
-				return m_AcquiredRecipes[recipeID];
-
-			return false;
-		}
-
-		public virtual void AcquireRecipe( Recipe r )
-		{
-			if( r != null )
-				AcquireRecipe( r.ID );
-		}
-
-		public virtual void AcquireRecipe( int recipeID )
-		{
-			if( m_AcquiredRecipes == null )
-				m_AcquiredRecipes = new Dictionary<int, bool>();
-
-			m_AcquiredRecipes[recipeID] = true;
-		}
-
-		public virtual void ResetRecipes()
-		{
-			m_AcquiredRecipes = null;
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public int KnownRecipes
-		{
-			get
-			{
-				if( m_AcquiredRecipes == null )
-					return 0;
-
-				return m_AcquiredRecipes.Count;
 			}
 		}
 
