@@ -512,7 +512,6 @@
     <Compile Include=".\Items\Construction\Misc\Statues.cs" />
     <Compile Include=".\Items\Construction\Misc\Vase.cs" />
     <Compile Include=".\Items\Construction\Misc\Vines.cs" />
-    <Compile Include=".\Items\Construction\Ruined\RuinedItemSingle.cs" />
     <Compile Include=".\Items\Construction\Signs\BaseSign.cs" />
     <Compile Include=".\Items\Construction\Signs\LocalizedSign.cs" />
     <Compile Include=".\Items\Construction\Signs\Sign.cs" />
@@ -1244,7 +1243,7 @@
     <Compile Include="Misc\DataPath.cs" />
     <Compile Include="Misc\DispellableAttribute.cs" />
     <Compile Include="Misc\DispellableFieldAttribute.cs" />
-    <Compile Include="Misc\DoorGenerator.cs" />
+    <Compile Include="Commands\DoorGenerator.cs" />
     <Compile Include="Misc\Email.cs" />
     <Compile Include="Misc\Emitter.cs" />
     <Compile Include="Misc\Fastwalk.cs" />
@@ -1283,7 +1282,7 @@
     <Compile Include="Misc\TreasureMapProtection.cs" />
     <Compile Include="Commands\GenVendors.cs" />
     <Compile Include="Misc\ValidationQueue.cs" />
-    <Compile Include="Misc\VendorGenerator.cs" />
+    <Compile Include="Commands\VendorGenerator.cs" />
     <Compile Include="Misc\Weather.cs" />
     <Compile Include="Misc\WebStatus.cs" />
     <Compile Include="Misc\WeightOverloading.cs" />
