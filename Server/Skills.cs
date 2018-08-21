@@ -355,24 +355,7 @@ namespace Server
 
 		[CommandProperty( AccessLevel.Counselor )]
 		public double Value
-		{
-			get
-			{
-				//There has to be this distinction between the racial values and not to account for gaining skills and these skills aren't displayed nor Totaled up.
-				double value = this.NonRacialValue;
-
-				double raceBonus = m_Owner.Owner.RacialSkillBonus;
-
-				if( raceBonus > value )
-					value = raceBonus;
-
-				return value;
-			}
-		}
-
-		[CommandProperty( AccessLevel.Counselor )]
-		public double NonRacialValue
-		{
+        {
 			get
 			{
 				double baseValue = Base;

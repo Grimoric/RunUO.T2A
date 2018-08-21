@@ -1975,7 +1975,7 @@ namespace Server.Network
 			{
 				Skill s = skills[i];
 
-				double v = s.NonRacialValue;
+				double v = s.Value;
 				int uv = (int)(v * 10);
 
 				if ( uv < 0 )
@@ -2008,7 +2008,7 @@ namespace Server.Network
 		{
 			this.EnsureCapacity( 13 );
 
-			double v = skill.NonRacialValue;
+			double v = skill.Value;
 			int uv = (int)(v * 10);
 
 			if ( uv < 0 )

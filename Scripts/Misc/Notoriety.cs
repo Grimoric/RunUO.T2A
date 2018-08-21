@@ -240,11 +240,6 @@ namespace Server.Misc
 
 				if ( master != null && master.AccessLevel > AccessLevel.Player )
 					return Notoriety.CanBeAttacked;
-
-				master = bc.ControlMaster;
-
-				if( !bc.Summoned && !bc.Controlled && ((PlayerMobile)source).EnemyOfOneType == target.GetType() )
-					return Notoriety.Enemy;
 			}
 
 			if ( target.Kills >= 5 || target.Body.IsMonster && IsSummoned( target as BaseCreature ) || target is BaseCreature && ( ( (BaseCreature)target ).AlwaysMurderer ) )

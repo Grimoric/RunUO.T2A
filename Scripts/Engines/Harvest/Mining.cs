@@ -20,20 +20,13 @@ namespace Server.Engines.Harvest
 			}
 		}
 
-		private HarvestDefinition m_OreAndStone;
-
-		public HarvestDefinition OreAndStone
-		{
-			get{ return m_OreAndStone; }
-		}
-
 		private Mining()
 		{
 			HarvestResource[] res;
 			HarvestVein[] veins;
 
 			#region Mining for ore and stone
-			HarvestDefinition oreAndStone = m_OreAndStone = new HarvestDefinition();
+			HarvestDefinition oreAndStone = new HarvestDefinition();
 
 			// Resource banks are every 8x8 tiles
 			oreAndStone.BankWidth = 8;
@@ -111,20 +104,6 @@ namespace Server.Engines.Harvest
 			#endregion
 		}
 
-		public override Type GetResourceType( Mobile from, Item tool, HarvestDefinition def, Map map, Point3D loc, HarvestResource resource )
-		{
-			if ( def == m_OreAndStone )
-			{
-				PlayerMobile pm = from as PlayerMobile;
-				if ( pm != null && pm.StoneMining && pm.ToggleMiningStone && from.Skills[SkillName.Mining].Base >= 100.0 && 0.1 > Utility.RandomDouble() )
-					return resource.Types[1];
-
-				return resource.Types[0];
-			}
-
-			return base.GetResourceType( from, tool, def, map, loc, resource );
-		}
-
 		public override bool CheckHarvest( Mobile from, Item tool )
 		{
 			if ( !base.CheckHarvest( from, tool ) )
@@ -165,7 +144,7 @@ namespace Server.Engines.Harvest
 
 		public override HarvestVein MutateVein( Mobile from, Item tool, HarvestDefinition def, HarvestBank bank, object toHarvest, HarvestVein vein )
 		{
-			if ( tool is GargoylesPickaxe && def == m_OreAndStone )
+			if ( tool is GargoylesPickaxe )
 			{
 				int veinIndex = Array.IndexOf( def.Veins, vein );
 
@@ -190,7 +169,7 @@ namespace Server.Engines.Harvest
 
 		public override void OnHarvestFinished( Mobile from, Item tool, HarvestDefinition def, HarvestVein vein, HarvestBank bank, HarvestResource resource, object harvested )
 		{
-			if ( tool is GargoylesPickaxe && def == m_OreAndStone && 0.1 > Utility.RandomDouble() )
+			if ( tool is GargoylesPickaxe && 0.1 > Utility.RandomDouble() )
 			{
 				HarvestResource res = vein.PrimaryResource;
 

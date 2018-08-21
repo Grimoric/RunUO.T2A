@@ -245,52 +245,10 @@ namespace Server.Mobiles
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public bool Glassblowing
-		{
-			get{ return GetFlag( PlayerFlag.Glassblowing ); }
-			set{ SetFlag( PlayerFlag.Glassblowing, value ); }
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public bool Masonry
-		{
-			get{ return GetFlag( PlayerFlag.Masonry ); }
-			set{ SetFlag( PlayerFlag.Masonry, value ); }
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public bool SandMining
-		{
-			get{ return GetFlag( PlayerFlag.SandMining ); }
-			set{ SetFlag( PlayerFlag.SandMining, value ); }
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public bool StoneMining
-		{
-			get{ return GetFlag( PlayerFlag.StoneMining ); }
-			set{ SetFlag( PlayerFlag.StoneMining, value ); }
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public bool ToggleMiningStone
-		{
-			get{ return GetFlag( PlayerFlag.ToggleMiningStone ); }
-			set{ SetFlag( PlayerFlag.ToggleMiningStone, value ); }
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
 		public bool KarmaLocked
 		{
 			get{ return GetFlag( PlayerFlag.KarmaLocked ); }
 			set{ SetFlag( PlayerFlag.KarmaLocked, value ); }
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public bool AutoRenewInsurance
-		{
-			get{ return GetFlag( PlayerFlag.AutoRenewInsurance ); }
-			set{ SetFlag( PlayerFlag.AutoRenewInsurance, value ); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -312,13 +270,6 @@ namespace Server.Mobiles
 		{
 			get{ return GetFlag( PlayerFlag.AcceptGuildInvites ); }
 			set{ SetFlag( PlayerFlag.AcceptGuildInvites, value ); }
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public bool HasStatReward
-		{
-			get{ return GetFlag( PlayerFlag.HasStatReward ); }
-			set{ SetFlag( PlayerFlag.HasStatReward, value ); }
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -1264,14 +1215,6 @@ namespace Server.Mobiles
 			}
 		}
 
-		public override double RacialSkillBonus
-		{
-			get
-			{
-				return 0;
-			}
-		}
-
 		public override bool OnBeforeDeath()
 		{
 			NetState state = NetState;
@@ -1927,55 +1870,6 @@ namespace Server.Mobiles
 			}
 
 			return ( ts < FastwalkThreshold );
-		}
-
-		#endregion
-
-		#region Enemy of One
-		private Type m_EnemyOfOneType;
-		private bool m_WaitingForEnemy;
-
-		public Type EnemyOfOneType
-		{
-			get{ return m_EnemyOfOneType; }
-			set
-			{
-				Type oldType = m_EnemyOfOneType;
-				Type newType = value;
-
-				if ( oldType == newType )
-					return;
-
-				m_EnemyOfOneType = value;
-
-				DeltaEnemies( oldType, newType );
-			}
-		}
-
-		public bool WaitingForEnemy
-		{
-			get{ return m_WaitingForEnemy; }
-			set{ m_WaitingForEnemy = value; }
-		}
-
-		private void DeltaEnemies( Type oldType, Type newType )
-		{
-			foreach ( Mobile m in this.GetMobilesInRange( 18 ) )
-			{
-				Type t = m.GetType();
-
-				if ( t == oldType || t == newType ) {
-					NetState ns = this.NetState;
-
-					if ( ns != null ) {
-						if ( ns.StygianAbyss ) {
-							ns.Send( new MobileMoving( m, Notoriety.Compute( this, m ) ) );
-						} else {
-							ns.Send( new MobileMovingOld( m, Notoriety.Compute( this, m ) ) );
-						}
-					}
-				}
-			}
 		}
 
 		#endregion

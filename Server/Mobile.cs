@@ -761,8 +761,6 @@ namespace Server
 		{
 		}
 
-		public virtual double RacialSkillBonus { get { return 0; } }
-
 		public virtual void ComputeLightLevels( out int global, out int personal )
 		{
 			ComputeBaseLightLevels( out global, out personal );
