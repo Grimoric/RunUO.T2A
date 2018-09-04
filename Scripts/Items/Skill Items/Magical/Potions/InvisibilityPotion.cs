@@ -49,9 +49,6 @@ namespace Server.Items
 			
 			m.Hidden = true;
 		
-			BuffInfo.RemoveBuff( m, BuffIcon.HidingAndOrStealth );
-			BuffInfo.AddBuff( m, new BuffInfo( BuffIcon.Invisibility, 1075825 ) );	//Invisibility/Invisible
-			
 			RemoveTimer( m );
 			
 			Timer.DelayCall( TimeSpan.FromSeconds( 30 ), new TimerStateCallback( EndHide_Callback ), m );

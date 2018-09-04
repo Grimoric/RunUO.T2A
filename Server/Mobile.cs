@@ -715,7 +715,6 @@ namespace Server
 		private WarmodeTimer m_WarmodeTimer;
 		private int m_Thirst, m_BAC;
 		private int m_VirtualArmorMod;
-		private VirtueInfo m_Virtues;
 		private object m_Party;
 		private List<SkillMod> m_SkillMods;
 		private Body m_BodyMod;
@@ -863,9 +862,6 @@ namespace Server
 		}
 
 		public List<Mobile> Stabled { get { return m_Stabled; } }
-
-		[CommandProperty( AccessLevel.Counselor, AccessLevel.GameMaster )]
-		public VirtueInfo Virtues { get { return m_Virtues; } set { } }
 
 		public object Party { get { return m_Party; } set { m_Party = value; } }
 		public List<SkillMod> SkillMods { get { return m_SkillMods; } }
@@ -5116,13 +5112,8 @@ namespace Server
 
 						goto case 19;
 					}
-				case 19: // Just removed variables
+				case 19:
 				case 18:
-					{
-						m_Virtues = new VirtueInfo( reader );
-
-						goto case 17;
-					}
 				case 17:
 					{
 						m_Thirst = reader.ReadInt();
@@ -5243,9 +5234,6 @@ namespace Server
 					{
 						if( version < 21 )
 							m_Stabled = new List<Mobile>();
-
-						if( version < 18 )
-							m_Virtues = new VirtueInfo();
 
 						if( version < 11 )
 							m_DisplayGuildTitle = true;
@@ -5513,8 +5501,6 @@ namespace Server
 			writer.Write( m_Stabled, true );
 
 			writer.Write( m_CantWalk );
-
-			VirtueInfo.Serialize( writer, m_Virtues );
 
 			writer.Write( m_Thirst );
 			writer.Write( m_BAC );
@@ -9372,7 +9358,6 @@ namespace Server
 			m_AutoPageNotify = true;
 			m_Aggressors = new List<AggressorInfo>();
 			m_Aggressed = new List<AggressorInfo>();
-			m_Virtues = new VirtueInfo();
 			m_Stabled = new List<Mobile>();
 			m_DamageEntries = new List<DamageEntry>();
 

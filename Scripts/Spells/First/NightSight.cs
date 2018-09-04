@@ -52,8 +52,6 @@ namespace Server.Spells.First
 
 						targ.FixedParticles( 0x376A, 9, 32, 5007, EffectLayer.Waist );
 						targ.PlaySound( 0x1E3 );
-
-						BuffInfo.AddBuff( targ, new BuffInfo( BuffIcon.NightSight, 1075643 ) );	//Night Sight/You ignore lighting effects
 					}
 					else
 					{

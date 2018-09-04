@@ -55,13 +55,6 @@ namespace Server.Mobiles
 		BlacksmithsGuild
 	}
 
-	public enum SolenFriendship
-	{
-		None,
-		Red,
-		Black
-	}
-
 	public enum BlockMountType
 	{
 		None = -1,
@@ -783,30 +776,6 @@ namespace Server.Mobiles
 			m_IsStealthing = false; // IsStealthing should be moved to Server.Mobiles
 		}
 
-		[CommandProperty( AccessLevel.GameMaster )]
-		public override bool Hidden
-		{
-			get
-			{
-				return base.Hidden;
-			}
-			set
-			{
-				base.Hidden = value;
-
-				RemoveBuff( BuffIcon.Invisibility );	//Always remove, default to the hiding icon EXCEPT in the invis spell where it's explicitly set
-
-				if( !Hidden )
-				{
-					RemoveBuff( BuffIcon.HidingAndOrStealth );
-				}
-				else// if( !InvisibilitySpell.HasTimer( this ) )
-				{
-					BuffInfo.AddBuff( this, new BuffInfo( BuffIcon.HidingAndOrStealth, 1075655 ) );	//Hidden/Stealthing & You Are Hidden
-				}
-			}
-		}
-
 		public override void OnSubItemAdded( Item item )
 		{
 			if ( AccessLevel < AccessLevel.GameMaster && item.IsChildOf( this.Backpack ) )
@@ -1032,16 +1001,6 @@ namespace Server.Mobiles
 		}
 
 		private delegate void ContextCallback();
-
-		public override void DisruptiveAction()
-		{
-			if( Meditating )
-			{
-				RemoveBuff( BuffIcon.ActiveMeditation );
-			}
-
-			base.DisruptiveAction();
-		}
 
 		public override bool CheckEquip( Item item )
 		{
@@ -1285,30 +1244,6 @@ namespace Server.Mobiles
 				Mobile master = bc.GetMaster();
 				if( master != null )
 					killer = master;
-			}
-
-			if ( this.Young )
-			{
-				if ( YoungDeathTeleport() )
-					Timer.DelayCall( TimeSpan.FromSeconds( 2.5 ), new TimerCallback( SendYoungDeathNotice ) );
-			}
-
-			if( m_BuffTable != null )
-			{
-				List<BuffInfo> list = new List<BuffInfo>();
-
-				foreach( BuffInfo buff in m_BuffTable.Values )
-				{
-					if( !buff.RetainThroughDeath )
-					{
-						list.Add( buff );
-					}
-				}
-
-				for( int i = 0; i < list.Count; i++ )
-				{
-					RemoveBuff( list[i] );
-				}
 			}
 		}
 
@@ -1583,9 +1518,6 @@ namespace Server.Mobiles
 					bc.StabledBy = this;
 				}
 			}
-
-			if( Hidden )	//Hiding is the only buff where it has an effect that's serialized.
-				AddBuff( new BuffInfo( BuffIcon.HidingAndOrStealth, 1075655 ) );
 		}
 
 		public override void Serialize( GenericWriter writer )
@@ -1718,24 +1650,6 @@ namespace Server.Mobiles
 		{
 			get{ return m_BedrollLogout; }
 			set{ m_BedrollLogout = value; }
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public override bool Paralyzed
-		{
-			get
-			{
-				return base.Paralyzed;
-			}
-			set
-			{
-				base.Paralyzed = value;
-
-				if( value )
-					AddBuff( new BuffInfo( BuffIcon.Paralyze, 1075827 ) );	//Paralyze/You are frozen and can not move
-				else
-					RemoveBuff( BuffIcon.Paralyze );
-			}
 		}
 
 		#region MyRunUO Invalidation
@@ -1998,62 +1912,6 @@ namespace Server.Mobiles
 
 			return false;
 		}
-
-		private static Point3D[] m_TrammelDeathDestinations = new Point3D[]
-			{
-				new Point3D( 1481, 1612, 20 ),
-				new Point3D( 2708, 2153,  0 ),
-				new Point3D( 2249, 1230,  0 ),
-				new Point3D( 5197, 3994, 37 ),
-				new Point3D( 1412, 3793,  0 ),
-				new Point3D( 3688, 2232, 20 ),
-				new Point3D( 2578,  604,  0 ),
-				new Point3D( 4397, 1089,  0 ),
-				new Point3D( 5741, 3218, -2 ),
-				new Point3D( 2996, 3441, 15 ),
-				new Point3D(  624, 2225,  0 ),
-				new Point3D( 1916, 2814,  0 ),
-				new Point3D( 2929,  854,  0 ),
-				new Point3D(  545,  967,  0 ),
-				new Point3D( 3665, 2587,  0 )
-			};
-
-		private static Point3D[] m_IlshenarDeathDestinations = new Point3D[]
-			{
-				new Point3D( 1216,  468, -13 ),
-				new Point3D(  723, 1367, -60 ),
-				new Point3D(  745,  725, -28 ),
-				new Point3D(  281, 1017,   0 ),
-				new Point3D(  986, 1011, -32 ),
-				new Point3D( 1175, 1287, -30 ),
-				new Point3D( 1533, 1341,  -3 ),
-				new Point3D(  529,  217, -44 ),
-				new Point3D( 1722,  219,  96 )
-			};
-
-		private static Point3D[] m_MalasDeathDestinations = new Point3D[]
-			{
-				new Point3D( 2079, 1376, -70 ),
-				new Point3D(  944,  519, -71 )
-			};
-
-		private static Point3D[] m_TokunoDeathDestinations = new Point3D[]
-			{
-				new Point3D( 1166,  801, 27 ),
-				new Point3D(  782, 1228, 25 ),
-				new Point3D(  268,  624, 15 )
-			};
-
-		public bool YoungDeathTeleport()
-		{
-			return false;
-		}
-
-		private void SendYoungDeathNotice()
-		{
-			this.SendGump( new YoungDeathNotice() );
-		}
-
 		#endregion
 
 		#region Speech log
@@ -2074,77 +1932,5 @@ namespace Server.Mobiles
 
 		#endregion
 
-		#region Buff Icons
-
-		public void ResendBuffs()
-		{
-			if( !BuffInfo.Enabled || m_BuffTable == null )
-				return;
-
-			NetState state = this.NetState;
-
-			if( state != null && state.BuffIcon )
-			{
-				foreach( BuffInfo info in m_BuffTable.Values )
-				{
-					state.Send( new AddBuffPacket( this, info ) );
-				}
-			}
-		}
-
-		private Dictionary<BuffIcon, BuffInfo> m_BuffTable;
-
-		public void AddBuff( BuffInfo b )
-		{
-			if( !BuffInfo.Enabled || b == null )
-				return;
-
-			RemoveBuff( b );	//Check & subsequently remove the old one.
-
-			if( m_BuffTable == null )
-				m_BuffTable = new Dictionary<BuffIcon, BuffInfo>();
-
-			m_BuffTable.Add( b.ID, b );
-
-			NetState state = this.NetState;
-
-			if( state != null && state.BuffIcon )
-			{
-				state.Send( new AddBuffPacket( this, b ) );
-			}
-		}
-
-		public void RemoveBuff( BuffInfo b )
-		{
-			if( b == null )
-				return;
-
-			RemoveBuff( b.ID );
-		}
-
-		public void RemoveBuff( BuffIcon b )
-		{
-			if( m_BuffTable == null || !m_BuffTable.ContainsKey( b ) )
-				return;
-
-			BuffInfo info = m_BuffTable[b];
-
-			if( info.Timer != null && info.Timer.Running )
-				info.Timer.Stop();
-
-			m_BuffTable.Remove( b );
-
-			NetState state = this.NetState;
-
-			if( state != null && state.BuffIcon )
-			{
-				state.Send( new RemoveBuffPacket( this, b ) );
-			}
-
-			if( m_BuffTable.Count <= 0 )
-				m_BuffTable = null;
-		}
-
-		#endregion
 	}
 }

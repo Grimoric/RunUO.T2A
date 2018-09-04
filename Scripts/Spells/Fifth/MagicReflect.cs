@@ -73,7 +73,7 @@ namespace Server.Spells.Fifth
 			if ( m_Table.Contains( m ) )
 			{
     			m_Table.Remove( m );
-				BuffInfo.RemoveBuff( m, BuffIcon.MagicReflection );
+
 			}
 		}
 	}

@@ -45,8 +45,6 @@ namespace Server.Spells.Third
 				TimeSpan length = SpellHelper.GetDuration(Caster, m);
 
 				string args = String.Format("{0}\t{1}\t{2}", percentage, percentage, percentage);
-
-				BuffInfo.AddBuff(m, new BuffInfo(BuffIcon.Bless, 1075847, 1075848, length, m, args.ToString()));
 			}
 
 			FinishSequence();

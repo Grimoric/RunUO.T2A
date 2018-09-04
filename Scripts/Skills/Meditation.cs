@@ -64,7 +64,6 @@ namespace Server.SkillHandlers
 
 					m.SendLocalizedMessage( 501851 ); // You enter a meditative trance.
 					m.Meditating = true;
-					BuffInfo.AddBuff( m, new BuffInfo( BuffIcon.ActiveMeditation, 1075657 ) );
 
 					if ( m.Player || m.Body.IsHuman )
 						m.PlaySound( 0xF9 );

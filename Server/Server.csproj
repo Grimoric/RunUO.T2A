@@ -184,7 +184,6 @@
     <Compile Include=".\TileMatrixPatch.cs" />
     <Compile Include=".\Timer.cs" />
     <Compile Include=".\Utility.cs" />
-    <Compile Include=".\VirtueInfo.cs" />
     <Compile Include=".\World.cs" />
   </ItemGroup>
   <ItemGroup>

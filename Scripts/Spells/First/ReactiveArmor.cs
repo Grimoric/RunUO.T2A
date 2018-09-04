@@ -78,7 +78,6 @@ namespace Server.Spells.First
 			if ( m_Table.Contains( m ) )
 			{
 				m_Table.Remove( m );
-				BuffInfo.RemoveBuff( m, BuffIcon.ReactiveArmor );
 			}
 		}
 	}

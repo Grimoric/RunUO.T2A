@@ -72,7 +72,6 @@ namespace Server.Spells.Second
 				int physloss = -15 + (int) (caster.Skills[SkillName.Inscribe].Value / 20);
 				int resistloss = -35 + (int) (caster.Skills[SkillName.Inscribe].Value / 20);
 				string args = String.Format("{0}\t{1}", physloss, resistloss);
-				BuffInfo.AddBuff(target, new BuffInfo(BuffIcon.Protection, 1075814, 1075815, args.ToString()));
 			}
 			else
 			{
@@ -83,8 +82,6 @@ namespace Server.Spells.Second
 				Registry.Remove( target );
 
 				target.RemoveSkillMod( (SkillMod)mods[1] );
-
-				BuffInfo.RemoveBuff(target, BuffIcon.Protection);
 			}
 		}
 
@@ -98,8 +95,6 @@ namespace Server.Spells.Second
 				Registry.Remove( m );
 
 				m.RemoveSkillMod( (SkillMod) mods[ 1 ] );
-
-				BuffInfo.RemoveBuff( m, BuffIcon.Protection );
 			}
 		}
 

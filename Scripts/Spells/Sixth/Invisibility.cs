@@ -53,9 +53,6 @@ namespace Server.Spells.Sixth
 
 				Timer t = new InternalTimer( m, duration );
 
-				BuffInfo.RemoveBuff( m, BuffIcon.HidingAndOrStealth );
-				BuffInfo.AddBuff( m, new BuffInfo( BuffIcon.Invisibility, 1075825, duration, m ) );	//Invisibility/Invisible
-
 				m_Table[m] = t;
 
 				t.Start();

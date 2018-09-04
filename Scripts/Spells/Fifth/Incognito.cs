@@ -97,9 +97,6 @@ namespace Server.Spells.Fifth
 					m_Timers[Caster] = t;
 
 					t.Start();
-
-					BuffInfo.AddBuff( Caster, new BuffInfo( BuffIcon.Incognito, 1075819, length, Caster ) );
-
 				}
 				else
 				{
@@ -120,7 +117,6 @@ namespace Server.Spells.Fifth
 			{
 				t.Stop();
 				m_Timers.Remove( m );
-				BuffInfo.RemoveBuff( m, BuffIcon.Incognito );
 			}
 
 			return t != null;
