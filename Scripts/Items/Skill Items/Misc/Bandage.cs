@@ -180,8 +180,6 @@ namespace Server.Items
 			SkillName primarySkill = GetPrimarySkill( m_Patient );
 			SkillName secondarySkill = GetSecondarySkill( m_Patient );
 
-			BaseCreature petPatient = m_Patient as BaseCreature;
-
 			if ( !m_Healer.Alive )
 			{
 				healerNumber = 500962; // You were unable to finish your work before you died.
@@ -194,7 +192,7 @@ namespace Server.Items
 				patientNumber = -1;
 				playSound = false;
 			}
-			else if ( !m_Patient.Alive || petPatient != null && petPatient.IsDeadPet )
+			else if ( !m_Patient.Alive )
 			{
 				double healing = m_Healer.Skills[primarySkill].Value;
 				double anatomy = m_Healer.Skills[secondarySkill].Value;
@@ -207,11 +205,6 @@ namespace Server.Items
 						healerNumber = 501042; // Target can not be resurrected at that location.
 						patientNumber = 502391; // Thou can not be resurrected there!
 					}
-					else if ( m_Patient.Region != null && m_Patient.Region.IsPartOf( "Khaldun" ) )
-					{
-						healerNumber = 1010395; // The veil of death in this area is too strong and resists thy efforts to restore life.
-						patientNumber = -1;
-					}
 					else
 					{
 						healerNumber = 500965; // You are able to resurrect your patient.
@@ -220,66 +213,13 @@ namespace Server.Items
 						m_Patient.PlaySound( 0x214 );
 						m_Patient.FixedEffect( 0x376A, 10, 16 );
 
-						if ( petPatient != null && petPatient.IsDeadPet )
-						{
-							Mobile master = petPatient.ControlMaster;
-
-							if( master != null && m_Healer == master )
-							{
-								petPatient.ResurrectPet();
-
-								for ( int i = 0; i < petPatient.Skills.Length; ++i )
-								{
-									petPatient.Skills[i].Base -= 0.1;
-								}
-							}
-							else if ( master != null && master.InRange( petPatient, 3 ) )
-							{
-								healerNumber = 503255; // You are able to resurrect the creature.
-
-								master.CloseGump( typeof( PetResurrectGump ) );
-								master.SendGump( new PetResurrectGump( m_Healer, petPatient ) );
-							}
-							else
-							{
-								bool found = false;
-
-								List<Mobile> friends = petPatient.Friends;
-
-								for ( int i = 0; friends != null && i < friends.Count; ++i )
-								{
-									Mobile friend = friends[i];
-
-									if ( friend.InRange( petPatient, 3 ) )
-									{
-										healerNumber = 503255; // You are able to resurrect the creature.
-
-										friend.CloseGump( typeof( PetResurrectGump ) );
-										friend.SendGump( new PetResurrectGump( m_Healer, petPatient ) );
-
-										found = true;
-										break;
-									}
-								}
-
-								if ( !found )
-									healerNumber = 1049670; // The pet's owner must be nearby to attempt resurrection.
-							}
-						}
-						else
-						{
-							m_Patient.CloseGump( typeof( ResurrectGump ) );
-							m_Patient.SendGump( new ResurrectGump( m_Patient, m_Healer ) );
-						}
+						m_Patient.CloseGump( typeof( ResurrectGump ) );
+						m_Patient.SendGump( new ResurrectGump( m_Patient, m_Healer ) );
 					}
 				}
 				else
 				{
-					if ( petPatient != null && petPatient.IsDeadPet )
-						healerNumber = 503256; // You fail to resurrect the creature.
-					else
-						healerNumber = 500966; // You are unable to resurrect your patient.
-
+					healerNumber = 500966; // You are unable to resurrect your patient.
 					patientNumber = -1;
 				}
 			}
@@ -389,9 +329,7 @@ namespace Server.Items
 
 		public static BandageContext BeginHeal( Mobile healer, Mobile patient )
 		{
-			bool isDeadPet = patient is BaseCreature && ((BaseCreature)patient).IsDeadPet;
-
-			if ( !patient.Poisoned && patient.Hits == patient.HitsMax && !isDeadPet )
+			if ( !patient.Poisoned && patient.Hits == patient.HitsMax )
 			{
 				healer.SendLocalizedMessage( 500955 ); // That being is not damaged!
 			}

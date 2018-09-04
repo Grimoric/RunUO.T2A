@@ -131,7 +131,7 @@ namespace Server.Mobiles
 			if ( from == animal || from.AccessLevel >= AccessLevel.GameMaster )
 				return true;
 
-			if ( from.Alive && animal.Controlled && !animal.IsDeadPet && ( from == animal.ControlMaster || from == animal.SummonMaster || animal.IsPetFriend( from ) ) )
+			if ( from.Alive && animal.Controlled && ( from == animal.ControlMaster || from == animal.SummonMaster || animal.IsPetFriend( from ) ) )
 				return true;
 
 			return false;
@@ -139,9 +139,6 @@ namespace Server.Mobiles
 
 		public static void CombineBackpacks( BaseCreature animal )
 		{
-			if ( animal.IsBonded || animal.IsDeadPet )
-				return;
-
 			Container pack = animal.Backpack;
 
 			if ( pack != null )
@@ -162,9 +159,6 @@ namespace Server.Mobiles
 
 		public static void TryPackOpen( BaseCreature animal, Mobile from )
 		{
-			if ( animal.IsDeadPet )
-				return;
-
 			Container item = animal.Backpack;
 
 			if ( item != null )

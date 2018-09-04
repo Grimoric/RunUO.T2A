@@ -191,9 +191,6 @@ namespace Server.Misc
 			if ( from.Region.IsPartOf( typeof( Regions.Jail ) ) )
 				return;
 
-			if ( from is BaseCreature && ((BaseCreature)from).IsDeadPet )
-				return;
-
 			if ( skill.SkillName == SkillName.Focus && from is BaseCreature )
 				return;
 

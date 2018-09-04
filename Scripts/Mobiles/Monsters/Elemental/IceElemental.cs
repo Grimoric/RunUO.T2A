@@ -40,7 +40,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Average, 2 );
 			AddLoot( LootPack.Gems, 2 );
 		}
-		public override bool BleedImmune{ get{ return true; } }
 
 		public IceElemental( Serial serial ) : base( serial )
 		{

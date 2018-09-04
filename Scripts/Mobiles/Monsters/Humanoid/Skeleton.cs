@@ -44,7 +44,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Poor );
 		}
 
-		public override bool BleedImmune{ get{ return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Lesser; } }
 
 		public Skeleton( Serial serial ) : base( serial )

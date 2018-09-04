@@ -289,7 +289,6 @@
     <Compile Include=".\Gumps\HouseGump.cs" />
     <Compile Include=".\Gumps\HouseTransferGump.cs" />
     <Compile Include=".\Gumps\NoticeGump.cs" />
-    <Compile Include=".\Gumps\PetResurrectGump.cs" />
     <Compile Include=".\Gumps\PlayerVendorGumps.cs" />
     <Compile Include=".\Gumps\PolymorphGump.cs" />
     <Compile Include=".\Gumps\Properties\PropsConfig.cs" />

@@ -879,23 +879,7 @@ namespace Server.Commands.Generic
 			}
 			else
 			{
-				if ( mob.IsDeadBondedPet )
-				{
-					BaseCreature bc = mob as BaseCreature;
-
-					if ( bc != null )
-					{
-						CommandLogging.WriteLine( from, "{0} {1} resurrecting {2}", from.AccessLevel, CommandLogging.Format( from ), CommandLogging.Format( mob ) );
-
-						bc.PlaySound( 0x214 );
-						bc.FixedEffect( 0x376A, 10, 16 );
-
-						bc.ResurrectPet();
-
-						AddResponse( "It has been resurrected." );
-					}
-				}
-				else if ( !mob.Alive )
+				if ( !mob.Alive )
 				{
 					CommandLogging.WriteLine( from, "{0} {1} resurrecting {2}", from.AccessLevel, CommandLogging.Format( from ), CommandLogging.Format( mob ) );
 

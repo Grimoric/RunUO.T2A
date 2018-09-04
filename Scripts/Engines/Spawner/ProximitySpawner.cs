@@ -119,7 +119,7 @@ namespace Server.Mobiles
 				return false;
 			}
 
-			return m.Alive && !m.IsDeadBondedPet && m.CanBeDamaged() && !m.Hidden;
+			return m.Alive && m.CanBeDamaged() && !m.Hidden;
 		}
 
 		public override void OnMovement( Mobile m, Point3D oldLocation )

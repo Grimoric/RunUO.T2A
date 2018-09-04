@@ -30,7 +30,6 @@ namespace Server.Mobiles
 			Karma = -10000;
 
 			PackItem( new SpidersSilk( 5 ) );
-			PackNecroReg( Utility.RandomMinMax( 4, 10 ) );
 		}
 
 		public override void GenerateLoot()

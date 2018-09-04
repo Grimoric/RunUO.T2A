@@ -40,7 +40,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Potions );
 		}
 
-		public override bool BleedImmune{ get{ return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Lesser; } }
 
 		public Mummy( Serial serial ) : base( serial )

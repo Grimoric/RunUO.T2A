@@ -43,7 +43,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.MedScrolls );
 		}
 
-		public override bool BleedImmune{ get{ return true; } }
 		public override int TreasureMapLevel{ get{ return 2; } }
 
 		public AirElemental( Serial serial ) : base( serial )

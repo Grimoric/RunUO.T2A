@@ -498,7 +498,7 @@ namespace Server.Mobiles
 			Mobile c = m_Mobile.Combatant;
 			m_Mobile.Warmode = true;
 
-			if( c == null || c.Deleted || !c.Alive || c.IsDeadBondedPet || !m_Mobile.CanSee( c ) || !m_Mobile.CanBeHarmful( c, false ) || c.Map != m_Mobile.Map )
+			if( c == null || c.Deleted || !c.Alive || !m_Mobile.CanSee( c ) || !m_Mobile.CanBeHarmful( c, false ) || c.Map != m_Mobile.Map )
 			{
 				// Our combatant is deleted, dead, hidden, or we cannot hurt them
 				// Try to find another combatant
@@ -748,7 +748,7 @@ namespace Server.Mobiles
 
 				Mobile comb = m_Mobile.Combatant;
 
-				if( comb != null && !comb.Deleted && comb.Alive && !comb.IsDeadBondedPet && m_Mobile.InRange( comb, 12 ) && CanDispel( comb ) )
+				if( comb != null && !comb.Deleted && comb.Alive && m_Mobile.InRange( comb, 12 ) && CanDispel( comb ) )
 				{
 					active = comb;
 					activePrio = m_Mobile.GetDistanceToSqrt( comb );
@@ -810,7 +810,7 @@ namespace Server.Mobiles
 
 					Mobile comb = m_Mobile.Combatant;
 
-					if( comb != null && !comb.Deleted && comb.Alive && !comb.IsDeadBondedPet && CanDispel( comb ) )
+					if( comb != null && !comb.Deleted && comb.Alive && CanDispel( comb ) )
 					{
 						active = inactive = comb;
 						actPrio = inactPrio = m_Mobile.GetDistanceToSqrt( comb );

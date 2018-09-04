@@ -37,36 +37,29 @@ namespace Server.SkillHandlers
 				{
 					BaseCreature c = (BaseCreature)targeted;
 
-					if ( !c.IsDeadPet )
+					if ( c.Body.IsAnimal || c.Body.IsMonster || c.Body.IsSea )
 					{
-						if ( c.Body.IsAnimal || c.Body.IsMonster || c.Body.IsSea )
+						if ( !c.Controlled && from.Skills[SkillName.AnimalLore].Value < 100.0 )
 						{
-							if ( !c.Controlled && from.Skills[SkillName.AnimalLore].Value < 100.0 )
-							{
-								from.SendLocalizedMessage( 1049674 ); // At your skill level, you can only lore tamed creatures.
-							}
-							else if ( !c.Controlled && !c.Tamable && from.Skills[SkillName.AnimalLore].Value < 110.0 )
-							{
-								from.SendLocalizedMessage( 1049675 ); // At your skill level, you can only lore tamed or tameable creatures.
-							}
-							else if ( !from.CheckTargetSkill( SkillName.AnimalLore, c, 0.0, 120.0 ) )
-							{
-								from.SendLocalizedMessage( 500334 ); // You can't think of anything you know offhand.
-							}
-							else
-							{
-								from.CloseGump( typeof( AnimalLoreGump ) );
-								from.SendGump( new AnimalLoreGump( c ) );
-							}
+							from.SendLocalizedMessage( 1049674 ); // At your skill level, you can only lore tamed creatures.
+						}
+						else if ( !c.Controlled && !c.Tamable && from.Skills[SkillName.AnimalLore].Value < 110.0 )
+						{
+							from.SendLocalizedMessage( 1049675 ); // At your skill level, you can only lore tamed or tameable creatures.
+						}
+						else if ( !from.CheckTargetSkill( SkillName.AnimalLore, c, 0.0, 120.0 ) )
+						{
+							from.SendLocalizedMessage( 500334 ); // You can't think of anything you know offhand.
 						}
 						else
 						{
-							from.SendLocalizedMessage( 500329 ); // That's not an animal!
+							from.CloseGump( typeof( AnimalLoreGump ) );
+							from.SendGump( new AnimalLoreGump( c ) );
 						}
 					}
 					else
 					{
-						from.SendLocalizedMessage( 500331 ); // The spirits of the dead are not the province of animal lore.
+						from.SendLocalizedMessage( 500329 ); // That's not an animal!
 					}
 				}
 				else

@@ -61,7 +61,7 @@ namespace Server.Items
 				{
 					BaseCreature bc = m as BaseCreature;
 
-					if( m.Alive && !m.IsDeadBondedPet && (bc == null || bc.Controlled || bc.Summoned) )
+					if( m.Alive && (bc == null || bc.Controlled || bc.Summoned) )
 					{
 						toDamage.Add( m );
 					}

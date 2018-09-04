@@ -732,12 +732,6 @@ namespace Server.Spells
 
 			if( delay == TimeSpan.Zero )
 			{
-				if( from is BaseCreature )
-					((BaseCreature)from).AlterSpellDamageTo( target, ref iDamage );
-
-				if( target is BaseCreature )
-					((BaseCreature)target).AlterSpellDamageFrom( from, ref iDamage );
-
 				target.Damage( iDamage, from );
 			}
 			else
@@ -789,12 +783,6 @@ namespace Server.Spells
 
 			if( delay == TimeSpan.Zero )
 			{
-				if( from is BaseCreature )
-					((BaseCreature)from).AlterSpellDamageTo( target, ref iDamage );
-
-				if( target is BaseCreature )
-					((BaseCreature)target).AlterSpellDamageFrom( from, ref iDamage );
-
 				WeightOverloading.DFA = dfa;
 
                 target.Damage(iDamage, from);
@@ -857,12 +845,6 @@ namespace Server.Spells
 
 			protected override void OnTick()
 			{
-				if( m_From is BaseCreature )
-					((BaseCreature)m_From).AlterSpellDamageTo( m_Target, ref m_Damage );
-
-				if( m_Target is BaseCreature )
-					((BaseCreature)m_Target).AlterSpellDamageFrom( m_From, ref m_Damage );
-
 				m_Target.Damage( m_Damage );
 				if( m_Spell != null )
 					m_Spell.RemoveDelayedDamageContext( m_Target );
@@ -898,12 +880,6 @@ namespace Server.Spells
 
 			protected override void OnTick()
 			{
-				if( m_From is BaseCreature && m_Target != null )
-					((BaseCreature)m_From).AlterSpellDamageTo( m_Target, ref m_Damage );
-
-				if( m_Target is BaseCreature && m_From != null )
-					((BaseCreature)m_Target).AlterSpellDamageFrom( m_From, ref m_Damage );
-
 				WeightOverloading.DFA = m_DFA;
 
                 m_Target.Damage(m_Damage, m_From);

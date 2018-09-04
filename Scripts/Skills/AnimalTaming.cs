@@ -36,12 +36,6 @@ namespace Server.SkillHandlers
 			return TimeSpan.FromHours( 6.0 );
 		}
 
-		public static bool MustBeSubdued( BaseCreature bc )
-		{
-            if (bc.Owners.Count > 0) { return false; } //Checks to see if the animal has been tamed before
-			return bc.SubdueBeforeTame && bc.Hits > bc.HitsMax / 10;
-		}
-
 		public static void ScaleStats( BaseCreature bc, double scalar )
 		{
 			if ( bc.RawStr > 0 )
@@ -126,14 +120,6 @@ namespace Server.SkillHandlers
 						{
 							creature.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 502804, from.NetState ); // That animal looks tame already.
 						}
-						else if ( from.Female && !creature.AllowFemaleTamer )
-						{
-							creature.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1049653, from.NetState ); // That creature can only be tamed by males.
-						}
-						else if ( !from.Female && !creature.AllowMaleTamer )
-						{
-							creature.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1049652, from.NetState ); // That creature can only be tamed by females.
-						}
 						else if ( from.Followers + creature.ControlSlots > from.FollowersMax )
 						{
 							from.SendLocalizedMessage( 1049611 ); // You have too many followers to tame that creature.
@@ -141,10 +127,6 @@ namespace Server.SkillHandlers
 						else if ( creature.Owners.Count >= BaseCreature.MaxOwners && !creature.Owners.Contains( from ) )
 						{
 							creature.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1005615, from.NetState ); // This animal has had too many owners and is too upset for you to tame.
-						}
-						else if ( MustBeSubdued( creature ) )
-						{
-							creature.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1054025, from.NetState ); // You must subdue this creature before you can tame it!
 						}
 						else if ( from.Skills[SkillName.AnimalTaming].Value >= creature.MinTameSkill )
 						{
@@ -268,13 +250,6 @@ namespace Server.SkillHandlers
 						m_Creature.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1005615, m_Tamer.NetState ); // This animal has had too many owners and is too upset for you to tame.
 						Stop();
 					}
-					else if ( MustBeSubdued( m_Creature ) )
-					{
-						m_BeingTamed.Remove( m_Creature );
-						m_Tamer.NextSkillTime = DateTime.Now;
-						m_Creature.PrivateOverheadMessage( MessageType.Regular, 0x3B2, 1054025, m_Tamer.NetState ); // You must subdue this creature before you can tame it!
-						Stop();
-					}
 					else if ( de != null && de.LastDamage > m_StartTime )
 					{
 						m_BeingTamed.Remove( m_Creature );
@@ -323,9 +298,6 @@ namespace Server.SkillHandlers
 									ScaleSkills( m_Creature, 0.86 ); // 86% of original skills if they were paralyzed during the taming
 								else
 									ScaleSkills( m_Creature, 0.90 ); // 90% of original skills
-
-								if ( m_Creature.StatLossAfterTame )
-									ScaleStats( m_Creature, 0.50 );
 							}
 
 							if ( alreadyOwned )
@@ -339,7 +311,6 @@ namespace Server.SkillHandlers
 							}
 
 							m_Creature.SetControlMaster( m_Tamer );
-							m_Creature.IsBonded = false;
 						}
 						else
 						{

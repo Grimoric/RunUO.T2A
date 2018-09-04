@@ -49,8 +49,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Meager );
 		}
 
-		public override bool BleedImmune{ get{ return true; } }
-
 		public SkeletalKnight( Serial serial ) : base( serial )
 		{
 		}

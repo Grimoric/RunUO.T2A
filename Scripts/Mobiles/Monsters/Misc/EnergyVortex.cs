@@ -45,7 +45,6 @@ namespace Server.Mobiles
 			ControlSlots = 1;
 		}
 
-		public override bool BleedImmune{ get{ return true; } }
 		public override Poison PoisonImmune { get { return Poison.Lethal; } }
 
 		public override int GetAngerSound()

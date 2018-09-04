@@ -105,7 +105,7 @@ namespace Server.Items
 
 			foreach ( Mobile mob in GetMobilesInRange( 0 ) )
 			{
-				if ( mob.Alive && !mob.IsDeadBondedPet )
+				if ( mob.Alive )
 					Spells.SpellHelper.Damage( TimeSpan.FromTicks( 1 ), mob, mob, Utility.RandomMinMax( 1, 6 ) * 6 );
 			}
 

@@ -44,7 +44,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.MedScrolls );
 		}
 
-		public override bool BleedImmune{ get{ return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Lethal; } }
 
 		public override Poison HitPoison{ get{ return Poison.Lethal; } }

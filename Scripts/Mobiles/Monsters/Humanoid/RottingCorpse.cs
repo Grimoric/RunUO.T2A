@@ -36,7 +36,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.FilthyRich, 2 );
 		}
 
-		public override bool BleedImmune{ get{ return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Lethal; } }
 		public override Poison HitPoison{ get{ return Poison.Lethal; } }
 		public override int TreasureMapLevel{ get{ return 5; } }

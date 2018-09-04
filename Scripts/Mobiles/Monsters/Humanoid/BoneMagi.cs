@@ -34,7 +34,6 @@ namespace Server.Mobiles
 			VirtualArmor = 38;
 
 			PackReg( 3 );
-			PackNecroReg( 3, 10 );
 			PackItem( new Bone() );
 		}
 
@@ -44,8 +43,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.LowScrolls );
 			AddLoot( LootPack.Potions );
 		}
-		
-		public override bool BleedImmune{ get{ return true; } }
 		
 		public override OppositionGroup OppositionGroup
 		{

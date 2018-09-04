@@ -47,7 +47,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Gems );
 		}
 
-		public override bool BleedImmune{ get{ return true; } }
 		public override int TreasureMapLevel{ get{ return 1; } }
 
 		public EarthElemental( Serial serial ) : base( serial )

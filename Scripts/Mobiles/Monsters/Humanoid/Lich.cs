@@ -34,7 +34,6 @@ namespace Server.Mobiles
 
 			VirtualArmor = 50;
 			PackItem( new GnarledStaff() );
-			PackNecroReg( 17, 24 );
 		}
 
 		public override void GenerateLoot()
@@ -49,7 +48,6 @@ namespace Server.Mobiles
 		}
 
 		public override bool CanRummageCorpses{ get{ return true; } }
-		public override bool BleedImmune{ get{ return true; } }
 		public override Poison PoisonImmune{ get{ return Poison.Lethal; } }
 		public override int TreasureMapLevel{ get{ return 3; } }
 

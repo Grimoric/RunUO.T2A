@@ -686,12 +686,6 @@ namespace Server.Items
 
 			int damage = ComputeDamage( attacker, defender );
 
-			if ( attacker is BaseCreature )
-				((BaseCreature)attacker).AlterMeleeDamageTo( defender, ref damage );
-
-			if ( defender is BaseCreature )
-				((BaseCreature)defender).AlterMeleeDamageFrom( attacker, ref damage );
-
 			damage = AbsorbDamage( attacker, defender, damage );
 
 			if ( damage < 1 )

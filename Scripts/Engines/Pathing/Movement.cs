@@ -112,7 +112,7 @@ namespace Server.Movement
 			int stepTop = startTop + StepHeight;
 			int checkTop = startZ + PersonHeight;
 
-			bool ignoreDoors = m_AlwaysIgnoreDoors || !m.Alive || m.Body.BodyID == 0x3DB || m.IsDeadBondedPet;
+			bool ignoreDoors = m_AlwaysIgnoreDoors || !m.Alive || m.Body.BodyID == 0x3DB;
 			bool ignoreSpellFields = m is PlayerMobile && map != Map.Felucca;
 
 			#region Tiles
@@ -267,7 +267,7 @@ namespace Server.Movement
 
 		private bool CanMoveOver( Mobile m, Mobile t )
 		{
-			return !t.Alive || !m.Alive || t.IsDeadBondedPet || m.IsDeadBondedPet || t.Hidden && t.AccessLevel > AccessLevel.Player;
+			return !t.Alive || !m.Alive || t.Hidden && t.AccessLevel > AccessLevel.Player;
 		}
 
 		public bool CheckMovement( Mobile m, Map map, Point3D loc, Direction d, out int newZ )

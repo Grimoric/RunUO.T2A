@@ -243,12 +243,6 @@ namespace Server.Spells
 			if( !target.Player && !target.Body.IsHuman /*&& !Core.AOS*/ )
 				scalar *= 2.0; // Double magery damage to monsters/animals if not AOS
 
-			if ( target is BaseCreature )
-				((BaseCreature)target).AlterDamageScalarFrom( m_Caster, ref scalar );
-
-			if ( m_Caster is BaseCreature )
-				((BaseCreature)m_Caster).AlterDamageScalarTo( target, ref scalar );
-
 			target.Region.SpellDamageScalar( m_Caster, target, ref scalar );
 
 			return scalar;

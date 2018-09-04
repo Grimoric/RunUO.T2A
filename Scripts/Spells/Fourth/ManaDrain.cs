@@ -34,7 +34,7 @@ namespace Server.Spells.Fourth
 			Mobile m = (Mobile)states[0];
 			int mana = (int)states[1];
 
-			if ( m.Alive && !m.IsDeadBondedPet )
+			if ( m.Alive )
 			{
 				m.Mana += mana;
 

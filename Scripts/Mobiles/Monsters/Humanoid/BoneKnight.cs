@@ -50,7 +50,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Meager );
 		}
 
-		public override bool BleedImmune{ get{ return true; } }
 
 		public BoneKnight( Serial serial ) : base( serial )
 		{

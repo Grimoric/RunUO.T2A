@@ -38,7 +38,6 @@ namespace Server.Mobiles
 			AddLoot( LootPack.Average );
 		}
 
-		public override bool BleedImmune{ get{ return true; } }
 		public override Poison HitPoison{ get{ return Poison.Lethal; } }
 		public override double HitPoisonChance{ get{ return 0.6; } }
 
