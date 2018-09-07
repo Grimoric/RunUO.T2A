@@ -33,7 +33,7 @@ namespace Server.Mobiles
 			CanSwim = true;
 			CantWalk = true;
 
-			Rope rope = new Rope();
+            Static rope = new Static();
 			rope.ItemID = 0x14F8;
 			PackItem( rope );
 

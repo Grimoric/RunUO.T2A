@@ -228,22 +228,6 @@ namespace Server.Items
 							from.PlaySound( 0x23E );
 						}
 					}
-					else if ( item is MonsterStatuette && m_Tub.AllowStatuettes )
-					{
-						if ( !from.InRange( m_Tub.GetWorldLocation(), 1 ) || !from.InRange( item.GetWorldLocation(), 1 ) )
-						{
-							from.SendLocalizedMessage( 500446 ); // That is too far away.
-						}
-						else if ( !item.Movable )
-						{
-							from.SendLocalizedMessage( 1049779 ); // You cannot dye statuettes that are locked down.
-						}
-						else
-						{
-							item.Hue = m_Tub.DyedHue;
-							from.PlaySound( 0x23E );
-						}
-					}
 					else if ( item is BaseArmor && (((BaseArmor)item).MaterialType == ArmorMaterialType.Leather || ((BaseArmor)item).MaterialType == ArmorMaterialType.Studded) && m_Tub.AllowLeather )
 					{
 						if ( !from.InRange( m_Tub.GetWorldLocation(), 1 ) || !from.InRange( item.GetWorldLocation(), 1 ) )

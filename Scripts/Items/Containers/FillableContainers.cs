@@ -578,22 +578,25 @@ namespace Server.Items
 	{
 		protected Type[] m_Types;
 		protected int m_Weight;
+        protected int m_ItemID = -1;
 
-		public Type[] Types { get { return m_Types; } }
+        public Type[] Types { get { return m_Types; } }
 		public int Weight { get { return m_Weight; } }
 
-		public FillableEntry( Type type )
-			: this( 1, new Type[] { type } )
+		public FillableEntry( Type type ) : this( 1, new Type[] { type } )
 		{
 		}
 
-		public FillableEntry( int weight, Type type )
-			: this( weight, new Type[] { type } )
+		public FillableEntry( int weight, Type type ) : this( weight, new Type[] { type } )
 		{
 		}
 
-		public FillableEntry( Type[] types )
-			: this( 1, types )
+        public FillableEntry(int weight, Type type, int itemID) : this(weight, new Type[] { type }, itemID)
+        {
+        }
+
+
+        public FillableEntry( Type[] types ) : this( 1, types )
 		{
 		}
 
@@ -603,7 +606,15 @@ namespace Server.Items
 			m_Types = types;
 		}
 
-		public FillableEntry( int weight, Type[] types, int offset, int count )
+        public FillableEntry(int weight, Type[] types, int itemID)
+        {
+            m_Weight = weight;
+            m_Types = types;
+            m_ItemID = itemID;
+        }
+
+
+        public FillableEntry( int weight, Type[] types, int offset, int count )
 		{
 			m_Weight = weight;
 			m_Types = new Type[ count ];
@@ -615,6 +626,7 @@ namespace Server.Items
 		public virtual Item Construct()
 		{
 			Item item = Loot.Construct( m_Types );
+            if (m_ItemID!=-1) { item.ItemID = m_ItemID; }
 
 			if( item is Key )
 				( (Key)item ).ItemID = Utility.RandomList( (int)KeyType.Copper, (int)KeyType.Gold, (int)KeyType.Iron, (int)KeyType.Rusty );
@@ -623,7 +635,17 @@ namespace Server.Items
 			else if( item is Bandage || item is Lockpick )
 				item.Amount = Utility.RandomMinMax( 1, 3 );
 
-			return item;
+            item.Movable = true;
+
+
+            if (m_ItemID== 0x1876 || m_ItemID == 0x1877 || m_ItemID == 0x1878 || m_ItemID == 0x1879 ||      // Wire
+                m_ItemID == 0x1761 || m_ItemID == 0x1762 || m_ItemID == 0x1763 || m_ItemID == 0x1764 ||     // FoldedCloth
+                m_ItemID == 0xC3C || m_ItemID == 0xC3E || m_ItemID == 0xC40 || m_ItemID == 0xC42 )          // Dried Herbs
+            {
+                item.Stackable = true;
+            }
+
+            return item;
 		}
 	}
 
@@ -776,7 +798,7 @@ namespace Server.Items
 			},
 			new FillableEntry[]
 			{
-				new FillableEntry( 1, typeof( PaintsAndBrush ) ),
+				new FillableEntry( 1, typeof( Static ), 0xFC1), // PaintsAndBrush
 				new FillableEntry( 1, typeof( SledgeHammer ) ),
 				new FillableEntry( 2, typeof( SmithHammer ) ),
 				new FillableEntry( 2, typeof( Tongs ) ),
@@ -838,14 +860,16 @@ namespace Server.Items
 				new FillableEntry( 8, typeof( SmithHammer ) ),
 				new FillableEntry( 8, typeof( Tongs ) ),
 				new FillableEntry( 8, typeof( SledgeHammer ) ),
-				//new FillableEntry( 8, typeof( IronOre ) ), TODO: Smaller ore
-				new FillableEntry( 8, typeof( IronIngot ) ),
-				new FillableEntry( 1, typeof( IronWire ) ),
-				new FillableEntry( 1, typeof( SilverWire ) ),
-				new FillableEntry( 1, typeof( GoldWire ) ),
-				new FillableEntry( 1, typeof( CopperWire ) ),
-				new FillableEntry( 1, typeof( HorseShoes ) ),
-				new FillableEntry( 1, typeof( ForgedMetal ) )
+				new FillableEntry( 2, typeof( IronOre ), 0x19B7 ),  // Small Iron Ore
+				new FillableEntry( 7, typeof( IronOre ), 0x19B8 ),  // Small Iron Ore
+                new FillableEntry( 7, typeof( IronOre ), 0x19BA ),  // Small Iron Ore
+                new FillableEntry( 8, typeof( IronIngot ) ),
+				new FillableEntry( 1, typeof( Static ), 0x1876 ),   // IronWire 
+                new FillableEntry( 1, typeof( Static ), 0x1877 ),   // SilverWire
+                new FillableEntry( 1, typeof( Static ), 0x1878 ),   // GoldWire
+                new FillableEntry( 1, typeof( Static ), 0x1879 ),   // CopperWire
+				new FillableEntry( 1, typeof( Static ), 0xFB6  ),   // HorseShoes
+				new FillableEntry( 1, typeof( Static ), 0xFB8  )    // ForgedMetal
 			} );
 
 		public static FillableContent Bowyer = new FillableContent(
@@ -896,8 +920,8 @@ namespace Server.Items
 			},
 			new FillableEntry[]
 			{
-				new FillableEntry( 1, typeof( ChiselsNorth ) ),
-				new FillableEntry( 1, typeof( ChiselsWest ) ),
+				new FillableEntry( 1, typeof( Static ), 0x1026  ), // ChiselsNorth
+				new FillableEntry( 1, typeof( Static ), 0x1027  ), // ChiselsWest
 				new FillableEntry( 2, typeof( DovetailSaw ) ),
 				new FillableEntry( 2, typeof( Hammer ) ),
 				new FillableEntry( 2, typeof( MouldingPlane ) ),
@@ -928,11 +952,10 @@ namespace Server.Items
 				new FillableEntry( 1, typeof( LightYarn ) ),
 				new FillableEntry( 1, typeof( LightYarnUnraveled ) ),
 				new FillableEntry( 1, typeof( SpoolOfThread ) ),
-				// Four different types
-				//new FillableEntry( 1, typeof( FoldedCloth ) ),
-				//new FillableEntry( 1, typeof( FoldedCloth ) ),
-				//new FillableEntry( 1, typeof( FoldedCloth ) ),
-				//new FillableEntry( 1, typeof( FoldedCloth ) ),
+				new FillableEntry( 1, typeof( FoldedCloth ), 0x1761 ), // FoldedCloth
+				new FillableEntry( 1, typeof( FoldedCloth ), 0x1762 ), // FoldedCloth
+				new FillableEntry( 1, typeof( FoldedCloth ), 0x1763 ), // FoldedCloth
+				new FillableEntry( 1, typeof( FoldedCloth ), 0x1764 ), // FoldedCloth
 				new FillableEntry( 1, typeof( Dyes ) ),
 				new FillableEntry( 2, typeof( Leather ) )
 			} );
@@ -961,9 +984,8 @@ namespace Server.Items
 			new FillableEntry[]
 			{
 				new FillableEntry( 1, typeof( FishingPole ) ),
-				// Two different types
-				//new FillableEntry( 1, typeof( SmallFish ) ),
-				//new FillableEntry( 1, typeof( SmallFish ) ),
+				new FillableEntry( 1, typeof( SmallFish ), 0x0DD6 ), // SmallFish
+                new FillableEntry( 1, typeof( SmallFish ), 0x0DD7 ), // SmallFish
 				new FillableEntry( 4, typeof( Fish ) )
 			} );
 
@@ -1049,10 +1071,10 @@ namespace Server.Items
 				new FillableEntry( 10, typeof( Ginseng ) ),
 				new FillableEntry( 10, typeof( MandrakeRoot ) ),
 				new FillableEntry(  1, typeof( DeadWood ) ),
-				new FillableEntry(  1, typeof( WhiteDriedFlowers ) ),
-				new FillableEntry(  1, typeof( GreenDriedFlowers ) ),
-				new FillableEntry(  1, typeof( DriedOnions ) ),
-				new FillableEntry(  1, typeof( DriedHerbs ) )
+				new FillableEntry(  1, typeof( Static ), 0xC3C ), // WhiteDriedFlowers
+				new FillableEntry(  1, typeof( Static ), 0xC3E ), // GreenDriedFlowers
+				new FillableEntry(  1, typeof( Static ), 0xC40 ), // DriedOnions
+				new FillableEntry(  1, typeof( Static ), 0xC42 )  // DriedHerbs
 			} );
 
 		public static FillableContent Inn = new FillableContent(
@@ -1117,7 +1139,7 @@ namespace Server.Items
 				new FillableEntry(  8, Loot.RegularScrollTypes, 32, 8 ),
 				new FillableEntry(  7, Loot.RegularScrollTypes, 40, 8 ),
 				new FillableEntry(  6, Loot.RegularScrollTypes, 48, 8 ),
-				new FillableEntry(  5, Loot.RegularScrollTypes, 56, 8 )
+                new FillableEntry(  5, Loot.RegularScrollTypes, 56, 8 )
 			} );
 
 		public static FillableContent Merchant = new FillableContent(
@@ -1199,8 +1221,10 @@ namespace Server.Items
 				new FillableEntry( 2, typeof( Pickaxe ) ),
 				new FillableEntry( 2, typeof( Shovel ) ),
 				new FillableEntry( 2, typeof( IronIngot ) ),
-				//new FillableEntry( 2, typeof( IronOre ) ),	TODO: Smaller Ore
-				new FillableEntry( 1, typeof( ForgedMetal ) )
+                new FillableEntry( 2, typeof( IronOre ), 0x19B7 ), // Small Iron Ore
+				new FillableEntry( 7, typeof( IronOre ), 0x19B8 ), // Small Iron Ore
+                new FillableEntry( 7, typeof( IronOre ), 0x19BA ), // Small Iron Ore
+				new FillableEntry( 1, typeof( Static ), 0xFB8 )  // ForgedMetal
 			} );
 
 		public static FillableContent Observatory = new FillableContent(
@@ -1222,8 +1246,8 @@ namespace Server.Items
 			},
 			new FillableEntry[]
 			{
-				new FillableEntry( 1, typeof( PaintsAndBrush ) ),
-				new FillableEntry( 2, typeof( PenAndInk ) )
+				new FillableEntry( 1, typeof( Static ), 0xFC1 ), // PaintsAndBrush
+				new FillableEntry( 2, typeof( Static ), 0xFBF ) // PenAndInk
 			} );
 
 		public static FillableContent Provisioner = new FillableContent(
@@ -1239,13 +1263,13 @@ namespace Server.Items
 				new FillableEntry( 1, typeof( CheeseSlice ) ),
 				new FillableEntry( 1, typeof( Eggs ) ),
 				new FillableEntry( 4, typeof( Fish ) ),
-				new FillableEntry( 1, typeof( DirtyFrypan ) ),
-				new FillableEntry( 1, typeof( DirtyPan ) ),
-				new FillableEntry( 1, typeof( DirtyKettle ) ),
-				new FillableEntry( 1, typeof( DirtySmallRoundPot ) ),
-				new FillableEntry( 1, typeof( DirtyRoundPot ) ),
-				new FillableEntry( 1, typeof( DirtySmallPot ) ),
-				new FillableEntry( 1, typeof( DirtyPot ) ),
+				new FillableEntry( 1, typeof( Static ), 0x9DE ), // DirtyFrypan
+				new FillableEntry( 1, typeof( Static ), 0x9E8 ), // DirtyPan
+				new FillableEntry( 1, typeof( Static ), 0x9DC ), // DirtyKettle
+				new FillableEntry( 1, typeof( Static ), 0x9E7 ), // DirtySmallRoundPot
+				new FillableEntry( 1, typeof( Static ), 0x9DF ), // DirtyRoundPot
+				new FillableEntry( 1, typeof( Static ), 0x9DD ), // DirtySmallPot
+				new FillableEntry( 1, typeof( Static ), 0x9E6 ), // DirtyPot
 				new FillableEntry( 1, typeof( Apple ) ),
 				new FillableEntry( 2, typeof( Banana ) ),
 				new FillableEntry( 2, typeof( Bananas ) ),
@@ -1321,7 +1345,7 @@ namespace Server.Items
 				new FillableEntry( 2, typeof( ThighBoots ) ),
 
 				new FillableEntry( 2, typeof( GnarledStaff ) ),
-				new FillableEntry( 1, typeof( Whip ) ),
+				new FillableEntry( 1, typeof( Static ), 0x166E ), // Whip
 
 				new FillableEntry( 2, typeof( Bow ) ),
 				new FillableEntry( 2, typeof( Crossbow ) ),
@@ -1338,7 +1362,7 @@ namespace Server.Items
 			},
 			new FillableEntry[]
 			{
-				//new FillableEntry( 1, typeof( Wheat ) ),
+				new FillableEntry( 1, typeof( Wheat ) ),
 				new FillableEntry( 1, typeof( Carrot ) )
 			} );
 
@@ -1404,22 +1428,21 @@ namespace Server.Items
 			new FillableEntry[]
 			{
 				new FillableEntry( 1, typeof( Lockpick ) ),
-				//new FillableEntry( 1, typeof( KeyRing ) ),
+				new FillableEntry( 1, typeof( KeyRing ) ),
 				new FillableEntry( 2, typeof( Clock ) ),
 				new FillableEntry( 2, typeof( ClockParts ) ),
 				new FillableEntry( 2, typeof( AxleGears ) ),
 				new FillableEntry( 2, typeof( Gears ) ),
 				new FillableEntry( 2, typeof( Hinge ) ),
-				//new FillableEntry( 1, typeof( ArrowShafts ) ),
 				new FillableEntry( 2, typeof( Sextant ) ),
 				new FillableEntry( 2, typeof( SextantParts ) ),
 				new FillableEntry( 2, typeof( Axle ) ),
 				new FillableEntry( 2, typeof( Springs ) ),
 				new FillableEntry( 5, typeof( TinkerTools ) ),
 				new FillableEntry( 4, typeof( Key ) ),
-				new FillableEntry( 1, typeof( DecoArrowShafts )),
-				new FillableEntry( 1, typeof( Lockpicks )),
-				new FillableEntry( 1, typeof( ToolKit ))
+				new FillableEntry( 1, typeof( Static ), Utility.Random(2) + 0x1024 ), // DecoArrowShafts
+                new FillableEntry( 1, typeof( Static ), Utility.Random(2) + 0x14FD ), // Lockpicks
+                new FillableEntry( 1, typeof( Static ), Utility.Random(2) + 0x1EBA )  // ToolKit
 			} );
 
 		public static FillableContent Veterinarian = new FillableContent(
@@ -1433,7 +1456,7 @@ namespace Server.Items
 				new FillableEntry( 1, typeof( Bandage ) ),
 				new FillableEntry( 1, typeof( MortarPestle ) ),
 				new FillableEntry( 1, typeof( LesserHealPotion ) ),
-				//new FillableEntry( 1, typeof( Wheat ) ),
+				new FillableEntry( 1, typeof( Wheat ) ),
 				new FillableEntry( 1, typeof( Carrot ) )
 			} );
 

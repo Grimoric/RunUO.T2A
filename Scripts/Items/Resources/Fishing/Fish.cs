@@ -19,9 +19,7 @@ namespace Server.Items
 			Weight = 1.0;
 			Amount = amount;
 		}
-
-		
-
+        
 		public Fish( Serial serial ) : base( serial )
 		{
 		}

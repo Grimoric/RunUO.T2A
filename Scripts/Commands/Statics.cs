@@ -96,7 +96,7 @@ namespace Server
 					if ( item.Parent != null )
 						continue;
 
-					if ( item is Static || item is BaseFloor || item is BaseWall )
+					if ( item is Static )
 					{
 						Map itemMap = item.Map;
 
@@ -129,7 +129,7 @@ namespace Server
 
 				foreach ( Item item in eable )
 				{
-					if ( item is Static || item is BaseFloor || item is BaseWall )
+					if ( item is Static )
 					{
 						Map itemMap = item.Map;
 

@@ -4,6 +4,7 @@ using Server.Items;
 using Server.Targeting;
 using Server.Misc;
 using Server.Mobiles;
+using Server.Multis;
 
 namespace Server.Spells.Seventh
 {
@@ -209,7 +210,7 @@ namespace Server.Spells.Seventh
 					else
 						from.SendLocalizedMessage( 502354 ); // Target is not marked.
 				}
-				/*else if ( o is Key && ((Key)o).KeyValue != 0 && ((Key)o).Link is BaseBoat )
+				else if ( o is Key && ((Key)o).KeyValue != 0 && ((Key)o).Link is BaseBoat )
 				{
 					BaseBoat boat = ((Key)o).Link as BaseBoat;
 
@@ -217,12 +218,6 @@ namespace Server.Spells.Seventh
 						m_Owner.Effect( boat.GetMarkedLocation(), boat.Map, false );
 					else
 						from.Send( new MessageLocalized( from.Serial, from.Body, MessageType.Regular, 0x3B2, 3, 501030, from.Name, "" ) ); // I can not gate travel from that object.
-				}*/
-				else if ( o is HouseRaffleDeed && ((HouseRaffleDeed)o).ValidLocation() )
-				{
-					HouseRaffleDeed deed = (HouseRaffleDeed)o;
-
-					m_Owner.Effect( deed.PlotLocation, deed.PlotFacet, true );
 				}
 				else
 				{
