@@ -3327,29 +3327,26 @@ namespace Server.Mobiles
             else if (AccessLevel == AccessLevel.Player && DisableHiddenSelfClick && Hidden && from == this)
                 return;
 
-            if (GuildClickMessage)
+            BaseGuild guild = Guild;
+
+            if (guild != null && (DisplayGuildTitle || Player && guild.Type != GuildType.Regular))
             {
-                BaseGuild guild = Guild;
+                string title = GuildTitle;
+                string type;
 
-                if (guild != null && (DisplayGuildTitle || Player && guild.Type != GuildType.Regular))
-                {
-                    string title = GuildTitle;
-                    string type;
+                if (title == null)
+                    title = "";
+                else
+                    title = title.Trim();
 
-                    if (title == null)
-                        title = "";
-                    else
-                        title = title.Trim();
+                if (guild.Type >= 0 && (int)guild.Type < m_GuildTypes.Length)
+                    type = m_GuildTypes[(int)guild.Type];
+                else
+                    type = "";
 
-                    if (guild.Type >= 0 && (int)guild.Type < m_GuildTypes.Length)
-                        type = m_GuildTypes[(int)guild.Type];
-                    else
-                        type = "";
+                string text = String.Format(title.Length <= 0 ? "[{1}]{2}" : "[{0}, {1}]{2}", title, guild.Abbreviation, type);
 
-                    string text = String.Format(title.Length <= 0 ? "[{1}]{2}" : "[{0}, {1}]{2}", title, guild.Abbreviation, type);
-
-                    PrivateOverheadMessage(MessageType.Regular, SpeechHue, true, text, from.NetState);
-                }
+                PrivateOverheadMessage(MessageType.Regular, SpeechHue, true, text, from.NetState);
             }
 
             int hue;

@@ -307,7 +307,6 @@
     <Compile Include=".\Gumps\RunebookGump.cs" />
     <Compile Include=".\Gumps\SetSecureLevelGump.cs" />
     <Compile Include=".\Gumps\SkillsGump.cs" />
-    <Compile Include=".\Gumps\TithingGump.cs" />
     <Compile Include=".\Gumps\ViewHousesGump.cs" />
     <Compile Include=".\Gumps\WarningGump.cs" />
     <Compile Include=".\Gumps\WhoGump.cs" />

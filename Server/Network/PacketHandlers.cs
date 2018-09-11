@@ -1430,7 +1430,7 @@ namespace Server.Network
 					}
 				}
 
-				from.NextActionTime = DateTime.Now + Mobile.ActionDelay;
+				from.NextActionTime = DateTime.Now + TimeSpan.FromSeconds( 1.0 );
 			}
 			else
 			{

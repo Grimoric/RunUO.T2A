@@ -3898,14 +3898,6 @@ namespace Server
 				m.OnDoubleClick( this );
 		}
 
-		private static TimeSpan m_ActionDelay = TimeSpan.FromSeconds( 0.5 );
-
-		public static TimeSpan ActionDelay
-		{
-			get { return m_ActionDelay; }
-			set { m_ActionDelay = value; }
-		}
-
 		public virtual void Lift( Item item, int amount, out bool rejected, out LRReason reject )
 		{
 			rejected = true;
@@ -4032,7 +4024,7 @@ namespace Server
 							if( liftSound != -1 )
 								from.Send( new PlaySound( liftSound, from ) );
 
-							from.NextActionTime = DateTime.Now + m_ActionDelay;
+							from.NextActionTime = DateTime.Now + TimeSpan.FromSeconds(1.0);
 
 							if( fixMap != null && shouldFix )
 								fixMap.FixColumn( fixLoc.m_X, fixLoc.m_Y );
@@ -10438,13 +10430,9 @@ namespace Server
 		public virtual bool PropertyTitle { get { return m_OldPropertyTitles ? ClickTitle : true; } }
 
 		private static bool m_DisableHiddenSelfClick = true;
-		private static bool m_AsciiClickMessage = true;
-		private static bool m_GuildClickMessage = true;
 		private static bool m_OldPropertyTitles;
 
 		public static bool DisableHiddenSelfClick { get { return m_DisableHiddenSelfClick; } set { m_DisableHiddenSelfClick = value; } }
-		public static bool AsciiClickMessage { get { return m_AsciiClickMessage; } set { m_AsciiClickMessage = value; } }
-		public static bool GuildClickMessage { get { return m_GuildClickMessage; } set { m_GuildClickMessage = value; } }
 		public static bool OldPropertyTitles { get { return m_OldPropertyTitles; } set { m_OldPropertyTitles = value; } }
 
 		public virtual bool ShowFameTitle { get { return true; } }//(m_Player || m_Body.IsHuman) && m_Fame >= 10000; } 
@@ -10459,29 +10447,26 @@ namespace Server
 			else if( AccessLevel == AccessLevel.Player && DisableHiddenSelfClick && Hidden && from == this )
 				return;
 
-			if( m_GuildClickMessage )
+			BaseGuild guild = m_Guild;
+
+			if( guild != null && (m_DisplayGuildTitle || m_Player && guild.Type != GuildType.Regular) )
 			{
-				BaseGuild guild = m_Guild;
+				string title = GuildTitle;
+				string type;
 
-				if( guild != null && (m_DisplayGuildTitle || m_Player && guild.Type != GuildType.Regular) )
-				{
-					string title = GuildTitle;
-					string type;
+				if( title == null )
+					title = "";
+				else
+					title = title.Trim();
 
-					if( title == null )
-						title = "";
-					else
-						title = title.Trim();
+				if( guild.Type >= 0 && (int)guild.Type < m_GuildTypes.Length )
+					type = m_GuildTypes[(int)guild.Type];
+				else
+					type = "";
 
-					if( guild.Type >= 0 && (int)guild.Type < m_GuildTypes.Length )
-						type = m_GuildTypes[(int)guild.Type];
-					else
-						type = "";
+				string text = String.Format( title.Length <= 0 ? "[{1}]{2}" : "[{0}, {1}]{2}", title, guild.Abbreviation, type );
 
-					string text = String.Format( title.Length <= 0 ? "[{1}]{2}" : "[{0}, {1}]{2}", title, guild.Abbreviation, type );
-
-					PrivateOverheadMessage( MessageType.Regular, SpeechHue, true, text, from.NetState );
-				}
+				PrivateOverheadMessage( MessageType.Regular, SpeechHue, true, text, from.NetState );
 			}
 
 			int hue;
@@ -10521,7 +10506,7 @@ namespace Server
 			else
 				val = name;
 
-			PrivateOverheadMessage( MessageType.Label, hue, m_AsciiClickMessage, val, from.NetState );
+			PrivateOverheadMessage( MessageType.Label, hue, true, val, from.NetState );
 		}
 
 		public bool CheckSkill( SkillName skill, double minSkill, double maxSkill )
