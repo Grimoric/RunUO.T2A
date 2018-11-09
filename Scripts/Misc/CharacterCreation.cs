@@ -502,15 +502,6 @@ namespace Server.Misc
 				}
 				case 4: // Necromancer
 				{
-					Container regs = new BagOfNecroReagents( 50 );
-
-					foreach ( Item item in regs.Items )
-						item.LootType = LootType.Newbied;
-
-					PackItem( regs );
-
-					regs.LootType = LootType.Regular;
-
 					EquipItem( new BoneHelm() );
 					EquipItem( NecroHue( new LeatherChest() ) );
 					EquipItem( NecroHue( new LeatherArms() ) );

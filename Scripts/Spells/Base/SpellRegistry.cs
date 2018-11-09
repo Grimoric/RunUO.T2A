@@ -8,15 +8,6 @@ namespace Server.Spells
 		private static Type[] m_Types = new Type[700];
 		private static int m_Count;
 
-		public static Type[] Types
-		{
-			get
-			{
-				m_Count = -1;
-				return m_Types;
-			}
-		}
-		
 		private static Dictionary<Type, Int32> m_IDsFromTypes = new Dictionary<Type, Int32>( m_Types.Length );
 		
 		public static void Register( int spellID, Type type )
@@ -68,12 +59,7 @@ namespace Server.Spells
 				"Fifth",
 				"Sixth",
 				"Seventh",
-				"Eighth",
-				"Necromancy",
-				"Chivalry",
-				"Bushido",
-				"Ninjitsu",
-				"Spellweaving"
+				"Eighth"
 			};
 
 		public static Spell NewSpell( string name, Mobile caster, Item scroll )

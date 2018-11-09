@@ -18,12 +18,7 @@ namespace Server.Spells
 
 		public SpellState State{ get{ return m_State; } set{ m_State = value; } }
 		public Mobile Caster{ get{ return m_Caster; } }
-		public SpellInfo Info{ get{ return m_Info; } }
-		public string Name{ get{ return m_Info.Name; } }
-		public string Mantra{ get{ return m_Info.Mantra; } }
-		public Type[] Reagents{ get{ return m_Info.Reagents; } }
 		public Item Scroll{ get{ return m_Scroll; } }
-		public DateTime StartCastTime { get { return m_StartCastTime; } }
 
 		private static TimeSpan NextSpellDelay = TimeSpan.FromSeconds( 0.75 );
 		private static TimeSpan AnimateDelay = TimeSpan.FromSeconds( 1.5 );
@@ -188,36 +183,6 @@ namespace Server.Spells
 			return false;
 		}
 
-		public virtual double GetInscribeSkill( Mobile m )
-		{
-			// There is no chance to gain
-			// m.CheckSkill( SkillName.Inscribe, 0.0, 120.0 );
-
-			return m.Skills[SkillName.Inscribe].Value;
-		}
-
-		public virtual int GetInscribeFixed( Mobile m )
-		{
-			// There is no chance to gain
-			// m.CheckSkill( SkillName.Inscribe, 0.0, 120.0 );
-
-			return m.Skills[SkillName.Inscribe].Fixed;
-		}
-
-		public virtual int GetDamageFixed( Mobile m )
-		{
-			//m.CheckSkill( DamageSkill, 0.0, m.Skills[DamageSkill].Cap );
-
-			return m.Skills[DamageSkill].Fixed;
-		}
-
-		public virtual double GetDamageSkill( Mobile m )
-		{
-			//m.CheckSkill( DamageSkill, 0.0, m.Skills[DamageSkill].Cap );
-
-			return m.Skills[DamageSkill].Value;
-		}
-
 		public virtual double GetResistSkill( Mobile m )
 		{
 			return m.Skills[SkillName.MagicResist].Value;
@@ -377,7 +342,6 @@ namespace Server.Spells
 				m_Caster.PublicOverheadMessage( MessageType.Spell, m_Caster.SpeechHue, true, m_Info.Mantra, false );
 		}
 
-	    public virtual bool BlockedByAnimalForm{ get{ return true; } }
 		public virtual bool BlocksMovement{ get{ return true; } }
 
 		public virtual bool CheckNextSpellTime{ get{ return !(m_Scroll is BaseWand); } }
@@ -508,11 +472,6 @@ namespace Server.Spells
 			return TimeSpan.FromSeconds( delay );
 		}
 
-		public virtual int CastRecoveryBase{ get{ return 6; } }
-		public virtual int CastRecoveryFastScalar{ get{ return 1; } }
-		public virtual int CastRecoveryPerSecond{ get{ return 4; } }
-		public virtual int CastRecoveryMinimum{ get{ return 0; } }
-
 		public virtual TimeSpan GetCastRecovery()
 		{
 			return NextSpellDelay;
@@ -523,11 +482,6 @@ namespace Server.Spells
 		public virtual double CastDelayFastScalar { get { return 1; } }
 		public virtual double CastDelaySecondsPerTick { get { return 0.25; } }
 		public virtual TimeSpan CastDelayMinimum { get { return TimeSpan.FromSeconds( 0.25 ); } }
-
-		//public virtual int CastDelayBase{ get{ return 3; } }
-		//public virtual int CastDelayFastScalar{ get{ return 1; } }
-		//public virtual int CastDelayPerSecond{ get{ return 4; } }
-		//public virtual int CastDelayMinimum{ get{ return 1; } }
 
 		public virtual TimeSpan GetCastDelay()
 		{

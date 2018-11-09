@@ -412,32 +412,6 @@ namespace Server.Spells
 			}
 
 
-			/*
-			int offset = Utility.Random( 8 ) * 2;
-
-			for( int i = 0; i < m_Offsets.Length; i += 2 )
-			{
-				int x = caster.X + m_Offsets[(offset + i) % m_Offsets.Length];
-				int y = caster.Y + m_Offsets[(offset + i + 1) % m_Offsets.Length];
-
-				if( map.CanSpawnMobile( x, y, caster.Z ) )
-				{
-					BaseCreature.Summon( creature, caster, new Point3D( x, y, caster.Z ), sound, duration );
-					return;
-				}
-				else
-				{
-					int z = map.GetAverageZ( x, y );
-
-					if( map.CanSpawnMobile( x, y, z ) )
-					{
-						BaseCreature.Summon( creature, caster, new Point3D( x, y, z ), sound, duration );
-						return;
-					}
-				}
-			}
-			 * */
-
 			creature.Delete();
 			caster.SendLocalizedMessage( 501942 ); // That location is blocked.
 		}
@@ -528,11 +502,6 @@ namespace Server.Spells
 			return CheckTravel( caster, caster.Map, caster.Location, type );
 		}
 
-		public static bool CheckTravel( Map map, Point3D loc, TravelCheckType type )
-		{
-			return CheckTravel( null, map, loc, type );
-		}
-
 		private static Mobile m_TravelCaster;
 		private static TravelCheckType m_TravelType;
 
@@ -616,15 +585,6 @@ namespace Server.Spells
 			return x < 0 || y < 0 || x >= map.Width || y >= map.Height;
 		}
 
-		//towns
-		public static bool IsTown( IPoint3D loc, Mobile caster )
-		{
-			if( loc is Item )
-				loc = ((Item)loc).GetWorldLocation();
-
-			return IsTown( new Point3D( loc ), caster );
-		}
-
 		public static bool IsTown( Point3D loc, Mobile caster )
 		{
 			Map map = caster.Map;
@@ -656,7 +616,6 @@ namespace Server.Spells
 			return true;
 		}
 
-		//magic reflection
 		public static void CheckReflect( int circle, Mobile caster, ref Mobile target )
 		{
 			CheckReflect( circle, ref caster, ref target );
@@ -709,13 +668,6 @@ namespace Server.Spells
 			}
 		}
 
-		public static void Damage( Spell spell, Mobile target, double damage )
-		{
-			TimeSpan ts = GetDamageDelayForSpell( spell );
-
-			Damage( spell, ts, target, spell.Caster, damage );
-		}
-
 		public static void Damage( TimeSpan delay, Mobile target, double damage )
 		{
 			Damage( delay, target, null, damage );
@@ -753,18 +705,6 @@ namespace Server.Spells
 			TimeSpan ts = GetDamageDelayForSpell( spell );
 
 			Damage( spell, ts, target, spell.Caster, damage, phys, fire, cold, pois, nrgy, DFAlgorithm.Standard );
-		}
-
-		public static void Damage( Spell spell, Mobile target, double damage, int phys, int fire, int cold, int pois, int nrgy, DFAlgorithm dfa )
-		{
-			TimeSpan ts = GetDamageDelayForSpell( spell );
-
-			Damage( spell, ts, target, spell.Caster, damage, phys, fire, cold, pois, nrgy, dfa );
-		}
-
-		public static void Damage( TimeSpan delay, Mobile target, double damage, int phys, int fire, int cold, int pois, int nrgy )
-		{
-			Damage( delay, target, null, damage, phys, fire, cold, pois, nrgy );
 		}
 
 		public static void Damage( TimeSpan delay, Mobile target, Mobile from, double damage, int phys, int fire, int cold, int pois, int nrgy )

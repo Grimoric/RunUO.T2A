@@ -93,14 +93,6 @@ namespace Server
 
 		public static Type[] RegTypes{ get{ return m_RegTypes; } }
 
-		private static Type[] m_NecroRegTypes = new Type[]
-			{
-				typeof( BatWing ),				typeof( GraveDust ),			typeof( DaemonBlood ),
-				typeof( NoxCrystal ),			typeof( PigIron )
-			};
-
-		public static Type[] NecroRegTypes{ get{ return m_NecroRegTypes; } }
-
 		private static Type[] m_PotionTypes = new Type[]
 			{
 				typeof( AgilityPotion ),		typeof( StrengthPotion ),		typeof( RefreshPotion ),
@@ -351,11 +343,6 @@ namespace Server
 		public static Item RandomReagent()
 		{
 			return Construct( m_RegTypes );
-		}
-
-		public static Item RandomNecromancyReagent()
-		{
-			return Construct( m_NecroRegTypes );
 		}
 
 		public static Item RandomPossibleReagent()

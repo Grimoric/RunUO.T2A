@@ -12,14 +12,6 @@ namespace Server.Spells
 		private bool m_AllowTown;
 		private int m_LeftHandEffect, m_RightHandEffect;
 
-		public SpellInfo( string name, string mantra, params Type[] regs ) : this( name, mantra, 16, 0, 0, true, regs )
-		{
-		}
-
-		public SpellInfo( string name, string mantra, bool allowTown, params Type[] regs ) : this( name, mantra, 16, 0, 0, allowTown, regs )
-		{
-		}
-
 		public SpellInfo( string name, string mantra, int action, params Type[] regs ) : this( name, mantra, action, 0, 0, true, regs )
 		{
 		}
