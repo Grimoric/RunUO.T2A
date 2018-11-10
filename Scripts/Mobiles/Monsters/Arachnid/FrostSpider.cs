@@ -44,7 +44,6 @@ namespace Server.Mobiles
 		}
 
 		public override FoodType FavoriteFood{ get{ return FoodType.Meat; } }
-		public override PackInstinct PackInstinct{ get{ return PackInstinct.Arachnid; } }
 
 		public FrostSpider( Serial serial ) : base( serial )
 		{

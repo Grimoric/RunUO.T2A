@@ -38,7 +38,6 @@ namespace Server.Mobiles
 		public override int Hides{ get{ return 7; } }
 		public override HideType HideType{ get{ return HideType.Regular; } }
 		public override FoodType FavoriteFood{ get{ return FoodType.Meat; } }
-		public override PackInstinct PackInstinct{ get{ return PackInstinct.Canine; } }
 
 		public DireWolf(Serial serial) : base(serial)
 		{

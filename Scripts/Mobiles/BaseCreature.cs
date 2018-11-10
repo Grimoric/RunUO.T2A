@@ -59,20 +59,6 @@ namespace Server.Mobiles
 		Gold			= 0x0020
 	}
 
-	[Flags]
-	public enum PackInstinct
-	{
-		None			= 0x0000,
-		Canine			= 0x0001,
-		Ostard			= 0x0002,
-		Feline			= 0x0004,
-		Arachnid		= 0x0008,
-		Daemon			= 0x0010,
-		Bear			= 0x0020,
-		Equine			= 0x0040,
-		Bull			= 0x0080
-	}
-
 	public enum MeatType
 	{
 		Ribs,
@@ -306,10 +292,7 @@ namespace Server.Mobiles
 
 		#endregion
 
-		public virtual bool HasManaOveride { get { return false; } }
-
 		public virtual FoodType FavoriteFood{ get{ return FoodType.Meat; } }
-		public virtual PackInstinct PackInstinct{ get{ return PackInstinct.None; } }
 
 		public List<Mobile> Owners { get { return m_Owners; } }
 
@@ -351,17 +334,6 @@ namespace Server.Mobiles
 		public virtual double BreathDamageDelay{ get{ return 1.0; } }
 
 		public virtual int BreathRange{ get{ return RangePerception; } }
-
-		// Damage types
-		public virtual int BreathChaosDamage{ get { return 0; } }
-		public virtual int BreathPhysicalDamage{ get{ return 0; } }
-		public virtual int BreathFireDamage{ get{ return 100; } }
-		public virtual int BreathColdDamage{ get{ return 0; } }
-		public virtual int BreathPoisonDamage{ get{ return 0; } }
-		public virtual int BreathEnergyDamage{ get{ return 0; } }
-
-		// Is immune to breath damages
-		public virtual bool BreathImmune{ get{ return false; } }
 
 		// Effect details and sound
 		public virtual int BreathEffectItemID{ get{ return 0x36D4; } }
@@ -433,9 +405,6 @@ namespace Server.Mobiles
 		public virtual void BreathDamage_Callback( object state )
 		{
 			Mobile target = (Mobile)state;
-
-			if ( target is BaseCreature && ((BaseCreature)target).BreathImmune )
-				return;
 
 			if ( CanBeHarmful( target ) )
 			{

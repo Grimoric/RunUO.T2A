@@ -44,7 +44,6 @@ namespace Server.Mobiles
 		public override int Hides{ get{ return 6; } }
 		public override HideType HideType{ get{ return HideType.Regular; } }
 		public override FoodType FavoriteFood{ get{ return FoodType.Meat; } }
-		public override PackInstinct PackInstinct{ get{ return PackInstinct.Daemon; } }
 		public override bool CanFly { get { return true; } }
 
 		public Imp( Serial serial ) : base( serial )

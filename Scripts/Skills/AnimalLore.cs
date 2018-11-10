@@ -236,30 +236,6 @@ namespace Server.SkillHandlers
 
 			AddHtmlLocalized( 153, 168, 160, 18, foodPref, LabelColor, false, false );
 
-			AddImage( 128, 188, 2086 );
-			AddHtmlLocalized( 147, 186, 160, 18, 1049569, 200, false, false ); // Pack Instincts
-
-			int packInstinct = 3000340;
-
-			if ( (c.PackInstinct & PackInstinct.Canine) != 0 )
-				packInstinct = 1049570; // Canine
-			else if ( (c.PackInstinct & PackInstinct.Ostard) != 0 )
-				packInstinct = 1049571; // Ostard
-			else if ( (c.PackInstinct & PackInstinct.Feline) != 0 )
-				packInstinct = 1049572; // Feline
-			else if ( (c.PackInstinct & PackInstinct.Arachnid) != 0 )
-				packInstinct = 1049573; // Arachnid
-			else if ( (c.PackInstinct & PackInstinct.Daemon) != 0 )
-				packInstinct = 1049574; // Daemon
-			else if ( (c.PackInstinct & PackInstinct.Bear) != 0 )
-				packInstinct = 1049575; // Bear
-			else if ( (c.PackInstinct & PackInstinct.Equine) != 0 )
-				packInstinct = 1049576; // Equine
-			else if ( (c.PackInstinct & PackInstinct.Bull) != 0 )
-				packInstinct = 1049577; // Bull
-
-			AddHtmlLocalized( 153, 204, 160, 18, packInstinct, LabelColor, false, false );
-
 			AddImage( 128, 224, 2086 );
 			AddHtmlLocalized( 147, 222, 160, 18, 1049594, 200, false, false ); // Loyalty Rating
 

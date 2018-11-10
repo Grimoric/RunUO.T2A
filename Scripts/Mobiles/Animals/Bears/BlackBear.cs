@@ -37,7 +37,6 @@ namespace Server.Mobiles
 		public override int Meat{ get{ return 1; } }
 		public override int Hides{ get{ return 12; } }
 		public override FoodType FavoriteFood{ get{ return FoodType.Fish | FoodType.Meat | FoodType.FruitsAndVegies; } }
-		public override PackInstinct PackInstinct{ get{ return PackInstinct.Bear; } }
 
 		public BlackBear( Serial serial ) : base( serial )
 		{
