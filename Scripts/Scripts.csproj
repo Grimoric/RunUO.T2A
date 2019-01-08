@@ -80,7 +80,6 @@
     <Compile Include=".\Commands\Attributes.cs" />
     <Compile Include=".\Commands\Batch.cs" />
     <Compile Include=".\Commands\BoundingBoxPicker.cs" />
-    <Compile Include=".\Commands\ConvertPlayers.cs" />
     <Compile Include=".\Commands\Decorate.cs" />
     <Compile Include=".\Commands\Docs.cs" />
     <Compile Include=".\Commands\DragEffects.cs" />
