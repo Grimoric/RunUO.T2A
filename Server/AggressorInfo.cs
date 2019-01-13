@@ -84,12 +84,6 @@ namespace Server
 
 		private static TimeSpan m_ExpireDelay = TimeSpan.FromMinutes( 2.0 );
 
-		public static TimeSpan ExpireDelay
-		{
-			get{ return m_ExpireDelay; }
-			set{ m_ExpireDelay = value; }
-		}
-
 		public static void DumpAccess()
 		{
 			using ( StreamWriter op = new StreamWriter( "warnings.log", true ) )

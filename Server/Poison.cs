@@ -62,29 +62,6 @@ namespace Server
         public static Poison Deadly { get { return GetPoison( "Deadly" ); } }
         public static Poison Lethal { get { return GetPoison( "Lethal" ); } }
 
-        public static List<Poison> Poisons
-        {
-            get
-            {
-                return m_Poisons;
-            }
-        }
-
-        public static Poison Parse( string value )
-        {
-            Poison p = null;
-
-            int plevel;
-
-            if ( int.TryParse( value, out plevel ) )
-                p = GetPoison( plevel );
-
-            if ( p == null )
-                p = GetPoison( value );
-
-            return p;
-        }
-
         public static Poison GetPoison( int level )
         {
             for ( int i = 0; i < m_Poisons.Count; ++i )

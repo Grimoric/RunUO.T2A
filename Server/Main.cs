@@ -57,12 +57,6 @@ namespace Server
 
 		private static MessagePump m_MessagePump;
 
-		public static MessagePump MessagePump
-		{
-			get { return m_MessagePump; }
-			set { m_MessagePump = value; }
-		}
-
 		public static Slice Slice;
 
 		public static bool Profiling
@@ -100,8 +94,6 @@ namespace Server
 		public static List<string> DataDirectories { get { return m_DataDirectories; } }
 		public static Assembly Assembly { get { return m_Assembly; } set { m_Assembly = value; } }
 		public static Version Version { get { return m_Assembly.GetName().Version; } }
-		public static Process Process { get { return m_Process; } }
-		public static Thread Thread { get { return m_Thread; } }
 		public static MultiTextWriter MultiConsoleOut { get { return m_MultiConOut; } }
 
 		public static readonly bool Is64Bit = Environment.Is64BitProcess;

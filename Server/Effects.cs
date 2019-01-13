@@ -44,12 +44,6 @@ namespace Server
 	{
 		private static ParticleSupportType m_ParticleSupportType = ParticleSupportType.Detect;
 
-		public static ParticleSupportType ParticleSupportType
-		{
-			get{ return m_ParticleSupportType; }
-			set{ m_ParticleSupportType = value; }
-		}
-
 		public static bool SendParticlesTo( NetState state )
 		{
 			return m_ParticleSupportType == ParticleSupportType.Full || m_ParticleSupportType == ParticleSupportType.Detect && state.IsUOTDClient;
@@ -80,16 +74,6 @@ namespace Server
 
 				eable.Free();
 			}
-		}
-
-		public static void SendBoltEffect( IEntity e )
-		{
-			SendBoltEffect( e, true, 0 );
-		}
-
-		public static void SendBoltEffect( IEntity e, bool sound )
-		{
-			SendBoltEffect( e, sound, 0 );
 		}
 
 		public static void SendBoltEffect( IEntity e, bool sound, int hue )
@@ -149,11 +133,6 @@ namespace Server
 			SendLocationEffect( p, map, itemID, duration, speed, 0, 0 );
 		}
 
-		public static void SendLocationEffect( IPoint3D p, Map map, int itemID, int duration, int hue, int renderMode )
-		{
-			SendLocationEffect( p, map, itemID, duration, 10, hue, renderMode );
-		}
-
 		public static void SendLocationEffect( IPoint3D p, Map map, int itemID, int duration, int speed, int hue, int renderMode )
 		{
 			SendPacket( p, map, new LocationEffect( p, itemID, speed, duration, hue, renderMode ) );
@@ -162,11 +141,6 @@ namespace Server
 		public static void SendLocationParticles( IEntity e, int itemID, int speed, int duration, int effect )
 		{
 			SendLocationParticles( e, itemID, speed, duration, 0, 0, effect, 0 );
-		}
-
-		public static void SendLocationParticles( IEntity e, int itemID, int speed, int duration, int effect, int unknown )
-		{
-			SendLocationParticles( e, itemID, speed, duration, 0, 0, effect, unknown );
 		}
 
 		public static void SendLocationParticles( IEntity e, int itemID, int speed, int duration, int hue, int renderMode, int effect, int unknown )
@@ -207,37 +181,12 @@ namespace Server
 			//SendPacket( e.Location, e.Map, new LocationParticleEffect( e, itemID, speed, duration, hue, renderMode, effect, unknown ) );
 		}
 
-		public static void SendTargetEffect( IEntity target, int itemID, int duration )
-		{
-			SendTargetEffect( target, itemID, duration, 0, 0 );
-		}
-
-		public static void SendTargetEffect( IEntity target, int itemID, int speed, int duration )
-		{
-			SendTargetEffect( target, itemID, speed, duration, 0, 0 );
-		}
-
-		public static void SendTargetEffect( IEntity target, int itemID, int duration, int hue, int renderMode )
-		{
-			SendTargetEffect( target, itemID, 10, duration, hue, renderMode );
-		}
-
 		public static void SendTargetEffect( IEntity target, int itemID, int speed, int duration, int hue, int renderMode )
 		{
 			if ( target is Mobile )
 				((Mobile)target).ProcessDelta();
 
 			SendPacket( target.Location, target.Map, new TargetEffect( target, itemID, speed, duration, hue, renderMode ) );
-		}
-
-		public static void SendTargetParticles( IEntity target, int itemID, int speed, int duration, int effect, EffectLayer layer )
-		{
-			SendTargetParticles( target, itemID, speed, duration, 0, 0, effect, layer, 0 );
-		}
-
-		public static void SendTargetParticles( IEntity target, int itemID, int speed, int duration, int effect, EffectLayer layer, int unknown )
-		{
-			SendTargetParticles( target, itemID, speed, duration, 0, 0, effect, layer, unknown );
 		}
 
 		public static void SendTargetParticles( IEntity target, int itemID, int speed, int duration, int hue, int renderMode, int effect, EffectLayer layer, int unknown )
@@ -296,11 +245,6 @@ namespace Server
 				((Mobile)to).ProcessDelta();
 
 			SendPacket( from.Location, from.Map, new MovingEffect( from, to, itemID, speed, duration, fixedDirection, explodes, hue, renderMode ) );
-		}
-
-		public static void SendMovingParticles( IEntity from, IEntity to, int itemID, int speed, int duration, bool fixedDirection, bool explodes, int effect, int explodeEffect, int explodeSound )
-		{
-			SendMovingParticles( from, to, itemID, speed, duration, fixedDirection, explodes, 0, 0, effect, explodeEffect, explodeSound, 0 );
 		}
 
 		public static void SendMovingParticles( IEntity from, IEntity to, int itemID, int speed, int duration, bool fixedDirection, bool explodes, int effect, int explodeEffect, int explodeSound, int unknown )

@@ -304,12 +304,6 @@ namespace Server
 
 		private static TimeSpan m_ExpireDelay = TimeSpan.FromMinutes( 2.0 );
 
-		public static TimeSpan ExpireDelay
-		{
-			get { return m_ExpireDelay; }
-			set { m_ExpireDelay = value; }
-		}
-
 		public DamageEntry( Mobile damager )
 		{
 			m_Damager = damager;
@@ -519,38 +513,17 @@ namespace Server
 			get { return m_SkillCheckDirectLocationHandler; }
 			set { m_SkillCheckDirectLocationHandler = value; }
 		}
-
-		private static AOSStatusHandler m_AOSStatusHandler;
-
-		public static AOSStatusHandler AOSStatusHandler
-		{
-			get { return m_AOSStatusHandler; }
-			set { m_AOSStatusHandler = value; }
-		}
-
 		#endregion
 
 		#region Regeneration
 
-		private static RegenRateHandler m_HitsRegenRate, m_StamRegenRate, m_ManaRegenRate;
+		private static RegenRateHandler m_ManaRegenRate;
 		private static TimeSpan m_DefaultHitsRate, m_DefaultStamRate, m_DefaultManaRate;
-
-		public static RegenRateHandler HitsRegenRateHandler
-		{
-			get { return m_HitsRegenRate; }
-			set { m_HitsRegenRate = value; }
-		}
 
 		public static TimeSpan DefaultHitsRate
 		{
 			get { return m_DefaultHitsRate; }
 			set { m_DefaultHitsRate = value; }
-		}
-
-		public static RegenRateHandler StamRegenRateHandler
-		{
-			get { return m_StamRegenRate; }
-			set { m_StamRegenRate = value; }
 		}
 
 		public static TimeSpan DefaultStamRate
@@ -573,18 +546,12 @@ namespace Server
 
 		public static TimeSpan GetHitsRegenRate( Mobile m )
 		{
-			if( m_HitsRegenRate == null )
-				return m_DefaultHitsRate;
-			else
-				return m_HitsRegenRate( m );
+			return m_DefaultHitsRate;
 		}
 
 		public static TimeSpan GetStamRegenRate( Mobile m )
 		{
-			if( m_StamRegenRate == null )
-				return m_DefaultStamRate;
-			else
-				return m_StamRegenRate( m );
+			return m_DefaultStamRate;
 		}
 
 		public static TimeSpan GetManaRegenRate( Mobile m )
@@ -783,8 +750,6 @@ namespace Server
 			return suffix;
 		}
 
-		public virtual bool NewGuildDisplay { get { return false; } }
-
 		private void UpdateAggrExpire()
 		{
 			if( m_Deleted || m_Aggressors.Count == 0 && m_Aggressed.Count == 0 )
@@ -889,21 +854,6 @@ namespace Server
 		/// </summary>
 		public virtual void OnSkillInvalidated( Skill skill )
 		{
-		}
-
-		public virtual void UpdateSkillMods()
-		{
-			ValidateSkillMods();
-
-			for( int i = 0; i < m_SkillMods.Count; ++i )
-			{
-				SkillMod mod = m_SkillMods[i];
-
-				Skill sk = m_Skills[mod.Skill];
-
-				if( sk != null )
-					sk.Update();
-			}
 		}
 
 		public virtual void ValidateSkillMods()
@@ -1067,20 +1017,6 @@ namespace Server
 			get
 			{
 				return m_Skills == null ? 0 : m_Skills.Total;
-			}
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public int SkillsCap
-		{
-			get
-			{
-				return m_Skills == null ? 0 : m_Skills.Cap;
-			}
-			set
-			{
-				if( m_Skills != null )
-					m_Skills.Cap = value;
 			}
 		}
 
@@ -1504,25 +1440,7 @@ namespace Server
 			}
 		}
 
-		public DateTime NextActionMessage
-		{
-			get
-			{
-				return m_NextActionMessage;
-			}
-			set
-			{
-				m_NextActionMessage = value;
-			}
-		}
-
 		private static TimeSpan m_ActionMessageDelay = TimeSpan.FromSeconds( 0.125 );
-
-		public static TimeSpan ActionMessageDelay
-		{
-			get { return m_ActionMessageDelay; }
-			set { m_ActionMessageDelay = value; }
-		}
 
 		public virtual void SendSkillMessage()
 		{
@@ -1563,16 +1481,7 @@ namespace Server
 			}
 		}
 
-
-		private static bool m_GlobalRegenThroughPoison = true;
-
-		public static bool GlobalRegenThroughPoison
-		{
-			get { return m_GlobalRegenThroughPoison; }
-			set { m_GlobalRegenThroughPoison = value; }
-		}
-
-		public virtual bool RegenThroughPoison { get { return m_GlobalRegenThroughPoison; } }
+		public virtual bool RegenThroughPoison { get { return true; } }
 
 		public virtual bool CanRegenHits { get { return this.Alive && (RegenThroughPoison || !this.Poisoned); } }
 		public virtual bool CanRegenStam { get { return this.Alive; } }
@@ -1758,12 +1667,6 @@ namespace Server
 		}
 
 		private static TimeSpan m_ExpireCriminalDelay = TimeSpan.FromMinutes( 2.0 );
-
-		public static TimeSpan ExpireCriminalDelay
-		{
-			get { return m_ExpireCriminalDelay; }
-			set { m_ExpireCriminalDelay = value; }
-		}
 
 		private class ExpireCriminalTimer : Timer
 		{
@@ -2158,33 +2061,9 @@ namespace Server
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public int TotalItems
-		{
-			get { return GetTotal( TotalType.Items ); }
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
 		public int TotalWeight
 		{
 			get { return GetTotal( TotalType.Weight ); }
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public int TithingPoints
-		{
-			get
-			{
-				return m_TithingPoints;
-			}
-			set
-			{
-				if( m_TithingPoints != value )
-				{
-					m_TithingPoints = value;
-
-					Delta( MobileDelta.TithingPoints );
-				}
-			}
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -2306,20 +2185,6 @@ namespace Server
 			m_Target = null;
 		}
 
-		private bool m_TargetLocked;
-
-		public bool TargetLocked
-		{
-			get
-			{
-				return m_TargetLocked;
-			}
-			set
-			{
-				m_TargetLocked = value;
-			}
-		}
-
 		private class SimpleTarget : Target
 		{
 			private TargetCallback m_Callback;
@@ -2422,7 +2287,7 @@ namespace Server
 
 				m_Target = newTarget;
 
-				if( newTarget != null && m_NetState != null && !m_TargetLocked )
+				if( newTarget != null && m_NetState != null )
 					m_NetState.Send( newTarget.GetPacketFor( m_NetState ) );
 
 				OnTargetChange();
@@ -3012,11 +2877,6 @@ namespace Server
 		{
 		}
 
-		public TimeSpan ComputeMovementSpeed()
-		{
-			return ComputeMovementSpeed( this.Direction, false );
-		}
-
 		public TimeSpan ComputeMovementSpeed( Direction dir )
 		{
 			return ComputeMovementSpeed( dir, true );
@@ -3468,11 +3328,6 @@ namespace Server
 			return Skills.UseSkill( this, name );
 		}
 
-		public virtual bool UseSkill( int skillID )
-		{
-			return Skills.UseSkill( this, skillID );
-		}
-
 		private static CreateCorpseHandler m_CreateCorpse;
 
 		public static CreateCorpseHandler CreateCorpseHandler
@@ -3797,15 +3652,7 @@ namespace Server
 
 		private static char[] m_GhostChars = new char[2] { 'o', 'O' };
 
-		public static char[] GhostChars { get { return m_GhostChars; } set { m_GhostChars = value; } }
-
-		private static bool m_NoSpeechLOS;
-
-		public static bool NoSpeechLOS { get { return m_NoSpeechLOS; } set { m_NoSpeechLOS = value; } }
-
 		private static TimeSpan m_AutoManifestTimeout = TimeSpan.FromSeconds( 5.0 );
-
-		public static TimeSpan AutoManifestTimeout { get { return m_AutoManifestTimeout; } set { m_AutoManifestTimeout = value; } }
 
 		private Timer m_AutoManifestTimer;
 
@@ -4378,16 +4225,6 @@ namespace Server
 			return map.GetItemsInRange( m_Location, range );
 		}
 
-		public IPooledEnumerable GetObjectsInRange( int range )
-		{
-			Map map = m_Map;
-
-			if( map == null )
-				return Server.Map.NullEnumerable.Instance;
-
-			return map.GetObjectsInRange( m_Location, range );
-		}
-
 		public IPooledEnumerable GetMobilesInRange( int range )
 		{
 			Map map = m_Map;
@@ -4478,7 +4315,7 @@ namespace Server
 					{
 						Mobile heard = (Mobile)o;
 
-						if( heard.CanSee( this ) && (m_NoSpeechLOS || !heard.Player || heard.InLOS( this )) )
+						if( heard.CanSee( this ) && (!heard.Player || heard.InLOS( this )) )
 						{
 							if( heard.m_NetState != null )
 								hears.Add( heard );
@@ -4628,84 +4465,6 @@ namespace Server
 			}
 
 			return null;
-		}
-
-		public Mobile FindLeastRecentDamager( bool allowSelf )
-		{
-			return GetDamagerFrom( FindLeastRecentDamageEntry( allowSelf ) );
-		}
-
-		public DamageEntry FindLeastRecentDamageEntry( bool allowSelf )
-		{
-			for( int i = 0; i < m_DamageEntries.Count; ++i )
-			{
-				if( i < 0 )
-					continue;
-
-				DamageEntry de = m_DamageEntries[i];
-
-				if( de.HasExpired )
-				{
-					m_DamageEntries.RemoveAt( i );
-					--i;
-				}
-				else if( allowSelf || de.Damager != this )
-				{
-					return de;
-				}
-			}
-
-			return null;
-		}
-
-		public Mobile FindMostTotalDamger( bool allowSelf )
-		{
-			return GetDamagerFrom( FindMostTotalDamageEntry( allowSelf ) );
-		}
-
-		public DamageEntry FindMostTotalDamageEntry( bool allowSelf )
-		{
-			DamageEntry mostTotal = null;
-
-			for( int i = m_DamageEntries.Count - 1; i >= 0; --i )
-			{
-				if( i >= m_DamageEntries.Count )
-					continue;
-
-				DamageEntry de = m_DamageEntries[i];
-
-				if( de.HasExpired )
-					m_DamageEntries.RemoveAt( i );
-				else if( (allowSelf || de.Damager != this) && (mostTotal == null || de.DamageGiven > mostTotal.DamageGiven) )
-					mostTotal = de;
-			}
-
-			return mostTotal;
-		}
-
-		public Mobile FindLeastTotalDamger( bool allowSelf )
-		{
-			return GetDamagerFrom( FindLeastTotalDamageEntry( allowSelf ) );
-		}
-
-		public DamageEntry FindLeastTotalDamageEntry( bool allowSelf )
-		{
-			DamageEntry mostTotal = null;
-
-			for( int i = m_DamageEntries.Count - 1; i >= 0; --i )
-			{
-				if( i >= m_DamageEntries.Count )
-					continue;
-
-				DamageEntry de = m_DamageEntries[i];
-
-				if( de.HasExpired )
-					m_DamageEntries.RemoveAt( i );
-				else if( (allowSelf || de.Damager != this) && (mostTotal == null || de.DamageGiven < mostTotal.DamageGiven) )
-					mostTotal = de;
-			}
-
-			return mostTotal;
 		}
 
 		public DamageEntry FindDamageEntryFor( Mobile m )
@@ -4970,11 +4729,6 @@ namespace Server
 		public void Heal( int amount )
 		{
 			Heal( amount, this, true );
-		}
-
-		public void Heal( int amount, Mobile from )
-		{
-			Heal( amount, from, true );
 		}
 
 		public void Heal( int amount, Mobile from, bool message )
@@ -5867,12 +5621,6 @@ namespace Server
 			}
 		}
 
-		public void SendSound( int soundID )
-		{
-			if( soundID != -1 && m_NetState != null )
-				Send( new PlaySound( soundID, this ) );
-		}
-
 		public void SendSound( int soundID, IPoint3D p )
 		{
 			if( soundID != -1 && m_NetState != null )
@@ -6066,56 +5814,6 @@ namespace Server
 			PublicOverheadMessage( MessageType.Regular, m_SpeechHue, number, args );
 		}
 
-		public void Emote( string text )
-		{
-			PublicOverheadMessage( MessageType.Emote, m_EmoteHue, false, text );
-		}
-
-		public void Emote( string format, params object[] args )
-		{
-			Emote( String.Format( format, args ) );
-		}
-
-		public void Emote( int number )
-		{
-			Emote( number, "" );
-		}
-
-		public void Emote( int number, string args )
-		{
-			PublicOverheadMessage( MessageType.Emote, m_EmoteHue, number, args );
-		}
-
-		public void Whisper( string text )
-		{
-			PublicOverheadMessage( MessageType.Whisper, m_WhisperHue, false, text );
-		}
-
-		public void Whisper( string format, params object[] args )
-		{
-			Whisper( String.Format( format, args ) );
-		}
-
-		public void Whisper( int number )
-		{
-			Whisper( number, "" );
-		}
-
-		public void Whisper( int number, string args )
-		{
-			PublicOverheadMessage( MessageType.Whisper, m_WhisperHue, number, args );
-		}
-
-		public void Yell( string text )
-		{
-			PublicOverheadMessage( MessageType.Yell, m_YellHue, false, text );
-		}
-
-		public void Yell( string format, params object[] args )
-		{
-			Yell( String.Format( format, args ) );
-		}
-
 		public void Yell( int number )
 		{
 			Yell( number, "" );
@@ -6266,16 +5964,6 @@ namespace Server
 			}
 		}
 
-		[Obsolete( "Use CloseGump( Type ) instead." )]
-		public bool CloseGump( Type type, int buttonID ) {
-			return CloseGump( type );
-		}
-
-		[Obsolete( "Use CloseGump( Type ) instead." )]
-		public bool CloseGump( Type type, int buttonID, bool throwOnOffline ) {
-			return CloseGump( type );
-		}
-
 		public bool CloseAllGumps() {
 			NetState ns = m_NetState;
 
@@ -6296,18 +5984,8 @@ namespace Server
 			}
 		}
 
-		[Obsolete( "Use CloseAllGumps() instead.", false )]
-		public bool CloseAllGumps( bool throwOnOffline ) {
-			return CloseAllGumps();
-		}
-
 		public bool HasGump( Type type ) {
 			return FindGump( type ) != null;
-		}
-
-		[Obsolete( "Use HasGump( Type ) instead.", false )]
-		public bool HasGump( Type type, bool throwOnOffline ) {
-			return HasGump( type );
 		}
 
 		public bool SendGump( Gump g ) {
@@ -6610,18 +6288,6 @@ namespace Server
 			Region.OnBeneficialAction( this, target );
 			target.Region.OnGotBeneficialAction( this, target );
 		}
-
-		public virtual bool BeneficialCheck( Mobile target )
-		{
-			if( CanBeBeneficial( target, true ) )
-			{
-				DoBeneficial( target );
-				return true;
-			}
-
-			return false;
-		}
-		
 		#endregion
 
 		#region Harmful Checks/Actions
@@ -6724,11 +6390,6 @@ namespace Server
 		#endregion
 
 		#region Stats
-
-		/// <summary>
-		/// Gets a list of all <see cref="StatMod">StatMod's</see> currently active for the Mobile.
-		/// </summary>
-		public List<StatMod> StatMods { get { return m_StatMods; } }
 
 		public bool RemoveStatMod( string name )
 		{
@@ -7799,19 +7460,6 @@ namespace Server
 		}
 
 		[CommandProperty( AccessLevel.GameMaster )]
-		public int WhisperHue
-		{
-			get
-			{
-				return m_WhisperHue;
-			}
-			set
-			{
-				m_WhisperHue = value;
-			}
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
 		public int YellHue
 		{
 			get
@@ -8812,11 +8460,6 @@ namespace Server
 
 		#endregion
 
-		public bool HasFreeHand()
-		{
-			return FindItemOnLayer( Layer.TwoHanded ) == null;
-		}
-
 		private IWeapon m_Weapon;
 
 		[CommandProperty( AccessLevel.GameMaster )]
@@ -8934,24 +8577,9 @@ namespace Server
 
 		#region Effects & Particles
 
-		public void MovingEffect( IEntity to, int itemID, int speed, int duration, bool fixedDirection, bool explodes, int hue, int renderMode )
-		{
-			Effects.SendMovingEffect( this, to, itemID, speed, duration, fixedDirection, explodes, hue, renderMode );
-		}
-
 		public void MovingEffect( IEntity to, int itemID, int speed, int duration, bool fixedDirection, bool explodes )
 		{
 			Effects.SendMovingEffect( this, to, itemID, speed, duration, fixedDirection, explodes, 0, 0 );
-		}
-
-		public void MovingParticles( IEntity to, int itemID, int speed, int duration, bool fixedDirection, bool explodes, int hue, int renderMode, int effect, int explodeEffect, int explodeSound, EffectLayer layer, int unknown )
-		{
-			Effects.SendMovingParticles( this, to, itemID, speed, duration, fixedDirection, explodes, hue, renderMode, effect, explodeEffect, explodeSound, layer, unknown );
-		}
-
-		public void MovingParticles( IEntity to, int itemID, int speed, int duration, bool fixedDirection, bool explodes, int hue, int renderMode, int effect, int explodeEffect, int explodeSound, int unknown )
-		{
-			Effects.SendMovingParticles( this, to, itemID, speed, duration, fixedDirection, explodes, hue, renderMode, effect, explodeEffect, explodeSound, (EffectLayer)255, unknown );
 		}
 
 		public void MovingParticles( IEntity to, int itemID, int speed, int duration, bool fixedDirection, bool explodes, int effect, int explodeEffect, int explodeSound, int unknown )
@@ -8964,29 +8592,14 @@ namespace Server
 			Effects.SendMovingParticles( this, to, itemID, speed, duration, fixedDirection, explodes, 0, 0, effect, explodeEffect, explodeSound, 0 );
 		}
 
-		public void FixedEffect( int itemID, int speed, int duration, int hue, int renderMode )
-		{
-			Effects.SendTargetEffect( this, itemID, speed, duration, hue, renderMode );
-		}
-
 		public void FixedEffect( int itemID, int speed, int duration )
 		{
 			Effects.SendTargetEffect( this, itemID, speed, duration, 0, 0 );
 		}
 
-		public void FixedParticles( int itemID, int speed, int duration, int effect, int hue, int renderMode, EffectLayer layer, int unknown )
-		{
-			Effects.SendTargetParticles( this, itemID, speed, duration, hue, renderMode, effect, layer, unknown );
-		}
-
 		public void FixedParticles( int itemID, int speed, int duration, int effect, int hue, int renderMode, EffectLayer layer )
 		{
 			Effects.SendTargetParticles( this, itemID, speed, duration, hue, renderMode, effect, layer, 0 );
-		}
-
-		public void FixedParticles( int itemID, int speed, int duration, int effect, EffectLayer layer, int unknown )
-		{
-			Effects.SendTargetParticles( this, itemID, speed, duration, 0, 0, effect, layer, unknown );
 		}
 
 		public void FixedParticles( int itemID, int speed, int duration, int effect, EffectLayer layer )
@@ -9396,11 +9009,6 @@ namespace Server
 				ret = Direction.North;
 
 			return ret;
-		}
-
-		public Direction GetDirectionTo( Point2D p )
-		{
-			return GetDirectionTo( p.m_X, p.m_Y );
 		}
 
 		public Direction GetDirectionTo( Point3D p )
@@ -10427,13 +10035,9 @@ namespace Server
 		public virtual bool CanTarget { get { return true; } }
 		public virtual bool ClickTitle { get { return true; } }
 
-		public virtual bool PropertyTitle { get { return m_OldPropertyTitles ? ClickTitle : true; } }
-
 		private static bool m_DisableHiddenSelfClick = true;
-		private static bool m_OldPropertyTitles;
 
 		public static bool DisableHiddenSelfClick { get { return m_DisableHiddenSelfClick; } set { m_DisableHiddenSelfClick = value; } }
-		public static bool OldPropertyTitles { get { return m_OldPropertyTitles; } set { m_OldPropertyTitles = value; } }
 
 		public virtual bool ShowFameTitle { get { return true; } }//(m_Player || m_Body.IsHuman) && m_Fame >= 10000; } 
 
@@ -10533,14 +10137,6 @@ namespace Server
 				return m_SkillCheckTargetHandler( this, skill, target, minSkill, maxSkill );
 		}
 
-		public bool CheckTargetSkill( SkillName skill, object target, double chance )
-		{
-			if( m_SkillCheckDirectTargetHandler == null )
-				return false;
-			else
-				return m_SkillCheckDirectTargetHandler( this, skill, target, chance );
-		}
-
 		public virtual void DisruptiveAction()
 		{
 			if( Meditating )
@@ -10614,14 +10210,6 @@ namespace Server
 					ar = FindItemOnLayer( Layer.Shirt ) as Item;
 
 				return ar;
-			}
-		}
-
-		public Item Talisman
-		{
-			get
-			{
-				return FindItemOnLayer( Layer.Talisman ) as Item;
 			}
 		}
 		#endregion

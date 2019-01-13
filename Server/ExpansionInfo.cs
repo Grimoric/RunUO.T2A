@@ -146,11 +146,9 @@ namespace Server
 		private ClientVersion m_RequiredClient;	// Used as an alternative to the flags
 
 		public string Name{ get{ return m_Name; } }
-		public int ID{ get{ return m_ID; } }
 		public ClientFlags ClientFlags{ get{ return m_ClientFlags; } }
 		public FeatureFlags SupportedFeatures{ get{ return m_SupportedFeatures; } }
 		public CharacterListFlags CharacterListFlags { get { return m_CharListFlags; } }
-		public int CustomHousingFlag { get{ return m_CustomHousingFlag; } }
 		public ClientVersion RequiredClient { get { return m_RequiredClient; } }
 
 		public ExpansionInfo( int id, string name, ClientFlags clientFlags, FeatureFlags supportedFeatures, CharacterListFlags charListFlags, int customHousingFlag )

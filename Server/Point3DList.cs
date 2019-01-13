@@ -93,20 +93,5 @@ namespace Server
 		}
 
 		private static Point3D[] m_EmptyList = new Point3D[0];
-
-		public Point3D[] ToArray()
-		{
-			if ( m_Count == 0 )
-				return m_EmptyList;
-
-			Point3D[] list = new Point3D[m_Count];
-
-			for ( int i = 0; i < m_Count; ++i )
-				list[i] = m_List[i];
-
-			m_Count = 0;
-
-			return list;
-		}
 	}
 }

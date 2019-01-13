@@ -130,48 +130,12 @@ namespace Server
 			return l.m_X != r.m_X || l.m_Y != r.m_Y;
 		}
 
-		public static bool operator == ( Point2D l, IPoint2D r )
-		{
-			if ( Object.ReferenceEquals( r, null ) )
-				return false;
-
-			return l.m_X == r.X && l.m_Y == r.Y;
-		}
-
-		public static bool operator != ( Point2D l, IPoint2D r )
-		{
-			if ( Object.ReferenceEquals( r, null ) )
-				return false;
-
-			return l.m_X !=r.X || l.m_Y != r.Y;
-		}
-
-		public static bool operator > ( Point2D l, Point2D r )
-		{
-			return l.m_X > r.m_X && l.m_Y > r.m_Y;
-		}
-
-		public static bool operator > ( Point2D l, Point3D r )
-		{
-			return l.m_X > r.m_X && l.m_Y > r.m_Y;
-		}
-
 		public static bool operator > ( Point2D l, IPoint2D r )
 		{
 			if ( Object.ReferenceEquals( r, null ) )
 				return false;
 
 			return l.m_X > r.X && l.m_Y > r.Y;
-		}
-
-		public static bool operator < ( Point2D l, Point2D r )
-		{
-			return l.m_X < r.m_X && l.m_Y < r.m_Y;
-		}
-
-		public static bool operator < ( Point2D l, Point3D r )
-		{
-			return l.m_X < r.m_X && l.m_Y < r.m_Y;
 		}
 
 		public static bool operator < ( Point2D l, IPoint2D r )
@@ -182,32 +146,12 @@ namespace Server
 			return l.m_X < r.X && l.m_Y < r.Y;
 		}
 
-		public static bool operator >= ( Point2D l, Point2D r )
-		{
-			return l.m_X >= r.m_X && l.m_Y >= r.m_Y;
-		}
-
-		public static bool operator >= ( Point2D l, Point3D r )
-		{
-			return l.m_X >= r.m_X && l.m_Y >= r.m_Y;
-		}
-
 		public static bool operator >= ( Point2D l, IPoint2D r )
 		{
 			if ( Object.ReferenceEquals( r, null ) )
 				return false;
 
 			return l.m_X >= r.X && l.m_Y >= r.Y;
-		}
-
-		public static bool operator <= ( Point2D l, Point2D r )
-		{
-			return l.m_X <= r.m_X && l.m_Y <= r.m_Y;
-		}
-
-		public static bool operator <= ( Point2D l, Point3D r )
-		{
-			return l.m_X <= r.m_X && l.m_Y <= r.m_Y;
 		}
 
 		public static bool operator <= ( Point2D l, IPoint2D r )

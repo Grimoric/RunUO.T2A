@@ -97,10 +97,6 @@ namespace Server
 			return interned;
 		}
 
-		public static void Intern( ref IPAddress ipAddress ) {
-			ipAddress = Intern( ipAddress );
-		}
-
 		public static bool IsValidIP( string text )
 		{
 			bool valid = true;
@@ -143,136 +139,6 @@ namespace Server
 			return sb.ToString();
 		}
 
-		public static bool IPMatchCIDR( string cidr, IPAddress ip )
-		{
-			if ( ip == null || ip.AddressFamily == AddressFamily.InterNetworkV6 )
-				return false;	//Just worry about IPv4 for now
-
-
-			/*
-			string[] str = cidr.Split( '/' );
-
-			if ( str.Length != 2 )
-				return false;
-
-			/* **************************************************
-			IPAddress cidrPrefix;
-
-			if ( !IPAddress.TryParse( str[0], out cidrPrefix ) )
-				return false;
-			 * */
-
-			/*
-			string[] dotSplit = str[0].Split( '.' );
-
-			if ( dotSplit.Length != 4 )		//At this point and time, and for speed sake, we'll only worry about IPv4
-				return false;
-
-			byte[] bytes = new byte[4];
-
-			for ( int i = 0; i < 4; i++ )
-			{
-				byte.TryParse( dotSplit[i], out bytes[i] );
-			}
-
-			uint cidrPrefix = OrderedAddressValue( bytes );
-
-			int cidrLength = Utility.ToInt32( str[1] );
-			//The below solution is the fastest solution of the three
-
-			*/
-
-			byte[] bytes = new byte[4];
-			string[] split = cidr.Split( '.' );
-			bool cidrBits = false;
-			int cidrLength = 0;
-
-			for ( int i = 0; i < 4; i++ )
-			{
-				int part = 0;
-
-				int partBase = 10;
-
-				string pattern = split[i];
-
-				for ( int j = 0; j < pattern.Length; j++ )
-				{
-					char c = (char)pattern[j];
-
-
-					if ( c == 'x' || c == 'X' )
-					{
-						partBase = 16;
-					}
-					else if ( c >= '0' && c <= '9' )
-					{
-						int offset = c - '0';
-
-						if ( cidrBits )
-						{
-							cidrLength *= partBase;
-							cidrLength += offset;
-						}
-						else
-						{
-							part *= partBase;
-							part += offset;
-						}
-					}
-					else if ( c >= 'a' && c <= 'f' )
-					{
-						int offset = 10 + ( c - 'a' );
-
-						if ( cidrBits )
-						{
-							cidrLength *= partBase;
-							cidrLength += offset;
-						}
-						else
-						{
-							part *= partBase;
-							part += offset;
-						}
-					}
-					else if ( c >= 'A' && c <= 'F' )
-					{
-						int offset = 10 + ( c - 'A' );
-
-						if ( cidrBits )
-						{
-							cidrLength *= partBase;
-							cidrLength += offset;
-						}
-						else
-						{
-							part *= partBase;
-							part += offset;
-						}
-					}
-					else if ( c == '/' )
-					{
-						if ( cidrBits || i != 3 )	//If there's two '/' or the '/' isn't in the last byte
-						{
-							return false;
-						}
-
-						partBase = 10;
-						cidrBits = true;
-					}
-					else
-					{
-						return false;
-					}
-				}
-
-				bytes[i] = (byte)part;
-			}
-
-			uint cidrPrefix = OrderedAddressValue( bytes );
-
-			return IPMatchCIDR( cidrPrefix, ip, cidrLength );
-		}
-
 		public static bool IPMatchCIDR( IPAddress cidrPrefix, IPAddress ip, int cidrLength )
 		{
 			if ( cidrPrefix == null || ip == null || cidrPrefix.AddressFamily == AddressFamily.InterNetworkV6 )	//Ignore IPv6 for now
@@ -282,16 +148,6 @@ namespace Server
 			uint ipValue   = SwapUnsignedInt( (uint)GetLongAddressValue( ip ) );
 
 			return IPMatchCIDR( cidrValue, ipValue, cidrLength );
-		}
-
-		public static bool IPMatchCIDR( uint cidrPrefixValue, IPAddress ip, int cidrLength )
-		{
-			if ( ip == null || ip.AddressFamily == AddressFamily.InterNetworkV6)
-				return false;
-
-			uint ipValue = SwapUnsignedInt( (uint)GetLongAddressValue( ip ) );
-
-			return IPMatchCIDR( cidrPrefixValue, ipValue, cidrLength );
 		}
 
 		public static bool IPMatchCIDR( uint cidrPrefixValue, uint ipValue, int cidrLength )
@@ -304,14 +160,6 @@ namespace Server
 			return ( cidrPrefixValue & mask ) == ( ipValue & mask );
 		}
 
-		private static uint OrderedAddressValue( byte[] bytes )
-		{
-			if ( bytes.Length != 4 )
-				return 0;
-
-			return (uint)(( bytes[0] << 0x18 ) | (bytes[1] << 0x10) | (bytes[2] << 8) | bytes[3]) & (uint)0xffffffff;
-		}
-
 		private static uint SwapUnsignedInt( uint source )
 		{
 			return (uint)( ( ( source & 0x000000FF ) << 0x18 )
@@ -319,37 +167,6 @@ namespace Server
 			               | ( ( source & 0x00FF0000 ) >> 8 )
 			               | ( ( source & 0xFF000000 ) >> 0x18 ) );
 		} 
-
-		public static bool TryConvertIPv6toIPv4( ref IPAddress address )
-		{
-			if ( !Socket.OSSupportsIPv6 || address.AddressFamily == AddressFamily.InterNetwork )
-				return true;
-
-			byte[] addr = address.GetAddressBytes();
-			if ( addr.Length == 16 )	//sanity 0 - 15 //10 11 //12 13 14 15
-			{
-				if ( addr[10] != 0xFF || addr[11] != 0xFF )
-					return false;
-
-				for ( int i = 0; i < 10; i++ )
-				{
-					if ( addr[i] != 0 )
-						return false;
-				}
-
-				byte[] v4Addr = new byte[4];
-
-				for ( int i = 0; i < 4; i++ )
-				{
-					v4Addr[i] = addr[12 + i];
-				}
-
-				address = new IPAddress( v4Addr );
-				return true;
-			}
-
-			return false;
-		}
 
 		public static bool IPMatch( string val, IPAddress ip, ref bool valid )
 		{
@@ -552,23 +369,6 @@ namespace Server
 			}
 		}
 
-		public static DateTimeOffset GetXMLDateTimeOffset( string dateTimeOffsetString, DateTimeOffset defaultValue )
-		{
-			try
-			{
-				return XmlConvert.ToDateTimeOffset( dateTimeOffsetString );
-			}
-			catch
-			{
-				DateTimeOffset d;
-
-				if( DateTimeOffset.TryParse( dateTimeOffsetString, out d ) )
-					return d;
-
-				return defaultValue;
-			}
-		}
-
 		public static TimeSpan GetXMLTimeSpan( string timeSpanString, TimeSpan defaultValue )
 		{
 			try
@@ -643,14 +443,6 @@ namespace Server
 				&& p1.m_Y <= p2.m_Y + 18;
 		}
 
-		public static bool InUpdateRange( Point2D p1, Point2D p2 )
-		{
-			return p1.m_X >= p2.m_X - 18
-				&& p1.m_X <= p2.m_X + 18
-				&& p1.m_Y >= p2.m_Y - 18
-				&& p1.m_Y <= p2.m_Y + 18;
-		}
-
 		public static bool InUpdateRange( IPoint2D p1, IPoint2D p2 )
 		{
 			return p1.X >= p2.X - 18
@@ -695,79 +487,6 @@ namespace Server
 					return Direction.Left;
 				else
 					return Direction.Up;
-			}
-		}
-
-		/* Should probably be rewritten to use an ITile interface
-
-		public static bool CanMobileFit( int z, StaticTile[] tiles )
-		{
-			int checkHeight = 15;
-			int checkZ = z;
-
-			for ( int i = 0; i < tiles.Length; ++i )
-			{
-				StaticTile tile = tiles[i];
-
-				if ( ((checkZ + checkHeight) > tile.Z && checkZ < (tile.Z + tile.Height))*//* || (tile.Z < (checkZ + checkHeight) && (tile.Z + tile.Height) > checkZ)*//* )
-				{
-					return false;
-				}
-				else if ( checkHeight == 0 && tile.Height == 0 && checkZ == tile.Z )
-				{
-					return false;
-				}
-			}
-
-			return true;
-		}
-
-		public static bool IsInContact( StaticTile check, StaticTile[] tiles )
-		{
-			int checkHeight = check.Height;
-			int checkZ = check.Z;
-
-			for ( int i = 0; i < tiles.Length; ++i )
-			{
-				StaticTile tile = tiles[i];
-
-				if ( ((checkZ + checkHeight) > tile.Z && checkZ < (tile.Z + tile.Height))*//* || (tile.Z < (checkZ + checkHeight) && (tile.Z + tile.Height) > checkZ)*//* )
-				{
-					return true;
-				}
-				else if ( checkHeight == 0 && tile.Height == 0 && checkZ == tile.Z )
-				{
-					return true;
-				}
-			}
-
-			return false;
-		}
-		*/
-
-		public static object GetArrayCap( Array array, int index )
-		{
-			return GetArrayCap( array, index, null );
-		}
-
-		public static object GetArrayCap( Array array, int index, object emptyValue )
-		{
-			if ( array.Length > 0 )
-			{
-				if ( index < 0 )
-				{
-					index = 0;
-				}
-				else if ( index >= array.Length )
-				{
-					index = array.Length - 1;
-				}
-
-				return array.GetValue( index );
-			}
-			else
-			{
-				return emptyValue;
 			}
 		}
 
@@ -979,31 +698,9 @@ namespace Server
 		}
 
 		//[Obsolete( "Depreciated, use the methods for the Mobile's race", false )]
-		public static int ClipSkinHue( int hue )
-		{
-			if ( hue < 1002 )
-				return 1002;
-			else if ( hue > 1058 )
-				return 1058;
-			else
-				return hue;
-		}
-
-		//[Obsolete( "Depreciated, use the methods for the Mobile's race", false )]
 		public static int RandomSkinHue()
 		{
 			return Random( 1002, 57 ) | 0x8000;
-		}
-
-		//[Obsolete( "Depreciated, use the methods for the Mobile's race", false )]
-		public static int ClipHairHue( int hue )
-		{
-			if ( hue < 1102 )
-				return 1102;
-			else if ( hue > 1149 )
-				return 1149;
-			else
-				return hue;
 		}
 
 		//[Obsolete( "Depreciated, use the methods for the Mobile's race", false )]
@@ -1095,21 +792,6 @@ namespace Server
 				SkillName.Tinkering
 			};
 
-		public static SkillName RandomSkill()
-		{
-			return m_AllSkills[Utility.Random(m_AllSkills.Length - 6 )];
-		}
-
-		public static SkillName RandomCombatSkill()
-		{
-			return m_CombatSkills[Utility.Random(m_CombatSkills.Length)];
-		}
-
-		public static SkillName RandomCraftSkill()
-		{
-			return m_CraftSkills[Utility.Random(m_CraftSkills.Length)];
-		}
-
 		public static void FixPoints( ref Point3D top, ref Point3D bottom )
 		{
 			if ( bottom.m_X < top.m_X )
@@ -1132,20 +814,6 @@ namespace Server
 				top.m_Z = bottom.m_Z;
 				bottom.m_Z = swap;
 			}
-		}
-
-		public static ArrayList BuildArrayList( IEnumerable enumerable )
-		{
-			IEnumerator e = enumerable.GetEnumerator();
-
-			ArrayList list = new ArrayList();
-
-			while ( e.MoveNext() )
-			{
-				list.Add( e.Current );
-			}
-
-			return list;
 		}
 
 		public static bool RangeCheck( IPoint2D p1, IPoint2D p2, int range )
@@ -1304,23 +972,10 @@ namespace Server
 				m.HairHue = m.Race.RandomHairHue();
 		}
 
-		public static void AssignRandomFacialHair( Mobile m )
-		{
-			AssignRandomFacialHair( m, true );
-		}
-
 		public static void AssignRandomFacialHair( Mobile m, int hue )
 		{
 			m.FacialHairItemID = m.Race.RandomFacialHair( m );
 			m.FacialHairHue = hue;
-		}
-
-		public static void AssignRandomFacialHair( Mobile m, bool randomHue )
-		{
-			m.FacialHairItemID = m.Race.RandomFacialHair( m );
-
-			if( randomHue )
-				m.FacialHairHue = m.Race.RandomHairHue();
 		}
 
 #if MONO
@@ -1334,20 +989,5 @@ namespace Server
 			return list.ConvertAll<TOutput>( new Converter<TInput, TOutput>( delegate( TInput value ) { return (TOutput)value; } ) );
 		}
 #endif
-
-		public static List<TOutput> SafeConvertList<TInput, TOutput>( List<TInput> list ) where TOutput : class
-		{
-			List<TOutput> output = new List<TOutput>( list.Capacity );
-
-			for( int i = 0; i < list.Count; i++ )
-			{
-				TOutput t = list[i] as TOutput;
-
-				if( t != null )
-					output.Add( t );
-			}
-
-			return output;
-		}
 	}
 }

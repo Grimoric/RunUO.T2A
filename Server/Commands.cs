@@ -104,14 +104,6 @@ namespace Server.Commands
 			return Utility.ToDouble( m_Arguments[index] );
 		}
 
-		public TimeSpan GetTimeSpan( int index )
-		{
-			if ( index < 0 || index >= m_Arguments.Length )
-				return TimeSpan.Zero;
-
-			return Utility.ToTimeSpan( m_Arguments[index] );
-		}
-
 		public CommandEventArgs( Mobile mobile, string command, string argString, string[] arguments )
 		{
 			m_Mobile = mobile;
@@ -264,8 +256,6 @@ namespace Server.Commands
 		}
 
 		private static AccessLevel m_BadCommandIngoreLevel = AccessLevel.Player;
-
-		public static AccessLevel BadCommandIgnoreLevel{ get{ return m_BadCommandIngoreLevel; } set{ m_BadCommandIngoreLevel = value; } }
 
 		public static bool Handle( Mobile from, string text )
 		{

@@ -43,58 +43,6 @@ namespace Server
 
 		private string m_Name, m_PluralName;
 
-		private static string[] m_RaceNames;
-		private static Race[] m_RaceValues;
-
-		public static string[] GetRaceNames()
-		{
-			CheckNamesAndValues();
-			return m_RaceNames;
-		}
-
-		public static Race[] GetRaceValues()
-		{
-			CheckNamesAndValues();
-			return m_RaceValues;
-		}
-
-		public static Race Parse( string value )
-		{
-			CheckNamesAndValues();
-
-			for( int i = 0; i < m_RaceNames.Length; ++i )
-			{
-				if( Insensitive.Equals( m_RaceNames[i], value ) )
-					return m_RaceValues[i];
-			}
-
-			int index;
-			if( int.TryParse( value, out index ) )
-			{
-				if( index >= 0 && index < m_Races.Length && m_Races[index] != null )
-					return m_Races[index];
-			}
-
-			throw new ArgumentException( "Invalid race name" );
-		}
-
-		private static void CheckNamesAndValues()
-		{
-			if( m_RaceNames != null && m_RaceNames.Length == m_AllRaces.Count )
-				return;
-
-			m_RaceNames = new string[m_AllRaces.Count];
-			m_RaceValues = new Race[m_AllRaces.Count];
-
-			for( int i = 0; i < m_AllRaces.Count; ++i )
-			{
-				Race race = m_AllRaces[i];
-
-				m_RaceNames[i] = race.Name;
-				m_RaceValues[i] = race;
-			}
-		}
-
 		public override string ToString()
 		{
 			return m_Name;
@@ -103,14 +51,6 @@ namespace Server
 		private int m_MaleBody, m_FemaleBody, m_MaleGhostBody, m_FemaleGhostBody;
 
 		private Expansion m_RequiredExpansion;
-
-		public Expansion RequiredExpansion { get { return m_RequiredExpansion; } }
-
-		public int MaleBody { get { return m_MaleBody; } }
-		public int MaleGhostBody { get { return m_MaleGhostBody; } }
-
-		public int FemaleBody { get { return m_FemaleBody; } }
-		public int FemaleGhostBody { get { return m_FemaleGhostBody; } }
 
 		protected Race( int raceID, int raceIndex, string name, string pluralName, int maleBody, int femaleBody, int maleGhostBody, int femaleGhostBody, Expansion requiredExpansion )
 		{
@@ -166,31 +106,11 @@ namespace Server
 			return female ? m_FemaleGhostBody : m_MaleGhostBody;
 		}
 
-		public int RaceID
-		{
-			get
-			{
-				return m_RaceID;
-			}
-		}
-
 		public int RaceIndex
 		{
 			get
 			{
 				return m_RaceIndex;
-			}
-		}
-
-		public string Name
-		{
-			get
-			{
-				return m_Name;
-			}
-			set
-			{
-				m_Name = value;
 			}
 		}
 

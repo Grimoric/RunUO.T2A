@@ -450,9 +450,6 @@ namespace Server
 
 				DoUnfreeze( Map.Felucca, ref badDataFile, ref totalUnfrozen );
 				DoUnfreeze( Map.Trammel, ref badDataFile, ref totalUnfrozen );
-				DoUnfreeze( Map.Ilshenar, ref badDataFile, ref totalUnfrozen );
-				DoUnfreeze( Map.Malas, ref badDataFile, ref totalUnfrozen );
-				DoUnfreeze( Map.Tokuno, ref badDataFile, ref totalUnfrozen );
 			}
 			else if ( start == NullP3D && end == NullP3D )
 			{

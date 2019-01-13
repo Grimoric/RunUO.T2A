@@ -28,22 +28,6 @@ namespace Server
 		private Mobile m_Target;
 		private bool m_Running;
 
-		public Mobile Mobile
-		{
-			get
-			{
-				return m_Mobile;
-			}
-		}
-
-		public Mobile Target
-		{
-			get
-			{
-				return m_Target;
-			}
-		}
-
 		public bool Running
 		{
 			get
@@ -111,11 +95,6 @@ namespace Server
 			m_Running = true;
 			m_Mobile = m;
 			m_Target = t;
-		}
-
-		public QuestArrow( Mobile m, Mobile t, int x, int y ) : this( m, t )
-		{
-			Update( x, y );
 		}
 	}
 }

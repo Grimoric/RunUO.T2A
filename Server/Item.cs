@@ -606,50 +606,6 @@ namespace Server
 		private Packet m_RemovePacket;
 		#endregion
 
-		public int TempFlags
-		{
-			get
-			{
-				CompactInfo info = LookupCompactInfo();
-
-				if ( info != null )
-					return info.m_TempFlags;
-
-				return 0;
-			}
-			set
-			{
-				CompactInfo info = AcquireCompactInfo();
-
-				info.m_TempFlags = value;
-
-				if ( info.m_TempFlags == 0 )
-					VerifyCompactInfo();
-			}
-		}
-
-		public int SavedFlags
-		{
-			get
-			{
-				CompactInfo info = LookupCompactInfo();
-
-				if ( info != null )
-					return info.m_SavedFlags;
-
-				return 0;
-			}
-			set
-			{
-				CompactInfo info = AcquireCompactInfo();
-
-				info.m_SavedFlags = value;
-
-				if ( info.m_SavedFlags == 0 )
-					VerifyCompactInfo();
-			}
-		}
-
 		/// <summary>
 		/// The <see cref="Mobile" /> who is currently <see cref="Mobile.Holding">holding</see> this item.
 		/// </summary>
@@ -1085,11 +1041,6 @@ namespace Server
 			to.Send( new MessageLocalizedAffix( m_Serial, m_ItemID, MessageType.Label, 0x3B2, 3, number, "", type, affix, "" ) );
 		}
 
-		public void LabelToAffix( Mobile to, int number, AffixType type, string affix, string args )
-		{
-			to.Send( new MessageLocalizedAffix( m_Serial, m_ItemID, MessageType.Label, 0x3B2, 3, number, "", type, affix, args ) );
-		}
-
 		public virtual void LabelLootTypeTo( Mobile to )
 		{
 			if ( m_LootType == LootType.Blessed )
@@ -1101,11 +1052,6 @@ namespace Server
 		public bool AtWorldPoint( int x, int y )
 		{
 			return m_Parent == null && m_Location.m_X == x && m_Location.m_Y == y;
-		}
-
-		public bool AtPoint( int x, int y )
-		{
-			return m_Location.m_X == x && m_Location.m_Y == y;
 		}
 
 		/// <summary>
@@ -1272,8 +1218,6 @@ namespace Server
 		}
 
 		private static TimeSpan m_DDT = TimeSpan.FromHours( 1.0 );
-
-		public static TimeSpan DefaultDecayTime{ get{ return m_DDT; } set{ m_DDT = value; } }
 
 		[CommandProperty( AccessLevel.GameMaster )]
 		public virtual TimeSpan DecayTime
@@ -1661,12 +1605,6 @@ namespace Server
 			NullWeight		= 0x04000000
 		}
 
-		private static void SetSaveFlag( ref SaveFlag flags, SaveFlag toSet, bool setIf )
-		{
-			if ( setIf )
-				flags |= toSet;
-		}
-
 		private static bool GetSaveFlag( SaveFlag flags, SaveFlag toGet )
 		{
 			return (flags & toGet) != 0;
@@ -1971,29 +1909,6 @@ namespace Server
 				info.m_TempFlags &= ~flag;
 
 			if ( info.m_TempFlags == 0 )
-				VerifyCompactInfo();
-		}
-
-		public bool GetSavedFlag( int flag )
-		{
-			CompactInfo info = LookupCompactInfo();
-
-			if ( info == null )
-				return false;
-
-			return ( info.m_SavedFlags & flag ) != 0;
-		}
-
-		public void SetSavedFlag( int flag, bool value )
-		{
-			CompactInfo info = AcquireCompactInfo();
-
-			if ( value )
-				info.m_SavedFlags |= flag;
-			else
-				info.m_SavedFlags &= ~flag;
-
-			if ( info.m_SavedFlags == 0 )
 				VerifyCompactInfo();
 		}
 
@@ -2598,30 +2513,6 @@ namespace Server
 			}
 		}
 
-		public bool ParentsContain<T>() where T : Item
-		{
-			object p = m_Parent;
-
-			while( p is Item )
-			{
-				if( p is T )
-					return true;
-
-				Item item = (Item)p;
-
-				if( item.m_Parent == null )
-				{
-					break;
-				}
-				else
-				{
-					p = item.m_Parent;
-				}
-			}
-
-			return false;
-		}
-
 		public virtual void AddItem( Item item )
 		{
 			if ( item == null || item.Deleted || item.m_Parent == this )
@@ -3123,17 +3014,6 @@ namespace Server
 			get
 			{
 				return m_Serial;
-			}
-		}
-
-		[CommandProperty( AccessLevel.GameMaster )]
-		public IEntity ParentEntity
-		{
-			get
-			{
-				IEntity p = Parent as IEntity;
-
-				return p;
 			}
 		}
 
@@ -3811,14 +3691,6 @@ namespace Server
 			to.Send( new MessageLocalized( Serial, ItemID, MessageType.Regular, 0x3B2, 3, number, "", args ) );
 		}
 
-		public void SendLocalizedMessageTo( Mobile to, int number, AffixType affixType, string affix, string args )
-		{
-			if ( Deleted || !to.CanSee( this ) )
-				return;
-
-			to.Send( new MessageLocalizedAffix( Serial, ItemID, MessageType.Regular, 0x3B2, 3, number, "", affixType, affix, args ) );
-		}
-
 		#region OnDoubleClick[...]
 
 		public virtual void OnDoubleClick( Mobile from )
@@ -3942,13 +3814,6 @@ namespace Server
 			Region reg = Region.Find( GetWorldLocation(), m_Map );
 
 			return reg.CheckAccessibility( this, check );
-
-			/*SecureTradeContainer cont = GetSecureTradeCont();
-
-			if ( cont != null && !cont.IsChildOf( check ) )
-				return false;
-
-			return true;*/
 		}
 
 		public bool IsChildOf( object o )
@@ -4002,11 +3867,6 @@ namespace Server
 				((Mobile)m_Parent).OnItemUsed( from, item );
 		}
 
-		public bool CheckItemUse( Mobile from )
-		{
-			return CheckItemUse( from, this );
-		}
-
 		public virtual bool CheckItemUse( Mobile from, Item item )
 		{
 			if ( m_Parent is Item )
@@ -4023,13 +3883,6 @@ namespace Server
 				((Item)m_Parent).OnItemLifted( from, item );
 			else if ( m_Parent is Mobile )
 				((Mobile)m_Parent).OnItemLifted( from, item );
-		}
-
-		public bool CheckLift( Mobile from )
-		{
-			LRReason reject = LRReason.Inspecific;
-
-			return CheckLift( from, this, ref reject );
 		}
 
 		public virtual bool CheckLift( Mobile from, Item item, ref LRReason reject )
@@ -4077,14 +3930,6 @@ namespace Server
 			}
 		}
 
-		private static bool m_ScissorCopyLootType;
-
-		public static bool ScissorCopyLootType
-		{
-			get{ return m_ScissorCopyLootType; }
-			set{ m_ScissorCopyLootType = value; }
-		}
-
 		public virtual void ScissorHelper( Mobile from, Item newItem, int amountPerOldItem )
 		{
 			ScissorHelper( from, newItem, amountPerOldItem, true );
@@ -4112,9 +3957,6 @@ namespace Server
 
 			if ( carryHue )
 				newItem.Hue = ourHue;
-
-			if ( m_ScissorCopyLootType )
-				newItem.LootType = type;
 
 			if ( !(thisParent is Container) || !((Container)thisParent).TryDropItem( from, newItem, false ) )
 				newItem.MoveToWorld( worldLoc, thisMap );

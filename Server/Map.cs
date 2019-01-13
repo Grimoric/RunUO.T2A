@@ -66,8 +66,6 @@ namespace Server
 		public static Map Trammel { get { return m_Maps[1]; } }
 		public static Map Ilshenar { get { return m_Maps[2]; } }
 		public static Map Malas { get { return m_Maps[3]; } }
-		public static Map Tokuno { get { return m_Maps[4]; } }
-		public static Map TerMur { get { return m_Maps[5]; } }
 		public static Map Internal { get { return m_Maps[0x7F]; } }
 
 		private static List<Map> m_AllMaps = new List<Map>();
@@ -198,14 +196,6 @@ namespace Server
 		}
 
 		#region Get*InRange/Bounds
-		public IPooledEnumerable GetObjectsInRange( Point3D p )
-		{
-			if ( this == Map.Internal )
-				return NullEnumerable.Instance;
-
-			return PooledEnumerable.Instantiate( ObjectEnumerator.Instantiate( this, new Rectangle2D( p.m_X - 18, p.m_Y - 18, 37, 37 ) ) );
-		}
-
 		public IPooledEnumerable GetObjectsInRange( Point3D p, int range )
 		{
 			if ( this == Map.Internal )
@@ -238,22 +228,6 @@ namespace Server
 			return PooledEnumerable.Instantiate( TypedEnumerator.Instantiate( this, new Rectangle2D( p.m_X - range, p.m_Y - range, range * 2 + 1, range * 2 + 1 ), SectorEnumeratorType.Clients ) );
 		}
 
-		public IPooledEnumerable GetClientsInBounds( Rectangle2D bounds )
-		{
-			if ( this == Map.Internal )
-				return NullEnumerable.Instance;
-
-			return PooledEnumerable.Instantiate( TypedEnumerator.Instantiate( this, bounds, SectorEnumeratorType.Clients ) );
-		}
-
-		public IPooledEnumerable GetItemsInRange( Point3D p )
-		{
-			if ( this == Map.Internal )
-				return NullEnumerable.Instance;
-
-			return PooledEnumerable.Instantiate( TypedEnumerator.Instantiate( this, new Rectangle2D( p.m_X - 18, p.m_Y - 18, 37, 37 ), SectorEnumeratorType.Items ) );
-		}
-
 		public IPooledEnumerable GetItemsInRange( Point3D p, int range )
 		{
 			if ( this == Map.Internal )
@@ -268,14 +242,6 @@ namespace Server
 				return NullEnumerable.Instance;
 
 			return PooledEnumerable.Instantiate( TypedEnumerator.Instantiate( this, bounds, SectorEnumeratorType.Items ) );
-		}
-
-		public IPooledEnumerable GetMobilesInRange( Point3D p )
-		{
-			if ( this == Map.Internal )
-				return NullEnumerable.Instance;
-
-			return PooledEnumerable.Instantiate( TypedEnumerator.Instantiate( this, new Rectangle2D( p.m_X - 18, p.m_Y - 18, 37, 37 ), SectorEnumeratorType.Mobiles ) );
 		}
 
 		public IPooledEnumerable GetMobilesInRange( Point3D p, int range )
@@ -309,19 +275,9 @@ namespace Server
 		}
 
 		#region CanFit
-		public bool CanFit( Point3D p, int height, bool checkBlocksFit )
-		{
-			return CanFit( p.m_X, p.m_Y, p.m_Z, height, checkBlocksFit, true, true );
-		}
-
 		public bool CanFit( Point3D p, int height, bool checkBlocksFit, bool checkMobiles )
 		{
 			return CanFit( p.m_X, p.m_Y, p.m_Z, height, checkBlocksFit, checkMobiles, true );
-		}
-
-		public bool CanFit( Point2D p, int z, int height, bool checkBlocksFit )
-		{
-			return CanFit( p.m_X, p.m_Y, z, height, checkBlocksFit, true, true );
 		}
 
 		public bool CanFit( Point3D p, int height )
@@ -329,19 +285,9 @@ namespace Server
 			return CanFit( p.m_X, p.m_Y, p.m_Z, height, false, true, true );
 		}
 
-		public bool CanFit( Point2D p, int z, int height )
-		{
-			return CanFit( p.m_X, p.m_Y, z, height, false, true, true );
-		}
-
 		public bool CanFit( int x, int y, int z, int height )
 		{
 			return CanFit( x, y, z, height, false, true, true );
-		}
-
-		public bool CanFit( int x, int y, int z, int height, bool checksBlocksFit )
-		{
-			return CanFit( x, y, z, height, checksBlocksFit, true, true );
 		}
 
 		public bool CanFit( int x, int y, int z, int height, bool checkBlocksFit, bool checkMobiles )
@@ -535,33 +481,6 @@ namespace Server
 					toFix.Location = new Point3D( toFix.X, toFix.Y, z );
 			}
 		}
-
-		/* This could be probably be re-implemented if necessary (perhaps via an ITile interface?).
-		public List<Tile> GetTilesAt( Point2D p, bool items, bool land, bool statics )
-		{
-			List<Tile> list = new List<Tile>();
-
-			if ( this == Map.Internal )
-				return list;
-
-			if ( land )
-				list.Add( Tiles.GetLandTile( p.m_X, p.m_Y ) );
-
-			if ( statics )
-				list.AddRange( Tiles.GetStaticTiles( p.m_X, p.m_Y, true ) );
-
-			if ( items )
-			{
-				Sector sector = GetSector( p );
-
-				foreach ( Item item in sector.Items )
-					if ( item.AtWorldPoint( p.m_X, p.m_Y ) )
-						list.Add( new StaticTile( (ushort)item.ItemID, (sbyte) item.Z ) );
-			}
-
-			return list;
-		}
-		*/
 
 		/// <summary>
 		/// Gets the highest surface that is lower than <paramref name="p"/>.
@@ -1028,14 +947,6 @@ namespace Server
 			set
 			{
 				m_Rules = value;
-			}
-		}
-
-		public Sector InvalidSector
-		{
-			get
-			{
-				return m_InvalidSector;
 			}
 		}
 
@@ -1800,12 +1711,6 @@ namespace Server
 		#region Line Of Sight
 		private static int m_MaxLOSDistance = 25;
 
-		public static int MaxLOSDistance
-		{
-			get { return m_MaxLOSDistance; }
-			set { m_MaxLOSDistance = value; }
-		}
-
 		public bool LineOfSight( Point3D org, Point3D dest )
 		{
 			if( this == Map.Internal )
@@ -2067,12 +1972,6 @@ namespace Server
 		#endregion
 
 		private static int[] m_InvalidLandTiles = new int[] { 0x244 };
-
-		public static int[] InvalidLandTiles
-		{
-			get { return m_InvalidLandTiles; }
-			set { m_InvalidLandTiles = value; }
-		}
 
 		private static Point3DList m_PathList = new Point3DList();
 		public int CompareTo( Map other )
