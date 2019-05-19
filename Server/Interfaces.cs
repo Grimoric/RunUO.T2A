@@ -101,7 +101,6 @@ namespace Server
 		bool UnlinkOnTaming { get; }
 		Point3D HomeLocation { get; }
 		int HomeRange { get; }
-
 		void Remove(ISpawnable spawn);
 	}
 

@@ -100,9 +100,11 @@ namespace Server
 
 	public class Region : IComparable
 	{
-		private static List<Region> m_Regions = new List<Region>();
+        private static List<Region> m_Regions = new List<Region>();
 
-		public static Region Find( Point3D p, Map map )
+        public static List<Region> Regions { get { return m_Regions; } }
+
+        public static Region Find( Point3D p, Map map )
 		{
 			if ( map == null )
 				return Map.Internal.DefaultRegion;
@@ -392,7 +394,49 @@ namespace Server
 			return false;
 		}
 
-		public List<Mobile> GetMobiles()
+        public List<Mobile> GetPlayers()
+        {
+            List<Mobile> list = new List<Mobile>();
+
+            if (m_Sectors != null)
+            {
+                for (int i = 0; i < m_Sectors.Length; i++)
+                {
+                    Sector sector = m_Sectors[i];
+
+                    foreach (Mobile player in sector.Players)
+                    {
+                        if (player.Region.IsPartOf(this))
+                            list.Add(player);
+                    }
+                }
+            }
+
+            return list;
+        }
+
+        public int GetPlayerCount()
+        {
+            int count = 0;
+
+            if (m_Sectors != null)
+            {
+                for (int i = 0; i < m_Sectors.Length; i++)
+                {
+                    Sector sector = m_Sectors[i];
+
+                    foreach (Mobile player in sector.Players)
+                    {
+                        if (player.Region.IsPartOf(this))
+                            count++;
+                    }
+                }
+            }
+
+            return count;
+        }
+
+        public List<Mobile> GetMobiles()
 		{
 			List<Mobile> list = new List<Mobile>();
 

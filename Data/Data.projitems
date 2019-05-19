@@ -54,6 +54,27 @@
     <None Include="$(MSBuildThisFileDirectory)Decoration\Felucca\_wrong.cfg" />
     <None Include="$(MSBuildThisFileDirectory)items.cfg" />
     <None Include="$(MSBuildThisFileDirectory)mobiles.cfg" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\BritainSewer.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\Covetous.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\Deceit.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\Despise.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\Destard.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\Fire.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\Graveyards.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\Hythloth.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\Ice.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\LostLands.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\OrcCaves.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\Outdoors.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\SeaLife.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\Shame.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\TerathanKeep.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\TownsLife.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Vendors\Felucca\TownsPeople.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\TrinsicPassage.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Vendors\Felucca\Vendors.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\WildLife.map" />
+    <None Include="$(MSBuildThisFileDirectory)Spawners\Monsters\Felucca\Wrong.map" />
     <None Include="$(MSBuildThisFileDirectory)pageresponse.cfg" />
     <None Include="$(MSBuildThisFileDirectory)shrink.cfg" />
     <None Include="$(MSBuildThisFileDirectory)signs.cfg" />
@@ -72,5 +93,8 @@
     <Content Include="$(MSBuildThisFileDirectory)names.xml" />
     <Content Include="$(MSBuildThisFileDirectory)Regions.xml" />
     <Content Include="$(MSBuildThisFileDirectory)SpawnDefinitions.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Spawners\Vendors\Felucca\" />
   </ItemGroup>
 </Project>

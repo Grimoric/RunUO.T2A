@@ -18,7 +18,11 @@ namespace Server.Spells
 
 		public SpellState State{ get{ return m_State; } set{ m_State = value; } }
 		public Mobile Caster{ get{ return m_Caster; } }
-		public Item Scroll{ get{ return m_Scroll; } }
+        public SpellInfo Info { get { return m_Info; } }
+        public string Name { get { return m_Info.Name; } }
+        public string Mantra { get { return m_Info.Mantra; } }
+        public Type[] Reagents { get { return m_Info.Reagents; } }
+        public Item Scroll{ get{ return m_Scroll; } }
 
 		private static TimeSpan NextSpellDelay = TimeSpan.FromSeconds( 0.75 );
 		private static TimeSpan AnimateDelay = TimeSpan.FromSeconds( 1.5 );

@@ -1768,7 +1768,7 @@ namespace Server.Gumps
 						case 105: InvokeCommand( "SignGen" ); notice = "Signs have been generated."; break;
 						case 106: InvokeCommand( "Decorate" ); notice = "Decoration has been generated."; break;
 						case 107: InvokeCommand( "RebuildCategorization" ); notice = "Categorization menu has been regenerated. The server should be restarted."; break;
-                        case 108: InvokeCommand( "GenMonsters" ); notice = "Monsters & NPCs has been generated."; break;
+                        case 108: InvokeCommand("xmlimportmap Data\\Spawners\\Monsters"); notice = "Monsters & NPCs has been generated."; break;
 
                         case 110: InvokeCommand( "Freeze" ); notice = "Target bounding points."; break;
 						case 120: InvokeCommand( "Unfreeze" ); notice = "Target bounding points."; break;

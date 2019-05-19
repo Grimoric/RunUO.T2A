@@ -1912,7 +1912,30 @@ namespace Server
 				VerifyCompactInfo();
 		}
 
-		public virtual void Deserialize( GenericReader reader )
+        public bool GetSavedFlag(int flag)
+        {
+            CompactInfo info = LookupCompactInfo();
+
+            if (info == null)
+                return false;
+
+            return ((info.m_SavedFlags & flag) != 0);
+        }
+
+        public void SetSavedFlag(int flag, bool value)
+        {
+            CompactInfo info = AcquireCompactInfo();
+
+            if (value)
+                info.m_SavedFlags |= flag;
+            else
+                info.m_SavedFlags &= ~flag;
+
+            if (info.m_SavedFlags == 0)
+                VerifyCompactInfo();
+        }
+
+        public virtual void Deserialize( GenericReader reader )
 		{
 			int version = reader.ReadInt();
 

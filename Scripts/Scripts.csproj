@@ -44,7 +44,7 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
     <Prefer32Bit>false</Prefer32Bit>
-    <IntermediateOutputPath>C:\Users\Sephora.PDC\AppData\Local\Temp\vs5595.tmp\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Sephora\AppData\Local\Temp\vs6D73.tmp\Debug\</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -56,7 +56,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>false</Prefer32Bit>
-    <IntermediateOutputPath>C:\Users\Sephora.PDC\AppData\Local\Temp\vs5595.tmp\Release\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Sephora\AppData\Local\Temp\vs6D73.tmp\Release\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -373,10 +373,63 @@
     <Compile Include=".\Items\Armor\DaemonBone\DaemonChest.cs" />
     <Compile Include=".\Items\Armor\DaemonBone\DaemonGloves.cs" />
     <Compile Include=".\Items\Armor\DaemonBone\DaemonLegs.cs" />
-    <Compile Include="Commands\GenMonsters.cs" />
     <Compile Include="Engines\Factions %28Virtue Guards%29\Mobiles\BaseShieldGuard.cs" />
     <Compile Include="Engines\Factions %28Virtue Guards%29\Mobiles\ChaosGuard.cs" />
     <Compile Include="Engines\Factions %28Virtue Guards%29\Mobiles\OrderGuard.cs" />
+    <Compile Include="Engines\XmlSpawner2\BaseXmlSpawner.cs" />
+    <Compile Include="Engines\XmlSpawner2\ItemFlags.cs" />
+    <Compile Include="Engines\XmlSpawner2\PacketHandlerOverrides.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\TemporaryQuestObject.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlAddFame.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlAddKarma.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlData.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlDate.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlDeathAction.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlDex.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlDialog.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlEnemyMastery.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlFire.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlFreeze.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlHue.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlInt.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlLifeDrain.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlLightning.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlLocalVariable.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlMagicWord.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlManaDrain.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlMessage.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlMinionStrike.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlMorph.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlSaveItem.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlSkill.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlSound.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlStamDrain.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlStr.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlUse.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttachments\XmlValue.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttach\XmlAttach.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttach\XmlAttachment.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlAttach\XmlGetAttachGump.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlPropsGumps\XmlPropsGump.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlPropsGumps\XmlSetCustomEnumGump.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlPropsGumps\XmlSetGump.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlPropsGumps\XmlSetListOptionGump.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlPropsGumps\XmlSetObjectGump.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlPropsGumps\XmlSetObjectTarget.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlPropsGumps\XmlSetPoint2DGump.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlPropsGumps\XmlSetPoint3DGump.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlPropsGumps\XmlSetTimeSpanGump.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlSpawner2.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlSpawnerGumps.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlSpawnerSkillCheck.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlTextEntryBook.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlUtils\WhatIsIt.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlUtils\WriteMulti.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlUtils\XmlAdd.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlUtils\XmlCategorizedAddGump.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlUtils\XmlEdit.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlUtils\XmlFind.cs" />
+    <Compile Include="Engines\XmlSpawner2\XmlUtils\XmlPartialCategorizedAddGump.cs" />
     <Compile Include="Items\Armor\Plate\Bascinet.cs" />
     <Compile Include="Items\Armor\Bone\BoneHelm.cs" />
     <Compile Include="Items\Armor\Chain\ChainCoif.cs" />
