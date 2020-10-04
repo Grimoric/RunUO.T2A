@@ -2,8 +2,8 @@ using System;
 
 namespace Server.Items
 {
-    [TypeAlias( "Server.Items.MugAle", "Server.Items.GlassCider", "Server.Items.GlassLiquor",
-        "Server.Items.GlassMilk", "Server.Items.GlassWine", "Server.Items.GlassWater" )]
+    [TypeAlias( "MugAle", "GlassCider", "GlassLiquor",
+        "GlassMilk", "GlassWine", "GlassWater" )]
     public class GlassMug : BaseBeverage
     {
         public override int EmptyLabelNumber { get { return 1022456; } } // mug

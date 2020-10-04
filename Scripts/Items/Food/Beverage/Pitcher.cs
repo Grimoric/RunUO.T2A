@@ -2,9 +2,9 @@ using System;
 
 namespace Server.Items
 {
-    [TypeAlias( "Server.Items.PitcherAle", "Server.Items.PitcherCider", "Server.Items.PitcherLiquor",
-        "Server.Items.PitcherMilk", "Server.Items.PitcherWine", "Server.Items.PitcherWater",
-        "Server.Items.GlassPitcher" )]
+    [TypeAlias( "PitcherAle", "PitcherCider", "PitcherLiquor",
+        "PitcherMilk", "PitcherWine", "PitcherWater",
+        "GlassPitcher" )]
     public class Pitcher : BaseBeverage
     {
         public override int BaseLabelNumber { get { return 1048128; } } // a Pitcher of Ale

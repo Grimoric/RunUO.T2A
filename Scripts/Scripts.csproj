@@ -1143,6 +1143,8 @@
     <Compile Include="Misc\CrashGuard.cs" />
     <Compile Include="Misc\CurrentExpansion.cs" />
     <Compile Include="Misc\DataPath.cs" />
+    <Compile Include="Mobiles\Animals\Birds\Raven.cs" />
+    <Compile Include="Mobiles\Animals\Birds\TropicalBird.cs" />
     <Compile Include="Spells\DispellableFieldAttribute.cs" />
     <Compile Include="Commands\DoorGenerator.cs" />
     <Compile Include="Misc\Email.cs" />

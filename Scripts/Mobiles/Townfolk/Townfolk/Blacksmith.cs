@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Server.Items;
 
 namespace Server.Mobiles
 {
@@ -54,7 +55,7 @@ namespace Server.Mobiles
 		{
 			base.InitOutfit();
 
-			Item item = ( Utility.RandomBool() ? null : new Server.Items.RingmailChest() );
+			Item item = ( Utility.RandomBool() ? null : new RingmailChest() );
 
 			if ( item != null && !EquipItem( item ) )
 			{
@@ -63,10 +64,10 @@ namespace Server.Mobiles
 			}
 
 			if ( item == null )
-				AddItem( new Server.Items.FullApron() );
+				AddItem( new FullApron() );
 
-			AddItem( new Server.Items.Bascinet() );
-			AddItem( new Server.Items.SmithHammer() );
+			AddItem( new Bascinet() );
+			AddItem( new SmithHammer() );
 		}
 
 		public Blacksmith( Serial serial ) : base( serial )

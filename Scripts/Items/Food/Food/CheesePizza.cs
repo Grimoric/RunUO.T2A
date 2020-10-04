@@ -1,6 +1,6 @@
 namespace Server.Items
 {
-    [TypeAlias( "Server.Items.Pizza" )]
+    [TypeAlias( "Pizza" )]
     public class CheesePizza : Food
     {
         public override int LabelNumber{ get{ return 1044516; } } // cheese pizza

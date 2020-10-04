@@ -1,3 +1,5 @@
+using Server.Items;
+
 namespace Server.Mobiles
 {
     public class HealerGuildmaster : BaseGuildmaster
@@ -23,7 +25,7 @@ namespace Server.Mobiles
 		{
 			base.InitOutfit();
 
-			AddItem( new Server.Items.Robe( Utility.RandomYellowHue() ) );
+			AddItem( new Robe( Utility.RandomYellowHue() ) );
 		}
 
 		public HealerGuildmaster( Serial serial ) : base( serial )

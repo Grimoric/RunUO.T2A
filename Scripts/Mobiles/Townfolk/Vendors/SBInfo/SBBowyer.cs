@@ -19,7 +19,7 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new GenericBuyInfo( typeof( FletcherTools ), 2, 20, 0x1022, 0 ) );
+				Add( new GenericBuyInfo( "Arrow fletching", typeof( FletcherTools ), 2, 20, 0x1022, 0 ) );
 			}
 		}
 

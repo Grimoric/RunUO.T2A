@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Server.Items;
 
 namespace Server.Mobiles
 {
@@ -34,7 +35,7 @@ namespace Server.Mobiles
 		{
 			base.InitOutfit();
 
-			AddItem( new Server.Items.Robe( Utility.RandomNeutralHue() ) );
+			AddItem( new Robe( Utility.RandomNeutralHue() ) );
 		}
 
 		public override bool HandlesOnSpeech( Mobile from )

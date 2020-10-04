@@ -184,6 +184,7 @@
     <Compile Include=".\Timer.cs" />
     <Compile Include=".\Utility.cs" />
     <Compile Include=".\World.cs" />
+    <Compile Include="ObjectPropertyList.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="runuo.ico" />

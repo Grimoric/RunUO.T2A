@@ -181,7 +181,7 @@ namespace Server.Items
 		}
 	}
 
-	[TypeAlias( "Server.Items.AnkhEast" )]
+	[TypeAlias( "AnkhEast" )]
 	public class AnkhNorth : Item
 	{
 		private InternalItem m_Item;
@@ -262,7 +262,7 @@ namespace Server.Items
 			m_Item = reader.ReadItem() as InternalItem;
 		}
 
-		[TypeAlias( "Server.Items.AnkhEast+InternalItem" )]
+		[TypeAlias( "AnkhEast+InternalItem" )]
 		private class InternalItem : Item
 		{
 			private AnkhNorth m_Item;

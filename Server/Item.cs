@@ -604,6 +604,8 @@ namespace Server
 		private Packet m_WorldPacketSA;
 		private Packet m_WorldPacketHS;
 		private Packet m_RemovePacket;
+
+		private ObjectPropertyList m_PropertyList;
 		#endregion
 
 		/// <summary>
@@ -1357,6 +1359,151 @@ namespace Server
 				}
 
 				return m_RemovePacket;
+			}
+		}
+
+		/// <summary>
+		/// Overridable. Adds the name of this item to the given <see cref="ObjectPropertyList" />. This method should be overriden if the item requires a complex naming format.
+		/// </summary>
+		public virtual void AddNameProperty(ObjectPropertyList list)
+		{
+			string name = this.Name;
+
+			if (name == null)
+			{
+				if (m_Amount <= 1)
+					list.Add(LabelNumber);
+				else
+					list.Add(1050039, "{0}\t#{1}", m_Amount, LabelNumber); // ~1_NUMBER~ ~2_ITEMNAME~
+			}
+			else
+			{
+				if (m_Amount <= 1)
+					list.Add(name);
+				else
+					list.Add(1050039, "{0}\t{1}", m_Amount, Name); // ~1_NUMBER~ ~2_ITEMNAME~
+			}
+		}
+
+		/// <summary>
+		/// Overridable. Adds the "Locked Down & Secure" property to the given <see cref="ObjectPropertyList" />.
+		/// </summary>
+		public virtual void AddSecureProperty(ObjectPropertyList list)
+		{
+			list.Add(501644); // locked down & secure
+		}
+
+		/// <summary>
+		/// Overridable. Adds the "Locked Down" property to the given <see cref="ObjectPropertyList" />.
+		/// </summary>
+		public virtual void AddLockedDownProperty(ObjectPropertyList list)
+		{
+			list.Add(501643); // locked down
+		}
+
+		/// <summary>
+		/// Overridable. Adds the loot type of this item to the given <see cref="ObjectPropertyList" />. By default, this will be either 'blessed', 'cursed', or 'insured'.
+		/// </summary>
+		public virtual void AddLootTypeProperty(ObjectPropertyList list)
+		{
+			if (m_LootType == LootType.Blessed)
+				list.Add(1038021); // blessed
+			else if (m_LootType == LootType.Cursed)
+				list.Add(1049643); // cursed
+		}
+
+		/// <summary>
+		/// Overridable. Event invoked when a child (<paramref name="item" />) is building it's Name <see cref="ObjectPropertyList" />. Recursively calls <see cref="Item.GetChildProperties">Item.GetChildNameProperties</see> or <see cref="Mobile.GetChildProperties">Mobile.GetChildNameProperties</see>.
+		/// </summary>
+		public virtual void GetChildNameProperties(ObjectPropertyList list, Item item)
+		{
+			if (m_Parent is Item)
+				((Item)m_Parent).GetChildNameProperties(list, item);
+		}
+
+		public virtual void AppendChildNameProperties(ObjectPropertyList list)
+		{
+			if (m_Parent is Item)
+				((Item)m_Parent).GetChildNameProperties(list, this);
+		}
+
+		/// <summary>
+		/// Overridable. Displays cliloc 1072788-1072789. 
+		/// </summary>
+		public virtual void AddWeightProperty(ObjectPropertyList list)
+		{
+			int weight = this.PileWeight + this.TotalWeight;
+
+			if (weight == 1)
+			{
+				list.Add(1072788, weight.ToString()); //Weight: ~1_WEIGHT~ stone
+			}
+			else
+			{
+				list.Add(1072789, weight.ToString()); //Weight: ~1_WEIGHT~ stones
+			}
+		}
+
+		/// <summary>
+		/// Overridable. Adds header properties. By default, this invokes <see cref="AddNameProperty" />, <see cref="AddBlessedForProperty" /> (if applicable), and <see cref="AddLootTypeProperty" /> (if <see cref="DisplayLootType" />).
+		/// </summary>
+		public virtual void AddNameProperties(ObjectPropertyList list)
+		{
+			AddNameProperty(list);
+
+			if (IsSecure)
+				AddSecureProperty(list);
+			else if (IsLockedDown)
+				AddLockedDownProperty(list);
+
+			if (DisplayLootType)
+				AddLootTypeProperty(list);
+
+			if (DisplayWeight)
+				AddWeightProperty(list);
+
+			AppendChildNameProperties(list);
+		}
+
+		/// <summary>
+		/// Overridable. Fills an <see cref="ObjectPropertyList" /> with everything applicable. By default, this invokes <see cref="AddNameProperties" />, then <see cref="Item.GetChildProperties">Item.GetChildProperties</see> or <see cref="Mobile.GetChildProperties">Mobile.GetChildProperties</see>. This method should be overriden to add any custom properties.
+		/// </summary>
+		public virtual void GetProperties(ObjectPropertyList list)
+		{
+			AddNameProperties(list);
+		}
+
+		public virtual void AppendChildProperties(ObjectPropertyList list)
+		{
+			if (m_Parent is Item)
+				((Item)m_Parent).GetChildProperties(list, this);
+		}
+
+		/// <summary>
+		/// Overridable. Event invoked when a child (<paramref name="item" />) is building it's <see cref="ObjectPropertyList" />. Recursively calls <see cref="Item.GetChildProperties">Item.GetChildProperties</see> or <see cref="Mobile.GetChildProperties">Mobile.GetChildProperties</see>.
+		/// </summary>
+		public virtual void GetChildProperties(ObjectPropertyList list, Item item)
+		{
+			if (m_Parent is Item)
+				((Item)m_Parent).GetChildProperties(list, item);
+		}
+
+		public ObjectPropertyList PropertyList
+		{
+			get
+			{
+				if (m_PropertyList == null)
+				{
+					m_PropertyList = new ObjectPropertyList(this);
+
+					GetProperties(m_PropertyList);
+					AppendChildProperties(m_PropertyList);
+
+					m_PropertyList.Terminate();
+					m_PropertyList.SetStatic();
+				}
+
+				return m_PropertyList;
 			}
 		}
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Server.Items;
 
 namespace Server.Mobiles
 {
@@ -34,7 +35,7 @@ namespace Server.Mobiles
 		{
 			base.InitOutfit();
 
-			AddItem( new Server.Items.Robe( Utility.RandomBlueHue() ) );
+			AddItem( new Robe( Utility.RandomBlueHue() ) );
 		}
 
 		public Mage( Serial serial ) : base( serial )

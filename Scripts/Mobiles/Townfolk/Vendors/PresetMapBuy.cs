@@ -8,7 +8,11 @@ namespace Server.Mobiles
 
 		public override bool CanCacheDisplay{ get{ return false; } }
 
-		public PresetMapBuyInfo( PresetMapEntry entry, int price, int amount ) : base( entry.Name.ToString(), null, price, amount, 0x14EC, 0 )
+		public PresetMapBuyInfo(PresetMapEntry entry, int price, int amount) : base(entry.Name.ToString(), null, price, amount, 0x14EC, 0)
+		{
+		}
+
+		public PresetMapBuyInfo( string name, PresetMapEntry entry, int price, int amount ) : base( name, null, price, amount, 0x14EC, 0 )
 		{
 			m_Entry = entry;
 		}

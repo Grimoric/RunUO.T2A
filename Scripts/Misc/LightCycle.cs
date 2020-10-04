@@ -1,6 +1,7 @@
 using System;
 using Server.Network;
 using Server.Commands;
+using Server.Items;
 
 namespace Server
 {
@@ -69,7 +70,7 @@ namespace Server
 
 			int hours, minutes;
 
-			Server.Items.Clock.GetTime( from.Map, from.X, from.Y, out hours, out minutes );
+			Clock.GetTime( from.Map, from.X, from.Y, out hours, out minutes );
 
 			/* OSI times:
 			 * 

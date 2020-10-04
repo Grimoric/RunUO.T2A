@@ -272,7 +272,7 @@ namespace Server.Engines.XmlSpawner2
                         y = ((Mobile)AttachedTo).Location.Y;
                     }
 
-                Server.Items.Clock.GetTime(map, x, y, out  hours, out  minutes);
+                Clock.GetTime(map, x, y, out  hours, out  minutes);
                 return (new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hours, minutes, 0).TimeOfDay);
             }
         }

@@ -4,7 +4,7 @@ namespace Server.Items
 {
     // TODO: Flipable attributes
 
-	[TypeAlias( "Server.Items.BottleAle", "Server.Items.BottleLiquor", "Server.Items.BottleWine" )]
+	[TypeAlias( "BottleAle", "BottleLiquor", "BottleWine" )]
 	public class BeverageBottle : BaseBeverage
 	{
 		public override int BaseLabelNumber { get { return 1042959; } } // a bottle of Ale

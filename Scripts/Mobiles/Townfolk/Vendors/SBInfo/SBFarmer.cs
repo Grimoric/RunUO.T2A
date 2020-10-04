@@ -19,28 +19,28 @@ namespace Server.Mobiles
 		{ 
 			public InternalBuyInfo() 
 			{ 
-				Add( new GenericBuyInfo( typeof( Cabbage ), 5, 20, 0xC7B, 0 ) );
-				Add( new GenericBuyInfo( typeof( Cantaloupe ), 6, 20, 0xC79, 0 ) );
-				Add( new GenericBuyInfo( typeof( Carrot ), 3, 20, 0xC78, 0 ) );
-				Add( new GenericBuyInfo( typeof( HoneydewMelon ), 7, 20, 0xC74, 0 ) );
-				Add( new GenericBuyInfo( typeof( Squash ), 3, 20, 0xC72, 0 ) );
-				Add( new GenericBuyInfo( typeof( Lettuce ), 5, 20, 0xC70, 0 ) );
-				Add( new GenericBuyInfo( typeof( Onion ), 3, 20, 0xC6D, 0 ) );
-				Add( new GenericBuyInfo( typeof( Pumpkin ), 11, 20, 0xC6A, 0 ) );
-				Add( new GenericBuyInfo( typeof( GreenGourd ), 3, 20, 0xC66, 0 ) );
-				Add( new GenericBuyInfo( typeof( YellowGourd ), 3, 20, 0xC64, 0 ) );
-				//Add( new GenericBuyInfo( typeof( Turnip ), 6, 20, XXXXXX, 0 ) );
-				Add( new GenericBuyInfo( typeof( Watermelon ), 7, 20, 0xC5C, 0 ) );
-				//Add( new GenericBuyInfo( typeof( EarOfCorn ), 3, 20, XXXXXX, 0 ) );
-				Add( new GenericBuyInfo( typeof( Eggs ), 3, 20, 0x9B5, 0 ) );
-				Add( new BeverageBuyInfo( typeof( Pitcher ), BeverageType.Milk, 7, 20, 0x9AD, 0 ) );
-				Add( new GenericBuyInfo( typeof( Peach ), 3, 20, 0x9D2, 0 ) );
-				Add( new GenericBuyInfo( typeof( Pear ), 3, 20, 0x994, 0 ) );
-				Add( new GenericBuyInfo( typeof( Lemon ), 3, 20, 0x1728, 0 ) );
-				Add( new GenericBuyInfo( typeof( Lime ), 3, 20, 0x172A, 0 ) );
-				Add( new GenericBuyInfo( typeof( Grapes ), 3, 20, 0x9D1, 0 ) );
-				Add( new GenericBuyInfo( typeof( Apple ), 3, 20, 0x9D0, 0 ) );
-				Add( new GenericBuyInfo( typeof( SheafOfHay ), 2, 20, 0xF36, 0 ) );
+				Add( new GenericBuyInfo( "Head of cabbage", typeof( Cabbage ), 5, 20, 0xC7B, 0 ) );
+				Add( new GenericBuyInfo( "Canteloupe", typeof( Cantaloupe ), 6, 20, 0xC79, 0 ) );
+				Add( new GenericBuyInfo( "Carrot", typeof( Carrot ), 3, 20, 0xC78, 0 ) );
+				Add( new GenericBuyInfo( "Honeydew melon", typeof( HoneydewMelon ), 7, 20, 0xC74, 0 ) );
+				Add( new GenericBuyInfo( "Squash", typeof( Squash ), 3, 20, 0xC72, 0 ) );
+				Add( new GenericBuyInfo( "Head of lettuce", typeof( Lettuce ), 5, 20, 0xC70, 0 ) );
+				Add( new GenericBuyInfo( "Onion", typeof( Onion ), 3, 20, 0xC6D, 0 ) );
+				Add( new GenericBuyInfo( "Pumpkin", typeof( Pumpkin ), 11, 20, 0xC6A, 0 ) );
+				Add( new GenericBuyInfo( "Gourd", typeof( GreenGourd ), 3, 20, 0xC66, 0 ) );
+				Add( new GenericBuyInfo( "Gourd", typeof( YellowGourd ), 3, 20, 0xC64, 0 ) );
+			//	Add( new GenericBuyInfo( "Turnip", typeof( Turnip ), 6, 20, 0x0C61, 0 ) );
+				Add( new GenericBuyInfo( "Watermelon", typeof( Watermelon ), 7, 20, 0xC5C, 0 ) );
+			//	Add( new GenericBuyInfo( "Ear of corn", typeof( EarOfCorn ), 3, 20, 0x0C7F, 0 ) );
+				Add( new GenericBuyInfo( "Eggs", typeof( Eggs ), 3, 20, 0x9B5, 0 ) );
+				Add( new BeverageBuyInfo( "Pitcher of milk", typeof( Pitcher ), BeverageType.Milk, 7, 20, 0x9AD, 0 ) );
+				Add( new GenericBuyInfo( "Peach", typeof( Peach ), 3, 20, 0x9D2, 0 ) );
+				Add( new GenericBuyInfo( "Pear", typeof( Pear ), 3, 20, 0x994, 0 ) );
+				Add( new GenericBuyInfo( "Lemon", typeof( Lemon ), 3, 20, 0x1728, 0 ) );
+				Add( new GenericBuyInfo( "Lime", typeof( Lime ), 3, 20, 0x172A, 0 ) );
+				Add( new GenericBuyInfo( "Grape bunch", typeof( Grapes ), 3, 20, 0x9D1, 0 ) );
+				Add( new GenericBuyInfo( "Apple", typeof( Apple ), 3, 20, 0x9D0, 0 ) );
+				Add( new GenericBuyInfo( "Sheaf of hay", typeof( SheafOfHay ), 2, 20, 0xF36, 0 ) );
 
 			} 
 		} 

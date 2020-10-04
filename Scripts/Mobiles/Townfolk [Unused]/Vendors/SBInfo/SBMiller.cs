@@ -19,8 +19,8 @@ namespace Server.Mobiles
 		{ 
 			public InternalBuyInfo() 
 			{ 
-				Add( new GenericBuyInfo( typeof( SackFlour ), 3, 20, 0x1039, 0 ) );
-				Add( new GenericBuyInfo( typeof( SheafOfHay ), 2, 20, 0xF36, 0 ) );
+				Add( new GenericBuyInfo( "a sack of flour", typeof( SackFlour ), 3, 20, 0x1039, 0 ) );
+				Add( new GenericBuyInfo( "a sheaf of hay", typeof( SheafOfHay ), 2, 20, 0xF36, 0 ) );
 			} 
 		} 
 

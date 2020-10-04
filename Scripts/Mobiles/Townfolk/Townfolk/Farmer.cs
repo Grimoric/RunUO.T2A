@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Server.Items;
 
 namespace Server.Mobiles
 {
@@ -34,7 +35,7 @@ namespace Server.Mobiles
 		{
 			base.InitOutfit();
 
-			AddItem( new Server.Items.WideBrimHat( Utility.RandomNeutralHue() ) );
+			AddItem( new WideBrimHat( Utility.RandomNeutralHue() ) );
 		}
 
 		public Farmer( Serial serial ) : base( serial )

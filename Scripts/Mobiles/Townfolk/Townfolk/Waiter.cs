@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Server.Items;
 
 namespace Server.Mobiles
 {
@@ -22,7 +23,7 @@ namespace Server.Mobiles
 		{
 			base.InitOutfit();
 
-			AddItem( new Server.Items.HalfApron() );
+			AddItem( new HalfApron() );
 		}
 
 		public Waiter( Serial serial ) : base( serial )

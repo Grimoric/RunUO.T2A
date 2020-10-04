@@ -19,13 +19,13 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new GenericBuyInfo( typeof( StuddedArms ), 87, 20, 0x13DC, 0 ) );
-				Add( new GenericBuyInfo( typeof( StuddedChest ), 128, 20, 0x13DB, 0 ) );
-				Add( new GenericBuyInfo( typeof( StuddedGloves ), 79, 20, 0x13D5, 0 ) );
-				Add( new GenericBuyInfo( typeof( StuddedGorget ), 73, 20, 0x13D6, 0 ) );
-				Add( new GenericBuyInfo( typeof( StuddedLegs ), 103, 20, 0x13DA, 0 ) );
-				Add( new GenericBuyInfo( typeof( FemaleStuddedChest ), 142, 20, 0x1C02, 0 ) );
-				Add( new GenericBuyInfo( typeof( StuddedBustierArms ), 120, 20, 0x1c0c, 0 ) );
+				Add( new GenericBuyInfo( "Studded sleeves", typeof( StuddedArms ), 87, 20, 0x13DC, 0 ) );
+				Add( new GenericBuyInfo( "Studded tunic", typeof( StuddedChest ), 128, 20, 0x13DB, 0 ) );
+				Add( new GenericBuyInfo( "Studded gloves", typeof( StuddedGloves ), 79, 20, 0x13D5, 0 ) );
+				Add( new GenericBuyInfo( "Studded gorget", typeof( StuddedGorget ), 73, 20, 0x13D6, 0 ) );
+				Add( new GenericBuyInfo( "Studded leggings", typeof( StuddedLegs ), 103, 20, 0x13DA, 0 ) );
+				Add( new GenericBuyInfo( "Studded armor", typeof( FemaleStuddedChest ), 142, 20, 0x1C02, 0 ) );
+				Add( new GenericBuyInfo( "Studded bustier", typeof( StuddedBustierArms ), 120, 20, 0x1c0c, 0 ) );
 			}
 		}
 

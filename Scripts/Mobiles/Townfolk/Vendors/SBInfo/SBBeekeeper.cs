@@ -19,8 +19,8 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new GenericBuyInfo( typeof( JarHoney ), 3, 20, 0x9EC, 0 ) );
-				Add( new GenericBuyInfo( typeof( Beeswax ), 2, 20, 0x1422, 0 ) );
+				Add( new GenericBuyInfo( "Jar of honey", typeof( JarHoney ), 3, 20, 0x9EC, 0 ) );
+				Add( new GenericBuyInfo( "Beeswax", typeof( Beeswax ), 2, 20, 0x1422, 0 ) );
 			}
 		}
 

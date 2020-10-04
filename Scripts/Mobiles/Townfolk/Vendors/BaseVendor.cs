@@ -41,12 +41,7 @@ namespace Server.Mobiles
 
 		public override bool ShowFameTitle { get { return false; } }
 
-		public virtual void OnSuccessfulBulkOrderReceive( Mobile from )
-		{
-		}
-
-		public BaseVendor( string title )
-			: base( AIType.AI_Vendor, FightMode.None, 2, 1, 0.5, 2 )
+		public BaseVendor( string title ) : base( AIType.AI_Vendor, FightMode.None, 2, 1, 0.5, 2 )
 		{
 			LoadSBInfo();
 
@@ -311,6 +306,8 @@ namespace Server.Mobiles
 			list = new List<BuyItemState>( buyInfo.Length );
 			Container cont = this.BuyPack;
 
+			List<ObjectPropertyList> opls = null;
+
 			for ( int idx = 0; idx < buyInfo.Length; idx++ )
 			{
 				IBuyItemInfo buyItem = (IBuyItemInfo)buyInfo[idx];
@@ -324,6 +321,16 @@ namespace Server.Mobiles
 
 				list.Add( new BuyItemState( buyItem.Name, cont.Serial, disp == null ? (Serial)0x7FC0FFEE : disp.Serial, buyItem.Price, buyItem.Amount, buyItem.ItemID, buyItem.Hue ) );
 				count++;
+
+				if (opls == null)
+				{
+					opls = new List<ObjectPropertyList>();
+				}
+
+				if (disp is Item)
+				{
+					opls.Add(((Item)disp).PropertyList);
+				}
 			}
 
 			List<Item> playerItems = cont.Items;
@@ -360,6 +367,13 @@ namespace Server.Mobiles
 				{
 					list.Add( new BuyItemState( name, cont.Serial, item.Serial, price, item.Amount, item.ItemID, item.Hue ) );
 					count++;
+
+					if (opls == null)
+					{
+						opls = new List<ObjectPropertyList>();
+					}
+
+					opls.Add(item.PropertyList);
 				}
 			}
 
@@ -391,6 +405,14 @@ namespace Server.Mobiles
 					from.Send( new DisplayBuyList( this ) );
 
 				from.Send( new MobileStatusExtended( from ) );//make sure their gold amount is sent
+
+				if (opls != null && ns.ObjectPropertyList)
+				{
+					for (int i = 0; i < opls.Count; ++i)
+					{
+						from.Send(opls[i]);
+					}
+				}
 
 				SayTo( from, 500186 ); // Greetings.  Have a look around.
 			}

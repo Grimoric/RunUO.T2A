@@ -19,24 +19,24 @@ namespace Server.Mobiles
 		{ 
 			public InternalBuyInfo() 
 			{ 
-				Add( new GenericBuyInfo( typeof( Dyes ), 8, 20, 0xFA9, 0 ) ); 
-				Add( new GenericBuyInfo( typeof( DyeTub ), 8, 20, 0xFAB, 0 ) ); 
+				Add( new GenericBuyInfo( "Dyes", typeof( Dyes ), 8, 20, 0xFA9, 0 ) ); 
+				Add( new GenericBuyInfo( "Dying tub", typeof( DyeTub ), 8, 20, 0xFAB, 0 ) ); 
 
-				Add( new GenericBuyInfo( typeof( UncutCloth ), 3, 20, 0x1761, 0 ) ); 
-				Add( new GenericBuyInfo( typeof( UncutCloth ), 3, 20, 0x1762, 0 ) ); 
-				Add( new GenericBuyInfo( typeof( UncutCloth ), 3, 20, 0x1763, 0 ) ); 
-				Add( new GenericBuyInfo( typeof( UncutCloth ), 3, 20, 0x1764, 0 ) ); 
+				Add( new GenericBuyInfo( "Folded cloth", typeof( UncutCloth ), 3, 20, 0x1761, 0 ) ); 
+				Add( new GenericBuyInfo( "Folded cloth", typeof( UncutCloth ), 3, 20, 0x1762, 0 ) ); 
+				Add( new GenericBuyInfo( "Folded cloth", typeof( UncutCloth ), 3, 20, 0x1763, 0 ) ); 
+				Add( new GenericBuyInfo( "Folded cloth", typeof( UncutCloth ), 3, 20, 0x1764, 0 ) ); 
 
-				Add( new GenericBuyInfo( typeof( BoltOfCloth ), 100, 20, 0xf9B, 0 ) ); 
-				Add( new GenericBuyInfo( typeof( BoltOfCloth ), 100, 20, 0xf9C, 0 ) ); 
-				Add( new GenericBuyInfo( typeof( BoltOfCloth ), 100, 20, 0xf96, 0 ) ); 
-				Add( new GenericBuyInfo( typeof( BoltOfCloth ), 100, 20, 0xf97, 0 ) ); 
+				Add( new GenericBuyInfo( "Bolt of cloth", typeof( BoltOfCloth ), 100, 20, 0xf9B, 0 ) ); 
+				Add( new GenericBuyInfo( "Bolt of cloth", typeof( BoltOfCloth ), 100, 20, 0xf9C, 0 ) ); 
+				Add( new GenericBuyInfo( "Bolt of cloth", typeof( BoltOfCloth ), 100, 20, 0xf96, 0 ) ); 
+				Add( new GenericBuyInfo( "Bolt of cloth", typeof( BoltOfCloth ), 100, 20, 0xf97, 0 ) ); 
 
-				Add( new GenericBuyInfo( typeof( DarkYarn ), 18, 20, 0xE1D, 0 ) );
-				Add( new GenericBuyInfo( typeof( LightYarn ), 18, 20, 0xE1E, 0 ) );
-				Add( new GenericBuyInfo( typeof( LightYarnUnraveled ), 18, 20, 0xE1F, 0 ) );
+				Add( new GenericBuyInfo( "Ball of yarn", typeof( DarkYarn ), 18, 20, 0xE1D, 0 ) );
+				Add( new GenericBuyInfo( "Ball of yarn", typeof( LightYarn ), 18, 20, 0xE1E, 0 ) );
+				Add( new GenericBuyInfo( "Ball of yarn", typeof( LightYarnUnraveled ), 18, 20, 0xE1F, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( Scissors ), 11, 20, 0xF9F, 0 ) );
+				Add( new GenericBuyInfo( "Scissors", typeof( Scissors ), 11, 20, 0xF9F, 0 ) );
 
 			} 
 		} 

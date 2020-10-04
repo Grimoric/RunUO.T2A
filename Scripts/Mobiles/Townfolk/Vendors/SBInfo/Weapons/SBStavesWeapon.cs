@@ -19,10 +19,10 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new GenericBuyInfo( typeof( BlackStaff ), 22, 20, 0xDF1, 0 ) );
-				Add( new GenericBuyInfo( typeof( GnarledStaff ), 16, 20, 0x13F8, 0 ) );
-				Add( new GenericBuyInfo( typeof( QuarterStaff ), 19, 20, 0xE89, 0 ) );
-				Add( new GenericBuyInfo( typeof( ShepherdsCrook ), 20, 20, 0xE81, 0 ) );
+				Add( new GenericBuyInfo( "Black staff", typeof( BlackStaff ), 22, 20, 0xDF1, 0 ) );
+				Add( new GenericBuyInfo( "Gnarled staff", typeof( GnarledStaff ), 16, 20, 0x13F8, 0 ) );
+				Add( new GenericBuyInfo( "Quarter staff", typeof( QuarterStaff ), 19, 20, 0xE89, 0 ) );
+				Add( new GenericBuyInfo( "Shepherd's crook", typeof( ShepherdsCrook ), 20, 20, 0xE81, 0 ) );
 			}
 		}
 

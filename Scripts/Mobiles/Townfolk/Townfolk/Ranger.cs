@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Server.Items;
 
 namespace Server.Mobiles
 {
@@ -27,10 +28,10 @@ namespace Server.Mobiles
 		{
 			base.InitOutfit();
 
-			AddItem( new Server.Items.Shirt( Utility.RandomNeutralHue() ) );
-			AddItem( new Server.Items.LongPants( Utility.RandomNeutralHue() ) );
-			AddItem( new Server.Items.Bow() );
-			AddItem( new Server.Items.ThighBoots( Utility.RandomNeutralHue() ) );
+			AddItem( new Shirt( Utility.RandomNeutralHue() ) );
+			AddItem( new LongPants( Utility.RandomNeutralHue() ) );
+			AddItem( new Bow() );
+			AddItem( new ThighBoots( Utility.RandomNeutralHue() ) );
 		}
 
 		public Ranger( Serial serial ) : base( serial )

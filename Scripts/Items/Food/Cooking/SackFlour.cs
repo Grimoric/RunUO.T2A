@@ -1,6 +1,6 @@
 namespace Server.Items
 {
-    [TypeAlias( "Server.Items.SackFlourOpen" )]
+    [TypeAlias( "SackFlourOpen" )]
     public class SackFlour : Item, IHasQuantity
     {
         private int m_Quantity;

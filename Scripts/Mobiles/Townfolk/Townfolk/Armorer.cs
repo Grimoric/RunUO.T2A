@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Server.Items;
 
 namespace Server.Mobiles
 {
@@ -64,8 +65,8 @@ namespace Server.Mobiles
 		{
 			base.InitOutfit();
 
-			AddItem( new Server.Items.HalfApron( Utility.RandomYellowHue() ) );
-			AddItem( new Server.Items.Bascinet() );
+			AddItem( new HalfApron( Utility.RandomYellowHue() ) );
+			AddItem( new Bascinet() );
 		}
 
 		public Armorer( Serial serial ) : base( serial )

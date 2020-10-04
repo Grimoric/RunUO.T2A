@@ -27,9 +27,10 @@ namespace Server.Mobiles
 				Add( new GenericBuyInfo( "deed to a thatched-roof cottage", typeof( ThatchedRoofCottageDeed ), 43800, 20, 0x14F0, 0 ) );
 				Add( new GenericBuyInfo( "deed to a brick house", typeof( BrickHouseDeed ), 144500, 20, 0x14F0, 0 ) );
 				Add( new GenericBuyInfo( "deed to a two-story wood-and-plaster house", typeof( TwoStoryWoodPlasterHouseDeed ), 192400, 20, 0x14F0, 0 ) );
+				Add( new GenericBuyInfo( "a deed to a two-story stone-and-plaster house", typeof( TwoStoryStonePlasterHouseDeed ), 192400, 20, 0x14F0, 0 ) );
 				Add( new GenericBuyInfo( "deed to a tower", typeof( TowerDeed ), 433200, 20, 0x14F0, 0 ) );
-				Add( new GenericBuyInfo( "deed to a small stone keep", typeof( KeepDeed ), 665200, 20, 0x14F0, 0 ) );
-				Add( new GenericBuyInfo( "deed to a castle", typeof( CastleDeed ), 1022800, 20, 0x14F0, 0 ) );
+				Add( new GenericBuyInfo( "a small stone keep deed", typeof( KeepDeed ), 665200, 20, 0x14F0, 0 ) );
+				Add( new GenericBuyInfo( "a castle deed", typeof( CastleDeed ), 1022800, 20, 0x14F0, 0 ) );
 				Add( new GenericBuyInfo( "deed to a large house with patio", typeof( LargePatioDeed ), 152800, 20, 0x14F0, 0 ) );
 				Add( new GenericBuyInfo( "deed to a marble house with patio", typeof( LargeMarbleDeed ), 192000, 20, 0x14F0, 0 ) );
 				Add( new GenericBuyInfo( "deed to a small stone tower", typeof( SmallTowerDeed ), 88500, 20, 0x14F0, 0 ) );
@@ -45,7 +46,8 @@ namespace Server.Mobiles
 		{
 			public InternalSellInfo()
 			{
-				/*Add( typeof( StonePlasterHouseDeed ), 43800 );
+				/*
+				Add( typeof( StonePlasterHouseDeed ), 43800 );
 				Add( typeof( FieldStoneHouseDeed ), 43800 );
 				Add( typeof( SmallBrickHouseDeed ), 43800 );
 				Add( typeof( WoodHouseDeed ), 43800 );
@@ -53,6 +55,7 @@ namespace Server.Mobiles
 				Add( typeof( ThatchedRoofCottageDeed ), 43800 );
 				Add( typeof( BrickHouseDeed ), 144500 );
 				Add( typeof( TwoStoryWoodPlasterHouseDeed ), 192400 );
+				Add( typeof( TwoStoryStonePlasterHouseDeed ), 192400 );
 				Add( typeof( TowerDeed ), 433200 );
 				Add( typeof( KeepDeed ), 665200 );
 				Add( typeof( CastleDeed ), 1022800 );
@@ -64,7 +67,8 @@ namespace Server.Mobiles
 				Add( typeof( VillaDeed ), 136500 );
 				Add( typeof( StoneWorkshopDeed ), 60600 );
 				Add( typeof( MarbleWorkshopDeed ), 60300 );
-				Add( typeof( SmallBrickHouseDeed ), 43800 );*/
+				Add( typeof( SmallBrickHouseDeed ), 43800 );
+				*/
 			}
 		}
 	}

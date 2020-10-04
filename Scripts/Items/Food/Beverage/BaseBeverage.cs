@@ -571,7 +571,7 @@ namespace Server.Items
 
         protected bool CheckType( string name )
         {
-            return World.LoadingType == String.Format( "Server.Items.{0}", name );
+            return World.LoadingType == String.Format( "{0}", name );
         }
 
         public override void Deserialize( GenericReader reader )

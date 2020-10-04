@@ -211,16 +211,16 @@ namespace Server.Network
 		private ProtocolChanges _ProtocolChanges;
 
 		private enum ProtocolChanges {
-			NewSpellbook			= 0x00000001,
-			DamagePacket			= 0x00000002,
-			Unpack				= 0x00000004,
-			BuffIcon			= 0x00000008,
-			NewHaven			= 0x00000010,
-			ContainerGridLines		= 0x00000020,
+			NewSpellbook				= 0x00000001,
+			DamagePacket				= 0x00000002,
+			Unpack						= 0x00000004,
+			BuffIcon					= 0x00000008,
+			NewHaven					= 0x00000010,
+			ContainerGridLines			= 0x00000020,
 			ExtendedSupportedFeatures	= 0x00000040,
-			StygianAbyss			= 0x00000080,
-			HighSeas			= 0x00000100,
-			NewCharacterList		= 0x00000200,
+			StygianAbyss				= 0x00000080,
+			HighSeas					= 0x00000100,
+			NewCharacterList			= 0x00000200,
 			NewCharacterCreation		= 0x00000400,
 			ExtendedStatus				= 0x00000800,
 			NewMobileIncoming			= 0x00001000,
@@ -231,27 +231,23 @@ namespace Server.Network
 			Version502b			= Version500a  | BuffIcon,
 			Version6000			= Version502b  | NewHaven,
 			Version6017			= Version6000  | ContainerGridLines,
-			Version60142			= Version6017  | ExtendedSupportedFeatures,
+			Version60142		= Version6017  | ExtendedSupportedFeatures,
 			Version7000			= Version60142 | StygianAbyss,
 			Version7090			= Version7000  | HighSeas,
-			Version70130			= Version7090  | NewCharacterList,
-			Version70160			= Version70130 | NewCharacterCreation,
-			Version70300			= Version70160 | ExtendedStatus,
-			Version70330			= Version70300 | NewMobileIncoming
+			Version70130		= Version7090  | NewCharacterList,
+			Version70160		= Version70130 | NewCharacterCreation,
+			Version70300		= Version70160 | ExtendedStatus,
+			Version70330		= Version70300 | NewMobileIncoming
 		}
 
-		public bool NewSpellbook { get { return (_ProtocolChanges & ProtocolChanges.NewSpellbook) != 0; } }
 		public bool DamagePacket { get { return (_ProtocolChanges & ProtocolChanges.DamagePacket) != 0; } }
 		public bool Unpack { get { return (_ProtocolChanges & ProtocolChanges.Unpack) != 0; } }
-		public bool BuffIcon { get { return (_ProtocolChanges & ProtocolChanges.BuffIcon) != 0; } }
-		public bool NewHaven { get { return (_ProtocolChanges & ProtocolChanges.NewHaven) != 0; } }
 		public bool ContainerGridLines { get { return (_ProtocolChanges & ProtocolChanges.ContainerGridLines) != 0; } }
 		public bool ExtendedSupportedFeatures { get { return (_ProtocolChanges & ProtocolChanges.ExtendedSupportedFeatures) != 0; } }
 		public bool StygianAbyss { get { return (_ProtocolChanges & ProtocolChanges.StygianAbyss) != 0; } }
 		public bool HighSeas { get { return (_ProtocolChanges & ProtocolChanges.HighSeas) != 0; } }
 		public bool NewCharacterList { get { return (_ProtocolChanges & ProtocolChanges.NewCharacterList) != 0; } }
 		public bool NewCharacterCreation { get { return (_ProtocolChanges & ProtocolChanges.NewCharacterCreation) != 0; } }
-		public bool ExtendedStatus { get { return (_ProtocolChanges & ProtocolChanges.ExtendedStatus) != 0; } }
 		public bool NewMobileIncoming { get { return ( _ProtocolChanges & ProtocolChanges.NewMobileIncoming ) != 0; } }
 
 		public bool IsUOTDClient {
@@ -260,9 +256,11 @@ namespace Server.Network
 			}
 		}
 
-		public bool IsSAClient {
-			get {
-				return m_Version != null && m_Version.Type == ClientType.SA;
+		public bool ObjectPropertyList
+		{
+			get
+			{
+				return m_Version != null && m_Version >= m_Version400a;
 			}
 		}
 
@@ -296,18 +294,6 @@ namespace Server.Network
 
 		public void RemoveTrade( SecureTrade trade ) {
 			m_Trades.Remove( trade );
-		}
-
-		public SecureTrade FindTrade( Mobile m ) {
-			for ( int i = 0; i < m_Trades.Count; ++i ) {
-				SecureTrade trade = m_Trades[i];
-
-				if ( trade.From.Mobile == m || trade.To.Mobile == m ) {
-					return trade;
-				}
-			}
-
-			return null;
 		}
 
 		public SecureTradeContainer FindTradeContainer( Mobile m ) {

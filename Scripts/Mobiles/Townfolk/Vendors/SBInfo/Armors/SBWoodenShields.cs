@@ -19,7 +19,7 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new GenericBuyInfo( typeof( WoodenShield ), 30, 20, 0x1B7A, 0 ) );
+				Add( new GenericBuyInfo( "Wooden shield", typeof( WoodenShield ), 30, 20, 0x1B7A, 0 ) );
 			}
 		}
 

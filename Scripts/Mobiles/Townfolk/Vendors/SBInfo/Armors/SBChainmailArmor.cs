@@ -19,9 +19,9 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new GenericBuyInfo( typeof( ChainCoif ), 17, 20, 0x13BB, 0 ) );
-				Add( new GenericBuyInfo( typeof( ChainChest ), 143, 20, 0x13BF, 0 ) );
-				Add( new GenericBuyInfo( typeof( ChainLegs ), 149, 20, 0x13BE, 0 ) );
+				Add( new GenericBuyInfo( "Chainmail  coif", typeof( ChainCoif ), 17, 20, 0x13BB, 0 ) );
+				Add( new GenericBuyInfo( "Chainmail tunic", typeof( ChainChest ), 143, 20, 0x13BF, 0 ) );
+				Add( new GenericBuyInfo( "Chainmail leggings", typeof( ChainLegs ), 149, 20, 0x13BE, 0 ) );
 			}
 		}
 

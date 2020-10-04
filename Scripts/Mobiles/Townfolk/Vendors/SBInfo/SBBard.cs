@@ -19,10 +19,10 @@ namespace Server.Mobiles
 		{ 
 			public InternalBuyInfo() 
 			{ 
-				Add( new GenericBuyInfo( typeof( Drums ), 21, ( 10 ), 0x0E9C, 0 ) ); 
-				Add( new GenericBuyInfo( typeof( Tambourine ), 21, ( 10 ), 0x0E9E, 0 ) ); 
-				Add( new GenericBuyInfo( typeof( LapHarp ), 21, ( 10 ), 0x0EB2, 0 ) ); 
-				Add( new GenericBuyInfo( typeof( Lute ), 21, ( 10 ), 0x0EB3, 0 ) );
+				Add( new GenericBuyInfo( "Drums", typeof( Drums ), 21, ( 10 ), 0x0E9C, 0 ) ); 
+				Add( new GenericBuyInfo( "Tambourine", typeof( Tambourine ), 21, ( 10 ), 0x0E9E, 0 ) ); 
+				Add( new GenericBuyInfo( "Lap harp", typeof( LapHarp ), 21, ( 10 ), 0x0EB2, 0 ) ); 
+				Add( new GenericBuyInfo( "Lute", typeof( Lute ), 21, ( 10 ), 0x0EB3, 0 ) );
 			} 
 		} 
 

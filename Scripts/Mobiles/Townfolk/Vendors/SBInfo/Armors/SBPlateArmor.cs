@@ -19,11 +19,11 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new GenericBuyInfo( typeof( PlateGorget ), 104, 20, 0x1413, 0 ) );
-				Add( new GenericBuyInfo( typeof( PlateChest ), 243, 20, 0x1415, 0 ) );
-				Add( new GenericBuyInfo( typeof( PlateLegs ), 218, 20, 0x1411, 0 ) );
-				Add( new GenericBuyInfo( typeof( PlateArms ), 188, 20, 0x1410, 0 ) );
-				Add( new GenericBuyInfo( typeof( PlateGloves ), 155, 20, 0x1414, 0 ) );
+				Add( new GenericBuyInfo( "Platemail gorget", typeof( PlateGorget ), 104, 20, 0x1413, 0 ) );
+				Add( new GenericBuyInfo( "Platemail", typeof( PlateChest ), 243, 20, 0x1415, 0 ) );
+				Add( new GenericBuyInfo( "Platemail legs", typeof( PlateLegs ), 218, 20, 0x1411, 0 ) );
+				Add( new GenericBuyInfo( "Platemail arms", typeof( PlateArms ), 188, 20, 0x1410, 0 ) );
+				Add( new GenericBuyInfo( "Platemail gloves", typeof( PlateGloves ), 155, 20, 0x1414, 0 ) );
 			}
 		}
 

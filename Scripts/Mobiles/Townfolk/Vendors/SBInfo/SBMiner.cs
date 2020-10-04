@@ -19,13 +19,13 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new GenericBuyInfo( typeof( Bag ), 6, 20, 0xE76, 0 ) );
-				Add( new GenericBuyInfo( typeof( Candle ), 6, 10, 0xA28, 0 ) );
-				Add( new GenericBuyInfo( typeof( Torch ), 8, 10, 0xF6B, 0 ) );
-				Add( new GenericBuyInfo( typeof( Lantern ), 2, 10, 0xA25, 0 ) );
-				//Add( new GenericBuyInfo( typeof( OilFlask ), 8, 10, 0x####, 0 ) );
-				Add( new GenericBuyInfo( typeof( Pickaxe ), 25, 10, 0xE86, 0 ) );
-				Add( new GenericBuyInfo( typeof( Shovel ), 12, 10, 0xF39, 0 ) );
+				Add( new GenericBuyInfo( "Bag", typeof( Bag ), 6, 20, 0xE76, 0 ) );
+				Add( new GenericBuyInfo( "Candle", typeof( Candle ), 6, 10, 0xA28, 0 ) );
+				Add( new GenericBuyInfo( "Torch", typeof( Torch ), 8, 10, 0xF6B, 0 ) );
+				Add( new GenericBuyInfo( "Lantern", typeof( Lantern ), 2, 10, 0xA25, 0 ) );
+			//	Add( new GenericBuyInfo( "Oil flask", typeof( OilFlask ), 8, 10, 0x####, 0 ) );
+				Add( new GenericBuyInfo( "Pickaxe", typeof( Pickaxe ), 25, 10, 0xE86, 0 ) );
+				Add( new GenericBuyInfo( "Shovel", typeof( Shovel ), 12, 10, 0xF39, 0 ) );
 			}
 		}
 

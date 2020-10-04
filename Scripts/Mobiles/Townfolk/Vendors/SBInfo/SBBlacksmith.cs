@@ -19,83 +19,83 @@ namespace Server.Mobiles
 		{ 
 			public InternalBuyInfo() 
 			{ 	
-				Add( new GenericBuyInfo( typeof( IronIngot ), 5, 16, 0x1BF2, 0 ) );
-				Add( new GenericBuyInfo( typeof( Tongs ), 13, 14, 0xFBB, 0 ) ); 
+				Add( new GenericBuyInfo( "Iron ingot", typeof( IronIngot ), 5, 16, 0x1BF2, 0 ) );
+				Add( new GenericBuyInfo( "Tongs", typeof( Tongs ), 13, 14, 0xFBB, 0 ) ); 
  
-				Add( new GenericBuyInfo( typeof( BronzeShield ), 66, 20, 0x1B72, 0 ) );
-				Add( new GenericBuyInfo( typeof( Buckler ), 50, 20, 0x1B73, 0 ) );
-				Add( new GenericBuyInfo( typeof( MetalKiteShield ), 123, 20, 0x1B74, 0 ) );
-				Add( new GenericBuyInfo( typeof( HeaterShield ), 231, 20, 0x1B76, 0 ) );
-				Add( new GenericBuyInfo( typeof( WoodenKiteShield ), 70, 20, 0x1B78, 0 ) );
-				Add( new GenericBuyInfo( typeof( MetalShield ), 121, 20, 0x1B7B, 0 ) );
+				Add( new GenericBuyInfo( "Bronze shield", typeof( BronzeShield ), 66, 20, 0x1B72, 0 ) );
+				Add( new GenericBuyInfo( "Buckler", typeof( Buckler ), 50, 20, 0x1B73, 0 ) );
+				Add( new GenericBuyInfo( "Kite shield", typeof( MetalKiteShield ), 123, 20, 0x1B74, 0 ) );
+				Add( new GenericBuyInfo( "Heater shield", typeof( HeaterShield ), 231, 20, 0x1B76, 0 ) );
+				Add( new GenericBuyInfo( "Kite shield", typeof( WoodenKiteShield ), 70, 20, 0x1B78, 0 ) );
+				Add( new GenericBuyInfo( "Metal shield", typeof( MetalShield ), 121, 20, 0x1B7B, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( WoodenShield ), 30, 20, 0x1B7A, 0 ) );
+				Add( new GenericBuyInfo( "Wooden shield", typeof( WoodenShield ), 30, 20, 0x1B7A, 0 ) );
+				
+				Add( new GenericBuyInfo( "Platemail gorget", typeof( PlateGorget ), 104, 20, 0x1413, 0 ) );
+				Add( new GenericBuyInfo( "Platemail", typeof( PlateChest ), 243, 20, 0x1415, 0 ) );
+				Add( new GenericBuyInfo( "Platemail legs", typeof( PlateLegs ), 218, 20, 0x1411, 0 ) );
+				Add( new GenericBuyInfo( "Platemail arms", typeof( PlateArms ), 188, 20, 0x1410, 0 ) );
+				Add( new GenericBuyInfo( "Platemail gloves", typeof( PlateGloves ), 155, 20, 0x1414, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( PlateGorget ), 104, 20, 0x1413, 0 ) );
-				Add( new GenericBuyInfo( typeof( PlateChest ), 243, 20, 0x1415, 0 ) );
-				Add( new GenericBuyInfo( typeof( PlateLegs ), 218, 20, 0x1411, 0 ) );
-				Add( new GenericBuyInfo( typeof( PlateArms ), 188, 20, 0x1410, 0 ) );
-				Add( new GenericBuyInfo( typeof( PlateGloves ), 155, 20, 0x1414, 0 ) );
+				Add( new GenericBuyInfo( "Plate helm", typeof( PlateHelm ), 21, 20, 0x1412, 0 ) );
+				Add( new GenericBuyInfo( "Close helm", typeof( CloseHelm ), 18, 20, 0x1408, 0 ) );
+				Add( new GenericBuyInfo( "Close helm", typeof( CloseHelm ), 18, 20, 0x1409, 0 ) );
+				Add( new GenericBuyInfo( "Helmet", typeof( Helmet ), 31, 20, 0x140A, 0 ) );
+				Add( new GenericBuyInfo( "Helmet", typeof( Helmet ), 18, 20, 0x140B, 0 ) );
+				Add( new GenericBuyInfo( "Nose helm", typeof( NorseHelm ), 18, 20, 0x140E, 0 ) );
+				Add( new GenericBuyInfo( "Nose helm", typeof( NorseHelm ), 18, 20, 0x140F, 0 ) );
+				Add( new GenericBuyInfo( "Bascinet", typeof( Bascinet ), 18, 20, 0x140C, 0 ) );
+				Add( new GenericBuyInfo( "Plate helm", typeof( PlateHelm ), 21, 20, 0x1419, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( PlateHelm ), 21, 20, 0x1412, 0 ) );
-				Add( new GenericBuyInfo( typeof( CloseHelm ), 18, 20, 0x1408, 0 ) );
-				Add( new GenericBuyInfo( typeof( CloseHelm ), 18, 20, 0x1409, 0 ) );
-				Add( new GenericBuyInfo( typeof( Helmet ), 31, 20, 0x140A, 0 ) );
-				Add( new GenericBuyInfo( typeof( Helmet ), 18, 20, 0x140B, 0 ) );
-				Add( new GenericBuyInfo( typeof( NorseHelm ), 18, 20, 0x140E, 0 ) );
-				Add( new GenericBuyInfo( typeof( NorseHelm ), 18, 20, 0x140F, 0 ) );
-				Add( new GenericBuyInfo( typeof( Bascinet ), 18, 20, 0x140C, 0 ) );
-				Add( new GenericBuyInfo( typeof( PlateHelm ), 21, 20, 0x1419, 0 ) );
+				Add( new GenericBuyInfo( "Chainmail coif", typeof( ChainCoif ), 17, 20, 0x13BB, 0 ) );
+				Add( new GenericBuyInfo( "Chainmail tunic", typeof( ChainChest ), 143, 20, 0x13BF, 0 ) );
+				Add( new GenericBuyInfo( "Chainmail legs", typeof( ChainLegs ), 149, 20, 0x13BE, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( ChainCoif ), 17, 20, 0x13BB, 0 ) );
-				Add( new GenericBuyInfo( typeof( ChainChest ), 143, 20, 0x13BF, 0 ) );
-				Add( new GenericBuyInfo( typeof( ChainLegs ), 149, 20, 0x13BE, 0 ) );
+				Add( new GenericBuyInfo( "Ringmail tunic", typeof( RingmailChest ), 121, 20, 0x13ec, 0 ) );
+				Add( new GenericBuyInfo( "Ringmail leggings", typeof( RingmailLegs ), 90, 20, 0x13F0, 0 ) );
+				Add( new GenericBuyInfo( "Ringmail sleeves", typeof( RingmailArms ), 85, 20, 0x13EE, 0 ) );
+				Add( new GenericBuyInfo( "Ringmail gloves", typeof( RingmailGloves ), 93, 20, 0x13eb, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( RingmailChest ), 121, 20, 0x13ec, 0 ) );
-				Add( new GenericBuyInfo( typeof( RingmailLegs ), 90, 20, 0x13F0, 0 ) );
-				Add( new GenericBuyInfo( typeof( RingmailArms ), 85, 20, 0x13EE, 0 ) );
-				Add( new GenericBuyInfo( typeof( RingmailGloves ), 93, 20, 0x13eb, 0 ) );
+				Add( new GenericBuyInfo( "Executioner's axe", typeof( ExecutionersAxe ), 30, 20, 0xF45, 0 ) );
+				Add( new GenericBuyInfo( "Bardiche", typeof( Bardiche ), 60, 20, 0xF4D, 0 ) );
+				Add( new GenericBuyInfo( "Battle axe", typeof( BattleAxe ), 26, 20, 0xF47, 0 ) );
+				Add( new GenericBuyInfo( "Two handed axe", typeof( TwoHandedAxe ), 32, 20, 0x1443, 0 ) );
+				Add( new GenericBuyInfo( "Bow", typeof( Bow ), 35, 20, 0x13B2, 0 ) );
+				Add( new GenericBuyInfo( "Butcher knife", typeof( ButcherKnife ), 14, 20, 0x13F6, 0 ) );
+				Add( new GenericBuyInfo( "Crossbow", typeof( Crossbow ), 46, 20, 0xF50, 0 ) );
+				Add( new GenericBuyInfo( "Heavy crossbow", typeof( HeavyCrossbow ), 55, 20, 0x13FD, 0 ) );
+				Add( new GenericBuyInfo( "Cutlass", typeof( Cutlass ), 24, 20, 0x1441, 0 ) );
+				Add( new GenericBuyInfo( "Dagger", typeof( Dagger ), 21, 20, 0xF52, 0 ) );
+				Add( new GenericBuyInfo( "Halberd", typeof( Halberd ), 42, 20, 0x143E, 0 ) );
+				Add( new GenericBuyInfo( "Hammer pick", typeof( HammerPick ), 26, 20, 0x143D, 0 ) );
+				Add( new GenericBuyInfo( "Katana", typeof( Katana ), 33, 20, 0x13FF, 0 ) );
+				Add( new GenericBuyInfo( "Kryss", typeof( Kryss ), 32, 20, 0x1401, 0 ) );
+				Add( new GenericBuyInfo( "Broadsword", typeof( Broadsword ), 35, 20, 0xF5E, 0 ) );
+				Add( new GenericBuyInfo( "Longsword", typeof( Longsword ), 55, 20, 0xF61, 0 ) );
+				Add( new GenericBuyInfo( "Long sword", typeof( ThinLongsword ), 27, 20, 0x13B8, 0 ) );
+				Add( new GenericBuyInfo( "Viking sword", typeof( VikingSword ), 55, 20, 0x13B9, 0 ) );
+				Add( new GenericBuyInfo( "Cleaver", typeof( Cleaver ), 15, 20, 0xEC3, 0 ) );
+				Add( new GenericBuyInfo( "Axe", typeof( Axe ), 40, 20, 0xF49, 0 ) );
+				Add( new GenericBuyInfo( "Double axe", typeof( DoubleAxe ), 52, 20, 0xF4B, 0 ) );
+				Add( new GenericBuyInfo( "Pickaxe", typeof( Pickaxe ), 22, 20, 0xE86, 0 ) );
+				Add( new GenericBuyInfo( "Pitchfork", typeof( Pitchfork ), 19, 20, 0xE87, 0 ) );
+				Add( new GenericBuyInfo( "Scimitar", typeof( Scimitar ), 36, 20, 0x13B6, 0 ) );
+				Add( new GenericBuyInfo( "Skinning knife", typeof( SkinningKnife ), 14, 20, 0xEC4, 0 ) );
+				Add( new GenericBuyInfo( "Large battle axe", typeof( LargeBattleAxe ), 33, 20, 0x13FB, 0 ) );
+				Add( new GenericBuyInfo( "War axe", typeof( WarAxe ), 29, 20, 0x13B0, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( ExecutionersAxe ), 30, 20, 0xF45, 0 ) );
-				Add( new GenericBuyInfo( typeof( Bardiche ), 60, 20, 0xF4D, 0 ) );
-				Add( new GenericBuyInfo( typeof( BattleAxe ), 26, 20, 0xF47, 0 ) );
-				Add( new GenericBuyInfo( typeof( TwoHandedAxe ), 32, 20, 0x1443, 0 ) );
-				Add( new GenericBuyInfo( typeof( Bow ), 35, 20, 0x13B2, 0 ) );
-				Add( new GenericBuyInfo( typeof( ButcherKnife ), 14, 20, 0x13F6, 0 ) );
-				Add( new GenericBuyInfo( typeof( Crossbow ), 46, 20, 0xF50, 0 ) );
-				Add( new GenericBuyInfo( typeof( HeavyCrossbow ), 55, 20, 0x13FD, 0 ) );
-				Add( new GenericBuyInfo( typeof( Cutlass ), 24, 20, 0x1441, 0 ) );
-				Add( new GenericBuyInfo( typeof( Dagger ), 21, 20, 0xF52, 0 ) );
-				Add( new GenericBuyInfo( typeof( Halberd ), 42, 20, 0x143E, 0 ) );
-				Add( new GenericBuyInfo( typeof( HammerPick ), 26, 20, 0x143D, 0 ) );
-				Add( new GenericBuyInfo( typeof( Katana ), 33, 20, 0x13FF, 0 ) );
-				Add( new GenericBuyInfo( typeof( Kryss ), 32, 20, 0x1401, 0 ) );
-				Add( new GenericBuyInfo( typeof( Broadsword ), 35, 20, 0xF5E, 0 ) );
-				Add( new GenericBuyInfo( typeof( Longsword ), 55, 20, 0xF61, 0 ) );
-				Add( new GenericBuyInfo( typeof( ThinLongsword ), 27, 20, 0x13B8, 0 ) );
-				Add( new GenericBuyInfo( typeof( VikingSword ), 55, 20, 0x13B9, 0 ) );
-				Add( new GenericBuyInfo( typeof( Cleaver ), 15, 20, 0xEC3, 0 ) );
-				Add( new GenericBuyInfo( typeof( Axe ), 40, 20, 0xF49, 0 ) );
-				Add( new GenericBuyInfo( typeof( DoubleAxe ), 52, 20, 0xF4B, 0 ) );
-				Add( new GenericBuyInfo( typeof( Pickaxe ), 22, 20, 0xE86, 0 ) );
-				Add( new GenericBuyInfo( typeof( Pitchfork ), 19, 20, 0xE87, 0 ) );
-				Add( new GenericBuyInfo( typeof( Scimitar ), 36, 20, 0x13B6, 0 ) );
-				Add( new GenericBuyInfo( typeof( SkinningKnife ), 14, 20, 0xEC4, 0 ) );
-				Add( new GenericBuyInfo( typeof( LargeBattleAxe ), 33, 20, 0x13FB, 0 ) );
-				Add( new GenericBuyInfo( typeof( WarAxe ), 29, 20, 0x13B0, 0 ) );
-
-				Add( new GenericBuyInfo( typeof( BlackStaff ), 22, 20, 0xDF1, 0 ) );
-				Add( new GenericBuyInfo( typeof( Club ), 16, 20, 0x13B4, 0 ) );
-				Add( new GenericBuyInfo( typeof( GnarledStaff ), 16, 20, 0x13F8, 0 ) );
-				Add( new GenericBuyInfo( typeof( Mace ), 28, 20, 0xF5C, 0 ) );
-				Add( new GenericBuyInfo( typeof( Maul ), 21, 20, 0x143B, 0 ) );
-				Add( new GenericBuyInfo( typeof( QuarterStaff ), 19, 20, 0xE89, 0 ) );
-				Add( new GenericBuyInfo( typeof( ShepherdsCrook ), 20, 20, 0xE81, 0 ) );
-				Add( new GenericBuyInfo( typeof( SmithHammer ), 21, 20, 0x13E3, 0 ) );
-				Add( new GenericBuyInfo( typeof( ShortSpear ), 23, 20, 0x1403, 0 ) );
-				Add( new GenericBuyInfo( typeof( Spear ), 31, 20, 0xF62, 0 ) );
-				Add( new GenericBuyInfo( typeof( WarHammer ), 25, 20, 0x1439, 0 ) );
-				Add( new GenericBuyInfo( typeof( WarMace ), 31, 20, 0x1407, 0 ) );
+				Add( new GenericBuyInfo( "Black staff", typeof( BlackStaff ), 22, 20, 0xDF1, 0 ) );
+				Add( new GenericBuyInfo( "Club", typeof( Club ), 16, 20, 0x13B4, 0 ) );
+				Add( new GenericBuyInfo( "Gnarled staff", typeof( GnarledStaff ), 16, 20, 0x13F8, 0 ) );
+				Add( new GenericBuyInfo( "Mace", typeof( Mace ), 28, 20, 0xF5C, 0 ) );
+				Add( new GenericBuyInfo( "Maul", typeof( Maul ), 21, 20, 0x143B, 0 ) );
+				Add( new GenericBuyInfo( "Quarter staff", typeof( QuarterStaff ), 19, 20, 0xE89, 0 ) );
+				Add( new GenericBuyInfo( "Shepherd's crook", typeof( ShepherdsCrook ), 20, 20, 0xE81, 0 ) );
+				Add( new GenericBuyInfo( "Smith's hammer", typeof( SmithHammer ), 21, 20, 0x13E3, 0 ) );
+				Add( new GenericBuyInfo( "Short spear", typeof( ShortSpear ), 23, 20, 0x1403, 0 ) );
+				Add( new GenericBuyInfo( "Spear", typeof( Spear ), 31, 20, 0xF62, 0 ) );
+				Add( new GenericBuyInfo( "War hammer", typeof( WarHammer ), 25, 20, 0x1439, 0 ) );
+				Add( new GenericBuyInfo( "War mace", typeof( WarMace ), 31, 20, 0x1407, 0 ) );
 			} 
 		} 
 

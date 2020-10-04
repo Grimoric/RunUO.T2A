@@ -19,7 +19,7 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new GenericBuyInfo( "1041243", typeof( ContractOfEmployment ), 1252, 20, 0x14F0, 0 ) );
+				Add( new GenericBuyInfo("A contract of employment", typeof( ContractOfEmployment ), 1252, 20, 0x14F0, 0 ) );
 			}
 		}
 

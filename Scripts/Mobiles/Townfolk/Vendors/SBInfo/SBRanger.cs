@@ -19,11 +19,11 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new AnimalBuyInfo( 1, typeof( Cat ), 138, 20, 201, 0 ) );
-				Add( new AnimalBuyInfo( 1, typeof( Dog ), 181, 20, 217, 0 ) );
-				Add( new AnimalBuyInfo( 1, typeof( PackLlama ), 491, 20, 292, 0 ) );
-				Add( new AnimalBuyInfo( 1, typeof( PackHorse ), 606, 20, 291, 0 ) );
-				Add( new GenericBuyInfo( typeof( Bandage ), 5, 20, 0xE21, 0 ) );
+				Add( new AnimalBuyInfo( 1, "A cat", typeof( Cat ), 138, 20, 201, 0 ) );
+				Add( new AnimalBuyInfo( 1, "A dog", typeof( Dog ), 181, 20, 217, 0 ) );
+				Add( new AnimalBuyInfo( 1, "A pack llama", typeof( PackLlama ), 491, 20, 292, 0 ) );
+				Add( new AnimalBuyInfo( 1, "A pack horse", typeof( PackHorse ), 606, 20, 291, 0 ) );
+				Add( new GenericBuyInfo( "Clean bandage", typeof( Bandage ), 5, 20, 0xE21, 0 ) );
 			}
 		}
 

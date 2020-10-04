@@ -1,6 +1,6 @@
 namespace Server.Items
 {
-    [TypeAlias( "Server.Items.EmptyLargeWoodenBowl" )]
+    [TypeAlias( "EmptyLargeWoodenBowl" )]
     public class EmptyWoodenTub : Item
     {
         [Constructable]

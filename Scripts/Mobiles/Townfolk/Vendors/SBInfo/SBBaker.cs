@@ -19,17 +19,17 @@ namespace Server.Mobiles
 		{ 
 			public InternalBuyInfo() 
 			{ 
-				Add( new GenericBuyInfo( typeof( BreadLoaf ), 6, 20, 0x103B, 0 ) );
-				Add( new GenericBuyInfo( typeof( BreadLoaf ), 5, 20, 0x103C, 0 ) );
-				Add( new GenericBuyInfo( typeof( ApplePie ), 7, 20, 0x1041, 0 ) ); //OSI just has Pie, not Apple/Fruit/Meat
-				Add( new GenericBuyInfo( typeof( Cake ), 13, 20, 0x9E9, 0 ) );
-				Add( new GenericBuyInfo( typeof( Muffins ), 3, 20, 0x9EA, 0 ) );
-				Add( new GenericBuyInfo( typeof( SackFlour ), 3, 20, 0x1039, 0 ) );
-				Add( new GenericBuyInfo( typeof( FrenchBread ), 5, 20, 0x98C, 0 ) );
-				Add( new GenericBuyInfo( typeof( Cookies ), 3, 20, 0x160b, 0 ) ); 
-				Add( new GenericBuyInfo( typeof( CheesePizza ), 8, 10, 0x1040, 0 ) ); // OSI just has Pizza
-				Add( new GenericBuyInfo( typeof( JarHoney ), 3, 20, 0x9ec, 0 ) ); 
-				Add (new GenericBuyInfo( typeof( BowlFlour ), 7, 20, 0xA1E, 0 ) );
+				Add( new GenericBuyInfo("Bread loaf", typeof( BreadLoaf ), 6, 20, 0x103B, 0 ) );
+				Add( new GenericBuyInfo("Bread loaf", typeof( BreadLoaf ), 5, 20, 0x103C, 0 ) );
+				Add( new GenericBuyInfo("Baked pie", typeof( ApplePie ), 7, 20, 0x1041, 0 ) );
+				Add( new GenericBuyInfo("Cake", typeof( Cake ), 13, 20, 0x9E9, 0 ) );
+				Add( new GenericBuyInfo("Muffin", typeof( Muffins ), 3, 20, 0x9EA, 0 ) );
+				Add( new GenericBuyInfo("Sack of flour", typeof( SackFlour ), 3, 20, 0x1039, 0 ) );
+				Add( new GenericBuyInfo("French bread", typeof( FrenchBread ), 5, 20, 0x98C, 0 ) );
+				Add( new GenericBuyInfo("Pan of cookies", typeof( Cookies ), 3, 20, 0x160b, 0 ) ); 
+				Add( new GenericBuyInfo("Pizza", typeof( CheesePizza ), 8, 10, 0x1040, 0 ) );
+				Add( new GenericBuyInfo("jar of honey", typeof( JarHoney ), 3, 20, 0x9ec, 0 ) ); 
+				Add( new GenericBuyInfo("Bowl of flour", typeof( BowlFlour ), 7, 20, 0xA1E, 0 ) );
 			} 
 		} 
 

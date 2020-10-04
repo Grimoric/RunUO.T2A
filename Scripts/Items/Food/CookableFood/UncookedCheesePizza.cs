@@ -1,6 +1,6 @@
 namespace Server.Items
 {
-    [TypeAlias( "Server.Items.UncookedPizza" )]
+    [TypeAlias( "UncookedPizza" )]
     public class UncookedCheesePizza : CookableFood
     {
         public override int LabelNumber{ get{ return 1041341; } } // uncooked cheese pizza

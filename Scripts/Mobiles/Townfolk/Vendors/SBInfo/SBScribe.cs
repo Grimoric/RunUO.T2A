@@ -19,13 +19,13 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new GenericBuyInfo( typeof( ScribesPen ), 8,  20, 0xFBF, 0 ) );
-				Add( new GenericBuyInfo( typeof( BlankScroll ), 5, 999, 0x0E34, 0 ) );
-				Add( new GenericBuyInfo( typeof( ScribesPen ), 8,  20, 0xFC0, 0 ) );
-				Add( new GenericBuyInfo( typeof( BrownBook ), 15, 10, 0xFEF, 0 ) );
-				Add( new GenericBuyInfo( typeof( TanBook ), 15, 10, 0xFF0, 0 ) );
-				Add( new GenericBuyInfo( typeof( BlueBook ), 15, 10, 0xFF2, 0 ) );
-				//Add( new GenericBuyInfo( "1041267", typeof( Runebook ), 3500, 10, 0xEFA, 0x461 ) );
+				Add( new GenericBuyInfo( "Pen and ink", typeof( ScribesPen ), 8,  20, 0xFBF, 0 ) );
+				Add( new GenericBuyInfo( "Blank scroll", typeof( BlankScroll ), 5, 999, 0x0E34, 0 ) );
+				Add( new GenericBuyInfo( "Pen and ink", typeof( ScribesPen ), 8,  20, 0xFC0, 0 ) );
+				Add( new GenericBuyInfo( "Book", typeof( BrownBook ), 15, 10, 0xFEF, 0 ) );
+				Add( new GenericBuyInfo( "Book", typeof( TanBook ), 15, 10, 0xFF0, 0 ) );
+				Add( new GenericBuyInfo( "Book", typeof( BlueBook ), 15, 10, 0xFF2, 0 ) );
+			//	Add( new GenericBuyInfo( "Runebook", typeof( Runebook ), 3500, 10, 0xEFA, 0x461 ) );
 			}
 		}
 

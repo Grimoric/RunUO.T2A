@@ -19,8 +19,8 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new GenericBuyInfo( typeof( BlankScroll ), 5, 20, 0x0E34, 0 ) );
-				Add( new GenericBuyInfo( typeof( ScribesPen ), 8,  20, 0xFBF, 0 ) );
+				Add( new GenericBuyInfo( "Blank scroll", typeof( BlankScroll ), 5, 20, 0x0E34, 0 ) );
+				Add( new GenericBuyInfo( "Pen and ink", typeof( ScribesPen ), 8,  20, 0xFBF, 0 ) );
 			}
 		}
 

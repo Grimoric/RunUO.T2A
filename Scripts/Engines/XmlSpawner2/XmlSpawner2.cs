@@ -326,7 +326,7 @@ namespace Server.Mobiles
                 int hours;
                 int minutes;
 
-                Server.Items.Clock.GetTime(this.Map, this.Location.X, this.Location.Y, out  hours, out  minutes);
+                Clock.GetTime(this.Map, this.Location.X, this.Location.Y, out  hours, out  minutes);
                 return (new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hours, minutes, 0).TimeOfDay);
             }
         }
@@ -1504,7 +1504,7 @@ namespace Server.Mobiles
                 {
                     int hours;
                     int minutes;
-                    Server.Items.Clock.GetTime(this.Map, Location.X, this.Location.Y, out  hours, out  minutes);
+                    Clock.GetTime(this.Map, Location.X, this.Location.Y, out  hours, out  minutes);
                     return (new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hours, minutes, 0).TimeOfDay);
 
                 }
@@ -1537,7 +1537,7 @@ namespace Server.Mobiles
                 {
                     int hours;
                     int minutes;
-                    Server.Items.Clock.GetTime(this.Map, Location.X, this.Location.Y, out  hours, out  minutes);
+                    Clock.GetTime(this.Map, Location.X, this.Location.Y, out  hours, out  minutes);
                     now = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hours, minutes, 0);
                 }
                 else

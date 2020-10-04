@@ -1,3 +1,5 @@
+using Server.Items;
+
 namespace Server.Mobiles
 {
     public class MageGuildmaster : BaseGuildmaster
@@ -25,8 +27,8 @@ namespace Server.Mobiles
 		{
 			base.InitOutfit();
 
-			AddItem( new Server.Items.Robe( Utility.RandomBlueHue() ) );
-			AddItem( new Server.Items.GnarledStaff() );
+			AddItem( new Robe( Utility.RandomBlueHue() ) );
+			AddItem( new GnarledStaff() );
 		}
 
 		public MageGuildmaster( Serial serial ) : base( serial )

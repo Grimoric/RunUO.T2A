@@ -19,11 +19,10 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new GenericBuyInfo( typeof( RingmailChest ), 121, 20, 0x13ec, 0 ) );
-				Add( new GenericBuyInfo( typeof( RingmailLegs ), 90, 20, 0x13F0, 0 ) );
-				Add( new GenericBuyInfo( typeof( RingmailArms ), 85, 20, 0x13EE, 0 ) );
-				Add( new GenericBuyInfo( typeof( RingmailGloves ), 93, 20, 0x13eb, 0 ) );
-
+				Add( new GenericBuyInfo( "Ringmail tunic", typeof( RingmailChest ), 121, 20, 0x13ec, 0 ) );
+				Add( new GenericBuyInfo( "Ringmail leggings", typeof( RingmailLegs ), 90, 20, 0x13F0, 0 ) );
+				Add( new GenericBuyInfo( "Ringmail sleeves", typeof( RingmailArms ), 85, 20, 0x13EE, 0 ) );
+				Add( new GenericBuyInfo( "Ringmail gloves", typeof( RingmailGloves ), 93, 20, 0x13eb, 0 ) );
 			}
 		}
 

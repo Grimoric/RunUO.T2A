@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Server.Items;
 using Server.Guilds;
+using Server.Multis;
 
 namespace Server.Mobiles
 {
@@ -20,72 +21,72 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new GenericBuyInfo( typeof( Arrow ), 2, 20, 0xF3F, 0 ) );
-				Add( new GenericBuyInfo( typeof( Bolt ), 5, 20, 0x1BFB, 0 ) );
+				Add( new GenericBuyInfo( "Arrow", typeof( Arrow ), 2, 20, 0xF3F, 0 ) );
+				Add( new GenericBuyInfo( "Crossbow bolt", typeof( Bolt ), 5, 20, 0x1BFB, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( Backpack ), 15, 20, 0x9B2, 0 ) );
-				Add( new GenericBuyInfo( typeof( Pouch ), 6, 20, 0xE79, 0 ) );
-				Add( new GenericBuyInfo( typeof( Bag ), 6, 20, 0xE76, 0 ) );
-				
-				Add( new GenericBuyInfo( typeof( Candle ), 6, 20, 0xA28, 0 ) );
-				Add( new GenericBuyInfo( typeof( Torch ), 8, 20, 0xF6B, 0 ) );
-				Add( new GenericBuyInfo( typeof( Lantern ), 2, 20, 0xA25, 0 ) );
-					
-				//TODO: Oil Flask @ 8GP
+				Add( new GenericBuyInfo( "Backpack", typeof( Backpack ), 15, 20, 0x9B2, 0 ) );
+				Add( new GenericBuyInfo( "Pouch", typeof( Pouch ), 6, 20, 0xE79, 0 ) );
+				Add( new GenericBuyInfo( "Bag", typeof( Bag ), 6, 20, 0xE76, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( Lockpick ), 12, 20, 0x14FC, 0 ) );
+				Add( new GenericBuyInfo( "Candle", typeof( Candle ), 6, 20, 0xA28, 0 ) );
+				Add( new GenericBuyInfo( "Torch", typeof( Torch ), 8, 20, 0xF6B, 0 ) );
+				Add( new GenericBuyInfo( "Lantern", typeof( Lantern ), 2, 20, 0xA25, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( FloppyHat ), 7, 20, 0x1713, Utility.RandomDyedHue() ) );
-				Add( new GenericBuyInfo( typeof( WideBrimHat ), 8, 20, 0x1714, Utility.RandomDyedHue() ) );
-				Add( new GenericBuyInfo( typeof( Cap ), 10, 20, 0x1715, Utility.RandomDyedHue() ) );
-				Add( new GenericBuyInfo( typeof( TallStrawHat ), 8, 20, 0x1716, Utility.RandomDyedHue() ) );
-				Add( new GenericBuyInfo( typeof( StrawHat ), 7, 20, 0x1717, Utility.RandomDyedHue() ) );
-				Add( new GenericBuyInfo( typeof( WizardsHat ), 11, 20, 0x1718, Utility.RandomDyedHue() ) );
-				Add( new GenericBuyInfo( typeof( LeatherCap ), 10, 20, 0x1DB9, Utility.RandomDyedHue() ) );
-				Add( new GenericBuyInfo( typeof( FeatheredHat ), 10, 20, 0x171A, Utility.RandomDyedHue() ) );
-				Add( new GenericBuyInfo( typeof( TricorneHat ), 8, 20, 0x171B, Utility.RandomDyedHue() ) );
-				Add( new GenericBuyInfo( typeof( Bandana ), 6, 20, 0x1540, Utility.RandomDyedHue() ) );
-				Add( new GenericBuyInfo( typeof( SkullCap ), 7, 20, 0x1544, Utility.RandomDyedHue() ) );
+			//	Add( new GenericBuyInfo( "Oil flask", typeof( OilFlask ), 8, 10, 0x####, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( BreadLoaf ), 6, 10, 0x103B, 0 ) );
-				Add( new GenericBuyInfo( typeof( LambLeg ), 8, 20, 0x160A, 0 ) );
-				Add( new GenericBuyInfo( typeof( ChickenLeg ), 5, 20, 0x1608, 0 ) );
-				Add( new GenericBuyInfo( typeof( CookedBird ), 17, 20, 0x9B7, 0 ) );
+				Add( new GenericBuyInfo( "Lockpick", typeof( Lockpick ), 12, 20, 0x14FC, 0 ) );
 
-				Add( new BeverageBuyInfo( typeof( BeverageBottle ), BeverageType.Ale, 7, 20, 0x99F, 0 ) );
-				Add( new BeverageBuyInfo( typeof( BeverageBottle ), BeverageType.Wine, 7, 20, 0x9C7, 0 ) );
-				Add( new BeverageBuyInfo( typeof( BeverageBottle ), BeverageType.Liquor, 7, 20, 0x99B, 0 ) );
-				Add( new BeverageBuyInfo( typeof( Jug ), BeverageType.Cider, 13, 20, 0x9C8, 0 ) );
+				Add( new GenericBuyInfo( "Floppy hat", typeof( FloppyHat ), 7, 20, 0x1713, Utility.RandomDyedHue() ) );
+				Add( new GenericBuyInfo( "Wide-brim hat",  typeof( WideBrimHat ), 8, 20, 0x1714, Utility.RandomDyedHue() ) );
+				Add( new GenericBuyInfo( "Cap", typeof( Cap ), 10, 20, 0x1715, Utility.RandomDyedHue() ) );
+				Add( new GenericBuyInfo( "Tall straw hat", typeof( TallStrawHat ), 8, 20, 0x1716, Utility.RandomDyedHue() ) );
+				Add( new GenericBuyInfo( "Straw hat", typeof( StrawHat ), 7, 20, 0x1717, Utility.RandomDyedHue() ) );
+				Add( new GenericBuyInfo( "Wizard's hat", typeof( WizardsHat ), 11, 20, 0x1718, Utility.RandomDyedHue() ) );
+				Add( new GenericBuyInfo( "Leather cap", typeof( LeatherCap ), 10, 20, 0x1DB9, Utility.RandomDyedHue() ) );
+				Add( new GenericBuyInfo( "Feathered hat", typeof( FeatheredHat ), 10, 20, 0x171A, Utility.RandomDyedHue() ) );
+				Add( new GenericBuyInfo( "Tricorne hat", typeof( TricorneHat ), 8, 20, 0x171B, Utility.RandomDyedHue() ) );
+				Add( new GenericBuyInfo( "Bandana", typeof( Bandana ), 6, 20, 0x1540, Utility.RandomDyedHue() ) );
+				Add( new GenericBuyInfo( "Skullcap", typeof( SkullCap ), 7, 20, 0x1544, Utility.RandomDyedHue() ) );
 
-				Add( new GenericBuyInfo( typeof( Pear ), 3, 20, 0x994, 0 ) );
-				Add( new GenericBuyInfo( typeof( Apple ), 3, 20, 0x9D0, 0 ) );
+				Add( new GenericBuyInfo( "Bread loaf", typeof( BreadLoaf ), 6, 10, 0x103B, 0 ) );
+				Add( new GenericBuyInfo( "Leg of lamb", typeof( LambLeg ), 8, 20, 0x160A, 0 ) );
+				Add( new GenericBuyInfo( "Chicken leg", typeof( ChickenLeg ), 5, 20, 0x1608, 0 ) );
+				Add( new GenericBuyInfo( "Cooked bird", typeof( CookedBird ), 17, 20, 0x9B7, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( Beeswax ), 1, 20, 0x1422, 0 ) );
+				Add( new BeverageBuyInfo( "Bottle of ale", typeof( BeverageBottle ), BeverageType.Ale, 7, 20, 0x99F, 0 ) );
+				Add( new BeverageBuyInfo( "Bottle of wine", typeof( BeverageBottle ), BeverageType.Wine, 7, 20, 0x9C7, 0 ) );
+				Add( new BeverageBuyInfo( "Bottle of liquor", typeof( BeverageBottle ), BeverageType.Liquor, 7, 20, 0x99B, 0 ) );
+				Add( new BeverageBuyInfo( "Jug of cider", typeof( Jug ), BeverageType.Cider, 13, 20, 0x9C8, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( Garlic ), 3, 20, 0xF84, 0 ) );
-				Add( new GenericBuyInfo( typeof( Ginseng ), 3, 20, 0xF85, 0 ) );
+				Add( new GenericBuyInfo( "Pear", typeof( Pear ), 3, 20, 0x994, 0 ) );
+				Add( new GenericBuyInfo( "Apple", typeof( Apple ), 3, 20, 0x9D0, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( Bottle ), 5, 20, 0xF0E, 0 ) );
+				Add( new GenericBuyInfo( "Beeswax", typeof( Beeswax ), 1, 20, 0x1422, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( RedBook ), 15, 20, 0xFF1, 0 ) );
-				Add( new GenericBuyInfo( typeof( BlueBook ), 15, 20, 0xFF2, 0 ) );
-				Add( new GenericBuyInfo( typeof( TanBook ), 15, 20, 0xFF0, 0 ) );
+				Add( new GenericBuyInfo( "Garlic", typeof( Garlic ), 3, 20, 0xF84, 0 ) );
+				Add( new GenericBuyInfo( "Ginseng", typeof( Ginseng ), 3, 20, 0xF85, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( WoodenBox ), 14, 20, 0xE7D, 0 ) );
-				Add( new GenericBuyInfo( typeof( Key ), 2, 20, 0x100E, 0 ) );
+				Add( new GenericBuyInfo( "Empty bottle", typeof( Bottle ), 5, 20, 0xF0E, 0 ) );
 
-				Add( new GenericBuyInfo( typeof( Bedroll ), 5, 20, 0xA59, 0 ) );
-				Add( new GenericBuyInfo( typeof( Kindling ), 2, 20, 0xDE1, 0 ) );
+				Add( new GenericBuyInfo( "Book", typeof( RedBook ), 15, 20, 0xFF1, 0 ) );
+				Add( new GenericBuyInfo( "Book", typeof( BlueBook ), 15, 20, 0xFF2, 0 ) );
+				Add( new GenericBuyInfo( "Book", typeof( TanBook ), 15, 20, 0xFF0, 0 ) );
 
-				Add( new GenericBuyInfo( "1041205", typeof( Multis.SmallBoatDeed ), 10177, 20, 0x14F2, 0 ) );
+				Add( new GenericBuyInfo( "Wooden box", typeof( WoodenBox ), 14, 20, 0xE7D, 0 ) );
+				Add( new GenericBuyInfo( "Copper key", typeof( Key ), 2, 20, 0x100E, 0 ) );
 
-				Add( new GenericBuyInfo( "1041060", typeof( HairDye ), 60, 20, 0xEFF, 0 ) );
+				Add( new GenericBuyInfo( "Bedroll", typeof( Bedroll ), 5, 20, 0xA59, 0 ) );
+				Add( new GenericBuyInfo( "Kindling", typeof( Kindling ), 2, 20, 0xDE1, 0 ) );
 
-				Add( new GenericBuyInfo( "1016450", typeof( Chessboard ), 2, 20, 0xFA6, 0 ) );
-				Add( new GenericBuyInfo( "1016449", typeof( CheckerBoard ), 2, 20, 0xFA6, 0 ) );
-				Add( new GenericBuyInfo( typeof( Backgammon ), 2, 20, 0xE1C, 0 ) );
-				Add( new GenericBuyInfo( typeof( Dices ), 2, 20, 0xFA7, 0 ) );
-                Add( new GenericBuyInfo( "1041055", typeof( GuildDeed ), 12450, 20, 0x14F0, 0 ) );
+				Add( new GenericBuyInfo( "Small Ship deed", typeof( SmallBoatDeed ), 10177, 20, 0x14F2, 0 ) );
+
+				Add( new GenericBuyInfo( "Hair dye", typeof( HairDye ), 60, 20, 0xEFF, 0 ) );
+
+				Add( new GenericBuyInfo( "Game board", typeof( Chessboard ), 2, 20, 0xFA6, 0 ) );
+				Add( new GenericBuyInfo( "Game board", typeof( CheckerBoard ), 2, 20, 0xFA6, 0 ) );
+				Add( new GenericBuyInfo( "Backgammon board", typeof( Backgammon ), 2, 20, 0xE1C, 0 ) );
+				Add( new GenericBuyInfo( "Dice and cup", typeof( Dices ), 2, 20, 0xFA7, 0 ) );
+                Add( new GenericBuyInfo( "A guild deed", typeof( GuildDeed ), 12450, 20, 0x14F0, 0 ) );
 			}
 		}
 

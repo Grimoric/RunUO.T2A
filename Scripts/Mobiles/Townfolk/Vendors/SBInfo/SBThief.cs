@@ -19,15 +19,15 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-				Add( new GenericBuyInfo( typeof( Backpack ), 15, 20, 0x9B2, 0 ) );
-				Add( new GenericBuyInfo( typeof( Pouch ), 6, 20, 0xE79, 0 ) );
-				Add( new GenericBuyInfo( typeof( Torch ), 8, 20, 0xF6B, 0 ) );
-				Add( new GenericBuyInfo( typeof( Lantern ), 2, 20, 0xA25, 0 ) );
-				//Add( new GenericBuyInfo( typeof( OilFlask ), 8, 20, 0x####, 0 ) );
-				Add( new GenericBuyInfo( typeof( Lockpick ), 12, 20, 0x14FC, 0 ) );
-				Add( new GenericBuyInfo( typeof( WoodenBox ), 14, 20, 0x9AA, 0 ) );
-				Add( new GenericBuyInfo( typeof( Key ), 2, 20, 0x100E, 0 ) );
-				Add( new GenericBuyInfo( typeof( HairDye ), 37, 20, 0xEFF, 0 ) );
+				Add( new GenericBuyInfo( "Backpack", typeof( Backpack ), 15, 20, 0x9B2, 0 ) );
+				Add( new GenericBuyInfo( "Pouch", typeof( Pouch ), 6, 20, 0xE79, 0 ) );
+				Add( new GenericBuyInfo( "Torch", typeof( Torch ), 8, 20, 0xF6B, 0 ) );
+				Add( new GenericBuyInfo( "Lantern", typeof( Lantern ), 2, 20, 0xA25, 0 ) );
+			//	Add( new GenericBuyInfo( "Oil flask", typeof( OilFlask ), 8, 10, 0x####, 0 ) );
+				Add( new GenericBuyInfo( "Lockpick", typeof( Lockpick ), 12, 20, 0x14FC, 0 ) );
+				Add( new GenericBuyInfo( "Wooden box", typeof( WoodenBox ), 14, 20, 0x9AA, 0 ) );
+				Add( new GenericBuyInfo( "Copper key", typeof( Key ), 2, 20, 0x100E, 0 ) );
+				Add( new GenericBuyInfo( "Hair dye", typeof( HairDye ), 37, 20, 0xEFF, 0 ) );
 			}
 		}
 
